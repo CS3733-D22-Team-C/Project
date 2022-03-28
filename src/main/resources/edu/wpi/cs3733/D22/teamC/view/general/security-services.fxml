@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.gluonhq.charm.glisten.control.DropdownButton?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.MenuItem?>
+<?import javafx.scene.control.ScrollBar?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.shape.Line?>
+<?import javafx.scene.text.Font?>
+
+
+<AnchorPane prefHeight="930.0" prefWidth="601.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.wpi.cs3733.D22.teamC.view.general.SecurityServices">
+   <children>
+      <VBox layoutX="28.0" layoutY="30.0" prefHeight="51.0" prefWidth="544.0">
+         <children>
+            <Label prefHeight="55.0" prefWidth="177.0" text="Security Service Request" underline="true">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </Label>
+         </children>
+      </VBox>
+      <GridPane layoutX="83.0" layoutY="86.0" prefHeight="65.0" prefWidth="465.0">
+        <columnConstraints>
+          <ColumnConstraints hgrow="SOMETIMES" maxWidth="191.0" minWidth="10.0" prefWidth="169.14352416992188" />
+            <ColumnConstraints hgrow="SOMETIMES" maxWidth="191.0" minWidth="0.0" prefWidth="152.80209350585938" />
+          <ColumnConstraints hgrow="SOMETIMES" maxWidth="283.0" minWidth="9.0" prefWidth="142.69790649414062" />
+        </columnConstraints>
+        <rowConstraints>
+          <RowConstraints maxHeight="63.504669189453125" minHeight="10.0" prefHeight="49.0" vgrow="SOMETIMES" />
+        </rowConstraints>
+         <children>
+            <DropdownButton>
+                <items>
+                    <MenuItem text="Choice 1" />
+                    <MenuItem text="Choice 2" />
+                    <MenuItem text="Choice 3" />
+                </items>
+            </DropdownButton>
+            <DropdownButton GridPane.columnIndex="1">
+                <items>
+                    <MenuItem text="Choice 1" />
+                    <MenuItem text="Choice 2" />
+                    <MenuItem text="Choice 3" />
+                </items>
+            </DropdownButton>
+            <DropdownButton prefHeight="27.0" prefWidth="108.0" GridPane.columnIndex="2">
+                <items>
+                    <MenuItem text="Choice 1" />
+                    <MenuItem text="Choice 2" />
+                    <MenuItem text="Choice 3" />
+                </items>
+            </DropdownButton>
+         </children>
+      </GridPane>
+      <BorderPane layoutX="40.0" layoutY="244.0" prefHeight="163.0" prefWidth="509.0">
+         <center>
+            <TextField prefHeight="110.0" prefWidth="509.0" BorderPane.alignment="CENTER" />
+         </center>
+         <top>
+            <Label prefHeight="25.0" prefWidth="509.0" text="Additional Notes:" BorderPane.alignment="CENTER" />
+         </top>
+      </BorderPane>
+      <GridPane layoutX="36.0" layoutY="438.0" prefHeight="56.0" prefWidth="538.0">
+        <columnConstraints>
+          <ColumnConstraints hgrow="SOMETIMES" maxWidth="182.563720703125" minWidth="10.0" prefWidth="75.06942749023438" />
+            <ColumnConstraints hgrow="SOMETIMES" maxWidth="282.16321563720703" minWidth="10.0" prefWidth="279.4305725097656" />
+            <ColumnConstraints hgrow="SOMETIMES" maxWidth="104.79168701171875" minWidth="7.09014892578125" prefWidth="81.10879516601562" />
+          <ColumnConstraints hgrow="SOMETIMES" maxWidth="101.53469848632812" minWidth="10.0" prefWidth="58.891204833984375" />
+        </columnConstraints>
+        <rowConstraints>
+          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+        </rowConstraints>
+         <children>
+            <Button minHeight="13.0" mnemonicParsing="false" prefHeight="22.0" prefWidth="55.0" text="Go Back" />
+            <Button mnemonicParsing="false" prefHeight="22.0" prefWidth="55.0" text="Reset" GridPane.columnIndex="2" />
+            <Button mnemonicParsing="false" prefHeight="22.0" prefWidth="55.0" text="Submit" GridPane.columnIndex="3" />
+         </children>
+      </GridPane>
+      <Line endX="454.0921630859375" layoutX="121.0" layoutY="511.0" startX="-105.18860626220703" />
+      <ScrollBar layoutX="549.0" layoutY="588.0" orientation="VERTICAL" prefHeight="293.0" prefWidth="10.0" />
+      <GridPane gridLinesVisible="true" layoutX="42.0" layoutY="554.0" prefHeight="326.0" prefWidth="507.0">
+        <columnConstraints>
+          <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+          <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+        </columnConstraints>
+        <rowConstraints>
+          <RowConstraints maxHeight="128.53472900390625" minHeight="0.0" prefHeight="33.0694580078125" vgrow="SOMETIMES" />
+          <RowConstraints maxHeight="292.9305419921875" minHeight="10.0" prefHeight="292.9305419921875" vgrow="SOMETIMES" />
+        </rowConstraints>
+         <children>
+            <Label alignment="CENTER" prefHeight="18.0" prefWidth="131.0" text="ID" />
+            <Label alignment="CENTER" prefHeight="18.0" prefWidth="109.0" text="Label" GridPane.columnIndex="2" />
+            <Label alignment="CENTER" prefHeight="18.0" prefWidth="121.0" text="Label" GridPane.columnIndex="3" />
+            <Label alignment="CENTER" prefHeight="18.0" prefWidth="119.0" text="Label" GridPane.columnIndex="4" />
+            <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="18.0" prefWidth="141.0" text="Asignee" GridPane.columnIndex="1" />
+         </children>
+      </GridPane>
+      <TextField layoutX="31.0" layoutY="181.0" prefHeight="26.0" prefWidth="502.0" />
+      <Label layoutX="40.0" layoutY="150.0" prefHeight="18.0" prefWidth="95.0" text="Request Type" />
+   </children>
+</AnchorPane>
