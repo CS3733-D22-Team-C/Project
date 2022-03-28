@@ -9,14 +9,14 @@ import java.nio.file.Paths;
 import java.util.*;
 
 /**
- * An abstract class for CSVReaders
+ * An abstract class for CSVReaders.
  * @param <T> The type of object the implementing CSVReader will read from.
  */
 public abstract class CSVReader<T> {
     /**
-     * Read and parse a CSV file for Objects of type T
-     * @param fileName name of file
-     * @return List of objects of type T
+     * Read and parse a CSV file for Objects of type T.
+     * @param fileName name of file.
+     * @return List of objects of type T.
      */
     public List<T> readFile(String fileName) {
         List<T> objects = new ArrayList<>();
@@ -50,9 +50,9 @@ public abstract class CSVReader<T> {
     }
 
     /**
-     * Parse the headers of the CSV file, storing a map of headers to their column indices
-     * @param headers A list of headers
-     * @return A map of each header to their column index
+     * Parse the headers of the CSV file, storing a map of headers to their column indices.
+     * @param headers A list of headers.
+     * @return A map of each header to their column index.
      */
     private Map<String, Integer> parseHeaders(String[] headers) {
         Map<String, Integer> map = new HashMap<>();
@@ -64,10 +64,10 @@ public abstract class CSVReader<T> {
     }
 
     /**
-     * Parse the attributes of a line of the CSV file, creating an object of type T based on the map
-     * @param headerMap A map of each header to their column index
-     * @param attributes A list of attributes parsed from the csv line
-     * @return A newly created object of type T
+     * Parse the attributes of a line of the CSV file, creating an object of type T based on the map.
+     * @param headerMap A map of each header to their column index.
+     * @param attributes A list of attributes parsed from the csv line.
+     * @return A newly created object of type T.
      */
     private T parseObject(Map<String, Integer> headerMap, String[] attributes) {
         // Array Initialization necessary to avoid errors with lambda expression
@@ -83,23 +83,23 @@ public abstract class CSVReader<T> {
      * for the given object.
      * For implementing classes, this function should be a switch case handling each expected header.
      * @param object The object to be modified.
-     * @param header The header to be mapped to an attribute
-     * @param value The value for the current attribute
-     * @return
+     * @param header The header to be mapped to an attribute.
+     * @param value The value for the current attribute.
+     * @return The object modified with the value at the corresponding attribute.
      */
     protected abstract T parseAttribute(T object, String header, String value);
 
     /**
      * Create an empty Object of type T.
      * For implementing classes, this function should call the empty constructor of T.
-     * @return A newly created object of type T
+     * @return A newly created object of type T.
      */
     protected abstract T createObject();
 
     /**
-     * Trim all entries of a String[]
-     * @param array The array of Strings to be trimmed
-     * @return An array of the trimmed Strings
+     * Trim all entries of a String[].
+     * @param array The array of Strings to be trimmed.
+     * @return An array of the trimmed Strings.
      */
     private String[] trimStringArray(String[] array) {
         return Arrays.stream(array).map(String::trim).toArray(String[]::new);
