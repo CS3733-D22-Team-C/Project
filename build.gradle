@@ -98,9 +98,10 @@ jacocoTestCoverageVerification {
 check.dependsOn jacocoTestCoverageVerification
 jacocoTestCoverageVerification.dependsOn jacocoTestReport
 compileJava.dependsOn 'spotlessApply'
-
+/*
 spotless {
     java {
         googleJavaFormat()
     }
 }
+*/
