@@ -14,11 +14,11 @@ import java.util.*;
  */
 public abstract class CSVReader<T> {
     /**
-     * Parse a CSV file for Objects of type T
+     * Read and parse a CSV file for Objects of type T
      * @param fileName name of file
      * @return List of objects of type T
      */
-    public List<T> parseFile(String fileName) {
+    public List<T> readFile(String fileName) {
         List<T> objects = new ArrayList<>();
 
         try {
@@ -54,7 +54,7 @@ public abstract class CSVReader<T> {
      * @param headers A list of headers
      * @return A map of each header to their column index
      */
-    protected Map<String, Integer> parseHeaders(String[] headers) {
+    private Map<String, Integer> parseHeaders(String[] headers) {
         Map<String, Integer> map = new HashMap<>();
 
         for (int i = 0; i < headers.length; i++) {
