@@ -10,7 +10,7 @@ import java.util.*;
 
 /**
  * An abstract class for CSVReaders
- * @param <T> The type of object the implementing CSVReader will write to.
+ * @param <T> The type of object the implementing CSVReader will read from.
  */
 public abstract class CSVReader<T> {
     /**
