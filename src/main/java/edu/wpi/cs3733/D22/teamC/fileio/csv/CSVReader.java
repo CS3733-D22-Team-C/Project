@@ -69,7 +69,32 @@ public abstract class CSVReader<T> {
      * @param attributes A list of attributes parsed from the csv line
      * @return A newly created object of type T
      */
-    protected abstract T parseObject(Map<String, Integer> headerMap, String[] attributes);
+    private T parseObject(Map<String, Integer> headerMap, String[] attributes) {
+        // Array Initialization necessary to avoid errors with lambda expression
+        T[] object = (T[]) new Object[]{ createObject() };
+        headerMap.forEach((header, index) -> {
+            object[0] = parseAttribute(object[0], header, attributes[index]);
+        });
+        return object[0];
+    }
+
+    /**
+     * Parse attributes from the current header value pair to set the corresponding attribute
+     * for the given object.
+     * For implementing classes, this function should be a switch case handling each expected header.
+     * @param object The object to be modified.
+     * @param header The header to be mapped to an attribute
+     * @param value The value for the current attribute
+     * @return
+     */
+    protected abstract T parseAttribute(T object, String header, String value);
+
+    /**
+     * Create an empty Object of type T.
+     * For implementing classes, this function should call the empty constructor of T.
+     * @return A newly created object of type T
+     */
+    protected abstract T createObject();
 
     /**
      * Trim all entries of a String[]
