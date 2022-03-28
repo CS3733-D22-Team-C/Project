@@ -1,0 +1,12 @@
+@import "colors.css";
+
+.button-success {
+    -fx-background-color: -color-button-success;
+    -fx-text-fill: -color-button-text;
+}
+
+.button-failure {
+    -fx-background-color: -color-button-failure;
+    -fx-text-fill: -color-button-text;
+}
+
