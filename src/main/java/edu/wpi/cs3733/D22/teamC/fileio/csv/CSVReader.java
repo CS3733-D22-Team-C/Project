@@ -64,7 +64,7 @@ public abstract class CSVReader<T> {
     }
 
     /**
-     * Parse the attributes of a line of the CSV file, creating an object of type T based of the map
+     * Parse the attributes of a line of the CSV file, creating an object of type T based on the map
      * @param headerMap A map of each header to their column index
      * @param attributes A list of attributes parsed from the csv line
      * @return A newly created object of type T
