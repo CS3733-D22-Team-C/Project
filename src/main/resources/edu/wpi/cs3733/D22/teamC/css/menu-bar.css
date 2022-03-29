@@ -1,0 +1,13 @@
+@import "colors.css";
+
+.button-active {
+    -fx-background-color: -color-menu-dark !important;
+}
+
+.button-inactive {
+    -fx-background-color: -color-menu-light !important;
+}
+
+.button-inactive:hover {
+    -fx-background-color: -color-menu-dark !important;
+}
