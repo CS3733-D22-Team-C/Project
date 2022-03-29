@@ -1,18 +1,24 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import com.jfoenix.controls.JFXComboBox?>
+<?import com.jfoenix.controls.JFXTextArea?>
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.Pane?>
-<?import javafx.scene.layout.TilePane?>
-
+<?import javafx.scene.layout.VBox?>
 
 <Pane prefHeight="851.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.wpi.cs3733.D22.teamC.view.service_request.FacilitiesMaintenance">
    <children>
       <AnchorPane prefHeight="851.0" prefWidth="600.0">
          <children>
+            <VBox layoutY="267.0" prefHeight="186.0" prefWidth="600.0">
+               <children>
+                  <Label prefHeight="22.0" prefWidth="124.0" styleClass="service-field-label" stylesheets="@../../css/base.css" text="Additional Notes:" translateX="50.0" translateY="25.0" />
+                  <JFXTextArea prefHeight="86.0" prefWidth="479.0" text="Enter notes..." translateY="25.0" />
+               </children>
+            </VBox>
             <HBox layoutY="42.0" prefHeight="89.0" prefWidth="600.0">
                <children>
                   <Label prefHeight="86.0" prefWidth="600.0" styleClass="page-title" stylesheets="@../../css/base.css" text="Facilities Maintenance Service Request" underline="true" />
@@ -33,21 +39,35 @@
                   <Label prefHeight="34.0" prefWidth="118.0" styleClass="service-field-label" stylesheets="@../../css/base.css" text="Location:" translateX="200.0" />
                </children>
             </HBox>
-            <TilePane layoutY="173.0" prefHeight="34.0" prefWidth="600.0">
+            <HBox layoutY="165.0" prefHeight="34.0" prefWidth="600.0">
                <children>
-                  <JFXComboBox prefHeight="26.0" prefWidth="124.0" styleClass="dropdown" stylesheets="@../../css/base.css" translateX="50.0">
-                     <TilePane.margin>
-                        <Insets />
-                     </TilePane.margin>
-                  </JFXComboBox>
-                  <JFXComboBox prefHeight="26.0" prefWidth="124.0" styleClass="dropdown" stylesheets="@../../css/base.css" translateX="125.0">
-                     <TilePane.margin>
-                        <Insets />
-                     </TilePane.margin>
-                  </JFXComboBox>
+                  <JFXComboBox prefHeight="26.0" prefWidth="124.0" styleClass="dropdown" stylesheets="@../../css/base.css" translateX="50.0" />
+                  <JFXComboBox prefHeight="26.0" prefWidth="124.0" styleClass="dropdown" stylesheets="@../../css/base.css" translateX="125.0" />
                   <JFXComboBox prefHeight="26.0" prefWidth="124.0" styleClass="dropdown" stylesheets="@../../css/base.css" translateX="200.0" />
                </children>
-            </TilePane>
+            </HBox>
+            <HBox layoutY="199.0" prefHeight="34.0" prefWidth="600.0">
+               <children>
+                  <Label prefHeight="34.0" prefWidth="124.0" styleClass="service-field-label" stylesheets="@../../css/base.css" text="Maintenance: " translateX="50.0">
+                     <HBox.margin>
+                        <Insets />
+                     </HBox.margin>
+                  </Label>
+                  <Label prefHeight="34.0" prefWidth="124.0" styleClass="service-field-label" stylesheets="@../../css/base.css" text="Date:" translateX="125.0">
+                     <HBox.margin>
+                        <Insets />
+                     </HBox.margin>
+                  </Label>
+                  <Label prefHeight="34.0" prefWidth="124.0" styleClass="service-field-label" stylesheets="@../../css/base.css" text="Time:" translateX="200.0" />
+               </children>
+            </HBox>
+            <HBox layoutY="233.0" prefHeight="34.0" prefWidth="600.0">
+               <children>
+                  <JFXComboBox prefHeight="26.0" prefWidth="124.0" styleClass="dropdown" stylesheets="@../../css/base.css" translateX="50.0" />
+                  <JFXComboBox prefHeight="26.0" prefWidth="124.0" styleClass="dropdown" stylesheets="@../../css/base.css" translateX="125.0" />
+                  <JFXComboBox prefHeight="26.0" prefWidth="124.0" styleClass="dropdown" stylesheets="@../../css/base.css" translateX="200.0" />
+               </children>
+            </HBox>
          </children>
       </AnchorPane>
    </children>
