@@ -16,7 +16,7 @@
             <VBox layoutY="267.0" prefHeight="186.0" prefWidth="600.0">
                <children>
                   <Label prefHeight="22.0" prefWidth="124.0" styleClass="service-field-label" stylesheets="@../../css/base.css" text="Additional Notes:" translateX="50.0" translateY="25.0" />
-                  <JFXTextArea prefHeight="86.0" prefWidth="479.0" text="Enter notes..." translateY="25.0" />
+                  <JFXTextArea prefHeight="86.0" prefWidth="479.0" styleClass="textarea" stylesheets="@../../css/base.css" text="Enter notes..." translateX="50.0" translateY="25.0" />
                </children>
             </VBox>
             <HBox layoutY="42.0" prefHeight="89.0" prefWidth="600.0">

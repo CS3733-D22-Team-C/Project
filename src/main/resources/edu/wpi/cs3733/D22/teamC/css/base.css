@@ -21,6 +21,7 @@
 
 .textarea {
     -fx-background-color: -color-textarea;
+    -fx-max-width: 500;
     /*Check off wrap text property in SceneBuilder for now*/
 }
 
