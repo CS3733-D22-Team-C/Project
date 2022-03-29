@@ -9,7 +9,6 @@ import javafx.scene.Scene;
 import javafx.scene.layout.BorderPane;
 import javafx.stage.Stage;
 import lombok.extern.slf4j.Slf4j;
-import java.sql.*;
 import java.io.IOException;
 
 @Slf4j
@@ -26,6 +25,9 @@ public class App extends Application {
 
     @Override
     public void init() {
+        // Initialize Database Manager
+        DBManager.startup();
+
         log.info("Starting Up");
     }
 
@@ -35,9 +37,6 @@ public class App extends Application {
         instance = this;
         // Store window as stage
         stage = primaryStage;
-
-        // Initialize Database Manager
-        DBManager.getInstance();
       
         setView("view/general/demo.fxml");
 
@@ -47,6 +46,9 @@ public class App extends Application {
 
     @Override
     public void stop() {
+        // Shutdown Database Manager
+        DBManager.shutdown();
+
         log.info("Shutting Down");
     }
 
