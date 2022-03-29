@@ -14,7 +14,7 @@ import java.util.List;
 public class MedEqServiceRequestDAOImpl extends ServiceRequestDAOImpl {
     
     /**
-     * Getting all the entries in the ServiceRequests Table to the DB, converting them to ServiceRequest objects
+     * Getting all the entries in the MedEqServiceRequests Table to the DB, converting them to ServiceRequest objects
      *
      * @return List of all Medical Equipment Service requests objects converted from queries
      */
@@ -23,7 +23,7 @@ public class MedEqServiceRequestDAOImpl extends ServiceRequestDAOImpl {
         try {
             //Execute SELECT
             Statement selectStatement = DBManager.getInstance().connection.createStatement();
-            ResultSet resultSet = selectStatement.executeQuery("SELECT * FROM MEDEQUIPSERVICEREQUESTS");
+            ResultSet resultSet = selectStatement.executeQuery("SELECT * FROM MEDICAL_EQUIP_SERVICE_REQUESTS");
             
             //Return ServiceRequest Objects
             List<ServiceRequest> serviceRequests = new ArrayList<>();
@@ -34,7 +34,7 @@ public class MedEqServiceRequestDAOImpl extends ServiceRequestDAOImpl {
             return serviceRequests;
             
         } catch (SQLException e) {
-            System.out.println("Query to MEDEQUIPSERVICEREQUESTS failed.");
+            System.out.println("Query to MEDICAL_EQUIP_SERVICE_REQUESTS failed.");
             e.printStackTrace();
         }
         
@@ -53,18 +53,51 @@ public class MedEqServiceRequestDAOImpl extends ServiceRequestDAOImpl {
         try {
             // Execute SELECT Query
             PreparedStatement statement = DBManager.getInstance().connection.prepareStatement(
-                    "SELECT * FROM MEDEQUIPSERVICEREQUESTS WHERE SERVICEREQUESTID = ?"
+                    "SELECT * FROM MEDICAL_EQUIP_SERVICE_REQUESTS WHERE REQUESTID = ?"
             );
             statement.setString(1, requestID);
             ResultSet resultSet = statement.executeQuery();
             
             // Return Location Object
-            if (resultSet.next()) return createServiceRequest(resultSet);
+            if (resultSet.next()) return createServiceRequest(resultSet); //TODO: see if local resultset will return full attributes
         } catch (SQLException e) {
-            System.out.println("Query to SERVICEREQUESTS table failed.");
+            System.out.println("Query to SERVICE_REQUESTS table failed.");
             e.printStackTrace();
         }
         return null;
+    }
+    
+    /**
+     * Inserting ServiceRequest Table of the DB, corresponding to the given ServiceRequest object.
+     * Add MedicalServiceRequest
+     *
+     * @param serviceRequest The ServiceRequest to be inserted into the DB via a corresponding entry.
+     * @return If successful return true, else return false.
+     */
+    @Override
+    public boolean insertServiceRequest(ServiceRequest serviceRequest) {
+        try { //TODO: Fix to call super method and add only specific attributes to medical here
+            ServiceRequest serviceRequestInDB = getServiceRequest(serviceRequest.getRequestID());
+            PreparedStatement statement = DBManager.getInstance().connection.prepareStatement(
+                    "INSERT INTO SERVICE_REQUESTS VALUE(?, ?, ?, ?, ?, ?, ?, ?, ?)"
+            );
+            statement.setString(1, serviceRequest.getRequestID());
+            statement.setString(2, serviceRequest.getCreatorID());
+            statement.setString(3, serviceRequest.getAssigneeID());
+            statement.setString(4, serviceRequest.getLocation());
+            statement.setTimestamp(5, serviceRequest.getCreationTimestamp());
+            statement.setString(6, serviceRequest.getStatus());
+            statement.setString(7, serviceRequest.getPriority());
+            statement.setString(8, serviceRequest.getRequestType());
+            statement.setString(9, serviceRequest.getDescription());
+            
+            return true;
+            
+        } catch (SQLException e) {
+            System.out.println("Update to SERVICE_REQUESTS failed");
+            e.printStackTrace();
+        }
+        return false;
     }
     
     /**
@@ -76,14 +109,14 @@ public class MedEqServiceRequestDAOImpl extends ServiceRequestDAOImpl {
     @Override
     public boolean updateServiceRequest(ServiceRequest serviceRequest) {
         // check if the entry of the same requestID exists
-        ServiceRequest serviceRequestInDB = getServiceRequest(serviceRequest.getRequestID());
+        MedicalEquipmentServiceRequest serviceRequestInDB = getServiceRequest(serviceRequest.getRequestID());
         try {
             if (serviceRequestInDB != null) {
                 //Excute UPDATE statement
                 PreparedStatement statement = DBManager.getInstance().connection.prepareStatement(
-                        "UPDATE MEDEQUIPSERVICEREQUESTS SET CREATORID = ?, ASSIGNEEID = ?, LOCATIONID = ?, WHENREQUESTED = ?, " +
-                                "REQUESTSTATUS = ?, PRIORITY = ?, SERVICEREQUESTTYPE = ?, REQUESTDESCRIPTION = ?, " + 
-                                "EQUIPMENTTYPE = ?, EQUIPMENTID = ? WHERE REQUESTID = ?"
+                        "UPDATE MEDICAL_EQUIP_SERVICE_REQUESTS SET CREATORID = ?, ASSIGNEEID = ?, LOCATIONID = ?, " +
+                                "CREATTIONTIMESTAMP = ?, STATUS = ?, PRIORITY = ?, REQUESTTYPE = ?, DESCRIPTION = ?, " + 
+                                "EQUIPID = ?, EQUIPTYPE = ? WHERE REQUESTID = ?"
                 );
                 statement.setString(1, serviceRequest.getCreatorID());
                 statement.setString(2, serviceRequest.getAssigneeID());
@@ -93,8 +126,8 @@ public class MedEqServiceRequestDAOImpl extends ServiceRequestDAOImpl {
                 statement.setString(6, serviceRequest.getPriority());
                 statement.setString(7, serviceRequest.getRequestType());
                 statement.setString(8, serviceRequest.getDescription());
-                statement.setString(9, serviceRequest.getEquipmentType());
-                statement.setString(10, serviceRequest.getEquipmentID());
+                statement.setString(9, serviceRequestInDB.getEquipmentID());
+                statement.setString(10, serviceRequestInDB.getEquipmentType());
                 statement.setString(11, serviceRequest.getRequestID());
                 
                 

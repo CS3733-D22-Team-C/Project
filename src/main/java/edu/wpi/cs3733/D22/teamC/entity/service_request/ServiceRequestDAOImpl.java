@@ -18,7 +18,7 @@ public class ServiceRequestDAOImpl implements ServiceRequestDAO {
         try {
             //Execute SELECT
             Statement selectStatement = DBManager.getInstance().connection.createStatement();
-            ResultSet resultSet = selectStatement.executeQuery("SELECT * FROM SERVICEREQUESTS");
+            ResultSet resultSet = selectStatement.executeQuery("SELECT * FROM SERVICE_REQUESTS");
             
             //Return ServiceRequest Objects
             List<ServiceRequest> serviceRequests = new ArrayList<>();
@@ -48,7 +48,7 @@ public class ServiceRequestDAOImpl implements ServiceRequestDAO {
         try {
             // Execute SELECT Query
             PreparedStatement statement = DBManager.getInstance().connection.prepareStatement(
-                    "SELECT * FROM SERVICEREQUESTS WHERE SERVICEREQUESTID = ?"
+                    "SELECT * FROM SERVICE_REQUESTS WHERE REQUESTID = ?"
             );
             statement.setString(1, requestID);
             ResultSet resultSet = statement.executeQuery();
@@ -56,7 +56,7 @@ public class ServiceRequestDAOImpl implements ServiceRequestDAO {
             // Return Location Object
             if (resultSet.next()) return createServiceRequest(resultSet);
         } catch (SQLException e) {
-            System.out.println("Query to SERVICEREQUESTS table failed.");
+            System.out.println("Query to SERVICE_REQUESTS table failed.");
             e.printStackTrace();
         }
         return null;
@@ -73,7 +73,7 @@ public class ServiceRequestDAOImpl implements ServiceRequestDAO {
         try {
             ServiceRequest serviceRequestInDB = getServiceRequest(serviceRequest.getRequestID());
             PreparedStatement statement = DBManager.getInstance().connection.prepareStatement(
-                    "INSERT INTO SERVICEREQUESTS VALUE(?, ?, ?, ?, ?, ?, ?, ?, ?)"
+                    "INSERT INTO SERVICE_REQUESTS VALUE(?, ?, ?, ?, ?, ?, ?, ?, ?)"
             );
             statement.setString(1, serviceRequest.getRequestID());
             statement.setString(2, serviceRequest.getCreatorID());
@@ -87,8 +87,8 @@ public class ServiceRequestDAOImpl implements ServiceRequestDAO {
             
             return true;
             
-        } catch (Exception e) {
-            System.out.println("Update to SERVICEREQUESTS failed");
+        } catch (SQLException e) {
+            System.out.println("Update to SERVICE_REQUESTS failed");
             e.printStackTrace();
         }
         return false;
@@ -108,19 +108,19 @@ public class ServiceRequestDAOImpl implements ServiceRequestDAO {
             if (serviceRequestInDB != null) {
                 //Excute UPDATE statement
                 PreparedStatement statement = DBManager.getInstance().connection.prepareStatement(
-                        "UPDATE SERVICEREQUESTS SET CREATORID = ?, ASSIGNEEID = ?, LOCATIONID = ?, WHENREQUESTED = ?, " +
-                                "REQUESTSTATUS = ?, PRIORITY = ?, SERVICEREQUESTTYPE = ?, REQUESTDESCRIPTION = ? " +
-                                "WHERE SERVICEREQUESTID = ?"
+                        "UPDATE SERVICE_REQUESTS SET CREATORID = ?, ASSIGNEEID = ?, LOCATIONID = ?, " + 
+                                "CREATIONTIMESTAMP = ?, STATUS = ?, PRIORITY = ?, REQUESTTYPE = ?, DESCRIPTION = ? " +
+                                "WHERE REQUESTID = ?"
                 );
-                statement.setString(1, serviceRequest.getRequestID());
-                statement.setString(2, serviceRequest.getCreatorID());
-                statement.setString(3, serviceRequest.getAssigneeID());
-                statement.setString(4, serviceRequest.getLocation());
-                statement.setTimestamp(5, serviceRequest.getCreationTimestamp());
-                statement.setString(6, serviceRequest.getStatus());
-                statement.setString(7, serviceRequest.getPriority());
-                statement.setString(8, serviceRequest.getRequestType());
-                statement.setString(9, serviceRequest.getDescription());
+                statement.setString(1, serviceRequest.getCreatorID());
+                statement.setString(2, serviceRequest.getAssigneeID());
+                statement.setString(3, serviceRequest.getLocation());
+                statement.setTimestamp(4, serviceRequest.getCreationTimestamp());
+                statement.setString(5, serviceRequest.getStatus());
+                statement.setString(6, serviceRequest.getPriority());
+                statement.setString(7, serviceRequest.getRequestType());
+                statement.setString(8, serviceRequest.getDescription());
+                statement.setString(9, serviceRequest.getRequestID());
                 
                 return true;
             }
@@ -146,7 +146,7 @@ public class ServiceRequestDAOImpl implements ServiceRequestDAO {
             if (serviceRequestInDB != null) {
                 // Execute DELETE Statement
                 PreparedStatement statement = DBManager.getInstance().connection.prepareStatement(
-                        "DELETE FROM SERVICEREQUESTS WHERE SERVICEREQUESTID = ?"
+                        "DELETE FROM SERVICE_REQUESTS WHERE REQUESTID = ?"
                 );
                 statement.setString(1, serviceRequest.getRequestID());
                 statement.execute();
@@ -154,7 +154,7 @@ public class ServiceRequestDAOImpl implements ServiceRequestDAO {
                 return true;
             }
         } catch (SQLException e) {
-            System.out.println("Delete from SERVICEREQUESTS table failed.");
+            System.out.println("Delete from SERVICE_REQUESTS table failed.");
             e.printStackTrace();
         }
         
@@ -175,16 +175,16 @@ public class ServiceRequestDAOImpl implements ServiceRequestDAO {
             serviceRequest.setCreatorID(typesafeTrim(resultSet.getString("CREATORID")));
             serviceRequest.setAssigneeID(typesafeTrim(resultSet.getString("ASSIGNEEID")));
             serviceRequest.setLocation(typesafeTrim(resultSet.getString("LOCATIONID")));
-            serviceRequest.setCreationTimestamp(resultSet.getTimestamp("WHENREQUESTED"));
-            serviceRequest.setStatus(typesafeTrim(resultSet.getString("REQUESTSTATUS")));
+            serviceRequest.setCreationTimestamp(resultSet.getTimestamp("CREATIONTIMESTAMP"));
+            serviceRequest.setStatus(typesafeTrim(resultSet.getString("STATUS")));
             serviceRequest.setPriority(typesafeTrim(resultSet.getString("PRIORITY")));
-            serviceRequest.setRequestType(typesafeTrim(resultSet.getString("SERVICEREQUESTTYPE")));
-            serviceRequest.setDescription(typesafeTrim(resultSet.getString("REQUESTDESCRIPTION")));
+            serviceRequest.setRequestType(typesafeTrim(resultSet.getString("REQUESTTYPE")));
+            serviceRequest.setDescription(typesafeTrim(resultSet.getString("DESCRIPTION")));
             
             return serviceRequest;
             
         } catch (SQLException e) {
-            System.out.println("Creation of object from SERVICEREQUESTS ResultSet failed.");
+            System.out.println("Creation of object from SERVICE_REQUESTS ResultSet failed.");
             e.printStackTrace();
             
             return null;
@@ -197,7 +197,7 @@ public class ServiceRequestDAOImpl implements ServiceRequestDAO {
      * @param str The String to trim.
      * @return The trimmed str.
      */
-    public String typesafeTrim(String str) {
+    protected String typesafeTrim(String str) {
         if (str == null) return null;
         else return str.trim();
     }
