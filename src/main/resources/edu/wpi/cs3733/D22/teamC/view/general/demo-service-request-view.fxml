@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+
+<AnchorPane prefHeight="400.0" prefWidth="600.0" styleClass="anchor-pane-margin" stylesheets="@../../css/base.css" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1">
+    <children>
+        <HBox alignment="CENTER" layoutX="77.0" layoutY="57.0" prefHeight="100.0" prefWidth="200.0" AnchorPane.bottomAnchor="-1.0" AnchorPane.leftAnchor="-1.0" AnchorPane.rightAnchor="-1.0" AnchorPane.topAnchor="-1.0">
+            <children>
+                <VBox prefHeight="200.0" prefWidth="100.0" HBox.hgrow="SOMETIMES">
+                    <children>
+                        <VBox prefHeight="200.0" prefWidth="100.0" styleClass="vbox-margin" stylesheets="@../../css/base.css">
+                            <children>
+                                <Label styleClass="label-margin" stylesheets="@../../css/base.css" text="Label" />
+                                <TextField styleClass="text-field-with-margin" />
+                            </children>
+                        </VBox>
+                        <VBox prefHeight="200.0" prefWidth="100.0" styleClass="vbox-margin" stylesheets="@../../css/base.css">
+                            <children>
+                                <Label styleClass="label-margin" stylesheets="@../../css/base.css" text="Label" />
+                                <TextField styleClass="text-field-with-margin" />
+                            </children>
+                        </VBox>
+                    </children>
+                </VBox>
+                <VBox prefHeight="200.0" prefWidth="100.0" HBox.hgrow="SOMETIMES">
+                    <children>
+                        <VBox prefHeight="200.0" prefWidth="100.0" styleClass="vbox-margin" stylesheets="@../../css/base.css">
+                            <children>
+                                <Label styleClass="label-margin" stylesheets="@../../css/base.css" text="Label" />
+                                <TextField styleClass="text-field-with-margin" />
+                            </children>
+                        </VBox>
+                        <VBox prefHeight="200.0" prefWidth="100.0" styleClass="vbox-margin" stylesheets="@../../css/base.css">
+                            <children>
+                                <Label styleClass="label-margin" stylesheets="@../../css/base.css" text="Label" />
+                                <TextField styleClass="text-field-with-margin" />
+                            </children>
+                        </VBox>
+                    </children>
+                </VBox>
+                <VBox prefHeight="200.0" prefWidth="100.0" HBox.hgrow="SOMETIMES">
+                    <children>
+                        <VBox prefHeight="200.0" prefWidth="100.0" styleClass="vbox-margin" stylesheets="@../../css/base.css">
+                            <children>
+                                <Label styleClass="label-margin" stylesheets="@../../css/base.css" text="Label" />
+                                <TextField styleClass="text-field-with-margin" />
+                            </children>
+                        </VBox>
+                        <VBox prefHeight="200.0" prefWidth="100.0" styleClass="vbox-margin" stylesheets="@../../css/base.css">
+                            <children>
+                                <Label styleClass="label-margin" stylesheets="@../../css/base.css" text="Label" />
+                                <TextField styleClass="text-field-with-margin" />
+                            </children>
+                        </VBox>
+                    </children>
+                </VBox>
+            </children>
+        </HBox>
+    </children>
+</AnchorPane>
