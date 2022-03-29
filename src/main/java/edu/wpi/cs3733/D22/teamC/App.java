@@ -4,6 +4,9 @@ import javafx.application.Application;
 import javafx.stage.Stage;
 import lombok.extern.slf4j.Slf4j;
 
+import java.sql.*;
+
+
 @Slf4j
 public class App extends Application {
 
@@ -13,7 +16,10 @@ public class App extends Application {
   }
 
   @Override
-  public void start(Stage primaryStage) {}
+  public void start(Stage primaryStage) {
+    DBManager man = new DBManager();
+  man.startup();
+  }
 
   @Override
   public void stop() {
