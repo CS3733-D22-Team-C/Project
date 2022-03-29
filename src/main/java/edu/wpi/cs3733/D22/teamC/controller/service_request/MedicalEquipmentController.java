@@ -79,7 +79,6 @@ public class MedicalEquipmentController implements Initializable {
 
     @FXML
     void clickReset(ActionEvent event) {
-
     }
 
     @FXML
