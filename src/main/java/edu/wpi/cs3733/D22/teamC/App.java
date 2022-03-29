@@ -41,7 +41,7 @@ public class App extends Application {
         // Store window as stage
         stage = primaryStage;
       
-        setView("view/general/demo.fxml");
+        setView("view/general/base-view.fxml");
 
         // TODO: Setup JUnit Tests !!!
         LocationDAO locationDAO = new LocationDAOImpl();
