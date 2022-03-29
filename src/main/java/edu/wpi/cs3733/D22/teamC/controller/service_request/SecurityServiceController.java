@@ -33,11 +33,10 @@ public class SecurityServiceController implements Initializable {
     @FXML private JFXButton resetButton;
     @FXML private JFXButton submitButton;
 
-    @FXML private JFXTreeTableView<?> table;
+    @FXML private JFXTreeTableView<?> Atable;
 
     @FXML
     public void initialize(URL url, ResourceBundle rb) {
-
         //For equipment type drop down
         securityType.getItems().add("security type 1");
         securityType.getItems().add("security type 2");
@@ -68,7 +67,7 @@ public class SecurityServiceController implements Initializable {
         TreeTableColumn TypeNum = new TreeTableColumn("Type #");
         TypeNum.setPrefWidth(80);
 
-        table.getColumns().addAll(ID, Asignee, Status, Location, Type, TypeNum);
+        Atable.getColumns().addAll(ID, Asignee, Status, Location, Type, TypeNum);
 
     }
     @FXML

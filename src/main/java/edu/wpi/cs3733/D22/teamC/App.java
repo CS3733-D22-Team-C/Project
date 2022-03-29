@@ -21,6 +21,7 @@ public class App extends Application {
     private final String BASE_VIEW_PATH = "view/general/base-view.fxml";
     private final String MENU_BAR_COMPONENT_PATH = "component/menu-bar.fxml";
     private final String MEDICAL_EQUIPMENT = "view/service_request/medical-equipment-view.fxml";
+    private final String SECURITY_SERVICE = "view/service_request/security-services.fxml";
 
     // Variables
     private Stage stage;
@@ -40,7 +41,7 @@ public class App extends Application {
         // Store window as stage
         stage = primaryStage;
       
-        setView("view/general/demo.fxml");
+        setView(SECURITY_SERVICE);
 
         // TODO: Setup JUnit Tests !!!
         LocationDAO locationDAO = new LocationDAOImpl();

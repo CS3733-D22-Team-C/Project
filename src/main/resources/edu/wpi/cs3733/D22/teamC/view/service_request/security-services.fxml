@@ -11,7 +11,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.VBox?>
 
-<ScrollPane xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.wpi.cs3733.D22.teamC.controller.service_request.MedicalEquipmentController">
+<ScrollPane xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.wpi.cs3733.D22.teamC.controller.service_request.SecurityServiceController">
     <content>
         <AnchorPane prefHeight="667.0" prefWidth="600.0">
             <children>
@@ -45,13 +45,13 @@
                         <JFXTextArea fx:id="description" prefHeight="58.0" prefWidth="490.0" styleClass="textarea" stylesheets="@../../css/base.css" />
                     </children>
                 </VBox>
-                <JFXTreeTableView fx:id="table" layoutX="67.0" layoutY="409.0" minWidth="-Infinity" prefHeight="219.0" prefWidth="480.0">
+                <JFXTreeTableView fx:id="Atable" layoutX="67.0" layoutY="409.0" minWidth="-Infinity" prefHeight="219.0" prefWidth="480.0">
                     <columnResizePolicy>
                         <TreeTableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
                     </columnResizePolicy>
                 </JFXTreeTableView>
                 <VBox layoutX="238.0" layoutY="126.0" />
-                  <JFXComboBox fx:id="equipType" layoutX="128.0" layoutY="155.0" prefHeight="26.0" prefWidth="138.0" styleClass="dropdown" stylesheets="@../../css/base.css" />
+                  <JFXComboBox fx:id="securityType" layoutX="128.0" layoutY="155.0" prefHeight="26.0" prefWidth="138.0" styleClass="dropdown" stylesheets="@../../css/base.css" />
                   <Label layoutX="144.0" layoutY="126.0" styleClass="service-field-label" stylesheets="@../../css/base.css" text="Security Type:" />
                   <JFXComboBox fx:id="priority" layoutX="338.0" layoutY="155.0" prefHeight="26.0" prefWidth="132.0" styleClass="dropdown" stylesheets="@../../css/base.css" />
                   <Label layoutX="380.0" layoutY="126.0" styleClass="service-field-label" stylesheets="@../../css/base.css" text="Priority:" />
