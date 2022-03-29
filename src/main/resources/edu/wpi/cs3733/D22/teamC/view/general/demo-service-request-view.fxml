@@ -1,64 +1,131 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import com.jfoenix.controls.JFXTextArea?>
+<?import java.lang.String?>
+<?import java.net.URL?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
 <?import javafx.scene.control.TextField?>
-<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.layout.VBox?>
 
-<AnchorPane prefHeight="400.0" prefWidth="600.0" styleClass="anchor-pane-margin" stylesheets="@../../css/base.css" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1">
-    <children>
-        <HBox alignment="CENTER" layoutX="77.0" layoutY="57.0" prefHeight="100.0" prefWidth="200.0" AnchorPane.bottomAnchor="-1.0" AnchorPane.leftAnchor="-1.0" AnchorPane.rightAnchor="-1.0" AnchorPane.topAnchor="-1.0">
-            <children>
-                <VBox prefHeight="200.0" prefWidth="100.0" HBox.hgrow="SOMETIMES">
-                    <children>
-                        <VBox prefHeight="200.0" prefWidth="100.0" styleClass="vbox-margin" stylesheets="@../../css/base.css">
-                            <children>
-                                <Label styleClass="label-margin" stylesheets="@../../css/base.css" text="Label" />
-                                <TextField styleClass="text-field-with-margin" />
-                            </children>
-                        </VBox>
-                        <VBox prefHeight="200.0" prefWidth="100.0" styleClass="vbox-margin" stylesheets="@../../css/base.css">
-                            <children>
-                                <Label styleClass="label-margin" stylesheets="@../../css/base.css" text="Label" />
-                                <TextField styleClass="text-field-with-margin" />
-                            </children>
-                        </VBox>
-                    </children>
-                </VBox>
-                <VBox prefHeight="200.0" prefWidth="100.0" HBox.hgrow="SOMETIMES">
-                    <children>
-                        <VBox prefHeight="200.0" prefWidth="100.0" styleClass="vbox-margin" stylesheets="@../../css/base.css">
-                            <children>
-                                <Label styleClass="label-margin" stylesheets="@../../css/base.css" text="Label" />
-                                <TextField styleClass="text-field-with-margin" />
-                            </children>
-                        </VBox>
-                        <VBox prefHeight="200.0" prefWidth="100.0" styleClass="vbox-margin" stylesheets="@../../css/base.css">
-                            <children>
-                                <Label styleClass="label-margin" stylesheets="@../../css/base.css" text="Label" />
-                                <TextField styleClass="text-field-with-margin" />
-                            </children>
-                        </VBox>
-                    </children>
-                </VBox>
-                <VBox prefHeight="200.0" prefWidth="100.0" HBox.hgrow="SOMETIMES">
-                    <children>
-                        <VBox prefHeight="200.0" prefWidth="100.0" styleClass="vbox-margin" stylesheets="@../../css/base.css">
-                            <children>
-                                <Label styleClass="label-margin" stylesheets="@../../css/base.css" text="Label" />
-                                <TextField styleClass="text-field-with-margin" />
-                            </children>
-                        </VBox>
-                        <VBox prefHeight="200.0" prefWidth="100.0" styleClass="vbox-margin" stylesheets="@../../css/base.css">
-                            <children>
-                                <Label styleClass="label-margin" stylesheets="@../../css/base.css" text="Label" />
-                                <TextField styleClass="text-field-with-margin" />
-                            </children>
-                        </VBox>
-                    </children>
-                </VBox>
-            </children>
-        </HBox>
-    </children>
-</AnchorPane>
+<GridPane alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="530.0" prefWidth="600.0" styleClass="titl" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/17">
+  <columnConstraints>
+    <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+  </columnConstraints>
+  <rowConstraints>
+    <RowConstraints maxHeight="95.60001220703126" minHeight="0.0" prefHeight="39.20001220703125" vgrow="SOMETIMES" />
+    <RowConstraints maxHeight="377.6" minHeight="10.0" prefHeight="204.79999389648435" vgrow="SOMETIMES" />
+      <RowConstraints maxHeight="196.8000061035156" minHeight="10.0" prefHeight="121.59999999999997" vgrow="SOMETIMES" />
+    <RowConstraints maxHeight="112.0" minHeight="10.0" prefHeight="38.39996337890625" vgrow="SOMETIMES" />
+      <RowConstraints maxHeight="133.5999877929687" minHeight="10.0" prefHeight="126.4000366210937" vgrow="SOMETIMES" />
+  </rowConstraints>
+   <children>
+      <Label styleClass="page-title" text="Generic Service Request " />
+      <GridPane GridPane.hgrow="ALWAYS" GridPane.rowIndex="1" GridPane.vgrow="ALWAYS">
+        <columnConstraints>
+          <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+          <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+        </columnConstraints>
+        <rowConstraints>
+          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+        </rowConstraints>
+         <children>
+            <VBox alignment="CENTER_LEFT" prefHeight="200.0" prefWidth="100.0" styleClass="box-margin">
+               <children>
+                  <Label text="Label" />
+                  <TextField />
+               </children>
+            </VBox>
+            <VBox alignment="CENTER_LEFT" prefHeight="200.0" prefWidth="100.0" styleClass="box-margin" GridPane.columnIndex="1">
+               <children>
+                  <Label text="Label" />
+                  <TextField />
+               </children>
+            </VBox>
+            <VBox alignment="CENTER_LEFT" prefHeight="200.0" prefWidth="100.0" styleClass="box-margin" GridPane.columnIndex="2">
+               <children>
+                  <Label text="Label" />
+                  <TextField />
+               </children>
+            </VBox>
+            <VBox alignment="CENTER_LEFT" prefHeight="200.0" prefWidth="100.0" styleClass="box-margin" GridPane.rowIndex="1">
+               <children>
+                  <Label text="Label" />
+                  <TextField />
+               </children>
+            </VBox>
+            <VBox alignment="CENTER_LEFT" prefHeight="200.0" prefWidth="100.0" styleClass="box-margin" GridPane.columnIndex="1" GridPane.rowIndex="1">
+               <children>
+                  <Label text="Label" />
+                  <TextField />
+               </children>
+            </VBox>
+            <VBox alignment="CENTER_LEFT" prefHeight="200.0" prefWidth="100.0" styleClass="box-margin" GridPane.columnIndex="2" GridPane.rowIndex="1">
+               <children>
+                  <Label text="Label" />
+                  <TextField />
+               </children>
+            </VBox>
+         </children>
+      </GridPane>
+      <HBox prefHeight="100.0" prefWidth="200.0" styleClass="box-margin" GridPane.rowIndex="3">
+         <children>
+            <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="200.0" HBox.hgrow="ALWAYS">
+               <children>
+                  <Button mnemonicParsing="false" styleClass="button-back" text="Go Back" />
+               </children>
+            </HBox>
+            <HBox alignment="CENTER_RIGHT" prefHeight="100.0" prefWidth="200.0" styleClass="button-alignment" HBox.hgrow="ALWAYS">
+               <children>
+                  <Button mnemonicParsing="false" text="Reset">
+                     <styleClass>
+                        <String fx:value="button-alignment" />
+                        <String fx:value="button-failure" />
+                     </styleClass>
+                     <HBox.margin>
+                        <Insets />
+                     </HBox.margin>
+                  </Button>
+                  <Button mnemonicParsing="false" text="Submit">
+                     <styleClass>
+                        <String fx:value="button-alignment" />
+                        <String fx:value="button-success" />
+                     </styleClass>
+                  </Button>
+               </children>
+               <opaqueInsets>
+                  <Insets />
+               </opaqueInsets>
+            </HBox>
+         </children>
+         <opaqueInsets>
+            <Insets />
+         </opaqueInsets>
+      </HBox>
+      <VBox prefHeight="0.0" prefWidth="600.0" styleClass="box-margin" GridPane.rowIndex="2">
+         <children>
+            <Label styleClass="mar" text="Additional Information" />
+            <JFXTextArea prefHeight="81.0" prefWidth="426.0" VBox.vgrow="NEVER" />
+         </children>
+      </VBox>
+      <TableView prefHeight="202.0" prefWidth="600.0" GridPane.rowIndex="4">
+        <columns>
+          <TableColumn prefWidth="75.0" text="C1" />
+          <TableColumn prefWidth="75.0" text="C2" />
+        </columns>
+      </TableView>
+   </children>
+   <stylesheets>
+      <URL value="@../../css/request-page.css" />
+      <URL value="@../../css/base.css" />
+   </stylesheets>
+</GridPane>
