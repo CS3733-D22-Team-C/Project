@@ -96,6 +96,7 @@ public class ServiceRequestDAOImpl implements ServiceRequestDAO {
     
     /**
      * Update entry in REQUEST Table of DB corresponding to the given ServiceRequest object.
+     *
      * @param serviceRequest the ServiceRequest whose corresponding DB entry is to be updated.
      * @return If successful return true, else return false.
      */
@@ -103,8 +104,8 @@ public class ServiceRequestDAOImpl implements ServiceRequestDAO {
     public boolean updateServiceRequest(ServiceRequest serviceRequest) {
         // check if the entry of the same requestID exists
         ServiceRequest serviceRequestInDB = getServiceRequest(serviceRequest.getRequestID());
-        try{
-            if(serviceRequest!=null) {
+        try {
+            if (serviceRequestInDB != null) {
                 //Excute UPDATE statement
                 PreparedStatement statement = DBManager.getInstance().connection.prepareStatement(
                         "UPDATE REQUEST SET CREATORID = ?, ASSIGNEEID = ?, LOCATION = ?, CREATIONTIMESTAMP = ?, " +
@@ -119,12 +120,11 @@ public class ServiceRequestDAOImpl implements ServiceRequestDAO {
                 statement.setString(7, serviceRequest.getPriority());
                 statement.setString(8, serviceRequest.getRequestType());
                 statement.setString(9, serviceRequest.getDescription());
-    
+                
                 return true;
             }
-    
-        }
-        catch(SQLException e){
+            
+        } catch (SQLException e) {
             System.out.println("Update to REQUEST failed");
             e.printStackTrace();
         }
@@ -133,7 +133,7 @@ public class ServiceRequestDAOImpl implements ServiceRequestDAO {
     
     /**
      * Delete entry in SERVICE Table of DB corresponding to the given ServiceRequest object.
-     * 
+     *
      * @param serviceRequest The service request to be deleted from the DB.
      * @return True if successful.
      */
@@ -192,6 +192,7 @@ public class ServiceRequestDAOImpl implements ServiceRequestDAO {
     
     /**
      * Trim str if not null.
+     *
      * @param str The String to trim.
      * @return The trimmed str.
      */
