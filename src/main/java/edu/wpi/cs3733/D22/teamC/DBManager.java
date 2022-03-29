@@ -63,6 +63,7 @@ public class DBManager {
         instance = dbManager;
         instance.connectDatabase();
         instance.initializeLocationTable();
+        instance.initializeMedEquipSRTable();
     }
 
     /**
@@ -145,5 +146,17 @@ public class DBManager {
                 "CREATE TABLE LOCATION(NODEID char(16), XCOORD int, YCOORD int, FLOOR char(4), BUILDING char(16), NODETYPE char(4), LONGNAME char(64), SHORTNAME char(32), Constraint nodeID_PK Primary Key (nodeID))",
                 emptyTables
         );
+    }
+
+    /**
+     * Initializes medical equipment service requests table
+     */
+    public void initializeMedEquipSRTable() {
+        initializeTable("MED_EQUP_SERVICE_REQUESTS", "Create Table MedEquipServiceRequests (\n" +
+                                                                                "    ServiceRequestID char(10),\n" +
+                                                                                "    equipmentID char(10),\n" +
+                                                                                "    CONSTRAINT pk_equipmentID Primary Key (equipmentID),\n" +
+                                                                                "    CONSTRAINT fk_ServiceRequestID Foreign Key References ServiceRequests(ServiceRequestID))\n"
+                ,emptyTables);
     }
 }
