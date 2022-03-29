@@ -52,7 +52,7 @@
             <VBox layoutX="55.0" layoutY="207.0">
                <children>
                   <Label styleClass="service-field-label" stylesheets="@../../css/base.css" text="Additional Notes:" />
-                  <JFXTextArea fx:id="description" prefHeight="58.0" prefWidth="490.0" styleClass="textarea" stylesheets="@../../css/base.css" />
+                  <JFXTextArea fx:id="description" prefHeight="58.0" prefWidth="490.0" styleClass="textarea" stylesheets="@../../css/base.css" wrapText="true" />
                </children>
             </VBox>
             <JFXTreeTableView fx:id="table" layoutX="67.0" layoutY="409.0" minWidth="-Infinity" prefHeight="219.0" prefWidth="480.0">
