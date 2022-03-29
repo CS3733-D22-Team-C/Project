@@ -64,6 +64,7 @@ public class DBManager {
         instance.connectDatabase();
         instance.initializeLocationTable();
         instance.initializeSRTable();
+        instance.initializeMedEquipSRTable();
     }
 
     /**
@@ -164,5 +165,18 @@ public class DBManager {
                                                                         "    CONSTRAINT PK_REQUESTID PRIMARY KEY (REQUESTID))\n"
                         , emptyTables);
 
+    }
+
+    /**
+     * Initialize Medical Equipment Service Request Table
+     */
+    public void initializeMedEquipSRTable() {
+        initializeTable("MED_EQUP_SERVICE_REQUESTS", "CREATE TABLE MEDICAL_EQUIP_SERVICE_REQUESTS (\n" +
+                        "    REQUESTID char(10),\n" +
+                        "    EQUIPID char(10),\n " +
+                        "    EQUIPTYPE varchar2(50), \n" +
+                        "    CONSTRAINT PK_EQUIPID Primary Key (equipmentID),\n" +
+                        "    CONSTRAINT FK_REQUESTID FOREIGN KEY REFERENCES SERVICE_REQUESTS (REQUESTID)) \n"
+                ,emptyTables);
     }
 }
