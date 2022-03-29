@@ -45,6 +45,10 @@ public class App extends Application {
         log.info("Shutting Down");
     }
 
+    /**
+     * Allows us to change the view of the window
+     * @param viewFile path to the .fxml file to be displayed
+     */
     public void setView(String viewFile) {
         try {
             // Load Base Page
