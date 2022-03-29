@@ -147,6 +147,9 @@ public class DBManager {
                 emptyTables
         );
     }
+    /**
+    Initialize Service Request Table
+     */
     public void initializeSRTable() {
         initializeTable("SERVICE_REQUESTS", "Create Table ServiceRequests (\n" +
                                                                         "    ServiceRequestID char(10),\n" +
