@@ -1,7 +1,7 @@
+
 package edu.wpi.cs3733.D22.teamC.entity.service_request;
 
 import edu.wpi.cs3733.D22.teamC.DBManager;
-import edu.wpi.cs3733.D22.teamC.entity.service_request.medical_equipment.MedicalEquipmentServiceRequest;
 
 import java.sql.*;
 import java.sql.Statement;
@@ -65,7 +65,7 @@ public class ServiceRequestDAOImpl implements ServiceRequestDAO {
     
     /**
      * Insert entry into ServiceRequest Table of the DB, corresponding to the given ServiceRequest object.
-     * 
+     *
      * @param serviceRequest The ServiceRequest to be inserted into the DB via a corresponding entry.
      * @return If successful return true, else return false.
      */
@@ -112,7 +112,7 @@ public class ServiceRequestDAOImpl implements ServiceRequestDAO {
             if (serviceRequestInDB != null) {
                 // Execute UPDATE statement
                 PreparedStatement statement = DBManager.getInstance().connection.prepareStatement(
-                        "UPDATE SERVICE_REQUESTS SET CREATORID = ?, ASSIGNEEID = ?, LOCATIONID = ?, " + 
+                        "UPDATE SERVICE_REQUESTS SET CREATORID = ?, ASSIGNEEID = ?, LOCATIONID = ?, " +
                                 "CREATIONTIMESTAMP = ?, STATUS = ?, PRIORITY = ?, REQUESTTYPE = ?, DESCRIPTION = ? " +
                                 "WHERE REQUESTID = ?"
                 );
