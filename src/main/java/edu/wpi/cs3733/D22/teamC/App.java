@@ -18,6 +18,7 @@ public class App extends Application {
     // Constants
     private final String BASE_VIEW_PATH = "view/general/base-view.fxml";
     private final String MENU_BAR_COMPONENT_PATH = "component/menu-bar.fxml";
+    private final String MEDICAL_EQUIPMENT = "view/service_request/medical-equipment-view.fxml";
 
     // Variables
     private Stage stage;
@@ -34,10 +35,11 @@ public class App extends Application {
         // Store window as stage
         stage = primaryStage;
 
+
         // Initialize Database Manager
         DBManager.startup();
-      
-        setView("view/general/demo.fxml");
+
+        setView(MEDICAL_EQUIPMENT);
     }
 
     @Override
@@ -80,4 +82,3 @@ public class App extends Application {
         return stage;
     }
 }
-
