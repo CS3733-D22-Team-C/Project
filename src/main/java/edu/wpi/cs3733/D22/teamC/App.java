@@ -75,5 +75,9 @@ public class App extends Application {
           e.printStackTrace();
         }
     }
+  
+    public Stage getStage() {
+        return stage;
+    }
 }
 
