@@ -172,12 +172,12 @@ public class LocationDAOImpl implements LocationDAO {
         try {
             Location location = new Location();
 
-            location.setNodeID(resultSet.getString("NODEID"));
-            location.setFloor(resultSet.getString("FLOOR"));
-            location.setBuilding(resultSet.getString("BUILDING"));
-            location.setNodeType(resultSet.getString("NODETYPE"));
-            location.setLongName(resultSet.getString("LONGNAME"));
-            location.setShortName(resultSet.getString("SHORTNAME"));
+            location.setNodeID(typesafeTrim(resultSet.getString("NODEID")));
+            location.setFloor(typesafeTrim(resultSet.getString("FLOOR")));
+            location.setBuilding(typesafeTrim(resultSet.getString("BUILDING")));
+            location.setNodeType(typesafeTrim(resultSet.getString("NODETYPE")));
+            location.setLongName(typesafeTrim(resultSet.getString("LONGNAME")));
+            location.setShortName(typesafeTrim(resultSet.getString("SHORTNAME")));
             location.setX(resultSet.getInt("XCOORD"));
             location.setY(resultSet.getInt("YCOORD"));
 
@@ -188,5 +188,15 @@ public class LocationDAOImpl implements LocationDAO {
 
             return null;
         }
+    }
+
+    /**
+     * Trim str if not null.
+     * @param str The String to trim.
+     * @return The trimmed str.
+     */
+    private String typesafeTrim(String str) {
+        if (str == null) return null;
+        else return str.trim();
     }
 }

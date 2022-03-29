@@ -24,7 +24,10 @@ public class DBManager {
     /**
      * Default Constructor.
      */
-    public DBManager() {}
+    public DBManager() {
+        this.databaseName = DEVELOPMENT_DATABASE_NAME;
+        this.emptyTables = true;
+    }
 
     /**
      * Alternate Constructor
