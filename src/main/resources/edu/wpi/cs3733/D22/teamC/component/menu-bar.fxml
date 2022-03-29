@@ -54,4 +54,8 @@
          </children>
       </HBox>
    </children>
+   <stylesheets>
+      <URL value="@../css/menu-bar.css" />
+      <URL value="@../css/base.css" />
+   </stylesheets>
 </GridPane>
