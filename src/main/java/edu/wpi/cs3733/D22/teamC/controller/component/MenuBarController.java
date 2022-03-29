@@ -7,19 +7,19 @@ public class MenuBarController {
     @FXML
     protected void onMenuBarHomeButtonPress() {
         // TODO: Add home page path
-        App.setView("");
+        App.instance.setView("");
     }
 
     @FXML
     protected void onMenuBarLocationsButtonPress() {
         // TODO: Add Locations Page path
-        App.setView("");
+        App.instance.setView("");
     }
 
     @FXML
     protected void onMenuBarServiceRequestsButtonPress() {
         // TODO: Add Service Requests Page path
-        App.setView("");
+        App.instance.setView("");
     }
 
     @FXML
