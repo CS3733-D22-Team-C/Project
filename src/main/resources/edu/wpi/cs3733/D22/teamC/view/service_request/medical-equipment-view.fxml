@@ -11,7 +11,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.VBox?>
 
-<ScrollPane xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.wpi.cs3733.D22.teamC.controller.service_request.MedicalEquipmentController">
+<ScrollPane prefWidth="602.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.wpi.cs3733.D22.teamC.controller.service_request.MedicalEquipmentController">
    <content>
       <AnchorPane prefHeight="667.0" prefWidth="600.0">
          <children>
@@ -55,7 +55,7 @@
                   <JFXTextArea fx:id="description" prefHeight="58.0" prefWidth="490.0" styleClass="textarea" stylesheets="@../../css/base.css" wrapText="true" />
                </children>
             </VBox>
-            <JFXTreeTableView fx:id="table" layoutX="67.0" layoutY="409.0" minWidth="-Infinity" prefHeight="219.0" prefWidth="480.0">
+            <JFXTreeTableView fx:id="table" layoutX="67.0" layoutY="391.0" minWidth="-Infinity" prefHeight="219.0" prefWidth="480.0">
                <columnResizePolicy>
                   <TreeTableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
                </columnResizePolicy>
