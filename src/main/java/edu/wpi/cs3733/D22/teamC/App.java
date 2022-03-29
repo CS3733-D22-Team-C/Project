@@ -35,8 +35,7 @@ public class App extends Application {
         stage = primaryStage;
 
         // Initialize Database Manager
-        DBManager man = new DBManager();
-        man.startup();
+        new DBManager().startup();
       
         setView("view/general/demo.fxml");
     }
