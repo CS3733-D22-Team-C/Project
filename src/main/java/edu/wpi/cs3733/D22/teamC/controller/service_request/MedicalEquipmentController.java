@@ -66,10 +66,10 @@ public class MedicalEquipmentController implements Initializable {
         Location.setPrefWidth(80);
         TreeTableColumn Type = new TreeTableColumn("Type");
         Type.setPrefWidth(80);
-        TreeTableColumn TypeNum = new TreeTableColumn("Type #");
-        TypeNum.setPrefWidth(80);
+        TreeTableColumn TypeID = new TreeTableColumn("Type ID");
+        TypeID.setPrefWidth(80);
 
-        table.getColumns().addAll(ID, Asignee, Status, Location, Type, TypeNum);
+        table.getColumns().addAll(ID, Asignee, Status, Location, Type, TypeID);
 
     }
     @FXML
@@ -79,6 +79,17 @@ public class MedicalEquipmentController implements Initializable {
 
     @FXML
     void clickReset(ActionEvent event) {
+        //clearing text fields/areas
+        assigneeID.clear();
+        location.clear();
+        equipID.clear();
+        description.clear();
+
+        //Clearing combo boxes
+        priority.valueProperty().set(null);
+        status.valueProperty().set(null);
+        equipType.valueProperty().setValue(null);
+
     }
 
     @FXML
