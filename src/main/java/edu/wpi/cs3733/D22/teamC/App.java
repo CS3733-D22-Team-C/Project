@@ -1,5 +1,7 @@
 package edu.wpi.cs3733.D22.teamC;
 
+import edu.wpi.cs3733.D22.teamC.entity.location.LocationDAO;
+import edu.wpi.cs3733.D22.teamC.entity.location.LocationDAOImpl;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
@@ -24,7 +26,7 @@ public class App extends Application {
 
     @Override
     public void init() {
-    log.info("Starting Up");
+        log.info("Starting Up");
     }
 
     @Override
@@ -35,9 +37,12 @@ public class App extends Application {
         stage = primaryStage;
 
         // Initialize Database Manager
-        DBManager.startup();
+        DBManager.getInstance();
       
         setView("view/general/demo.fxml");
+
+        LocationDAO locationDAO = new LocationDAOImpl();
+        System.out.println(locationDAO.getLocation("nodeIDEx").getNodeID());
     }
 
     @Override

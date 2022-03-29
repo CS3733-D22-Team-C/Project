@@ -7,20 +7,21 @@ import java.sql.*;
  */
 public class DBManager {
     // Singleton Instance
-    public static DBManager instance;
+    private static DBManager instance;
 
     // Database Connection
     public Connection connection;
 
     /**
-     * Startup DB Manager according to the Singleton Model
+     * Get instance of DB Manager according to the Singleton Model
      */
-    public static void startup(){
+    public static DBManager getInstance(){
         if (instance == null) {
             instance = new DBManager();
             instance.connectDatabase();
-            instance.initializeLocationTable();
+            instance.initializeLocationTable(false);
         }
+        return instance;
     }
 
     /**
@@ -40,20 +41,23 @@ public class DBManager {
     }
 
     /**
-     * Checks if a Table of the given name exists. If it does, clear its contents.
+     * Checks if a Table of the given name exists. If it does and emptyTable is true, clear its contents.
      * If it doesn't, execute the CREATE statement.
      * @param tableName Name of table to initialize.
      * @param sqlCreateStatement SQL CREATE Statement to run in case of non-existence.
+     * @param emptyTable Clear pre-existing table entries if true.
      */
-    private void initializeTable(String tableName, String sqlCreateStatement) {
+    private void initializeTable(String tableName, String sqlCreateStatement, boolean emptyTable) {
         try {
             DatabaseMetaData databaseMetaData = connection.getMetaData();
             ResultSet resultSet = databaseMetaData.getTables(null, null, tableName, new String[] {"TABLE"});
 
             if (resultSet.next()) {
-                // Table exists, clear data from table
-                Statement statement = connection.createStatement();
-                statement.execute("DELETE FROM " + tableName);
+                // Table exists, clear data from table if emptyTable
+                if (emptyTable) {
+                    Statement statement = connection.createStatement();
+                    statement.execute("DELETE FROM " + tableName);
+                }
             } else {
                 // Table does not exist, execute creation statement
                 Statement statement = connection.createStatement();
@@ -68,11 +72,13 @@ public class DBManager {
 
     /**
      * Initialize Location Table
+     * @param emptyTable Clear pre-existing table entries if true.
      */
-    private void initializeLocationTable() {
+    private void initializeLocationTable(boolean emptyTable) {
         initializeTable(
                 "LOCATION",
-                "CREATE TABLE LOCATION(nodeID char(16), xcoord int, ycoord int, floor char(4), building char(16), nodeType char(4), longName char(64), shortName char(32), Constraint nodeID_PK Primary Key (nodeID))"
+                "CREATE TABLE LOCATION(NODEID char(16), XCOORD int, YCOORD int, FLOOR char(4), BUILDING char(16), NODETYPE char(4), LONGNAME char(64), SHORTNAME char(32), Constraint nodeID_PK Primary Key (nodeID))",
+                emptyTable
         );
     }
 }
