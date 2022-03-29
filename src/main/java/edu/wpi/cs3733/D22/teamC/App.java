@@ -42,7 +42,7 @@ public class App extends Application {
         log.info("Shutting Down");
     }
 
-    public void setView(String viewFile) {
+    public static void setView(String viewFile) {
         try {
             // Load Base Page
             FXMLLoader loader = new FXMLLoader();
