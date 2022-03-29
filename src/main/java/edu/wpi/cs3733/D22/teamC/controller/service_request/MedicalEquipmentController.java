@@ -94,7 +94,7 @@ public class MedicalEquipmentController implements Initializable {
 
     @FXML
     void clickSubmit(ActionEvent event) {
-
+        
     }
 
 

@@ -4,6 +4,7 @@ import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXComboBox;
 import com.jfoenix.controls.JFXTextArea;
 import com.jfoenix.controls.JFXTreeTableView;
+import edu.wpi.cs3733.D22.teamC.entity.service_request.facility_maintenance.FacilityMaintenanceServiceRequest;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -86,7 +87,8 @@ public class FacilitiesMaintenanceController implements Initializable {
 
     @FXML
     void clickSubmit(ActionEvent event) {
-
+        FacilityMaintenanceServiceRequest fmsr = new FacilityMaintenanceServiceRequest();
+        fmsr.setMaintenanceType(maintType.getText());
     }
 
 }
