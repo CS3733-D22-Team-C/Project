@@ -10,7 +10,6 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.VBox?>
 
-
 <ScrollPane prefHeight="668.6" prefWidth="602.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1">
    <content>
       <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0">
@@ -52,7 +51,7 @@
             <VBox layoutX="55.0" layoutY="207.0" prefHeight="80.0" prefWidth="490.4">
                <children>
                   <Label styleClass="service-field-label" stylesheets="@../../css/base.css" text="Additional Notes:" />
-                  <JFXTextArea fx:id="description" prefHeight="58.0" prefWidth="490.0" />
+                  <JFXTextArea fx:id="description" prefHeight="58.0" prefWidth="490.0" wrapText="true" />
                </children>
             </VBox>
             <JFXTreeTableView fx:id="table" layoutX="67.0" layoutY="409.0" prefHeight="219.0" prefWidth="480.0" />

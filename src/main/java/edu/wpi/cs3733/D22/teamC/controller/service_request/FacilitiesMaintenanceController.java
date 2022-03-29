@@ -1,5 +1,6 @@
 package edu.wpi.cs3733.D22.teamC.controller.service_request;
 
+import edu.wpi.cs3733.D22.teamC.App;
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXComboBox;
 import com.jfoenix.controls.JFXTextArea;
@@ -14,6 +15,7 @@ import javafx.scene.control.TreeTableColumn;
 
 import java.awt.event.InputMethodEvent;
 import java.net.URL;
+import java.sql.Timestamp;
 import java.util.ResourceBundle;
 
 public class FacilitiesMaintenanceController implements Initializable {
@@ -76,19 +78,28 @@ public class FacilitiesMaintenanceController implements Initializable {
         description.clear();
 
         //Clearing combo boxes
-        priority.valueProperty().set(null); //valueProperty() returns the last selected item by the user or the value inputted by the user, and set just sets this item or value to Null (clears the dropdown selection).
+        priority.valueProperty().set(null); //valueProperty() returns the selected item by the user or the value inputted by the user or the last selected item, and set just sets this item or value to Null (clears the dropdown selection).
         status.valueProperty().set(null);
     }
 
     @FXML
     void clickGoBack(ActionEvent event) {
-
+        App.instance.setView(""); //Set view to list of service requests page once it is created
     }
 
     @FXML
     void clickSubmit(ActionEvent event) {
         FacilityMaintenanceServiceRequest fmsr = new FacilityMaintenanceServiceRequest();
+        java.util.Date date = new java.util.Date();
+        fmsr.setCreationTimestamp(new Timestamp(date.getTime()));
         fmsr.setMaintenanceType(maintType.getText());
+        fmsr.setAssigneeID(assigneeID.getText());
+        fmsr.setLocation(location.getText());
+        fmsr.setPriority(priority.getValue()); //getValue directly returns the value of a selected item from a JavaFX ComboBox
+        fmsr.setStatus(status.getValue());
+        fmsr.setDescription(description.getText());
+        fmsr.setRequestType("Facilities Maintenance");
+        //Not sure how to handle requestID, creatorID since I would assume we need login info for these
     }
 
 }
