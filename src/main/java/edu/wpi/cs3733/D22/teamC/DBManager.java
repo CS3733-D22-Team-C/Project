@@ -63,6 +63,7 @@ public class DBManager {
         instance = dbManager;
         instance.connectDatabase();
         instance.initializeLocationTable();
+        instance.initializeSRTable();
     }
 
     /**
@@ -145,5 +146,21 @@ public class DBManager {
                 "CREATE TABLE LOCATION(NODEID char(16), XCOORD int, YCOORD int, FLOOR char(4), BUILDING char(16), NODETYPE char(4), LONGNAME char(64), SHORTNAME char(32), Constraint nodeID_PK Primary Key (nodeID))",
                 emptyTables
         );
+    }
+    public void initializeSRTable() {
+        initializeTable("SERVICE_REQUESTS", "Create Table ServiceRequests (\n" +
+                                                                        "    ServiceRequestID char(10),\n" +
+                                                                        "    reporterID char(10) NOT NULL,\n" +
+                                                                        "    assigneeID char(10) NOT NULL,\n" +
+                                                                        "    locationID char(10),\n" +
+                                                                        "    whenRequested DATETIME NOT NULL,\n" +
+                                                                        "    requestStatus  varchar2(50) NOT NULL,\n" +
+                                                                        "    priority   varchar2(50) NOT NULL,\n" +
+                                                                        "    ServiceRequestType varchar2(50) NOT NULL,\n" +
+                                                                        "    requestDescription varchar2(150),\n" +
+                                                                        "    CONSTRAINT pk_serviceRequestID Primary Key (ServiceRequestID),\n" +
+                                                                        "    CONSTRAINT locationID Foreign Key References Location(locationID))\n"
+                        , emptyTables);
+
     }
 }
