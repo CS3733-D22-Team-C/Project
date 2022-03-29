@@ -7,7 +7,7 @@ import javafx.scene.Scene;
 import javafx.scene.layout.BorderPane;
 import javafx.stage.Stage;
 import lombok.extern.slf4j.Slf4j;
-
+import java.sql.*;
 import java.io.IOException;
 
 @Slf4j
@@ -35,7 +35,11 @@ public class App extends Application {
         // Store window as stage
         stage = primaryStage;
 
-        setView(MEDICAL_EQUIPMENT);
+
+        // Initialize Database Manager
+        DBManager.startup();
+
+        setView("view/general/demo.fxml");
     }
 
     @Override
@@ -74,4 +78,3 @@ public class App extends Application {
         }
     }
 }
-
