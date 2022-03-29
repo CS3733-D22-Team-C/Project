@@ -151,18 +151,17 @@ public class DBManager {
     Initialize Service Request Table
      */
     public void initializeSRTable() {
-        initializeTable("SERVICE_REQUESTS", "Create Table ServiceRequests (\n" +
-                                                                        "    ServiceRequestID char(10),\n" +
-                                                                        "    reporterID char(10) NOT NULL,\n" +
-                                                                        "    assigneeID char(10) NOT NULL,\n" +
-                                                                        "    locationID char(10),\n" +
-                                                                        "    whenRequested DATETIME NOT NULL,\n" +
-                                                                        "    requestStatus  varchar2(50) NOT NULL,\n" +
-                                                                        "    priority   varchar2(50) NOT NULL,\n" +
-                                                                        "    ServiceRequestType varchar2(50) NOT NULL,\n" +
-                                                                        "    requestDescription varchar2(150),\n" +
-                                                                        "    CONSTRAINT pk_serviceRequestID Primary Key (ServiceRequestID),\n" +
-                                                                        "    CONSTRAINT locationID Foreign Key References Location(locationID))\n"
+        initializeTable("SERVICE_REQUESTS", "CREATE TABLE SERVICE_REQUESTS (\n" +
+                                                                        "    REQUESTID char(10),\n" +
+                                                                        "    CREATORID char(10),\n" +
+                                                                        "    ASSIGNEEID char(10),\n" +
+                                                                        "    LOCATIONID char(10),\n" +
+                                                                        "    CREATIONTIMESTAMP DATETIME,\n" +
+                                                                        "    STATUS  varchar2(50),\n" +
+                                                                        "    PRIORITY   varchar2(50),\n" +
+                                                                        "    REQUESTTYPE varchar2(50),\n" +
+                                                                        "    DESCRIPTION varchar2(150),\n" +
+                                                                        "    CONSTRAINT PK_REQUESTID PRIMARY KEY (REQUESTID),\n"
                         , emptyTables);
 
     }
