@@ -64,7 +64,7 @@ public class DBManager {
         instance.connectDatabase();
         instance.initializeLocationTable();
         instance.initializeSRTable();
-        instance.initializeMedEquipSRTable();
+        instance.initializeMedicalEquipSRTable();
     }
 
     /**
@@ -152,17 +152,17 @@ public class DBManager {
     Initialize Service Request Table
      */
     public void initializeSRTable() {
-        initializeTable("SERVICE_REQUESTS", "CREATE TABLE SERVICE_REQUESTS (\n" +
-                                                                        "    REQUESTID char(10),\n" +
-                                                                        "    CREATORID char(10),\n" +
-                                                                        "    ASSIGNEEID char(10),\n" +
-                                                                        "    LOCATIONID char(10),\n" +
-                                                                        "    CREATIONTIMESTAMP DATETIME,\n" +
-                                                                        "    STATUS  varchar2(50),\n" +
-                                                                        "    PRIORITY   varchar2(50),\n" +
-                                                                        "    REQUESTTYPE varchar2(50),\n" +
-                                                                        "    DESCRIPTION varchar2(150),\n" +
-                                                                        "    CONSTRAINT PK_REQUESTID PRIMARY KEY (REQUESTID))\n"
+        initializeTable("SERVICE_REQUESTS", "CREATE TABLE SERVICE_REQUESTS (" +
+                                                                        "    REQUESTID char(10)," +
+                                                                        "    CREATORID char(10)," +
+                                                                        "    ASSIGNEEID char(10)," +
+                                                                        "    LOCATIONID char(10)," +
+                                                                        "    CREATIONTIMESTAMP DATETIME," +
+                                                                        "    STATUS  varchar2(50)," +
+                                                                        "    PRIORITY   varchar2(50)," +
+                                                                        "    REQUESTTYPE varchar2(50)," +
+                                                                        "    DESCRIPTION varchar2(150)," +
+                                                                        "    CONSTRAINT PK_REQUESTID PRIMARY KEY (REQUESTID))"
                         , emptyTables);
 
     }
@@ -170,13 +170,13 @@ public class DBManager {
     /**
      * Initialize Medical Equipment Service Request Table
      */
-    public void initializeMedEquipSRTable() {
-        initializeTable("MED_EQUP_SERVICE_REQUESTS", "CREATE TABLE MEDICAL_EQUIP_SERVICE_REQUESTS (\n" +
-                        "    REQUESTID char(10),\n" +
-                        "    EQUIPID char(10),\n " +
-                        "    EQUIPTYPE varchar2(50), \n" +
-                        "    CONSTRAINT PK_EQUIPID Primary Key (equipmentID),\n" +
-                        "    CONSTRAINT FK_REQUESTID FOREIGN KEY REFERENCES SERVICE_REQUESTS (REQUESTID)) \n"
+    public void initializeMedicalEquipSRTable() {
+        initializeTable("MEDICAL_EQUIP_SERVICE_REQUESTS", "CREATE TABLE MEDICAL_EQUIP_SERVICE_REQUESTS (" +
+                        "    REQUESTID char(10)," +
+                        "    EQUIPID char(10), " +
+                        "    EQUIPTYPE varchar2(50), " +
+                        "    CONSTRAINT PK_EQUIPID Primary Key (equipmentID)," +
+                        "    CONSTRAINT FK_REQUESTID FOREIGN KEY REFERENCES SERVICE_REQUESTS (REQUESTID)) "
                 ,emptyTables);
     }
 }
