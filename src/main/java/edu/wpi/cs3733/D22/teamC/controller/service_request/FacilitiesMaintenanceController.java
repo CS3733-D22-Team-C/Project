@@ -24,4 +24,33 @@ public class FacilitiesMaintenanceController implements Intializable {
     @FXML private TextField maintType;
     @FXML private TextField location;
 
+    //Dropdowns:
+
+    @FXML JFXComboBox<String> status;
+    @FXML JFXComboBox<String> priority;
+
+    //Buttons
+    @FXML private JFXButton goBackButton;
+    @FXML private JFXButton resetButton;
+    @FXML private JFXButton submitButton;
+
+    @FXML private JFXTreeTableView<?> table;
+
+    @FXML
+    public void initialize(URL url, ResourceBundle rb) {
+
+        //Add options to priority dropdown list:
+        priority.getItems().add("Low"); //getItems() returns a list of dropdown items from the JFXComboBox variable, and add() allows you to add a dropdown item to the list.
+        priority.getItems().add("Medium");
+        priority.getItems().add("High");
+
+        //Add options to status dropdown list:
+        status.getItems().add("Blank");
+        status.getItems().add("Processing");
+        status.getItems().add("Done");
+
+
+
+    }
+
 }
