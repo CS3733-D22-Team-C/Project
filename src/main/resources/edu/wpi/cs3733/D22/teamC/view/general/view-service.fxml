@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXComboBox?>
+<?import com.jfoenix.controls.JFXTreeView?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.VBox?>
+
+<AnchorPane prefHeight="311.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.wpi.cs3733.D22.teamC.controller.general.serviceRequest">
+   <children>
+      <JFXTreeView fx:id="table" layoutX="54.0" layoutY="43.0" prefHeight="398.0" prefWidth="492.0" styleClass="service-field-label" stylesheets="@../../css/base.css" />
+      <VBox layoutX="385.0" layoutY="478.0" prefHeight="57.0" prefWidth="131.0">
+         <children>
+            <JFXComboBox fx:id="serviceType" prefHeight="37.0" prefWidth="128.0" styleClass="textarea" stylesheets="@../../css/base.css" />
+         </children>
+      </VBox>
+      <VBox layoutX="516.0" layoutY="488.0" prefHeight="26.0" prefWidth="54.0">
+         <children>
+            <Button fx:id="selectButtonselectButton" mnemonicParsing="false" onAction="#onSelectButton" prefHeight="26.0" prefWidth="55.0" stylesheets="@../../css/base.css" text="Button" />
+         </children>
+      </VBox>
+      <VBox layoutX="223.0" layoutY="488.0" prefHeight="37.0" prefWidth="162.0">
+         <children>
+            <Label prefHeight="35.0" prefWidth="179.0" styleClass="service-field-label" stylesheets="@../../css/base.css" text="Create a Service Request" />
+         </children>
+      </VBox>
+   </children>
+</AnchorPane>
