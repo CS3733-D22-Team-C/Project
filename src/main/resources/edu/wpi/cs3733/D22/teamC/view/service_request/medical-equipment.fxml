@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import com.jfoenix.controls.JFXComboBox?>
+<?import com.jfoenix.controls.JFXTextArea?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.VBox?>
+
+
+<AnchorPane prefHeight="566.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.wpi.cs3733.D22.teamC.view.service_request.MedicalEquipmentController">
+   <children>
+      <JFXButton fx:id="submitButton" layoutX="509.0" layoutY="435.0" onAction="#clickSubmit" styleClass="button-success" stylesheets="@../../css/base.css" text="Submit" />
+      <JFXButton fx:id="resetButton" layoutX="415.0" layoutY="435.0" onAction="#clickReset" styleClass="button-failure" stylesheets="@../../css/base.css" text="Reset" />
+      <JFXButton fx:id="goBackButton" layoutX="30.0" layoutY="435.0" onAction="#clickGoBack" styleClass="button-back" stylesheets="@../../css/base.css" text="Go Back" />
+      <Label layoutX="55.0" layoutY="56.0" styleClass="page-title" stylesheets="@../../css/base.css" text="Medical Equipment Service Request" />
+      <VBox layoutX="49.0" layoutY="110.0">
+         <children>
+            <Label styleClass="service-field-label" stylesheets="@../../css/base.css" text="Assign To:" />
+            <TextField fx:id="AssigneID" />
+         </children>
+      </VBox>
+      <VBox layoutX="241.0" layoutY="110.0">
+         <children>
+            <Label styleClass="service-field-label" stylesheets="@../../css/base.css" text="Status:" />
+            <JFXComboBox fx:id="Status" prefHeight="26.0" prefWidth="132.0" />
+         </children>
+      </VBox>
+      <VBox layoutX="49.0" layoutY="184.0">
+         <children>
+            <Label styleClass="service-field-label" stylesheets="@../../css/base.css" text="Equipment Type:" />
+            <JFXComboBox fx:id="equipType" prefHeight="26.0" prefWidth="138.0" />
+         </children>
+      </VBox>
+      <VBox layoutX="241.0" layoutY="184.0">
+         <children>
+            <Label styleClass="service-field-label" stylesheets="@../../css/base.css" text="Priority:" />
+            <JFXComboBox fx:id="Priority" prefHeight="26.0" prefWidth="132.0" />
+         </children>
+      </VBox>
+      <VBox layoutX="431.0" layoutY="110.0">
+         <children>
+            <Label styleClass="service-field-label" stylesheets="@../../css/base.css" text="Location:" />
+            <JFXComboBox fx:id="Location" prefHeight="26.0" prefWidth="132.0" />
+         </children>
+      </VBox>
+      <VBox layoutX="55.0" layoutY="263.0">
+         <children>
+            <Label styleClass="service-field-label" stylesheets="@../../css/base.css" text="Additional Notes:" />
+            <JFXTextArea fx:id="Description" prefHeight="94.0" prefWidth="494.0" />
+         </children>
+      </VBox>
+   </children>
+</AnchorPane>
