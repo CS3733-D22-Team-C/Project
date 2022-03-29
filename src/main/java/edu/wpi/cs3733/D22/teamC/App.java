@@ -10,8 +10,6 @@ import lombok.extern.slf4j.Slf4j;
 import java.sql.*;
 import java.io.IOException;
 
-import java.io.IOException;
-
 @Slf4j
 public class App extends Application {
     // Declare singleton instance
