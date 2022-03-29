@@ -152,11 +152,12 @@ public class DBManager {
      * Initializes medical equipment service requests table
      */
     public void initializeMedEquipSRTable() {
-        initializeTable("MED_EQUP_SERVICE_REQUESTS", "Create Table MedEquipServiceRequests (\n" +
-                                                                                "    ServiceRequestID char(10),\n" +
-                                                                                "    equipmentID char(10),\n" +
-                                                                                "    CONSTRAINT pk_equipmentID Primary Key (equipmentID),\n" +
-                                                                                "    CONSTRAINT fk_ServiceRequestID Foreign Key References ServiceRequests(ServiceRequestID))\n"
+        initializeTable("MED_EQUP_SERVICE_REQUESTS", "CREATE TABLE MEDICAL_EQUIP_SERVICE_REQUESTS (\n" +
+                                                                                "    REQUESTID char(10),\n" +
+                                                                                "    EQUIPID char(10),\n " +
+                                                                                "    EQUIPTYPE varchar2(50), \n" +
+                                                                                "    CONSTRAINT PK_EQUIPID Primary Key (equipmentID),\n" +
+                                                                                "    CONSTRAINT FK_REQUESTID FOREIGN KEY REFERENCES SERVICE_REQUESTS (REQUESTID)) \n"
                 ,emptyTables);
     }
 }
