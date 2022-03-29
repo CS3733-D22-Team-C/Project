@@ -65,36 +65,102 @@ public class LocationDAOImpl implements LocationDAO {
     }
 
     /**
-     * Update entry in LOCATION Table of DB corresponding to the given Location object.
-     * @param location The Location whose corresponding DB entry is to be updated.
+     * Insert entry in LOCATION Table of DB corresponding to the given Location object.
+     * @param location The Location to be inserted into the DB via a corresponding entry.
+     * @return If successful return true, else return false.
      */
     @Override
-    public void updateLocation(Location location) {
+    public boolean insertLocation(Location location) {
         try {
-            // TODO: Update Request !!!
+            // Check if entry of same nodeID already exists
+            Location locationInDB = getLocation(location.getNodeID());
+            if (locationInDB == null) {
+                // Execute INSERT Statement
+                PreparedStatement statement =  DBManager.getInstance().connection.prepareStatement(
+                        "INSERT INTO LOCATION VALUES(?, ?, ?, ?, ?, ?, ?, ?)"
+                );
+                statement.setString(1, location.getNodeID());
+                statement.setInt(2, location.getX());
+                statement.setInt(3, location.getY());
+                statement.setString(4, location.getFloor());
+                statement.setString(5, location.getBuilding());
+                statement.setString(6, location.getNodeType());
+                statement.setString(7, location.getLongName());
+                statement.setString(8, location.getShortName());
+                statement.execute();
+
+                return true;
+            }
+        } catch (SQLException e) {
+            System.out.println("INSERT to LOCATION table failed.");
+            e.printStackTrace();
+        }
+
+        return false;
+    }
+
+    /**
+     * Update entry in LOCATION Table of DB corresponding to the given Location object.
+     * @param location The Location whose corresponding DB entry is to be updated.
+     * @return If successful return true, else return false.
+     */
+    @Override
+    public boolean updateLocation(Location location) {
+        try {
+            // Check if entry of same nodeID exists
+            Location locationInDB = getLocation(location.getNodeID());
+            if (locationInDB != null) {
+                // Execute UPDATE Statement
+                PreparedStatement statement =  DBManager.getInstance().connection.prepareStatement(
+                        "UPDATE LOCATION SET XCOORD = ?, YCOORD = ?, FLOOR = ?, BUILDING = ?, " +
+                                "NODETYPE = ?, LONGNAME = ?, SHORTNAME = ? WHERE NODEID = ?"
+                );
+                statement.setInt(1, location.getX());
+                statement.setInt(2, location.getY());
+                statement.setString(3, location.getFloor());
+                statement.setString(4, location.getBuilding());
+                statement.setString(5, location.getNodeType());
+                statement.setString(6, location.getLongName());
+                statement.setString(7, location.getShortName());
+                statement.setString(8, location.getNodeID());
+                statement.execute();
+
+                return true;
+            }
         } catch (SQLException e) {
             System.out.println("Update to LOCATION table failed.");
             e.printStackTrace();
         }
+
+        return false;
     }
 
     /**
      * Delete entry in LOCATION Table of DB corresponding to the given Location object.
      * @param location The Location whose corresponding DB entry is to be deleted.
+     * @return If successful return true, else return false.
      */
     @Override
-    public void deleteLocation(Location location) {
+    public boolean deleteLocation(Location location) {
         try {
-            // Execute DELETE Statement
-            PreparedStatement statement =  DBManager.getInstance().connection.prepareStatement(
-                    "DELETE FROM LOCATION WHERE NODEID = ?"
-            );
-            statement.setString(1, location.getNodeID());
-            statement.execute();
+            // Check if entry of same nodeID exists
+            Location locationInDB = getLocation(location.getNodeID());
+            if (locationInDB != null) {
+                // Execute DELETE Statement
+                PreparedStatement statement =  DBManager.getInstance().connection.prepareStatement(
+                        "DELETE FROM LOCATION WHERE NODEID = ?"
+                );
+                statement.setString(1, location.getNodeID());
+                statement.execute();
+
+                return true;
+            }
         } catch (SQLException e) {
             System.out.println("Delete from LOCATION table failed.");
             e.printStackTrace();
         }
+
+        return false;
     }
 
     /**
