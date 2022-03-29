@@ -161,7 +161,7 @@ public class DBManager {
                                                                         "    PRIORITY   varchar2(50),\n" +
                                                                         "    REQUESTTYPE varchar2(50),\n" +
                                                                         "    DESCRIPTION varchar2(150),\n" +
-                                                                        "    CONSTRAINT PK_REQUESTID PRIMARY KEY (REQUESTID),\n"
+                                                                        "    CONSTRAINT PK_REQUESTID PRIMARY KEY (REQUESTID)\n"
                         , emptyTables);
 
     }
