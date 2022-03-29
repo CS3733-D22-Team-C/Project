@@ -21,7 +21,6 @@
 
 .textarea {
     -fx-background-color: -color-textarea;
-    -fx-max-width: 500;
     /*Check off wrap text property in SceneBuilder for now*/
 }
 
@@ -38,5 +37,4 @@
     -fx-font-family: -font-field-label;
     -fx-font-weight: bold;
     -fx-font-size: 20;
-    -fx-padding: 50;
 }
