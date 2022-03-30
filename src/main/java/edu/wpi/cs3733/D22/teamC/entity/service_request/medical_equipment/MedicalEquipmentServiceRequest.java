@@ -19,7 +19,14 @@ public class MedicalEquipmentServiceRequest extends ServiceRequest {
     }
 
     public void setEquipmentType(String equipmentType) {
-        this.equipmentType = equipmentType;
+        if(equipmentType.contains("Bed"))
+            this.equipmentType = "Bed";
+        else if(equipmentType.contains("Recliner"))
+            this.equipmentType = "Recliner";
+        else if(equipmentType.contains("Portable X-Ray"))
+            this.equipmentType = "Portable X-Ray";
+        else
+            this.equipmentType = "Infusion Pump";
     }
 
     public String getEquipmentID() {
