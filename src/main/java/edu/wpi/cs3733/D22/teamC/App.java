@@ -1,8 +1,5 @@
 package edu.wpi.cs3733.D22.teamC;
 
-import edu.wpi.cs3733.D22.teamC.entity.location.Location;
-import edu.wpi.cs3733.D22.teamC.entity.location.LocationDAO;
-import edu.wpi.cs3733.D22.teamC.entity.location.LocationDAOImpl;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
@@ -21,6 +18,7 @@ public class App extends Application {
     private final String BASE_VIEW_PATH = "view/general/base-view.fxml";
     private final String MENU_BAR_COMPONENT_PATH = "component/menu-bar.fxml";
     private final String MEDICAL_EQUIPMENT = "view/service_request/medical-equipment-view.fxml";
+    private final String SERVICE_REQUEST_SELECT = "view/general/view-service.fxml";
 
     // Variables
     private Stage stage;
@@ -71,8 +69,8 @@ public class App extends Application {
             System.out.println(locationDAO.getLocation(updateTest.getNodeID()).getFloor()); // F1
         }
 
-        //setView(MEDICAL_EQUIPMENT);
-
+        // Initialize Database Manager
+        DBManager.startup();
     }
 
     @Override
