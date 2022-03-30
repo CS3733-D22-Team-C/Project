@@ -7,7 +7,6 @@ public class MedicalEquipmentServiceRequest extends ServiceRequest {
     protected String equipmentID;       // TODO: Link to Medical Equipment
 
     //For the table
-    protected MedicalEquipmentTable met;
     enum equipEnum {
         BED, //1
         RECLINER, //2
@@ -29,13 +28,6 @@ public class MedicalEquipmentServiceRequest extends ServiceRequest {
 
     public void setEquipmentID(String equipmentID) {
         this.equipmentID = equipmentID;
-    }
-
-    public void setMet(){
-        this.met = new MedicalEquipmentTable(equipmentType, equipmentID, assigneeID, location, status, priority);
-    }
-    public MedicalEquipmentTable getMet(){
-        return met;
     }
 
     public int getEquipEnum(String type)
