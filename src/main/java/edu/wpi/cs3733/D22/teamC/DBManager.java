@@ -152,7 +152,7 @@ public class DBManager {
     Initialize Service Request Table
      */
     public void initializeSRTable() {
-        initializeTable("SERVICE_REQUESTS", "CREATE TABLE SERVICE_REQUESTS (" +
+        initializeTable("SERVICE_REQUEST", "CREATE TABLE SERVICE_REQUEST (" +
                                                                         "    REQUESTID char(10)," +
                                                                         "    CREATORID char(10)," +
                                                                         "    ASSIGNEEID char(10)," +
@@ -171,7 +171,7 @@ public class DBManager {
      * Initialize Medical Equipment Service Request Table
      */
     public void initializeMedicalEquipSRTable() {
-        initializeTable("MEDICAL_EQUIP_SERVICE_REQUESTS", "CREATE TABLE MEDICAL_EQUIP_SERVICE_REQUESTS (" +
+        initializeTable("MEDICAL_EQUIP_SERVICE_REQUEST", "CREATE TABLE MEDICAL_EQUIP_SERVICE_REQUEST (" +
                         "    REQUESTID char(10)," +
                         "    EQUIPID char(10), " +
                         "    EQUIPTYPE varchar2(50), " +
