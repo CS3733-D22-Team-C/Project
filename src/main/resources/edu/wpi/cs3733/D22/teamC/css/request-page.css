@@ -1,0 +1,6 @@
+@import "colors.css";
+
+.button-alignment {
+    -fx-spacing: 5px;
+}
+
