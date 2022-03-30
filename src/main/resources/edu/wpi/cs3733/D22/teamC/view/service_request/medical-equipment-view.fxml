@@ -70,7 +70,7 @@
             <VBox alignment="CENTER_LEFT" prefHeight="200.0" prefWidth="100.0" styleClass="box-margin" GridPane.columnIndex="2" GridPane.hgrow="ALWAYS" GridPane.rowIndex="1" GridPane.vgrow="ALWAYS">
                <children>
                   <Label styleClass="service-field-label" text="Priority:" />
-                  <JFXComboBox fx:id="priority" prefHeight="26.0" prefWidth="148.0" styleClass="dropdown" stylesheets="@../../css/base.css" />
+                  <JFXComboBox fx:id="priority" maxWidth="1.7976931348623157E308" prefHeight="26.0" prefWidth="148.0" styleClass="dropdown" stylesheets="@../../css/base.css" />
                </children>
             </VBox>
          </children>
