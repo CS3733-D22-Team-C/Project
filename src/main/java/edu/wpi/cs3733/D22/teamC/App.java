@@ -1,5 +1,9 @@
 package edu.wpi.cs3733.D22.teamC;
 
+import edu.wpi.cs3733.D22.teamC.entity.location.Location;
+import edu.wpi.cs3733.D22.teamC.entity.location.LocationDAO;
+import edu.wpi.cs3733.D22.teamC.entity.location.LocationDAOImpl;
+import edu.wpi.cs3733.D22.teamC.fileio.csv.LocationCSVWriter;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
@@ -8,6 +12,7 @@ import javafx.scene.layout.BorderPane;
 import javafx.stage.Stage;
 import lombok.extern.slf4j.Slf4j;
 import java.io.IOException;
+import java.util.List;
 
 @Slf4j
 public class App extends Application {
@@ -47,6 +52,14 @@ public class App extends Application {
 
     @Override
     public void stop() {
+        // Export CSV Data
+        LocationCSVWriter csvWriter = new LocationCSVWriter();
+        LocationDAO locationDAO = new LocationDAOImpl();
+        List<Location> locations = locationDAO.getAllLocations();
+        if (locations != null) {
+            csvWriter.writeFile("TowerLocations.csv", locations);
+        }
+
         // Shutdown Database Manager
         DBManager.shutdown();
 
