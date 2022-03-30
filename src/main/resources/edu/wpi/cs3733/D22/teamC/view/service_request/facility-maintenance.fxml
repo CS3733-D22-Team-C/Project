@@ -12,7 +12,7 @@
 
 <ScrollPane prefHeight="668.6" prefWidth="602.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.wpi.cs3733.D22.teamC.controller.service_request.FacilityMaintenanceSRCreateController">
    <content>
-      <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0">
+      <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="600.0">
          <children>
             <JFXButton fx:id="submitButton" layoutX="480.0" layoutY="321.0" onAction="#clickSubmit" styleClass="button-success" stylesheets="@../../css/base.css" text="Submit" />
             <JFXButton fx:id="resetButton" layoutX="398.0" layoutY="321.0" onAction="#clickReset" styleClass="button-failure" stylesheets="@../../css/base.css" text="Reset" />
