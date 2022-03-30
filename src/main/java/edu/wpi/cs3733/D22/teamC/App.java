@@ -16,8 +16,10 @@ public class App extends Application {
 
     // Constants
     public static final String BASE_VIEW_PATH = "view/general/base-view.fxml";
-    public static final String MENU_BAR_COMPONENT_PATH = "component/menu-bar.fxml";
-    public static final String MEDICAL_EQUIPMENT = "view/service_request/medical-equipment-view.fxml";
+    private final String MENU_BAR_COMPONENT_PATH = "component/menu-bar.fxml";
+    private final String MEDICAL_EQUIPMENT = "view/service_request/medical-equipment-view.fxml";
+    private final String SANITARY_SERVICES_PATH = "view/service_request/sanitation-view.fxml";
+    private final String SERVICE_REQUEST_SELECT = "view/general/view-service.fxml";
     public static final String LAB_SYSTEM = "view/service_request/lab-system-view.fxml";
 
     // Variables
@@ -52,6 +54,10 @@ public class App extends Application {
         log.info("Shutting Down");
     }
 
+    /**
+     * Allows us to change the view of the window
+     * @param viewFile path to the .fxml file to be displayed
+     */
     public void setView(String viewFile) {
         try {
             // Load Base Page

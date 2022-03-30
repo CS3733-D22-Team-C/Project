@@ -18,8 +18,7 @@ public class MenuBarController {
 
     @FXML
     protected void onMenuBarServiceRequestsButtonPress() {
-        // TODO: Add Service Requests Page path
-        App.instance.setView("");
+        App.instance.setView("view/general/view-service.fxml");
     }
 
     @FXML
