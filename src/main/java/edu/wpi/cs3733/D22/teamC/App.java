@@ -15,9 +15,10 @@ public class App extends Application {
     public static App instance;
 
     // Constants
-    public static final String BASE_VIEW_PATH = "view/general/base-view.fxml";
-    private static final String MENU_BAR_COMPONENT_PATH = "component/menu-bar.fxml";
-    private static final String MEDICAL_EQUIPMENT = "view/service_request/medical-equipment-view.fxml";
+    private final String BASE_VIEW_PATH = "view/general/base-view.fxml";
+    private final String MENU_BAR_COMPONENT_PATH = "component/menu-bar.fxml";
+    private final String MEDICAL_EQUIPMENT = "view/service_request/medical-equipment-view.fxml";
+    private final String SERVICE_REQUEST_SELECT = "view/general/view-service.fxml";
 
     // Variables
     private Stage stage;
@@ -37,7 +38,7 @@ public class App extends Application {
         // Store window as stage
         stage = primaryStage;
       
-        setView("view/general/demo.fxml");
+        setView(SERVICE_REQUEST_SELECT);
 
         //setView(MEDICAL_EQUIPMENT);
 
