@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import com.jfoenix.controls.JFXButton?>
+<?import java.net.URL?>
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.layout.ColumnConstraints?>
 <?import javafx.scene.layout.GridPane?>
@@ -25,21 +26,33 @@
                </font>
                <HBox.margin>
                   <Insets />
-               </HBox.margin></JFXButton>
+               </HBox.margin>
+               <stylesheets>
+                  <URL value="@../css/base.css" />
+                  <URL value="@../css/menu-bar.css" />
+               </stylesheets></JFXButton>
             <JFXButton fx:id="menuBarLocationsButton" onAction="#onMenuBarLocationsButtonPress" styleClass="button-inactive" text="LOCATIONS" textFill="WHITE" HBox.hgrow="SOMETIMES">
                <font>
                   <Font size="17.0" />
                </font>
                <HBox.margin>
                   <Insets />
-               </HBox.margin></JFXButton>
+               </HBox.margin>
+               <stylesheets>
+                  <URL value="@../css/base.css" />
+                  <URL value="@../css/menu-bar.css" />
+               </stylesheets></JFXButton>
             <JFXButton fx:id="menuBarServiceRequestsButton" onAction="#onMenuBarServiceRequestsButtonPress" styleClass="button-inactive" text="SERVICE REQUESTS" textFill="WHITE" HBox.hgrow="SOMETIMES">
                <font>
                   <Font size="17.0" />
                </font>
                <HBox.margin>
                   <Insets />
-               </HBox.margin></JFXButton>
+               </HBox.margin>
+               <stylesheets>
+                  <URL value="@../css/menu-bar.css" />
+                  <URL value="@../css/base.css" />
+               </stylesheets></JFXButton>
          </children>
       </HBox>
       <HBox alignment="CENTER_RIGHT" prefHeight="42.0" prefWidth="200.0" styleClass="menu-bar" stylesheets="@../css/menu-bar.css" GridPane.columnIndex="1" GridPane.hgrow="ALWAYS" GridPane.vgrow="ALWAYS">
@@ -50,7 +63,11 @@
                </font>
                <HBox.margin>
                   <Insets />
-               </HBox.margin></JFXButton>
+               </HBox.margin>
+               <stylesheets>
+                  <URL value="@../css/base.css" />
+                  <URL value="@../css/menu-bar.css" />
+               </stylesheets></JFXButton>
          </children>
       </HBox>
    </children>
