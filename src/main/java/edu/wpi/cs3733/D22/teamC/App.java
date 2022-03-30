@@ -20,7 +20,6 @@ public class App extends Application {
     // Constants
     private final String BASE_VIEW_PATH = "view/general/base-view.fxml";
     private final String MENU_BAR_COMPONENT_PATH = "component/menu-bar.fxml";
-    private final String MEDICAL_EQUIPMENT = "view/service_request/medical-equipment-view.fxml";
     private final String MEDICAL_EQUIPMENT = "view/service_request/medical-equipment.fxml";
     private final String LAB_SYSTEM = "view/service_request/lab-system-view.fxml";
 
