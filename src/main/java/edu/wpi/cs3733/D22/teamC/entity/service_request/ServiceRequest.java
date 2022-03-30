@@ -15,6 +15,12 @@ public class ServiceRequest {
     protected String requestType;   // TODO: Make Enum
     protected String description;
 
+    public ServiceRequest(){}
+    
+    public ServiceRequest(String requestID) {
+        this.requestID = requestID;
+    }
+    
     public String getRequestID() {
         return requestID;
     }

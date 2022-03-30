@@ -1,6 +1,7 @@
 package edu.wpi.cs3733.D22.teamC.entity.service_request;
 
 import edu.wpi.cs3733.D22.teamC.DBManager;
+import edu.wpi.cs3733.D22.teamC.entity.service_request.medical_equipment.MedicalEquipmentServiceRequest;
 
 import java.sql.*;
 import java.sql.Statement;
@@ -63,30 +64,33 @@ public class ServiceRequestDAOImpl implements ServiceRequestDAO {
     }
     
     /**
-     * Inserting ServiceRequest Table of the DB,corresponding to the given ServiceRequest object.
-     *
+     * Insert entry into ServiceRequest Table of the DB, corresponding to the given ServiceRequest object.
+     * 
      * @param serviceRequest The ServiceRequest to be inserted into the DB via a corresponding entry.
      * @return If successful return true, else return false.
      */
     @Override
     public boolean insertServiceRequest(ServiceRequest serviceRequest) {
         try {
+            // See if there is an entry of the same requestID that already exists
             ServiceRequest serviceRequestInDB = getServiceRequest(serviceRequest.getRequestID());
-            PreparedStatement statement = DBManager.getInstance().connection.prepareStatement(
-                    "INSERT INTO SERVICE_REQUESTS VALUE(?, ?, ?, ?, ?, ?, ?, ?, ?)"
-            );
-            statement.setString(1, serviceRequest.getRequestID());
-            statement.setString(2, serviceRequest.getCreatorID());
-            statement.setString(3, serviceRequest.getAssigneeID());
-            statement.setString(4, serviceRequest.getLocation());
-            statement.setTimestamp(5, serviceRequest.getCreationTimestamp());
-            statement.setString(6, serviceRequest.getStatus());
-            statement.setString(7, serviceRequest.getPriority());
-            statement.setString(8, serviceRequest.getRequestType());
-            statement.setString(9, serviceRequest.getDescription());
-            
-            return true;
-            
+            if (serviceRequestInDB == null) {
+                PreparedStatement statement = DBManager.getInstance().connection.prepareStatement(
+                        "INSERT INTO SERVICE_REQUESTS VALUE(?, ?, ?, ?, ?, ?, ?, ?, ?)"
+                );
+                statement.setString(1, serviceRequest.getRequestID());
+                statement.setString(2, serviceRequest.getCreatorID());
+                statement.setString(3, serviceRequest.getAssigneeID());
+                statement.setString(4, serviceRequest.getLocation());
+                statement.setTimestamp(5, serviceRequest.getCreationTimestamp());
+                statement.setString(6, serviceRequest.getStatus());
+                statement.setString(7, serviceRequest.getPriority());
+                statement.setString(8, serviceRequest.getRequestType());
+                statement.setString(9, serviceRequest.getDescription());
+                statement.execute();
+                
+                return true;
+            }
         } catch (SQLException e) {
             System.out.println("Update to SERVICE_REQUESTS failed");
             e.printStackTrace();
@@ -102,11 +106,11 @@ public class ServiceRequestDAOImpl implements ServiceRequestDAO {
      */
     @Override
     public boolean updateServiceRequest(ServiceRequest serviceRequest) {
-        // check if the entry of the same requestID exists
-        ServiceRequest serviceRequestInDB = getServiceRequest(serviceRequest.getRequestID());
         try {
+            // check if the entry of the same requestID exists
+            ServiceRequest serviceRequestInDB = getServiceRequest(serviceRequest.getRequestID());
             if (serviceRequestInDB != null) {
-                //Excute UPDATE statement
+                // Execute UPDATE statement
                 PreparedStatement statement = DBManager.getInstance().connection.prepareStatement(
                         "UPDATE SERVICE_REQUESTS SET CREATORID = ?, ASSIGNEEID = ?, LOCATIONID = ?, " + 
                                 "CREATIONTIMESTAMP = ?, STATUS = ?, PRIORITY = ?, REQUESTTYPE = ?, DESCRIPTION = ? " +
@@ -121,6 +125,7 @@ public class ServiceRequestDAOImpl implements ServiceRequestDAO {
                 statement.setString(7, serviceRequest.getRequestType());
                 statement.setString(8, serviceRequest.getDescription());
                 statement.setString(9, serviceRequest.getRequestID());
+                statement.execute();
                 
                 return true;
             }
