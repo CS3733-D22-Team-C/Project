@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import com.jfoenix.controls.JFXComboBox?>
 <?import com.jfoenix.controls.JFXTextArea?>
 <?import java.lang.String?>
 <?import java.net.URL?>
@@ -38,47 +39,47 @@
                 <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
             </rowConstraints>
             <children>
-                <VBox alignment="CENTER_LEFT" prefHeight="200.0" prefWidth="100.0" styleClass="box-margin">
+                <VBox alignment="CENTER_LEFT" prefHeight="200.0" prefWidth="100.0" styleClass="box-margin" GridPane.hgrow="ALWAYS" GridPane.vgrow="ALWAYS">
                     <children>
-                        <Label text="Label" />
+                        <Label styleClass="service-field-label" text="Assign To:" />
                         <TextField />
                     </children>
                 </VBox>
-                <VBox alignment="CENTER_LEFT" prefHeight="200.0" prefWidth="100.0" styleClass="box-margin" GridPane.columnIndex="1">
+                <VBox alignment="CENTER_LEFT" prefHeight="200.0" prefWidth="100.0" styleClass="box-margin" GridPane.columnIndex="1" GridPane.hgrow="ALWAYS" GridPane.vgrow="ALWAYS">
                     <children>
-                        <Label text="Label" />
+                        <Label styleClass="service-field-label" text="Status:" />
+                  <JFXComboBox maxWidth="1.7976931348623157E308" />
+                    </children>
+                </VBox>
+                <VBox alignment="CENTER_LEFT" prefHeight="200.0" prefWidth="100.0" styleClass="box-margin" GridPane.columnIndex="2" GridPane.hgrow="ALWAYS" GridPane.vgrow="ALWAYS">
+                    <children>
+                        <Label styleClass="service-field-label" text="Location:" />
                         <TextField />
                     </children>
                 </VBox>
-                <VBox alignment="CENTER_LEFT" prefHeight="200.0" prefWidth="100.0" styleClass="box-margin" GridPane.columnIndex="2">
+                <VBox alignment="CENTER_LEFT" prefHeight="200.0" prefWidth="100.0" styleClass="box-margin" GridPane.hgrow="ALWAYS" GridPane.rowIndex="1" GridPane.vgrow="ALWAYS">
                     <children>
-                        <Label text="Label" />
+                        <Label styleClass="service-field-label" text="Label" />
+                  <JFXComboBox maxWidth="1.7976931348623157E308" />
+                    </children>
+                </VBox>
+                <VBox alignment="CENTER_LEFT" prefHeight="200.0" prefWidth="100.0" styleClass="box-margin" GridPane.columnIndex="1" GridPane.hgrow="ALWAYS" GridPane.rowIndex="1" GridPane.vgrow="ALWAYS">
+                    <children>
+                        <Label styleClass="service-field-label" text="Label" />
                         <TextField />
                     </children>
                 </VBox>
-                <VBox alignment="CENTER_LEFT" prefHeight="200.0" prefWidth="100.0" styleClass="box-margin" GridPane.rowIndex="1">
+                <VBox alignment="CENTER_LEFT" prefHeight="200.0" prefWidth="100.0" styleClass="box-margin" GridPane.columnIndex="2" GridPane.hgrow="ALWAYS" GridPane.rowIndex="1" GridPane.vgrow="ALWAYS">
                     <children>
-                        <Label text="Label" />
-                        <TextField />
-                    </children>
-                </VBox>
-                <VBox alignment="CENTER_LEFT" prefHeight="200.0" prefWidth="100.0" styleClass="box-margin" GridPane.columnIndex="1" GridPane.rowIndex="1">
-                    <children>
-                        <Label text="Label" />
-                        <TextField />
-                    </children>
-                </VBox>
-                <VBox alignment="CENTER_LEFT" prefHeight="200.0" prefWidth="100.0" styleClass="box-margin" GridPane.columnIndex="2" GridPane.rowIndex="1">
-                    <children>
-                        <Label text="Label" />
-                        <TextField />
+                        <Label styleClass="service-field-label" text="Priority:" />
+                  <JFXComboBox maxWidth="1.7976931348623157E308" />
                     </children>
                 </VBox>
             </children>
         </GridPane>
         <VBox prefHeight="0.0" prefWidth="600.0" styleClass="box-margin" GridPane.rowIndex="2">
             <children>
-                <Label styleClass="mar" text="Additional Information" />
+                <Label styleClass="service-field-label" text="Additional Notes:" />
                 <JFXTextArea prefHeight="81.0" prefWidth="426.0" VBox.vgrow="NEVER" />
             <HBox prefHeight="100.0" prefWidth="200.0" styleClass="box-margin">
                <children>
