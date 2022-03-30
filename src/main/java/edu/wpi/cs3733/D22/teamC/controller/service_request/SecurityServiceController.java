@@ -80,10 +80,30 @@ public class SecurityServiceController implements Initializable {
     }
 
     @FXML
-    void clickReset(ActionEvent event){
+    void clickReset(ActionEvent event){clearFields();}
 
+    @FXML
+    void clickSubmit(ActionEvent event)
+    {
+        //only create a request if none of the necessary frames are empty
+        if (!emptyField())
+        {
+            SecurityServiceRequest securityRequest = new SecurityServiceRequest();
+            securityRequest.setSecurityType(securityType.getValue());
+            //TODO add stuff for other atributes
+            //once the request has been made, the fields clear
+            clearFields();
+        } else
+        {
+            System.out.println("no object made");
+            //TODO add prompt to ask user fill in all fields
+        }
+    }
+
+    //function to clear all the input fields
+    void clearFields()
+    {
         //clear text fields
-
         System.out.println("testing testing\n");
         assigneeID.clear();
         description.clear();
@@ -95,10 +115,16 @@ public class SecurityServiceController implements Initializable {
         status.setValue(null);
     }
 
-    @FXML
-    void clickSubmit(ActionEvent event){
-        SecurityServiceRequest securityRequest = new SecurityServiceRequest();
+
+    //returns true if a necessary field is empty
+    boolean emptyField()
+    {
+        return (assigneeID.getText().isEmpty() || location.getText().isEmpty() ||
+                securityType.getValue().isEmpty() || priority.getValue().isEmpty() ||
+                status.getValue().isEmpty());
     }
+
+
 
 
 }
