@@ -59,8 +59,6 @@ public class App extends Application {
 
     @Override
     public void stop() {
-        // Export CSV Data
-
         // Shutdown Database Manager
         DBManager.shutdown();
 
