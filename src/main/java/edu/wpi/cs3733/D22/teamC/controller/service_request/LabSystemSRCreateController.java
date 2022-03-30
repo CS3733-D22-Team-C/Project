@@ -1,14 +1,18 @@
 package edu.wpi.cs3733.D22.teamC.controller.service_request;
 
-import com.jfoenix.controls.JFXButton;
-import com.jfoenix.controls.JFXComboBox;
-import com.jfoenix.controls.JFXTextArea;
-import com.jfoenix.controls.JFXTreeTableView;
+import com.jfoenix.controls.*;
+import com.jfoenix.controls.datamodels.treetable.RecursiveTreeObject;
 import edu.wpi.cs3733.D22.teamC.App;
+import edu.wpi.cs3733.D22.teamC.entity.service_request.lab_system.LabSystemSRTable;
+import edu.wpi.cs3733.D22.teamC.entity.service_request.lab_system.LabSystemServiceRequest;
+import edu.wpi.cs3733.D22.teamC.entity.service_request.medical_equipment.MedicalEquipmentSRTable;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.TextField;
+import javafx.scene.control.TreeItem;
 import javafx.scene.control.TreeTableColumn;
 
 import java.net.URL;
@@ -23,8 +27,10 @@ public class LabSystemSRCreateController extends ServiceRequestCreateController 
     //Dropdowns
     @FXML private JFXComboBox<String> labType;
 
-    //Buttons
-    @FXML private JFXTreeTableView<?> table;
+    //For table
+    @FXML private JFXTreeTableView<LabSystemSRTable> table;
+    ObservableList<LabSystemSRTable> LSTList = FXCollections.observableArrayList();
+    final TreeItem<LabSystemSRTable> root = new RecursiveTreeItem<LabSystemSRTable>(LSTList, RecursiveTreeObject::getChildren);
 
     @FXML
     public void initialize(URL url, ResourceBundle rb) {
@@ -36,39 +42,40 @@ public class LabSystemSRCreateController extends ServiceRequestCreateController 
         labType.getItems().add("CAT scans");
         labType.getItems().add("MRI");
 
-        //Columns for table
-        TreeTableColumn ID = new TreeTableColumn("ID");
-        ID.setPrefWidth(80);
-        TreeTableColumn Assignee = new TreeTableColumn("Assignee");
-        Assignee.setPrefWidth(80);
-        TreeTableColumn Status = new TreeTableColumn("Status");
-        Status.setPrefWidth(80);
-        TreeTableColumn Location = new TreeTableColumn("Location");
-        Location.setPrefWidth(80);
-        TreeTableColumn Type = new TreeTableColumn("Type");
-        Type.setPrefWidth(80);
-        TreeTableColumn TypeNum = new TreeTableColumn("Type #");
-        TypeNum.setPrefWidth(80);
+        LabSystemSRTable.createTableColumns(table);
+        table.setRoot(root);
+        table.setShowRoot(false);
 
-        table.getColumns().addAll(ID, Assignee, Status, Location, Type, TypeNum);
-
-    }
-    @FXML
-    void clickGoBack(ActionEvent event) {
-        super.clickGoBack(event);
     }
 
     @FXML
     void clickReset(ActionEvent event) {
         super.clickReset(event);
-        patientID.clear();
 
+        patientID.clear();
         labType.setValue(null);
     }
 
     @FXML
-    void clickSubmit(ActionEvent event) {
+    LabSystemServiceRequest clickSubmit(ActionEvent event) {
+        LabSystemServiceRequest labSystem = new LabSystemServiceRequest();
 
+        //Sets from textFields
+        labSystem.setAssigneeID(assigneeID.getText());
+        labSystem.setDescription(description.getText());
+        labSystem.setLocation(location.getText());
+        labSystem.setPatientID(patientID.getText());
+
+        //Sets from combo boxes
+        labSystem.setStatus(status.getValue());
+        labSystem.setPriority(priority.getValue());
+        labSystem.setLabType(labType.getValue());
+
+        //Table Entry
+        LabSystemSRTable lst = new LabSystemSRTable(labSystem);
+        LSTList.add(lst);
+
+        return labSystem;
     }
 
 
