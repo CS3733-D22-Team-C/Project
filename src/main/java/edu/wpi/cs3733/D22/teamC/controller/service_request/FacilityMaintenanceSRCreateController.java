@@ -25,7 +25,7 @@ public class FacilityMaintenanceSRCreateController extends ServiceRequestCreateC
 
     ObservableList<FacilityMaintenanceSRTable> data;
 
-    @FXML
+    @Override
     public void initialize(URL url, ResourceBundle rb) {
         super.initialize(url, rb);
 
