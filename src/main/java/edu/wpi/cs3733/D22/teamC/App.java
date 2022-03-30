@@ -19,6 +19,7 @@ public class App extends Application {
     private final String MENU_BAR_COMPONENT_PATH = "component/menu-bar.fxml";
     private final String MEDICAL_EQUIPMENT = "view/service_request/medical-equipment-view.fxml";
     private final String SERVICE_REQUEST_SELECT = "view/general/view-service.fxml";
+    private final String SECURITY_REQUEST_SELECT = "view/service_request/security-service-view.fxml";
 
     // Variables
     private Stage stage;
@@ -39,7 +40,7 @@ public class App extends Application {
         stage = primaryStage;
       
 
-        setView(SERVICE_REQUEST_SELECT);
+        setView(SECURITY_REQUEST_SELECT);
 
         //setView(MEDICAL_EQUIPMENT);
 
