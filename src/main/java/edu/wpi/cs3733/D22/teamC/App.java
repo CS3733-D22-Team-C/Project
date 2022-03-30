@@ -18,6 +18,7 @@ public class App extends Application {
     public static final String BASE_VIEW_PATH = "view/general/base-view.fxml";
     private static final String MENU_BAR_COMPONENT_PATH = "component/menu-bar.fxml";
     private static final String MEDICAL_EQUIPMENT = "view/service_request/medical-equipment-view.fxml";
+    private static final String FACILITY_MAINTENANCE = "view/service_request/facility-maintenance.fxml";
 
     // Variables
     private Stage stage;
@@ -39,7 +40,7 @@ public class App extends Application {
       
         setView("view/general/demo.fxml");
 
-        //setView(MEDICAL_EQUIPMENT);
+        setView(FACILITY_MAINTENANCE);
 
         // Initialize Database Manager
         DBManager.startup();
