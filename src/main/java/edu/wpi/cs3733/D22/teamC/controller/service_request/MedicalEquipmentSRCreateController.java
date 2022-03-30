@@ -78,12 +78,10 @@ public class MedicalEquipmentSRCreateController extends ServiceRequestCreateCont
         String num = equipID.getText();
         medEquip.setEquipmentID(type + num);
         clickReset(event);
-
-
+        
         // Table Entry
         MedicalEquipmentSRTable met = new MedicalEquipmentSRTable(medEquip);
         METList.add(met);
-
 
         return medEquip;
     }
