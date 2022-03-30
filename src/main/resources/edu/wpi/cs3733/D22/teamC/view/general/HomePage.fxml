@@ -11,7 +11,7 @@
    <children>
       <ImageView fitHeight="438.0" fitWidth="600.0" layoutY="-1.0" pickOnBounds="true" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <image>
-            <Image url="@../../../../../../../../../../../../WPI%20COURSEWORK/Software%20Engineering/BostonChildrensHospital.png" />
+            <Image url="@../image/BostonChildrensHospital.png" />
          </image>
       </ImageView>
       <HBox layoutY="350.0" prefHeight="70.0" prefWidth="167.0" AnchorPane.leftAnchor="20.0">

@@ -37,7 +37,7 @@ public class App extends Application {
         // Store window as stage
         stage = primaryStage;
       
-        setView("view/general/demo.fxml");
+        setView("view/general/HomePage.fxml");
 
         //setView(MEDICAL_EQUIPMENT);
 
