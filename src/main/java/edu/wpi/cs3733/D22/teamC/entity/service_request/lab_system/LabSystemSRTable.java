@@ -8,6 +8,7 @@ import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
 import javafx.beans.value.ObservableValue;
 import javafx.scene.control.TreeTableColumn;
+import javafx.scene.control.TreeTableView;
 import javafx.util.Callback;
 
 public class LabSystemSRTable extends RecursiveTreeObject<LabSystemSRTable> {
@@ -112,6 +113,8 @@ public class LabSystemSRTable extends RecursiveTreeObject<LabSystemSRTable> {
     }
 
     public static void createTableColumns(JFXTreeTableView<LabSystemSRTable> table) {
+        // Constrain column sizes to the size of the table
+        table.setColumnResizePolicy(TreeTableView.CONSTRAINED_RESIZE_POLICY);
         //Columns for table
         JFXTreeTableColumn<LabSystemSRTable, String> IDCol = new JFXTreeTableColumn<>("Priority");
         IDCol.setPrefWidth(80);
