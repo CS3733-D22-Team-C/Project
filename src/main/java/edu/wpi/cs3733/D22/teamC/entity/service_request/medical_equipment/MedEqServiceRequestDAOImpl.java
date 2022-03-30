@@ -161,18 +161,19 @@ public class MedEqServiceRequestDAOImpl extends ServiceRequestDAOImpl {
             ServiceRequest serviceRequestInDB = getServiceRequest(serviceRequest.getRequestID());
             if (serviceRequestInDB != null) {
                 // Execute DELETE Statement for base SR table and Medical Equipment SR table
-                PreparedStatement statement = DBManager.getInstance().connection.prepareStatement(
-                        "DELETE SERVICE_REQUEST.*, MEDICAL_EQUIP_SERVICE_REQUEST.* " +
+                super.deleteServiceRequest(serviceRequest);
+                /*PreparedStatement statement = DBManager.getInstance().connection.prepareStatement(
+                        "DELETE SERVICE_REQUEST, MEDICAL_EQUIP_SERVICE_REQUEST " +
                                 "FROM SERVICE_REQUEST INNER JOIN MEDICAL_EQUIP_SERVICE_REQUEST " +
-                                "ON SERVICE_REQUEST.REQUESTID = MEDICAL_EQUIP_SERVICE_REQUEST.REQUESTID " +
-                                "WHERE SERVICE_REQUEST.REQUESTID = ?"
+                                "WHERE SERVICE_REQUEST.REQUESTID = MEDICAL_EQUIP_SERVICE_REQUEST.REQUESTID " +
+                                "AND SERVICE_REQUEST.REQUESTID = ?"
                 );
                 statement.setString(1, serviceRequest.getRequestID());
-                statement.execute();
+                statement.execute();*/
                 
                 return true;
             }
-        } catch (SQLException e) {
+        } catch (Exception e) {
             System.out.println("Delete from database tables failed.");
             e.printStackTrace();
         }

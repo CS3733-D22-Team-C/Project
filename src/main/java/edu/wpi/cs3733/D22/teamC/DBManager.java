@@ -166,9 +166,7 @@ public class DBManager {
                         "ASSIGNEEID char(10), LOCATIONID char(10), CREATIONTIMESTAMP timestamp, STATUS varchar(50), " + 
                         "PRIORITY varchar(50), REQUESTTYPE varchar(50), DESCRIPTION varchar(150), " + 
                         "CONSTRAINT PK_REQUESTID PRIMARY KEY (REQUESTID))",
-                         emptyTables
-        );
-
+                         emptyTables);
     }
 
     /**
