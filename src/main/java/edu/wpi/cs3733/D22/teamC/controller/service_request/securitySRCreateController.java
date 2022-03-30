@@ -72,9 +72,7 @@ public class securitySRCreateController extends ServiceRequestCreateController {
         //Sets from combo boxes
         securityServiceRequest.setStatus(status.getValue());
         securityServiceRequest.setPriority(priority.getValue());
-        securityServiceRequest.setRequestType(secType.getValue());
-
-
+        securityServiceRequest.setSecurityType(secType.getValue());
 
         // Table Entry
         securitySRTable met = new securitySRTable(securityServiceRequest);
