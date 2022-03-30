@@ -6,7 +6,9 @@ import com.jfoenix.controls.datamodels.treetable.RecursiveTreeObject;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
 import javafx.beans.value.ObservableValue;
+import javafx.scene.control.TableView;
 import javafx.scene.control.TreeTableColumn;
+import javafx.scene.control.TreeTableView;
 import javafx.util.Callback;
 
 public class MedicalEquipmentSRTable extends RecursiveTreeObject<MedicalEquipmentSRTable> {
@@ -111,9 +113,10 @@ public class MedicalEquipmentSRTable extends RecursiveTreeObject<MedicalEquipmen
     }
 
     public static void createTableColumns(JFXTreeTableView<MedicalEquipmentSRTable> table) {
+        table.setColumnResizePolicy( TreeTableView.CONSTRAINED_RESIZE_POLICY );
         //Columns for table
         JFXTreeTableColumn<MedicalEquipmentSRTable, String> IDCol = new JFXTreeTableColumn<>("Priority");
-        IDCol.setPrefWidth(80);
+        IDCol.setMaxWidth(1f * Integer.MAX_VALUE * 16.66);
         IDCol.setCellValueFactory(new Callback<TreeTableColumn.CellDataFeatures<MedicalEquipmentSRTable, String>, ObservableValue<String>>() {
             @Override
             public ObservableValue<String> call(TreeTableColumn.CellDataFeatures<MedicalEquipmentSRTable, String> param) {
@@ -121,7 +124,7 @@ public class MedicalEquipmentSRTable extends RecursiveTreeObject<MedicalEquipmen
             }
         });
         JFXTreeTableColumn<MedicalEquipmentSRTable, String> assigneeCol = new JFXTreeTableColumn<>("Assignee");
-        assigneeCol.setPrefWidth(80);
+        assigneeCol.setMaxWidth(1f * Integer.MAX_VALUE * 16.66);
         assigneeCol.setCellValueFactory(new Callback<TreeTableColumn.CellDataFeatures<MedicalEquipmentSRTable, String>, ObservableValue<String>>() {
             @Override
             public ObservableValue<String> call(TreeTableColumn.CellDataFeatures<MedicalEquipmentSRTable, String> param) {
@@ -129,7 +132,7 @@ public class MedicalEquipmentSRTable extends RecursiveTreeObject<MedicalEquipmen
             }
         });
         JFXTreeTableColumn<MedicalEquipmentSRTable, String> statusCol = new JFXTreeTableColumn<>("Status");
-        statusCol.setPrefWidth(80);
+        statusCol.setMaxWidth(1f * Integer.MAX_VALUE * 16.66);
         statusCol.setCellValueFactory(new Callback<TreeTableColumn.CellDataFeatures<MedicalEquipmentSRTable, String>, ObservableValue<String>>() {
             @Override
             public ObservableValue<String> call(TreeTableColumn.CellDataFeatures<MedicalEquipmentSRTable, String> param) {
@@ -137,7 +140,7 @@ public class MedicalEquipmentSRTable extends RecursiveTreeObject<MedicalEquipmen
             }
         });
         JFXTreeTableColumn<MedicalEquipmentSRTable, String> locationCol = new JFXTreeTableColumn<>("Location");
-        locationCol.setPrefWidth(80);
+        locationCol.setMaxWidth(1f * Integer.MAX_VALUE * 16.66);
         locationCol.setCellValueFactory(new Callback<TreeTableColumn.CellDataFeatures<MedicalEquipmentSRTable, String>, ObservableValue<String>>() {
             @Override
             public ObservableValue<String> call(TreeTableColumn.CellDataFeatures<MedicalEquipmentSRTable, String> param) {
@@ -145,7 +148,7 @@ public class MedicalEquipmentSRTable extends RecursiveTreeObject<MedicalEquipmen
             }
         });
         JFXTreeTableColumn<MedicalEquipmentSRTable, String> typeCol = new JFXTreeTableColumn<>("Type");
-        typeCol.setPrefWidth(80);
+        typeCol.setMaxWidth(1f * Integer.MAX_VALUE * 16.66);
         typeCol.setCellValueFactory(new Callback<TreeTableColumn.CellDataFeatures<MedicalEquipmentSRTable, String>, ObservableValue<String>>() {
             @Override
             public ObservableValue<String> call(TreeTableColumn.CellDataFeatures<MedicalEquipmentSRTable, String> param) {
@@ -153,7 +156,7 @@ public class MedicalEquipmentSRTable extends RecursiveTreeObject<MedicalEquipmen
             }
         });
         JFXTreeTableColumn<MedicalEquipmentSRTable, String> typeIDCol = new JFXTreeTableColumn<>("EquipID");
-        typeIDCol.setPrefWidth(80);
+        typeIDCol.setMaxWidth(1f * Integer.MAX_VALUE * 16.66);
         typeIDCol.setCellValueFactory(new Callback<TreeTableColumn.CellDataFeatures<MedicalEquipmentSRTable, String>, ObservableValue<String>>() {
             @Override
             public ObservableValue<String> call(TreeTableColumn.CellDataFeatures<MedicalEquipmentSRTable, String> param) {
