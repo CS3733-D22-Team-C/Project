@@ -1,7 +1,5 @@
 package edu.wpi.cs3733.D22.teamC;
 
-import javafx.scene.layout.BorderPane;
-
 import java.sql.*;
 
 /**
@@ -10,6 +8,7 @@ import java.sql.*;
 public class DBManager {
     // Constants
     public static final String DEVELOPMENT_DATABASE_NAME = "DB";
+    public static final String TESTING_DATABASE_NAME = "TESTDB";
 
     // Singleton Instance
     private static DBManager instance;
@@ -44,6 +43,16 @@ public class DBManager {
      */
     public static DBManager getInstance() {
         return instance;
+    }
+
+    /**
+     * Manually set instance of DB Manager for Singleton Model.
+     * This is used often for Database testing.
+     * @param dbManager The manually created and setup DB Manager instance to set as Singleton.
+     */
+    public static void setInstance(DBManager dbManager) {
+        if (instance != null) shutdown();
+        instance = dbManager;
     }
 
     /**
