@@ -8,6 +8,10 @@
     -fx-spacing: 5px;
 }
 
+.button-success:hover {
+    -fx-background-color: -color-button-success-hover;
+}
+
 .button-failure {
     -fx-background-color: -color-button-failure;
     -fx-text-fill: -color-button-text;
@@ -15,11 +19,19 @@
     -fx-spacing: 5px;
 }
 
+.button-failure:hover {
+    -fx-background-color: -color-button-failure-hover;
+}
+
 .button-back {
     -fx-text-fill: -color-button-text;
     -fx-background-color: -color-button-back;
     -fx-font-size: 15;
     -fx-spacing: 5px;
+}
+
+.button-back:hover {
+    -fx-background-color: -color-button-back-hover;
 }
 
 /*
