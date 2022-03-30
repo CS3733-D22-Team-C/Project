@@ -58,8 +58,8 @@ public class LabSystemController implements Initializable {
         //Columns for table
         TreeTableColumn ID = new TreeTableColumn("ID");
         ID.setPrefWidth(80);
-        TreeTableColumn Asignee = new TreeTableColumn("Asignee");
-        Asignee.setPrefWidth(80);
+        TreeTableColumn Assignee = new TreeTableColumn("Assignee");
+        Assignee.setPrefWidth(80);
         TreeTableColumn Status = new TreeTableColumn("Status");
         Status.setPrefWidth(80);
         TreeTableColumn Location = new TreeTableColumn("Location");
@@ -69,7 +69,7 @@ public class LabSystemController implements Initializable {
         TreeTableColumn TypeNum = new TreeTableColumn("Type #");
         TypeNum.setPrefWidth(80);
 
-        table.getColumns().addAll(ID, Asignee, Status, Location, Type, TypeNum);
+        table.getColumns().addAll(ID, Assignee, Status, Location, Type, TypeNum);
 
     }
     @FXML
