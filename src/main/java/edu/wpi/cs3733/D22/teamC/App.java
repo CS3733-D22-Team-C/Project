@@ -1,8 +1,5 @@
 package edu.wpi.cs3733.D22.teamC;
 
-import edu.wpi.cs3733.D22.teamC.entity.location.Location;
-import edu.wpi.cs3733.D22.teamC.entity.location.LocationDAO;
-import edu.wpi.cs3733.D22.teamC.entity.location.LocationDAOImpl;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
@@ -43,37 +40,10 @@ public class App extends Application {
       
         setView(SERVICE_REQUEST_SELECT);
 
-        // TODO: Setup JUnit Tests !!!
-        LocationDAO locationDAO = new LocationDAOImpl();
-        {
-            Location insertTest = new Location();
-            insertTest.setNodeID("Test000");
-            insertTest.setBuilding("Tower");
-            System.out.println(locationDAO.insertLocation(insertTest)); // true
-            System.out.println(locationDAO.getLocation(insertTest.getNodeID()).getNodeID());    // Test000
-            System.out.println(locationDAO.getLocation(insertTest.getNodeID()).getBuilding());  // Tower
-            System.out.println(locationDAO.getAllLocations().size());   // 1
-        }
-        {
-            Location deleteTest = new Location();
-            deleteTest.setNodeID("Test001");
-            System.out.println(locationDAO.insertLocation(deleteTest)); // true
-            System.out.println(locationDAO.getLocation(deleteTest.getNodeID()).getNodeID());    // Test001
-            System.out.println(locationDAO.getAllLocations().size());   // 2
-            System.out.println(locationDAO.deleteLocation(deleteTest)); // true
-        }
-        {
-            Location updateTest = locationDAO.getLocation("Test000");
-            updateTest.setBuilding("Entrance");
-            updateTest.setFloor("F1");
-            System.out.println(locationDAO.insertLocation(updateTest)); // false
-            System.out.println(locationDAO.updateLocation(updateTest)); // true
-            System.out.println(locationDAO.getLocation(updateTest.getNodeID()).getBuilding());  // Entrance
-            System.out.println(locationDAO.getLocation(updateTest.getNodeID()).getFloor()); // F1
-        }
-
         //setView(MEDICAL_EQUIPMENT);
 
+        // Initialize Database Manager
+        DBManager.startup();
     }
 
     @Override
