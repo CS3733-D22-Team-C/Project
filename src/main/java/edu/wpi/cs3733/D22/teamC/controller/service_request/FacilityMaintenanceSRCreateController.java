@@ -58,7 +58,7 @@ public class FacilityMaintenanceSRCreateController extends ServiceRequestCreateC
         fmsr.setRequestType("Facilities Maintenance");
 
         //Dealing with the equipment type and the enumerator
-        int type = fmsr.getMaintenanceTypeEnum(maintType.getText());
+        //int type = fmsr.getMaintenanceTypeEnum(maintType.getText());
         clickReset(event);
 
         // Add Table Entry
