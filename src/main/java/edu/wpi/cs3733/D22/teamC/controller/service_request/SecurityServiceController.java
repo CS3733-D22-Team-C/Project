@@ -5,6 +5,7 @@ import com.jfoenix.controls.JFXComboBox;
 import com.jfoenix.controls.JFXTextArea;
 import com.jfoenix.controls.JFXTreeTableView;
 import edu.wpi.cs3733.D22.teamC.App;
+import edu.wpi.cs3733.D22.teamC.entity.service_request.security.SecurityServiceRequest;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -96,7 +97,7 @@ public class SecurityServiceController implements Initializable {
 
     @FXML
     void clickSubmit(ActionEvent event){
-
+        SecurityServiceRequest securityRequest = new SecurityServiceRequest();
     }
 
 
