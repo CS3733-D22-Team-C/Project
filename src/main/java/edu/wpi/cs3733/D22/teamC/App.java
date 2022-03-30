@@ -18,6 +18,7 @@ public class App extends Application {
     public static final String BASE_VIEW_PATH = "view/general/base-view.fxml";
     private final String MENU_BAR_COMPONENT_PATH = "component/menu-bar.fxml";
     private final String MEDICAL_EQUIPMENT = "view/service_request/medical-equipment-view.fxml";
+    private final String SANITARY_SERVICES_PATH = "view/service_request/sanitation-view.fxml";
     private final String SERVICE_REQUEST_SELECT = "view/general/view-service.fxml";
 
     // Variables
