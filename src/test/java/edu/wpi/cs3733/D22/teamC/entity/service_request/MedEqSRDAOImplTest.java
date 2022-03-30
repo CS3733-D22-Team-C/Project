@@ -1,7 +1,6 @@
 package edu.wpi.cs3733.D22.teamC.entity.service_request;
 
 import edu.wpi.cs3733.D22.teamC.DBManager;
-import edu.wpi.cs3733.D22.teamC.entity.location.Location;
 import edu.wpi.cs3733.D22.teamC.entity.service_request.medical_equipment.MedEqServiceRequestDAOImpl;
 import edu.wpi.cs3733.D22.teamC.entity.service_request.medical_equipment.MedicalEquipmentServiceRequest;
 import org.junit.jupiter.api.AfterEach;
@@ -143,5 +142,85 @@ class MedEqSRDAOImplTest {
         
         // Cannot Delete Location Again
         assertFalse(medicalEqDAO.deleteServiceRequest(deleteSR));
+    }
+    
+    /**
+     * Test that updateServiceRequest works.
+     */
+    @Test
+    void testUpdateServiceRequest() {
+        // Check DB is empty
+        assertEquals(0, medicalEqDAO.getAllServiceRequests().size());
+        assertEquals(null, medicalEqDAO.getServiceRequest("Test000"));
+    
+        // Insert SR into DB
+        String requestID = "Test000";
+        String creatorID = "bshin100";
+        String assigneeID = "nick1234";
+        String locationID = "FOISIE";
+        Timestamp creationTimeStamp = new Timestamp(694201234);
+        String status = "Not Done";
+        String priority = "High";
+        String requestType = "Medical Equipment";
+        String description = "soft eng is spain without the s";
+        String equipID = "BED003";
+        String equipType = "Bed";
+    
+        ServiceRequest updateSR = new MedicalEquipmentServiceRequest();
+        updateSR.setRequestID(requestID);
+        updateSR.setCreatorID(creatorID);
+        updateSR.setAssigneeID(assigneeID);
+        updateSR.setLocation(locationID);
+        updateSR.setCreationTimestamp(creationTimeStamp);
+        updateSR.setStatus(status);
+        updateSR.setPriority(priority);
+        updateSR.setRequestType(requestType);
+        updateSR.setDescription(description);
+        ((MedicalEquipmentServiceRequest) updateSR).setEquipmentID(equipID);
+        ((MedicalEquipmentServiceRequest) updateSR).setEquipmentType(equipType);
+    
+        assertTrue(medicalEqDAO.insertServiceRequest(updateSR));
+        assertEquals(1, medicalEqDAO.getAllServiceRequests().size());
+        
+        // Update Location in DB
+        creatorID = "bshin100";
+        assigneeID = "nick1234";
+        locationID = "SMARTWORLD";
+        status = "Done";
+        priority = "idk man";
+        requestType = "Medical Equipment";
+        description = "help plz";
+        equipID = "BED003";
+        equipType = "Bed";
+        updateSR.setCreatorID(creatorID);
+        updateSR.setAssigneeID(assigneeID);
+        updateSR.setLocation(locationID);
+        updateSR.setStatus(status);
+        updateSR.setPriority(priority);
+        updateSR.setRequestType(requestType);
+        updateSR.setDescription(description);
+        ((MedicalEquipmentServiceRequest) updateSR).setEquipmentID(equipID);
+        ((MedicalEquipmentServiceRequest) updateSR).setEquipmentType(equipType);
+        assertTrue(medicalEqDAO.updateServiceRequest(updateSR));
+        assertEquals(1, medicalEqDAO.getAllServiceRequests().size());
+    
+        // Check that DB values are expected
+        MedicalEquipmentServiceRequest querySR = medicalEqDAO.getServiceRequest(updateSR.getRequestID());
+        assertNotNull(querySR);
+        assertEquals(requestID, querySR.getRequestID());
+        assertEquals(creatorID, querySR.getCreatorID());
+        assertEquals(assigneeID, querySR.getAssigneeID());
+        assertEquals(locationID, querySR.getLocation());
+        assertEquals(status, querySR.getStatus());
+        assertEquals(priority, querySR.getPriority());
+        assertEquals(requestType, querySR.getRequestType());
+        assertEquals(description, querySR.getDescription());
+        assertEquals(equipID, querySR.getEquipmentID());
+        assertEquals(equipType, querySR.getEquipmentType());
+        
+        // Cannot Update Nonexistent Location
+        ServiceRequest newSR = new MedicalEquipmentServiceRequest();
+        newSR.setRequestID("Test001");
+        assertFalse(medicalEqDAO.updateServiceRequest(newSR));
     }
 }
