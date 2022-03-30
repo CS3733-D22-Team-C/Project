@@ -39,7 +39,7 @@
     -fx-font-size: 20;
 }
 
-home-page-button {
+.home-page-button {
     -fx-background-color: -color-button-text;
     -fx-font-family: Inter;
     -fx-font-size: 17;
