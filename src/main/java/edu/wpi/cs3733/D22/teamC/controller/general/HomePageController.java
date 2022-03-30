@@ -13,7 +13,7 @@ public class HomePageController {
 
     @FXML
     public void onClickServiceRequests(ActionEvent actionEvent) {
-        //Need path to service request page
+        App.instance.setView("view/general/view-service.fxml");
     }
 
     @FXML
