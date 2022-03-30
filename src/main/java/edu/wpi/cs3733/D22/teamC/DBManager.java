@@ -152,18 +152,11 @@ public class DBManager {
     Initialize Service Request Table
      */
     public void initializeSRTable() {
-        initializeTable("SERVICE_REQUEST", "CREATE TABLE SERVICE_REQUEST (" +
-                                                                        "    REQUESTID char(10)," +
-                                                                        "    CREATORID char(10)," +
-                                                                        "    ASSIGNEEID char(10)," +
-                                                                        "    LOCATIONID char(10)," +
-                                                                        "    CREATIONTIMESTAMP TIMESTAMP," +
-                                                                        "    STATUS  varchar2(50)," +
-                                                                        "    PRIORITY   varchar2(50)," +
-                                                                        "    REQUESTTYPE varchar2(50)," +
-                                                                        "    DESCRIPTION varchar2(150)," +
-                                                                        "    CONSTRAINT PK_REQUESTID PRIMARY KEY (REQUESTID))"
-                        , emptyTables);
+        initializeTable(
+                "SERVICE_REQUEST",
+                "CREATE TABLE SERVICE_REQUEST(REQUESTID char(10), CREATORID char(10), ASSIGNEEID char(10), LOCATIONID char(10), CREATIONTIMESTAMP TIMESTAMP, STATUS  varchar2(50), PRIORITY  varchar2(50), REQUESTTYPE varchar2(50), DESCRIPTION varchar2(150), Constraint PK_REQUESTID Primary Key (RequestID))",
+                         emptyTables
+        );
 
     }
 
