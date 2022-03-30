@@ -16,50 +16,30 @@ import javafx.util.Callback;
 import java.net.URL;
 import java.util.ResourceBundle;
 
-public class MedicalEquipmentSRCreateController implements Initializable {
-
-    //Fields
-    @FXML private TextField assigneeID;
-    @FXML private JFXTextArea description;
+public class MedicalEquipmentSRCreateController extends ServiceRequestCreateController {
+    // Fields
     @FXML private TextField equipID;
-    @FXML private TextField location;
 
-    //Dropdowns
-
-    @FXML private JFXComboBox<String> priority;
-    @FXML private JFXComboBox<String> status;
+    // Dropdowns
     @FXML private JFXComboBox<String> equipType;
 
-    //Buttons
-    @FXML private JFXButton goBackButton;
-    @FXML private JFXButton resetButton;
-    @FXML private JFXButton submitButton;
-
-    //For table
+    // For table
     @FXML private JFXTreeTableView<MedicalEquipmentTable> table;
     ObservableList<MedicalEquipmentTable> METList = FXCollections.observableArrayList();
     final TreeItem<MedicalEquipmentTable> root = new RecursiveTreeItem<MedicalEquipmentTable>(METList, RecursiveTreeObject::getChildren);
 
-
     ObservableList<MedicalEquipmentTable> data;
+
+
     @Override
     public void initialize(URL url, ResourceBundle rb) {
+        super.initialize(url, rb);
 
         //For equipment type drop down
         equipType.getItems().add("Bed (20)");
         equipType.getItems().add("Recliners (6)");
         equipType.getItems().add("Portable X-Ray");
         equipType.getItems().add("Infusion Pumps (30)");
-
-        //For priority dropdown
-        priority.getItems().add("Low");
-        priority.getItems().add("Medium");
-        priority.getItems().add("High");
-
-        //For status dropdown
-        status.getItems().add("Blank");
-        status.getItems().add("Processing");
-        status.getItems().add("Done");
 
         //Columns for table
         JFXTreeTableColumn<MedicalEquipmentTable, String> IDCol = new JFXTreeTableColumn<>("Priority");
@@ -124,27 +104,15 @@ public class MedicalEquipmentSRCreateController implements Initializable {
 
         table.setRoot(root);
         table.setShowRoot(false);
-
-
     }
-    @FXML
-    void clickGoBack(ActionEvent event) {
 
-    }
 
     @FXML
     void clickReset(ActionEvent event) {
-        //clearing text fields/areas
-        assigneeID.clear();
-        location.clear();
+        super.clickReset(event);
+
         equipID.clear();
-        description.clear();
-
-        //Clearing combo boxes
-        priority.valueProperty().set(null);
-        status.valueProperty().set(null);
         equipType.valueProperty().setValue(null);
-
     }
 
     @FXML
@@ -173,8 +141,5 @@ public class MedicalEquipmentSRCreateController implements Initializable {
         System.out.println(medEquip.getStatus());
         System.out.println(medEquip.getEquipmentID());
         return medEquip;
-
     }
-
-
 }
