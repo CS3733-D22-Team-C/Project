@@ -14,46 +14,27 @@ import javafx.scene.control.TreeTableColumn;
 import java.net.URL;
 import java.util.ResourceBundle;
 
-public class LabSystemController implements Initializable {
+public class LabSystemSRCreateController extends ServiceRequestCreateController {
 
     //Fields
-    @FXML private TextField assigneeID;
-    @FXML private JFXTextArea description;
     @FXML private TextField patientID;
-    @FXML private TextField location;
+
 
     //Dropdowns
-
-    @FXML private JFXComboBox<String> priority;
-    @FXML private JFXComboBox<String> status;
     @FXML private JFXComboBox<String> labType;
 
     //Buttons
-    @FXML private JFXButton goBackButton;
-    @FXML private JFXButton resetButton;
-    @FXML private JFXButton submitButton;
-
     @FXML private JFXTreeTableView<?> table;
 
     @FXML
     public void initialize(URL url, ResourceBundle rb) {
-
+        super.initialize(url, rb);
         //For equipment type drop down
         labType.getItems().add("Blood Sample");
         labType.getItems().add("Urine Sample");
         labType.getItems().add("X-Ray");
         labType.getItems().add("CAT scans");
         labType.getItems().add("MRI");
-
-        //For priority dropdown
-        priority.getItems().add("Low");
-        priority.getItems().add("Medium");
-        priority.getItems().add("High");
-
-        //For status dropdown
-        status.getItems().add("Blank");
-        status.getItems().add("Processing");
-        status.getItems().add("Done");
 
         //Columns for table
         TreeTableColumn ID = new TreeTableColumn("ID");
@@ -74,17 +55,14 @@ public class LabSystemController implements Initializable {
     }
     @FXML
     void clickGoBack(ActionEvent event) {
-        App.instance.setView("view/general/demo.fxml");
+        super.clickGoBack(event);
     }
 
     @FXML
     void clickReset(ActionEvent event) {
-        assigneeID.clear();
-        description.clear();
+        super.clickReset(event);
         patientID.clear();
-        location.clear();
-        priority.setValue(null);
-        status.setValue(null);
+
         labType.setValue(null);
     }
 
