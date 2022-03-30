@@ -157,7 +157,7 @@ public class DBManager {
                                                                         "    CREATORID char(10)," +
                                                                         "    ASSIGNEEID char(10)," +
                                                                         "    LOCATIONID char(10)," +
-                                                                        "    CREATIONTIMESTAMP DATETIME," +
+                                                                        "    CREATIONTIMESTAMP TIMESTAMP," +
                                                                         "    STATUS  varchar2(50)," +
                                                                         "    PRIORITY   varchar2(50)," +
                                                                         "    REQUESTTYPE varchar2(50)," +
