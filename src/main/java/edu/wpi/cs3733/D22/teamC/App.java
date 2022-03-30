@@ -41,6 +41,7 @@ public class App extends Application {
         setView("view/general/demo.fxml");
 
         setView(FACILITY_MAINTENANCE);
+        //setView(MEDICAL_EQUIPMENT);
 
         // Initialize Database Manager
         DBManager.startup();
