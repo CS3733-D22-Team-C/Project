@@ -90,7 +90,6 @@ class ServiceRequestDAOImplTest {
         assertEquals(priority, querySR.getPriority());
         assertEquals(requestType, querySR.getRequestType());
         assertEquals(description, querySR.getDescription());
-
     }
 
     /**
@@ -101,7 +100,6 @@ class ServiceRequestDAOImplTest {
         // Check DB is empty
         assertEquals(0, serviceRequestDAO.getAllServiceRequests().size());
         assertEquals(null, serviceRequestDAO.getServiceRequest("Test000"));
-
 
         // Insert ServiceRequest into DB
         String requestID = "Test000";
@@ -133,6 +131,10 @@ class ServiceRequestDAOImplTest {
 
         // Cannot Delete Location Again
         assertFalse(serviceRequestDAO.deleteServiceRequest(deleteSR));
+
+        // Check DB is empty
+        assertEquals(0, serviceRequestDAO.getAllServiceRequests().size());
+        assertEquals(null, serviceRequestDAO.getServiceRequest("Test000"));
     }
 
     /**
@@ -140,6 +142,7 @@ class ServiceRequestDAOImplTest {
      */
     @Test
     void testUpdateServiceRequest() {
+        // Check DB is empty
         assertEquals(0, serviceRequestDAO.getAllServiceRequests().size());
         assertEquals(null, serviceRequestDAO.getServiceRequest("Test000"));
 

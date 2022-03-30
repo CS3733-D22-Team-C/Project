@@ -42,8 +42,6 @@ public class App extends Application {
 
         //setView(MEDICAL_EQUIPMENT);
 
-        // Initialize Database Manager
-        DBManager.startup();
     }
 
     @Override

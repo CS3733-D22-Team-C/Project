@@ -25,6 +25,8 @@ public class MedicalEquipmentServiceRequest extends ServiceRequest {
     }
 
     public void setEquipmentType(String equipmentType) {
+        if (equipmentType == null) return;
+
         if(equipmentType.contains("Bed"))
             this.equipmentType = "Bed";
         else if(equipmentType.contains("Recliner"))

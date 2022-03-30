@@ -7,14 +7,13 @@ import edu.wpi.cs3733.D22.teamC.entity.service_request.ServiceRequestDAOImpl;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
 /**
  * Inherited ServiceRequestDAOImpl class specifically tailored to handle MedicalEquipmentServiceRequests.
  */
-public class MedEqServiceRequestDAOImpl extends ServiceRequestDAOImpl {
+public class MedicalEquipmentSRDAOImpl extends ServiceRequestDAOImpl {
     
     /**
      * Getting all the entries in the MEDICAL_EQUIP_SERVICE_REQUEST Table to the DB, and
@@ -188,7 +187,7 @@ public class MedEqServiceRequestDAOImpl extends ServiceRequestDAOImpl {
      * @return ServiceRequest object.
      */
     @Override
-    public MedicalEquipmentServiceRequest createServiceRequest(ResultSet resultSet) {
+    protected MedicalEquipmentServiceRequest createServiceRequest(ResultSet resultSet) {
         try {
             // Create generic SR then convert and modify into MedicalEquipmentServiceRequest
             MedicalEquipmentServiceRequest serviceRequest = new MedicalEquipmentServiceRequest(super.createServiceRequest(resultSet));

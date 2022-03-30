@@ -171,7 +171,7 @@ public class ServiceRequestDAOImpl implements ServiceRequestDAO {
      * @param resultSet ResultSet from query to Service Request DB Table.
      * @return ServiceRequest object.
      */
-    public ServiceRequest createServiceRequest(ResultSet resultSet) {
+    protected ServiceRequest createServiceRequest(ResultSet resultSet) {
         try {
             ServiceRequest serviceRequest = new ServiceRequest();
             

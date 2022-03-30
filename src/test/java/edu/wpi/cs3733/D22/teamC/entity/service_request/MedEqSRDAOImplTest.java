@@ -1,7 +1,7 @@
 package edu.wpi.cs3733.D22.teamC.entity.service_request;
 
 import edu.wpi.cs3733.D22.teamC.DBManager;
-import edu.wpi.cs3733.D22.teamC.entity.service_request.medical_equipment.MedEqServiceRequestDAOImpl;
+import edu.wpi.cs3733.D22.teamC.entity.service_request.medical_equipment.MedicalEquipmentSRDAOImpl;
 import edu.wpi.cs3733.D22.teamC.entity.service_request.medical_equipment.MedicalEquipmentServiceRequest;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
@@ -13,7 +13,7 @@ import static org.junit.jupiter.api.Assertions.*;
 
 class MedEqSRDAOImplTest {
     private DBManager testDBManager;
-    private MedEqServiceRequestDAOImpl medicalEqDAO;
+    private MedicalEquipmentSRDAOImpl medicalEqDAO;
     
     @BeforeEach
     void setUp() {
@@ -25,7 +25,7 @@ class MedEqSRDAOImplTest {
         DBManager.setInstance(testDBManager);
         
         // Setup testing medicalEqDAOImpl
-        medicalEqDAO = new MedEqServiceRequestDAOImpl();
+        medicalEqDAO = new MedicalEquipmentSRDAOImpl();
     }
     
     @AfterEach
@@ -142,6 +142,10 @@ class MedEqSRDAOImplTest {
         
         // Cannot Delete Location Again
         assertFalse(medicalEqDAO.deleteServiceRequest(deleteSR));
+
+        // Check DB is empty
+        assertEquals(0, medicalEqDAO.getAllServiceRequests().size());
+        assertEquals(null, medicalEqDAO.getServiceRequest("Test000"));
     }
     
     /**
