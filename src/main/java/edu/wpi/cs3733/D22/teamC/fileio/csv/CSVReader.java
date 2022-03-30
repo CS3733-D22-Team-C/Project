@@ -18,7 +18,7 @@ public abstract class CSVReader<T> {
      * @param fileName name of file.
      * @return List of objects of type T.
      */
-    public List<T> readFile(String fileName) {
+    public final List<T> readFile(String fileName) {
         List<T> objects = new ArrayList<>();
 
         try {
@@ -42,6 +42,7 @@ public abstract class CSVReader<T> {
                 line = br.readLine();
             }
         } catch (IOException ioe) {
+            System.out.println("Failed to read file " + fileName + ".");
             ioe.printStackTrace();
             return null;
         }
@@ -54,7 +55,7 @@ public abstract class CSVReader<T> {
      * @param headers A list of headers.
      * @return A map of each header to their column index.
      */
-    private Map<String, Integer> parseHeaders(String[] headers) {
+    private final Map<String, Integer> parseHeaders(String[] headers) {
         Map<String, Integer> map = new HashMap<>();
 
         for (int i = 0; i < headers.length; i++) {
@@ -69,7 +70,7 @@ public abstract class CSVReader<T> {
      * @param attributes A list of attributes parsed from the csv line.
      * @return A newly created object of type T.
      */
-    private T parseObject(Map<String, Integer> headerMap, String[] attributes) {
+    private final T parseObject(Map<String, Integer> headerMap, String[] attributes) {
         // Array Initialization necessary to avoid errors with lambda expression
         T[] object = (T[]) new Object[]{ createObject() };
         headerMap.forEach((header, index) -> {
