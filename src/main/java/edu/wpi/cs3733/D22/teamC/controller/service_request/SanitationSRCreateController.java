@@ -43,7 +43,7 @@ public class SanitationSRCreateController extends ServiceRequestCreateController
         table.setShowRoot(false);
 
     }
-    
+
     @FXML
     void clickReset(javafx.event.ActionEvent event) {
         super.clickReset(event);
