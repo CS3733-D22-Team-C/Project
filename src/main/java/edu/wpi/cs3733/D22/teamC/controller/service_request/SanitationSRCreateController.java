@@ -5,7 +5,6 @@ import com.jfoenix.controls.JFXTreeTableView;
 import com.jfoenix.controls.RecursiveTreeItem;
 import com.jfoenix.controls.datamodels.treetable.RecursiveTreeObject;
 import edu.wpi.cs3733.D22.teamC.App;
-import edu.wpi.cs3733.D22.teamC.entity.service_request.medical_equipment.MedicalEquipmentSRTable;
 import edu.wpi.cs3733.D22.teamC.entity.service_request.sanitation.SanitationSRTable;
 import edu.wpi.cs3733.D22.teamC.entity.service_request.sanitation.SanitationServiceRequest;
 import javafx.collections.FXCollections;
