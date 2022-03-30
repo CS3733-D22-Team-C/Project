@@ -6,6 +6,12 @@ public class MedicalEquipmentServiceRequest extends ServiceRequest {
     protected String equipmentType;     // TODO: Make Enum
     protected String equipmentID;       // TODO: Link to Medical Equipment
 
+    public MedicalEquipmentServiceRequest() {}
+    
+    public MedicalEquipmentServiceRequest(ServiceRequest serviceRequest) {
+        super(serviceRequest);
+    }
+    
     //For the table
     enum equipEnum {
         BED, //1

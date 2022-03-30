@@ -17,6 +17,18 @@ public class ServiceRequest {
 
     public ServiceRequest(){}
     
+    public ServiceRequest(ServiceRequest serviceRequest) {
+        this.requestID = serviceRequest.getRequestID();
+        this.creatorID = serviceRequest.getCreatorID();
+        this.assigneeID = serviceRequest.getAssigneeID();
+        this.location = serviceRequest.getLocation();
+        this.creationTimestamp = serviceRequest.getCreationTimestamp();
+        this.status = serviceRequest.getStatus();
+        this.priority = serviceRequest.getPriority();
+        this.requestType = serviceRequest.getRequestType();
+        this.description = serviceRequest.getDescription();
+    }
+    
     public ServiceRequest(String requestID) {
         this.requestID = requestID;
     }

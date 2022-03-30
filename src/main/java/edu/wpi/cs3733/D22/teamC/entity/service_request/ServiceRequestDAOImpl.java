@@ -18,7 +18,7 @@ public class ServiceRequestDAOImpl implements ServiceRequestDAO {
         try {
             //Execute SELECT
             Statement selectStatement = DBManager.getInstance().connection.createStatement();
-            ResultSet resultSet = selectStatement.executeQuery("SELECT * FROM SERVICE_REQUESTS");
+            ResultSet resultSet = selectStatement.executeQuery("SELECT * FROM SERVICE_REQUEST");
             
             //Return ServiceRequest Objects
             List<ServiceRequest> serviceRequests = new ArrayList<>();
@@ -48,7 +48,7 @@ public class ServiceRequestDAOImpl implements ServiceRequestDAO {
         try {
             // Execute SELECT Query
             PreparedStatement statement = DBManager.getInstance().connection.prepareStatement(
-                    "SELECT * FROM SERVICE_REQUESTS WHERE REQUESTID = ?"
+                    "SELECT * FROM SERVICE_REQUEST WHERE REQUESTID = ?"
             );
             statement.setString(1, requestID);
             ResultSet resultSet = statement.executeQuery();
@@ -56,7 +56,7 @@ public class ServiceRequestDAOImpl implements ServiceRequestDAO {
             // Return Location Object
             if (resultSet.next()) return createServiceRequest(resultSet);
         } catch (SQLException e) {
-            System.out.println("Query to SERVICE_REQUESTS table failed.");
+            System.out.println("Query to SERVICE_REQUEST table failed.");
             e.printStackTrace();
         }
         return null;
@@ -75,7 +75,7 @@ public class ServiceRequestDAOImpl implements ServiceRequestDAO {
             ServiceRequest serviceRequestInDB = getServiceRequest(serviceRequest.getRequestID());
             if (serviceRequestInDB == null) {
                 PreparedStatement statement = DBManager.getInstance().connection.prepareStatement(
-                        "INSERT INTO SERVICE_REQUESTS VALUE(?, ?, ?, ?, ?, ?, ?, ?, ?)"
+                        "INSERT INTO SERVICE_REQUEST VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?)"
                 );
                 statement.setString(1, serviceRequest.getRequestID());
                 statement.setString(2, serviceRequest.getCreatorID());
@@ -91,7 +91,7 @@ public class ServiceRequestDAOImpl implements ServiceRequestDAO {
                 return true;
             }
         } catch (SQLException e) {
-            System.out.println("Update to SERVICE_REQUESTS failed");
+            System.out.println("Update to SERVICE_REQUEST failed");
             e.printStackTrace();
         }
         return false;
@@ -111,7 +111,7 @@ public class ServiceRequestDAOImpl implements ServiceRequestDAO {
             if (serviceRequestInDB != null) {
                 // Execute UPDATE statement
                 PreparedStatement statement = DBManager.getInstance().connection.prepareStatement(
-                        "UPDATE SERVICE_REQUESTS SET CREATORID = ?, ASSIGNEEID = ?, LOCATIONID = ?, " +
+                        "UPDATE SERVICE_REQUEST SET CREATORID = ?, ASSIGNEEID = ?, LOCATIONID = ?, " +
                                 "CREATIONTIMESTAMP = ?, STATUS = ?, PRIORITY = ?, REQUESTTYPE = ?, DESCRIPTION = ? " +
                                 "WHERE REQUESTID = ?"
                 );
@@ -150,7 +150,7 @@ public class ServiceRequestDAOImpl implements ServiceRequestDAO {
             if (serviceRequestInDB != null) {
                 // Execute DELETE Statement
                 PreparedStatement statement = DBManager.getInstance().connection.prepareStatement(
-                        "DELETE FROM SERVICE_REQUESTS WHERE REQUESTID = ?"
+                        "DELETE FROM SERVICE_REQUEST WHERE REQUESTID = ?"
                 );
                 statement.setString(1, serviceRequest.getRequestID());
                 statement.execute();
@@ -158,7 +158,7 @@ public class ServiceRequestDAOImpl implements ServiceRequestDAO {
                 return true;
             }
         } catch (SQLException e) {
-            System.out.println("Delete from SERVICE_REQUESTS table failed.");
+            System.out.println("Delete from SERVICE_REQUEST table failed.");
             e.printStackTrace();
         }
         
@@ -188,7 +188,7 @@ public class ServiceRequestDAOImpl implements ServiceRequestDAO {
             return serviceRequest;
             
         } catch (SQLException e) {
-            System.out.println("Creation of object from SERVICE_REQUESTS ResultSet failed.");
+            System.out.println("Creation of object from SERVICE_REQUEST ResultSet failed.");
             e.printStackTrace();
             
             return null;

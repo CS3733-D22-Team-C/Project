@@ -17,7 +17,7 @@ import java.util.List;
 public class MedEqServiceRequestDAOImpl extends ServiceRequestDAOImpl {
     
     /**
-     * Getting all the entries in the MEDICAL_EQUIP_SERVICE_REQUESTS Table to the DB, and
+     * Getting all the entries in the MEDICAL_EQUIP_SERVICE_REQUEST Table to the DB, and
      * converting them to ServiceRequest objects.
      *
      * @return List of all Medical Equipment Service requests objects converted from queries
@@ -27,9 +27,9 @@ public class MedEqServiceRequestDAOImpl extends ServiceRequestDAOImpl {
         try {
             //Execute SELECT query to join parent and child table attributes
             PreparedStatement statement = DBManager.getInstance().connection.prepareStatement(
-                    "SELECT SERVICE_REQUESTS.*, MEDICAL_EQUIP_SERVICE_REQUESTS.* " +
-                            "FROM SERVICE_REQUESTS INNER JOIN MEDICAL_EQUIP_SERVICE_REQUESTS " +
-                            "ON SERVICE_REQUESTS.REQUESTID = MEDICAL_EQUIP_SERVICE_REQUESTS.REQUESTID "
+                    "SELECT SERVICE_REQUEST.*, MEDICAL_EQUIP_SERVICE_REQUEST.* " +
+                            "FROM SERVICE_REQUEST INNER JOIN MEDICAL_EQUIP_SERVICE_REQUEST " +
+                            "ON SERVICE_REQUEST.REQUESTID = MEDICAL_EQUIP_SERVICE_REQUEST.REQUESTID "
             );
             ResultSet resultSet = statement.executeQuery();
             
@@ -42,7 +42,7 @@ public class MedEqServiceRequestDAOImpl extends ServiceRequestDAOImpl {
             return serviceRequests;
             
         } catch (SQLException e) {
-            System.out.println("Query to MEDICAL_EQUIP_SERVICE_REQUESTS failed.");
+            System.out.println("Query to MEDICAL_EQUIP_SERVICE_REQUEST failed.");
             e.printStackTrace();
         }
         
@@ -61,10 +61,10 @@ public class MedEqServiceRequestDAOImpl extends ServiceRequestDAOImpl {
         try {
             // Execute SELECT Query to join the parent table and child table attributes
             PreparedStatement statement = DBManager.getInstance().connection.prepareStatement(
-                    "SELECT SERVICE_REQUESTS.*, MEDICAL_EQUIP_SERVICE_REQUESTS.* " +
-                            "FROM SERVICE_REQUESTS INNER JOIN MEDICAL_EQUIP_SERVICE_REQUESTS " +
-                            "ON SERVICE_REQUESTS.REQUESTID = MEDICAL_EQUIP_SERVICE_REQUESTS.REQUESTID " +
-                            "WHERE SERVICE_REQUESTS.REQUESTID = ?"
+                    "SELECT SERVICE_REQUEST.*, MEDICAL_EQUIP_SERVICE_REQUEST.* " +
+                            "FROM SERVICE_REQUEST INNER JOIN MEDICAL_EQUIP_SERVICE_REQUEST " +
+                            "ON SERVICE_REQUEST.REQUESTID = MEDICAL_EQUIP_SERVICE_REQUEST.REQUESTID " +
+                            "WHERE SERVICE_REQUEST.REQUESTID = ?"
             );
             statement.setString(1, requestID);
             ResultSet resultSet = statement.executeQuery();
@@ -93,7 +93,7 @@ public class MedEqServiceRequestDAOImpl extends ServiceRequestDAOImpl {
             if (successParent) {
                 // Insert the child-unique attributes to the child table.
                 PreparedStatement statement = DBManager.getInstance().connection.prepareStatement(
-                        "INSERT INTO MEDICAL_EQUIP_SERVICE_REQUESTS VALUE(?, ?, ?)"
+                        "INSERT INTO MEDICAL_EQUIP_SERVICE_REQUEST VALUES(?, ?, ?)"
                 );
                 statement.setString(1, serviceRequest.getRequestID());
                 // Set child-specific attributes by casting
@@ -128,7 +128,7 @@ public class MedEqServiceRequestDAOImpl extends ServiceRequestDAOImpl {
                 if (successParent) {
                     // Update the child-unique attributes in the child table.
                     PreparedStatement statement = DBManager.getInstance().connection.prepareStatement(
-                            "UPDATE MEDICAL_EQUIP_SERVICE_REQUESTS SET EQUIPID = ?, EQUIPTYPE = ? " +
+                            "UPDATE MEDICAL_EQUIP_SERVICE_REQUEST SET EQUIPID = ?, EQUIPTYPE = ? " +
                                     "WHERE REQUESTID = ?"
                     );
                     statement.setString(1, ((MedicalEquipmentServiceRequest) serviceRequest).getEquipmentID());
@@ -148,8 +148,8 @@ public class MedEqServiceRequestDAOImpl extends ServiceRequestDAOImpl {
     }
     
     /**
-     * Delete entry in SERVICE_REQUESTS Table of DB corresponding to the given ServiceRequest object.
-     * Will also delete entry in MEDICAL_EQUIP_SERVICE_REQUESTS.
+     * Delete entry in SERVICE_REQUEST Table of DB corresponding to the given ServiceRequest object.
+     * Will also delete entry in MEDICAL_EQUIP_SERVICE_REQUEST.
      *
      * @param serviceRequest The service request to be deleted from the DB.
      * @return True if successful.
@@ -162,10 +162,10 @@ public class MedEqServiceRequestDAOImpl extends ServiceRequestDAOImpl {
             if (serviceRequestInDB != null) {
                 // Execute DELETE Statement for base SR table and Medical Equipment SR table
                 PreparedStatement statement = DBManager.getInstance().connection.prepareStatement(
-                        "DELETE SERVICE_REQUESTS.*, MEDICAL_EQUIP_SERVICE_REQUESTS.* " +
-                                "FROM SERVICE_REQUESTS INNER JOIN MEDICAL_EQUIP_SERVICE_REQUESTS " +
-                                "ON SERVICE_REQUESTS.REQUESTID = MEDICAL_EQUIP_SERVICE_REQUESTS.REQUESTID " +
-                                "WHERE SERVICE_REQUESTS.REQUESTID = ?"
+                        "DELETE SERVICE_REQUEST.*, MEDICAL_EQUIP_SERVICE_REQUEST.* " +
+                                "FROM SERVICE_REQUEST INNER JOIN MEDICAL_EQUIP_SERVICE_REQUEST " +
+                                "ON SERVICE_REQUEST.REQUESTID = MEDICAL_EQUIP_SERVICE_REQUEST.REQUESTID " +
+                                "WHERE SERVICE_REQUEST.REQUESTID = ?"
                 );
                 statement.setString(1, serviceRequest.getRequestID());
                 statement.execute();
@@ -190,10 +190,10 @@ public class MedEqServiceRequestDAOImpl extends ServiceRequestDAOImpl {
     public MedicalEquipmentServiceRequest createServiceRequest(ResultSet resultSet) {
         try {
             // Create generic SR then convert and modify into MedicalEquipmentServiceRequest
-            MedicalEquipmentServiceRequest serviceRequest = ((MedicalEquipmentServiceRequest) super.createServiceRequest(resultSet));
+            MedicalEquipmentServiceRequest serviceRequest = new MedicalEquipmentServiceRequest(super.createServiceRequest(resultSet));
             serviceRequest.setRequestID(typesafeTrim(resultSet.getString("REQUESTID"))); // redundant?
-            serviceRequest.setEquipmentID(typesafeTrim(resultSet.getString("EQUIPMENTID")));
-            serviceRequest.setEquipmentType(typesafeTrim(resultSet.getString("EQUIPMENTTYPE")));
+            serviceRequest.setEquipmentID(typesafeTrim(resultSet.getString("EQUIPID")));
+            serviceRequest.setEquipmentType(typesafeTrim(resultSet.getString("EQUIPTYPE")));
             
             return serviceRequest;
             
