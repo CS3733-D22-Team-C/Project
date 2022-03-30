@@ -11,13 +11,12 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
-import javafx.scene.control.cell.TreeItemPropertyValueFactory;
 import javafx.util.Callback;
 
 import java.net.URL;
 import java.util.ResourceBundle;
 
-public class MedicalEquipmentController implements Initializable {
+public class MedicalEquipmentSRCreateController implements Initializable {
 
     //Fields
     @FXML private TextField assigneeID;
@@ -36,6 +35,7 @@ public class MedicalEquipmentController implements Initializable {
     @FXML private JFXButton resetButton;
     @FXML private JFXButton submitButton;
 
+    //For table
     @FXML private JFXTreeTableView<MedicalEquipmentTable> table;
     ObservableList<MedicalEquipmentTable> METList = FXCollections.observableArrayList();
     final TreeItem<MedicalEquipmentTable> root = new RecursiveTreeItem<MedicalEquipmentTable>(METList, RecursiveTreeObject::getChildren);
@@ -61,7 +61,7 @@ public class MedicalEquipmentController implements Initializable {
         status.getItems().add("Processing");
         status.getItems().add("Done");
 
-
+        //Columns for table
         JFXTreeTableColumn<MedicalEquipmentTable, String> IDCol = new JFXTreeTableColumn<>("Priority");
         IDCol.setPrefWidth(80);
         IDCol.setCellValueFactory(new Callback<TreeTableColumn.CellDataFeatures<MedicalEquipmentTable, String>, ObservableValue<String>>() {
@@ -102,7 +102,7 @@ public class MedicalEquipmentController implements Initializable {
                 return param.getValue().getValue().equipmentTypeProperty();
             }
         });
-        JFXTreeTableColumn<MedicalEquipmentTable, String> typeIDCol = new JFXTreeTableColumn<>("ID");
+        JFXTreeTableColumn<MedicalEquipmentTable, String> typeIDCol = new JFXTreeTableColumn<>("EquipID");
         typeIDCol.setPrefWidth(80);
         typeIDCol.setCellValueFactory(new Callback<TreeTableColumn.CellDataFeatures<MedicalEquipmentTable, String>, ObservableValue<String>>() {
             @Override
@@ -111,6 +111,7 @@ public class MedicalEquipmentController implements Initializable {
             }
         });
 
+        //Practice classes to add
         MedicalEquipmentTable met1 = new MedicalEquipmentTable("Bed", "15", "123456",
               "Room 202", "Done", "High");
         MedicalEquipmentTable met2 = new MedicalEquipmentTable("Infusion Pump", "35", "392843",
@@ -118,7 +119,9 @@ public class MedicalEquipmentController implements Initializable {
         METList.add(met1);
         METList.add(met2);
 
+        //Sets columns
         table.getColumns().setAll(IDCol, assigneeCol, statusCol, locationCol, typeCol, typeIDCol);
+
         table.setRoot(root);
         table.setShowRoot(false);
 
