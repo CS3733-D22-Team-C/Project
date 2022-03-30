@@ -58,6 +58,11 @@ public class LabSystemSRCreateController extends ServiceRequestCreateController 
 
     @FXML
     LabSystemServiceRequest clickSubmit(ActionEvent event) {
+        // Check if all fields are filled
+        if(labType.getSelectionModel().isEmpty() || patientID.getText().isEmpty() ||
+        assigneeID.getText().isEmpty() || location.getText().isEmpty() || priority.getSelectionModel().isEmpty()
+        || status.getSelectionModel().isEmpty()) return null;
+
         LabSystemServiceRequest labSystem = new LabSystemServiceRequest();
 
         //Sets from textFields
@@ -74,6 +79,8 @@ public class LabSystemSRCreateController extends ServiceRequestCreateController 
         //Table Entry
         LabSystemSRTable lst = new LabSystemSRTable(labSystem);
         LSTList.add(lst);
+
+        clickReset(event);
 
         return labSystem;
     }
