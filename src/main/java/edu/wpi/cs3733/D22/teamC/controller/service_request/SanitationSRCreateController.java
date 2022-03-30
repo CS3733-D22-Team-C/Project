@@ -56,6 +56,9 @@ public class SanitationSRCreateController extends ServiceRequestCreateController
     SanitationServiceRequest clickSubmit(ActionEvent event) {
         SanitationServiceRequest sanitationServiceRequest = new SanitationServiceRequest();
 
+        if(assigneeID.getText().isEmpty() || location.getText().isEmpty() || priority.getSelectionModel().isEmpty() || status.getSelectionModel().isEmpty() || sanitationType.getSelectionModel().isEmpty()) {
+            return null;
+        }
         // Start setting up a Java object for a SanitationServiceRequest
         // Text field setting
         sanitationServiceRequest.setAssigneeID(assigneeID.getText());
