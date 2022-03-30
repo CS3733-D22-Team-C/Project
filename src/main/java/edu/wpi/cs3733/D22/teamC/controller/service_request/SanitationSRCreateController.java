@@ -43,12 +43,7 @@ public class SanitationSRCreateController extends ServiceRequestCreateController
         table.setShowRoot(false);
 
     }
-
-    @FXML
-    void clickGoBack(ActionEvent event) {
-        App.instance.setView(App.SERVICE_REQUEST_SELECT);
-    }
-
+    
     @FXML
     void clickReset(javafx.event.ActionEvent event) {
         super.clickReset(event);
