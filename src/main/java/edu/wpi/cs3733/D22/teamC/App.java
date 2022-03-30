@@ -1,5 +1,9 @@
 package edu.wpi.cs3733.D22.teamC;
 
+import edu.wpi.cs3733.D22.teamC.entity.location.Location;
+import edu.wpi.cs3733.D22.teamC.entity.location.LocationDAO;
+import edu.wpi.cs3733.D22.teamC.entity.location.LocationDAOImpl;
+import edu.wpi.cs3733.D22.teamC.fileio.csv.LocationCSVReader;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
@@ -8,6 +12,7 @@ import javafx.scene.layout.BorderPane;
 import javafx.stage.Stage;
 import lombok.extern.slf4j.Slf4j;
 import java.io.IOException;
+import java.util.List;
 
 @Slf4j
 public class App extends Application {
@@ -29,6 +34,16 @@ public class App extends Application {
         // Initialize Database Manager
         DBManager.startup();
 
+        // Load CSV Data
+        LocationCSVReader csvReader = new LocationCSVReader();
+        List<Location> locations = csvReader.readFile("TowerLocations.csv");
+        if (locations != null) {
+            LocationDAO locationDAO = new LocationDAOImpl();
+            for (Location location : locations) {
+                locationDAO.insertLocation(location);
+            }
+        }
+
         log.info("Starting Up");
     }
 
@@ -43,9 +58,6 @@ public class App extends Application {
         setView(SERVICE_REQUEST_SELECT);
 
         //setView(MEDICAL_EQUIPMENT);
-
-        // Initialize Database Manager
-        DBManager.startup();
     }
 
     @Override
