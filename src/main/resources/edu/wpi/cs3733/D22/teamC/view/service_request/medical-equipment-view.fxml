@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import com.jfoenix.controls.JFXComboBox?>
+<?import com.jfoenix.controls.JFXTextArea?>
+<?import com.jfoenix.controls.JFXTreeTableView?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.control.TreeTableView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.VBox?>
+
+<ScrollPane prefWidth="602.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.wpi.cs3733.D22.teamC.controller.service_request.MedicalEquipmentSRCreateController">
+   <content>
+      <AnchorPane prefHeight="667.0" prefWidth="600.0">
+         <children>
+            <JFXButton fx:id="submitButton" layoutX="480.0" layoutY="321.0" onAction="#clickSubmit" styleClass="button-success" stylesheets="@../../css/base.css" text="Submit" />
+            <JFXButton fx:id="resetButton" layoutX="398.0" layoutY="321.0" onAction="#clickReset" styleClass="button-failure" stylesheets="@../../css/base.css" text="Reset" />
+            <JFXButton fx:id="goBackButton" layoutX="55.0" layoutY="321.0" onAction="#clickGoBack" styleClass="button-back" stylesheets="@../../css/base.css" text="Go Back" />
+            <Label layoutX="49.0" layoutY="11.0" styleClass="page-title" stylesheets="@../../css/base.css" text="Medical Equipment Service Request" />
+            <VBox layoutX="49.0" layoutY="49.0">
+               <children>
+                  <Label styleClass="service-field-label" stylesheets="@../../css/base.css" text="Assign To:" />
+                  <TextField fx:id="assigneeID" />
+               </children>
+            </VBox>
+            <VBox layoutX="241.0" layoutY="49.0">
+               <children>
+                  <Label styleClass="service-field-label" stylesheets="@../../css/base.css" text="Status:" />
+                  <JFXComboBox fx:id="status" prefHeight="26.0" prefWidth="132.0" styleClass="dropdown" stylesheets="@../../css/base.css" />
+               </children>
+            </VBox>
+            <VBox layoutX="49.0" layoutY="126.0">
+               <children>
+                  <Label styleClass="service-field-label" stylesheets="@../../css/base.css" text="Equipment Type:" />
+                  <JFXComboBox fx:id="equipType" prefHeight="26.0" prefWidth="138.0" styleClass="dropdown" stylesheets="@../../css/base.css" />
+               </children>
+            </VBox>
+            <VBox layoutX="430.0" layoutY="126.0">
+               <children>
+                  <Label styleClass="service-field-label" stylesheets="@../../css/base.css" text="Priority:" />
+                  <JFXComboBox fx:id="priority" prefHeight="26.0" prefWidth="148.0" styleClass="dropdown" stylesheets="@../../css/base.css" />
+               </children>
+            </VBox>
+            <VBox layoutX="431.0" layoutY="49.0">
+               <children>
+                  <Label styleClass="service-field-label" stylesheets="@../../css/base.css" text="Location:" />
+                  <TextField fx:id="location" />
+               </children>
+            </VBox>
+            <VBox layoutX="55.0" layoutY="207.0">
+               <children>
+                  <Label styleClass="service-field-label" stylesheets="@../../css/base.css" text="Additional Notes:" />
+                  <JFXTextArea fx:id="description" prefHeight="58.0" prefWidth="490.0" styleClass="textarea" stylesheets="@../../css/base.css" wrapText="true" />
+               </children>
+            </VBox>
+            <JFXTreeTableView fx:id="table" layoutX="67.0" layoutY="391.0" minWidth="-Infinity" prefHeight="219.0" prefWidth="480.0">
+               <columnResizePolicy>
+                  <TreeTableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
+               </columnResizePolicy>
+            </JFXTreeTableView>
+            <VBox layoutX="238.0" layoutY="126.0">
+               <children>
+                  <Label styleClass="service-field-label" stylesheets="@../../css/base.css" text="Equipment ID:" />
+                  <TextField fx:id="equipID" />
+               </children>
+            </VBox>
+         </children>
+      </AnchorPane>
+   </content>
+</ScrollPane>
