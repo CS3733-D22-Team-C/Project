@@ -4,6 +4,7 @@ import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXComboBox;
 import com.jfoenix.controls.JFXTextArea;
 import com.jfoenix.controls.JFXTreeTableView;
+import edu.wpi.cs3733.D22.teamC.App;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -16,6 +17,8 @@ import java.net.URL;
 import java.util.ResourceBundle;
 
 public class SecurityServiceController implements Initializable {
+
+    private final String BASE_VIEW_PATH = "view/general/base-view.fxml";
 
     //Fields
     @FXML private TextField assigneeID;
@@ -72,15 +75,27 @@ public class SecurityServiceController implements Initializable {
     }
     @FXML
     void clickGoBack(ActionEvent event) {
-
+        App.instance.setView(BASE_VIEW_PATH);
     }
 
     @FXML
-    void clickReset(ActionEvent event) {
+    void clickReset(ActionEvent event){
+
+        //clear text fields
+
+        System.out.println("testing testing\n");
+        assigneeID.clear();
+        description.clear();
+        location.clear();
+
+        //clear the drop-downs :D
+        securityType.setValue(null);
+        priority.setValue(null);
+        status.setValue(null);
     }
 
     @FXML
-    void clickSubmit(ActionEvent event) {
+    void clickSubmit(ActionEvent event){
 
     }
 
