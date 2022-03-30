@@ -6,6 +6,8 @@ import com.jfoenix.controls.RecursiveTreeItem;
 import com.jfoenix.controls.datamodels.treetable.RecursiveTreeObject;
 import edu.wpi.cs3733.D22.teamC.entity.service_request.medical_equipment.MedicalEquipmentSRTable;
 import edu.wpi.cs3733.D22.teamC.entity.service_request.medical_equipment.MedicalEquipmentServiceRequest;
+import edu.wpi.cs3733.D22.teamC.entity.service_request.security.SecurityServiceRequest;
+import edu.wpi.cs3733.D22.teamC.entity.service_request.security.securitySRTable;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -22,11 +24,11 @@ public class securitySRCreateController extends ServiceRequestCreateController {
     @FXML private JFXComboBox<String> secType;
 
     // For table
-    @FXML private JFXTreeTableView<MedicalEquipmentSRTable> table;
-    ObservableList<MedicalEquipmentSRTable> METList = FXCollections.observableArrayList();
-    final TreeItem<MedicalEquipmentSRTable> root = new RecursiveTreeItem<MedicalEquipmentSRTable>(METList, RecursiveTreeObject::getChildren);
+    @FXML private JFXTreeTableView<securitySRTable> table;
+    ObservableList<securitySRTable> METList = FXCollections.observableArrayList();
+    final TreeItem<securitySRTable> root = new RecursiveTreeItem<securitySRTable>(METList, RecursiveTreeObject::getChildren);
 
-    ObservableList<MedicalEquipmentSRTable> data;
+    ObservableList<securitySRTable> data;
 
 
     @Override
@@ -39,7 +41,7 @@ public class securitySRCreateController extends ServiceRequestCreateController {
         secType.getItems().add("Security Type 3");
         secType.getItems().add("Security Type 4");
 
-        MedicalEquipmentSRTable.createTableColumns(table);
+        securitySRTable.createTableColumns(table);
         table.setRoot(root);
         table.setShowRoot(false);
 
@@ -59,26 +61,26 @@ public class securitySRCreateController extends ServiceRequestCreateController {
     }
 
     @FXML
-    MedicalEquipmentServiceRequest clickSubmit(ActionEvent event) {
-        MedicalEquipmentServiceRequest medEquip = new MedicalEquipmentServiceRequest();
+    SecurityServiceRequest clickSubmit(ActionEvent event) {
+        SecurityServiceRequest securityServiceRequest = new SecurityServiceRequest();
 
         //Sets from textFields
-        medEquip.setAssigneeID(assigneeID.getText());
-        medEquip.setDescription(description.getText());
-        medEquip.setLocation(location.getText());
+        securityServiceRequest.setAssigneeID(assigneeID.getText());
+        securityServiceRequest.setDescription(description.getText());
+        securityServiceRequest.setLocation(location.getText());
 
         //Sets from combo boxes
-        medEquip.setStatus(status.getValue());
-        medEquip.setPriority(priority.getValue());
-        medEquip.setEquipmentType(secType.getValue());
+        securityServiceRequest.setStatus(status.getValue());
+        securityServiceRequest.setPriority(priority.getValue());
+        securityServiceRequest.setRequestType(secType.getValue());
 
 
 
         // Table Entry
-        MedicalEquipmentSRTable met = new MedicalEquipmentSRTable(medEquip);
+        securitySRTable met = new securitySRTable(securityServiceRequest);
         METList.add(met);
 
 
-        return medEquip;
+        return securityServiceRequest;
     }
 }
