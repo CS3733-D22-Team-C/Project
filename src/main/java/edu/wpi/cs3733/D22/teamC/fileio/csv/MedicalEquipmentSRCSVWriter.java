@@ -19,8 +19,8 @@ public class MedicalEquipmentSRCSVWriter extends CSVWriter<MedicalEquipmentServi
                 "priority",
                 "requestType",
                 "description",
-                "equipmentType",
-                "equipmentID"
+                "equipType",
+                "equipID"
         };
     }
     /**
@@ -60,10 +60,10 @@ public class MedicalEquipmentSRCSVWriter extends CSVWriter<MedicalEquipmentServi
             case "description":
                 output = serviceRequest.getDescription();
                 break;
-            case "equipmentType":
+            case "equipType":
                 output = serviceRequest.getEquipmentType();
                 break;
-            case "equipmentID":
+            case "equipID":
                 output = serviceRequest.getEquipmentID();
                 break;
             default:
