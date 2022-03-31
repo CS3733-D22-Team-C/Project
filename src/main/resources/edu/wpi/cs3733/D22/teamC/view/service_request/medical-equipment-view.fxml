@@ -25,7 +25,7 @@
       <RowConstraints maxHeight="226.40000000000003" minHeight="0.0" prefHeight="226.40000000000003" vgrow="SOMETIMES" />
    </rowConstraints>
    <children>
-      <Label styleClass="page-title" text="Medical Equipment View" />
+      <Label styleClass="page-title" text="Medical Equipment Service Request" />
       <GridPane GridPane.hgrow="ALWAYS" GridPane.rowIndex="1" GridPane.vgrow="ALWAYS">
          <columnConstraints>
             <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
