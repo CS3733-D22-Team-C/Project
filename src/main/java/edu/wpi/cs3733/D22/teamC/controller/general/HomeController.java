@@ -4,7 +4,7 @@ import edu.wpi.cs3733.D22.teamC.App;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 
-public class HomePageController {
+public class HomeController {
 
     @FXML
     public void onClickExit(ActionEvent actionEvent) {
