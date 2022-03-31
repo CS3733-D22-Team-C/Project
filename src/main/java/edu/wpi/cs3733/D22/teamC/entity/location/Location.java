@@ -9,6 +9,8 @@ public class Location {
     private String shortName = "";
     private int x = 0, y = 0;
 
+    public Location() {}
+
     public Location(String nodeID) {
         this.nodeID = nodeID;
     }
