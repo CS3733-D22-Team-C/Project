@@ -79,17 +79,17 @@
         <VBox prefHeight="0.0" prefWidth="600.0" styleClass="box-margin" GridPane.rowIndex="2">
             <children>
                 <Label styleClass="service-field-label" text="Additional Notes:" />
-                <JFXTextArea prefHeight="81.0" prefWidth="426.0" VBox.vgrow="NEVER" />
+                <JFXTextArea fx:id="description" prefHeight="81.0" prefWidth="426.0" VBox.vgrow="NEVER" />
             <HBox prefHeight="100.0" prefWidth="200.0" styleClass="box-margin">
                <children>
                   <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="200.0" HBox.hgrow="ALWAYS">
                      <children>
-                        <Button mnemonicParsing="false" styleClass="button-back" text="Go Back" />
+                        <Button fx:id="goBackButton" mnemonicParsing="false" onAction="#clickGoBack" styleClass="button-back" text="Go Back" />
                      </children>
                   </HBox>
                   <HBox alignment="CENTER_RIGHT" prefHeight="100.0" prefWidth="200.0" styleClass="button-alignment" HBox.hgrow="ALWAYS">
                      <children>
-                        <Button mnemonicParsing="false" text="Reset">
+                        <Button fx:id="resetButton" mnemonicParsing="false" onAction="#clickReset" text="Reset">
                            <styleClass>
                               <String fx:value="button-alignment" />
                               <String fx:value="button-failure" />
@@ -98,7 +98,7 @@
                               <Insets />
                            </HBox.margin>
                         </Button>
-                        <Button mnemonicParsing="false" text="Submit">
+                        <Button fx:id="submitButton" mnemonicParsing="false" onAction="#clickSubmit" text="Submit">
                            <styleClass>
                               <String fx:value="button-alignment" />
                               <String fx:value="button-success" />
