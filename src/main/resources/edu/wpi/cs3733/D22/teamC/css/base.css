@@ -107,3 +107,9 @@ padding goes top, right, bottom, left
     -fx-font-weight: bold;
     -fx-font-size: 20;
 }
+
+.home-page-button {
+    -fx-background-color: -color-button-text;
+    -fx-font-family: Inter;
+    -fx-font-size: 17;
+}

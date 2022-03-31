@@ -27,10 +27,10 @@ public class App extends Application {
     public static final String MEDICINE_DELIVERY = "view/service_request/medicine-delivery-view.fxml";
     private final String SANITARY_SERVICES_PATH = "view/service_request/sanitation-view.fxml";
     private final String SERVICE_REQUEST_SELECT = "view/general/view-service.fxml";
+    private final String HOME_PAGE_PATH = "view/general/HomePage.fxml";
     private final String FACILITY_MAINTENANCE_PATH = "view/service_request/facility-maintenance.fxml";
     public static final String LAB_SYSTEM = "view/service_request/lab-system-view.fxml";
     private final String SECURITY_REQUEST_SELECT = "view/service_request/security-service-view.fxml";
-
 
     // Variables
     private Stage stage;
@@ -59,9 +59,9 @@ public class App extends Application {
         instance = this;
         // Store window as stage
         stage = primaryStage;
-
-        setView(FACILITY_MAINTENANCE_PATH);
-
+      
+        setView(HOME_PAGE_PATH);
+      
         // Initialize Database Manager
         DBManager.startup();
 
