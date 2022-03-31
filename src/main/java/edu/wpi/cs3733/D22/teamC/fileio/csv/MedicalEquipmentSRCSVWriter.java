@@ -1,0 +1,76 @@
+package edu.wpi.cs3733.D22.teamC.fileio.csv;
+
+import edu.wpi.cs3733.D22.teamC.entity.service_request.medical_equipment.MedicalEquipmentServiceRequest;
+
+public class MedicalEquipmentSRCSVWriter extends CSVWriter<MedicalEquipmentServiceRequest> {
+    /**
+     * Manually define headers of attributes output to CSV.
+     * @return The array of headers to be output to CSV.
+     */
+    @Override
+    protected String[] compileHeaders() {
+        return new String[]{
+                "requestID",
+                "creatorID",
+                "assigneeID",
+                "location",
+                "creationTimestamp",
+                "status",
+                "priority",
+                "requestType",
+                "description",
+                "equipmentType",
+                "equipmentID"
+        };
+    }
+    /**
+     * Maps headers to a value to get from the object.
+     * @param serviceRequest The object to be read from.
+     * @param header The header to be mapped to an attribute.
+     * @return The retrieved value to be output to the CSV.
+     */
+    @Override
+    protected String compileAttribute(MedicalEquipmentServiceRequest serviceRequest, String header) {
+        String output = "";
+        switch (header) {
+            case "requestID":
+                output = serviceRequest.getRequestID();
+                break;
+            case "creatorID":
+                output = serviceRequest.getCreatorID();
+                break;
+            case "assigneeID":
+                output = serviceRequest.getAssigneeID();
+                break;
+            case "location":
+                output = serviceRequest.getLocation();
+                break;
+            case "creationTimestamp":
+                output = (serviceRequest.getCreationTimestamp() == null) ? "" : serviceRequest.getCreationTimestamp().toString();
+                break;
+            case "status":
+                output = serviceRequest.getStatus();
+                break;
+            case "priority":
+                output = serviceRequest.getPriority();
+                break;
+            case "requestType":
+                output = serviceRequest.getRequestType();
+                break;
+            case "description":
+                output = serviceRequest.getDescription();
+                break;
+            case "equipmentType":
+                output = serviceRequest.getEquipmentType();
+                break;
+            case "equipmentID":
+                output = serviceRequest.getEquipmentID();
+                break;
+            default:
+                break;
+        }
+        return output;
+    }
+
+
+}
