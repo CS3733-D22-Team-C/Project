@@ -6,8 +6,8 @@ import javafx.fxml.FXML;
 public class MenuBarController {
     @FXML
     protected void onMenuBarHomeButtonPress() {
-        // TODO: Add home page path
-        App.instance.setView("");
+        // TODO: Make it so that we can use constants here
+        App.instance.setView("view/general/HomePage.fxml");
     }
 
     @FXML
