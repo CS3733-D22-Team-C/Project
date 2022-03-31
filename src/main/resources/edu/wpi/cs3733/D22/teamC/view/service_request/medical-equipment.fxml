@@ -18,7 +18,7 @@
             <JFXButton fx:id="submitButton" layoutX="480.0" layoutY="321.0" onAction="#clickSubmit" styleClass="button-success" stylesheets="@../../css/base.css" text="Submit" />
             <JFXButton fx:id="resetButton" layoutX="398.0" layoutY="321.0" onAction="#clickReset" styleClass="button-failure" stylesheets="@../../css/base.css" text="Reset" />
             <JFXButton fx:id="goBackButton" layoutX="55.0" layoutY="321.0" onAction="#clickGoBack" styleClass="button-back" stylesheets="@../../css/base.css" text="Go Back" />
-            <Label layoutX="49.0" layoutY="11.0" styleClass="page-title" stylesheets="@../../css/base.css" text="Medical Equipment Service Request" />
+            <Label layoutX="46.0" layoutY="14.0" prefHeight="41.0" prefWidth="351.0" styleClass="page-title" stylesheets="@../../css/base.css" text="Medical Equipment Service Request" />
             <VBox layoutX="49.0" layoutY="49.0">
                <children>
                   <Label styleClass="service-field-label" stylesheets="@../../css/base.css" text="Assign To:" />

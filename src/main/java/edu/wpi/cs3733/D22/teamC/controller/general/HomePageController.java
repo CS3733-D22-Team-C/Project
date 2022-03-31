@@ -18,6 +18,7 @@ public class HomePageController {
 
     @FXML
     public void onClickMaps(ActionEvent actionEvent) {
-        //Need path to map page
+        // TODO: Add map path
+        //App.instance.setView("");
     }
 }
