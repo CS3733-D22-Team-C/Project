@@ -14,7 +14,9 @@ import javafx.fxml.FXML;
 import javafx.scene.control.*;
 
 import java.net.URL;
+import java.util.List;
 import java.util.ResourceBundle;
+import java.util.stream.Collectors;
 
 public class MedicalEquipmentSRCreateController extends ServiceRequestCreateController {
     // Fields
@@ -45,13 +47,15 @@ public class MedicalEquipmentSRCreateController extends ServiceRequestCreateCont
         table.setRoot(root);
         table.setShowRoot(false);
 
-        //Practice classes to add
-        MedicalEquipmentSRTable met1 = new MedicalEquipmentSRTable("Bed", "15", "123456",
-              "Room 202", "Done", "High");
-        MedicalEquipmentSRTable met2 = new MedicalEquipmentSRTable("Infusion Pump", "35", "392843",
-               "Room 305", "Blank", "Low");
-        METList.add(met1);
-        METList.add(met2);
+        // Query Database
+        ServiceRequestDAO serviceRequestDAO = new MedicalEquipmentSRDAOImpl();
+        List<ServiceRequest> serviceRequests = serviceRequestDAO.getAllServiceRequests();
+        List<MedicalEquipmentServiceRequest> medicalEquipmentSRs = serviceRequests.stream().map(SR -> {
+            return (MedicalEquipmentServiceRequest) SR;
+        }).collect(Collectors.toList());
+        for (MedicalEquipmentServiceRequest medicalEquipmentSR : medicalEquipmentSRs) {
+            METList.add(new MedicalEquipmentSRTable(medicalEquipmentSR));
+        }
     }
 
     @FXML
@@ -91,7 +95,7 @@ public class MedicalEquipmentSRCreateController extends ServiceRequestCreateCont
         MedicalEquipmentSRTable met = new MedicalEquipmentSRTable(medEquip);
         METList.add(met);
 
-        //Database entry
+        // Database entry
         ServiceRequestDAO serviceRequestDAO = new MedicalEquipmentSRDAOImpl();
         serviceRequestDAO.insertServiceRequest(medEquip);
 
