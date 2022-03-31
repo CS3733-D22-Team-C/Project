@@ -9,6 +9,7 @@ import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
 import javafx.beans.value.ObservableValue;
 import javafx.scene.control.TreeTableColumn;
+import javafx.scene.control.TreeTableView;
 import javafx.util.Callback;
 
 public class ServiceRequestTable extends RecursiveTreeObject<ServiceRequestTable> {
@@ -95,9 +96,10 @@ public class ServiceRequestTable extends RecursiveTreeObject<ServiceRequestTable
     }
 
     public static void createTableColumns(JFXTreeTableView<ServiceRequestTable> table) {
+        table.setColumnResizePolicy( TreeTableView.CONSTRAINED_RESIZE_POLICY );
         //Columns for table
         JFXTreeTableColumn<ServiceRequestTable, String> priorityCol = new JFXTreeTableColumn<>("Priority");
-        priorityCol.setPrefWidth(80);
+        priorityCol.setMaxWidth(1f * Integer.MAX_VALUE * 16.66);;
         priorityCol.setCellValueFactory(new Callback<TreeTableColumn.CellDataFeatures<ServiceRequestTable, String>, ObservableValue<String>>() {
             @Override
             public ObservableValue<String> call(TreeTableColumn.CellDataFeatures<ServiceRequestTable, String> param) {
@@ -105,7 +107,7 @@ public class ServiceRequestTable extends RecursiveTreeObject<ServiceRequestTable
             }
         });
         JFXTreeTableColumn<ServiceRequestTable, String> assigneeCol = new JFXTreeTableColumn<>("Assignee");
-        assigneeCol.setPrefWidth(80);
+        assigneeCol.setMaxWidth(1f * Integer.MAX_VALUE * 16.66);;
         assigneeCol.setCellValueFactory(new Callback<TreeTableColumn.CellDataFeatures<ServiceRequestTable, String>, ObservableValue<String>>() {
             @Override
             public ObservableValue<String> call(TreeTableColumn.CellDataFeatures<ServiceRequestTable, String> param) {
@@ -113,7 +115,7 @@ public class ServiceRequestTable extends RecursiveTreeObject<ServiceRequestTable
             }
         });
         JFXTreeTableColumn<ServiceRequestTable, String> statusCol = new JFXTreeTableColumn<>("Status");
-        statusCol.setPrefWidth(80);
+        statusCol.setMaxWidth(1f * Integer.MAX_VALUE * 16.66);;
         statusCol.setCellValueFactory(new Callback<TreeTableColumn.CellDataFeatures<ServiceRequestTable, String>, ObservableValue<String>>() {
             @Override
             public ObservableValue<String> call(TreeTableColumn.CellDataFeatures<ServiceRequestTable, String> param) {
@@ -121,7 +123,7 @@ public class ServiceRequestTable extends RecursiveTreeObject<ServiceRequestTable
             }
         });
         JFXTreeTableColumn<ServiceRequestTable, String> locationCol = new JFXTreeTableColumn<>("Location");
-        locationCol.setPrefWidth(80);
+        locationCol.setMaxWidth(1f * Integer.MAX_VALUE * 16.66);;
         locationCol.setCellValueFactory(new Callback<TreeTableColumn.CellDataFeatures<ServiceRequestTable, String>, ObservableValue<String>>() {
             @Override
             public ObservableValue<String> call(TreeTableColumn.CellDataFeatures<ServiceRequestTable, String> param) {
@@ -129,7 +131,7 @@ public class ServiceRequestTable extends RecursiveTreeObject<ServiceRequestTable
             }
         });
         JFXTreeTableColumn<ServiceRequestTable, String> IDCol = new JFXTreeTableColumn<>("ID");
-        IDCol.setPrefWidth(80);
+        IDCol.setMaxWidth(1f * Integer.MAX_VALUE * 16.66);;
         IDCol.setCellValueFactory(new Callback<TreeTableColumn.CellDataFeatures<ServiceRequestTable, String>, ObservableValue<String>>() {
             @Override
             public ObservableValue<String> call(TreeTableColumn.CellDataFeatures<ServiceRequestTable, String> param) {
@@ -137,7 +139,7 @@ public class ServiceRequestTable extends RecursiveTreeObject<ServiceRequestTable
             }
         });
         JFXTreeTableColumn<ServiceRequestTable, String> TypeCol = new JFXTreeTableColumn<>("Type");
-        TypeCol.setPrefWidth(80);
+        TypeCol.setMaxWidth(1f * Integer.MAX_VALUE * 16.66);;
         TypeCol.setCellValueFactory(new Callback<TreeTableColumn.CellDataFeatures<ServiceRequestTable, String>, ObservableValue<String>>() {
             @Override
             public ObservableValue<String> call(TreeTableColumn.CellDataFeatures<ServiceRequestTable, String> param) {
