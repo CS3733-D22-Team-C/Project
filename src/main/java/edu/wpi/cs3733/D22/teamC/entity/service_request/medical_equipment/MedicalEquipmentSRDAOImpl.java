@@ -13,7 +13,7 @@ import java.util.List;
 /**
  * Inherited ServiceRequestDAOImpl class specifically tailored to handle MedicalEquipmentServiceRequests.
  */
-public class MedicalEquipmentSRDAOImpl extends ServiceRequestDAOImpl {
+public class MedicalEquipmentSRDAOImpl extends MedicalEquipmentSRDAO {
     
     /**
      * Getting all the entries in the MEDICAL_EQUIPMENT_SR Table to the DB, and
@@ -22,7 +22,7 @@ public class MedicalEquipmentSRDAOImpl extends ServiceRequestDAOImpl {
      * @return List of all Medical Equipment Service requests objects converted from queries
      */
     @Override
-    public List<ServiceRequest> getAllServiceRequests() {
+    public List<MedicalEquipmentSR> getAllServiceRequests() {
         try {
             //Execute SELECT query to join parent and child table attributes
             PreparedStatement statement = DBManager.getInstance().connection.prepareStatement(
@@ -33,9 +33,9 @@ public class MedicalEquipmentSRDAOImpl extends ServiceRequestDAOImpl {
             ResultSet resultSet = statement.executeQuery();
             
             //Return ServiceRequest Objects
-            List<ServiceRequest> serviceRequests = new ArrayList<>();
+            List<MedicalEquipmentSR> serviceRequests = new ArrayList<>();
             while (resultSet.next()) {
-                ServiceRequest serviceRequest = createServiceRequest(resultSet);
+                MedicalEquipmentSR serviceRequest = modifyServiceRequest(resultSet, new MedicalEquipmentSR());
                 if (serviceRequest != null) serviceRequests.add(serviceRequest);
             }
             return serviceRequests;
@@ -69,7 +69,7 @@ public class MedicalEquipmentSRDAOImpl extends ServiceRequestDAOImpl {
             ResultSet resultSet = statement.executeQuery();
             
             // Return Location Object
-            if (resultSet.next()) return createServiceRequest(resultSet);
+            if (resultSet.next()) return modifyServiceRequest(resultSet, new MedicalEquipmentSR());
         } catch (SQLException e) {
             System.out.println("Query to database tables failed.");
             e.printStackTrace();
@@ -85,7 +85,7 @@ public class MedicalEquipmentSRDAOImpl extends ServiceRequestDAOImpl {
      * @return If successful return true, else return false.
      */
     @Override
-    public boolean insertServiceRequest(ServiceRequest serviceRequest) {
+    public boolean insertServiceRequest(MedicalEquipmentSR serviceRequest) {
         try {
             boolean successParent = super.insertServiceRequest(serviceRequest);
             // If the SR can be added successfully to the parent table then we can add it to the child table.
@@ -178,31 +178,6 @@ public class MedicalEquipmentSRDAOImpl extends ServiceRequestDAOImpl {
         }
         
         return false;
-    }
-    
-    /**
-     * Create ServiceRequest object from query resultSet.
-     *
-     * @param resultSet ResultSet from query to Service Request DB Table.
-     * @return ServiceRequest object.
-     */
-    @Override
-    protected MedicalEquipmentSR createServiceRequest(ResultSet resultSet) {
-        try {
-            // Create generic SR then convert and modify into MedicalEquipmentServiceRequest
-            MedicalEquipmentSR serviceRequest = new MedicalEquipmentSR(super.createServiceRequest(resultSet));
-            serviceRequest.setRequestID(typesafeTrim(resultSet.getString("REQUESTID"))); // redundant?
-            serviceRequest.setEquipmentID(typesafeTrim(resultSet.getString("EQUIPID")));
-            serviceRequest.setEquipmentType(typesafeTrim(resultSet.getString("EQUIPTYPE")));
-            
-            return serviceRequest;
-            
-        } catch (SQLException | ClassCastException e) {
-            System.out.println("Creation of object from database ResultSet failed.");
-            e.printStackTrace();
-            
-            return null;
-        }
     }
     
 }

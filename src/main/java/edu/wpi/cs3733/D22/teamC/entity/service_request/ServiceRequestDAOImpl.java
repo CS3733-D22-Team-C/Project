@@ -7,7 +7,7 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
-public class ServiceRequestDAOImpl implements ServiceRequestDAO {
+public class ServiceRequestDAOImpl implements ServiceRequestDAO<ServiceRequest> {
     /**
      * Getting all the entries in the ServiceRequests Table to the DB, converting them to ServiceRequest objects
      *
@@ -165,44 +165,7 @@ public class ServiceRequestDAOImpl implements ServiceRequestDAO {
         return false;
     }
     
-    /**
-     * Create ServiceRequest object from query resultSet.
-     *
-     * @param resultSet ResultSet from query to Service Request DB Table.
-     * @return ServiceRequest object.
-     */
-    protected ServiceRequest createServiceRequest(ResultSet resultSet) {
-        try {
-            ServiceRequest serviceRequest = new ServiceRequest();
-            
-            serviceRequest.setRequestID(typesafeTrim(resultSet.getString("REQUESTID")));
-            serviceRequest.setCreatorID(typesafeTrim(resultSet.getString("CREATORID")));
-            serviceRequest.setAssigneeID(typesafeTrim(resultSet.getString("ASSIGNEEID")));
-            serviceRequest.setLocation(typesafeTrim(resultSet.getString("LOCATIONID")));
-            serviceRequest.setCreationTimestamp(resultSet.getTimestamp("CREATIONTIMESTAMP"));
-            serviceRequest.setStatus(typesafeTrim(resultSet.getString("STATUS")));
-            serviceRequest.setPriority(typesafeTrim(resultSet.getString("PRIORITY")));
-            serviceRequest.setRequestType(typesafeTrim(resultSet.getString("REQUESTTYPE")));
-            serviceRequest.setDescription(typesafeTrim(resultSet.getString("DESCRIPTION")));
-            
-            return serviceRequest;
-            
-        } catch (SQLException e) {
-            System.out.println("Creation of object from SERVICE_REQUEST ResultSet failed.");
-            e.printStackTrace();
-            
-            return null;
-        }
-    }
+
     
-    /**
-     * Trim str if not null.
-     *
-     * @param str The String to trim.
-     * @return The trimmed str.
-     */
-    protected String typesafeTrim(String str) {
-        if (str == null) return null;
-        else return str.trim();
-    }
+
 }
