@@ -38,7 +38,7 @@ public class ServiceRequestCreateController implements Initializable {
 
     @FXML
     void clickGoBack(ActionEvent event) {
-        App.instance.setView("view/general/view-service.fxml");
+        App.instance.setView(App.VIEW_SERVICE_REQUESTS_PATH);
     }
 
     @FXML

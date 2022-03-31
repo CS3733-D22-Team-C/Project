@@ -45,7 +45,6 @@ public class LabSystemSRCreateController extends ServiceRequestCreateController 
         LabSystemSRTable.createTableColumns(table);
         table.setRoot(root);
         table.setShowRoot(false);
-
     }
 
     @FXML

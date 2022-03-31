@@ -13,11 +13,11 @@ public class HomePageController {
 
     @FXML
     public void onClickServiceRequests(ActionEvent actionEvent) {
-        App.instance.setView("view/general/view-service.fxml");
+        App.instance.setView(App.instance.VIEW_SERVICE_REQUESTS_PATH);
     }
 
     @FXML
     public void onClickMaps(ActionEvent actionEvent) {
-        App.instance.setView(App.instance.LOCATION_SELECT);
+        App.instance.setView(App.instance.VIEW_LOCATIONS_PATH);
     }
 }

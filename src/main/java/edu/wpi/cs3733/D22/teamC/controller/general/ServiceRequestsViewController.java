@@ -9,21 +9,25 @@ import edu.wpi.cs3733.D22.teamC.App;
 import edu.wpi.cs3733.D22.teamC.entity.service_request.ServiceRequest;
 import edu.wpi.cs3733.D22.teamC.entity.service_request.ServiceRequestDAO;
 import edu.wpi.cs3733.D22.teamC.entity.service_request.ServiceRequestDAOImpl;
-import edu.wpi.cs3733.D22.teamC.entity.service_request.medical_equipment.MedicalEquipmentSRTable;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.TreeItem;
-import javafx.scene.control.TreeTableColumn;
 
-import javax.management.Query;
 import java.net.URL;
 import java.util.List;
 import java.util.ResourceBundle;
 
-public class serviceRequest implements Initializable {
+public class ServiceRequestsViewController implements Initializable {
+    public static final String MEDICAL_EQUIPMENT_CREATE_PATH = "view/service_request/medical_equipment/create_form.fxml";
+    public static final String LAB_SYSTEM_CREATE_PATH = "view/service_request/lab_system/create_form.fxml";
+    public static final String MEDICINE_DELIVERY_CREATE_PATH = "view/service_request/medicine_delivery/create_form.fxml";
+    public static final String SANITATION_CREATE_PATH = "view/service_request/sanitation/create_form.fxml";
+    public static final String FACILITY_MAINTENANCE_CREATE_PATH = "view/service_request/facility_maintenance/create_form.fxml";
+    public static final String SECURITY_CREATE_PATH = "view/service_request/security/create_form.fxml";
+
 
     //Buttons
     @FXML private JFXButton selectButton;
@@ -62,31 +66,27 @@ public class serviceRequest implements Initializable {
         }
     }
     @FXML
-    void onSelectButton(ActionEvent event) { // TODO: Set views for every service request
-        // TODO: Make it so that we just use constants instead of having the paths written fully
-        switch (serviceType.getValue()){
+    void onSelectButton(ActionEvent event) {
+        switch (serviceType.getValue()) {
             case "Medical Equipment":
-                App.instance.setView("view/service_request/medical-equipment-view.fxml");
+                App.instance.setView(MEDICAL_EQUIPMENT_CREATE_PATH);
                 break;
             case "Facility Maintenance":
-                App.instance.setView("view/service_request/facility-maintenance.fxml");
+                App.instance.setView(FACILITY_MAINTENANCE_CREATE_PATH);
                 break;
             case "Lab System":
-                App.instance.setView("view/service_request/lab-system-view.fxml");
+                App.instance.setView(LAB_SYSTEM_CREATE_PATH);
                 break;
             case "Medicine Delivery":
-                App.instance.setView(App.instance.MEDICINE_DELIVERY);
+                App.instance.setView(MEDICINE_DELIVERY_CREATE_PATH);
                 break;
             case "Sanitation":
-                App.instance.setView("view/service_request/sanitation-view.fxml");
+                App.instance.setView(SANITATION_CREATE_PATH);
                 break;
             case "Security":
-                App.instance.setView("view/service_request/security-service-view.fxml");
+                App.instance.setView(SECURITY_CREATE_PATH);
                 break;
             default:
         }
-
     }
-
-
 }

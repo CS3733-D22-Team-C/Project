@@ -6,19 +6,17 @@ import javafx.fxml.FXML;
 public class MenuBarController {
     @FXML
     protected void onMenuBarHomeButtonPress() {
-        // TODO: Add home page path
-        App.instance.setView("view/general/HomePage.fxml");
+        App.instance.setView(App.HOME_PATH);
     }
 
     @FXML
     protected void onMenuBarLocationsButtonPress() {
-        // TODO: Add Locations Page path
-        App.instance.setView("view/general/location-select-view.fxml");
+        App.instance.setView(App.VIEW_LOCATIONS_PATH);
     }
 
     @FXML
     protected void onMenuBarServiceRequestsButtonPress() {
-        App.instance.setView("view/general/view-service.fxml");
+        App.instance.setView(App.VIEW_SERVICE_REQUESTS_PATH);
     }
 
     @FXML

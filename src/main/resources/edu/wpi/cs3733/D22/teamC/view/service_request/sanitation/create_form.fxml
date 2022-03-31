@@ -114,7 +114,7 @@
       <JFXTreeTableView fx:id="table" GridPane.rowIndex="3" />
     </children>
     <stylesheets>
-        <URL value="@../../css/request-page.css" />
-        <URL value="@../../css/base.css" />
+        <URL value="@../../../css/request_page.css" />
+        <URL value="@../../../css/base.css" />
     </stylesheets>
 </GridPane>

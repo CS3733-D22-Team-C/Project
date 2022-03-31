@@ -32,12 +32,6 @@ public class FacilityMaintenanceSRCreateController extends ServiceRequestCreateC
         FacilityMaintenanceSRTable.createTableColumns(table);
         table.setRoot(root);
         table.setShowRoot(false);
-
-        FacilityMaintenanceSRTable met1 = new FacilityMaintenanceSRTable("Cleaning", "123456", "Room 201", "Processing", "Low");
-        FacilityMaintenanceSRTable met2 = new FacilityMaintenanceSRTable("Organizing", "321888", "Room 205", "Done", "High");
-
-        METList.add(met1);
-        METList.add(met2);
     }
 
     @FXML
