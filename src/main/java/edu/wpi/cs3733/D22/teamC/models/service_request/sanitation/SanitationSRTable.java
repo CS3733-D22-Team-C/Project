@@ -1,9 +1,9 @@
-package edu.wpi.cs3733.D22.teamC.entity.service_request.sanitation;
+package edu.wpi.cs3733.D22.teamC.models.service_request.sanitation;
 
 import com.jfoenix.controls.JFXTreeTableColumn;
 import com.jfoenix.controls.JFXTreeTableView;
 import com.jfoenix.controls.datamodels.treetable.RecursiveTreeObject;
-import edu.wpi.cs3733.D22.teamC.entity.service_request.sanitation.SanitationSRTable;
+import edu.wpi.cs3733.D22.teamC.entity.service_request.sanitation.SanitationSR;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
 import javafx.beans.value.ObservableValue;
@@ -21,7 +21,7 @@ public class SanitationSRTable extends RecursiveTreeObject<SanitationSRTable> {
     StringProperty sanitationType;
 
     // Constructor
-    public SanitationSRTable(SanitationServiceRequest sanitationSR) {
+    public SanitationSRTable(SanitationSR sanitationSR) {
         this.assigneeID = new SimpleStringProperty(sanitationSR.getAssigneeID());
         this.location = new SimpleStringProperty(sanitationSR.getLocation());
         this.status = new SimpleStringProperty(sanitationSR.getStatus());

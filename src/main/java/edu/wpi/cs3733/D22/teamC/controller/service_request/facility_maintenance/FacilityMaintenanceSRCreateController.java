@@ -1,9 +1,10 @@
-package edu.wpi.cs3733.D22.teamC.controller.service_request;
+package edu.wpi.cs3733.D22.teamC.controller.service_request.facility_maintenance;
 
 import com.jfoenix.controls.*;
 import com.jfoenix.controls.datamodels.treetable.RecursiveTreeObject;
-import edu.wpi.cs3733.D22.teamC.entity.service_request.facility_maintenance.FacilityMaintenanceSRTable;
-import edu.wpi.cs3733.D22.teamC.entity.service_request.facility_maintenance.FacilityMaintenanceServiceRequest;
+import edu.wpi.cs3733.D22.teamC.controller.service_request.ServiceRequestCreateController;
+import edu.wpi.cs3733.D22.teamC.models.service_request.facility_maintenance.FacilityMaintenanceSRTable;
+import edu.wpi.cs3733.D22.teamC.entity.service_request.facility_maintenance.FacilityMaintenanceSR;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -35,14 +36,14 @@ public class FacilityMaintenanceSRCreateController extends ServiceRequestCreateC
     }
 
     @FXML
-    void clickReset(ActionEvent event) { //A JavaFX action event is a JavaFX Event, which represents some kind of action performed by the user or the program.
+    protected void clickReset(ActionEvent event) { //A JavaFX action event is a JavaFX Event, which represents some kind of action performed by the user or the program.
         super.clickReset(event);
         maintType.clear();
     }
 
     @FXML
-    FacilityMaintenanceServiceRequest clickSubmit(ActionEvent event) {
-        FacilityMaintenanceServiceRequest fmsr = new FacilityMaintenanceServiceRequest();
+    protected FacilityMaintenanceSR clickSubmit(ActionEvent event) {
+        FacilityMaintenanceSR fmsr = new FacilityMaintenanceSR();
         fmsr.setMaintenanceType(maintType.getText());
         fmsr.setAssigneeID(assigneeID.getText());
         fmsr.setLocation(location.getText());

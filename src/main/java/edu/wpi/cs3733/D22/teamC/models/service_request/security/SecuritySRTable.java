@@ -1,16 +1,16 @@
-package edu.wpi.cs3733.D22.teamC.entity.service_request.security;
+package edu.wpi.cs3733.D22.teamC.models.service_request.security;
 
 import com.jfoenix.controls.JFXTreeTableColumn;
 import com.jfoenix.controls.JFXTreeTableView;
 import com.jfoenix.controls.datamodels.treetable.RecursiveTreeObject;
-import edu.wpi.cs3733.D22.teamC.entity.service_request.medical_equipment.MedicalEquipmentServiceRequest;
+import edu.wpi.cs3733.D22.teamC.entity.service_request.security.SecuritySR;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
 import javafx.beans.value.ObservableValue;
 import javafx.scene.control.TreeTableColumn;
 import javafx.util.Callback;
 
-public class securitySRTable extends RecursiveTreeObject<securitySRTable> {
+public class SecuritySRTable extends RecursiveTreeObject<SecuritySRTable> {
 
     StringProperty securityType;
 
@@ -28,12 +28,12 @@ public class securitySRTable extends RecursiveTreeObject<securitySRTable> {
 //        this.priority = new SimpleStringProperty(priority);
 //    }
 
-    public securitySRTable(SecurityServiceRequest securityServiceRequest) {
-        this.securityType =  new SimpleStringProperty(securityServiceRequest.getSecurityType());
-        this.assigneeID = new SimpleStringProperty(securityServiceRequest.getAssigneeID());
-        this.location = new SimpleStringProperty(securityServiceRequest.getLocation());
-        this.status = new SimpleStringProperty(securityServiceRequest.getStatus());
-        this.priority = new SimpleStringProperty(securityServiceRequest.getPriority());
+    public SecuritySRTable(SecuritySR securitySR) {
+        this.securityType =  new SimpleStringProperty(securitySR.getSecurityType());
+        this.assigneeID = new SimpleStringProperty(securitySR.getAssigneeID());
+        this.location = new SimpleStringProperty(securitySR.getLocation());
+        this.status = new SimpleStringProperty(securitySR.getStatus());
+        this.priority = new SimpleStringProperty(securitySR.getPriority());
     }
 
 
@@ -98,45 +98,45 @@ public class securitySRTable extends RecursiveTreeObject<securitySRTable> {
         this.priority.set(priority);
     }
 
-    public static void createTableColumns(JFXTreeTableView<securitySRTable> table) {
+    public static void createTableColumns(JFXTreeTableView<SecuritySRTable> table) {
         //Columns for table
-        JFXTreeTableColumn<securitySRTable, String> IDCol = new JFXTreeTableColumn<>("Priority");
+        JFXTreeTableColumn<SecuritySRTable, String> IDCol = new JFXTreeTableColumn<>("Priority");
         IDCol.setPrefWidth(80);
-        IDCol.setCellValueFactory(new Callback<TreeTableColumn.CellDataFeatures<securitySRTable, String>, ObservableValue<String>>() {
+        IDCol.setCellValueFactory(new Callback<TreeTableColumn.CellDataFeatures<SecuritySRTable, String>, ObservableValue<String>>() {
             @Override
-            public ObservableValue<String> call(TreeTableColumn.CellDataFeatures<securitySRTable, String> param) {
+            public ObservableValue<String> call(TreeTableColumn.CellDataFeatures<SecuritySRTable, String> param) {
                 return param.getValue().getValue().priorityProperty();
             }
         });
-        JFXTreeTableColumn<securitySRTable, String> assigneeCol = new JFXTreeTableColumn<>("Assignee");
+        JFXTreeTableColumn<SecuritySRTable, String> assigneeCol = new JFXTreeTableColumn<>("Assignee");
         assigneeCol.setPrefWidth(80);
-        assigneeCol.setCellValueFactory(new Callback<TreeTableColumn.CellDataFeatures<securitySRTable, String>, ObservableValue<String>>() {
+        assigneeCol.setCellValueFactory(new Callback<TreeTableColumn.CellDataFeatures<SecuritySRTable, String>, ObservableValue<String>>() {
             @Override
-            public ObservableValue<String> call(TreeTableColumn.CellDataFeatures<securitySRTable, String> param) {
+            public ObservableValue<String> call(TreeTableColumn.CellDataFeatures<SecuritySRTable, String> param) {
                 return param.getValue().getValue().assigneeIDProperty();
             }
         });
-        JFXTreeTableColumn<securitySRTable, String> statusCol = new JFXTreeTableColumn<>("Status");
+        JFXTreeTableColumn<SecuritySRTable, String> statusCol = new JFXTreeTableColumn<>("Status");
         statusCol.setPrefWidth(80);
-        statusCol.setCellValueFactory(new Callback<TreeTableColumn.CellDataFeatures<securitySRTable, String>, ObservableValue<String>>() {
+        statusCol.setCellValueFactory(new Callback<TreeTableColumn.CellDataFeatures<SecuritySRTable, String>, ObservableValue<String>>() {
             @Override
-            public ObservableValue<String> call(TreeTableColumn.CellDataFeatures<securitySRTable, String> param) {
+            public ObservableValue<String> call(TreeTableColumn.CellDataFeatures<SecuritySRTable, String> param) {
                 return param.getValue().getValue().statusProperty();
             }
         });
-        JFXTreeTableColumn<securitySRTable, String> locationCol = new JFXTreeTableColumn<>("Location");
+        JFXTreeTableColumn<SecuritySRTable, String> locationCol = new JFXTreeTableColumn<>("Location");
         locationCol.setPrefWidth(80);
-        locationCol.setCellValueFactory(new Callback<TreeTableColumn.CellDataFeatures<securitySRTable, String>, ObservableValue<String>>() {
+        locationCol.setCellValueFactory(new Callback<TreeTableColumn.CellDataFeatures<SecuritySRTable, String>, ObservableValue<String>>() {
             @Override
-            public ObservableValue<String> call(TreeTableColumn.CellDataFeatures<securitySRTable, String> param) {
+            public ObservableValue<String> call(TreeTableColumn.CellDataFeatures<SecuritySRTable, String> param) {
                 return param.getValue().getValue().locationProperty();
             }
         });
-        JFXTreeTableColumn<securitySRTable, String> typeCol = new JFXTreeTableColumn<>("Type");
+        JFXTreeTableColumn<SecuritySRTable, String> typeCol = new JFXTreeTableColumn<>("Type");
         typeCol.setPrefWidth(80);
-        typeCol.setCellValueFactory(new Callback<TreeTableColumn.CellDataFeatures<securitySRTable, String>, ObservableValue<String>>() {
+        typeCol.setCellValueFactory(new Callback<TreeTableColumn.CellDataFeatures<SecuritySRTable, String>, ObservableValue<String>>() {
             @Override
-            public ObservableValue<String> call(TreeTableColumn.CellDataFeatures<securitySRTable, String> param) {
+            public ObservableValue<String> call(TreeTableColumn.CellDataFeatures<SecuritySRTable, String> param) {
                 return param.getValue().getValue().securityTypeProperty();
             }
         });

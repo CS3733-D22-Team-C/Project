@@ -1,12 +1,13 @@
-package edu.wpi.cs3733.D22.teamC.controller.service_request;
+package edu.wpi.cs3733.D22.teamC.controller.service_request.medical_equipment;
 
 import com.jfoenix.controls.*;
 import com.jfoenix.controls.datamodels.treetable.RecursiveTreeObject;
+import edu.wpi.cs3733.D22.teamC.controller.service_request.ServiceRequestCreateController;
 import edu.wpi.cs3733.D22.teamC.entity.service_request.ServiceRequest;
 import edu.wpi.cs3733.D22.teamC.entity.service_request.ServiceRequestDAO;
 import edu.wpi.cs3733.D22.teamC.entity.service_request.medical_equipment.MedicalEquipmentSRDAOImpl;
-import edu.wpi.cs3733.D22.teamC.entity.service_request.medical_equipment.MedicalEquipmentServiceRequest;
-import edu.wpi.cs3733.D22.teamC.entity.service_request.medical_equipment.MedicalEquipmentSRTable;
+import edu.wpi.cs3733.D22.teamC.entity.service_request.medical_equipment.MedicalEquipmentSR;
+import edu.wpi.cs3733.D22.teamC.models.service_request.medical_equipment.MedicalEquipmentSRTable;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -51,16 +52,16 @@ public class MedicalEquipmentSRCreateController extends ServiceRequestCreateCont
         // Query Database
         ServiceRequestDAO serviceRequestDAO = new MedicalEquipmentSRDAOImpl();
         List<ServiceRequest> serviceRequests = serviceRequestDAO.getAllServiceRequests();
-        List<MedicalEquipmentServiceRequest> medicalEquipmentSRs = serviceRequests.stream().map(SR -> {
-            return (MedicalEquipmentServiceRequest) SR;
+        List<MedicalEquipmentSR> medicalEquipmentSRs = serviceRequests.stream().map(SR -> {
+            return (MedicalEquipmentSR) SR;
         }).collect(Collectors.toList());
-        for (MedicalEquipmentServiceRequest medicalEquipmentSR : medicalEquipmentSRs) {
+        for (MedicalEquipmentSR medicalEquipmentSR : medicalEquipmentSRs) {
             METList.add(new MedicalEquipmentSRTable(medicalEquipmentSR));
         }
     }
 
     @FXML
-    void clickReset(ActionEvent event) {
+    protected void clickReset(ActionEvent event) {
         super.clickReset(event);
 
         equipID.clear();
@@ -68,8 +69,8 @@ public class MedicalEquipmentSRCreateController extends ServiceRequestCreateCont
     }
 
     @FXML
-    MedicalEquipmentServiceRequest clickSubmit(ActionEvent event) {
-        MedicalEquipmentServiceRequest medEquip = new MedicalEquipmentServiceRequest();
+    protected MedicalEquipmentSR clickSubmit(ActionEvent event) {
+        MedicalEquipmentSR medEquip = new MedicalEquipmentSR();
 
         medEquip.setCreationTimestamp(new Timestamp(System.currentTimeMillis()));
 

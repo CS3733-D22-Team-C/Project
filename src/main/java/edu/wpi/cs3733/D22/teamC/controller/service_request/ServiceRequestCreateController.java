@@ -37,12 +37,12 @@ public class ServiceRequestCreateController implements Initializable {
     }
 
     @FXML
-    void clickGoBack(ActionEvent event) {
+    protected void clickGoBack(ActionEvent event) {
         App.instance.setView(App.VIEW_SERVICE_REQUESTS_PATH);
     }
 
     @FXML
-    void clickReset(ActionEvent event) {
+    protected void clickReset(ActionEvent event) {
         // Clearing Fields
         assigneeID.clear();
         location.clear();

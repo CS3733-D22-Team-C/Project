@@ -1,9 +1,8 @@
 package edu.wpi.cs3733.D22.teamC.entity.service_request.facility_maintenance;
 
 import edu.wpi.cs3733.D22.teamC.entity.service_request.ServiceRequest;
-import edu.wpi.cs3733.D22.teamC.entity.service_request.medical_equipment.MedicalEquipmentServiceRequest;
 
-public class FacilityMaintenanceServiceRequest extends ServiceRequest {
+public class FacilityMaintenanceSR extends ServiceRequest {
     protected String maintenanceType;   // TODO: Make Enum
 
     //For the table

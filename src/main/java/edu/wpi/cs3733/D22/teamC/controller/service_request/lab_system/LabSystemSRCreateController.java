@@ -1,19 +1,16 @@
-package edu.wpi.cs3733.D22.teamC.controller.service_request;
+package edu.wpi.cs3733.D22.teamC.controller.service_request.lab_system;
 
 import com.jfoenix.controls.*;
 import com.jfoenix.controls.datamodels.treetable.RecursiveTreeObject;
-import edu.wpi.cs3733.D22.teamC.App;
-import edu.wpi.cs3733.D22.teamC.entity.service_request.lab_system.LabSystemSRTable;
-import edu.wpi.cs3733.D22.teamC.entity.service_request.lab_system.LabSystemServiceRequest;
-import edu.wpi.cs3733.D22.teamC.entity.service_request.medical_equipment.MedicalEquipmentSRTable;
+import edu.wpi.cs3733.D22.teamC.controller.service_request.ServiceRequestCreateController;
+import edu.wpi.cs3733.D22.teamC.models.service_request.lab_system.LabSystemSRTable;
+import edu.wpi.cs3733.D22.teamC.entity.service_request.lab_system.LabSystemSR;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.fxml.Initializable;
 import javafx.scene.control.TextField;
 import javafx.scene.control.TreeItem;
-import javafx.scene.control.TreeTableColumn;
 
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -48,7 +45,7 @@ public class LabSystemSRCreateController extends ServiceRequestCreateController 
     }
 
     @FXML
-    void clickReset(ActionEvent event) {
+    protected void clickReset(ActionEvent event) {
         super.clickReset(event);
 
         patientID.clear();
@@ -56,13 +53,13 @@ public class LabSystemSRCreateController extends ServiceRequestCreateController 
     }
 
     @FXML
-    LabSystemServiceRequest clickSubmit(ActionEvent event) {
+    protected LabSystemSR clickSubmit(ActionEvent event) {
         // Check if all fields are filled
         if(labType.getSelectionModel().isEmpty() || patientID.getText().isEmpty() ||
         assigneeID.getText().isEmpty() || location.getText().isEmpty() || priority.getSelectionModel().isEmpty()
         || status.getSelectionModel().isEmpty()) return null;
 
-        LabSystemServiceRequest labSystem = new LabSystemServiceRequest();
+        LabSystemSR labSystem = new LabSystemSR();
 
         //Sets from textFields
         labSystem.setAssigneeID(assigneeID.getText());

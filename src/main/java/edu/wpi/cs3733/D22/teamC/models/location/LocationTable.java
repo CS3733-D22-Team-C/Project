@@ -1,4 +1,4 @@
-package edu.wpi.cs3733.D22.teamC.entity;
+package edu.wpi.cs3733.D22.teamC.models.location;
 
 import com.jfoenix.controls.JFXTreeTableColumn;
 import com.jfoenix.controls.JFXTreeTableView;

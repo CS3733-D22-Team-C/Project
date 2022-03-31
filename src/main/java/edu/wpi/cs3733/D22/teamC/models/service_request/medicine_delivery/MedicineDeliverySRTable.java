@@ -1,9 +1,9 @@
-package edu.wpi.cs3733.D22.teamC.entity.service_request.medicine_delivery;
+package edu.wpi.cs3733.D22.teamC.models.service_request.medicine_delivery;
 
 import com.jfoenix.controls.JFXTreeTableColumn;
 import com.jfoenix.controls.JFXTreeTableView;
 import com.jfoenix.controls.datamodels.treetable.RecursiveTreeObject;
-import edu.wpi.cs3733.D22.teamC.entity.service_request.medical_equipment.MedicalEquipmentServiceRequest;
+import edu.wpi.cs3733.D22.teamC.entity.service_request.medicine_delivery.MedicineDeliverySR;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
 import javafx.beans.value.ObservableValue;
@@ -21,7 +21,7 @@ public class MedicineDeliverySRTable extends RecursiveTreeObject<MedicineDeliver
     StringProperty status;
     StringProperty priority;
 
-    public MedicineDeliverySRTable(MedicineDeliveryServiceRequest medicineDeliverySR) {
+    public MedicineDeliverySRTable(MedicineDeliverySR medicineDeliverySR) {
         this.assigneeID = new SimpleStringProperty(medicineDeliverySR.getAssigneeID());
         this.location = new SimpleStringProperty(medicineDeliverySR.getLocation());
         this.status = new SimpleStringProperty(medicineDeliverySR.getStatus());

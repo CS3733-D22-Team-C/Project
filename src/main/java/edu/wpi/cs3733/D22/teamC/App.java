@@ -6,7 +6,7 @@ import edu.wpi.cs3733.D22.teamC.entity.location.LocationDAOImpl;
 import edu.wpi.cs3733.D22.teamC.entity.service_request.ServiceRequest;
 import edu.wpi.cs3733.D22.teamC.entity.service_request.ServiceRequestDAO;
 import edu.wpi.cs3733.D22.teamC.entity.service_request.medical_equipment.MedicalEquipmentSRDAOImpl;
-import edu.wpi.cs3733.D22.teamC.entity.service_request.medical_equipment.MedicalEquipmentServiceRequest;
+import edu.wpi.cs3733.D22.teamC.entity.service_request.medical_equipment.MedicalEquipmentSR;
 import edu.wpi.cs3733.D22.teamC.fileio.csv.LocationCSVWriter;
 import edu.wpi.cs3733.D22.teamC.fileio.csv.LocationCSVReader;
 import edu.wpi.cs3733.D22.teamC.fileio.csv.MedicalEquipmentSRCSVWriter;
@@ -55,10 +55,10 @@ public class App extends Application {
 
         // loading CSV for medical equipment service request
         MedicalEquipmentSRCSVReader mECSVReader = new MedicalEquipmentSRCSVReader();
-        List<MedicalEquipmentServiceRequest> MedicalEquipmentSRs = mECSVReader.readFile("MedEquipReq.csv");
+        List<MedicalEquipmentSR> MedicalEquipmentSRs = mECSVReader.readFile("MedEquipReq.csv");
         if(MedicalEquipmentSRs != null){
             ServiceRequestDAO serviceRequestDAO = new MedicalEquipmentSRDAOImpl();
-            for(MedicalEquipmentServiceRequest medEquipSR : MedicalEquipmentSRs){
+            for(MedicalEquipmentSR medEquipSR : MedicalEquipmentSRs){
                 serviceRequestDAO.insertServiceRequest(medEquipSR);
             }
         }
@@ -88,8 +88,8 @@ public class App extends Application {
         MedicalEquipmentSRCSVWriter mECSVWriter = new MedicalEquipmentSRCSVWriter();
         ServiceRequestDAO serviceRequestDAO = new MedicalEquipmentSRDAOImpl();
         List<ServiceRequest> serviceRequests = serviceRequestDAO.getAllServiceRequests();
-        List<MedicalEquipmentServiceRequest> medicalEquipmentSR = serviceRequests.stream().map(
-                SR -> {return (MedicalEquipmentServiceRequest) SR;}
+        List<MedicalEquipmentSR> medicalEquipmentSR = serviceRequests.stream().map(
+                SR -> {return (MedicalEquipmentSR) SR;}
         ).collect(Collectors.toList());
 
         if(medicalEquipmentSR != null){

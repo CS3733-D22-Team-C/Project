@@ -1,12 +1,12 @@
-package edu.wpi.cs3733.D22.teamC.entity.service_request.medical_equipment;
+package edu.wpi.cs3733.D22.teamC.models.service_request.medical_equipment;
 
 import com.jfoenix.controls.JFXTreeTableColumn;
 import com.jfoenix.controls.JFXTreeTableView;
 import com.jfoenix.controls.datamodels.treetable.RecursiveTreeObject;
+import edu.wpi.cs3733.D22.teamC.entity.service_request.medical_equipment.MedicalEquipmentSR;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
 import javafx.beans.value.ObservableValue;
-import javafx.scene.control.TableView;
 import javafx.scene.control.TreeTableColumn;
 import javafx.scene.control.TreeTableView;
 import javafx.util.Callback;
@@ -31,7 +31,7 @@ public class MedicalEquipmentSRTable extends RecursiveTreeObject<MedicalEquipmen
         this.priority = new SimpleStringProperty(priority);
     }
 
-    public MedicalEquipmentSRTable(MedicalEquipmentServiceRequest medicalEquipmentSR) {
+    public MedicalEquipmentSRTable(MedicalEquipmentSR medicalEquipmentSR) {
         this.equipmentID = new SimpleStringProperty(medicalEquipmentSR.getEquipmentID());
         this.equipmentType =  new SimpleStringProperty(medicalEquipmentSR.getEquipmentType());
         this.assigneeID = new SimpleStringProperty(medicalEquipmentSR.getAssigneeID());

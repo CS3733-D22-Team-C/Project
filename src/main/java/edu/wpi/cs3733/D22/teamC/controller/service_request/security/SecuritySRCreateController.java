@@ -1,11 +1,12 @@
-package edu.wpi.cs3733.D22.teamC.controller.service_request;
+package edu.wpi.cs3733.D22.teamC.controller.service_request.security;
 
 import com.jfoenix.controls.JFXComboBox;
 import com.jfoenix.controls.JFXTreeTableView;
 import com.jfoenix.controls.RecursiveTreeItem;
 import com.jfoenix.controls.datamodels.treetable.RecursiveTreeObject;
-import edu.wpi.cs3733.D22.teamC.entity.service_request.security.SecurityServiceRequest;
-import edu.wpi.cs3733.D22.teamC.entity.service_request.security.securitySRTable;
+import edu.wpi.cs3733.D22.teamC.controller.service_request.ServiceRequestCreateController;
+import edu.wpi.cs3733.D22.teamC.entity.service_request.security.SecuritySR;
+import edu.wpi.cs3733.D22.teamC.models.service_request.security.SecuritySRTable;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -21,11 +22,11 @@ public class SecuritySRCreateController extends ServiceRequestCreateController {
     @FXML private JFXComboBox<String> secType;
 
     // For table
-    @FXML private JFXTreeTableView<securitySRTable> table;
-    ObservableList<securitySRTable> METList = FXCollections.observableArrayList();
-    final TreeItem<securitySRTable> root = new RecursiveTreeItem<securitySRTable>(METList, RecursiveTreeObject::getChildren);
+    @FXML private JFXTreeTableView<SecuritySRTable> table;
+    ObservableList<SecuritySRTable> METList = FXCollections.observableArrayList();
+    final TreeItem<SecuritySRTable> root = new RecursiveTreeItem<SecuritySRTable>(METList, RecursiveTreeObject::getChildren);
 
-    ObservableList<securitySRTable> data;
+    ObservableList<SecuritySRTable> data;
 
 
     @Override
@@ -38,20 +39,20 @@ public class SecuritySRCreateController extends ServiceRequestCreateController {
         secType.getItems().add("Security Type 3");
         secType.getItems().add("Security Type 4");
 
-        securitySRTable.createTableColumns(table);
+        SecuritySRTable.createTableColumns(table);
         table.setRoot(root);
         table.setShowRoot(false);
     }
 
     @FXML
-    void clickReset(ActionEvent event) {
+    protected void clickReset(ActionEvent event) {
         super.clickReset(event);
         secType.valueProperty().setValue(null);
     }
 
 
     @FXML
-    SecurityServiceRequest clickSubmit(ActionEvent event) {
+    protected SecuritySR clickSubmit(ActionEvent event) {
 
         if (assigneeID.getText().isEmpty() || secType.getSelectionModel().isEmpty() ||
         location.getText().isEmpty() || priority.getSelectionModel().isEmpty() ||
@@ -61,23 +62,23 @@ public class SecuritySRCreateController extends ServiceRequestCreateController {
         } else
         {
 
-            SecurityServiceRequest securityServiceRequest = new SecurityServiceRequest();
+            SecuritySR securitySR = new SecuritySR();
 
             //Sets from textFields
-            securityServiceRequest.setAssigneeID(assigneeID.getText());
+            securitySR.setAssigneeID(assigneeID.getText());
             //securityServiceRequest.setDescription(description.getText());
-            securityServiceRequest.setLocation(location.getText());
+            securitySR.setLocation(location.getText());
 
             //Sets from combo boxes
-            securityServiceRequest.setStatus(status.getValue());
-            securityServiceRequest.setPriority(priority.getValue());
-            securityServiceRequest.setSecurityType(secType.getValue());
+            securitySR.setStatus(status.getValue());
+            securitySR.setPriority(priority.getValue());
+            securitySR.setSecurityType(secType.getValue());
 
             // Table Entry
             clickReset(event);
-            securitySRTable met = new securitySRTable(securityServiceRequest);
+            SecuritySRTable met = new SecuritySRTable(securitySR);
             METList.add(met);
-            return securityServiceRequest;
+            return securitySR;
         }
     }
 }

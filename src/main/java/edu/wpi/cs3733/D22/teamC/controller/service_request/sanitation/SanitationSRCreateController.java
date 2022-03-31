@@ -1,12 +1,12 @@
-package edu.wpi.cs3733.D22.teamC.controller.service_request;
+package edu.wpi.cs3733.D22.teamC.controller.service_request.sanitation;
 
 import com.jfoenix.controls.JFXComboBox;
 import com.jfoenix.controls.JFXTreeTableView;
 import com.jfoenix.controls.RecursiveTreeItem;
 import com.jfoenix.controls.datamodels.treetable.RecursiveTreeObject;
-import edu.wpi.cs3733.D22.teamC.App;
-import edu.wpi.cs3733.D22.teamC.entity.service_request.sanitation.SanitationSRTable;
-import edu.wpi.cs3733.D22.teamC.entity.service_request.sanitation.SanitationServiceRequest;
+import edu.wpi.cs3733.D22.teamC.controller.service_request.ServiceRequestCreateController;
+import edu.wpi.cs3733.D22.teamC.models.service_request.sanitation.SanitationSRTable;
+import edu.wpi.cs3733.D22.teamC.entity.service_request.sanitation.SanitationSR;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -45,7 +45,7 @@ public class SanitationSRCreateController extends ServiceRequestCreateController
     }
 
     @FXML
-    void clickReset(javafx.event.ActionEvent event) {
+    protected void clickReset(javafx.event.ActionEvent event) {
         super.clickReset(event);
 
         // Clear dropdown menu
@@ -53,31 +53,31 @@ public class SanitationSRCreateController extends ServiceRequestCreateController
     }
 
     @FXML
-    SanitationServiceRequest clickSubmit(ActionEvent event) {
-        SanitationServiceRequest sanitationServiceRequest = new SanitationServiceRequest();
+    protected SanitationSR clickSubmit(ActionEvent event) {
+        SanitationSR sanitationSR = new SanitationSR();
 
         if(assigneeID.getText().isEmpty() || location.getText().isEmpty() || priority.getSelectionModel().isEmpty() || status.getSelectionModel().isEmpty() || sanitationType.getSelectionModel().isEmpty()) {
             return null;
         }
         // Start setting up a Java object for a SanitationServiceRequest
         // Text field setting
-        sanitationServiceRequest.setAssigneeID(assigneeID.getText());
-        sanitationServiceRequest.setLocation(location.getText());
+        sanitationSR.setAssigneeID(assigneeID.getText());
+        sanitationSR.setLocation(location.getText());
 
         // Dropdown Boxes
-        sanitationServiceRequest.setStatus(status.getValue());
-        sanitationServiceRequest.setSanitationType(sanitationType.getValue());
-        sanitationServiceRequest.setPriority(priority.getValue());
+        sanitationSR.setStatus(status.getValue());
+        sanitationSR.setSanitationType(sanitationType.getValue());
+        sanitationSR.setPriority(priority.getValue());
 
         // Sanitation type to enum
-        int sanitationTypeEnum = sanitationServiceRequest.getSanitationTypeEnum(sanitationType.getValue());
+        int sanitationTypeEnum = sanitationSR.getSanitationTypeEnum(sanitationType.getValue());
 
         clickReset(event);
 
-        SanitationSRTable tableEntry = new SanitationSRTable(sanitationServiceRequest);
+        SanitationSRTable tableEntry = new SanitationSRTable(sanitationSR);
 
         sanitationList.add(tableEntry);
 
-        return sanitationServiceRequest;
+        return sanitationSR;
     }
 }

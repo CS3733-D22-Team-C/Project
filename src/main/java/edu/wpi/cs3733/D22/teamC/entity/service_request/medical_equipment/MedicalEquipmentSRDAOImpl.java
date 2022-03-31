@@ -56,7 +56,7 @@ public class MedicalEquipmentSRDAOImpl extends ServiceRequestDAOImpl {
      * @return MedicalEquipmentServiceRequest object.
      */
     @Override
-    public MedicalEquipmentServiceRequest getServiceRequest(String requestID) {
+    public MedicalEquipmentSR getServiceRequest(String requestID) {
         try {
             // Execute SELECT Query to join the parent table and child table attributes
             PreparedStatement statement = DBManager.getInstance().connection.prepareStatement(
@@ -96,8 +96,8 @@ public class MedicalEquipmentSRDAOImpl extends ServiceRequestDAOImpl {
                 );
                 statement.setString(1, serviceRequest.getRequestID());
                 // Set child-specific attributes by casting
-                statement.setString(2, ((MedicalEquipmentServiceRequest) serviceRequest).getEquipmentID());
-                statement.setString(3, ((MedicalEquipmentServiceRequest) serviceRequest).getEquipmentType());
+                statement.setString(2, ((MedicalEquipmentSR) serviceRequest).getEquipmentID());
+                statement.setString(3, ((MedicalEquipmentSR) serviceRequest).getEquipmentType());
                 statement.execute();
                 
                 return true;
@@ -130,8 +130,8 @@ public class MedicalEquipmentSRDAOImpl extends ServiceRequestDAOImpl {
                             "UPDATE MEDICAL_EQUIP_SERVICE_REQUEST SET EQUIPID = ?, EQUIPTYPE = ? " +
                                     "WHERE REQUESTID = ?"
                     );
-                    statement.setString(1, ((MedicalEquipmentServiceRequest) serviceRequest).getEquipmentID());
-                    statement.setString(2, ((MedicalEquipmentServiceRequest) serviceRequest).getEquipmentType());
+                    statement.setString(1, ((MedicalEquipmentSR) serviceRequest).getEquipmentID());
+                    statement.setString(2, ((MedicalEquipmentSR) serviceRequest).getEquipmentType());
                     statement.setString(3, serviceRequest.getRequestID());
                     statement.execute();
                     
@@ -187,10 +187,10 @@ public class MedicalEquipmentSRDAOImpl extends ServiceRequestDAOImpl {
      * @return ServiceRequest object.
      */
     @Override
-    protected MedicalEquipmentServiceRequest createServiceRequest(ResultSet resultSet) {
+    protected MedicalEquipmentSR createServiceRequest(ResultSet resultSet) {
         try {
             // Create generic SR then convert and modify into MedicalEquipmentServiceRequest
-            MedicalEquipmentServiceRequest serviceRequest = new MedicalEquipmentServiceRequest(super.createServiceRequest(resultSet));
+            MedicalEquipmentSR serviceRequest = new MedicalEquipmentSR(super.createServiceRequest(resultSet));
             serviceRequest.setRequestID(typesafeTrim(resultSet.getString("REQUESTID"))); // redundant?
             serviceRequest.setEquipmentID(typesafeTrim(resultSet.getString("EQUIPID")));
             serviceRequest.setEquipmentType(typesafeTrim(resultSet.getString("EQUIPTYPE")));

@@ -1,10 +1,9 @@
-package edu.wpi.cs3733.D22.teamC.entity.service_request.facility_maintenance;
+package edu.wpi.cs3733.D22.teamC.models.service_request.facility_maintenance;
 
 import com.jfoenix.controls.JFXTreeTableColumn;
 import com.jfoenix.controls.JFXTreeTableView;
 import com.jfoenix.controls.datamodels.treetable.RecursiveTreeObject;
-import edu.wpi.cs3733.D22.teamC.entity.service_request.medical_equipment.MedicalEquipmentSRTable;
-import edu.wpi.cs3733.D22.teamC.entity.service_request.medical_equipment.MedicalEquipmentServiceRequest;
+import edu.wpi.cs3733.D22.teamC.entity.service_request.facility_maintenance.FacilityMaintenanceSR;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
 import javafx.beans.value.ObservableValue;
@@ -29,7 +28,7 @@ public class FacilityMaintenanceSRTable extends RecursiveTreeObject<FacilityMain
         this.priority = new SimpleStringProperty(priority);
     }
 
-    public FacilityMaintenanceSRTable(FacilityMaintenanceServiceRequest facilityMaintenanceSR) {
+    public FacilityMaintenanceSRTable(FacilityMaintenanceSR facilityMaintenanceSR) {
         this.maintenanceType = new SimpleStringProperty(facilityMaintenanceSR.getMaintenanceType());
         this.assigneeID = new SimpleStringProperty(facilityMaintenanceSR.getAssigneeID());
         this.location = new SimpleStringProperty(facilityMaintenanceSR.getLocation());

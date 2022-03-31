@@ -2,7 +2,7 @@ package edu.wpi.cs3733.D22.teamC.entity.service_request.sanitation;
 
 import edu.wpi.cs3733.D22.teamC.entity.service_request.ServiceRequest;
 
-public class SanitationServiceRequest extends ServiceRequest {
+public class SanitationSR extends ServiceRequest {
     protected String sanitationType;    // TODO: Make Enum
 
     enum sanitationEnum {

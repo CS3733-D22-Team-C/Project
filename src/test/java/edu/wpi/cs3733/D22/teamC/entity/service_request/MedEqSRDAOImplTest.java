@@ -2,7 +2,7 @@ package edu.wpi.cs3733.D22.teamC.entity.service_request;
 
 import edu.wpi.cs3733.D22.teamC.DBManager;
 import edu.wpi.cs3733.D22.teamC.entity.service_request.medical_equipment.MedicalEquipmentSRDAOImpl;
-import edu.wpi.cs3733.D22.teamC.entity.service_request.medical_equipment.MedicalEquipmentServiceRequest;
+import edu.wpi.cs3733.D22.teamC.entity.service_request.medical_equipment.MedicalEquipmentSR;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -63,7 +63,7 @@ class MedEqSRDAOImplTest {
         String equipID = "BED003";
         String equipType = "Bed";
         
-        ServiceRequest insertSR = new MedicalEquipmentServiceRequest();
+        ServiceRequest insertSR = new MedicalEquipmentSR();
         insertSR.setRequestID(requestID);
         insertSR.setCreatorID(creatorID);
         insertSR.setAssigneeID(assigneeID);
@@ -73,8 +73,8 @@ class MedEqSRDAOImplTest {
         insertSR.setPriority(priority);
         insertSR.setRequestType(requestType);
         insertSR.setDescription(description);
-        ((MedicalEquipmentServiceRequest) insertSR).setEquipmentID(equipID);
-        ((MedicalEquipmentServiceRequest) insertSR).setEquipmentType(equipType);
+        ((MedicalEquipmentSR) insertSR).setEquipmentID(equipID);
+        ((MedicalEquipmentSR) insertSR).setEquipmentType(equipType);
         
         assertTrue(medicalEqDAO.insertServiceRequest(insertSR));
         assertEquals(1, medicalEqDAO.getAllServiceRequests().size());
@@ -83,7 +83,7 @@ class MedEqSRDAOImplTest {
         assertFalse(medicalEqDAO.insertServiceRequest(insertSR));
         
         // Check that DB values are expected
-        MedicalEquipmentServiceRequest querySR = medicalEqDAO.getServiceRequest(insertSR.getRequestID());
+        MedicalEquipmentSR querySR = medicalEqDAO.getServiceRequest(insertSR.getRequestID());
         assertNotNull(querySR);
         assertEquals(requestID, querySR.getRequestID());
         assertEquals(creatorID, querySR.getCreatorID());
@@ -119,7 +119,7 @@ class MedEqSRDAOImplTest {
         String equipID = "BED003";
         String equipType = "Bed";
     
-        ServiceRequest deleteSR = new MedicalEquipmentServiceRequest();
+        ServiceRequest deleteSR = new MedicalEquipmentSR();
         deleteSR.setRequestID(requestID);
         deleteSR.setCreatorID(creatorID);
         deleteSR.setAssigneeID(assigneeID);
@@ -129,8 +129,8 @@ class MedEqSRDAOImplTest {
         deleteSR.setPriority(priority);
         deleteSR.setRequestType(requestType);
         deleteSR.setDescription(description);
-        ((MedicalEquipmentServiceRequest) deleteSR).setEquipmentID(equipID);
-        ((MedicalEquipmentServiceRequest) deleteSR).setEquipmentType(equipType);
+        ((MedicalEquipmentSR) deleteSR).setEquipmentID(equipID);
+        ((MedicalEquipmentSR) deleteSR).setEquipmentType(equipType);
         
         assertTrue(medicalEqDAO.insertServiceRequest(deleteSR));
         assertEquals(1, medicalEqDAO.getAllServiceRequests().size());
@@ -168,7 +168,7 @@ class MedEqSRDAOImplTest {
         String equipID = "BED003";
         String equipType = "Bed";
     
-        ServiceRequest updateSR = new MedicalEquipmentServiceRequest();
+        ServiceRequest updateSR = new MedicalEquipmentSR();
         updateSR.setRequestID(requestID);
         updateSR.setCreatorID(creatorID);
         updateSR.setAssigneeID(assigneeID);
@@ -178,8 +178,8 @@ class MedEqSRDAOImplTest {
         updateSR.setPriority(priority);
         updateSR.setRequestType(requestType);
         updateSR.setDescription(description);
-        ((MedicalEquipmentServiceRequest) updateSR).setEquipmentID(equipID);
-        ((MedicalEquipmentServiceRequest) updateSR).setEquipmentType(equipType);
+        ((MedicalEquipmentSR) updateSR).setEquipmentID(equipID);
+        ((MedicalEquipmentSR) updateSR).setEquipmentType(equipType);
     
         assertTrue(medicalEqDAO.insertServiceRequest(updateSR));
         assertEquals(1, medicalEqDAO.getAllServiceRequests().size());
@@ -201,13 +201,13 @@ class MedEqSRDAOImplTest {
         updateSR.setPriority(priority);
         updateSR.setRequestType(requestType);
         updateSR.setDescription(description);
-        ((MedicalEquipmentServiceRequest) updateSR).setEquipmentID(equipID);
-        ((MedicalEquipmentServiceRequest) updateSR).setEquipmentType(equipType);
+        ((MedicalEquipmentSR) updateSR).setEquipmentID(equipID);
+        ((MedicalEquipmentSR) updateSR).setEquipmentType(equipType);
         assertTrue(medicalEqDAO.updateServiceRequest(updateSR));
         assertEquals(1, medicalEqDAO.getAllServiceRequests().size());
     
         // Check that DB values are expected
-        MedicalEquipmentServiceRequest querySR = medicalEqDAO.getServiceRequest(updateSR.getRequestID());
+        MedicalEquipmentSR querySR = medicalEqDAO.getServiceRequest(updateSR.getRequestID());
         assertNotNull(querySR);
         assertEquals(requestID, querySR.getRequestID());
         assertEquals(creatorID, querySR.getCreatorID());
@@ -221,7 +221,7 @@ class MedEqSRDAOImplTest {
         assertEquals(equipType, querySR.getEquipmentType());
         
         // Cannot Update Nonexistent Location
-        ServiceRequest newSR = new MedicalEquipmentServiceRequest();
+        ServiceRequest newSR = new MedicalEquipmentSR();
         newSR.setRequestID("Test001");
         assertFalse(medicalEqDAO.updateServiceRequest(newSR));
     }

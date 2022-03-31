@@ -1,9 +1,9 @@
-package edu.wpi.cs3733.D22.teamC.entity.service_request.lab_system;
+package edu.wpi.cs3733.D22.teamC.models.service_request.lab_system;
 
 import com.jfoenix.controls.JFXTreeTableColumn;
 import com.jfoenix.controls.JFXTreeTableView;
 import com.jfoenix.controls.datamodels.treetable.RecursiveTreeObject;
-import edu.wpi.cs3733.D22.teamC.entity.service_request.medical_equipment.MedicalEquipmentSRTable;
+import edu.wpi.cs3733.D22.teamC.entity.service_request.lab_system.LabSystemSR;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
 import javafx.beans.value.ObservableValue;
@@ -31,7 +31,7 @@ public class LabSystemSRTable extends RecursiveTreeObject<LabSystemSRTable> {
         this.priority   = new SimpleStringProperty(priority);
     }
 
-    public LabSystemSRTable(LabSystemServiceRequest labSystemSR){
+    public LabSystemSRTable(LabSystemSR labSystemSR){
         this.labType    = new SimpleStringProperty(labSystemSR.getLabType());
         this.patientID  = new SimpleStringProperty(labSystemSR.getPatientID());
         this.assigneeID = new SimpleStringProperty(labSystemSR.getAssigneeID());
