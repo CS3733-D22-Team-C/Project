@@ -63,23 +63,33 @@ public class securitySRCreateController extends ServiceRequestCreateController {
 
     @FXML
     SecurityServiceRequest clickSubmit(ActionEvent event) {
-        SecurityServiceRequest securityServiceRequest = new SecurityServiceRequest();
 
-        //Sets from textFields
-        securityServiceRequest.setAssigneeID(assigneeID.getText());
-        //securityServiceRequest.setDescription(description.getText());
-        securityServiceRequest.setLocation(location.getText());
+        if (assigneeID.getText().isEmpty() || secType.getSelectionModel().isEmpty() ||
+        location.getText().isEmpty() || priority.getSelectionModel().isEmpty() ||
+                status.getSelectionModel().isEmpty())
+        {
+            clickReset(event);
+            return null;
+        } else
+        {
 
-        //Sets from combo boxes
-        securityServiceRequest.setStatus(status.getValue());
-        securityServiceRequest.setPriority(priority.getValue());
-        securityServiceRequest.setSecurityType(secType.getValue());
+            SecurityServiceRequest securityServiceRequest = new SecurityServiceRequest();
 
-        // Table Entry
-        clickReset(event);
-        securitySRTable met = new securitySRTable(securityServiceRequest);
-        METList.add(met);
-        return securityServiceRequest;
+            //Sets from textFields
+            securityServiceRequest.setAssigneeID(assigneeID.getText());
+            //securityServiceRequest.setDescription(description.getText());
+            securityServiceRequest.setLocation(location.getText());
 
+            //Sets from combo boxes
+            securityServiceRequest.setStatus(status.getValue());
+            securityServiceRequest.setPriority(priority.getValue());
+            securityServiceRequest.setSecurityType(secType.getValue());
+
+            // Table Entry
+            clickReset(event);
+            securitySRTable met = new securitySRTable(securityServiceRequest);
+            METList.add(met);
+            return securityServiceRequest;
+        }
     }
 }
