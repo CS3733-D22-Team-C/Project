@@ -62,10 +62,10 @@ public class serviceRequest implements Initializable {
                 App.instance.setView("");
                 break;
             case "Medicine Delivery":
-                App.instance.setView("");
+                App.instance.setView(App.instance.MEDICINE_DELIVERY);
                 break;
             case "Sanitation":
-                App.instance.setView("");
+                App.instance.setView("view/service_request/sanitation-view.fxml");
                 break;
             case "Security":
                 App.instance.setView("");
