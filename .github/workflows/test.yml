@@ -16,6 +16,8 @@ jobs:
           java-package: jdk+fx
       - name: Validate Gradle wrapper
         uses: gradle/wrapper-validation-action@e6e38bacfdf1a337459f332974bb2327a31aaf4b
+      - name: Grant execute permission for gradlew
+        run: chmod +x gradlew
       - name: Run headless test
         uses: GabrielBB/xvfb-action@v1
         with:
