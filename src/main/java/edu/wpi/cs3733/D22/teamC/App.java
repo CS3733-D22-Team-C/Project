@@ -58,6 +58,7 @@ public class App extends Application {
         setView(SERVICE_REQUEST_SELECT);
 
         //setView(MEDICAL_EQUIPMENT);
+
     }
 
     @Override
