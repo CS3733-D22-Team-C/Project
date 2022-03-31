@@ -111,7 +111,7 @@
             </HBox>
          </children>
       </VBox>
-      <TableView prefHeight="202.0" prefWidth="600.0" GridPane.rowIndex="3">
+      <TableView fx:id="table" prefHeight="202.0" prefWidth="600.0" GridPane.rowIndex="3">
          <columns>
             <TableColumn prefWidth="75.0" text="C1" />
             <TableColumn prefWidth="75.0" text="C2" />
