@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+
+<AnchorPane prefHeight="310.0" prefWidth="741.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.wpi.cs3733.D22.teamC.controller.general.HomePageController">
+   <children>
+      <ImageView fitHeight="438.0" fitWidth="741.0" layoutY="-1.0" pickOnBounds="true" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+         <image>
+            <Image url="@../image/BostonChildrensHospital.png" />
+         </image>
+      </ImageView>
+      <HBox layoutY="350.0" prefHeight="70.0" prefWidth="207.0" AnchorPane.leftAnchor="20.0" AnchorPane.rightAnchor="514.0">
+         <children>
+            <JFXButton onAction="#onClickMaps" prefHeight="70.0" prefWidth="207.0" styleClass="home-page-button" stylesheets="@../../css/base.css" text="Maps" />
+         </children>
+      </HBox>
+      <HBox layoutX="300.0" layoutY="350.0" prefHeight="70.0" prefWidth="207.0" AnchorPane.leftAnchor="267.0" AnchorPane.rightAnchor="267.0">
+         <children>
+            <JFXButton onAction="#onClickServiceRequests" prefHeight="70.0" prefWidth="207.0" styleClass="home-page-button" stylesheets="@../../css/base.css" text="Service Requests" />
+         </children>
+      </HBox>
+      <HBox layoutX="404.0" layoutY="350.0" prefHeight="70.0" prefWidth="207.0" AnchorPane.leftAnchor="513.8" AnchorPane.rightAnchor="20.0">
+         <children>
+            <JFXButton onAction="#onClickExit" prefHeight="70.0" prefWidth="207.0" styleClass="home-page-button" stylesheets="@../../css/base.css" text="Exit" />
+         </children>
+      </HBox>
+   </children>
+</AnchorPane>
