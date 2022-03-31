@@ -110,7 +110,7 @@
             </HBox>
          </children>
       </VBox>
-      <JFXTreeTableView GridPane.rowIndex="3" />
+      <JFXTreeTableView fx:id="table" GridPane.rowIndex="3" />
    </children>
    <stylesheets>
       <URL value="@../../css/request-page.css" />
