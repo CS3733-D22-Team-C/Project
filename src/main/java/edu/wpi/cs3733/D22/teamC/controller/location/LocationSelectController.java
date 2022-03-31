@@ -19,23 +19,21 @@ public class LocationSelectController implements Initializable {
         table.setColumnResizePolicy(TreeTableView.CONSTRAINED_RESIZE_POLICY);
         //Columns for table
         TreeTableColumn nodeID = new TreeTableColumn("Node ID");
-        nodeID.setPrefWidth(80);
+        nodeID.setMaxWidth(1f * Integer.MAX_VALUE * 12.5);
         TreeTableColumn nodeType = new TreeTableColumn("Node Type");
-        nodeType.setPrefWidth(80);
+        nodeType.setMaxWidth(1f * Integer.MAX_VALUE * 12.5);
         TreeTableColumn shortName = new TreeTableColumn("Short Name");
-        shortName.setPrefWidth(80);
+        shortName.setMaxWidth(1f * Integer.MAX_VALUE * 12.5);
         TreeTableColumn longName = new TreeTableColumn("Long Name");
-        longName.setPrefWidth(80);
+        longName.setMaxWidth(1f * Integer.MAX_VALUE * 12.5);
         TreeTableColumn floor = new TreeTableColumn("Floor");
-        floor.setPrefWidth(80);
+        floor.setMaxWidth(1f * Integer.MAX_VALUE * 12.5);
         TreeTableColumn building = new TreeTableColumn("Building");
-        building.setPrefWidth(80);
+        building.setMaxWidth(1f * Integer.MAX_VALUE * 12.5);
         TreeTableColumn x = new TreeTableColumn("X");
-        x.setPrefWidth(80);
+        x.setMaxWidth(1f * Integer.MAX_VALUE * 12.5);
         TreeTableColumn y = new TreeTableColumn("Y");
-        y.setPrefWidth(80);
+        y.setMaxWidth(1f * Integer.MAX_VALUE * 12.5);
         table.getColumns().addAll(nodeID, nodeType, shortName, longName, floor, building, x, y);
-
     }
-
 }
