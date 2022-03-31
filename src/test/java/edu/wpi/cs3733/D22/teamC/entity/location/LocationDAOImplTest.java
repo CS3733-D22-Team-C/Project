@@ -32,7 +32,6 @@ class LocationDAOImplTest {
      */
     @Test
     void testEmptyQueryLocation() {
-        assertFalse(true);
         assertEquals(0, locationDAO.getAllLocations().size());
         assertEquals(null, locationDAO.getLocation("Test000"));
     }
