@@ -8,6 +8,16 @@
     -fx-spacing: 5px;
 }
 
+.service-button-success {
+    -fx-background-color: -color-button-success;
+    -fx-text-fill: -color-button-text;
+    -fx-font-size: 15;
+    -fx-spacing: 5px;
+    -fx-border-radius: 0 5 5 0;
+    -fx-background-radius: 0 5 5 0;
+
+}
+
 .button-success:hover {
     -fx-background-color: -color-button-success-hover;
 }
@@ -65,8 +75,20 @@ padding goes top, right, bottom, left
     /*Check off wrap text property in SceneBuilder for now*/
 }
 
+.service-textarea {
+    -fx-background-color: Transparent;
+    /*Check off wrap text property in SceneBuilder for now*/
+}
+
 .dropdown {
     -fx-background-color: -color-dropdown-menu;
+}
+
+.service-dropdown {
+    -fx-background-color: -color-dropdown-menu;
+    -fx-border-radius: 5 0 0 5;
+    -fx-background-radius: 5 0 0 5;
+
 }
 
 .service-field-label {

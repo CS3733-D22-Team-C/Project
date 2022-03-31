@@ -23,7 +23,7 @@
       </VBox>
       <VBox layoutX="519.0" layoutY="453.0" prefHeight="38.0" prefWidth="53.0">
          <children>
-            <JFXButton fx:id="selectButton" layoutX="10.0" layoutY="10.0" onAction="#onSelectButton" prefHeight="38.0" prefWidth="67.0" styleClass="button-success" stylesheets="@../../css/base.css" text="→">
+            <JFXButton fx:id="selectButton" layoutX="10.0" layoutY="10.0" onAction="#onSelectButton" prefHeight="38.0" prefWidth="67.0" styleClass="service-button-success" stylesheets="@../../css/base.css" text="→">
                <font>
                   <Font size="24.0" />
                </font>
@@ -32,7 +32,7 @@
       </VBox>
       <VBox layoutX="367.0" layoutY="453.0" prefHeight="37.0" prefWidth="152.0">
          <children>
-            <JFXComboBox fx:id="serviceType" prefHeight="38.0" prefWidth="158.0" styleClass="dropdown" stylesheets="@../../css/base.css" />
+            <JFXComboBox fx:id="serviceType" prefHeight="38.0" prefWidth="158.0" styleClass="service-dropdown" stylesheets="@../../css/base.css" />
          </children>
       </VBox>
    </children>
