@@ -7,7 +7,7 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
-public class ServiceRequestDAOImpl implements ServiceRequestDAO<ServiceRequest> {
+public class ServiceRequestDAOImpl extends ServiceRequestDAO<ServiceRequest> {
     /**
      * Getting all the entries in the ServiceRequests Table to the DB, converting them to ServiceRequest objects
      *
@@ -23,7 +23,7 @@ public class ServiceRequestDAOImpl implements ServiceRequestDAO<ServiceRequest> 
             //Return ServiceRequest Objects
             List<ServiceRequest> serviceRequests = new ArrayList<>();
             while (resultSet.next()) {
-                ServiceRequest serviceRequest = createServiceRequest(resultSet);
+                ServiceRequest serviceRequest = modifyServiceRequest(resultSet, new ServiceRequest());
                 if (serviceRequest != null) serviceRequests.add(serviceRequest);
             }
             return serviceRequests;
@@ -54,7 +54,7 @@ public class ServiceRequestDAOImpl implements ServiceRequestDAO<ServiceRequest> 
             ResultSet resultSet = statement.executeQuery();
             
             // Return Location Object
-            if (resultSet.next()) return createServiceRequest(resultSet);
+            if (resultSet.next()) return modifyServiceRequest(resultSet, new ServiceRequest());
         } catch (SQLException e) {
             System.out.println("Query to SERVICE_REQUEST table failed.");
             e.printStackTrace();

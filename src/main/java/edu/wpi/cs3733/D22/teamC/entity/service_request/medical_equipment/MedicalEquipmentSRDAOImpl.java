@@ -87,7 +87,8 @@ public class MedicalEquipmentSRDAOImpl extends MedicalEquipmentSRDAO {
     @Override
     public boolean insertServiceRequest(MedicalEquipmentSR serviceRequest) {
         try {
-            boolean successParent = super.insertServiceRequest(serviceRequest);
+            ServiceRequestDAOImpl sRDAO = new ServiceRequestDAOImpl();
+            boolean successParent = sRDAO.insertServiceRequest(serviceRequest);
             // If the SR can be added successfully to the parent table then we can add it to the child table.
             if (successParent) {
                 // Insert the child-unique attributes to the child table.
@@ -117,12 +118,13 @@ public class MedicalEquipmentSRDAOImpl extends MedicalEquipmentSRDAO {
      * @return If successful return true, else return false.
      */
     @Override
-    public boolean updateServiceRequest(ServiceRequest serviceRequest) {
+    public boolean updateServiceRequest(MedicalEquipmentSR serviceRequest) {
         try {
             // Check if entry of same requestID exists in either table
             ServiceRequest serviceRequestInDB = getServiceRequest(serviceRequest.getRequestID());
             if (serviceRequestInDB != null) {
-                boolean successParent = super.updateServiceRequest(serviceRequest);
+                ServiceRequestDAOImpl sRDAO = new ServiceRequestDAOImpl();
+                boolean successParent = sRDAO.updateServiceRequest(serviceRequest);
                 // If the SR can be updated successfully in the parent table then we can update the child table.
                 if (successParent) {
                     // Update the child-unique attributes in the child table.
@@ -154,21 +156,14 @@ public class MedicalEquipmentSRDAOImpl extends MedicalEquipmentSRDAO {
      * @return True if successful.
      */
     @Override
-    public boolean deleteServiceRequest(ServiceRequest serviceRequest) {
+    public boolean deleteServiceRequest(MedicalEquipmentSR serviceRequest) {
         try {
             // Check if entry of same requestID exists in either table
             ServiceRequest serviceRequestInDB = getServiceRequest(serviceRequest.getRequestID());
             if (serviceRequestInDB != null) {
                 // Execute DELETE Statement for base SR table and Medical Equipment SR table
-                super.deleteServiceRequest(serviceRequest);
-                /*PreparedStatement statement = DBManager.getInstance().connection.prepareStatement(
-                        "DELETE SERVICE_REQUEST, MEDICAL_EQUIPMENT_SR " +
-                                "FROM SERVICE_REQUEST INNER JOIN MEDICAL_EQUIPMENT_SR " +
-                                "WHERE SERVICE_REQUEST.REQUESTID = MEDICAL_EQUIPMENT_SR.REQUESTID " +
-                                "AND SERVICE_REQUEST.REQUESTID = ?"
-                );
-                statement.setString(1, serviceRequest.getRequestID());
-                statement.execute();*/
+                ServiceRequestDAOImpl sRDAO = new ServiceRequestDAOImpl();
+                sRDAO.deleteServiceRequest(serviceRequest);
                 
                 return true;
             }
