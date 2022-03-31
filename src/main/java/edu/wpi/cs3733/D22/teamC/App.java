@@ -27,6 +27,7 @@ public class App extends Application {
     private final String MEDICAL_EQUIPMENT = "view/service_request/medical-equipment.fxml";
     private final String LAB_SYSTEM = "view/service_request/lab-system-view.fxml";
     private final String LOCATION_SELECT = "view/general/location-select-view.fxml";
+    public static final String MEDICINE_DELIVERY = "view/service_request/medicine-delivery-view.fxml";
     private final String SANITARY_SERVICES_PATH = "view/service_request/sanitation-view.fxml";
     private final String SERVICE_REQUEST_SELECT = "view/general/view-service.fxml";
 
@@ -59,11 +60,10 @@ public class App extends Application {
         // Store window as stage
         stage = primaryStage;
 
-
         // Initialize Database Manager
         DBManager.startup();
 
-        setView(LOCATION_SELECT);
+      setView(LOCATION_SELECT);
     }
 
     @Override
