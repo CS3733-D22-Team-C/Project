@@ -55,7 +55,7 @@ public class FacilityMaintenanceSRCreateController extends ServiceRequestCreateC
         fmsr.setPriority(priority.getValue()); //getValue directly returns the value of a selected item from a JavaFX ComboBox
         fmsr.setStatus(status.getValue());
         fmsr.setDescription(description.getText());
-        fmsr.setRequestType("Facilities Maintenance");
+        //fmsr.setRequestType("Facilities Maintenance");
 
         //Dealing with the equipment type and the enumerator
         //int type = fmsr.getMaintenanceTypeEnum(maintType.getText());
