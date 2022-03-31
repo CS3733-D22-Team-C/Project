@@ -14,6 +14,7 @@ import javafx.fxml.FXML;
 import javafx.scene.control.*;
 
 import java.net.URL;
+import java.sql.Timestamp;
 import java.util.List;
 import java.util.ResourceBundle;
 import java.util.stream.Collectors;
@@ -70,6 +71,8 @@ public class MedicalEquipmentSRCreateController extends ServiceRequestCreateCont
     MedicalEquipmentServiceRequest clickSubmit(ActionEvent event) {
         MedicalEquipmentServiceRequest medEquip = new MedicalEquipmentServiceRequest();
 
+        medEquip.setCreationTimestamp(new Timestamp(System.currentTimeMillis()));
+
         //Sets from textFields
         medEquip.setAssigneeID(assigneeID.getText());
         medEquip.setDescription(description.getText());
@@ -81,9 +84,10 @@ public class MedicalEquipmentSRCreateController extends ServiceRequestCreateCont
         medEquip.setEquipmentType(equipType.getValue());
 
         //Request ID generator
-        int requestID = (int)Math.random() * (1000 + 1) + 0;
+        int requestID = (int)(Math.random() * (1000 + 1)) + 0;
         String requestIDString = Integer.toString(requestID);
         medEquip.setRequestID(requestIDString);
+        System.out.println(requestIDString);
 
         //Dealing with the equipment type and the enumerator
         int type = medEquip.getEquipEnum(equipType.getValue());
