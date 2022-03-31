@@ -13,7 +13,7 @@ public class MenuBarController {
     @FXML
     protected void onMenuBarLocationsButtonPress() {
         // TODO: Add Locations Page path
-        App.instance.setView("");
+        App.instance.setView("view/general/location-select-view.fxml");
     }
 
     @FXML
