@@ -1,67 +1,119 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import com.jfoenix.controls.JFXButton?>
 <?import com.jfoenix.controls.JFXComboBox?>
 <?import com.jfoenix.controls.JFXTextArea?>
 <?import com.jfoenix.controls.JFXTreeTableView?>
+<?import java.lang.String?>
+<?import java.net.URL?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
-<?import javafx.scene.control.ScrollPane?>
 <?import javafx.scene.control.TextField?>
-<?import javafx.scene.control.TreeTableView?>
-<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.layout.VBox?>
 
-<ScrollPane prefWidth="602.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.wpi.cs3733.D22.teamC.controller.service_request.securitySRCreateController">
-   <content>
-      <AnchorPane prefHeight="667.0" prefWidth="600.0">
-         <children>
-            <JFXButton fx:id="submitButton" layoutX="480.0" layoutY="321.0" onAction="#clickSubmit" styleClass="button-success" stylesheets="@../../css/base.css" text="Submit" />
-            <JFXButton fx:id="resetButton" layoutX="398.0" layoutY="321.0" onAction="#clickReset" styleClass="button-failure" stylesheets="@../../css/base.css" text="Reset" />
-            <JFXButton fx:id="goBackButton" layoutX="55.0" layoutY="321.0" onAction="#clickGoBack" styleClass="button-back" stylesheets="@../../css/base.css" text="Go Back" />
-            <Label layoutX="49.0" layoutY="11.0" styleClass="page-title" stylesheets="@../../css/base.css" text="Security Service Request" />
-            <VBox layoutX="49.0" layoutY="49.0">
+<GridPane alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="664.0" prefWidth="600.0" styleClass="titl" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.wpi.cs3733.D22.teamC.controller.service_request.securitySRCreateController">
+    <columnConstraints>
+        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+    </columnConstraints>
+    <rowConstraints>
+        <RowConstraints maxHeight="95.60001220703126" minHeight="0.0" prefHeight="39.20001220703125" vgrow="SOMETIMES" />
+        <RowConstraints maxHeight="377.6" minHeight="10.0" prefHeight="216.5999847412109" vgrow="SOMETIMES" />
+        <RowConstraints maxHeight="250.4000122070313" minHeight="10.0" prefHeight="183.2" vgrow="SOMETIMES" />
+        <RowConstraints maxHeight="226.40000000000003" minHeight="0.0" prefHeight="226.40000000000003" vgrow="SOMETIMES" />
+    </rowConstraints>
+    <children>
+        <Label styleClass="page-title" text="Generic Service Request " />
+        <GridPane GridPane.hgrow="ALWAYS" GridPane.rowIndex="1" GridPane.vgrow="ALWAYS">
+            <columnConstraints>
+                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+            </columnConstraints>
+            <rowConstraints>
+                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+            </rowConstraints>
+            <children>
+                <VBox alignment="CENTER_LEFT" prefHeight="200.0" prefWidth="100.0" styleClass="box-margin" GridPane.hgrow="ALWAYS" GridPane.vgrow="ALWAYS">
+                    <children>
+                        <Label styleClass="service-field-label" text="Assign To:" />
+                        <TextField fx:id="assigneeID" />
+                    </children>
+                </VBox>
+                <VBox alignment="CENTER_LEFT" prefHeight="200.0" prefWidth="100.0" styleClass="box-margin" GridPane.columnIndex="1" GridPane.hgrow="ALWAYS" GridPane.vgrow="ALWAYS">
+                    <children>
+                        <Label styleClass="service-field-label" text="Status:" />
+                  <JFXComboBox fx:id="status" maxWidth="1.7976931348623157E308" />
+                    </children>
+                </VBox>
+                <VBox alignment="CENTER_LEFT" prefHeight="200.0" prefWidth="100.0" styleClass="box-margin" GridPane.columnIndex="2" GridPane.hgrow="ALWAYS" GridPane.vgrow="ALWAYS">
+                    <children>
+                        <Label styleClass="service-field-label" text="Location:" />
+                        <TextField fx:id="location" />
+                    </children>
+                </VBox>
+                <VBox alignment="CENTER_LEFT" prefHeight="200.0" prefWidth="100.0" styleClass="box-margin" GridPane.hgrow="ALWAYS" GridPane.rowIndex="1" GridPane.vgrow="ALWAYS">
+                    <children>
+                        <Label styleClass="service-field-label" text="Security Type" />
+                  <JFXComboBox fx:id="secType" maxWidth="1.7976931348623157E308" />
+                    </children>
+                </VBox>
+                <VBox alignment="CENTER_LEFT" prefHeight="200.0" prefWidth="100.0" styleClass="box-margin" GridPane.columnIndex="2" GridPane.hgrow="ALWAYS" GridPane.rowIndex="1" GridPane.vgrow="ALWAYS">
+                    <children>
+                        <Label styleClass="service-field-label" text="Priority:" />
+                  <JFXComboBox fx:id="priority" maxWidth="1.7976931348623157E308" />
+                    </children>
+                </VBox>
+            </children>
+        </GridPane>
+        <VBox prefHeight="0.0" prefWidth="600.0" styleClass="box-margin" GridPane.rowIndex="2">
+            <children>
+                <Label styleClass="service-field-label" text="Additional Notes:" />
+                <JFXTextArea fx:id="description" prefHeight="81.0" prefWidth="426.0" VBox.vgrow="NEVER" />
+            <HBox prefHeight="100.0" prefWidth="200.0" styleClass="box-margin">
                <children>
-                  <Label styleClass="service-field-label" stylesheets="@../../css/base.css" text="Assign To:" />
-                  <TextField fx:id="assigneeID" />
+                  <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="200.0" HBox.hgrow="ALWAYS">
+                     <children>
+                        <Button mnemonicParsing="false" onAction="#clickGoBack" styleClass="button-back" text="Go Back" />
+                     </children>
+                  </HBox>
+                  <HBox alignment="CENTER_RIGHT" prefHeight="100.0" prefWidth="200.0" styleClass="button-alignment" HBox.hgrow="ALWAYS">
+                     <children>
+                        <Button mnemonicParsing="false" onAction="#clickReset" text="Reset">
+                           <styleClass>
+                              <String fx:value="button-alignment" />
+                              <String fx:value="button-failure" />
+                           </styleClass>
+                           <HBox.margin>
+                              <Insets />
+                           </HBox.margin>
+                        </Button>
+                        <Button mnemonicParsing="false" onAction="#clickSubmit" text="Submit">
+                           <styleClass>
+                              <String fx:value="button-alignment" />
+                              <String fx:value="button-success" />
+                           </styleClass>
+                        </Button>
+                     </children>
+                     <opaqueInsets>
+                        <Insets />
+                     </opaqueInsets>
+                  </HBox>
                </children>
-            </VBox>
-            <VBox layoutX="241.0" layoutY="49.0">
-               <children>
-                  <Label styleClass="service-field-label" stylesheets="@../../css/base.css" text="Status:" />
-                  <JFXComboBox fx:id="status" prefHeight="26.0" prefWidth="132.0" styleClass="dropdown" stylesheets="@../../css/base.css" />
-               </children>
-            </VBox>
-            <VBox layoutX="140.0" layoutY="135.0">
-               <children>
-                  <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="19.0" prefWidth="95.0" styleClass="service-field-label" stylesheets="@../../css/base.css" text="Security Type:" />
-                  <JFXComboBox fx:id="secType" prefHeight="26.0" prefWidth="138.0" styleClass="dropdown" stylesheets="@../../css/base.css" />
-               </children>
-            </VBox>
-            <VBox layoutX="357.0" layoutY="135.0">
-               <children>
-                  <Label styleClass="service-field-label" stylesheets="@../../css/base.css" text="Priority:" />
-                  <JFXComboBox fx:id="priority" prefHeight="26.0" prefWidth="148.0" styleClass="dropdown" stylesheets="@../../css/base.css" />
-               </children>
-            </VBox>
-            <VBox layoutX="431.0" layoutY="49.0">
-               <children>
-                  <Label styleClass="service-field-label" stylesheets="@../../css/base.css" text="Location:" />
-                  <TextField fx:id="location" />
-               </children>
-            </VBox>
-            <VBox layoutX="55.0" layoutY="207.0">
-               <children>
-                  <Label styleClass="service-field-label" stylesheets="@../../css/base.css" text="Additional Notes:" />
-                  <JFXTextArea fx:id="description" prefHeight="58.0" prefWidth="490.0" styleClass="textarea" stylesheets="@../../css/base.css" wrapText="true" />
-               </children>
-            </VBox>
-            <JFXTreeTableView fx:id="table" layoutX="67.0" layoutY="391.0" minWidth="-Infinity" prefHeight="219.0" prefWidth="480.0">
-               <columnResizePolicy>
-                  <TreeTableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
-               </columnResizePolicy>
-            </JFXTreeTableView>
-            <VBox layoutX="238.0" layoutY="126.0" />
-         </children>
-      </AnchorPane>
-   </content>
-</ScrollPane>
+               <opaqueInsets>
+                  <Insets />
+               </opaqueInsets>
+            </HBox>
+            </children>
+        </VBox>
+      <JFXTreeTableView fx:id="table" GridPane.rowIndex="3" />
+    </children>
+    <stylesheets>
+        <URL value="@../../css/request-page.css" />
+        <URL value="@../../css/base.css" />
+    </stylesheets>
+</GridPane>

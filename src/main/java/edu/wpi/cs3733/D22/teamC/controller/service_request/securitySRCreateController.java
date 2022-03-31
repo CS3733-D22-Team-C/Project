@@ -60,13 +60,14 @@ public class securitySRCreateController extends ServiceRequestCreateController {
         secType.valueProperty().setValue(null);
     }
 
+
     @FXML
     SecurityServiceRequest clickSubmit(ActionEvent event) {
         SecurityServiceRequest securityServiceRequest = new SecurityServiceRequest();
 
         //Sets from textFields
         securityServiceRequest.setAssigneeID(assigneeID.getText());
-        securityServiceRequest.setDescription(description.getText());
+        //securityServiceRequest.setDescription(description.getText());
         securityServiceRequest.setLocation(location.getText());
 
         //Sets from combo boxes
@@ -75,10 +76,10 @@ public class securitySRCreateController extends ServiceRequestCreateController {
         securityServiceRequest.setSecurityType(secType.getValue());
 
         // Table Entry
+        clickReset(event);
         securitySRTable met = new securitySRTable(securityServiceRequest);
         METList.add(met);
-
-
         return securityServiceRequest;
+
     }
 }
