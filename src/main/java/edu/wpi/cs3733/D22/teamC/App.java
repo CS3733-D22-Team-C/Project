@@ -23,16 +23,16 @@ public class App extends Application {
 
     // Constants
     public static final String BASE_VIEW_PATH = "view/general/base-view.fxml";
-    private final String MENU_BAR_COMPONENT_PATH = "component/menu-bar.fxml";
-    private final String MEDICAL_EQUIPMENT = "view/service_request/medical-equipment.fxml";
-    private final String LAB_SYSTEM = "view/service_request/lab-system-view.fxml";
-    private final String LOCATION_SELECT = "view/general/location-select-view.fxml";
+    public static final String MENU_BAR_COMPONENT_PATH = "component/menu-bar.fxml";
+    public static final String MEDICAL_EQUIPMENT = "view/service_request/medical-equipment.fxml";
+    public static final String LAB_SYSTEM = "view/service_request/lab-system-view.fxml";
+    public static final String LOCATION_SELECT = "view/general/location-select-view.fxml";
     public static final String MEDICINE_DELIVERY = "view/service_request/medicine-delivery-view.fxml";
-    private final String SANITARY_SERVICES_PATH = "view/service_request/sanitation-view.fxml";
-    private final String SERVICE_REQUEST_SELECT = "view/general/view-service.fxml";
-    private final String HOME_PAGE_PATH = "view/general/HomePage.fxml";
-    private final String FACILITY_MAINTENANCE_PATH = "view/service_request/facility-maintenance.fxml";
-    private final String SECURITY_REQUEST_SELECT = "view/service_request/security-service-view.fxml";
+    public static final String SANITARY_SERVICES_PATH = "view/service_request/sanitation-view.fxml";
+    public static final String SERVICE_REQUEST_SELECT = "view/general/view-service.fxml";
+    public static final String HOME_PAGE_PATH = "view/general/HomePage.fxml";
+    public static final String FACILITY_MAINTENANCE_PATH = "view/service_request/facility-maintenance.fxml";
+    public static final String SECURITY_REQUEST_SELECT = "view/service_request/security-service-view.fxml";
 
 
     // Variables
@@ -63,12 +63,12 @@ public class App extends Application {
         // Store window as stage
         stage = primaryStage;
       
-        setView(HOME_PAGE_PATH);
+        //setView(HOME_PAGE_PATH);
     
         // Initialize Database Manager
         DBManager.startup();
 
-      setView(LOCATION_SELECT);
+        setView(LOCATION_SELECT);
     }
 
     @Override
