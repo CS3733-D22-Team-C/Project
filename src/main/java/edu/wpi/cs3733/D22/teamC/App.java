@@ -1,10 +1,17 @@
 package edu.wpi.cs3733.D22.teamC;
 
+import edu.wpi.cs3733.D22.teamC.controller.location.LocationSelectController;
 import edu.wpi.cs3733.D22.teamC.entity.location.Location;
 import edu.wpi.cs3733.D22.teamC.entity.location.LocationDAO;
 import edu.wpi.cs3733.D22.teamC.entity.location.LocationDAOImpl;
+import edu.wpi.cs3733.D22.teamC.entity.service_request.ServiceRequest;
+import edu.wpi.cs3733.D22.teamC.entity.service_request.ServiceRequestDAO;
+import edu.wpi.cs3733.D22.teamC.entity.service_request.medical_equipment.MedicalEquipmentSRDAOImpl;
+import edu.wpi.cs3733.D22.teamC.entity.service_request.medical_equipment.MedicalEquipmentServiceRequest;
 import edu.wpi.cs3733.D22.teamC.fileio.csv.LocationCSVWriter;
 import edu.wpi.cs3733.D22.teamC.fileio.csv.LocationCSVReader;
+import edu.wpi.cs3733.D22.teamC.fileio.csv.MedicalEquipmentSRCSVWriter;
+import edu.wpi.cs3733.D22.teamC.fileio.csv.MedicalEquipmentSRCSVReader;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
@@ -13,7 +20,9 @@ import javafx.scene.layout.BorderPane;
 import javafx.stage.Stage;
 import lombok.extern.slf4j.Slf4j;
 import java.io.IOException;
+import java.sql.Timestamp;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Slf4j
 public class App extends Application {
@@ -22,15 +31,17 @@ public class App extends Application {
 
     // Constants
     public static final String BASE_VIEW_PATH = "view/general/base-view.fxml";
-    private static final String MENU_BAR_COMPONENT_PATH = "component/menu-bar.fxml";
-    private static final String MEDICAL_EQUIPMENT = "view/service_request/medical-equipment-view.fxml";
+    private final String MENU_BAR_COMPONENT_PATH = "component/menu-bar.fxml";
+    private final String MEDICAL_EQUIPMENT = "view/service_request/medical-equipment.fxml";
+    private final String LAB_SYSTEM = "view/service_request/lab-system-view.fxml";
+    private final String LOCATION_SELECT = "view/general/location-select-view.fxml";
     public static final String MEDICINE_DELIVERY = "view/service_request/medicine-delivery-view.fxml";
     private final String SANITARY_SERVICES_PATH = "view/service_request/sanitation-view.fxml";
     private final String SERVICE_REQUEST_SELECT = "view/general/view-service.fxml";
     private final String HOME_PAGE_PATH = "view/general/HomePage.fxml";
     private final String FACILITY_MAINTENANCE_PATH = "view/service_request/facility-maintenance.fxml";
-    public static final String LAB_SYSTEM = "view/service_request/lab-system-view.fxml";
     private final String SECURITY_REQUEST_SELECT = "view/service_request/security-service-view.fxml";
+
 
     // Variables
     private Stage stage;
@@ -50,6 +61,16 @@ public class App extends Application {
             }
         }
 
+        // loading CSV for medical equipment service request
+        MedicalEquipmentSRCSVReader mECSVReader = new MedicalEquipmentSRCSVReader();
+        List<MedicalEquipmentServiceRequest> MedicalEquipmentSRs = mECSVReader.readFile("MedEquipReq.csv");
+        if(MedicalEquipmentSRs != null){
+            ServiceRequestDAO serviceRequestDAO = new MedicalEquipmentSRDAOImpl();
+            for(MedicalEquipmentServiceRequest medEquipSR : MedicalEquipmentSRs){
+                serviceRequestDAO.insertServiceRequest(medEquipSR);
+            }
+        }
+
         log.info("Starting Up");
     }
 
@@ -61,10 +82,6 @@ public class App extends Application {
         stage = primaryStage;
       
         setView(HOME_PAGE_PATH);
-      
-        // Initialize Database Manager
-        DBManager.startup();
-
     }
 
     @Override
@@ -76,7 +93,16 @@ public class App extends Application {
         if (locations != null) {
             csvWriter.writeFile("TowerLocations.csv", locations);
         }
+        MedicalEquipmentSRCSVWriter mECSVWriter = new MedicalEquipmentSRCSVWriter();
+        ServiceRequestDAO serviceRequestDAO = new MedicalEquipmentSRDAOImpl();
+        List<ServiceRequest> serviceRequests = serviceRequestDAO.getAllServiceRequests();
+        List<MedicalEquipmentServiceRequest> medicalEquipmentSR = serviceRequests.stream().map(
+                SR -> {return (MedicalEquipmentServiceRequest) SR;}
+        ).collect(Collectors.toList());
 
+        if(medicalEquipmentSR != null){
+            mECSVWriter.writeFile("MedEquipReq.csv", medicalEquipmentSR);
+        }
         // Shutdown Database Manager
         DBManager.shutdown();
 
