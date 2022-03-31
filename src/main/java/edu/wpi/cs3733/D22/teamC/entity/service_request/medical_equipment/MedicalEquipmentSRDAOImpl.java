@@ -16,7 +16,7 @@ import java.util.List;
 public class MedicalEquipmentSRDAOImpl extends ServiceRequestDAOImpl {
     
     /**
-     * Getting all the entries in the MEDICAL_EQUIP_SERVICE_REQUEST Table to the DB, and
+     * Getting all the entries in the MEDICAL_EQUIPMENT_SR Table to the DB, and
      * converting them to ServiceRequest objects.
      *
      * @return List of all Medical Equipment Service requests objects converted from queries
@@ -26,9 +26,9 @@ public class MedicalEquipmentSRDAOImpl extends ServiceRequestDAOImpl {
         try {
             //Execute SELECT query to join parent and child table attributes
             PreparedStatement statement = DBManager.getInstance().connection.prepareStatement(
-                    "SELECT SERVICE_REQUEST.*, MEDICAL_EQUIP_SERVICE_REQUEST.* " +
-                            "FROM SERVICE_REQUEST INNER JOIN MEDICAL_EQUIP_SERVICE_REQUEST " +
-                            "ON SERVICE_REQUEST.REQUESTID = MEDICAL_EQUIP_SERVICE_REQUEST.REQUESTID "
+                    "SELECT SERVICE_REQUEST.*, MEDICAL_EQUIPMENT_SR.* " +
+                            "FROM SERVICE_REQUEST INNER JOIN MEDICAL_EQUIPMENT_SR " +
+                            "ON SERVICE_REQUEST.REQUESTID = MEDICAL_EQUIPMENT_SR.REQUESTID "
             );
             ResultSet resultSet = statement.executeQuery();
             
@@ -41,7 +41,7 @@ public class MedicalEquipmentSRDAOImpl extends ServiceRequestDAOImpl {
             return serviceRequests;
             
         } catch (SQLException e) {
-            System.out.println("Query to MEDICAL_EQUIP_SERVICE_REQUEST failed.");
+            System.out.println("Query to MEDICAL_EQUIPMENT_SR failed.");
             e.printStackTrace();
         }
         
@@ -60,9 +60,9 @@ public class MedicalEquipmentSRDAOImpl extends ServiceRequestDAOImpl {
         try {
             // Execute SELECT Query to join the parent table and child table attributes
             PreparedStatement statement = DBManager.getInstance().connection.prepareStatement(
-                    "SELECT SERVICE_REQUEST.*, MEDICAL_EQUIP_SERVICE_REQUEST.* " +
-                            "FROM SERVICE_REQUEST INNER JOIN MEDICAL_EQUIP_SERVICE_REQUEST " +
-                            "ON SERVICE_REQUEST.REQUESTID = MEDICAL_EQUIP_SERVICE_REQUEST.REQUESTID " +
+                    "SELECT SERVICE_REQUEST.*, MEDICAL_EQUIPMENT_SR.* " +
+                            "FROM SERVICE_REQUEST INNER JOIN MEDICAL_EQUIPMENT_SR " +
+                            "ON SERVICE_REQUEST.REQUESTID = MEDICAL_EQUIPMENT_SR.REQUESTID " +
                             "WHERE SERVICE_REQUEST.REQUESTID = ?"
             );
             statement.setString(1, requestID);
@@ -92,7 +92,7 @@ public class MedicalEquipmentSRDAOImpl extends ServiceRequestDAOImpl {
             if (successParent) {
                 // Insert the child-unique attributes to the child table.
                 PreparedStatement statement = DBManager.getInstance().connection.prepareStatement(
-                        "INSERT INTO MEDICAL_EQUIP_SERVICE_REQUEST VALUES(?, ?, ?)"
+                        "INSERT INTO MEDICAL_EQUIPMENT_SR VALUES(?, ?, ?)"
                 );
                 statement.setString(1, serviceRequest.getRequestID());
                 // Set child-specific attributes by casting
@@ -110,7 +110,7 @@ public class MedicalEquipmentSRDAOImpl extends ServiceRequestDAOImpl {
     }
     
     /**
-     * Update entry in both the Service_Requests and Medical_Equip_Service_Requests table  of DB corresponding to
+     * Update entry in both the Service_Requests and MEDICAL_EQUIPMENT_SR table  of DB corresponding to
      * the given ServiceRequest object.
      *
      * @param serviceRequest the ServiceRequest whose corresponding DB entry is to be updated.
@@ -127,7 +127,7 @@ public class MedicalEquipmentSRDAOImpl extends ServiceRequestDAOImpl {
                 if (successParent) {
                     // Update the child-unique attributes in the child table.
                     PreparedStatement statement = DBManager.getInstance().connection.prepareStatement(
-                            "UPDATE MEDICAL_EQUIP_SERVICE_REQUEST SET EQUIPID = ?, EQUIPTYPE = ? " +
+                            "UPDATE MEDICAL_EQUIPMENT_SR SET EQUIPID = ?, EQUIPTYPE = ? " +
                                     "WHERE REQUESTID = ?"
                     );
                     statement.setString(1, ((MedicalEquipmentSR) serviceRequest).getEquipmentID());
@@ -148,7 +148,7 @@ public class MedicalEquipmentSRDAOImpl extends ServiceRequestDAOImpl {
     
     /**
      * Delete entry in SERVICE_REQUEST Table of DB corresponding to the given ServiceRequest object.
-     * Will also delete entry in MEDICAL_EQUIP_SERVICE_REQUEST.
+     * Will also delete entry in MEDICAL_EQUIPMENT_SR.
      *
      * @param serviceRequest The service request to be deleted from the DB.
      * @return True if successful.
@@ -162,9 +162,9 @@ public class MedicalEquipmentSRDAOImpl extends ServiceRequestDAOImpl {
                 // Execute DELETE Statement for base SR table and Medical Equipment SR table
                 super.deleteServiceRequest(serviceRequest);
                 /*PreparedStatement statement = DBManager.getInstance().connection.prepareStatement(
-                        "DELETE SERVICE_REQUEST, MEDICAL_EQUIP_SERVICE_REQUEST " +
-                                "FROM SERVICE_REQUEST INNER JOIN MEDICAL_EQUIP_SERVICE_REQUEST " +
-                                "WHERE SERVICE_REQUEST.REQUESTID = MEDICAL_EQUIP_SERVICE_REQUEST.REQUESTID " +
+                        "DELETE SERVICE_REQUEST, MEDICAL_EQUIPMENT_SR " +
+                                "FROM SERVICE_REQUEST INNER JOIN MEDICAL_EQUIPMENT_SR " +
+                                "WHERE SERVICE_REQUEST.REQUESTID = MEDICAL_EQUIPMENT_SR.REQUESTID " +
                                 "AND SERVICE_REQUEST.REQUESTID = ?"
                 );
                 statement.setString(1, serviceRequest.getRequestID());

@@ -169,8 +169,8 @@ public class DBManager {
          */
         public void initializeMedicalEquipSRTable(boolean clearTable) {
             initializeTable(
-                    "MEDICAL_EQUIP_SERVICE_REQUEST",
-                    "CREATE TABLE MEDICAL_EQUIP_SERVICE_REQUEST (REQUESTID char(10), EQUIPID char(10), " +
+                    "MEDICAL_EQUIPMENT_SR",
+                    "CREATE TABLE MEDICAL_EQUIPMENT_SR (REQUESTID char(10), EQUIPID char(10), " +
                             "EQUIPTYPE varchar(50), CONSTRAINT fk_requestID FOREIGN KEY (REQUESTID) " +
                             "REFERENCES SERVICE_REQUEST (REQUESTID) ON DELETE CASCADE)",
                     clearTable

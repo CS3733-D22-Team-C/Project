@@ -41,7 +41,7 @@ public class App extends Application {
     @Override
     public void init() {
         // Initialize Database Manager
-        DBManager.startup(DBManager.DEVELOPMENT_DATABASE_NAME);
+        DBManager.startup(DBManager.DEVELOPMENT_DATABASE_NAME).initializeTables(true);
 
         // Load CSV Data
         LocationCSVReader csvReader = new LocationCSVReader();
