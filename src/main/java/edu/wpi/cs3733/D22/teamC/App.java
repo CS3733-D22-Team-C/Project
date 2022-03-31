@@ -78,11 +78,6 @@ public class App extends Application {
         stage = primaryStage;
       
         setView(HOME_PAGE_PATH);
-    
-        // Initialize Database Manager
-        DBManager.startup();
-
-      setView(LOCATION_SELECT);
     }
 
     @Override
