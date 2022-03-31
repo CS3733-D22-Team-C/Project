@@ -3,14 +3,12 @@ package edu.wpi.cs3733.D22.teamC;
 import edu.wpi.cs3733.D22.teamC.entity.location.Location;
 import edu.wpi.cs3733.D22.teamC.entity.location.LocationDAO;
 import edu.wpi.cs3733.D22.teamC.entity.location.LocationDAOImpl;
-import edu.wpi.cs3733.D22.teamC.entity.service_request.ServiceRequest;
-import edu.wpi.cs3733.D22.teamC.entity.service_request.ServiceRequestDAO;
-import edu.wpi.cs3733.D22.teamC.entity.service_request.medical_equipment.MedicalEquipmentSRDAOImpl;
 import edu.wpi.cs3733.D22.teamC.entity.service_request.medical_equipment.MedicalEquipmentSR;
-import edu.wpi.cs3733.D22.teamC.fileio.csv.LocationCSVWriter;
+import edu.wpi.cs3733.D22.teamC.entity.service_request.medical_equipment.MedicalEquipmentSRDAOImpl;
 import edu.wpi.cs3733.D22.teamC.fileio.csv.LocationCSVReader;
-import edu.wpi.cs3733.D22.teamC.fileio.csv.MedicalEquipmentSRCSVWriter;
+import edu.wpi.cs3733.D22.teamC.fileio.csv.LocationCSVWriter;
 import edu.wpi.cs3733.D22.teamC.fileio.csv.MedicalEquipmentSRCSVReader;
+import edu.wpi.cs3733.D22.teamC.fileio.csv.MedicalEquipmentSRCSVWriter;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
@@ -18,9 +16,9 @@ import javafx.scene.Scene;
 import javafx.scene.layout.BorderPane;
 import javafx.stage.Stage;
 import lombok.extern.slf4j.Slf4j;
+
 import java.io.IOException;
 import java.util.List;
-import java.util.stream.Collectors;
 
 @Slf4j
 public class App extends Application {
@@ -57,7 +55,7 @@ public class App extends Application {
         MedicalEquipmentSRCSVReader mECSVReader = new MedicalEquipmentSRCSVReader();
         List<MedicalEquipmentSR> MedicalEquipmentSRs = mECSVReader.readFile("MedEquipReq.csv");
         if(MedicalEquipmentSRs != null){
-            ServiceRequestDAO serviceRequestDAO = new MedicalEquipmentSRDAOImpl();
+            MedicalEquipmentSRDAOImpl serviceRequestDAO = new MedicalEquipmentSRDAOImpl();
             for(MedicalEquipmentSR medEquipSR : MedicalEquipmentSRs){
                 serviceRequestDAO.insertServiceRequest(medEquipSR);
             }
@@ -86,14 +84,11 @@ public class App extends Application {
             csvWriter.writeFile("TowerLocations.csv", locations);
         }
         MedicalEquipmentSRCSVWriter mECSVWriter = new MedicalEquipmentSRCSVWriter();
-        ServiceRequestDAO serviceRequestDAO = new MedicalEquipmentSRDAOImpl();
-        List<ServiceRequest> serviceRequests = serviceRequestDAO.getAllServiceRequests();
-        List<MedicalEquipmentSR> medicalEquipmentSR = serviceRequests.stream().map(
-                SR -> {return (MedicalEquipmentSR) SR;}
-        ).collect(Collectors.toList());
-
-        if(medicalEquipmentSR != null){
-            mECSVWriter.writeFile("MedEquipReq.csv", medicalEquipmentSR);
+        MedicalEquipmentSRDAOImpl serviceRequestDAO = new MedicalEquipmentSRDAOImpl();
+        List<MedicalEquipmentSR> serviceRequests = serviceRequestDAO.getAllServiceRequests();
+        
+        if(serviceRequests != null){
+            mECSVWriter.writeFile("MedEquipReq.csv", serviceRequests);
         }
         // Shutdown Database Manager
         DBManager.shutdown();
