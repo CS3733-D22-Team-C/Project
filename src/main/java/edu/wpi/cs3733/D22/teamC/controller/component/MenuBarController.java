@@ -7,7 +7,7 @@ public class MenuBarController {
     @FXML
     protected void onMenuBarHomeButtonPress() {
         // TODO: Add home page path
-        App.instance.setView("");
+        App.instance.setView("view/general/HomePage.fxml");
     }
 
     @FXML
