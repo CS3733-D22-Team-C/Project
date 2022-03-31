@@ -20,6 +20,7 @@ public class App extends Application {
     private final String MEDICAL_EQUIPMENT = "view/service_request/medical-equipment-view.fxml";
     private final String SANITARY_SERVICES_PATH = "view/service_request/sanitation-view.fxml";
     private final String SERVICE_REQUEST_SELECT = "view/general/view-service.fxml";
+    private final String FACILITY_MAINTENANCE_PATH = "view/service_request/facility-maintenance.fxml";
 
     // Variables
     private Stage stage;
@@ -40,8 +41,8 @@ public class App extends Application {
         stage = primaryStage;
       
 
-        setView(SERVICE_REQUEST_SELECT);
-
+        //setView(SERVICE_REQUEST_SELECT);
+        setView(FACILITY_MAINTENANCE_PATH);
         //setView(MEDICAL_EQUIPMENT);
 
         // Initialize Database Manager
