@@ -161,12 +161,12 @@ public class DBManager {
     Initialize Service Request Table
      */
     public void initializeSRTable() {
-        initializeTable(
-                "SERVICE_REQUEST",
-                "CREATE TABLE SERVICE_REQUEST ( REQUESTID char(10), CREATORID char(10) , ASSIGNEEID char(10), LOCATIONID char(10), CREATIONTIMESTAMP timestamp, STATUS  varchar(50), PRIORITY varchar(50), REQUESTTYPE varchar(50), DESCRIPTION varchar(150), CONSTRAINT PK_REQUESTID PRIMARY KEY (REQUESTID))",
-                         emptyTables
-        );
-
+        initializeTable("SERVICE_REQUEST",
+                "CREATE TABLE SERVICE_REQUEST (REQUESTID char(10), CREATORID char(10), " +
+                        "ASSIGNEEID char(10), LOCATIONID char(10), CREATIONTIMESTAMP timestamp, STATUS varchar(50), " + 
+                        "PRIORITY varchar(50), REQUESTTYPE varchar(50), DESCRIPTION varchar(150), " + 
+                        "CONSTRAINT PK_REQUESTID PRIMARY KEY (REQUESTID))",
+                         emptyTables);
     }
 
     /**
@@ -174,7 +174,9 @@ public class DBManager {
      */
     public void initializeMedicalEquipSRTable() {
         initializeTable("MEDICAL_EQUIP_SERVICE_REQUEST",
-                "CREATE TABLE MEDICAL_EQUIP_SERVICE_REQUEST (FK_REQUESTID char(10), EQUIPID char(10), EQUIPTYPE varchar(50), FOREIGN KEY(FK_REQUESTID) REFERENCES SERVICE_REQUEST(REQUESTID))"
-                ,emptyTables);
+                "CREATE TABLE MEDICAL_EQUIP_SERVICE_REQUEST (REQUESTID char(10), EQUIPID char(10), " + 
+                        "EQUIPTYPE varchar(50), CONSTRAINT fk_requestID FOREIGN KEY (REQUESTID) " + 
+                        "REFERENCES SERVICE_REQUEST (REQUESTID) ON DELETE CASCADE)", 
+                emptyTables);
     }
 }

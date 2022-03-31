@@ -6,6 +6,12 @@ public class MedicalEquipmentServiceRequest extends ServiceRequest {
     protected String equipmentType;     // TODO: Make Enum
     protected String equipmentID;       // TODO: Link to Medical Equipment
 
+    public MedicalEquipmentServiceRequest() {}
+    
+    public MedicalEquipmentServiceRequest(ServiceRequest serviceRequest) {
+        super(serviceRequest);
+    }
+    
     //For the table
     enum equipEnum {
         BED, //1
@@ -19,6 +25,8 @@ public class MedicalEquipmentServiceRequest extends ServiceRequest {
     }
 
     public void setEquipmentType(String equipmentType) {
+        if (equipmentType == null) return;
+
         if(equipmentType.contains("Bed"))
             this.equipmentType = "Bed";
         else if(equipmentType.contains("Recliner"))
