@@ -4,7 +4,8 @@ import com.jfoenix.controls.JFXTreeTableColumn;
 import com.jfoenix.controls.JFXTreeTableView;
 import com.jfoenix.controls.datamodels.treetable.RecursiveTreeObject;
 import edu.wpi.cs3733.D22.teamC.entity.location.Location;
-import edu.wpi.cs3733.D22.teamC.entity.service_request.medical_equipment.MedicalEquipmentServiceRequest;
+import javafx.beans.property.IntegerProperty;
+import javafx.beans.property.SimpleIntegerProperty;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
 import javafx.beans.value.ObservableValue;
@@ -19,8 +20,8 @@ public class LocationTable extends RecursiveTreeObject<LocationTable> {
     StringProperty longName;
     StringProperty floor;
     StringProperty building;
-    StringProperty x;
-    StringProperty y;
+    IntegerProperty x;
+    IntegerProperty y;
 
     public LocationTable(Location location) {
         this.nodeID    = new SimpleStringProperty(location.getNodeID());
@@ -29,6 +30,8 @@ public class LocationTable extends RecursiveTreeObject<LocationTable> {
         this.longName  = new SimpleStringProperty(location.getLongName());
         this.floor     = new SimpleStringProperty(location.getFloor());
         this.building  = new SimpleStringProperty(location.getBuilding());
+        this.x = new SimpleIntegerProperty(location.getX());
+        this.y = new SimpleIntegerProperty(location.getY());
     }
 
     public static void createTableColumns(JFXTreeTableView<LocationTable> table) {
@@ -82,20 +85,20 @@ public class LocationTable extends RecursiveTreeObject<LocationTable> {
                 return param.getValue().getValue().building;
             }
         });
-        JFXTreeTableColumn<LocationTable, String> xCol = new JFXTreeTableColumn<>("X");
+        JFXTreeTableColumn<LocationTable, Integer> xCol = new JFXTreeTableColumn<>("X");
         xCol.setMaxWidth(1f * Integer.MAX_VALUE * 5.0);
-        xCol.setCellValueFactory(new Callback<TreeTableColumn.CellDataFeatures<LocationTable, String>, ObservableValue<String>>() {
+        xCol.setCellValueFactory(new Callback<TreeTableColumn.CellDataFeatures<LocationTable, Integer>, ObservableValue<Integer>>() {
             @Override
-            public ObservableValue<String> call(TreeTableColumn.CellDataFeatures<LocationTable, String> param) {
-                return param.getValue().getValue().x;
+            public ObservableValue<Integer> call(TreeTableColumn.CellDataFeatures<LocationTable, Integer> param) {
+                return param.getValue().getValue().x.asObject();
             }
         });
-        JFXTreeTableColumn<LocationTable, String> yCol = new JFXTreeTableColumn<>("Y");
+        JFXTreeTableColumn<LocationTable, Integer> yCol = new JFXTreeTableColumn<>("Y");
         yCol.setMaxWidth(1f * Integer.MAX_VALUE * 5.0);
-        yCol.setCellValueFactory(new Callback<TreeTableColumn.CellDataFeatures<LocationTable, String>, ObservableValue<String>>() {
+        yCol.setCellValueFactory(new Callback<TreeTableColumn.CellDataFeatures<LocationTable, Integer>, ObservableValue<Integer>>() {
             @Override
-            public ObservableValue<String> call(TreeTableColumn.CellDataFeatures<LocationTable, String> param) {
-                return param.getValue().getValue().y;
+            public ObservableValue<Integer> call(TreeTableColumn.CellDataFeatures<LocationTable, Integer> param) {
+                return param.getValue().getValue().y.asObject();
             }
         });
 
