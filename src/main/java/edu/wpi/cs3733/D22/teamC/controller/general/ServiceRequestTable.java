@@ -17,7 +17,8 @@ public class ServiceRequestTable extends RecursiveTreeObject<ServiceRequestTable
     StringProperty location;
     StringProperty status;
     StringProperty priority;
-    StringProperty type;
+    StringProperty ID;
+    StringProperty Type;
 
 //    public securitySRTable(String securityType, String assigneeID,
 //                           String location, String status, String priority){
@@ -33,15 +34,15 @@ public class ServiceRequestTable extends RecursiveTreeObject<ServiceRequestTable
         this.location = new SimpleStringProperty(serviceRequest.getLocation());
         this.status = new SimpleStringProperty(serviceRequest.getStatus());
         this.priority = new SimpleStringProperty(serviceRequest.getPriority());
+        this.ID = new SimpleStringProperty(serviceRequest.getRequestID());
+        this.Type = new SimpleStringProperty(serviceRequest.getRequestType());
     }
 
 
     public String getAssigneeID() {
         return assigneeID.get();
     }
-    public StringProperty assigneeIDProperty() {
-        return assigneeID;
-    }
+    public StringProperty assigneeIDProperty() {return assigneeID;}
     public void setAssigneeID(String assigneeID) {
         this.assigneeID.set(assigneeID);
     }
@@ -59,9 +60,7 @@ public class ServiceRequestTable extends RecursiveTreeObject<ServiceRequestTable
     public String getStatus() {
         return status.get();
     }
-    public StringProperty statusProperty() {
-        return status;
-    }
+    public StringProperty statusProperty() {return status;}
     public void setStatus(String status) {
         this.status.set(status);
     }
@@ -73,16 +72,33 @@ public class ServiceRequestTable extends RecursiveTreeObject<ServiceRequestTable
     public StringProperty priorityProperty() {
         return priority;
     }
-    public void setPriority(String priority) {
-        this.priority.set(priority);
+    public void setPriority(String priority) { this.priority.set(priority);}
+
+    public String getID() {
+        return ID.get();
+    }
+    public StringProperty IDProperty() {
+        return ID;
+    }
+    public void setID(String ID) {
+        this.ID.set(ID);
     }
 
+    public String getType() {
+        return Type.get();
+    }
+    public StringProperty TypeProperty() {
+        return Type;
+    }
+    public void setType(String Type) {
+        this.Type.set(Type);
+    }
 
     public static void createTableColumns(JFXTreeTableView<ServiceRequestTable> table) {
         //Columns for table
-        JFXTreeTableColumn<ServiceRequestTable, String> IDCol = new JFXTreeTableColumn<>("Priority");
-        IDCol.setPrefWidth(80);
-        IDCol.setCellValueFactory(new Callback<TreeTableColumn.CellDataFeatures<ServiceRequestTable, String>, ObservableValue<String>>() {
+        JFXTreeTableColumn<ServiceRequestTable, String> priorityCol = new JFXTreeTableColumn<>("Priority");
+        priorityCol.setPrefWidth(80);
+        priorityCol.setCellValueFactory(new Callback<TreeTableColumn.CellDataFeatures<ServiceRequestTable, String>, ObservableValue<String>>() {
             @Override
             public ObservableValue<String> call(TreeTableColumn.CellDataFeatures<ServiceRequestTable, String> param) {
                 return param.getValue().getValue().priorityProperty();
@@ -112,16 +128,24 @@ public class ServiceRequestTable extends RecursiveTreeObject<ServiceRequestTable
                 return param.getValue().getValue().locationProperty();
             }
         });
-//        JFXTreeTableColumn<securitySRTable, String> typeIDCol = new JFXTreeTableColumn<>("EquipID");
-//        typeIDCol.setPrefWidth(80);
-//        typeIDCol.setCellValueFactory(new Callback<TreeTableColumn.CellDataFeatures<securitySRTable, String>, ObservableValue<String>>() {
-//            @Override
-//            public ObservableValue<String> call(TreeTableColumn.CellDataFeatures<securitySRTable, String> param) {
-//                return param.getValue().getValue().equipmentIDProperty();
-//            }
-//        });
+        JFXTreeTableColumn<ServiceRequestTable, String> IDCol = new JFXTreeTableColumn<>("ID");
+        IDCol.setPrefWidth(80);
+        IDCol.setCellValueFactory(new Callback<TreeTableColumn.CellDataFeatures<ServiceRequestTable, String>, ObservableValue<String>>() {
+            @Override
+            public ObservableValue<String> call(TreeTableColumn.CellDataFeatures<ServiceRequestTable, String> param) {
+                return param.getValue().getValue().IDProperty();
+            }
+        });
+        JFXTreeTableColumn<ServiceRequestTable, String> TypeCol = new JFXTreeTableColumn<>("Type");
+        TypeCol.setPrefWidth(80);
+        TypeCol.setCellValueFactory(new Callback<TreeTableColumn.CellDataFeatures<ServiceRequestTable, String>, ObservableValue<String>>() {
+            @Override
+            public ObservableValue<String> call(TreeTableColumn.CellDataFeatures<ServiceRequestTable, String> param) {
+                return param.getValue().getValue().TypeProperty();
+            }
+        });
 
         // Sets columns
-        table.getColumns().setAll(IDCol, assigneeCol, statusCol, locationCol);
+        table.getColumns().setAll(priorityCol, assigneeCol, statusCol, locationCol, IDCol, TypeCol);
     }
 }
