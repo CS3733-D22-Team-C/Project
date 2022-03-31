@@ -3,6 +3,7 @@ package edu.wpi.cs3733.D22.teamC;
 import edu.wpi.cs3733.D22.teamC.entity.location.Location;
 import edu.wpi.cs3733.D22.teamC.entity.location.LocationDAO;
 import edu.wpi.cs3733.D22.teamC.entity.location.LocationDAOImpl;
+import edu.wpi.cs3733.D22.teamC.fileio.csv.LocationCSVWriter;
 import edu.wpi.cs3733.D22.teamC.fileio.csv.LocationCSVReader;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
@@ -63,6 +64,14 @@ public class App extends Application {
 
     @Override
     public void stop() {
+        // Export CSV Data
+        LocationCSVWriter csvWriter = new LocationCSVWriter();
+        LocationDAO locationDAO = new LocationDAOImpl();
+        List<Location> locations = locationDAO.getAllLocations();
+        if (locations != null) {
+            csvWriter.writeFile("TowerLocations.csv", locations);
+        }
+
         // Shutdown Database Manager
         DBManager.shutdown();
 
