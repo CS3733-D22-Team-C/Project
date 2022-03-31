@@ -27,6 +27,7 @@ public class App extends Application {
     public static final String MEDICINE_DELIVERY = "view/service_request/medicine-delivery-view.fxml";
     private final String SANITARY_SERVICES_PATH = "view/service_request/sanitation-view.fxml";
     private final String SERVICE_REQUEST_SELECT = "view/general/view-service.fxml";
+    private final String SECURITY_REQUEST_SELECT = "view/service_request/security-service-view.fxml";
 
     // Variables
     private Stage stage;
@@ -56,7 +57,8 @@ public class App extends Application {
         // Store window as stage
         stage = primaryStage;
 
-        setView(MEDICINE_DELIVERY);
+        setView(SECURITY_REQUEST_SELECT);
+
 
     }
 
