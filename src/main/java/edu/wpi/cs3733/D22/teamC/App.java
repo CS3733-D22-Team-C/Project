@@ -11,6 +11,7 @@ import edu.wpi.cs3733.D22.teamC.entity.service_request.medical_equipment.Medical
 import edu.wpi.cs3733.D22.teamC.fileio.csv.LocationCSVWriter;
 import edu.wpi.cs3733.D22.teamC.fileio.csv.LocationCSVReader;
 import edu.wpi.cs3733.D22.teamC.fileio.csv.MedicalEquipmentSRCSVWriter;
+import edu.wpi.cs3733.D22.teamC.fileio.csv.MedicalEquipmentSRCSVReader;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
@@ -39,7 +40,6 @@ public class App extends Application {
     private final String SERVICE_REQUEST_SELECT = "view/general/view-service.fxml";
     private final String HOME_PAGE_PATH = "view/general/HomePage.fxml";
     private final String FACILITY_MAINTENANCE_PATH = "view/service_request/facility-maintenance.fxml";
-    public static final String LAB_SYSTEM = "view/service_request/lab-system-view.fxml";
     private final String SECURITY_REQUEST_SELECT = "view/service_request/security-service-view.fxml";
 
 
@@ -58,6 +58,16 @@ public class App extends Application {
             LocationDAO locationDAO = new LocationDAOImpl();
             for (Location location : locations) {
                 locationDAO.insertLocation(location);
+            }
+        }
+
+        // loading CSV for medical equipment service request
+        MedicalEquipmentSRCSVReader mECSVReader = new MedicalEquipmentSRCSVReader();
+        List<MedicalEquipmentServiceRequest> MedicalEquipmentSRs = mECSVReader.readFile("MedEquipReq.csv");
+        if(MedicalEquipmentSRs != null){
+            ServiceRequestDAO serviceRequestDAO = new MedicalEquipmentSRDAOImpl();
+            for(MedicalEquipmentServiceRequest medEquipSR : MedicalEquipmentSRs){
+                serviceRequestDAO.insertServiceRequest(medEquipSR);
             }
         }
 
