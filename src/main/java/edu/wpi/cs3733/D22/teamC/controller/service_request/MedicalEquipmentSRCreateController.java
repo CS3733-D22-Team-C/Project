@@ -2,6 +2,9 @@ package edu.wpi.cs3733.D22.teamC.controller.service_request;
 
 import com.jfoenix.controls.*;
 import com.jfoenix.controls.datamodels.treetable.RecursiveTreeObject;
+import edu.wpi.cs3733.D22.teamC.entity.service_request.ServiceRequest;
+import edu.wpi.cs3733.D22.teamC.entity.service_request.ServiceRequestDAO;
+import edu.wpi.cs3733.D22.teamC.entity.service_request.medical_equipment.MedicalEquipmentSRDAOImpl;
 import edu.wpi.cs3733.D22.teamC.entity.service_request.medical_equipment.MedicalEquipmentServiceRequest;
 import edu.wpi.cs3733.D22.teamC.entity.service_request.medical_equipment.MedicalEquipmentSRTable;
 import javafx.collections.FXCollections;
@@ -11,7 +14,10 @@ import javafx.fxml.FXML;
 import javafx.scene.control.*;
 
 import java.net.URL;
+import java.sql.Timestamp;
+import java.util.List;
 import java.util.ResourceBundle;
+import java.util.stream.Collectors;
 
 public class MedicalEquipmentSRCreateController extends ServiceRequestCreateController {
     // Fields
@@ -42,13 +48,15 @@ public class MedicalEquipmentSRCreateController extends ServiceRequestCreateCont
         table.setRoot(root);
         table.setShowRoot(false);
 
-        //Practice classes to add
-        MedicalEquipmentSRTable met1 = new MedicalEquipmentSRTable("Bed", "15", "123456",
-              "Room 202", "Done", "High");
-        MedicalEquipmentSRTable met2 = new MedicalEquipmentSRTable("Infusion Pump", "35", "392843",
-               "Room 305", "Blank", "Low");
-        METList.add(met1);
-        METList.add(met2);
+        // Query Database
+        ServiceRequestDAO serviceRequestDAO = new MedicalEquipmentSRDAOImpl();
+        List<ServiceRequest> serviceRequests = serviceRequestDAO.getAllServiceRequests();
+        List<MedicalEquipmentServiceRequest> medicalEquipmentSRs = serviceRequests.stream().map(SR -> {
+            return (MedicalEquipmentServiceRequest) SR;
+        }).collect(Collectors.toList());
+        for (MedicalEquipmentServiceRequest medicalEquipmentSR : medicalEquipmentSRs) {
+            METList.add(new MedicalEquipmentSRTable(medicalEquipmentSR));
+        }
     }
 
     @FXML
@@ -63,6 +71,8 @@ public class MedicalEquipmentSRCreateController extends ServiceRequestCreateCont
     MedicalEquipmentServiceRequest clickSubmit(ActionEvent event) {
         MedicalEquipmentServiceRequest medEquip = new MedicalEquipmentServiceRequest();
 
+        medEquip.setCreationTimestamp(new Timestamp(System.currentTimeMillis()));
+
         //Sets from textFields
         medEquip.setAssigneeID(assigneeID.getText());
         medEquip.setDescription(description.getText());
@@ -73,6 +83,12 @@ public class MedicalEquipmentSRCreateController extends ServiceRequestCreateCont
         medEquip.setPriority(priority.getValue());
         medEquip.setEquipmentType(equipType.getValue());
 
+        //Request ID generator
+        int requestID = (int)(Math.random() * (10000000 + 1)) + 0;
+        String requestIDString = Integer.toString(requestID);
+        medEquip.setRequestID(requestIDString);
+        System.out.println(requestIDString);
+
         //Dealing with the equipment type and the enumerator
         int type = medEquip.getEquipEnum(equipType.getValue());
         String num = equipID.getText();
@@ -82,6 +98,10 @@ public class MedicalEquipmentSRCreateController extends ServiceRequestCreateCont
         // Table Entry
         MedicalEquipmentSRTable met = new MedicalEquipmentSRTable(medEquip);
         METList.add(met);
+
+        // Database entry
+        ServiceRequestDAO serviceRequestDAO = new MedicalEquipmentSRDAOImpl();
+        serviceRequestDAO.insertServiceRequest(medEquip);
 
         return medEquip;
     }
