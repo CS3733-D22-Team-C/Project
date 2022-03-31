@@ -9,6 +9,7 @@ import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
 import javafx.beans.value.ObservableValue;
 import javafx.scene.control.TreeTableColumn;
+import javafx.scene.control.TreeTableView;
 import javafx.util.Callback;
 
 public class FacilityMaintenanceSRTable extends RecursiveTreeObject<FacilityMaintenanceSRTable> {
@@ -97,9 +98,10 @@ public class FacilityMaintenanceSRTable extends RecursiveTreeObject<FacilityMain
     }
 
     public static void createTableColumns(JFXTreeTableView<FacilityMaintenanceSRTable> table) {
+        table.setColumnResizePolicy( TreeTableView.CONSTRAINED_RESIZE_POLICY );
         //Columns for table
         JFXTreeTableColumn<FacilityMaintenanceSRTable, String> IDCol = new JFXTreeTableColumn<>("Priority");
-        IDCol.setPrefWidth(80);
+        IDCol.setMaxWidth(1f * Integer.MAX_VALUE * 20);
         IDCol.setCellValueFactory(new Callback<TreeTableColumn.CellDataFeatures<FacilityMaintenanceSRTable, String>, ObservableValue<String>>() {
             @Override
             public ObservableValue<String> call(TreeTableColumn.CellDataFeatures<FacilityMaintenanceSRTable, String> param) {
@@ -107,7 +109,7 @@ public class FacilityMaintenanceSRTable extends RecursiveTreeObject<FacilityMain
             }
         });
         JFXTreeTableColumn<FacilityMaintenanceSRTable, String> assigneeCol = new JFXTreeTableColumn<>("Assignee");
-        assigneeCol.setPrefWidth(80);
+        assigneeCol.setMaxWidth(1f * Integer.MAX_VALUE * 20);
         assigneeCol.setCellValueFactory(new Callback<TreeTableColumn.CellDataFeatures<FacilityMaintenanceSRTable, String>, ObservableValue<String>>() {
             @Override
             public ObservableValue<String> call(TreeTableColumn.CellDataFeatures<FacilityMaintenanceSRTable, String> param) {
@@ -115,7 +117,7 @@ public class FacilityMaintenanceSRTable extends RecursiveTreeObject<FacilityMain
             }
         });
         JFXTreeTableColumn<FacilityMaintenanceSRTable, String> statusCol = new JFXTreeTableColumn<>("Status");
-        statusCol.setPrefWidth(80);
+        statusCol.setMaxWidth(1f * Integer.MAX_VALUE * 20);
         statusCol.setCellValueFactory(new Callback<TreeTableColumn.CellDataFeatures<FacilityMaintenanceSRTable, String>, ObservableValue<String>>() {
             @Override
             public ObservableValue<String> call(TreeTableColumn.CellDataFeatures<FacilityMaintenanceSRTable, String> param) {
@@ -123,7 +125,7 @@ public class FacilityMaintenanceSRTable extends RecursiveTreeObject<FacilityMain
             }
         });
         JFXTreeTableColumn<FacilityMaintenanceSRTable, String> locationCol = new JFXTreeTableColumn<>("Location");
-        locationCol.setPrefWidth(80);
+        locationCol.setMaxWidth(1f * Integer.MAX_VALUE * 20);
         locationCol.setCellValueFactory(new Callback<TreeTableColumn.CellDataFeatures<FacilityMaintenanceSRTable, String>, ObservableValue<String>>() {
             @Override
             public ObservableValue<String> call(TreeTableColumn.CellDataFeatures<FacilityMaintenanceSRTable, String> param) {
@@ -131,7 +133,7 @@ public class FacilityMaintenanceSRTable extends RecursiveTreeObject<FacilityMain
             }
         });
         JFXTreeTableColumn<FacilityMaintenanceSRTable, String> typeCol = new JFXTreeTableColumn<>("Type");
-        typeCol.setPrefWidth(80);
+        typeCol.setMaxWidth(1f * Integer.MAX_VALUE * 20);
         typeCol.setCellValueFactory(new Callback<TreeTableColumn.CellDataFeatures<FacilityMaintenanceSRTable, String>, ObservableValue<String>>() {
             @Override
             public ObservableValue<String> call(TreeTableColumn.CellDataFeatures<FacilityMaintenanceSRTable, String> param) {
