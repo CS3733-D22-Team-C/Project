@@ -103,6 +103,10 @@ class LocationDAOImplTest {
 
         // Cannot Delete Location Again
         assertFalse(locationDAO.deleteLocation(deleteLocation));
+
+        // Check DB is empty
+        assertEquals(0, locationDAO.getAllLocations().size());
+        assertEquals(null, locationDAO.getLocation("Test000"));
     }
 
     /**
