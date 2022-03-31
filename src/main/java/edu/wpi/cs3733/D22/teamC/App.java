@@ -4,8 +4,12 @@ import edu.wpi.cs3733.D22.teamC.controller.location.LocationSelectController;
 import edu.wpi.cs3733.D22.teamC.entity.location.Location;
 import edu.wpi.cs3733.D22.teamC.entity.location.LocationDAO;
 import edu.wpi.cs3733.D22.teamC.entity.location.LocationDAOImpl;
+import edu.wpi.cs3733.D22.teamC.entity.service_request.ServiceRequestDAO;
+import edu.wpi.cs3733.D22.teamC.entity.service_request.medical_equipment.MedicalEquipmentSRDAOImpl;
+import edu.wpi.cs3733.D22.teamC.entity.service_request.medical_equipment.MedicalEquipmentServiceRequest;
 import edu.wpi.cs3733.D22.teamC.fileio.csv.LocationCSVWriter;
 import edu.wpi.cs3733.D22.teamC.fileio.csv.LocationCSVReader;
+import edu.wpi.cs3733.D22.teamC.fileio.csv.MedicalEquipmentSRCSVReader;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
@@ -53,6 +57,16 @@ public class App extends Application {
             }
         }
 
+        // loading CSV for medical equipment service request
+        MedicalEquipmentSRCSVReader mECSVReader = new MedicalEquipmentSRCSVReader();
+        List<MedicalEquipmentServiceRequest> MedicalEquipmentSRs = mECSVReader.readFile("MedEquipReq.csv");
+        if(MedicalEquipmentSRs != null){
+            ServiceRequestDAO serviceRequestDAO = new MedicalEquipmentSRDAOImpl();
+            for(MedicalEquipmentServiceRequest medEquipSR : MedicalEquipmentSRs){
+                serviceRequestDAO.insertServiceRequest(medEquipSR);
+            }
+        }
+
         log.info("Starting Up");
     }
 
@@ -64,11 +78,6 @@ public class App extends Application {
         stage = primaryStage;
       
         setView(HOME_PAGE_PATH);
-    
-        // Initialize Database Manager
-        DBManager.startup();
-
-      setView(LOCATION_SELECT);
     }
 
     @Override
