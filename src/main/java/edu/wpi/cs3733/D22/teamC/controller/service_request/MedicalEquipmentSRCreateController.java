@@ -2,6 +2,9 @@ package edu.wpi.cs3733.D22.teamC.controller.service_request;
 
 import com.jfoenix.controls.*;
 import com.jfoenix.controls.datamodels.treetable.RecursiveTreeObject;
+import edu.wpi.cs3733.D22.teamC.entity.service_request.ServiceRequest;
+import edu.wpi.cs3733.D22.teamC.entity.service_request.ServiceRequestDAO;
+import edu.wpi.cs3733.D22.teamC.entity.service_request.medical_equipment.MedicalEquipmentSRDAOImpl;
 import edu.wpi.cs3733.D22.teamC.entity.service_request.medical_equipment.MedicalEquipmentServiceRequest;
 import edu.wpi.cs3733.D22.teamC.entity.service_request.medical_equipment.MedicalEquipmentSRTable;
 import javafx.collections.FXCollections;
@@ -73,6 +76,11 @@ public class MedicalEquipmentSRCreateController extends ServiceRequestCreateCont
         medEquip.setPriority(priority.getValue());
         medEquip.setEquipmentType(equipType.getValue());
 
+        //Request ID generator
+        int requestID = (int)Math.random() * (1000 + 1) + 0;
+        String requestIDString = Integer.toString(requestID);
+        medEquip.setRequestID(requestIDString);
+
         //Dealing with the equipment type and the enumerator
         int type = medEquip.getEquipEnum(equipType.getValue());
         String num = equipID.getText();
@@ -82,6 +90,10 @@ public class MedicalEquipmentSRCreateController extends ServiceRequestCreateCont
         // Table Entry
         MedicalEquipmentSRTable met = new MedicalEquipmentSRTable(medEquip);
         METList.add(met);
+
+        //Database entry
+        ServiceRequestDAO serviceRequestDAO = new MedicalEquipmentSRDAOImpl();
+        serviceRequestDAO.insertServiceRequest(medEquip);
 
         return medEquip;
     }
