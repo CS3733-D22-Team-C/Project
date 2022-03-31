@@ -1,4 +1,4 @@
-package edu.wpi.cs3733.D22.teamC.controller.general;
+package edu.wpi.cs3733.D22.teamC.controller.service_request;
 
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXComboBox;
@@ -18,6 +18,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.TreeItem;
 
 import java.net.URL;
+import java.security.Provider;
 import java.util.List;
 import java.util.ResourceBundle;
 
@@ -32,14 +33,14 @@ public class ServiceRequestsViewController implements Initializable {
 
     //Buttons
     @FXML private JFXButton selectButton;
-    @FXML private JFXTreeTableView<ServiceRequestTable> table;
     @FXML private JFXComboBox<String> serviceType;
+    @FXML private JFXTreeTableView table;
+
+    // Variables
+    private ServiceRequestTable<ServiceRequest> tableWrapper;
 
     @FXML
     public void initialize(URL url, ResourceBundle rb) {
-
-
-
         //service request dropdown
         serviceType.getItems().add("Medical Equipment");
         serviceType.getItems().add("Facility Maintenance");
@@ -51,20 +52,8 @@ public class ServiceRequestsViewController implements Initializable {
         ServiceRequestDAO serviceRequestDAO  = new ServiceRequestDAOImpl();
         List<ServiceRequest> serviceRequests = serviceRequestDAO.getAllServiceRequests();
 
-        ObservableList<ServiceRequestTable> METList = FXCollections.observableArrayList();
-        final TreeItem<ServiceRequestTable> root = new RecursiveTreeItem<ServiceRequestTable>(METList, RecursiveTreeObject::getChildren);
-        ServiceRequestTable.createTableColumns(table);
-
-        table.setRoot(root);
-        table.setShowRoot(false);
-
-
-
-        for (ServiceRequest serviceRequest  :  serviceRequests)
-        {
-            ServiceRequestTable serviceRequestTable = new ServiceRequestTable(serviceRequest);
-            METList.add(serviceRequestTable);
-        }
+        tableWrapper = new ServiceRequestTable<ServiceRequest>(table);
+        serviceRequests.forEach(tableWrapper::addEntry);
     }
     @FXML
     void onSelectButton(ActionEvent event) {
