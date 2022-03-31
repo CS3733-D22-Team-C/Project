@@ -6,24 +6,16 @@
 <?import java.net.URL?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
 <AnchorPane prefHeight="503.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.wpi.cs3733.D22.teamC.controller.general.serviceRequest">
    <children>
       <JFXTreeTableView fx:id="table" layoutX="34.0" layoutY="25.0" prefHeight="400.0" prefWidth="532.0" />
-      <VBox layoutX="228.0" layoutY="454.0" prefHeight="37.0" prefWidth="139.0">
-         <children>
-            <Label prefHeight="48.0" prefWidth="139.0" styleClass="textarea" text="Create a Service Request:">
-               <stylesheets>
-                  <URL value="@../../css/base.css" />
-                  <URL value="@../../css/fonts.css" />
-               </stylesheets></Label>
-         </children>
-      </VBox>
       <VBox layoutX="519.0" layoutY="453.0" prefHeight="38.0" prefWidth="53.0">
          <children>
-            <JFXButton fx:id="selectButton" layoutX="10.0" layoutY="10.0" onAction="#onSelectButton" prefHeight="38.0" prefWidth="67.0" styleClass="service-button-success" stylesheets="@../../css/base.css" text="→">
+            <JFXButton fx:id="selectButton" layoutX="10.0" layoutY="10.0" onAction="#onSelectButton" prefHeight="26.0" prefWidth="53.0" styleClass="service-button-success" stylesheets="@../../css/base.css" text="→">
                <font>
                   <Font size="24.0" />
                </font>
@@ -32,8 +24,18 @@
       </VBox>
       <VBox layoutX="367.0" layoutY="453.0" prefHeight="37.0" prefWidth="152.0">
          <children>
-            <JFXComboBox fx:id="serviceType" prefHeight="38.0" prefWidth="158.0" styleClass="service-dropdown" stylesheets="@../../css/base.css" />
+            <JFXComboBox fx:id="serviceType" prefHeight="26.0" prefWidth="152.0" styleClass="service-dropdown" stylesheets="@../../css/base.css" />
          </children>
       </VBox>
+      <HBox layoutX="219.0" layoutY="451.0" prefHeight="34.0" prefWidth="146.0">
+         <children>
+            <Label prefHeight="38.0" prefWidth="165.0" styleClass="service-textarea" text="Create a Service Request:">
+               <stylesheets>
+                  <URL value="@../../css/base.css" />
+                  <URL value="@../../css/fonts.css" />
+               </stylesheets>
+            </Label>
+         </children>
+      </HBox>
    </children>
 </AnchorPane>
