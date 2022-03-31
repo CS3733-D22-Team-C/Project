@@ -1,6 +1,5 @@
 package edu.wpi.cs3733.D22.teamC;
 
-import edu.wpi.cs3733.D22.teamC.controller.location.LocationSelectController;
 import edu.wpi.cs3733.D22.teamC.entity.location.Location;
 import edu.wpi.cs3733.D22.teamC.entity.location.LocationDAO;
 import edu.wpi.cs3733.D22.teamC.entity.location.LocationDAOImpl;
@@ -20,7 +19,6 @@ import javafx.scene.layout.BorderPane;
 import javafx.stage.Stage;
 import lombok.extern.slf4j.Slf4j;
 import java.io.IOException;
-import java.sql.Timestamp;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -41,7 +39,6 @@ public class App extends Application {
     public static final String HOME_PAGE_PATH = "view/general/HomePage.fxml";
     public static final String FACILITY_MAINTENANCE_PATH = "view/service_request/facility-maintenance.fxml";
     public static final String SECURITY_REQUEST_SELECT = "view/service_request/security-service-view.fxml";
-
 
     // Variables
     private Stage stage;
@@ -81,7 +78,7 @@ public class App extends Application {
         // Store window as stage
         stage = primaryStage;
       
-        setView(LOCATION_SELECT);
+        setView(HOME_PAGE_PATH);
     }
 
     @Override

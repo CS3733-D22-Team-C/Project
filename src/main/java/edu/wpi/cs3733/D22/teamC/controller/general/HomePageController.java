@@ -18,7 +18,6 @@ public class HomePageController {
 
     @FXML
     public void onClickMaps(ActionEvent actionEvent) {
-        // TODO: Add map path
-        //App.instance.setView("");
+        App.instance.setView(App.instance.LOCATION_SELECT);
     }
 }
