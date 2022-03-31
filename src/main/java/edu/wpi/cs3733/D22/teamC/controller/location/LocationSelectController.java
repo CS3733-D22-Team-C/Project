@@ -19,6 +19,7 @@ import javafx.scene.control.TreeTableView;
 import java.net.URL;
 import java.util.List;
 import java.util.ResourceBundle;
+import java.util.stream.Collectors;
 
 public class LocationSelectController implements Initializable {
 
@@ -38,11 +39,11 @@ public class LocationSelectController implements Initializable {
 
         // Query Database
 
-        List<Location> locations = new LocationDAOImpl().getAllLocations();
+        LocationDAO locationsDAO = new LocationDAOImpl();
+        List<Location> locations = locationsDAO.getAllLocations();
 
-        for(Location location:locations){
-            LocationTable loc = new LocationTable(location);
-            LOCList.add(loc);
+        for(Location tempLocation : locations){
+            LOCList.add(new LocationTable(tempLocation));
         }
     }
 }

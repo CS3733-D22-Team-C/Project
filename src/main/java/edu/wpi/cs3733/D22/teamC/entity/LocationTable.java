@@ -22,19 +22,6 @@ public class LocationTable extends RecursiveTreeObject<LocationTable> {
     StringProperty x;
     StringProperty y;
 
-    public LocationTable(String nodeID, String nodeType, String shortName,
-                         String longName, String floor, String building,
-                         String x, String y){
-        this.nodeID     = new SimpleStringProperty(nodeID);
-        this.nodeType   = new SimpleStringProperty(nodeType);
-        this.shortName  = new SimpleStringProperty(shortName);
-        this.longName   = new SimpleStringProperty(longName);
-        this.floor      = new SimpleStringProperty(floor);
-        this.building   = new SimpleStringProperty(building);
-        this.x          = new SimpleStringProperty(x);
-        this.y          = new SimpleStringProperty(y);
-    }
-
     public LocationTable(Location location) {
         this.nodeID    = new SimpleStringProperty(location.getNodeID());
         this.nodeType  = new SimpleStringProperty(location.getNodeType());
@@ -42,102 +29,6 @@ public class LocationTable extends RecursiveTreeObject<LocationTable> {
         this.longName  = new SimpleStringProperty(location.getLongName());
         this.floor     = new SimpleStringProperty(location.getFloor());
         this.building  = new SimpleStringProperty(location.getBuilding());
-    }
-
-    public String getNodeID() {
-        return nodeID.get();
-    }
-
-    public StringProperty nodeIDProperty() {
-        return nodeID;
-    }
-
-    public void setNodeID(String nodeID) {
-        this.nodeID.set(nodeID);
-    }
-
-    public String getNodeType() {
-        return nodeType.get();
-    }
-
-    public StringProperty nodeTypeProperty() {
-        return nodeType;
-    }
-
-    public void setNodeType(String nodeType) {
-        this.nodeType.set(nodeType);
-    }
-
-    public String getShortName() {
-        return shortName.get();
-    }
-
-    public StringProperty shortNameProperty() {
-        return shortName;
-    }
-
-    public void setShortName(String shortName) {
-        this.shortName.set(shortName);
-    }
-
-    public String getLongName() {
-        return longName.get();
-    }
-
-    public StringProperty longNameProperty() {
-        return longName;
-    }
-
-    public void setLongName(String longName) {
-        this.longName.set(longName);
-    }
-
-    public String getFloor() {
-        return floor.get();
-    }
-
-    public StringProperty floorProperty() {
-        return floor;
-    }
-
-    public void setFloor(String floor) {
-        this.floor.set(floor);
-    }
-
-    public String getBuilding() {
-        return building.get();
-    }
-
-    public StringProperty buildingProperty() {
-        return building;
-    }
-
-    public void setBuilding(String building) {
-        this.building.set(building);
-    }
-
-    public String getX() {
-        return x.get();
-    }
-
-    public StringProperty xProperty() {
-        return x;
-    }
-
-    public void setX(String x) {
-        this.x.set(x);
-    }
-
-    public String getY() {
-        return y.get();
-    }
-
-    public StringProperty yProperty() {
-        return y;
-    }
-
-    public void setY(String y) {
-        this.y.set(y);
     }
 
     public static void createTableColumns(JFXTreeTableView<LocationTable> table) {
@@ -148,7 +39,7 @@ public class LocationTable extends RecursiveTreeObject<LocationTable> {
         nodeIDCol.setCellValueFactory(new Callback<TreeTableColumn.CellDataFeatures<LocationTable, String>, ObservableValue<String>>() {
             @Override
             public ObservableValue<String> call(TreeTableColumn.CellDataFeatures<LocationTable, String> param) {
-                return param.getValue().getValue().nodeIDProperty();
+                return param.getValue().getValue().nodeID;
             }
         });
         JFXTreeTableColumn<LocationTable, String> nodeTypeCol = new JFXTreeTableColumn<>("Node Type");
@@ -156,7 +47,7 @@ public class LocationTable extends RecursiveTreeObject<LocationTable> {
         nodeTypeCol.setCellValueFactory(new Callback<TreeTableColumn.CellDataFeatures<LocationTable, String>, ObservableValue<String>>() {
             @Override
             public ObservableValue<String> call(TreeTableColumn.CellDataFeatures<LocationTable, String> param) {
-                return param.getValue().getValue().nodeTypeProperty();
+                return param.getValue().getValue().nodeType;
             }
         });
         JFXTreeTableColumn<LocationTable, String> shortNameCol = new JFXTreeTableColumn<>("Short Name");
@@ -164,7 +55,7 @@ public class LocationTable extends RecursiveTreeObject<LocationTable> {
         shortNameCol.setCellValueFactory(new Callback<TreeTableColumn.CellDataFeatures<LocationTable, String>, ObservableValue<String>>() {
             @Override
             public ObservableValue<String> call(TreeTableColumn.CellDataFeatures<LocationTable, String> param) {
-                return param.getValue().getValue().shortNameProperty();
+                return param.getValue().getValue().shortName;
             }
         });
         JFXTreeTableColumn<LocationTable, String> longNameCol = new JFXTreeTableColumn<>("Long Name");
@@ -172,7 +63,7 @@ public class LocationTable extends RecursiveTreeObject<LocationTable> {
         longNameCol.setCellValueFactory(new Callback<TreeTableColumn.CellDataFeatures<LocationTable, String>, ObservableValue<String>>() {
             @Override
             public ObservableValue<String> call(TreeTableColumn.CellDataFeatures<LocationTable, String> param) {
-                return param.getValue().getValue().longNameProperty();
+                return param.getValue().getValue().longName;
             }
         });
         JFXTreeTableColumn<LocationTable, String> floorCol = new JFXTreeTableColumn<>("Floor");
@@ -180,7 +71,7 @@ public class LocationTable extends RecursiveTreeObject<LocationTable> {
         floorCol.setCellValueFactory(new Callback<TreeTableColumn.CellDataFeatures<LocationTable, String>, ObservableValue<String>>() {
             @Override
             public ObservableValue<String> call(TreeTableColumn.CellDataFeatures<LocationTable, String> param) {
-                return param.getValue().getValue().floorProperty();
+                return param.getValue().getValue().floor;
             }
         });
         JFXTreeTableColumn<LocationTable, String> buildingCol = new JFXTreeTableColumn<>("Building");
@@ -188,7 +79,7 @@ public class LocationTable extends RecursiveTreeObject<LocationTable> {
         buildingCol.setCellValueFactory(new Callback<TreeTableColumn.CellDataFeatures<LocationTable, String>, ObservableValue<String>>() {
             @Override
             public ObservableValue<String> call(TreeTableColumn.CellDataFeatures<LocationTable, String> param) {
-                return param.getValue().getValue().buildingProperty();
+                return param.getValue().getValue().building;
             }
         });
         JFXTreeTableColumn<LocationTable, String> xCol = new JFXTreeTableColumn<>("X");
@@ -196,7 +87,7 @@ public class LocationTable extends RecursiveTreeObject<LocationTable> {
         xCol.setCellValueFactory(new Callback<TreeTableColumn.CellDataFeatures<LocationTable, String>, ObservableValue<String>>() {
             @Override
             public ObservableValue<String> call(TreeTableColumn.CellDataFeatures<LocationTable, String> param) {
-                return param.getValue().getValue().xProperty();
+                return param.getValue().getValue().x;
             }
         });
         JFXTreeTableColumn<LocationTable, String> yCol = new JFXTreeTableColumn<>("Y");
@@ -204,7 +95,7 @@ public class LocationTable extends RecursiveTreeObject<LocationTable> {
         yCol.setCellValueFactory(new Callback<TreeTableColumn.CellDataFeatures<LocationTable, String>, ObservableValue<String>>() {
             @Override
             public ObservableValue<String> call(TreeTableColumn.CellDataFeatures<LocationTable, String> param) {
-                return param.getValue().getValue().yProperty();
+                return param.getValue().getValue().y;
             }
         });
 
