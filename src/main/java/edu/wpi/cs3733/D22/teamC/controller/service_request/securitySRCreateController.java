@@ -68,7 +68,6 @@ public class securitySRCreateController extends ServiceRequestCreateController {
         location.getText().isEmpty() || priority.getSelectionModel().isEmpty() ||
                 status.getSelectionModel().isEmpty())
         {
-            clickReset(event);
             return null;
         } else
         {
