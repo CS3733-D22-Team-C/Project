@@ -49,6 +49,11 @@ public class MedicineDeliverySRCreateController extends ServiceRequestCreateCont
     MedicineDeliveryServiceRequest clickSubmit(ActionEvent event) {
         MedicineDeliveryServiceRequest medicineDeliverySR = new MedicineDeliveryServiceRequest();
 
+        if (assigneeID.getText().isEmpty() || location.getText().isEmpty() || priority.getSelectionModel().isEmpty() || status.getSelectionModel().isEmpty()
+        || medicine.getText().isEmpty() || dosage.getText().isEmpty() || patientID.getText().isEmpty()) {
+            return null;
+        }
+
         // Set from Field
         medicineDeliverySR.setAssigneeID(assigneeID.getText());
         medicineDeliverySR.setDescription(description.getText());
