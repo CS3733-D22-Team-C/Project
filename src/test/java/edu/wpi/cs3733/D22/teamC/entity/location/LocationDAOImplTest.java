@@ -14,10 +14,8 @@ class LocationDAOImplTest {
     @BeforeEach
     void setUp() {
         // Setup testing database and initialize LOCATION table
-        testDBManager = new DBManager(DBManager.TESTING_DATABASE_NAME, true);
-        testDBManager.connectDatabase();
-        testDBManager.initializeLocationTable();
-        DBManager.setInstance(testDBManager);
+        testDBManager = DBManager.startup(DBManager.TESTING_DATABASE_NAME);
+        testDBManager.initializeLocationTable(true);
 
         // Setup testing LocationDAOImpl
         locationDAO = new LocationDAOImpl();

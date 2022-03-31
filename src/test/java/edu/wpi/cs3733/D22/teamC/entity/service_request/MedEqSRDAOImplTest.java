@@ -18,11 +18,9 @@ class MedEqSRDAOImplTest {
     @BeforeEach
     void setUp() {
         // Setup testing database and initialize LOCATION table
-        testDBManager = new DBManager(DBManager.TESTING_DATABASE_NAME, true);
-        testDBManager.connectDatabase();
-        testDBManager.initializeSRTable();
-        testDBManager.initializeMedicalEquipSRTable();
-        DBManager.setInstance(testDBManager);
+        testDBManager = DBManager.startup(DBManager.TESTING_DATABASE_NAME);
+        testDBManager.initializeServiceRequestTable(true);
+        testDBManager.initializeMedicalEquipSRTable(true);
         
         // Setup testing medicalEqDAOImpl
         medicalEqDAO = new MedicalEquipmentSRDAOImpl();
