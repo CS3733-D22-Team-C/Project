@@ -1,5 +1,10 @@
 package edu.wpi.cs3733.D22.teamC;
 
+import edu.wpi.cs3733.D22.teamC.entity.location.Location;
+import edu.wpi.cs3733.D22.teamC.entity.location.LocationDAO;
+import edu.wpi.cs3733.D22.teamC.entity.location.LocationDAOImpl;
+import edu.wpi.cs3733.D22.teamC.fileio.csv.LocationCSVWriter;
+import edu.wpi.cs3733.D22.teamC.fileio.csv.LocationCSVReader;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
@@ -8,6 +13,7 @@ import javafx.scene.layout.BorderPane;
 import javafx.stage.Stage;
 import lombok.extern.slf4j.Slf4j;
 import java.io.IOException;
+import java.util.List;
 
 @Slf4j
 public class App extends Application {
@@ -19,6 +25,8 @@ public class App extends Application {
     private static final String MENU_BAR_COMPONENT_PATH = "component/menu-bar.fxml";
     private static final String MEDICAL_EQUIPMENT = "view/service_request/medical-equipment-view.fxml";
     public static final String MEDICINE_DELIVERY = "view/service_request/medicine-delivery-view.fxml";
+    private final String SANITARY_SERVICES_PATH = "view/service_request/sanitation-view.fxml";
+    private final String SERVICE_REQUEST_SELECT = "view/general/view-service.fxml";
 
     // Variables
     private Stage stage;
@@ -27,6 +35,16 @@ public class App extends Application {
     public void init() {
         // Initialize Database Manager
         DBManager.startup();
+
+        // Load CSV Data
+        LocationCSVReader csvReader = new LocationCSVReader();
+        List<Location> locations = csvReader.readFile("TowerLocations.csv");
+        if (locations != null) {
+            LocationDAO locationDAO = new LocationDAOImpl();
+            for (Location location : locations) {
+                locationDAO.insertLocation(location);
+            }
+        }
 
         log.info("Starting Up");
     }
@@ -37,23 +55,31 @@ public class App extends Application {
         instance = this;
         // Store window as stage
         stage = primaryStage;
-      
-//        setView("view/general/demo.fxml");
 
         setView(MEDICINE_DELIVERY);
 
-        // Initialize Database Manager
-        DBManager.startup();
     }
 
     @Override
     public void stop() {
+        // Export CSV Data
+        LocationCSVWriter csvWriter = new LocationCSVWriter();
+        LocationDAO locationDAO = new LocationDAOImpl();
+        List<Location> locations = locationDAO.getAllLocations();
+        if (locations != null) {
+            csvWriter.writeFile("TowerLocations.csv", locations);
+        }
+
         // Shutdown Database Manager
         DBManager.shutdown();
 
         log.info("Shutting Down");
     }
 
+    /**
+     * Allows us to change the view of the window
+     * @param viewFile path to the .fxml file to be displayed
+     */
     public void setView(String viewFile) {
         try {
             // Load Base Page
