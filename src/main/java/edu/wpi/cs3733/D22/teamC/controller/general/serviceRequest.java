@@ -51,15 +51,16 @@ public class serviceRequest implements Initializable {
     }
     @FXML
     void onSelectButton(ActionEvent event) { // TODO: Set views for every service request
+        // TODO: Make it so that we just use constants instead of having the paths written fully
         switch (serviceType.getValue()){
             case "Medical Equipment":
                 App.instance.setView("view/service_request/medical-equipment-view.fxml");
                 break;
             case "Facility Maintenance":
-                App.instance.setView("");
+                App.instance.setView("view/service_request/facility-maintenance.fxml");
                 break;
             case "Lab System":
-                App.instance.setView("");
+                App.instance.setView("view/service_request/lab-system-view.fxml");
                 break;
             case "Medicine Delivery":
                 App.instance.setView(App.instance.MEDICINE_DELIVERY);
@@ -68,7 +69,7 @@ public class serviceRequest implements Initializable {
                 App.instance.setView("view/service_request/sanitation-view.fxml");
                 break;
             case "Security":
-                App.instance.setView("");
+                App.instance.setView("view/service_request/security-service-view.fxml");
                 break;
             default:
         }
