@@ -1,8 +1,8 @@
 package edu.wpi.cs3733.D22.teamC.fileio.csv;
 
-import edu.wpi.cs3733.D22.teamC.entity.service_request.medical_equipment.MedicalEquipmentServiceRequest;
+import edu.wpi.cs3733.D22.teamC.entity.service_request.medical_equipment.MedicalEquipmentSR;
 
-public class MedicalEquipmentSRCSVWriter extends CSVWriter<MedicalEquipmentServiceRequest> {
+public class MedicalEquipmentSRCSVWriter extends CSVWriter<MedicalEquipmentSR> {
     /**
      * Manually define headers of attributes output to CSV.
      * @return The array of headers to be output to CSV.
@@ -30,7 +30,7 @@ public class MedicalEquipmentSRCSVWriter extends CSVWriter<MedicalEquipmentServi
      * @return The retrieved value to be output to the CSV.
      */
     @Override
-    protected String compileAttribute(MedicalEquipmentServiceRequest serviceRequest, String header) {
+    protected String compileAttribute(MedicalEquipmentSR serviceRequest, String header) {
         String output = "";
         switch (header) {
             case "requestID":

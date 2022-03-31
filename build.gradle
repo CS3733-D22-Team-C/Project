@@ -64,6 +64,8 @@ def codeCoverageExcludes = [
         'edu.wpi.teamname.Main',
 ]
 
+// TODO: Test Coverage (lol no jk)
+/*
 jacoco {
     toolVersion = "0.8.4"
 }
@@ -104,6 +106,7 @@ jacocoTestCoverageVerification {
 
 check.dependsOn jacocoTestCoverageVerification
 jacocoTestCoverageVerification.dependsOn jacocoTestReport
+*/
 compileJava.dependsOn 'spotlessApply'
 /*
 spotless {

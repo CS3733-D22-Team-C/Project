@@ -1,12 +1,10 @@
 package edu.wpi.cs3733.D22.teamC.fileio.csv;
 
-import edu.wpi.cs3733.D22.teamC.entity.service_request.ServiceRequest;
-import edu.wpi.cs3733.D22.teamC.entity.service_request.medical_equipment.MedicalEquipmentSRDAOImpl;
-import edu.wpi.cs3733.D22.teamC.entity.service_request.medical_equipment.MedicalEquipmentServiceRequest;
+import edu.wpi.cs3733.D22.teamC.entity.service_request.medical_equipment.MedicalEquipmentSR;
 
 import java.sql.Timestamp;
 
-public class MedicalEquipmentSRCSVReader extends CSVReader<MedicalEquipmentServiceRequest>{
+public class MedicalEquipmentSRCSVReader extends CSVReader<MedicalEquipmentSR>{
     /**
      * Maps ServiceRequest (header, value) pairs to a value to change for the object.
      * @param serviceRequest The object to be modified.
@@ -15,7 +13,7 @@ public class MedicalEquipmentSRCSVReader extends CSVReader<MedicalEquipmentServi
      * @return The Location modified with the value at the corresponding attribute.
      */
     @Override
-    protected MedicalEquipmentServiceRequest parseAttribute(MedicalEquipmentServiceRequest serviceRequest, String header, String value){
+    protected MedicalEquipmentSR parseAttribute(MedicalEquipmentSR serviceRequest, String header, String value){
         switch(header) {
             case "requestID":
                 serviceRequest.setRequestID(value);
@@ -55,5 +53,5 @@ public class MedicalEquipmentSRCSVReader extends CSVReader<MedicalEquipmentServi
     }
 
     @Override
-    protected MedicalEquipmentServiceRequest createObject(){ return new MedicalEquipmentServiceRequest();}
+    protected MedicalEquipmentSR createObject(){ return new MedicalEquipmentSR();}
 }

@@ -6,7 +6,7 @@ import edu.wpi.cs3733.D22.teamC.entity.location.LocationDAOImpl;
 import edu.wpi.cs3733.D22.teamC.entity.service_request.ServiceRequest;
 import edu.wpi.cs3733.D22.teamC.entity.service_request.ServiceRequestDAO;
 import edu.wpi.cs3733.D22.teamC.entity.service_request.medical_equipment.MedicalEquipmentSRDAOImpl;
-import edu.wpi.cs3733.D22.teamC.entity.service_request.medical_equipment.MedicalEquipmentServiceRequest;
+import edu.wpi.cs3733.D22.teamC.entity.service_request.medical_equipment.MedicalEquipmentSR;
 import edu.wpi.cs3733.D22.teamC.fileio.csv.LocationCSVWriter;
 import edu.wpi.cs3733.D22.teamC.fileio.csv.LocationCSVReader;
 import edu.wpi.cs3733.D22.teamC.fileio.csv.MedicalEquipmentSRCSVWriter;
@@ -24,21 +24,16 @@ import java.util.stream.Collectors;
 
 @Slf4j
 public class App extends Application {
-    // Declare singleton instance
-    public static App instance;
-
     // Constants
-    public static final String BASE_VIEW_PATH = "view/general/base-view.fxml";
-    public static final String MENU_BAR_COMPONENT_PATH = "component/menu-bar.fxml";
-    public static final String MEDICAL_EQUIPMENT = "view/service_request/medical-equipment.fxml";
-    public static final String LAB_SYSTEM = "view/service_request/lab-system-view.fxml";
-    public static final String LOCATION_SELECT = "view/general/location-select-view.fxml";
-    public static final String MEDICINE_DELIVERY = "view/service_request/medicine-delivery-view.fxml";
-    public static final String SANITARY_SERVICES_PATH = "view/service_request/sanitation-view.fxml";
-    public static final String SERVICE_REQUEST_SELECT = "view/general/view-service.fxml";
-    public static final String HOME_PAGE_PATH = "view/general/HomePage.fxml";
-    public static final String FACILITY_MAINTENANCE_PATH = "view/service_request/facility-maintenance.fxml";
-    public static final String SECURITY_REQUEST_SELECT = "view/service_request/security-service-view.fxml";
+    public static final String BASE_COMPONENT_PATH = "view/component/base.fxml";
+    public static final String MENU_BAR_COMPONENT_PATH = "view/component/menu_bar.fxml";
+
+    public static final String HOME_PATH = "view/general/home.fxml";
+    public static final String VIEW_LOCATIONS_PATH = "view/location/view_locations.fxml";
+    public static final String VIEW_SERVICE_REQUESTS_PATH = "view/service_request/view_service_requests.fxml";
+
+    // Declare Singleton Instance
+    public static App instance;
 
     // Variables
     private Stage stage;
@@ -46,7 +41,7 @@ public class App extends Application {
     @Override
     public void init() {
         // Initialize Database Manager
-        DBManager.startup();
+        DBManager.startup(DBManager.DEVELOPMENT_DATABASE_NAME).initializeTables(true);
 
         // Load CSV Data
         LocationCSVReader csvReader = new LocationCSVReader();
@@ -60,10 +55,10 @@ public class App extends Application {
 
         // loading CSV for medical equipment service request
         MedicalEquipmentSRCSVReader mECSVReader = new MedicalEquipmentSRCSVReader();
-        List<MedicalEquipmentServiceRequest> MedicalEquipmentSRs = mECSVReader.readFile("MedEquipReq.csv");
+        List<MedicalEquipmentSR> MedicalEquipmentSRs = mECSVReader.readFile("MedEquipReq.csv");
         if(MedicalEquipmentSRs != null){
             ServiceRequestDAO serviceRequestDAO = new MedicalEquipmentSRDAOImpl();
-            for(MedicalEquipmentServiceRequest medEquipSR : MedicalEquipmentSRs){
+            for(MedicalEquipmentSR medEquipSR : MedicalEquipmentSRs){
                 serviceRequestDAO.insertServiceRequest(medEquipSR);
             }
         }
@@ -78,7 +73,7 @@ public class App extends Application {
         // Store window as stage
         stage = primaryStage;
       
-        setView(HOME_PAGE_PATH);
+        setView(HOME_PATH);
     }
 
     @Override
@@ -93,8 +88,8 @@ public class App extends Application {
         MedicalEquipmentSRCSVWriter mECSVWriter = new MedicalEquipmentSRCSVWriter();
         ServiceRequestDAO serviceRequestDAO = new MedicalEquipmentSRDAOImpl();
         List<ServiceRequest> serviceRequests = serviceRequestDAO.getAllServiceRequests();
-        List<MedicalEquipmentServiceRequest> medicalEquipmentSR = serviceRequests.stream().map(
-                SR -> {return (MedicalEquipmentServiceRequest) SR;}
+        List<MedicalEquipmentSR> medicalEquipmentSR = serviceRequests.stream().map(
+                SR -> {return (MedicalEquipmentSR) SR;}
         ).collect(Collectors.toList());
 
         if(medicalEquipmentSR != null){
@@ -114,7 +109,7 @@ public class App extends Application {
         try {
             // Load Base Page
             FXMLLoader loader = new FXMLLoader();
-            loader.setLocation(getClass().getResource(BASE_VIEW_PATH));
+            loader.setLocation(getClass().getResource(BASE_COMPONENT_PATH));
             BorderPane baseNode = loader.load();
 
             // Load View
