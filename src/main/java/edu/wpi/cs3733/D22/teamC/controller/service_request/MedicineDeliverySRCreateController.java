@@ -1,11 +1,9 @@
 package edu.wpi.cs3733.D22.teamC.controller.service_request;
 
-import com.jfoenix.controls.JFXComboBox;
 import com.jfoenix.controls.JFXTreeTableView;
 import com.jfoenix.controls.RecursiveTreeItem;
 import com.jfoenix.controls.datamodels.treetable.RecursiveTreeObject;
-import edu.wpi.cs3733.D22.teamC.entity.service_request.medical_equipment.MedicalEquipmentSRTable;
-import edu.wpi.cs3733.D22.teamC.entity.service_request.medical_equipment.MedicalEquipmentServiceRequest;
+import edu.wpi.cs3733.D22.teamC.entity.service_request.medicine_delivery.MedicineDeliverySRTable;
 import edu.wpi.cs3733.D22.teamC.entity.service_request.medicine_delivery.MedicineDeliveryServiceRequest;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -23,22 +21,19 @@ public class MedicineDeliverySRCreateController extends ServiceRequestCreateCont
     @FXML private TextField dosage;
     @FXML private TextField patientID;
 
-    // TODO: Table Declaration
-//    // For table
-//    @FXML private JFXTreeTableView<MedicalEquipmentSRTable> table;
-//    ObservableList<MedicalEquipmentSRTable> METList = FXCollections.observableArrayList();
-//    final TreeItem<MedicalEquipmentSRTable> root = new RecursiveTreeItem<MedicalEquipmentSRTable>(METList, RecursiveTreeObject::getChildren);
-//
-//    ObservableList<MedicalEquipmentSRTable> data;
+    // For table
+    @FXML private JFXTreeTableView<MedicineDeliverySRTable> table;
+    ObservableList<MedicineDeliverySRTable> tableList = FXCollections.observableArrayList();
+    final TreeItem<MedicineDeliverySRTable> root = new RecursiveTreeItem<MedicineDeliverySRTable>(tableList, RecursiveTreeObject::getChildren);
+    ObservableList<MedicineDeliverySRTable> data;
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         super.initialize(url, rb);
 
-        // TODO: Table Initialization
-//        MedicalEquipmentSRTable.createTableColumns(table);
-//        table.setRoot(root);
-//        table.setShowRoot(false);
+        MedicineDeliverySRTable.createTableColumns(table);
+        table.setRoot(root);
+        table.setShowRoot(false);
     }
 
     @FXML
@@ -69,9 +64,8 @@ public class MedicineDeliverySRCreateController extends ServiceRequestCreateCont
 
         clickReset(event);
 
-        // TODO: Table Entry
-//        MedicineDeliverySRTable tableEntry = new MedicineDeliverySRTable(medicineDeliverySR);
-//        METList.add(medicineDeliverySR);
+        // Add to Table List
+        tableList.add(new MedicineDeliverySRTable(medicineDeliverySR));
 
         return medicineDeliverySR;
     }
