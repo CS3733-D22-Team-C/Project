@@ -15,7 +15,7 @@
    <content>
       <AnchorPane prefHeight="724.0" prefWidth="600.0">
          <children>
-            <Label layoutX="37.0" layoutY="11.0" styleClass="page-title" stylesheets="@../../css/base.css" text="Medical Equipment Service Request" />
+            <Label layoutX="37.0" layoutY="11.0" styleClass="page-title" stylesheets="@../../css/base.css" text="Medicine Delivery Service Request" />
             <VBox layoutX="37.0" layoutY="49.0">
                <children>
                   <Label styleClass="service-field-label" stylesheets="@../../css/base.css" text="Assign To:" />
