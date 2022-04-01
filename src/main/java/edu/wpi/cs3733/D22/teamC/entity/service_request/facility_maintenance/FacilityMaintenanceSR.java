@@ -3,27 +3,25 @@ package edu.wpi.cs3733.D22.teamC.entity.service_request.facility_maintenance;
 import edu.wpi.cs3733.D22.teamC.entity.service_request.ServiceRequest;
 
 public class FacilityMaintenanceSR extends ServiceRequest {
-    protected String maintenanceType;   // TODO: Make Enum
+    protected MaintenanceType maintenanceType;   // TODO: Make Enum
 
     //For the table
-    enum MaintenanceType {
+    public enum MaintenanceType {
         Cleaning,   //0
         Organizing; //1
     } //TODO make more enum types
 
-    public String getMaintenanceType() {
-        return maintenanceType;
-    }
+    public MaintenanceType getMaintenanceType() {return maintenanceType;}
 
-    public void setMaintenanceType(String maintenanceType) {
-        if(maintenanceType.contains("Cleaning"))
-        {
-            this.maintenanceType = "Cleaning";
-        }
-        else if(maintenanceType.contains("Organizing"))
-        {
-            this.maintenanceType = "Organizing";
-        }
+    public void setMaintenanceType(MaintenanceType maintenanceType) {this.maintenanceType = maintenanceType;
+//        if(maintenanceType.contains("Cleaning"))
+//        {
+//            this.maintenanceType = maintenanceType;
+//        }
+//        else if(maintenanceType.contains("Organizing"))
+//        {
+//            this.maintenanceType = maintenanceType;
+//        }
     }
 
     //Not useful function, still implemented in controllers
