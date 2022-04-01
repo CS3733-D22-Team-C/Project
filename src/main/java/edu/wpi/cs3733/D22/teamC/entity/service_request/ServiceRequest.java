@@ -15,6 +15,26 @@ public class ServiceRequest {
     protected String requestType;   // TODO: Make Enum
     protected String description;
 
+    enum Status {
+        Blank,      //0
+        Processing, //1
+        Done;       //2
+    }
+
+    enum Priority {
+        Low,      //0
+        Medium,   //1
+        High;     //2
+    }
+
+    enum RequestType {
+        Medical_Equipment_SR,     //0
+        Facility_Maintenance_SR,  //1
+        Lab_System_SR,            //2
+        Medicine_Delivery_SR,     //3
+        Sanitation_SR,            //4
+        Security_SR;              //5
+    }
     public ServiceRequest(){}
     
     public ServiceRequest(ServiceRequest serviceRequest) {

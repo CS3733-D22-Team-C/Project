@@ -13,14 +13,21 @@ public class MedicalEquipmentSR extends ServiceRequest {
     }
     
     //For the table
-    enum equipEnum {
-        BED, //1
-        RECLINER, //2
-        PORTABLE_XRAY, //3
-        INFUSION_PUMP; //4
+    enum EquipmentType {
+        Bed,            //1
+        Recliner,       //2
+        Portable_X_Ray, //3
+        Infusion_Pump;  //4
     }
 
-    public String getEquipmentType() {
+
+    enum EquipmentStatus {
+        Available,    //0
+        Unavailable,  //1
+        Dirty;        //2
+    }
+
+        public String getEquipmentType() {
         return equipmentType;
     }
 
@@ -45,26 +52,27 @@ public class MedicalEquipmentSR extends ServiceRequest {
         this.equipmentID = equipmentID;
     }
 
+    //Not useful function, still implemented in controllers
     public int getEquipEnum(String type)
     {
-        equipEnum number;
+        EquipmentType number;
         if(type.contains("Bed"))
-            number = equipEnum.BED;
+            number = EquipmentType.Bed;
         else if(type.contains("Recliner"))
-            number = equipEnum.RECLINER;
+            number = EquipmentType.Recliner;
         else if(type.contains("Portable X-Ray"))
-            number = equipEnum.PORTABLE_XRAY;
+            number = EquipmentType.Portable_X_Ray;
         else
-            number = equipEnum.INFUSION_PUMP;
+            number = EquipmentType.Infusion_Pump;
 
         switch (number) {
-            case BED:
+            case Bed:
                 return 1;
-            case RECLINER:
+            case Recliner:
                 return 2;
-            case PORTABLE_XRAY:
+            case Portable_X_Ray:
                 return 3;
-            case INFUSION_PUMP:
+            case Infusion_Pump:
                 return 4;
             default:
                 return -1;

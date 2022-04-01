@@ -5,11 +5,11 @@ import edu.wpi.cs3733.D22.teamC.entity.service_request.ServiceRequest;
 public class SanitationSR extends ServiceRequest {
     protected String sanitationType;    // TODO: Make Enum
 
-    enum sanitationEnum {
-        GENERAL,    // 1
-        HAZARDOUS,  // 2
-        BIOHAZARD,  // 3
-        DAILY       // 4
+    enum SanitationType {
+        General,            // 1
+        Hazardous,          // 2
+        Biohazard,          // 3
+        Daily_Cleaning;     // 4
     }
 
     public String getSanitationType() {
@@ -20,30 +20,31 @@ public class SanitationSR extends ServiceRequest {
         this.sanitationType = sanitationType;
     }
 
+    //Not useful function, still implemented in controllers
     public int getSanitationTypeEnum(String sanitationType) {
-        sanitationEnum number;
+        SanitationType number;
 
         if(sanitationType.contains("General")) {
-            number = sanitationEnum.GENERAL;
+            number = SanitationType.General;
         }
         else if(sanitationType.contains("Hazardous")) {
-            number = sanitationEnum.HAZARDOUS;
+            number = SanitationType.Hazardous;
         }
         else if(sanitationType.contains("Biohazard")) {
-            number = sanitationEnum.BIOHAZARD;
+            number = SanitationType.Biohazard;
         }
         else {
-            number = sanitationEnum.DAILY;
+            number = SanitationType.Daily_Cleaning;
         }
 
         switch(number) {
-            case GENERAL:
+            case General:
                 return 1;
-            case HAZARDOUS:
+            case Hazardous:
                 return 2;
-            case BIOHAZARD:
+            case Biohazard:
                 return 3;
-            case DAILY:
+            case Daily_Cleaning:
                 return 4;
             default:
                 return -1;

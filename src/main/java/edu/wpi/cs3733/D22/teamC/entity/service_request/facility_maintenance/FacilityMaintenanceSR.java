@@ -6,10 +6,10 @@ public class FacilityMaintenanceSR extends ServiceRequest {
     protected String maintenanceType;   // TODO: Make Enum
 
     //For the table
-    enum maintenanceEnum {
-        CLEANING, //1
-        ORGANIZING; //2
-    }
+    enum MaintenanceType {
+        Cleaning,   //0
+        Organizing; //1
+    } //TODO make more enum types
 
     public String getMaintenanceType() {
         return maintenanceType;
@@ -26,24 +26,25 @@ public class FacilityMaintenanceSR extends ServiceRequest {
         }
     }
 
+    //Not useful function, still implemented in controllers
     public int getMaintenanceTypeEnum(String type)
     {
-        maintenanceEnum number = null;
+        MaintenanceType number = null;
 
         if(type.contains("Cleaning"))
        {
-           number = maintenanceEnum.CLEANING;
+           number = MaintenanceType.Cleaning;
        }
        else if(type.contains("Organizing"))
        {
-           number = maintenanceEnum.ORGANIZING;
+           number = MaintenanceType.Organizing;
        }
 
        switch(number)
        {
-           case CLEANING:
+           case Cleaning:
                 return 1;
-           case ORGANIZING:
+           case Organizing:
                return 2;
            default:
                return -1;
