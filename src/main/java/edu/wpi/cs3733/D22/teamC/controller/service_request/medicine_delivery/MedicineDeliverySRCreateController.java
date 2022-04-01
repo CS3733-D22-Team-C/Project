@@ -4,6 +4,7 @@ import com.jfoenix.controls.JFXTreeTableView;
 import com.jfoenix.controls.RecursiveTreeItem;
 import com.jfoenix.controls.datamodels.treetable.RecursiveTreeObject;
 import edu.wpi.cs3733.D22.teamC.controller.service_request.ServiceRequestCreateController;
+import edu.wpi.cs3733.D22.teamC.entity.service_request.ServiceRequest;
 import edu.wpi.cs3733.D22.teamC.models.service_request.medicine_delivery.MedicineDeliverySRTable;
 import edu.wpi.cs3733.D22.teamC.entity.service_request.medicine_delivery.MedicineDeliverySR;
 import javafx.collections.FXCollections;
@@ -65,8 +66,8 @@ public class MedicineDeliverySRCreateController extends ServiceRequestCreateCont
         medicineDeliverySR.setPatientID(patientID.getText());
 
         // Set from Dropdowns
-        medicineDeliverySR.setStatus(status.getValue());
-        medicineDeliverySR.setPriority(priority.getValue());
+        medicineDeliverySR.setStatus(ServiceRequest.Status.valueOf(status.getValue()));
+        medicineDeliverySR.setPriority(ServiceRequest.Priority.valueOf(priority.getValue()));
 
         clickReset(event);
 

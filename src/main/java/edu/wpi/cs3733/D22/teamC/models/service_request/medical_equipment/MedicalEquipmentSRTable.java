@@ -36,8 +36,8 @@ public class MedicalEquipmentSRTable extends RecursiveTreeObject<MedicalEquipmen
         this.equipmentType =  new SimpleStringProperty(medicalEquipmentSR.getEquipmentType());
         this.assigneeID = new SimpleStringProperty(medicalEquipmentSR.getAssigneeID());
         this.location = new SimpleStringProperty(medicalEquipmentSR.getLocation());
-        this.status = new SimpleStringProperty(medicalEquipmentSR.getStatus());
-        this.priority = new SimpleStringProperty(medicalEquipmentSR.getPriority());
+        this.status = new SimpleStringProperty(String.valueOf(medicalEquipmentSR.getStatus()));
+        this.priority = new SimpleStringProperty(String.valueOf(medicalEquipmentSR.getPriority()));
     }
 
     public String getEquipmentType() {

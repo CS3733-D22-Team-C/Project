@@ -80,8 +80,8 @@ public class MedicalEquipmentSRCreateController extends ServiceRequestCreateCont
         medEquip.setLocation(location.getText());
 
         //Sets from combo boxes
-        medEquip.setStatus(status.getValue());
-        medEquip.setPriority(priority.getValue());
+        medEquip.setStatus(ServiceRequest.Status.valueOf(status.getValue()));
+        medEquip.setPriority(ServiceRequest.Priority.valueOf(priority.getValue()));
         medEquip.setEquipmentType(equipType.getValue());
 
         //Request ID generator

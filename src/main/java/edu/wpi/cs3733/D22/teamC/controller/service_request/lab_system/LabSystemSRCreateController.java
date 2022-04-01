@@ -3,6 +3,7 @@ package edu.wpi.cs3733.D22.teamC.controller.service_request.lab_system;
 import com.jfoenix.controls.*;
 import com.jfoenix.controls.datamodels.treetable.RecursiveTreeObject;
 import edu.wpi.cs3733.D22.teamC.controller.service_request.ServiceRequestCreateController;
+import edu.wpi.cs3733.D22.teamC.entity.service_request.ServiceRequest;
 import edu.wpi.cs3733.D22.teamC.models.service_request.lab_system.LabSystemSRTable;
 import edu.wpi.cs3733.D22.teamC.entity.service_request.lab_system.LabSystemSR;
 import javafx.collections.FXCollections;
@@ -68,8 +69,8 @@ public class LabSystemSRCreateController extends ServiceRequestCreateController 
         labSystem.setPatientID(patientID.getText());
 
         //Sets from combo boxes
-        labSystem.setStatus(status.getValue());
-        labSystem.setPriority(priority.getValue());
+        labSystem.setStatus(ServiceRequest.Status.valueOf(status.getValue()));
+        labSystem.setPriority(ServiceRequest.Priority.valueOf(priority.getValue()));
         labSystem.setLabType(labType.getValue());
 
         //Table Entry

@@ -22,18 +22,18 @@ public class ServiceRequest {
     }
 
     public enum Priority {
-        Low,      //0
-        Medium,   //1
-        High;     //2
+        Low,
+        Medium,
+        High;
     }
 
     public enum RequestType {
-        Medical_Equipment_SR,     //0
-        Facility_Maintenance_SR,  //1
-        Lab_System_SR,            //2
-        Medicine_Delivery_SR,     //3
-        Sanitation_SR,            //4
-        Security_SR;              //5
+        Medical_Equipment_SR,
+        Facility_Maintenance_SR,
+        Lab_System_SR,
+        Medicine_Delivery_SR,
+        Sanitation_SR,
+        Security_SR;
     }
     public ServiceRequest(){}
     

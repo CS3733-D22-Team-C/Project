@@ -32,8 +32,8 @@ public class SecuritySRTable extends RecursiveTreeObject<SecuritySRTable> {
         this.securityType =  new SimpleStringProperty(securitySR.getSecurityType());
         this.assigneeID = new SimpleStringProperty(securitySR.getAssigneeID());
         this.location = new SimpleStringProperty(securitySR.getLocation());
-        this.status = new SimpleStringProperty(securitySR.getStatus());
-        this.priority = new SimpleStringProperty(securitySR.getPriority());
+        this.status = new SimpleStringProperty(String.valueOf(securitySR.getStatus()));
+        this.priority = new SimpleStringProperty(String.valueOf(securitySR.getPriority()));
     }
 
 

@@ -3,6 +3,7 @@ package edu.wpi.cs3733.D22.teamC.controller.service_request.facility_maintenance
 import com.jfoenix.controls.*;
 import com.jfoenix.controls.datamodels.treetable.RecursiveTreeObject;
 import edu.wpi.cs3733.D22.teamC.controller.service_request.ServiceRequestCreateController;
+import edu.wpi.cs3733.D22.teamC.entity.service_request.ServiceRequest;
 import edu.wpi.cs3733.D22.teamC.models.service_request.facility_maintenance.FacilityMaintenanceSRTable;
 import edu.wpi.cs3733.D22.teamC.entity.service_request.facility_maintenance.FacilityMaintenanceSR;
 import javafx.collections.FXCollections;
@@ -47,8 +48,8 @@ public class FacilityMaintenanceSRCreateController extends ServiceRequestCreateC
         fmsr.setMaintenanceType(maintType.getText());
         fmsr.setAssigneeID(assigneeID.getText());
         fmsr.setLocation(location.getText());
-        fmsr.setPriority(priority.getValue()); //getValue directly returns the value of a selected item from a JavaFX ComboBox
-        fmsr.setStatus(status.getValue());
+        fmsr.setPriority(ServiceRequest.Priority.valueOf(priority.getValue())); //getValue directly returns the value of a selected item from a JavaFX ComboBox
+        fmsr.setStatus(ServiceRequest.Status.valueOf(status.getValue()));
         fmsr.setDescription(description.getText());
         //fmsr.setRequestType("Facilities Maintenance");
 

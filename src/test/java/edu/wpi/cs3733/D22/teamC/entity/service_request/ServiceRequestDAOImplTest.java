@@ -54,8 +54,8 @@ class ServiceRequestDAOImplTest {
         String assigneeID = "A1";
         String location = "loc";
         Timestamp creationTimestamp = new Timestamp(System.currentTimeMillis());
-        ServiceRequest.Status status = ServiceRequest.Status.valueOf("Blank");
-        ServiceRequest.Priority priority = ServiceRequest.Priority.valueOf("Low");
+        ServiceRequest.Status status = ServiceRequest.Status.Blank;
+        ServiceRequest.Priority priority = ServiceRequest.Priority.Low;
         ServiceRequest.RequestType requestType = ServiceRequest.RequestType.valueOf("Medical_Equipment_SR");
         String description = "Move the bed before noon today";
 
@@ -105,8 +105,8 @@ class ServiceRequestDAOImplTest {
         String assigneeID = "A1";
         String location = "loc";
         Timestamp creationTimestamp = new Timestamp(System.currentTimeMillis());
-        ServiceRequest.Status status = ServiceRequest.Status.valueOf("Processing");
-        ServiceRequest.Priority priority = ServiceRequest.Priority.valueOf("Low");
+        ServiceRequest.Status status = ServiceRequest.Status.Processing;
+        ServiceRequest.Priority priority = ServiceRequest.Priority.Low;
         ServiceRequest.RequestType requestType = ServiceRequest.RequestType.valueOf("Medical_Equipment_SR");
         String description = "Move the bed before noon today";
 
@@ -150,9 +150,9 @@ class ServiceRequestDAOImplTest {
         String assigneeID = "A1";
         String location = "loc";
         Timestamp creationTimestamp = new Timestamp(System.currentTimeMillis());
-        ServiceRequest.Status status = ServiceRequest.Status.valueOf("Blank");
-        ServiceRequest.Priority priority = ServiceRequest.Priority.valueOf("High");
-        ServiceRequest.RequestType requestType = ServiceRequest.RequestType.valueOf("Medical_Equipment_SR");
+        ServiceRequest.Status status = ServiceRequest.Status.Blank;
+        ServiceRequest.Priority priority = ServiceRequest.Priority.High;
+        ServiceRequest.RequestType requestType = ServiceRequest.RequestType.Medical_Equipment_SR;
         String description = "Move the bed before noon today";
 
         ServiceRequest updateSR = new ServiceRequest();
