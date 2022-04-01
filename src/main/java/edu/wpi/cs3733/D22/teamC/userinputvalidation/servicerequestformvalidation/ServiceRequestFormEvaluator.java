@@ -17,7 +17,11 @@ public class ServiceRequestFormEvaluator {
 
     public int getValidateAssigneeIDResult(String ID)
     {
-        if(ID.length() == 1)
+        if(ID.length() != 10)
+        {
+            return 1; //Return 1 if the assigneeID is not the proper length
+        }
+        else if(true) //check getservicerequest method here
         {
 
         }
