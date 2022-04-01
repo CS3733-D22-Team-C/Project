@@ -7,7 +7,7 @@ import edu.wpi.cs3733.D22.teamC.App;
 import edu.wpi.cs3733.D22.teamC.entity.service_request.ServiceRequest;
 import edu.wpi.cs3733.D22.teamC.entity.service_request.ServiceRequestDAO;
 import edu.wpi.cs3733.D22.teamC.entity.service_request.ServiceRequestDAOImpl;
-import edu.wpi.cs3733.D22.teamC.models.service_request.ServiceRequestTable;
+import edu.wpi.cs3733.D22.teamC.models.service_request.ServiceRequestTableDisplay;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -24,14 +24,15 @@ public class ServiceRequestsViewController implements Initializable {
     public static final String FACILITY_MAINTENANCE_CREATE_PATH = "view/service_request/facility_maintenance/create_form.fxml";
     public static final String SECURITY_CREATE_PATH = "view/service_request/security/create_form.fxml";
 
-
     //Buttons
     @FXML private JFXButton selectButton;
     @FXML private JFXComboBox<String> serviceType;
+
+    // Table
     @FXML private JFXTreeTableView table;
 
     // Variables
-    private ServiceRequestTable<ServiceRequest> tableWrapper;
+    private ServiceRequestTableDisplay<ServiceRequest> tableDisplay;
 
     @FXML
     public void initialize(URL url, ResourceBundle rb) {
@@ -46,8 +47,8 @@ public class ServiceRequestsViewController implements Initializable {
         ServiceRequestDAO serviceRequestDAO  = new ServiceRequestDAOImpl();
         List<ServiceRequest> serviceRequests = serviceRequestDAO.getAllServiceRequests();
 
-        tableWrapper = new ServiceRequestTable<ServiceRequest>(table);
-        serviceRequests.forEach(tableWrapper::addObject);
+        tableDisplay = new ServiceRequestTableDisplay<ServiceRequest>(table);
+        serviceRequests.forEach(tableDisplay::addObject);
     }
     @FXML
     void onSelectButton(ActionEvent event) {
