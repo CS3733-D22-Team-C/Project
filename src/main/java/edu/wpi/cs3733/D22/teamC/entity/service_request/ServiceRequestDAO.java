@@ -25,9 +25,9 @@ public abstract class ServiceRequestDAO<T extends ServiceRequest> {
             serviceRequest.setAssigneeID(typesafeTrim(resultSet.getString("ASSIGNEEID")));
             serviceRequest.setLocation(typesafeTrim(resultSet.getString("LOCATIONID")));
             serviceRequest.setCreationTimestamp(resultSet.getTimestamp("CREATIONTIMESTAMP"));
-            serviceRequest.setStatus(typesafeTrim(resultSet.getString("STATUS")));
-            serviceRequest.setPriority(typesafeTrim(resultSet.getString("PRIORITY")));
-            serviceRequest.setRequestType(typesafeTrim(resultSet.getString("REQUESTTYPE")));
+            serviceRequest.setStatus(ServiceRequest.Status.valueOf(resultSet.getString("STATUS")));
+            serviceRequest.setPriority(ServiceRequest.Priority.valueOf(resultSet.getString("PRIORITY")));
+            serviceRequest.setRequestType(ServiceRequest.RequestType.valueOf(resultSet.getString("REQUESTTYPE")));
             serviceRequest.setDescription(typesafeTrim(resultSet.getString("DESCRIPTION")));
 
             return serviceRequest;

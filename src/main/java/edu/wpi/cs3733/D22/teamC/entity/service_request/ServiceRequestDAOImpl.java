@@ -82,9 +82,9 @@ public class ServiceRequestDAOImpl extends ServiceRequestDAO<ServiceRequest> {
                 statement.setString(3, serviceRequest.getAssigneeID());
                 statement.setString(4, serviceRequest.getLocation());
                 statement.setTimestamp(5, serviceRequest.getCreationTimestamp());
-                statement.setString(6, serviceRequest.getStatus());
-                statement.setString(7, serviceRequest.getPriority());
-                statement.setString(8, serviceRequest.getRequestType());
+                statement.setString(6, serviceRequest.getStatus().toString());
+                statement.setString(7, serviceRequest.getPriority().toString());
+                statement.setString(8, serviceRequest.getRequestType().toString());
                 statement.setString(9, serviceRequest.getDescription());
                 statement.execute();
                 
@@ -119,9 +119,9 @@ public class ServiceRequestDAOImpl extends ServiceRequestDAO<ServiceRequest> {
                 statement.setString(2, serviceRequest.getAssigneeID());
                 statement.setString(3, serviceRequest.getLocation());
                 statement.setTimestamp(4, serviceRequest.getCreationTimestamp());
-                statement.setString(5, serviceRequest.getStatus());
-                statement.setString(6, serviceRequest.getPriority());
-                statement.setString(7, serviceRequest.getRequestType());
+                statement.setString(5, serviceRequest.getStatus().toString());
+                statement.setString(6, serviceRequest.getPriority().toString());
+                statement.setString(7, serviceRequest.getRequestType().toString());
                 statement.setString(8, serviceRequest.getDescription());
                 statement.setString(9, serviceRequest.getRequestID());
                 statement.execute();

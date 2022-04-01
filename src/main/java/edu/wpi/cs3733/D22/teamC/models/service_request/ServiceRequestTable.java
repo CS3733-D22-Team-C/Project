@@ -32,10 +32,10 @@ public class ServiceRequestTable extends RecursiveTreeObject<ServiceRequestTable
     public ServiceRequestTable(ServiceRequest serviceRequest) {
         this.assigneeID = new SimpleStringProperty(serviceRequest.getAssigneeID());
         this.location = new SimpleStringProperty(serviceRequest.getLocation());
-        this.status = new SimpleStringProperty(serviceRequest.getStatus());
-        this.priority = new SimpleStringProperty(serviceRequest.getPriority());
+        this.status = new SimpleStringProperty(String.valueOf(serviceRequest.getStatus()));
+        this.priority = new SimpleStringProperty(String.valueOf(serviceRequest.getPriority()));
         this.ID = new SimpleStringProperty(serviceRequest.getRequestID());
-        this.Type = new SimpleStringProperty(serviceRequest.getRequestType());
+        this.Type = new SimpleStringProperty(String.valueOf(serviceRequest.getRequestType()));
     }
 
 

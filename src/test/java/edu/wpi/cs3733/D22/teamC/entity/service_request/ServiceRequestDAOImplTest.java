@@ -54,9 +54,9 @@ class ServiceRequestDAOImplTest {
         String assigneeID = "A1";
         String location = "loc";
         Timestamp creationTimestamp = new Timestamp(System.currentTimeMillis());
-        String status = "Assigned";
-        String priority = "Not Emergency";
-        String requestType = "MedicalEquipmentServiceRequest";
+        ServiceRequest.Status status = ServiceRequest.Status.valueOf("Assigned");
+        ServiceRequest.Priority priority = ServiceRequest.Priority.valueOf("Not Emergency");
+        ServiceRequest.RequestType requestType = ServiceRequest.RequestType.valueOf("MedicalEquipmentServiceRequest");
         String description = "Move the bed before noon today";
 
         ServiceRequest insertSR = new ServiceRequest();
@@ -105,9 +105,9 @@ class ServiceRequestDAOImplTest {
         String assigneeID = "A1";
         String location = "loc";
         Timestamp creationTimestamp = new Timestamp(System.currentTimeMillis());
-        String status = "Assigned";
-        String priority = "Not Emergency";
-        String requestType = "MedicalEquipmentServiceRequest";
+        ServiceRequest.Status status = ServiceRequest.Status.valueOf("Assigned");
+        ServiceRequest.Priority priority = ServiceRequest.Priority.valueOf("Not Emergency");
+        ServiceRequest.RequestType requestType = ServiceRequest.RequestType.valueOf("MedicalEquipmentServiceRequest");
         String description = "Move the bed before noon today";
 
         ServiceRequest deleteSR = new ServiceRequest();
@@ -150,9 +150,9 @@ class ServiceRequestDAOImplTest {
         String assigneeID = "A1";
         String location = "loc";
         Timestamp creationTimestamp = new Timestamp(System.currentTimeMillis());
-        String status = "Assigned";
-        String priority = "Not Emergency";
-        String requestType = "MedicalEquipmentServiceRequest";
+        ServiceRequest.Status status = ServiceRequest.Status.valueOf("Assigned");
+        ServiceRequest.Priority priority = ServiceRequest.Priority.valueOf("High");
+        ServiceRequest.RequestType requestType = ServiceRequest.RequestType.valueOf("MedicalEquipmentServiceRequest");
         String description = "Move the bed before noon today";
 
         ServiceRequest updateSR = new ServiceRequest();
@@ -183,8 +183,8 @@ class ServiceRequestDAOImplTest {
         updateSR.setAssigneeID(newAssigneeID);
         updateSR.setLocation(newlocation);
         updateSR.setCreationTimestamp(newCreationTimestamp);
-        updateSR.setStatus(newStatus);
-        updateSR.setPriority(newPriority);
+        updateSR.setStatus(ServiceRequest.Status.valueOf(newStatus));
+        updateSR.setPriority(ServiceRequest.Priority.valueOf(newPriority));
         updateSR.setDescription(newDescription);
         assertTrue(serviceRequestDAO.updateServiceRequest(updateSR));
         assertEquals(1, serviceRequestDAO.getAllServiceRequests().size());

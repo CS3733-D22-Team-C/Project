@@ -49,13 +49,13 @@ public class MedicalEquipmentSRCSVWriter extends CSVWriter<MedicalEquipmentSR> {
                 output = (serviceRequest.getCreationTimestamp() == null) ? "" : serviceRequest.getCreationTimestamp().toString();
                 break;
             case "status":
-                output = serviceRequest.getStatus();
+                output = String.valueOf(serviceRequest.getStatus());
                 break;
             case "priority":
-                output = serviceRequest.getPriority();
+                output = String.valueOf(serviceRequest.getPriority());
                 break;
             case "requestType":
-                output = serviceRequest.getRequestType();
+                output = String.valueOf(serviceRequest.getRequestType());
                 break;
             case "description":
                 output = serviceRequest.getDescription();
