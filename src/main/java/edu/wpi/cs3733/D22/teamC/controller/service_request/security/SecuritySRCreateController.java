@@ -73,7 +73,7 @@ public class SecuritySRCreateController extends ServiceRequestCreateController {
             //Sets from combo boxes
             securitySR.setStatus(ServiceRequest.Status.valueOf(status.getValue()));
             securitySR.setPriority(ServiceRequest.Priority.valueOf(priority.getValue()));
-            securitySR.setSecurityType(secType.getValue());
+            securitySR.setSecurityType(SecuritySR.SecurityType.valueOf(secType.getValue()));
 
             // Table Entry
             clickReset(event);
