@@ -71,7 +71,7 @@ public class App extends Application {
         // Store window as stage
         stage = primaryStage;
       
-        setView(HOME_PATH);
+        setView("view/component/map.fxml");
     }
 
     @Override
