@@ -17,6 +17,10 @@ public class ServiceRequestFormEvaluator {
 
     public int getValidateAssigneeIDResult(String ID)
     {
+        if(ID.length() == 1)
+        {
+
+        }
         return 0;
     }
 
