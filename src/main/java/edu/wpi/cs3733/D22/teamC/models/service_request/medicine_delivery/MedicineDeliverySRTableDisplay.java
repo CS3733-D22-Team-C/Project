@@ -32,42 +32,9 @@ public class MedicineDeliverySRTableDisplay extends ServiceRequestTableDisplay<M
     }
 
     @Override
-    public void setColumns(JFXTreeTableView table) {
+    protected void setColumns(JFXTreeTableView table) {
         // Insert Columns for Table
-        addColumn(
-                table,
-                "ID",
-                1f * Integer.MAX_VALUE * 16.66,
-                (MedicineDeliverySRTableEntry entry) -> {return entry.id;}
-        );
-
-        addColumn(
-                table,
-                "Assignee",
-                1f * Integer.MAX_VALUE * 16.66,
-                (MedicineDeliverySRTableEntry entry) -> {return entry.assigneeID;}
-        );
-
-        addColumn(
-                table,
-                "Location",
-                1f * Integer.MAX_VALUE * 16.66,
-                (MedicineDeliverySRTableEntry entry) -> {return entry.location;}
-        );
-
-        addColumn(
-                table,
-                "Status",
-                1f * Integer.MAX_VALUE * 16.66,
-                (MedicineDeliverySRTableEntry entry) -> {return entry.status;}
-        );
-
-        addColumn(
-                table,
-                "Priority",
-                1f * Integer.MAX_VALUE * 16.66,
-                (MedicineDeliverySRTableEntry entry) -> {return entry.priority;}
-        );
+        super.setPartialColumns(table);
 
         addColumn(
                 table,

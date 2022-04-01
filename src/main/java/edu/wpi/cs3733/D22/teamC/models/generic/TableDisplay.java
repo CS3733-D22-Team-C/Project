@@ -50,7 +50,7 @@ public abstract class TableDisplay<T extends Object> {
          * Set the columns of the JFXTreeTableView table. Override behavior to define columns for the table.
          * @param table The JFXTreeTableView.
          */
-        public abstract void setColumns(JFXTreeTableView table);
+        protected abstract void setColumns(JFXTreeTableView table);
     //#endregion
 
     /**

@@ -11,17 +11,11 @@ import javafx.scene.control.TextField;
 import java.net.URL;
 import java.util.ResourceBundle;
 
-public class MedicineDeliverySRCreateController extends ServiceRequestCreateController {
+public class MedicineDeliverySRCreateController extends ServiceRequestCreateController<MedicineDeliverySR> {
     // Fields
     @FXML private TextField medicine;
     @FXML private TextField dosage;
     @FXML private TextField patientID;
-
-    // Table
-    @FXML private JFXTreeTableView table;
-
-    // Variables
-    private MedicineDeliverySRTableDisplay tableDisplay;
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
