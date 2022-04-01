@@ -82,7 +82,7 @@ public class LocationDAOImpl implements LocationDAO {
 
                 int index = 1;
                 if (location.getNodeID() != 0) {
-                    statement.setString(index, (location.getNodeID() != 0) ? String.valueOf(location.getNodeID()): "DEFAULT");
+                    statement.setString(index, String.valueOf(location.getNodeID()));
                     index++;
                 }
 
@@ -92,7 +92,7 @@ public class LocationDAOImpl implements LocationDAO {
                 statement.setString(index, location.getBuilding()); index++;
                 statement.setString(index, location.getNodeType()); index++;
                 statement.setString(index, location.getLongName()); index++;
-                statement.setString(index, location.getShortName()); index++;
+                statement.setString(index, location.getShortName());
                 statement.execute();
 
                 // Retrieve generated ID from newly inserted entry

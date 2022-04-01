@@ -83,7 +83,7 @@ class LocationDAOImplTest {
         // Check DB is empty
         assertEquals(0, locationDAO.getAllLocations().size());
         assertEquals(null, locationDAO.getLocation(1234));
-    
+
         // Insert Location into DB
         String floor = "L1";
         String building = "Building";
@@ -117,7 +117,7 @@ class LocationDAOImplTest {
         // Check DB is empty
         assertEquals(0, locationDAO.getAllLocations().size());
         assertEquals(null, locationDAO.getLocation(1234));
-    
+
         // Insert Location into DB
         String floor = "L1";
         String building = "Building";

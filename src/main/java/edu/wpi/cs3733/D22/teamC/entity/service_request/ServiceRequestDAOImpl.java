@@ -74,22 +74,23 @@ public class ServiceRequestDAOImpl extends ServiceRequestDAO<ServiceRequest> {
             // See if there is an entry of the same requestID that already exists
             ServiceRequest serviceRequestInDB = getServiceRequest(serviceRequest.getRequestID());
             if (serviceRequestInDB == null) {
-                PreparedStatement statement = DBManager.getInstance().connection.prepareStatement(
-                        "INSERT INTO SERVICE_REQUEST VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?)",
-                Statement.RETURN_GENERATED_KEYS);
-                statement.setString(1, (
-                        serviceRequest.getRequestID() != 0)
-                                ? String.valueOf(serviceRequest.getRequestID())
-                                : "DEFAULT"
-                );
-                statement.setString(2, serviceRequest.getCreatorID());
-                statement.setString(3, serviceRequest.getAssigneeID());
-                statement.setString(4, serviceRequest.getLocation());
-                statement.setTimestamp(5, serviceRequest.getCreationTimestamp());
-                statement.setString(6, serviceRequest.getStatus());
-                statement.setString(7, serviceRequest.getPriority());
-                statement.setString(8, serviceRequest.getRequestType());
-                statement.setString(9, serviceRequest.getDescription());
+                PreparedStatement statement = (serviceRequest.getRequestID() == 0)
+                        ? DBManager.getInstance().connection.prepareStatement("INSERT INTO SERVICE_REQUEST VALUES(DEFAULT, ?, ?, ?, ?, ?, ?, ?, ?)", Statement.RETURN_GENERATED_KEYS)
+                        : DBManager.getInstance().connection.prepareStatement("INSERT INTO SERVICE_REQUEST VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?)", Statement.RETURN_GENERATED_KEYS);
+
+                int index = 1;
+                if(serviceRequest.getRequestID() != 0){
+                    statement.setString(index, (serviceRequest.getRequestID()!=0) ? String.valueOf(serviceRequest.getRequestID()) : "DEFAULT");
+                    index++;
+                }
+                statement.setString(index, serviceRequest.getCreatorID()); index++;
+                statement.setString(index, serviceRequest.getAssigneeID()); index++;
+                statement.setString(index, serviceRequest.getLocation()); index++;
+                statement.setTimestamp(index, serviceRequest.getCreationTimestamp()); index++;
+                statement.setString(index, serviceRequest.getStatus()); index++;
+                statement.setString(index, serviceRequest.getPriority()); index++;
+                statement.setString(index, serviceRequest.getRequestType()); index++;
+                statement.setString(index, serviceRequest.getDescription());
                 statement.execute();
     
                 // Retrieve generated ID from newly inserted entry

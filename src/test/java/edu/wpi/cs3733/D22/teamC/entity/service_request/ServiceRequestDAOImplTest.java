@@ -9,6 +9,7 @@ import java.sql.Timestamp;
 
 import static org.junit.jupiter.api.Assertions.*;
 
+
 class ServiceRequestDAOImplTest {
     private DBManager testDBManager;
     private ServiceRequestDAOImpl serviceRequestDAO;
@@ -19,7 +20,7 @@ class ServiceRequestDAOImplTest {
         testDBManager = DBManager.startup(DBManager.TESTING_DATABASE_NAME);
         testDBManager.initializeServiceRequestTable(true);
         testDBManager.initializeMedicalEquipSRTable(true);
-    
+
         // Setup testing LocationDAOImpl
         serviceRequestDAO = new ServiceRequestDAOImpl();
     }
@@ -67,7 +68,7 @@ class ServiceRequestDAOImplTest {
         insertSR.setPriority(priority);
         insertSR.setRequestType(requestType);
         insertSR.setDescription(description);
-    
+
         int retrievedID = serviceRequestDAO.insertServiceRequest(insertSR);
         insertSR.setRequestID(retrievedID);
         assertNotEquals(-1, retrievedID);
@@ -98,7 +99,7 @@ class ServiceRequestDAOImplTest {
         // Check DB is empty
         assertEquals(0, serviceRequestDAO.getAllServiceRequests().size());
         assertEquals(null, serviceRequestDAO.getServiceRequest(1234));
-    
+
         // Insert SR into DB
         String creatorID = "C1";
         String assigneeID = "A1";
@@ -108,7 +109,7 @@ class ServiceRequestDAOImplTest {
         String priority = "Not Emergency";
         String requestType = "MedicalEquipmentServiceRequest";
         String description = "Move the bed before noon today";
-    
+
         ServiceRequest deleteSR = new ServiceRequest();
         deleteSR.setCreatorID(creatorID);
         deleteSR.setAssigneeID(assigneeID);
@@ -118,7 +119,7 @@ class ServiceRequestDAOImplTest {
         deleteSR.setPriority(priority);
         deleteSR.setRequestType(requestType);
         deleteSR.setDescription(description);
-    
+
         int retrievedID = serviceRequestDAO.insertServiceRequest(deleteSR);
         deleteSR.setRequestID(retrievedID);
         assertNotEquals(-1, retrievedID);
@@ -163,7 +164,7 @@ class ServiceRequestDAOImplTest {
         updateSR.setPriority(priority);
         updateSR.setRequestType(requestType);
         updateSR.setDescription(description);
-    
+
         int retrievedID = serviceRequestDAO.insertServiceRequest(updateSR);
         updateSR.setRequestID(retrievedID);
         assertNotEquals(-1, retrievedID);
