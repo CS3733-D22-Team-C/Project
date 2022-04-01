@@ -15,12 +15,12 @@ public class ServiceRequestFormEvaluator {
         this.location = srfe.getLocation();
     }
 
-    public int validateAssigneeID()
+    public int getValidateAssigneeIDResult(String ID)
     {
         return 0;
     }
 
-    public int validateLocationID()
+    public int getValidateLocationIDResult(String location)
     {
         return 0;
     }

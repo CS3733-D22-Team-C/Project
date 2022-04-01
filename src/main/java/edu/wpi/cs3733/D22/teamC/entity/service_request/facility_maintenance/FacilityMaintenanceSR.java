@@ -16,14 +16,7 @@ public class FacilityMaintenanceSR extends ServiceRequest {
     }
 
     public void setMaintenanceType(String maintenanceType) {
-        if(maintenanceType.contains("Cleaning"))
-        {
-            this.maintenanceType = "Cleaning";
-        }
-        else if(maintenanceType.contains("Organizing"))
-        {
-            this.maintenanceType = "Organizing";
-        }
+        this.maintenanceType = maintenanceType;
     }
 
     public int getMaintenanceTypeEnum(String type)
