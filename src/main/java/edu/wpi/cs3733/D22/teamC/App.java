@@ -121,8 +121,17 @@ public class App extends Application {
             baseNode.setCenter(viewNode);
             baseNode.setTop(menuBarNode);
 
+            //store stages current size
+            double prevWidth = stage.getWidth();
+            double prevHeight = stage.getHeight();
+
             Scene scene = new Scene(baseNode);
             stage.setScene(scene);
+
+            //set the width and height accordingly
+            stage.setHeight(prevHeight);
+            stage.setWidth(prevWidth);
+
             stage.show();
         }
         catch (IOException e) {
