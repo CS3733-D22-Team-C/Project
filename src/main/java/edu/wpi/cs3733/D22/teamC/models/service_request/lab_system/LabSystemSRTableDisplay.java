@@ -11,10 +11,10 @@ public class LabSystemSRTableDisplay extends ServiceRequestTableDisplay<LabSyste
         // Properties
         public StringProperty labType;
 
-        public LabSystemSRTableEntry(LabSystemSR medicineDeliverySR) {
-            super(medicineDeliverySR);
+        public LabSystemSRTableEntry(LabSystemSR labSystemSR) {
+            super(labSystemSR);
 
-            this.labType = new SimpleStringProperty(medicineDeliverySR.getLabType());
+            this.labType = new SimpleStringProperty(labSystemSR.getLabType());
         }
     }
 

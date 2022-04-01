@@ -11,10 +11,10 @@ public class SanitationSRTableDisplay extends ServiceRequestTableDisplay<Sanitat
         // Properties
         public StringProperty sanitationType;
 
-        public SanitationSRTableEntry(SanitationSR medicineDeliverySR) {
-            super(medicineDeliverySR);
+        public SanitationSRTableEntry(SanitationSR sanitationSR) {
+            super(sanitationSR);
 
-            this.sanitationType = new SimpleStringProperty(medicineDeliverySR.getSanitationType());
+            this.sanitationType = new SimpleStringProperty(sanitationSR.getSanitationType());
         }
     }
 

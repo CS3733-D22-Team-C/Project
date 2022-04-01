@@ -11,10 +11,10 @@ public class FacilityMaintenanceSRTableDisplay extends ServiceRequestTableDispla
         // Properties
         public StringProperty maintenanceType;
 
-        public FacilityMaintenanceSRTableEntry(FacilityMaintenanceSR medicineDeliverySR) {
-            super(medicineDeliverySR);
+        public FacilityMaintenanceSRTableEntry(FacilityMaintenanceSR facilityMaintenanceSR) {
+            super(facilityMaintenanceSR);
 
-            this.maintenanceType = new SimpleStringProperty(medicineDeliverySR.getMaintenanceType());
+            this.maintenanceType = new SimpleStringProperty(facilityMaintenanceSR.getMaintenanceType());
         }
     }
 

@@ -11,10 +11,10 @@ public class SecuritySRTableDisplay extends ServiceRequestTableDisplay<SecurityS
         // Properties
         public StringProperty securityType;
 
-        public SecuritySRTableEntry(SecuritySR medicineDeliverySR) {
-            super(medicineDeliverySR);
+        public SecuritySRTableEntry(SecuritySR securitySR) {
+            super(securitySR);
 
-            this.securityType = new SimpleStringProperty(medicineDeliverySR.getSecurityType());
+            this.securityType = new SimpleStringProperty(securitySR.getSecurityType());
         }
     }
 

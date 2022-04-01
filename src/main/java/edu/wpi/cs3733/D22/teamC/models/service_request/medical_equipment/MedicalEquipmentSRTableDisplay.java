@@ -12,11 +12,11 @@ public class MedicalEquipmentSRTableDisplay extends ServiceRequestTableDisplay<M
         public StringProperty equipmentID;
         public StringProperty equipmentType;
 
-        public MedicalEquipmentSRTableEntry(MedicalEquipmentSR medicineDeliverySR) {
-            super(medicineDeliverySR);
+        public MedicalEquipmentSRTableEntry(MedicalEquipmentSR medicalEquipmentSR) {
+            super(medicalEquipmentSR);
 
-            this.equipmentID = new SimpleStringProperty(medicineDeliverySR.getEquipmentID());
-            this.equipmentType = new SimpleStringProperty(medicineDeliverySR.getEquipmentType());
+            this.equipmentID = new SimpleStringProperty(medicalEquipmentSR.getEquipmentID());
+            this.equipmentType = new SimpleStringProperty(medicalEquipmentSR.getEquipmentType());
         }
     }
 
