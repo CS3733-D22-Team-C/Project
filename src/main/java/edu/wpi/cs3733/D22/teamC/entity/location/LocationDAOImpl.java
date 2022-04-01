@@ -84,7 +84,7 @@ public class LocationDAOImpl implements LocationDAO {
                 statement.setInt(3, location.getY());
                 statement.setString(4, location.getFloor());
                 statement.setString(5, location.getBuilding());
-                statement.setString(6, location.getNodeType());
+                statement.setString(6, location.getNodeType().toString());
                 statement.setString(7, location.getLongName());
                 statement.setString(8, location.getShortName());
                 statement.execute();
@@ -119,7 +119,7 @@ public class LocationDAOImpl implements LocationDAO {
                 statement.setInt(2, location.getY());
                 statement.setString(3, location.getFloor());
                 statement.setString(4, location.getBuilding());
-                statement.setString(5, location.getNodeType());
+                statement.setString(5, location.getNodeType().toString());
                 statement.setString(6, location.getLongName());
                 statement.setString(7, location.getShortName());
                 statement.setString(8, location.getNodeID());
@@ -173,7 +173,7 @@ public class LocationDAOImpl implements LocationDAO {
             Location location = new Location(typesafeTrim(resultSet.getString("NODEID")));
             location.setFloor(typesafeTrim(resultSet.getString("FLOOR")));
             location.setBuilding(typesafeTrim(resultSet.getString("BUILDING")));
-            location.setNodeType(typesafeTrim(resultSet.getString("NODETYPE")));
+            location.setNodeType(Location.NodeType.valueOf(resultSet.getString("NODETYPE")));
             location.setLongName(typesafeTrim(resultSet.getString("LONGNAME")));
             location.setShortName(typesafeTrim(resultSet.getString("SHORTNAME")));
             location.setX(resultSet.getInt("XCOORD"));

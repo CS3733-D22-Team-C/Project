@@ -47,7 +47,7 @@ public class LocationCSVWriter extends CSVWriter<Location> {
                 output = object.getBuilding();
                 break;
             case "nodeType":
-                output = object.getNodeType();
+                output = object.getNodeType().toString();
                 break;
             case "longName":
                 output = object.getLongName();

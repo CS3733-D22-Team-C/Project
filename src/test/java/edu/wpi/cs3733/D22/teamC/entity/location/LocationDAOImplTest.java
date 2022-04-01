@@ -49,7 +49,7 @@ class LocationDAOImplTest {
         String nodeID = "Test000";
         String floor = "L1";
         String building = "Building";
-        String nodeType = "NODE";
+        Location.NodeType nodeType = Location.NodeType.DEPT;
         String longName = "LongName";
         String shortName = "shortName";
         int x = 10;
@@ -87,7 +87,7 @@ class LocationDAOImplTest {
         String nodeID = "Test000";
         String floor = "L1";
         String building = "Building";
-        String nodeType = "NODE";
+        Location.NodeType nodeType = Location.NodeType.HALL;
         String longName = "LongName";
         String shortName = "shortName";
         int x = 10;
@@ -120,7 +120,7 @@ class LocationDAOImplTest {
         String nodeID = "Test000";
         String floor = "L1";
         String building = "Building";
-        String nodeType = "NODE";
+        Location.NodeType nodeType = Location.NodeType.SERV;
         String longName = "LongName";
         String shortName = "shortName";
         int x = 10;
@@ -132,7 +132,7 @@ class LocationDAOImplTest {
         // Update Location in DB
         String newFloor = "L2";
         String newBuilding = "Building2";
-        String newNodeType = "TYPE";
+        Location.NodeType newNodeType = Location.NodeType.CONF;
         String newLongName = "LongName2";
         String newShortName = "shortName2";
         int newX = 100;
