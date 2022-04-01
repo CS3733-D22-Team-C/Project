@@ -122,8 +122,14 @@ public class App extends Application {
             baseNode.setTop(menuBarNode);
 
             //store stages current size
-            double prevWidth = stage.getWidth();
-            double prevHeight = stage.getHeight();
+            Double prevWidth = stage.getWidth();
+            Double prevHeight = stage.getHeight();
+
+            //case where it is initially opened
+            if (prevHeight.isNaN()){
+                prevHeight = Double.valueOf(517);
+                prevWidth = Double.valueOf(741);
+            }
 
             Scene scene = new Scene(baseNode);
             stage.setScene(scene);

@@ -5,35 +5,53 @@
 <?import com.jfoenix.controls.JFXTreeTableView?>
 <?import java.net.URL?>
 <?import javafx.scene.control.Label?>
-<?import javafx.scene.layout.AnchorPane?>
-<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="503.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.wpi.cs3733.D22.teamC.controller.general.ServiceRequestsViewController">
+<GridPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.wpi.cs3733.D22.teamC.controller.general.ServiceRequestsViewController">
+  <columnConstraints>
+    <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+  </columnConstraints>
+  <rowConstraints>
+    <RowConstraints maxHeight="352.0" minHeight="10.0" prefHeight="352.0" vgrow="SOMETIMES" />
+    <RowConstraints maxHeight="194.0" minHeight="10.0" prefHeight="48.0" vgrow="SOMETIMES" />
+  </rowConstraints>
    <children>
-      <JFXTreeTableView fx:id="table" layoutX="34.0" layoutY="25.0" prefHeight="400.0" prefWidth="532.0" />
-      <VBox layoutX="228.0" layoutY="454.0" prefHeight="37.0" prefWidth="139.0">
+      <JFXTreeTableView fx:id="table" prefHeight="226.0" prefWidth="600.0" />
+      <GridPane GridPane.rowIndex="1">
+         <columnConstraints>
+            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+         </columnConstraints>
+         <rowConstraints>
+            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+         </rowConstraints>
          <children>
-            <Label prefHeight="48.0" prefWidth="139.0" styleClass="textarea" text="Create a Service Request:">
-               <stylesheets>
-                  <URL value="@../../css/base.css" />
-                  <URL value="@../../css/fonts.css" />
-               </stylesheets></Label>
+            <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" GridPane.columnIndex="2">
+               <children>
+                  <JFXComboBox fx:id="serviceType" prefHeight="38.0" prefWidth="158.0" styleClass="dropdown" stylesheets="@../../css/base.css" />
+                  <JFXButton fx:id="selectButton" onAction="#onSelectButton" prefHeight="38.0" prefWidth="67.0" styleClass="button-success" stylesheets="@../../css/base.css" text="→">
+                     <font>
+                        <Font size="24.0" />
+                     </font>
+                  </JFXButton>
+               </children>
+            </HBox>
+            <HBox alignment="CENTER_RIGHT" prefHeight="179.0" prefWidth="200.0" GridPane.columnIndex="1">
+               <children>
+                  <Label prefHeight="44.0" prefWidth="147.0" styleClass="textarea" text="Create a Service Request:" HBox.hgrow="ALWAYS">
+                     <stylesheets>
+                        <URL value="@../../css/base.css" />
+                        <URL value="@../../css/fonts.css" />
+                     </stylesheets>
+                  </Label>
+               </children>
+            </HBox>
          </children>
-      </VBox>
-      <VBox layoutX="519.0" layoutY="453.0" prefHeight="38.0" prefWidth="53.0">
-         <children>
-            <JFXButton fx:id="selectButton" layoutX="10.0" layoutY="10.0" onAction="#onSelectButton" prefHeight="38.0" prefWidth="67.0" styleClass="button-success" stylesheets="@../../css/base.css" text="→">
-               <font>
-                  <Font size="24.0" />
-               </font>
-            </JFXButton>
-         </children>
-      </VBox>
-      <VBox layoutX="367.0" layoutY="453.0" prefHeight="37.0" prefWidth="152.0">
-         <children>
-            <JFXComboBox fx:id="serviceType" prefHeight="38.0" prefWidth="158.0" styleClass="dropdown" stylesheets="@../../css/base.css" />
-         </children>
-      </VBox>
+      </GridPane>
    </children>
-</AnchorPane>
+</GridPane>
