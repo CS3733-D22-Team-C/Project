@@ -67,36 +67,38 @@ public class LocationDAOImpl implements LocationDAO {
     /**
      * Insert entry in LOCATION Table of DB corresponding to the given Location object.
      * @param location The Location to be inserted into the DB via a corresponding entry.
-     * @return If successful return true, else return false.
+     * @return If successful return the ID of the entry, else return -1.
      */
     @Override
-    public boolean insertLocation(Location location) {
+    public int insertLocation(Location location) {
         try {
             // Check if entry of same nodeID already exists
             Location locationInDB = getLocation(location.getNodeID());
             if (locationInDB == null) {
                 // Execute INSERT Statement
                 PreparedStatement statement =  DBManager.getInstance().connection.prepareStatement(
-                        "INSERT INTO LOCATION VALUES(DEFAULT, ?, ?, ?, ?, ?, ?, ?)"
-                );
-                //statement.setInt(1, location.getNodeID());
-                statement.setInt(2, location.getX());
-                statement.setInt(3, location.getY());
-                statement.setString(4, location.getFloor());
-                statement.setString(5, location.getBuilding());
-                statement.setString(6, location.getNodeType());
-                statement.setString(7, location.getLongName());
-                statement.setString(8, location.getShortName());
+                        "INSERT INTO LOCATION VALUES(DEFAULT, ?, ?, ?, ?, ?, ?, ?)",
+                Statement.RETURN_GENERATED_KEYS);
+                statement.setInt(1, location.getX());
+                statement.setInt(2, location.getY());
+                statement.setString(3, location.getFloor());
+                statement.setString(4, location.getBuilding());
+                statement.setString(5, location.getNodeType());
+                statement.setString(6, location.getLongName());
+                statement.setString(7, location.getShortName());
                 statement.execute();
 
-                return true;
+                // Retrieve generated ID from newly inserted entry
+                ResultSet resultSetID = statement.getGeneratedKeys();
+                if(resultSetID.next()) return resultSetID.getInt(1);
+
             }
         } catch (SQLException e) {
             System.out.println("INSERT to LOCATION table failed.");
             e.printStackTrace();
         }
 
-        return false;
+        return -1;
     }
 
     /**

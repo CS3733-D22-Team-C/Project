@@ -10,11 +10,22 @@ public class Location {
     private int x = 0, y = 0;
 
     public Location() {}
-
+    
     public Location(int nodeID) {
         this.nodeID = nodeID;
     }
-
+    
+    public Location(String floor, String building, String nodeType, String longName, String shortName, int x, int y) {
+        this.floor = floor;
+        this.building = building;
+        this.nodeType = nodeType;
+        this.longName = longName;
+        this.shortName = shortName;
+        this.x = x;
+        this.y = y;
+    }
+    
+    @Deprecated
     public Location(int nodeID, String floor, String building, String nodeType, String longName, String shortName, int x, int y) {
         this.nodeID = nodeID;
         this.floor = floor;

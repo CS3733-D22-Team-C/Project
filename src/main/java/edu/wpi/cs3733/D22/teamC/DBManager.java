@@ -142,7 +142,8 @@ public class DBManager {
         public void initializeLocationTable(boolean clearTable) {
             initializeTable(
                     "LOCATION",
-                    "CREATE TABLE LOCATION (ID int NOT NULL GENERATED ALWAYS AS IDENTITY(START WITH 1, INCREMENT BY 1), " +
+                    "CREATE TABLE LOCATION (" +
+                            "ID int NOT NULL GENERATED ALWAYS AS IDENTITY(START WITH 1, INCREMENT BY 1), " +
                             "XCoord int, YCoord int, Floor char(4), Building char(16), NodeType char(4), " +
                             "LongName char(64), ShortName char(32), CONSTRAINT pk_ID PRIMARY KEY (ID))",
                     clearTable
@@ -155,10 +156,12 @@ public class DBManager {
         public void initializeServiceRequestTable(boolean clearTable) {
             initializeTable(
                     "SERVICE_REQUEST",
-                    "CREATE TABLE SERVICE_REQUEST (ID int NOT NULL GENERATED ALWAYS AS IDENTITY(START WITH 1, INCREMENT BY 1), CreatorID char(10), " +
-                            "AssigneeID char(10), LocationID char(10), CreationTimestamp timestamp, Status varchar(50), " +
-                            "Priority varchar(50), RequestType varchar(50), Description varchar(150), " +
-                            "CONSTRAINT pk_ID PRIMARY KEY (ID))",
+                    "CREATE TABLE SERVICE_REQUEST (" +
+                            "ID int NOT NULL GENERATED ALWAYS AS IDENTITY(START WITH 1, INCREMENT BY 1), " +
+                            "CreatorID char(10), AssigneeID char(10), LocationID char(10), " +
+                            "CreationTimestamp timestamp, Status varchar(50), Priority varchar(50), " +
+                            "RequestType varchar(50), Description varchar(150), " +
+                            "CONSTRAINT pk_SRID PRIMARY KEY (ID))",
                     clearTable
             );
         }
@@ -170,8 +173,8 @@ public class DBManager {
         public void initializeMedicalEquipSRTable(boolean clearTable) {
             initializeTable(
                     "MEDICAL_EQUIPMENT_SR",
-                    "CREATE TABLE MEDICAL_EQUIPMENT_SR (ID int, EquipID char(10), " +
-                            "EquipType varchar(50), CONSTRAINT fk_ID FOREIGN KEY (ID) " +
+                    "CREATE TABLE MEDICAL_EQUIPMENT_SR (" +
+                            "ID int, EquipID char(10), EquipType varchar(50), CONSTRAINT fk_ID FOREIGN KEY (ID) " +
                             "REFERENCES SERVICE_REQUEST (ID) ON DELETE CASCADE)",
                     clearTable
             );

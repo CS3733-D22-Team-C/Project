@@ -33,7 +33,7 @@ class LocationDAOImplTest {
     @Test
     void testEmptyQueryLocation() {
         assertEquals(0, locationDAO.getAllLocations().size());
-        assertEquals(null, locationDAO.getLocation(000));
+        assertEquals(null, locationDAO.getLocation(1234));
     }
 
     /**
@@ -46,25 +46,26 @@ class LocationDAOImplTest {
         assertEquals(null, locationDAO.getLocation(1234));
 
         // Insert Location into DB
-        int nodeID = 1234;
         String floor = "L1";
         String building = "Building";
         String nodeType = "NODE";
         String longName = "LongName";
-        String shortName = "shortName";
+        String shortName = "ShortName";
         int x = 10;
         int y = 20;
-        Location insertLocation = new Location(nodeID, floor, building, nodeType, longName, shortName, x, y);
-        assertTrue(locationDAO.insertLocation(insertLocation));
+        Location insertLocation = new Location(floor, building, nodeType, longName, shortName, x, y);
+        int retrievedID = locationDAO.insertLocation(insertLocation);
+        insertLocation.setNodeID(retrievedID);
+        assertNotEquals(-1, retrievedID);
         assertEquals(1, locationDAO.getAllLocations().size());
 
         // Cannot Insert Location Again
-        assertFalse(locationDAO.insertLocation(insertLocation));
+        assertEquals(-1, locationDAO.insertLocation(insertLocation));
 
         // Check that DB values are expected
         Location queryLocation = locationDAO.getLocation(insertLocation.getNodeID());
         assertNotNull(queryLocation);
-        assertEquals(nodeID, queryLocation.getNodeID());
+        assertEquals(retrievedID, queryLocation.getNodeID());
         assertEquals(floor, queryLocation.getFloor());
         assertEquals(building, queryLocation.getBuilding());
         assertEquals(nodeType, queryLocation.getNodeType());
@@ -82,18 +83,19 @@ class LocationDAOImplTest {
         // Check DB is empty
         assertEquals(0, locationDAO.getAllLocations().size());
         assertEquals(null, locationDAO.getLocation(1234));
-
+    
         // Insert Location into DB
-        int nodeID = 1234;
         String floor = "L1";
         String building = "Building";
-        String nodeType = "NodeType";
+        String nodeType = "NODE";
         String longName = "LongName";
         String shortName = "ShortName";
         int x = 10;
         int y = 20;
-        Location deleteLocation = new Location(nodeID, floor, building, nodeType, longName, shortName, x, y);
-        assertTrue(locationDAO.insertLocation(deleteLocation));
+        Location deleteLocation = new Location(floor, building, nodeType, longName, shortName, x, y);
+        int retrievedID = locationDAO.insertLocation(deleteLocation);
+        deleteLocation.setNodeID(retrievedID);
+        assertNotEquals(-1, retrievedID);
         assertEquals(1, locationDAO.getAllLocations().size());
 
         // Delete Location from DB
@@ -115,18 +117,19 @@ class LocationDAOImplTest {
         // Check DB is empty
         assertEquals(0, locationDAO.getAllLocations().size());
         assertEquals(null, locationDAO.getLocation(1234));
-
+    
         // Insert Location into DB
-        int nodeID = 1234;
         String floor = "L1";
         String building = "Building";
         String nodeType = "NODE";
         String longName = "LongName";
-        String shortName = "shortName";
+        String shortName = "ShortName";
         int x = 10;
         int y = 20;
-        Location updateLocation = new Location(nodeID, floor, building, nodeType, longName, shortName, x, y);
-        assertTrue(locationDAO.insertLocation(updateLocation));
+        Location updateLocation = new Location(floor, building, nodeType, longName, shortName, x, y);
+        int retrievedID = locationDAO.insertLocation(updateLocation);
+        updateLocation.setNodeID(retrievedID);
+        assertNotEquals(-1, retrievedID);
         assertEquals(1, locationDAO.getAllLocations().size());
 
         // Update Location in DB
@@ -150,7 +153,7 @@ class LocationDAOImplTest {
         // Check that DB values are expected
         Location queryLocation = locationDAO.getLocation(updateLocation.getNodeID());
         assertNotNull(queryLocation);
-        assertEquals(nodeID, queryLocation.getNodeID());
+        assertEquals(retrievedID, queryLocation.getNodeID());
         assertEquals(newFloor, queryLocation.getFloor());
         assertEquals(newBuilding, queryLocation.getBuilding());
         assertEquals(newNodeType, queryLocation.getNodeType());

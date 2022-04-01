@@ -6,7 +6,7 @@ public interface LocationDAO {
     public List<Location> getAllLocations();
     public Location getLocation(int nodeID);
 
-    public boolean insertLocation(Location location);
+    public int insertLocation(Location location);
     public boolean updateLocation(Location location);
     public boolean deleteLocation(Location location);
 }
