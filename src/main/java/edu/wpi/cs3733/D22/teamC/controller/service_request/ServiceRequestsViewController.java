@@ -3,22 +3,16 @@ package edu.wpi.cs3733.D22.teamC.controller.service_request;
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXComboBox;
 import com.jfoenix.controls.JFXTreeTableView;
-import com.jfoenix.controls.RecursiveTreeItem;
-import com.jfoenix.controls.datamodels.treetable.RecursiveTreeObject;
 import edu.wpi.cs3733.D22.teamC.App;
 import edu.wpi.cs3733.D22.teamC.entity.service_request.ServiceRequest;
 import edu.wpi.cs3733.D22.teamC.entity.service_request.ServiceRequestDAO;
 import edu.wpi.cs3733.D22.teamC.entity.service_request.ServiceRequestDAOImpl;
 import edu.wpi.cs3733.D22.teamC.models.service_request.ServiceRequestTable;
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.control.TreeItem;
 
 import java.net.URL;
-import java.security.Provider;
 import java.util.List;
 import java.util.ResourceBundle;
 
@@ -53,7 +47,7 @@ public class ServiceRequestsViewController implements Initializable {
         List<ServiceRequest> serviceRequests = serviceRequestDAO.getAllServiceRequests();
 
         tableWrapper = new ServiceRequestTable<ServiceRequest>(table);
-        serviceRequests.forEach(tableWrapper::addEntry);
+        serviceRequests.forEach(tableWrapper::addObject);
     }
     @FXML
     void onSelectButton(ActionEvent event) {

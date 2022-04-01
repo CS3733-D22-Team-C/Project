@@ -4,13 +4,35 @@ import com.jfoenix.controls.JFXTreeTableColumn;
 import com.jfoenix.controls.JFXTreeTableView;
 import com.jfoenix.controls.datamodels.treetable.RecursiveTreeObject;
 import edu.wpi.cs3733.D22.teamC.entity.service_request.medicine_delivery.MedicineDeliverySR;
+import edu.wpi.cs3733.D22.teamC.models.service_request.ServiceRequestTable;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
 import javafx.beans.value.ObservableValue;
 import javafx.scene.control.TreeTableColumn;
 import javafx.util.Callback;
 
-public class MedicineDeliverySRTable extends RecursiveTreeObject<MedicineDeliverySRTable> {
+public class MedicineDeliverySRTable extends ServiceRequestTable<MedicineDeliverySR> {
+    protected class ServiceRequestTableEntry extends TableDisplayEntry {
+        // Properties
+        StringProperty assigneeID;
+        StringProperty location;
+        StringProperty status;
+        StringProperty priority;
+        StringProperty ID;
+        StringProperty Type;
+
+        public ServiceRequestTableEntry(T serviceRequest) {
+            super(serviceRequest);
+
+            this.assigneeID = new SimpleStringProperty(serviceRequest.getAssigneeID());
+            this.location   = new SimpleStringProperty(serviceRequest.getLocation());
+            this.status     = new SimpleStringProperty(serviceRequest.getStatus());
+            this.priority   = new SimpleStringProperty(serviceRequest.getPriority());
+            this.ID         = new SimpleStringProperty(serviceRequest.getRequestID());
+            this.Type       = new SimpleStringProperty(serviceRequest.getRequestType());
+        }
+    }
+
     // Properties
     StringProperty medicine;
     StringProperty dosage;

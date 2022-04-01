@@ -1,25 +1,13 @@
 package edu.wpi.cs3733.D22.teamC.models.service_request;
 
-import com.jfoenix.controls.JFXTreeTableColumn;
 import com.jfoenix.controls.JFXTreeTableView;
-import com.jfoenix.controls.RecursiveTreeItem;
-import com.jfoenix.controls.datamodels.treetable.RecursiveTreeObject;
 import edu.wpi.cs3733.D22.teamC.entity.service_request.ServiceRequest;
-import edu.wpi.cs3733.D22.teamC.models.service_request.medicine_delivery.MedicineDeliverySRTable;
-import javafx.beans.property.IntegerProperty;
+import edu.wpi.cs3733.D22.teamC.models.generic.TableDisplay;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
-import javafx.beans.value.ObservableValue;
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
-import javafx.scene.control.TreeItem;
-import javafx.scene.control.TreeTableColumn;
-import javafx.scene.control.TreeTableView;
-import javafx.util.Callback;
 
-public class ServiceRequestTable<T extends ServiceRequest> {
-
-    protected class ServiceRequestTableEntry extends RecursiveTreeObject<ServiceRequestTableEntry> {
+public class ServiceRequestTable<T extends ServiceRequest> extends TableDisplay<T, ServiceRequestTable<T>.ServiceRequestTableEntry> {
+    protected class ServiceRequestTableEntry extends TableDisplayEntry {
         // Properties
         StringProperty assigneeID;
         StringProperty location;
@@ -29,6 +17,8 @@ public class ServiceRequestTable<T extends ServiceRequest> {
         StringProperty Type;
 
         public ServiceRequestTableEntry(T serviceRequest) {
+            super(serviceRequest);
+
             this.assigneeID = new SimpleStringProperty(serviceRequest.getAssigneeID());
             this.location   = new SimpleStringProperty(serviceRequest.getLocation());
             this.status     = new SimpleStringProperty(serviceRequest.getStatus());
@@ -38,39 +28,19 @@ public class ServiceRequestTable<T extends ServiceRequest> {
         }
     }
 
-    // Variables
-    ObservableList<ServiceRequestTableEntry> data = FXCollections.observableArrayList();
-
     public ServiceRequestTable(JFXTreeTableView jfxTreeTableView) {
-        // Table Setup
-        TreeItem<ServiceRequestTableEntry> root = new RecursiveTreeItem<ServiceRequestTableEntry>(data, RecursiveTreeObject::getChildren);
-        jfxTreeTableView.setRoot(root);
-        jfxTreeTableView.setShowRoot(false);
-        jfxTreeTableView.setColumnResizePolicy(TreeTableView.CONSTRAINED_RESIZE_POLICY);
+        super(jfxTreeTableView);
 
-        // Columns for table
-        createTableColumnString(
+        // Insert Columns for Table
+        addColumn(
                 jfxTreeTableView,
                 "Priority",
                 1f * Integer.MAX_VALUE * 16.66,
-                param -> {return param.getValue().getValue().priority;}
+                (ServiceRequestTableEntry entry) -> {return entry.priority;}
         );
     }
 
-    public void addEntry(T serviceRequest) {
-        ServiceRequestTableEntry entry = new ServiceRequestTableEntry(serviceRequest);
-        data.add(entry);
-    }
-
-    protected void createTableColumnString(
-            JFXTreeTableView<ServiceRequestTableEntry> table,
-            String header,
-            double maxWidth,
-            Callback<TreeTableColumn.CellDataFeatures<ServiceRequestTableEntry, String>, ObservableValue<String>> callback
-    ) {
-        JFXTreeTableColumn<ServiceRequestTableEntry, String> col = new JFXTreeTableColumn<>(header);
-        col.setMaxWidth(maxWidth);
-        col.setCellValueFactory(callback);
-        table.getColumns().add(col);
+    public void addObject(T object) {
+        addEntry(new ServiceRequestTableEntry(object));
     }
 }
