@@ -61,7 +61,7 @@ class MedEqSRDAOImplTest {
         ServiceRequest.RequestType requestType = ServiceRequest.RequestType.Medical_Equipment_SR;
         String description = "soft eng is spain without the s";
         String equipID = "BED003";
-        String equipType = "Bed";
+        MedicalEquipmentSR.EquipmentType equipType = MedicalEquipmentSR.EquipmentType.Bed;
         
         MedicalEquipmentSR insertSR = new MedicalEquipmentSR();
         insertSR.setRequestID(requestID);
@@ -117,7 +117,7 @@ class MedEqSRDAOImplTest {
         ServiceRequest.RequestType requestType = ServiceRequest.RequestType.Medical_Equipment_SR;
         String description = "soft eng is spain without the s";
         String equipID = "BED003";
-        String equipType = "Bed";
+        MedicalEquipmentSR.EquipmentType equipType = MedicalEquipmentSR.EquipmentType.Bed;
     
         MedicalEquipmentSR deleteSR = new MedicalEquipmentSR();
         deleteSR.setRequestID(requestID);
@@ -166,7 +166,7 @@ class MedEqSRDAOImplTest {
         ServiceRequest.RequestType requestType = ServiceRequest.RequestType.Medical_Equipment_SR;
         String description = "soft eng is spain without the s";
         String equipID = "BED003";
-        String equipType = "Bed";
+        MedicalEquipmentSR.EquipmentType equipType = MedicalEquipmentSR.EquipmentType.Bed;
     
         MedicalEquipmentSR updateSR = new MedicalEquipmentSR();
         updateSR.setRequestID(requestID);
@@ -193,7 +193,8 @@ class MedEqSRDAOImplTest {
         requestType = ServiceRequest.RequestType.Medical_Equipment_SR;
         description = "help plz";
         equipID = "BED003";
-        equipType = "Bed";
+        equipType = MedicalEquipmentSR.EquipmentType.Bed;
+
         updateSR.setCreatorID(creatorID);
         updateSR.setAssigneeID(assigneeID);
         updateSR.setLocation(locationID);

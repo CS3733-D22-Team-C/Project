@@ -61,7 +61,7 @@ public class MedicalEquipmentSRCSVWriter extends CSVWriter<MedicalEquipmentSR> {
                 output = serviceRequest.getDescription();
                 break;
             case "equipType":
-                output = serviceRequest.getEquipmentType();
+                output = String.valueOf(serviceRequest.getEquipmentType());
                 break;
             case "equipID":
                 output = serviceRequest.getEquipmentID();

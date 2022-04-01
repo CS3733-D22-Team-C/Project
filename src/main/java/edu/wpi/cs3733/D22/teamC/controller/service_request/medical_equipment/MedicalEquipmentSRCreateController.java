@@ -82,7 +82,7 @@ public class MedicalEquipmentSRCreateController extends ServiceRequestCreateCont
         //Sets from combo boxes
         medEquip.setStatus(ServiceRequest.Status.valueOf(status.getValue()));
         medEquip.setPriority(ServiceRequest.Priority.valueOf(priority.getValue()));
-        medEquip.setEquipmentType(equipType.getValue());
+        medEquip.setEquipmentType(MedicalEquipmentSR.EquipmentType.valueOf(equipType.getValue()));
 
         //Request ID generator
         int requestID = (int)(Math.random() * (10000000 + 1)) + 0;
@@ -91,7 +91,7 @@ public class MedicalEquipmentSRCreateController extends ServiceRequestCreateCont
         System.out.println(requestIDString);
 
         //Dealing with the equipment type and the enumerator
-        int type = medEquip.getEquipEnum(equipType.getValue());
+        int type = medEquip.getEquipmentType().ordinal();
         String num = equipID.getText();
         medEquip.setEquipmentID(type + num);
         clickReset(event);

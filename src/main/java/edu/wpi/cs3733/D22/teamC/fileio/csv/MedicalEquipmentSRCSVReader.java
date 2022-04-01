@@ -47,7 +47,7 @@ public class MedicalEquipmentSRCSVReader extends CSVReader<MedicalEquipmentSR>{
                 serviceRequest.setEquipmentID(value);
                 break;
             case "equipType":
-                serviceRequest.setEquipmentType(value);
+                serviceRequest.setEquipmentType(MedicalEquipmentSR.EquipmentType.valueOf(value));
                 break;
         }
         return serviceRequest;
