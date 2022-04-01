@@ -3,4 +3,9 @@ package edu.wpi.cs3733.D22.teamC.userinputvalidation.servicerequestformvalidatio
 import edu.wpi.cs3733.D22.teamC.userinputvalidation.servicerequestformvalidation.ServiceRequestFormEvaluator;
 
 public class MedicineDeliveryFormEvaluator extends ServiceRequestFormEvaluator {
+
+    public MedicineDeliveryFormEvaluator()
+    {
+
+    }
 }

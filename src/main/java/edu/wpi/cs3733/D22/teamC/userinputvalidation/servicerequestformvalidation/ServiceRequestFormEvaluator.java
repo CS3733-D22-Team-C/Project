@@ -4,15 +4,40 @@ package edu.wpi.cs3733.D22.teamC.userinputvalidation.servicerequestformvalidatio
 
 public class ServiceRequestFormEvaluator {
 
-    public boolean isAssigneeIDValid()
+    protected String requestID;
+    protected String location;
+
+    public ServiceRequestFormEvaluator() {}
+
+    public ServiceRequestFormEvaluator(ServiceRequestFormEvaluator srfe)
     {
-        return false;
+        this.requestID = srfe.getRequestID();
+        this.location = srfe.getLocation();
     }
 
-    public boolean isLocationValid()
+    public int validateAssigneeID()
     {
-        return false;
+        return 0;
     }
 
+    public int validateLocationID()
+    {
+        return 0;
+    }
 
+    public void setRequestID(String requestID) {
+        this.requestID = requestID;
+    }
+
+    public void setLocation(String location) {
+        this.location = location;
+    }
+
+    public String getRequestID() {
+        return requestID;
+    }
+
+    public String getLocation() {
+        return location;
+    }
 }

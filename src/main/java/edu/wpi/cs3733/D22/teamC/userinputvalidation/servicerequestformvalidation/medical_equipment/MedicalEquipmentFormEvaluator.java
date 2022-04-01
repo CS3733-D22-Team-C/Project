@@ -2,5 +2,10 @@ package edu.wpi.cs3733.D22.teamC.userinputvalidation.servicerequestformvalidatio
 
 import edu.wpi.cs3733.D22.teamC.userinputvalidation.servicerequestformvalidation.ServiceRequestFormEvaluator;
 
-public class MedicalEquipmentFormEvalutator extends ServiceRequestFormEvaluator {
+public class MedicalEquipmentFormEvaluator extends ServiceRequestFormEvaluator {
+
+    public MedicalEquipmentFormEvaluator()
+    {
+
+    }
 }

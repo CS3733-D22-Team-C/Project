@@ -43,6 +43,8 @@ public class FacilityMaintenanceSRCreateController extends ServiceRequestCreateC
 
     @FXML
     protected FacilityMaintenanceSR clickSubmit(ActionEvent event) {
+        //If validation fails, prompt appropriate messages to display. Else, create a facility maintenance object.
+
         FacilityMaintenanceSR fmsr = new FacilityMaintenanceSR();
         fmsr.setMaintenanceType(maintType.getText());
         fmsr.setAssigneeID(assigneeID.getText());
@@ -50,10 +52,8 @@ public class FacilityMaintenanceSRCreateController extends ServiceRequestCreateC
         fmsr.setPriority(priority.getValue()); //getValue directly returns the value of a selected item from a JavaFX ComboBox
         fmsr.setStatus(status.getValue());
         fmsr.setDescription(description.getText());
-        //fmsr.setRequestType("Facilities Maintenance");
+        fmsr.setRequestType("Facilities Maintenance");
 
-        //Dealing with the equipment type and the enumerator
-        //int type = fmsr.getMaintenanceTypeEnum(maintType.getText());
         clickReset(event);
 
         // Add Table Entry
