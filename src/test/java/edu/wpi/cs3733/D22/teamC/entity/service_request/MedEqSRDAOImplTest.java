@@ -56,7 +56,7 @@ class MedEqSRDAOImplTest {
         String assigneeID = "nick1234";
         String locationID = "FOISIE";
         Timestamp creationTimeStamp = new Timestamp(694201234);
-        ServiceRequest.Status status = ServiceRequest.Status.valueOf("Not Done");
+        ServiceRequest.Status status = ServiceRequest.Status.valueOf("Blank");
         ServiceRequest.Priority priority = ServiceRequest.Priority.valueOf("High");
         ServiceRequest.RequestType requestType = ServiceRequest.RequestType.valueOf("Medical Equipment");
         String description = "soft eng is spain without the s";

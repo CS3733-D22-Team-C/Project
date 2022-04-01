@@ -54,9 +54,9 @@ class ServiceRequestDAOImplTest {
         String assigneeID = "A1";
         String location = "loc";
         Timestamp creationTimestamp = new Timestamp(System.currentTimeMillis());
-        ServiceRequest.Status status = ServiceRequest.Status.valueOf("Assigned");
-        ServiceRequest.Priority priority = ServiceRequest.Priority.valueOf("Not Emergency");
-        ServiceRequest.RequestType requestType = ServiceRequest.RequestType.valueOf("MedicalEquipmentServiceRequest");
+        ServiceRequest.Status status = ServiceRequest.Status.valueOf("Blank");
+        ServiceRequest.Priority priority = ServiceRequest.Priority.valueOf("Low");
+        ServiceRequest.RequestType requestType = ServiceRequest.RequestType.valueOf("Medical_Equipment_SR");
         String description = "Move the bed before noon today";
 
         ServiceRequest insertSR = new ServiceRequest();
@@ -105,9 +105,9 @@ class ServiceRequestDAOImplTest {
         String assigneeID = "A1";
         String location = "loc";
         Timestamp creationTimestamp = new Timestamp(System.currentTimeMillis());
-        ServiceRequest.Status status = ServiceRequest.Status.valueOf("Assigned");
-        ServiceRequest.Priority priority = ServiceRequest.Priority.valueOf("Not Emergency");
-        ServiceRequest.RequestType requestType = ServiceRequest.RequestType.valueOf("MedicalEquipmentServiceRequest");
+        ServiceRequest.Status status = ServiceRequest.Status.valueOf("Processing");
+        ServiceRequest.Priority priority = ServiceRequest.Priority.valueOf("Low");
+        ServiceRequest.RequestType requestType = ServiceRequest.RequestType.valueOf("Medical_Equipment_SR");
         String description = "Move the bed before noon today";
 
         ServiceRequest deleteSR = new ServiceRequest();
@@ -150,9 +150,9 @@ class ServiceRequestDAOImplTest {
         String assigneeID = "A1";
         String location = "loc";
         Timestamp creationTimestamp = new Timestamp(System.currentTimeMillis());
-        ServiceRequest.Status status = ServiceRequest.Status.valueOf("Assigned");
+        ServiceRequest.Status status = ServiceRequest.Status.valueOf("Blank");
         ServiceRequest.Priority priority = ServiceRequest.Priority.valueOf("High");
-        ServiceRequest.RequestType requestType = ServiceRequest.RequestType.valueOf("MedicalEquipmentServiceRequest");
+        ServiceRequest.RequestType requestType = ServiceRequest.RequestType.valueOf("Medical_Equipment_SR");
         String description = "Move the bed before noon today";
 
         ServiceRequest updateSR = new ServiceRequest();
@@ -175,8 +175,8 @@ class ServiceRequestDAOImplTest {
         String newAssigneeID = "A2";
         String newlocation = "new loc";
         Timestamp newCreationTimestamp = new Timestamp(System.currentTimeMillis());
-        String newStatus = "Not Assigned";
-        String newPriority = "Emergency";
+        String newStatus = "Blank";
+        String newPriority = "High";
         String newDescription = "Move the bed IMMEDIATELY";
 
         updateSR.setCreatorID(newCreatorID);
