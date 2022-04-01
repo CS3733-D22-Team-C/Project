@@ -75,16 +75,21 @@ public class ServiceRequestDAOImpl extends ServiceRequestDAO<ServiceRequest> {
             ServiceRequest serviceRequestInDB = getServiceRequest(serviceRequest.getRequestID());
             if (serviceRequestInDB == null) {
                 PreparedStatement statement = DBManager.getInstance().connection.prepareStatement(
-                        "INSERT INTO SERVICE_REQUEST VALUES(DEFAULT, ?, ?, ?, ?, ?, ?, ?, ?)",
+                        "INSERT INTO SERVICE_REQUEST VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?)",
                 Statement.RETURN_GENERATED_KEYS);
-                statement.setString(1, serviceRequest.getCreatorID());
-                statement.setString(2, serviceRequest.getAssigneeID());
-                statement.setString(3, serviceRequest.getLocation());
-                statement.setTimestamp(4, serviceRequest.getCreationTimestamp());
-                statement.setString(5, serviceRequest.getStatus());
-                statement.setString(6, serviceRequest.getPriority());
-                statement.setString(7, serviceRequest.getRequestType());
-                statement.setString(8, serviceRequest.getDescription());
+                statement.setString(1, (
+                        serviceRequest.getRequestID() != 0)
+                                ? String.valueOf(serviceRequest.getRequestID())
+                                : "DEFAULT"
+                );
+                statement.setString(2, serviceRequest.getCreatorID());
+                statement.setString(3, serviceRequest.getAssigneeID());
+                statement.setString(4, serviceRequest.getLocation());
+                statement.setTimestamp(5, serviceRequest.getCreationTimestamp());
+                statement.setString(6, serviceRequest.getStatus());
+                statement.setString(7, serviceRequest.getPriority());
+                statement.setString(8, serviceRequest.getRequestType());
+                statement.setString(9, serviceRequest.getDescription());
                 statement.execute();
     
                 // Retrieve generated ID from newly inserted entry

@@ -76,16 +76,23 @@ public class LocationDAOImpl implements LocationDAO {
             Location locationInDB = getLocation(location.getNodeID());
             if (locationInDB == null) {
                 // Execute INSERT Statement
-                PreparedStatement statement =  DBManager.getInstance().connection.prepareStatement(
-                        "INSERT INTO LOCATION VALUES(DEFAULT, ?, ?, ?, ?, ?, ?, ?)",
-                Statement.RETURN_GENERATED_KEYS);
-                statement.setInt(1, location.getX());
-                statement.setInt(2, location.getY());
-                statement.setString(3, location.getFloor());
-                statement.setString(4, location.getBuilding());
-                statement.setString(5, location.getNodeType());
-                statement.setString(6, location.getLongName());
-                statement.setString(7, location.getShortName());
+                PreparedStatement statement = (location.getNodeID() == 0)
+                        ? DBManager.getInstance().connection.prepareStatement("INSERT INTO LOCATION VALUES(DEFAULT, ?, ?, ?, ?, ?, ?, ?)", Statement.RETURN_GENERATED_KEYS)
+                        : DBManager.getInstance().connection.prepareStatement("INSERT INTO LOCATION VALUES(?, ?, ?, ?, ?, ?, ?, ?)", Statement.RETURN_GENERATED_KEYS);
+
+                int index = 1;
+                if (location.getNodeID() != 0) {
+                    statement.setString(index, (location.getNodeID() != 0) ? String.valueOf(location.getNodeID()): "DEFAULT");
+                    index++;
+                }
+
+                statement.setInt(index, location.getX()); index++;
+                statement.setInt(index, location.getY()); index++;
+                statement.setString(index, location.getFloor()); index++;
+                statement.setString(index, location.getBuilding()); index++;
+                statement.setString(index, location.getNodeType()); index++;
+                statement.setString(index, location.getLongName()); index++;
+                statement.setString(index, location.getShortName()); index++;
                 statement.execute();
 
                 // Retrieve generated ID from newly inserted entry
