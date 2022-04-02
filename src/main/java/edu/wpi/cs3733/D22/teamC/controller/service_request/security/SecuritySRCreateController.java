@@ -75,6 +75,8 @@ public class SecuritySRCreateController extends ServiceRequestCreateController {
             securitySR.setPriority(ServiceRequest.Priority.valueOf(priority.getValue()));
             securitySR.setSecurityType(SecuritySR.SecurityType.valueOf(secType.getValue()));
 
+            securitySR.setRequestType(ServiceRequest.RequestType.Security);
+
             // Table Entry
             clickReset(event);
             SecuritySRTable met = new SecuritySRTable(securitySR);

@@ -58,7 +58,7 @@ class MedEqSRDAOImplTest {
         Timestamp creationTimeStamp = new Timestamp(694201234);
         ServiceRequest.Status status = ServiceRequest.Status.Blank;
         ServiceRequest.Priority priority = ServiceRequest.Priority.High;
-        ServiceRequest.RequestType requestType = ServiceRequest.RequestType.Medical_Equipment_SR;
+        ServiceRequest.RequestType requestType = ServiceRequest.RequestType.Medical_Equipment;
         String description = "soft eng is spain without the s";
         String equipID = "BED003";
         MedicalEquipmentSR.EquipmentType equipType = MedicalEquipmentSR.EquipmentType.Bed;
@@ -114,7 +114,7 @@ class MedEqSRDAOImplTest {
         Timestamp creationTimeStamp = new Timestamp(694201234);
         ServiceRequest.Status status = ServiceRequest.Status.Blank;
         ServiceRequest.Priority priority = ServiceRequest.Priority.High;
-        ServiceRequest.RequestType requestType = ServiceRequest.RequestType.Medical_Equipment_SR;
+        ServiceRequest.RequestType requestType = ServiceRequest.RequestType.Medical_Equipment;
         String description = "soft eng is spain without the s";
         String equipID = "BED003";
         MedicalEquipmentSR.EquipmentType equipType = MedicalEquipmentSR.EquipmentType.Bed;
@@ -163,7 +163,7 @@ class MedEqSRDAOImplTest {
         Timestamp creationTimeStamp = new Timestamp(694201234);
         ServiceRequest.Status status = ServiceRequest.Status.Processing;
         ServiceRequest.Priority priority = ServiceRequest.Priority.High;
-        ServiceRequest.RequestType requestType = ServiceRequest.RequestType.Medical_Equipment_SR;
+        ServiceRequest.RequestType requestType = ServiceRequest.RequestType.Medical_Equipment;
         String description = "soft eng is spain without the s";
         String equipID = "BED003";
         MedicalEquipmentSR.EquipmentType equipType = MedicalEquipmentSR.EquipmentType.Bed;
@@ -190,7 +190,7 @@ class MedEqSRDAOImplTest {
         locationID = "SMARTWORLD";
         status = ServiceRequest.Status.Done;
         priority = ServiceRequest.Priority.High;
-        requestType = ServiceRequest.RequestType.Medical_Equipment_SR;
+        requestType = ServiceRequest.RequestType.Medical_Equipment;
         description = "help plz";
         equipID = "BED003";
         equipType = MedicalEquipmentSR.EquipmentType.Bed;

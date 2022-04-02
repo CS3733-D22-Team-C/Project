@@ -1,7 +1,5 @@
 package edu.wpi.cs3733.D22.teamC.entity.service_request;
 
-import java.sql.Time;
-import java.sql.Date;
 import java.sql.Timestamp;
 
 public class ServiceRequest {
@@ -16,25 +14,26 @@ public class ServiceRequest {
     protected String description;
 
     public enum Status {
-        Blank,      //0
-        Processing, //1
-        Done;       //2
+        Blank,
+        Processing,
+        Done
     }
 
     public enum Priority {
         Low,
         Medium,
-        High;
+        High
     }
 
     public enum RequestType {
-        Medical_Equipment_SR,
-        Facility_Maintenance_SR,
-        Lab_System_SR,
-        Medicine_Delivery_SR,
-        Sanitation_SR,
-        Security_SR;
+        Medical_Equipment,
+        Facility_Maintenance,
+        Lab_System,
+        Medicine_Delivery,
+        Sanitation,
+        Security
     }
+
     public ServiceRequest(){}
     
     public ServiceRequest(ServiceRequest serviceRequest) {

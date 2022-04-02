@@ -40,10 +40,9 @@ public class MedicalEquipmentSRCreateController extends ServiceRequestCreateCont
         super.initialize(url, rb);
 
         //For equipment type drop down
-        equipType.getItems().add("Bed (20)");
-        equipType.getItems().add("Recliners (6)");
-        equipType.getItems().add("Portable X-Ray");
-        equipType.getItems().add("Infusion Pumps (30)");
+        for (MedicalEquipmentSR.EquipmentType type : MedicalEquipmentSR.EquipmentType.values()) {
+            equipType.getItems().add(type.toString());
+        }
 
         MedicalEquipmentSRTable.createTableColumns(table);
         table.setRoot(root);
@@ -95,6 +94,8 @@ public class MedicalEquipmentSRCreateController extends ServiceRequestCreateCont
         String num = equipID.getText();
         medEquip.setEquipmentID(type + num);
         clickReset(event);
+
+        medEquip.setRequestType(ServiceRequest.RequestType.Medical_Equipment);
 
         // Table Entry
         MedicalEquipmentSRTable met = new MedicalEquipmentSRTable(medEquip);

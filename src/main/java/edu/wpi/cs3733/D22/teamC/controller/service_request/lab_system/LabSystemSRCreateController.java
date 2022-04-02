@@ -73,6 +73,8 @@ public class LabSystemSRCreateController extends ServiceRequestCreateController 
         labSystem.setPriority(ServiceRequest.Priority.valueOf(priority.getValue()));
         labSystem.setLabType(LabSystemSR.LabType.valueOf(labType.getValue()));
 
+        labSystem.setRequestType(ServiceRequest.RequestType.Lab_System);
+
         //Table Entry
         LabSystemSRTable lst = new LabSystemSRTable(labSystem);
         LSTList.add(lst);

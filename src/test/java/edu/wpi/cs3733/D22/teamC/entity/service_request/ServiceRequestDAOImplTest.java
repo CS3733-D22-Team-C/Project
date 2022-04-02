@@ -56,7 +56,7 @@ class ServiceRequestDAOImplTest {
         Timestamp creationTimestamp = new Timestamp(System.currentTimeMillis());
         ServiceRequest.Status status = ServiceRequest.Status.Blank;
         ServiceRequest.Priority priority = ServiceRequest.Priority.Low;
-        ServiceRequest.RequestType requestType = ServiceRequest.RequestType.valueOf("Medical_Equipment_SR");
+        ServiceRequest.RequestType requestType = ServiceRequest.RequestType.valueOf("Medical_Equipment");
         String description = "Move the bed before noon today";
 
         ServiceRequest insertSR = new ServiceRequest();
@@ -107,7 +107,7 @@ class ServiceRequestDAOImplTest {
         Timestamp creationTimestamp = new Timestamp(System.currentTimeMillis());
         ServiceRequest.Status status = ServiceRequest.Status.Processing;
         ServiceRequest.Priority priority = ServiceRequest.Priority.Low;
-        ServiceRequest.RequestType requestType = ServiceRequest.RequestType.valueOf("Medical_Equipment_SR");
+        ServiceRequest.RequestType requestType = ServiceRequest.RequestType.valueOf("Medical_Equipment");
         String description = "Move the bed before noon today";
 
         ServiceRequest deleteSR = new ServiceRequest();
@@ -152,7 +152,7 @@ class ServiceRequestDAOImplTest {
         Timestamp creationTimestamp = new Timestamp(System.currentTimeMillis());
         ServiceRequest.Status status = ServiceRequest.Status.Blank;
         ServiceRequest.Priority priority = ServiceRequest.Priority.High;
-        ServiceRequest.RequestType requestType = ServiceRequest.RequestType.Medical_Equipment_SR;
+        ServiceRequest.RequestType requestType = ServiceRequest.RequestType.Medical_Equipment;
         String description = "Move the bed before noon today";
 
         ServiceRequest updateSR = new ServiceRequest();

@@ -3,9 +3,10 @@ package edu.wpi.cs3733.D22.teamC.entity.service_request.security;
 import edu.wpi.cs3733.D22.teamC.entity.service_request.ServiceRequest;
 
 public class SecuritySR extends ServiceRequest {
-    protected SecurityType securityType;  // TODO: Make Enum
+    protected SecurityType securityType;
 
-    public enum SecurityType{ //TODO make enum type
+    public enum SecurityType {
+        // TODO: Create Enum Types
     }
 
     public SecurityType getSecurityType() {

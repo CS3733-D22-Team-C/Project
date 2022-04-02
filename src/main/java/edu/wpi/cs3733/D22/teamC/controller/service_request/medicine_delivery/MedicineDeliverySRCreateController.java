@@ -69,6 +69,8 @@ public class MedicineDeliverySRCreateController extends ServiceRequestCreateCont
         medicineDeliverySR.setStatus(ServiceRequest.Status.valueOf(status.getValue()));
         medicineDeliverySR.setPriority(ServiceRequest.Priority.valueOf(priority.getValue()));
 
+        medicineDeliverySR.setRequestType(ServiceRequest.RequestType.Medicine_Delivery);
+
         clickReset(event);
 
         // Add to Table List

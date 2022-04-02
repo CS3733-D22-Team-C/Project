@@ -73,6 +73,8 @@ public class SanitationSRCreateController extends ServiceRequestCreateController
         // Sanitation type to enum
         int sanitationTypeEnum = SanitationSR.SanitationType.valueOf(sanitationType.getValue()).ordinal();
 
+        sanitationSR.setRequestType(ServiceRequest.RequestType.Sanitation);
+
         clickReset(event);
 
         SanitationSRTable tableEntry = new SanitationSRTable(sanitationSR);
