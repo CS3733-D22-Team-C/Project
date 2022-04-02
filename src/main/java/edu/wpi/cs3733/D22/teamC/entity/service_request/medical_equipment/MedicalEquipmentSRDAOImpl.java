@@ -133,7 +133,7 @@ public class MedicalEquipmentSRDAOImpl extends MedicalEquipmentSRDAO {
                                     "WHERE REQUESTID = ?"
                     );
                     statement.setString(1, ((MedicalEquipmentSR) serviceRequest).getEquipmentID());
-                    statement.setString(2, serviceRequest.getEquipmentID().toString());
+                    statement.setString(2, serviceRequest.getEquipmentType().toString());
                     statement.setString(3, serviceRequest.getRequestID());
                     statement.execute();
                     

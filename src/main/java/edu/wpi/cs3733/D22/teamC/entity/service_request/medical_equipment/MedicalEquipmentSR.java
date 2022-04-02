@@ -3,7 +3,7 @@ package edu.wpi.cs3733.D22.teamC.entity.service_request.medical_equipment;
 import edu.wpi.cs3733.D22.teamC.entity.service_request.ServiceRequest;
 
 public class MedicalEquipmentSR extends ServiceRequest {
-    protected EquipmentType equipmentType;     // TODO: Make Enum
+    protected EquipmentType equipmentType;
     protected String equipmentID;       // TODO: Link to Medical Equipment
 
     public MedicalEquipmentSR() {}
