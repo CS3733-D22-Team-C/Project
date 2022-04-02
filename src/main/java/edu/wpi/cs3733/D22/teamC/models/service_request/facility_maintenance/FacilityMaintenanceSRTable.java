@@ -29,11 +29,11 @@ public class FacilityMaintenanceSRTable extends RecursiveTreeObject<FacilityMain
     }
 
     public FacilityMaintenanceSRTable(FacilityMaintenanceSR facilityMaintenanceSR) {
-        this.maintenanceType = new SimpleStringProperty(facilityMaintenanceSR.getMaintenanceType());
+        this.maintenanceType = new SimpleStringProperty(facilityMaintenanceSR.getMaintenanceType().toString());
         this.assigneeID = new SimpleStringProperty(facilityMaintenanceSR.getAssigneeID());
         this.location = new SimpleStringProperty(facilityMaintenanceSR.getLocation());
-        this.status = new SimpleStringProperty(String.valueOf(facilityMaintenanceSR.getStatus()));
-        this.priority = new SimpleStringProperty(String.valueOf(facilityMaintenanceSR.getPriority()));
+        this.status = new SimpleStringProperty(facilityMaintenanceSR.getStatus().toString());
+        this.priority = new SimpleStringProperty(facilityMaintenanceSR.getPriority().toString());
     }
 
     public String getMaintenanceType() {

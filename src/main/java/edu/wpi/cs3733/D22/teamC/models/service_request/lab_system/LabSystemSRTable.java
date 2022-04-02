@@ -32,12 +32,12 @@ public class LabSystemSRTable extends RecursiveTreeObject<LabSystemSRTable> {
     }
 
     public LabSystemSRTable(LabSystemSR labSystemSR){
-        this.labType    = new SimpleStringProperty(labSystemSR.getLabType());
+        this.labType    = new SimpleStringProperty(labSystemSR.getLabType().toString());
         this.patientID  = new SimpleStringProperty(labSystemSR.getPatientID());
         this.assigneeID = new SimpleStringProperty(labSystemSR.getAssigneeID());
         this.location   = new SimpleStringProperty(labSystemSR.getLocation());
-        this.status     = new SimpleStringProperty(String.valueOf(labSystemSR.getStatus()));
-        this.priority   = new SimpleStringProperty(String.valueOf(labSystemSR.getPriority()));
+        this.status     = new SimpleStringProperty(labSystemSR.getStatus().toString());
+        this.priority   = new SimpleStringProperty(labSystemSR.getPriority().toString());
     }
 
     public String getLabType() {

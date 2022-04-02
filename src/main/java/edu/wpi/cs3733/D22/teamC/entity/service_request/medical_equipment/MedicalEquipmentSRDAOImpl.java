@@ -97,8 +97,8 @@ public class MedicalEquipmentSRDAOImpl extends MedicalEquipmentSRDAO {
                 );
                 statement.setString(1, serviceRequest.getRequestID());
                 // Set child-specific attributes by casting
-                statement.setString(2, ((MedicalEquipmentSR) serviceRequest).getEquipmentID());
-                statement.setString(3, String.valueOf(serviceRequest.getEquipmentType()));
+                statement.setString(2, serviceRequest.getEquipmentID().toString());
+                statement.setString(3, serviceRequest.getEquipmentType().toString());
                 statement.execute();
                 
                 return true;
@@ -133,7 +133,7 @@ public class MedicalEquipmentSRDAOImpl extends MedicalEquipmentSRDAO {
                                     "WHERE REQUESTID = ?"
                     );
                     statement.setString(1, ((MedicalEquipmentSR) serviceRequest).getEquipmentID());
-                    statement.setString(2, String.valueOf(serviceRequest.getEquipmentType()));
+                    statement.setString(2, serviceRequest.getEquipmentID().toString());
                     statement.setString(3, serviceRequest.getRequestID());
                     statement.execute();
                     
