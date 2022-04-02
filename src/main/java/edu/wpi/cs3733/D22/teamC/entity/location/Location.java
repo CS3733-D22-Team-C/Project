@@ -1,7 +1,7 @@
 package edu.wpi.cs3733.D22.teamC.entity.location;
 
 public class Location {
-    private String nodeID;
+    private int nodeID;
     private String floor = ""; // TODO: Floors should be objects
     private String building = "";
     private String nodeType = ""; // TODO: Replace with enums or constraints
@@ -10,12 +10,23 @@ public class Location {
     private int x = 0, y = 0;
 
     public Location() {}
-
-    public Location(String nodeID) {
+    
+    public Location(int nodeID) {
         this.nodeID = nodeID;
     }
-
-    public Location(String nodeID, String floor, String building, String nodeType, String longName, String shortName, int x, int y) {
+    
+    public Location(String floor, String building, String nodeType, String longName, String shortName, int x, int y) {
+        this.floor = floor;
+        this.building = building;
+        this.nodeType = nodeType;
+        this.longName = longName;
+        this.shortName = shortName;
+        this.x = x;
+        this.y = y;
+    }
+    
+    @Deprecated
+    public Location(int nodeID, String floor, String building, String nodeType, String longName, String shortName, int x, int y) {
         this.nodeID = nodeID;
         this.floor = floor;
         this.building = building;
@@ -26,11 +37,11 @@ public class Location {
         this.y = y;
     }
 
-    public String getNodeID() {
+    public int getNodeID() {
         return nodeID;
     }
 
-    public void setNodeID(String nodeID) {
+    public void setNodeID(int nodeID) {
         this.nodeID = nodeID;
     }
 
