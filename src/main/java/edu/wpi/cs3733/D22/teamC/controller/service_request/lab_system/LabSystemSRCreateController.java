@@ -71,7 +71,7 @@ public class LabSystemSRCreateController extends ServiceRequestCreateController 
         //Sets from combo boxes
         labSystem.setStatus(ServiceRequest.Status.valueOf(status.getValue()));
         labSystem.setPriority(ServiceRequest.Priority.valueOf(priority.getValue()));
-        labSystem.setLabType(labType.getValue());
+        labSystem.setLabType(LabSystemSR.LabType.valueOf(labType.getValue()));
 
         //Table Entry
         LabSystemSRTable lst = new LabSystemSRTable(labSystem);

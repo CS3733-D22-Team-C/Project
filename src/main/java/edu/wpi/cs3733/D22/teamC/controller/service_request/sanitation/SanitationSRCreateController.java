@@ -67,11 +67,11 @@ public class SanitationSRCreateController extends ServiceRequestCreateController
 
         // Dropdown Boxes
         sanitationSR.setStatus(ServiceRequest.Status.valueOf(status.getValue()));
-        sanitationSR.setSanitationType(sanitationType.getValue());
+        sanitationSR.setSanitationType(SanitationSR.SanitationType.valueOf(sanitationType.getValue()));
         sanitationSR.setPriority(ServiceRequest.Priority.valueOf(priority.getValue()));
 
         // Sanitation type to enum
-        int sanitationTypeEnum = sanitationSR.getSanitationTypeEnum(sanitationType.getValue());
+        int sanitationTypeEnum = SanitationSR.SanitationType.valueOf(sanitationType.getValue()).ordinal();
 
         clickReset(event);
 

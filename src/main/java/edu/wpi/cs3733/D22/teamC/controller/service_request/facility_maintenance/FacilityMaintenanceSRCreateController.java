@@ -45,7 +45,7 @@ public class FacilityMaintenanceSRCreateController extends ServiceRequestCreateC
     @FXML
     protected FacilityMaintenanceSR clickSubmit(ActionEvent event) {
         FacilityMaintenanceSR fmsr = new FacilityMaintenanceSR();
-        fmsr.setMaintenanceType(maintType.getText());
+        fmsr.setMaintenanceType(FacilityMaintenanceSR.MaintenanceType.valueOf(maintType.getText()));
         fmsr.setAssigneeID(assigneeID.getText());
         fmsr.setLocation(location.getText());
         fmsr.setPriority(ServiceRequest.Priority.valueOf(priority.getValue())); //getValue directly returns the value of a selected item from a JavaFX ComboBox
