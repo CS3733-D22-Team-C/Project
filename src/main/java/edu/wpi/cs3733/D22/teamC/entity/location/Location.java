@@ -23,7 +23,8 @@ public class Location {
         CONF,
         EXIT,
         RETL,
-        SERV
+        SERV,
+        BATH
     }
 
     public Location() {}
