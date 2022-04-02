@@ -183,9 +183,9 @@
             <HBox alignment="BOTTOM_CENTER" prefHeight="100.0" prefWidth="200.0">
                <children>
                   <Label styleClass="text-field-with-margin" stylesheets="@../../../css/base.css" text="Status:" />
-                  <Label fx:id="firstStatus" styleClass="text-field-with-margin" stylesheets="@../../../css/base.css" text="processing" />
+                  <Label fx:id="firstStatus" styleClass="text-field-with-margin" stylesheets="@../../../css/base.css" />
                   <Label styleClass="text-field-with-margin" stylesheets="@../../../css/base.css" text="→" />
-                  <Label fx:id="secondStatus" styleClass="text-field-with-margin" stylesheets="@../../../css/base.css" text="resolve" />
+                  <Label fx:id="secondStatus" styleClass="text-field-with-margin" stylesheets="@../../../css/base.css" />
                </children>
             </HBox>
             <HBox prefHeight="100.0" prefWidth="200.0">
