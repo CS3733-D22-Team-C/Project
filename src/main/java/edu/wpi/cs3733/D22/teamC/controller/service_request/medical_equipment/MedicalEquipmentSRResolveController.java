@@ -14,7 +14,7 @@ public class MedicalEquipmentSRResolveController {
     @FXML private JFXComboBox<?> assigneeID;
     @FXML private JFXComboBox<?> equipmentID;
     @FXML private JFXComboBox<?> equipmentType;
-   // @FXML private JFXComboBox<?> location;
+    @FXML private JFXComboBox<?> equipmentLocation;
     @FXML private JFXComboBox<?> priority;
     @FXML private JFXComboBox<?> status;
 
@@ -43,7 +43,7 @@ public class MedicalEquipmentSRResolveController {
 
     @FXML
     void clickGoBack(ActionEvent event) {
-        App.instance.setView(App.VIEW_SERVICE_REQUESTS_PATH);
+        App.instance.setView(App.HOME_PATH);
     }
 
 }
