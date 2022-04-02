@@ -175,16 +175,16 @@ class ServiceRequestDAOImplTest {
         String newAssigneeID = "A2";
         String newlocation = "new loc";
         Timestamp newCreationTimestamp = new Timestamp(System.currentTimeMillis());
-        String newStatus = "Blank";
-        String newPriority = "High";
+        ServiceRequest.Status newStatus = ServiceRequest.Status.Blank;
+        ServiceRequest.Priority newPriority = ServiceRequest.Priority.High;
         String newDescription = "Move the bed IMMEDIATELY";
 
         updateSR.setCreatorID(newCreatorID);
         updateSR.setAssigneeID(newAssigneeID);
         updateSR.setLocation(newlocation);
         updateSR.setCreationTimestamp(newCreationTimestamp);
-        updateSR.setStatus(ServiceRequest.Status.valueOf(newStatus));
-        updateSR.setPriority(ServiceRequest.Priority.valueOf(newPriority));
+        updateSR.setStatus(newStatus);
+        updateSR.setPriority(newPriority);
         updateSR.setDescription(newDescription);
         assertTrue(serviceRequestDAO.updateServiceRequest(updateSR));
         assertEquals(1, serviceRequestDAO.getAllServiceRequests().size());
