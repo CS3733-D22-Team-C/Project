@@ -45,13 +45,13 @@ public class LocationDAOImpl implements LocationDAO {
      * @return Location object converted from query.
      */
     @Override
-    public Location getLocation(String nodeID) {
+    public Location getLocation(int nodeID) {
         try {
             // Execute SELECT Query
             PreparedStatement statement =  DBManager.getInstance().connection.prepareStatement(
-                    "SELECT * FROM LOCATION WHERE NODEID = ?"
+                    "SELECT * FROM LOCATION WHERE ID = ?"
             );
-            statement.setString(1, nodeID);
+            statement.setInt(1, nodeID);
             ResultSet resultSet = statement.executeQuery();
 
             // Return Location Object
@@ -70,7 +70,7 @@ public class LocationDAOImpl implements LocationDAO {
      * @return If successful return true, else return false.
      */
     @Override
-    public boolean insertLocation(Location location) {
+    public int insertLocation(Location location) {
         try {
             // Check if entry of same nodeID already exists
             Location locationInDB = getLocation(location.getNodeID());
@@ -120,7 +120,7 @@ public class LocationDAOImpl implements LocationDAO {
                 // Execute UPDATE Statement
                 PreparedStatement statement =  DBManager.getInstance().connection.prepareStatement(
                         "UPDATE LOCATION SET XCOORD = ?, YCOORD = ?, FLOOR = ?, BUILDING = ?, " +
-                                "NODETYPE = ?, LONGNAME = ?, SHORTNAME = ? WHERE NODEID = ?"
+                                "NODETYPE = ?, LONGNAME = ?, SHORTNAME = ? WHERE ID = ?"
                 );
                 statement.setInt(1, location.getX());
                 statement.setInt(2, location.getY());
@@ -155,7 +155,7 @@ public class LocationDAOImpl implements LocationDAO {
             if (locationInDB != null) {
                 // Execute DELETE Statement
                 PreparedStatement statement =  DBManager.getInstance().connection.prepareStatement(
-                        "DELETE FROM LOCATION WHERE NODEID = ?"
+                        "DELETE FROM LOCATION WHERE ID = ?"
                 );
                 statement.setInt(1, location.getNodeID());
                 statement.execute();

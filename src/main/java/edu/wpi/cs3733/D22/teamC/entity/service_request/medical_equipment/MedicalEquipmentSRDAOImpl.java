@@ -28,7 +28,7 @@ public class MedicalEquipmentSRDAOImpl extends MedicalEquipmentSRDAO {
             PreparedStatement statement = DBManager.getInstance().connection.prepareStatement(
                     "SELECT SERVICE_REQUEST.*, MEDICAL_EQUIPMENT_SR.* " +
                             "FROM SERVICE_REQUEST INNER JOIN MEDICAL_EQUIPMENT_SR " +
-                            "ON SERVICE_REQUEST.REQUESTID = MEDICAL_EQUIPMENT_SR.REQUESTID "
+                            "ON SERVICE_REQUEST.ID = MEDICAL_EQUIPMENT_SR.ID "
             );
             ResultSet resultSet = statement.executeQuery();
             
@@ -62,8 +62,8 @@ public class MedicalEquipmentSRDAOImpl extends MedicalEquipmentSRDAO {
             PreparedStatement statement = DBManager.getInstance().connection.prepareStatement(
                     "SELECT SERVICE_REQUEST.*, MEDICAL_EQUIPMENT_SR.* " +
                             "FROM SERVICE_REQUEST INNER JOIN MEDICAL_EQUIPMENT_SR " +
-                            "ON SERVICE_REQUEST.REQUESTID = MEDICAL_EQUIPMENT_SR.REQUESTID " +
-                            "WHERE SERVICE_REQUEST.REQUESTID = ?"
+                            "ON SERVICE_REQUEST.ID = MEDICAL_EQUIPMENT_SR.ID " +
+                            "WHERE SERVICE_REQUEST.ID = ?"
             );
             statement.setInt(1, requestID);
             ResultSet resultSet = statement.executeQuery();
@@ -130,7 +130,7 @@ public class MedicalEquipmentSRDAOImpl extends MedicalEquipmentSRDAO {
                     // Update the child-unique attributes in the child table.
                     PreparedStatement statement = DBManager.getInstance().connection.prepareStatement(
                             "UPDATE MEDICAL_EQUIPMENT_SR SET EQUIPID = ?, EQUIPTYPE = ? " +
-                                    "WHERE REQUESTID = ?"
+                                    "WHERE ID = ?"
                     );
                     statement.setString(1, ((MedicalEquipmentSR) serviceRequest).getEquipmentID());
                     statement.setString(2, serviceRequest.getEquipmentType().toString());

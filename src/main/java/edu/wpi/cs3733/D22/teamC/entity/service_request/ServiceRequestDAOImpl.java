@@ -48,7 +48,7 @@ public class ServiceRequestDAOImpl extends ServiceRequestDAO<ServiceRequest> {
         try {
             // Execute SELECT Query
             PreparedStatement statement = DBManager.getInstance().connection.prepareStatement(
-                    "SELECT * FROM SERVICE_REQUEST WHERE REQUESTID = ?"
+                    "SELECT * FROM SERVICE_REQUEST WHERE ID = ?"
             );
             statement.setInt(1, requestID);
             ResultSet resultSet = statement.executeQuery();
@@ -69,7 +69,7 @@ public class ServiceRequestDAOImpl extends ServiceRequestDAO<ServiceRequest> {
      * @return If successful return true, else return false.
      */
     @Override
-    public boolean insertServiceRequest(ServiceRequest serviceRequest) {
+    public int insertServiceRequest(ServiceRequest serviceRequest) {
         try {
             // See if there is an entry of the same requestID that already exists
             ServiceRequest serviceRequestInDB = getServiceRequest(serviceRequest.getRequestID());
@@ -119,7 +119,7 @@ public class ServiceRequestDAOImpl extends ServiceRequestDAO<ServiceRequest> {
                 PreparedStatement statement = DBManager.getInstance().connection.prepareStatement(
                         "UPDATE SERVICE_REQUEST SET CREATORID = ?, ASSIGNEEID = ?, LOCATIONID = ?, " +
                                 "CREATIONTIMESTAMP = ?, STATUS = ?, PRIORITY = ?, REQUESTTYPE = ?, DESCRIPTION = ? " +
-                                "WHERE REQUESTID = ?"
+                                "WHERE ID = ?"
                 );
                 statement.setString(1, serviceRequest.getCreatorID());
                 statement.setString(2, serviceRequest.getAssigneeID());
@@ -156,7 +156,7 @@ public class ServiceRequestDAOImpl extends ServiceRequestDAO<ServiceRequest> {
             if (serviceRequestInDB != null) {
                 // Execute DELETE Statement
                 PreparedStatement statement = DBManager.getInstance().connection.prepareStatement(
-                        "DELETE FROM SERVICE_REQUEST WHERE REQUESTID = ?"
+                        "DELETE FROM SERVICE_REQUEST WHERE ID = ?"
                 );
                 statement.setInt(1, serviceRequest.getRequestID());
                 statement.execute();

@@ -8,7 +8,7 @@ public abstract class ServiceRequestDAO<T extends ServiceRequest> {
     public abstract List<T> getAllServiceRequests();
     public abstract T getServiceRequest(int requestID);
     
-    public abstract boolean insertServiceRequest(T serviceRequest);
+    public abstract int insertServiceRequest(T serviceRequest);
     public abstract boolean updateServiceRequest(T serviceRequest);
     public abstract boolean deleteServiceRequest(T serviceRequest);
 
@@ -20,7 +20,7 @@ public abstract class ServiceRequestDAO<T extends ServiceRequest> {
      */
     protected T modifyServiceRequest(ResultSet resultSet, T serviceRequest) {
         try {
-            serviceRequest.setRequestID(resultSet.getInt("REQUESTID"));
+            serviceRequest.setRequestID(resultSet.getInt("ID"));
             serviceRequest.setCreatorID(typesafeTrim(resultSet.getString("CREATORID")));
             serviceRequest.setAssigneeID(typesafeTrim(resultSet.getString("ASSIGNEEID")));
             serviceRequest.setLocation(typesafeTrim(resultSet.getString("LOCATIONID")));
