@@ -45,13 +45,13 @@ public class LocationDAOImpl implements LocationDAO {
      * @return Location object converted from query.
      */
     @Override
-    public Location getLocation(String nodeID) {
+    public Location getLocation(int nodeID) {
         try {
             // Execute SELECT Query
             PreparedStatement statement =  DBManager.getInstance().connection.prepareStatement(
-                    "SELECT * FROM LOCATION WHERE NODEID = ?"
+                    "SELECT * FROM LOCATION WHERE ID = ?"
             );
-            statement.setString(1, nodeID);
+            statement.setInt(1, nodeID);
             ResultSet resultSet = statement.executeQuery();
 
             // Return Location Object
@@ -67,36 +67,45 @@ public class LocationDAOImpl implements LocationDAO {
     /**
      * Insert entry in LOCATION Table of DB corresponding to the given Location object.
      * @param location The Location to be inserted into the DB via a corresponding entry.
-     * @return If successful return true, else return false.
+     * @return If successful return the ID of the entry, else return -1.
      */
     @Override
-    public boolean insertLocation(Location location) {
+    public int insertLocation(Location location) {
         try {
             // Check if entry of same nodeID already exists
             Location locationInDB = getLocation(location.getNodeID());
             if (locationInDB == null) {
                 // Execute INSERT Statement
-                PreparedStatement statement =  DBManager.getInstance().connection.prepareStatement(
-                        "INSERT INTO LOCATION VALUES(?, ?, ?, ?, ?, ?, ?, ?)"
-                );
-                statement.setString(1, location.getNodeID());
-                statement.setInt(2, location.getX());
-                statement.setInt(3, location.getY());
-                statement.setString(4, location.getFloor());
-                statement.setString(5, location.getBuilding());
-                statement.setString(6, location.getNodeType().toString());
-                statement.setString(7, location.getLongName());
-                statement.setString(8, location.getShortName());
+                PreparedStatement statement = (location.getNodeID() == 0)
+                        ? DBManager.getInstance().connection.prepareStatement("INSERT INTO LOCATION VALUES(DEFAULT, ?, ?, ?, ?, ?, ?, ?)", Statement.RETURN_GENERATED_KEYS)
+                        : DBManager.getInstance().connection.prepareStatement("INSERT INTO LOCATION VALUES(?, ?, ?, ?, ?, ?, ?, ?)", Statement.RETURN_GENERATED_KEYS);
+
+                int index = 1;
+                if (location.getNodeID() != 0) {
+                    statement.setString(index, String.valueOf(location.getNodeID()));
+                    index++;
+                }
+
+                statement.setInt(index, location.getX()); index++;
+                statement.setInt(index, location.getY()); index++;
+                statement.setString(index, location.getFloor()); index++;
+                statement.setString(index, location.getBuilding()); index++;
+                statement.setString(index, location.getNodeType()); index++;
+                statement.setString(index, location.getLongName()); index++;
+                statement.setString(index, location.getShortName());
                 statement.execute();
 
-                return true;
+                // Retrieve generated ID from newly inserted entry
+                ResultSet resultSetID = statement.getGeneratedKeys();
+                if(resultSetID.next()) return resultSetID.getInt(1);
+
             }
         } catch (SQLException e) {
             System.out.println("INSERT to LOCATION table failed.");
             e.printStackTrace();
         }
 
-        return false;
+        return -1;
     }
 
     /**
@@ -112,17 +121,17 @@ public class LocationDAOImpl implements LocationDAO {
             if (locationInDB != null) {
                 // Execute UPDATE Statement
                 PreparedStatement statement =  DBManager.getInstance().connection.prepareStatement(
-                        "UPDATE LOCATION SET XCOORD = ?, YCOORD = ?, FLOOR = ?, BUILDING = ?, " +
-                                "NODETYPE = ?, LONGNAME = ?, SHORTNAME = ? WHERE NODEID = ?"
+                        "UPDATE LOCATION SET XCoord = ?, YCoord = ?, Floor = ?, Building = ?, NodeType" +
+                                " = ?, LongName = ?, ShortName = ? WHERE ID = ?"
                 );
                 statement.setInt(1, location.getX());
                 statement.setInt(2, location.getY());
                 statement.setString(3, location.getFloor());
                 statement.setString(4, location.getBuilding());
-                statement.setString(5, location.getNodeType().toString());
+                statement.setString(5, location.getNodeType());
                 statement.setString(6, location.getLongName());
                 statement.setString(7, location.getShortName());
-                statement.setString(8, location.getNodeID());
+                statement.setInt(8, location.getNodeID());
                 statement.execute();
 
                 return true;
@@ -148,9 +157,9 @@ public class LocationDAOImpl implements LocationDAO {
             if (locationInDB != null) {
                 // Execute DELETE Statement
                 PreparedStatement statement =  DBManager.getInstance().connection.prepareStatement(
-                        "DELETE FROM LOCATION WHERE NODEID = ?"
+                        "DELETE FROM LOCATION WHERE ID = ?"
                 );
-                statement.setString(1, location.getNodeID());
+                statement.setInt(1, location.getNodeID());
                 statement.execute();
 
                 return true;
@@ -170,14 +179,14 @@ public class LocationDAOImpl implements LocationDAO {
      */
     private Location createLocation(ResultSet resultSet) {
         try {
-            Location location = new Location(typesafeTrim(resultSet.getString("NODEID")));
-            location.setFloor(typesafeTrim(resultSet.getString("FLOOR")));
-            location.setBuilding(typesafeTrim(resultSet.getString("BUILDING")));
-            location.setNodeType(Location.NodeType.valueOf(resultSet.getString("NODETYPE")));
-            location.setLongName(typesafeTrim(resultSet.getString("LONGNAME")));
-            location.setShortName(typesafeTrim(resultSet.getString("SHORTNAME")));
-            location.setX(resultSet.getInt("XCOORD"));
-            location.setY(resultSet.getInt("YCOORD"));
+            Location location = new Location(resultSet.getInt("ID"));
+            location.setFloor(typesafeTrim(resultSet.getString("Floor")));
+            location.setBuilding(typesafeTrim(resultSet.getString("Building")));
+            location.setNodeType(typesafeTrim(resultSet.getString("NodeType")));
+            location.setLongName(typesafeTrim(resultSet.getString("LongName")));
+            location.setShortName(typesafeTrim(resultSet.getString("ShortName")));
+            location.setX(resultSet.getInt("XCoord"));
+            location.setY(resultSet.getInt("YCoord"));
 
             return location;
         } catch (SQLException e) {

@@ -9,17 +9,18 @@ import java.sql.Timestamp;
 
 import static org.junit.jupiter.api.Assertions.*;
 
+
 class ServiceRequestDAOImplTest {
     private DBManager testDBManager;
     private ServiceRequestDAOImpl serviceRequestDAO;
 
     @BeforeEach
     void setUp() {
-        // Setup testing database and initialize LOCATION table
+        // Setup testing database and initialize SR table
         testDBManager = DBManager.startup(DBManager.TESTING_DATABASE_NAME);
         testDBManager.initializeServiceRequestTable(true);
         testDBManager.initializeMedicalEquipSRTable(true);
-    
+
         // Setup testing LocationDAOImpl
         serviceRequestDAO = new ServiceRequestDAOImpl();
     }
@@ -31,25 +32,24 @@ class ServiceRequestDAOImplTest {
     }
 
     /**
-     * Test that an empty Location Table DB returns nothing for queries.
+     * Test that an empty SR Table DB returns nothing for queries.
      */
     @Test
-    void testEmptyQueryLocation() {
+    void testEmptyQuerySR() {
         assertEquals(0, serviceRequestDAO.getAllServiceRequests().size());
-        assertEquals(null, serviceRequestDAO.getServiceRequest("Test000"));
+        assertEquals(null, serviceRequestDAO.getServiceRequest(1234));
     }
 
     /**
-     * Test that insertLocation works.
+     * Test that insertSR works.
      */
     @Test
-    void testInsertLocation() {
+    void testInsertSR() {
         // Check DB is empty
         assertEquals(0, serviceRequestDAO.getAllServiceRequests().size());
-        assertEquals(null, serviceRequestDAO.getServiceRequest("Test000"));
+        assertEquals(null, serviceRequestDAO.getServiceRequest(1234));
 
-        // Insert Location into DB
-        String requestID = "Test000";
+        // Insert SR into DB
         String creatorID = "C1";
         String assigneeID = "A1";
         String location = "loc";
@@ -60,7 +60,6 @@ class ServiceRequestDAOImplTest {
         String description = "Move the bed before noon today";
 
         ServiceRequest insertSR = new ServiceRequest();
-        insertSR.setRequestID(requestID);
         insertSR.setCreatorID(creatorID);
         insertSR.setAssigneeID(assigneeID);
         insertSR.setLocation(location);
@@ -69,17 +68,19 @@ class ServiceRequestDAOImplTest {
         insertSR.setPriority(priority);
         insertSR.setRequestType(requestType);
         insertSR.setDescription(description);
-        
-        assertTrue(serviceRequestDAO.insertServiceRequest(insertSR));
+
+        int retrievedID = serviceRequestDAO.insertServiceRequest(insertSR);
+        insertSR.setRequestID(retrievedID);
+        assertNotEquals(-1, retrievedID);
         assertEquals(1, serviceRequestDAO.getAllServiceRequests().size());
 
         // Cannot Insert Service Request Again
-        assertFalse(serviceRequestDAO.insertServiceRequest(insertSR));
+        assertEquals(-1, serviceRequestDAO.insertServiceRequest(insertSR));
 
         // Check that DB values are expected
         ServiceRequest querySR = serviceRequestDAO.getServiceRequest(insertSR.getRequestID());
         assertNotNull(querySR);
-        assertEquals(requestID, querySR.getRequestID());
+        assertEquals(retrievedID, querySR.getRequestID());
         assertEquals(creatorID, querySR.getCreatorID());
         assertEquals(assigneeID, querySR.getAssigneeID());
         assertEquals(location, querySR.getLocation());
@@ -97,10 +98,9 @@ class ServiceRequestDAOImplTest {
     void testDeleteServiceRequest() {
         // Check DB is empty
         assertEquals(0, serviceRequestDAO.getAllServiceRequests().size());
-        assertEquals(null, serviceRequestDAO.getServiceRequest("Test000"));
+        assertEquals(null, serviceRequestDAO.getServiceRequest(1234));
 
-        // Insert ServiceRequest into DB
-        String requestID = "Test000";
+        // Insert SR into DB
         String creatorID = "C1";
         String assigneeID = "A1";
         String location = "loc";
@@ -111,7 +111,6 @@ class ServiceRequestDAOImplTest {
         String description = "Move the bed before noon today";
 
         ServiceRequest deleteSR = new ServiceRequest();
-        deleteSR.setRequestID(requestID);
         deleteSR.setCreatorID(creatorID);
         deleteSR.setAssigneeID(assigneeID);
         deleteSR.setLocation(location);
@@ -120,19 +119,21 @@ class ServiceRequestDAOImplTest {
         deleteSR.setPriority(priority);
         deleteSR.setRequestType(requestType);
         deleteSR.setDescription(description);
-        
-        assertTrue(serviceRequestDAO.insertServiceRequest(deleteSR));
+
+        int retrievedID = serviceRequestDAO.insertServiceRequest(deleteSR);
+        deleteSR.setRequestID(retrievedID);
+        assertNotEquals(-1, retrievedID);
         assertEquals(1, serviceRequestDAO.getAllServiceRequests().size());
 
         // Delete SR from DB
         assertTrue(serviceRequestDAO.deleteServiceRequest(deleteSR));
 
-        // Cannot Delete Location Again
+        // Cannot Delete SR Again
         assertFalse(serviceRequestDAO.deleteServiceRequest(deleteSR));
 
         // Check DB is empty
         assertEquals(0, serviceRequestDAO.getAllServiceRequests().size());
-        assertEquals(null, serviceRequestDAO.getServiceRequest("Test000"));
+        assertEquals(null, serviceRequestDAO.getServiceRequest(1234));
     }
 
     /**
@@ -142,10 +143,9 @@ class ServiceRequestDAOImplTest {
     void testUpdateServiceRequest() {
         // Check DB is empty
         assertEquals(0, serviceRequestDAO.getAllServiceRequests().size());
-        assertEquals(null, serviceRequestDAO.getServiceRequest("Test000"));
+        assertEquals(null, serviceRequestDAO.getServiceRequest(1234));
 
         // Insert ServiceRequest into DB
-        String requestID = "Test000";
         String creatorID = "C1";
         String assigneeID = "A1";
         String location = "loc";
@@ -156,7 +156,6 @@ class ServiceRequestDAOImplTest {
         String description = "Move the bed before noon today";
 
         ServiceRequest updateSR = new ServiceRequest();
-        updateSR.setRequestID(requestID);
         updateSR.setCreatorID(creatorID);
         updateSR.setAssigneeID(assigneeID);
         updateSR.setLocation(location);
@@ -166,7 +165,9 @@ class ServiceRequestDAOImplTest {
         updateSR.setRequestType(requestType);
         updateSR.setDescription(description);
 
-        assertTrue(serviceRequestDAO.insertServiceRequest(updateSR));
+        int retrievedID = serviceRequestDAO.insertServiceRequest(updateSR);
+        updateSR.setRequestID(retrievedID);
+        assertNotEquals(-1, retrievedID);
         assertEquals(1, serviceRequestDAO.getAllServiceRequests().size());
 
         // Update Location in DB
@@ -192,7 +193,7 @@ class ServiceRequestDAOImplTest {
         // Check that DB values are expected
         ServiceRequest querySR = serviceRequestDAO.getServiceRequest(updateSR.getRequestID());
         assertNotNull(querySR);
-        assertEquals(requestID, querySR.getRequestID());
+        assertEquals(retrievedID, querySR.getRequestID());
         assertEquals(newCreatorID, querySR.getCreatorID());
         assertEquals(newAssigneeID, querySR.getAssigneeID());
         assertEquals(newlocation, querySR.getLocation());
@@ -203,7 +204,7 @@ class ServiceRequestDAOImplTest {
         assertEquals(newDescription, querySR.getDescription());
 
         // Cannot Update Nonexistent SR
-        ServiceRequest newSR = new ServiceRequest("Test999");
+        ServiceRequest newSR = new ServiceRequest(1234);
         assertFalse(serviceRequestDAO.updateServiceRequest(newSR));
     }
 }

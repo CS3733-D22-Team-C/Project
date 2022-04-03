@@ -15,7 +15,7 @@ public class LocationCSVReader extends CSVReader<Location> {
     protected Location parseAttribute(Location object, String header, String value) {
         switch (header) {
             case "nodeID":
-                object.setNodeID(value);
+                object.setNodeID(Integer.parseInt(value));
                 break;
             case "xcoord":
                 object.setX(Integer.parseInt(value));

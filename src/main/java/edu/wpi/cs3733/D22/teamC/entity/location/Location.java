@@ -1,39 +1,32 @@
 package edu.wpi.cs3733.D22.teamC.entity.location;
 
 public class Location {
-    private String nodeID;
+    private int nodeID;
     private String floor = ""; // TODO: Floors should be objects
     private String building = "";
-    private NodeType nodeType;
+    private String nodeType = ""; // TODO: Replace with enums or constraints
     private String longName = "";
     private String shortName = "";
     private int x = 0, y = 0;
 
-    public enum NodeType {
-        PATI,
-        STOR,
-        DIRT,
-        HALL,
-        ELEV,
-        REST,
-        STAI,
-        DEPT,
-        LABS,
-        INFO,
-        CONF,
-        EXIT,
-        RETL,
-        SERV,
-        BATH
-    }
-
     public Location() {}
-
-    public Location(String nodeID) {
+    
+    public Location(int nodeID) {
         this.nodeID = nodeID;
     }
-
-    public Location(String nodeID, String floor, String building, NodeType nodeType, String longName, String shortName, int x, int y) {
+    
+    public Location(String floor, String building, String nodeType, String longName, String shortName, int x, int y) {
+        this.floor = floor;
+        this.building = building;
+        this.nodeType = nodeType;
+        this.longName = longName;
+        this.shortName = shortName;
+        this.x = x;
+        this.y = y;
+    }
+    
+    @Deprecated
+    public Location(int nodeID, String floor, String building, String nodeType, String longName, String shortName, int x, int y) {
         this.nodeID = nodeID;
         this.floor = floor;
         this.building = building;
@@ -44,11 +37,11 @@ public class Location {
         this.y = y;
     }
 
-    public String getNodeID() {
+    public int getNodeID() {
         return nodeID;
     }
 
-    public void setNodeID(String nodeID) {
+    public void setNodeID(int nodeID) {
         this.nodeID = nodeID;
     }
 
@@ -68,11 +61,11 @@ public class Location {
         this.building = building;
     }
 
-    public NodeType getNodeType() {
+    public String getNodeType() {
         return nodeType;
     }
 
-    public void setNodeType(NodeType nodeType) {
+    public void setNodeType(String nodeType) {
         this.nodeType = nodeType;
     }
 

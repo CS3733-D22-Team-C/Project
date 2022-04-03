@@ -1,34 +1,23 @@
 package edu.wpi.cs3733.D22.teamC.controller.service_request.lab_system;
 
 import com.jfoenix.controls.*;
-import com.jfoenix.controls.datamodels.treetable.RecursiveTreeObject;
 import edu.wpi.cs3733.D22.teamC.controller.service_request.ServiceRequestCreateController;
-import edu.wpi.cs3733.D22.teamC.entity.service_request.ServiceRequest;
-import edu.wpi.cs3733.D22.teamC.models.service_request.lab_system.LabSystemSRTable;
 import edu.wpi.cs3733.D22.teamC.entity.service_request.lab_system.LabSystemSR;
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
+import edu.wpi.cs3733.D22.teamC.models.service_request.lab_system.LabSystemSRTableDisplay;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.TextField;
-import javafx.scene.control.TreeItem;
 
 import java.net.URL;
 import java.util.ResourceBundle;
 
-public class LabSystemSRCreateController extends ServiceRequestCreateController {
+public class LabSystemSRCreateController extends ServiceRequestCreateController<LabSystemSR> {
 
     //Fields
     @FXML private TextField patientID;
 
-
     //Dropdowns
     @FXML private JFXComboBox<String> labType;
-
-    //For table
-    @FXML private JFXTreeTableView<LabSystemSRTable> table;
-    ObservableList<LabSystemSRTable> LSTList = FXCollections.observableArrayList();
-    final TreeItem<LabSystemSRTable> root = new RecursiveTreeItem<LabSystemSRTable>(LSTList, RecursiveTreeObject::getChildren);
 
     @FXML
     public void initialize(URL url, ResourceBundle rb) {
@@ -40,9 +29,7 @@ public class LabSystemSRCreateController extends ServiceRequestCreateController 
         labType.getItems().add("CAT scans");
         labType.getItems().add("MRI");
 
-        LabSystemSRTable.createTableColumns(table);
-        table.setRoot(root);
-        table.setShowRoot(false);
+        tableDisplay = new LabSystemSRTableDisplay(table);
     }
 
     @FXML
@@ -69,15 +56,12 @@ public class LabSystemSRCreateController extends ServiceRequestCreateController 
         labSystem.setPatientID(patientID.getText());
 
         //Sets from combo boxes
-        labSystem.setStatus(ServiceRequest.Status.valueOf(status.getValue()));
-        labSystem.setPriority(ServiceRequest.Priority.valueOf(priority.getValue()));
-        labSystem.setLabType(LabSystemSR.LabType.valueOf(labType.getValue()));
-
-        labSystem.setRequestType(ServiceRequest.RequestType.Lab_System);
+        labSystem.setStatus(status.getValue());
+        labSystem.setPriority(priority.getValue());
+        labSystem.setLabType(labType.getValue());
 
         //Table Entry
-        LabSystemSRTable lst = new LabSystemSRTable(labSystem);
-        LSTList.add(lst);
+        tableDisplay.addObject(labSystem);
 
         clickReset(event);
 
