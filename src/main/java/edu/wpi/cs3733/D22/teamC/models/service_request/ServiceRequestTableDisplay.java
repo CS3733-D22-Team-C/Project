@@ -4,13 +4,15 @@ import com.jfoenix.controls.JFXTreeTableView;
 import edu.wpi.cs3733.D22.teamC.entity.service_request.ServiceRequest;
 import edu.wpi.cs3733.D22.teamC.models.generic.TableDisplay;
 import edu.wpi.cs3733.D22.teamC.models.service_request.security.SecuritySRTableDisplay;
+import javafx.beans.property.IntegerProperty;
+import javafx.beans.property.SimpleIntegerProperty;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
 
 public class ServiceRequestTableDisplay<T extends ServiceRequest> extends TableDisplay<T> {
     public class ServiceRequestTableEntry extends TableDisplayEntry {
         // Properties
-        public StringProperty id;
+        public IntegerProperty id;
         public StringProperty type;
         public StringProperty assigneeID;
         public StringProperty location;
@@ -20,7 +22,7 @@ public class ServiceRequestTableDisplay<T extends ServiceRequest> extends TableD
         public ServiceRequestTableEntry(T serviceRequest) {
             super(serviceRequest);
 
-            this.id         = new SimpleStringProperty(serviceRequest.getRequestID());
+            this.id         = new SimpleIntegerProperty(serviceRequest.getRequestID());
             this.type       = new SimpleStringProperty(serviceRequest.getRequestType());
             this.assigneeID = new SimpleStringProperty(serviceRequest.getAssigneeID());
             this.location   = new SimpleStringProperty(serviceRequest.getLocation());

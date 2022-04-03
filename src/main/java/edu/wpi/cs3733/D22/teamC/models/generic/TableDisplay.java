@@ -21,7 +21,11 @@ public abstract class TableDisplay<T extends Object> {
      * An entry in the TableDisplay, created over an object of type T.
      */
     public abstract class TableDisplayEntry extends RecursiveTreeObject<TableDisplayEntry> {
-        public TableDisplayEntry(T object) {};
+        protected T object;
+
+        public TableDisplayEntry(T object) {
+            this.object = object;
+        };
     }
 
     // Variables

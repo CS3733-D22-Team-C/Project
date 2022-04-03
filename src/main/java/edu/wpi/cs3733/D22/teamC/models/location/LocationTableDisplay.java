@@ -11,7 +11,7 @@ import javafx.beans.property.StringProperty;
 public class LocationTableDisplay extends TableDisplay<Location> {
     public class LocationTableEntry extends TableDisplayEntry {
         // Properties
-        private StringProperty id;
+        private IntegerProperty id;
         private StringProperty floor;
         private StringProperty building;
         private StringProperty nodeType;
@@ -22,7 +22,7 @@ public class LocationTableDisplay extends TableDisplay<Location> {
         public LocationTableEntry(Location location) {
             super(location);
 
-            id          = new SimpleStringProperty(location.getNodeID());
+            id          = new SimpleIntegerProperty(location.getNodeID());
             floor       = new SimpleStringProperty(location.getFloor());
             building    = new SimpleStringProperty(location.getBuilding());
             nodeType    = new SimpleStringProperty(location.getNodeType());
@@ -49,7 +49,7 @@ public class LocationTableDisplay extends TableDisplay<Location> {
                 table,
                 "Location ID",
                 1f * Integer.MAX_VALUE * 16.66,
-                (LocationTableEntry entry) -> {return entry.id;}
+                (LocationTableEntry entry) -> {return entry.id.asObject();}
         );
 
         addColumn(
