@@ -125,18 +125,25 @@ public class App extends Application {
             Double prevWidth = stage.getWidth();
             Double prevHeight = stage.getHeight();
 
+
+            boolean isFull = stage.isFullScreen();
             //case where it is initially opened
             if (prevHeight.isNaN()){
                 prevHeight = Double.valueOf(517);
-                prevWidth = Double.valueOf(741);
+                prevWidth = Double.valueOf(841);
             }
-
             Scene scene = new Scene(baseNode);
             stage.setScene(scene);
 
             //set the width and height accordingly
-            stage.setHeight(prevHeight);
-            stage.setWidth(prevWidth);
+            if (isFull){
+
+                stage.setMaximized(true);
+                stage.setFullScreen(true);
+            } else {
+                stage.setHeight(prevHeight);
+                stage.setWidth(prevWidth);
+            }
 
             stage.show();
         }
