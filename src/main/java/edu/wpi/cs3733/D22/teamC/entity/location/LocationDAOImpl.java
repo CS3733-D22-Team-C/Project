@@ -177,7 +177,7 @@ public class LocationDAOImpl implements LocationDAO {
      */
     private Location createLocation(ResultSet resultSet) {
         try {
-            Location location = new Location(resultSet.getInt("NODEID"));
+            Location location = new Location(resultSet.getInt("ID"));
             location.setFloor(typesafeTrim(resultSet.getString("FLOOR")));
             location.setBuilding(typesafeTrim(resultSet.getString("BUILDING")));
             location.setNodeType(Location.NodeType.valueOf(resultSet.getString("NODETYPE")));
