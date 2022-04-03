@@ -160,7 +160,6 @@ public class MedicalEquipmentSRCreateController extends ServiceRequestCreateCont
                 }
                 ID += i;
                 equipID.getItems().add(ID);
-                System.out.println(ID);
             }
         }
 
