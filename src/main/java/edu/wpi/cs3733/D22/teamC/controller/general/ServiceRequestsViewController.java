@@ -21,6 +21,7 @@ import javafx.scene.control.TreeTableRow;
 import javafx.scene.input.MouseButton;
 import javafx.scene.input.MouseEvent;
 
+import java.awt.*;
 import java.io.IOException;
 import java.net.URL;
 import java.util.List;
@@ -110,8 +111,17 @@ public class ServiceRequestsViewController implements Initializable {
                     ServiceRequestTable clickedRow = row.getItem();
                     System.out.println(clickedRow.getPriority());
 
-                    sendData(clickedRow);
-                    App.instance.setView(MEDICAL_EQUIPMENT_RESOLVE_PATH);
+                    sendData(clickedRow, true);
+                    switch (clickedRow.getType()){
+                        case "Medical_Equipment":
+                            App.instance.setView(MEDICAL_EQUIPMENT_RESOLVE_PATH);
+                            break;
+                        default:
+                            App.instance.setView(App.HOME_PATH);
+                            break;
+
+                    }
+
 
                 }
             });
@@ -119,8 +129,9 @@ public class ServiceRequestsViewController implements Initializable {
         });
     }
 
-    private void sendData(ServiceRequestTable row) {
+    private void sendData(ServiceRequestTable row, boolean isEditMode) {
         ServiceRequestSingleton holder = ServiceRequestSingleton.INSTANCE;
         holder.setServerRequestTable(row);
+        holder.setEditMode(isEditMode);
     }
 }

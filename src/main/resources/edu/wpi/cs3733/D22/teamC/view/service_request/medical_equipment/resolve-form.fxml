@@ -25,15 +25,19 @@
    <children>
       <VBox prefHeight="200.0" prefWidth="100.0">
          <children>
-            <Label prefHeight="41.0" prefWidth="427.0" styleClass="page-title" stylesheets="@../../../css/base.css" text="Resolve Medical Equipment Service Request" underline="true">
-               <font>
-                  <Font size="24.0" />
-               </font>
-            </Label>
+            <HBox>
+               <children>
+                  <Label fx:id="title" prefHeight="41.0" prefWidth="427.0" styleClass="page-title" stylesheets="@../../../css/base.css" underline="true">
+                     <font>
+                        <Font size="24.0" />
+                     </font>
+                  </Label>
+               </children>
+            </HBox>
             <HBox prefHeight="6.0" prefWidth="520.0">
                <children>
                   <Label prefHeight="14.0" prefWidth="200.0" styleClass="page-title" stylesheets="@../../../css/base.css" text="Service Request ID:  " />
-                  <Label fx:id="requestID" styleClass="page-title" stylesheets="@../../../css/base.css" text="00000000" underline="true" />
+                  <Label fx:id="requestID" styleClass="page-title" stylesheets="@../../../css/base.css" text="00000000" />
                </children>
                <VBox.margin>
                   <Insets top="-15.0" />
