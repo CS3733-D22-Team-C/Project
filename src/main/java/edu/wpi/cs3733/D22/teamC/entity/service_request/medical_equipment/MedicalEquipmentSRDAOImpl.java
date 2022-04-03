@@ -28,7 +28,7 @@ public class MedicalEquipmentSRDAOImpl extends MedicalEquipmentSRDAO {
             PreparedStatement statement = DBManager.getInstance().connection.prepareStatement(
                     "SELECT SERVICE_REQUEST.*, MEDICAL_EQUIPMENT_SR.* " +
                             "FROM SERVICE_REQUEST INNER JOIN MEDICAL_EQUIPMENT_SR " +
-                            "ON SERVICE_REQUEST.REQUESTID = MEDICAL_EQUIPMENT_SR.REQUESTID "
+                            "ON SERVICE_REQUEST.ID = MEDICAL_EQUIPMENT_SR.ID "
             );
             ResultSet resultSet = statement.executeQuery();
             
@@ -56,16 +56,16 @@ public class MedicalEquipmentSRDAOImpl extends MedicalEquipmentSRDAO {
      * @return MedicalEquipmentServiceRequest object.
      */
     @Override
-    public MedicalEquipmentSR getServiceRequest(String requestID) {
+    public MedicalEquipmentSR getServiceRequest(int requestID) {
         try {
             // Execute SELECT Query to join the parent table and child table attributes
             PreparedStatement statement = DBManager.getInstance().connection.prepareStatement(
                     "SELECT SERVICE_REQUEST.*, MEDICAL_EQUIPMENT_SR.* " +
                             "FROM SERVICE_REQUEST INNER JOIN MEDICAL_EQUIPMENT_SR " +
-                            "ON SERVICE_REQUEST.REQUESTID = MEDICAL_EQUIPMENT_SR.REQUESTID " +
-                            "WHERE SERVICE_REQUEST.REQUESTID = ?"
+                            "ON SERVICE_REQUEST.ID = MEDICAL_EQUIPMENT_SR.ID " +
+                            "WHERE SERVICE_REQUEST.ID = ?"
             );
-            statement.setString(1, requestID);
+            statement.setInt(1, requestID);
             ResultSet resultSet = statement.executeQuery();
             
             // Return Location Object
@@ -85,29 +85,29 @@ public class MedicalEquipmentSRDAOImpl extends MedicalEquipmentSRDAO {
      * @return If successful return true, else return false.
      */
     @Override
-    public boolean insertServiceRequest(MedicalEquipmentSR serviceRequest) {
+    public int insertServiceRequest(MedicalEquipmentSR serviceRequest) {
         try {
             ServiceRequestDAOImpl sRDAO = new ServiceRequestDAOImpl();
-            boolean successParent = sRDAO.insertServiceRequest(serviceRequest);
+            int requestID = sRDAO.insertServiceRequest(serviceRequest);
             // If the SR can be added successfully to the parent table then we can add it to the child table.
-            if (successParent) {
+            if (requestID != -1) {
                 // Insert the child-unique attributes to the child table.
                 PreparedStatement statement = DBManager.getInstance().connection.prepareStatement(
                         "INSERT INTO MEDICAL_EQUIPMENT_SR VALUES(?, ?, ?)"
                 );
-                statement.setString(1, serviceRequest.getRequestID());
+                statement.setInt(1, requestID);
                 // Set child-specific attributes by casting
-                statement.setString(2, ((MedicalEquipmentSR) serviceRequest).getEquipmentID());
-                statement.setString(3, ((MedicalEquipmentSR) serviceRequest).getEquipmentType());
+                statement.setString(2, serviceRequest.getEquipmentID().toString());
+                statement.setString(3, serviceRequest.getEquipmentType().toString());
                 statement.execute();
                 
-                return true;
+                return requestID;
             }
         } catch (SQLException | ClassCastException e) {
             System.out.println("Update to database tables failed");
             e.printStackTrace();
         }
-        return false;
+        return -1;
     }
     
     /**
@@ -130,11 +130,11 @@ public class MedicalEquipmentSRDAOImpl extends MedicalEquipmentSRDAO {
                     // Update the child-unique attributes in the child table.
                     PreparedStatement statement = DBManager.getInstance().connection.prepareStatement(
                             "UPDATE MEDICAL_EQUIPMENT_SR SET EQUIPID = ?, EQUIPTYPE = ? " +
-                                    "WHERE REQUESTID = ?"
+                                    "WHERE ID = ?"
                     );
                     statement.setString(1, ((MedicalEquipmentSR) serviceRequest).getEquipmentID());
-                    statement.setString(2, ((MedicalEquipmentSR) serviceRequest).getEquipmentType());
-                    statement.setString(3, serviceRequest.getRequestID());
+                    statement.setString(2, serviceRequest.getEquipmentType().toString());
+                    statement.setInt(3, serviceRequest.getRequestID());
                     statement.execute();
                     
                     return true;

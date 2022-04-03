@@ -3,45 +3,19 @@ package edu.wpi.cs3733.D22.teamC.entity.service_request.facility_maintenance;
 import edu.wpi.cs3733.D22.teamC.entity.service_request.ServiceRequest;
 
 public class FacilityMaintenanceSR extends ServiceRequest {
-    protected String maintenanceType;   // TODO: Make Enum
+    protected MaintenanceType maintenanceType;
 
-    //For the table
-    enum maintenanceEnum {
-        CLEANING, //1
-        ORGANIZING; //2
+    public enum MaintenanceType {
+        Cleaning,
+        Organizing
     }
 
-    public String getMaintenanceType() {
+    public MaintenanceType getMaintenanceType() {
         return maintenanceType;
     }
 
-    public void setMaintenanceType(String maintenanceType) {
+    public void setMaintenanceType(MaintenanceType maintenanceType) {
         this.maintenanceType = maintenanceType;
     }
-
-    public int getMaintenanceTypeEnum(String type)
-    {
-        maintenanceEnum number = null;
-
-        if(type.contains("Cleaning"))
-       {
-           number = maintenanceEnum.CLEANING;
-       }
-       else if(type.contains("Organizing"))
-       {
-           number = maintenanceEnum.ORGANIZING;
-       }
-
-       switch(number)
-       {
-           case CLEANING:
-                return 1;
-           case ORGANIZING:
-               return 2;
-           default:
-               return -1;
-       }
-    }
-
 
 }
