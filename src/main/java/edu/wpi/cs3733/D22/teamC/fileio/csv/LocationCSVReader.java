@@ -30,7 +30,7 @@ public class LocationCSVReader extends CSVReader<Location> {
                 object.setBuilding(value);
                 break;
             case "nodeType":
-                object.setNodeType(value);
+                object.setNodeType(Location.NodeType.valueOf(value));
                 break;
             case "longName":
                 object.setLongName(value);
