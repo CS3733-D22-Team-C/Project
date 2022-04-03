@@ -5,7 +5,7 @@ import java.sql.Date;
 import java.sql.Timestamp;
 
 public class ServiceRequest {
-    protected String requestID;
+    protected int requestID;
     protected String creatorID;     // TODO: Link to Employee
     protected String assigneeID;    // TODO: Link to Employee
     protected String location;      // TODO: Link to Location
@@ -29,15 +29,15 @@ public class ServiceRequest {
         this.description = serviceRequest.getDescription();
     }
     
-    public ServiceRequest(String requestID) {
+    public ServiceRequest(int requestID) {
         this.requestID = requestID;
     }
     
-    public String getRequestID() {
+    public int getRequestID() {
         return requestID;
     }
 
-    public void setRequestID(String requestID) {
+    public void setRequestID(int requestID) {
         this.requestID = requestID;
     }
 

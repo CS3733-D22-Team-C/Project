@@ -44,13 +44,13 @@ public class ServiceRequestDAOImpl extends ServiceRequestDAO<ServiceRequest> {
      * @return ServiceRequest object.
      */
     @Override
-    public ServiceRequest getServiceRequest(String requestID) {
+    public ServiceRequest getServiceRequest(int requestID) {
         try {
             // Execute SELECT Query
             PreparedStatement statement = DBManager.getInstance().connection.prepareStatement(
-                    "SELECT * FROM SERVICE_REQUEST WHERE REQUESTID = ?"
+                    "SELECT * FROM SERVICE_REQUEST WHERE ID = ?"
             );
-            statement.setString(1, requestID);
+            statement.setInt(1, requestID);
             ResultSet resultSet = statement.executeQuery();
             
             // Return Location Object
@@ -66,35 +66,42 @@ public class ServiceRequestDAOImpl extends ServiceRequestDAO<ServiceRequest> {
      * Insert entry into ServiceRequest Table of the DB, corresponding to the given ServiceRequest object.
      *
      * @param serviceRequest The ServiceRequest to be inserted into the DB via a corresponding entry.
-     * @return If successful return true, else return false.
+     * @return If successful return the ID of the entry, else return -1.
      */
     @Override
-    public boolean insertServiceRequest(ServiceRequest serviceRequest) {
+    public int insertServiceRequest(ServiceRequest serviceRequest) {
         try {
             // See if there is an entry of the same requestID that already exists
             ServiceRequest serviceRequestInDB = getServiceRequest(serviceRequest.getRequestID());
             if (serviceRequestInDB == null) {
-                PreparedStatement statement = DBManager.getInstance().connection.prepareStatement(
-                        "INSERT INTO SERVICE_REQUEST VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?)"
-                );
-                statement.setString(1, serviceRequest.getRequestID());
-                statement.setString(2, serviceRequest.getCreatorID());
-                statement.setString(3, serviceRequest.getAssigneeID());
-                statement.setString(4, serviceRequest.getLocation());
-                statement.setTimestamp(5, serviceRequest.getCreationTimestamp());
-                statement.setString(6, serviceRequest.getStatus());
-                statement.setString(7, serviceRequest.getPriority());
-                statement.setString(8, serviceRequest.getRequestType());
-                statement.setString(9, serviceRequest.getDescription());
+                PreparedStatement statement = (serviceRequest.getRequestID() == 0)
+                        ? DBManager.getInstance().connection.prepareStatement("INSERT INTO SERVICE_REQUEST VALUES(DEFAULT, ?, ?, ?, ?, ?, ?, ?, ?)", Statement.RETURN_GENERATED_KEYS)
+                        : DBManager.getInstance().connection.prepareStatement("INSERT INTO SERVICE_REQUEST VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?)", Statement.RETURN_GENERATED_KEYS);
+
+                int index = 1;
+                if(serviceRequest.getRequestID() != 0){
+                    statement.setString(index, (serviceRequest.getRequestID()!=0) ? String.valueOf(serviceRequest.getRequestID()) : "DEFAULT");
+                    index++;
+                }
+                statement.setString(index, serviceRequest.getCreatorID()); index++;
+                statement.setString(index, serviceRequest.getAssigneeID()); index++;
+                statement.setString(index, serviceRequest.getLocation()); index++;
+                statement.setTimestamp(index, serviceRequest.getCreationTimestamp()); index++;
+                statement.setString(index, serviceRequest.getStatus()); index++;
+                statement.setString(index, serviceRequest.getPriority()); index++;
+                statement.setString(index, serviceRequest.getRequestType()); index++;
+                statement.setString(index, serviceRequest.getDescription());
                 statement.execute();
-                
-                return true;
+    
+                // Retrieve generated ID from newly inserted entry
+                ResultSet resultSetID = statement.getGeneratedKeys();
+                if(resultSetID.next()) return resultSetID.getInt(1);
             }
         } catch (SQLException e) {
             System.out.println("Update to SERVICE_REQUEST failed");
             e.printStackTrace();
         }
-        return false;
+        return -1;
     }
     
     /**
@@ -111,9 +118,9 @@ public class ServiceRequestDAOImpl extends ServiceRequestDAO<ServiceRequest> {
             if (serviceRequestInDB != null) {
                 // Execute UPDATE statement
                 PreparedStatement statement = DBManager.getInstance().connection.prepareStatement(
-                        "UPDATE SERVICE_REQUEST SET CREATORID = ?, ASSIGNEEID = ?, LOCATIONID = ?, " +
-                                "CREATIONTIMESTAMP = ?, STATUS = ?, PRIORITY = ?, REQUESTTYPE = ?, DESCRIPTION = ? " +
-                                "WHERE REQUESTID = ?"
+                        "UPDATE SERVICE_REQUEST SET CreatorID = ?, AssigneeID = ?, LocationID = ?, " +
+                                "CreationTimestamp = ?, Status = ?, Priority = ?, RequestType = ?, Description = ? " +
+                                "WHERE ID = ?"
                 );
                 statement.setString(1, serviceRequest.getCreatorID());
                 statement.setString(2, serviceRequest.getAssigneeID());
@@ -123,7 +130,7 @@ public class ServiceRequestDAOImpl extends ServiceRequestDAO<ServiceRequest> {
                 statement.setString(6, serviceRequest.getPriority());
                 statement.setString(7, serviceRequest.getRequestType());
                 statement.setString(8, serviceRequest.getDescription());
-                statement.setString(9, serviceRequest.getRequestID());
+                statement.setInt(9, serviceRequest.getRequestID());
                 statement.execute();
                 
                 return true;
@@ -150,9 +157,9 @@ public class ServiceRequestDAOImpl extends ServiceRequestDAO<ServiceRequest> {
             if (serviceRequestInDB != null) {
                 // Execute DELETE Statement
                 PreparedStatement statement = DBManager.getInstance().connection.prepareStatement(
-                        "DELETE FROM SERVICE_REQUEST WHERE REQUESTID = ?"
+                        "DELETE FROM SERVICE_REQUEST WHERE ID = ?"
                 );
-                statement.setString(1, serviceRequest.getRequestID());
+                statement.setInt(1, serviceRequest.getRequestID());
                 statement.execute();
                 
                 return true;
@@ -165,7 +172,4 @@ public class ServiceRequestDAOImpl extends ServiceRequestDAO<ServiceRequest> {
         return false;
     }
     
-
-    
-
 }
