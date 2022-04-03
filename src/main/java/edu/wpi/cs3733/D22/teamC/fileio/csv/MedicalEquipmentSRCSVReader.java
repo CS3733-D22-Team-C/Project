@@ -16,7 +16,7 @@ public class MedicalEquipmentSRCSVReader extends CSVReader<MedicalEquipmentSR>{
     protected MedicalEquipmentSR parseAttribute(MedicalEquipmentSR serviceRequest, String header, String value){
         switch(header) {
             case "requestID":
-                serviceRequest.setRequestID(value);
+                serviceRequest.setRequestID(Integer.parseInt(value));
                 break;
             case "creatorID":
                 serviceRequest.setCreatorID(value);
