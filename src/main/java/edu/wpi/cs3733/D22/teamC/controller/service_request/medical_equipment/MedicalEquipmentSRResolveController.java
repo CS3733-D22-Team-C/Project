@@ -51,6 +51,7 @@ public class MedicalEquipmentSRResolveController extends ServiceRequestResolveCo
 
         //Updating to Done in Database
         medicalEquipmentSR.setStatus("Done"); //TODO Should be an enum
+        medicalEquipmentSR.setDescription(description.getText());
         medicalEquipmentSRDAOImpl.updateServiceRequest(medicalEquipmentSR);
 
         //Back to service request view

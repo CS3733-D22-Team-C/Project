@@ -73,7 +73,6 @@ public class ServiceRequestResolveController implements Initializable {
         String p = u.getPriority();
         System.out.println(p);
         return u;
-
     }
 
 
