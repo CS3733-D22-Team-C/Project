@@ -8,7 +8,7 @@ import java.util.ArrayList;
 
 public class ServiceRequestFormEvaluator {
 
-    protected static final ServiceRequestValidationErrorItem[] serviceRequestValidationCommonErrorItemList =
+    protected static final ServiceRequestValidationErrorItem[] serviceRequestValidationGeneralErrorItemList =
             {new ServiceRequestValidationErrorItem(1, "Required field Location ID is missing"),
             new ServiceRequestValidationErrorItem(2, "Required field AssigneeID is missing"),
             new ServiceRequestValidationErrorItem(3, "Required field Status is missing"),
@@ -38,7 +38,7 @@ public class ServiceRequestFormEvaluator {
         }
         else
         {
-            return serviceRequestValidationCommonErrorItemList[4];
+            return serviceRequestValidationGeneralErrorItemList[4];
         }
 
     }
@@ -55,7 +55,7 @@ public class ServiceRequestFormEvaluator {
 
         if(locationDaoVar.getLocation(locationID) == null) //assumes the user inputs a location ID in the service request location field.
         {
-            return serviceRequestValidationCommonErrorItemList[5];
+            return serviceRequestValidationGeneralErrorItemList[5];
         }
         else
         {
@@ -65,50 +65,17 @@ public class ServiceRequestFormEvaluator {
     }
 
     /**
-     * Determine if all common fields of a ServiceRequest (assigneeID, locationID, status, priority) have been filled.
+     * Determine if the assigneeID of a ServiceRequest is filled.
      * @param assigneeID
-     * @param locationID
-     * @param status
-     * @param priority
-     * @return ArrayList <ServiceRequestValidationErrorItem>
+     * @return ServiceRequestValidationErrorItem
      */
-    public ArrayList<ServiceRequestValidationErrorItem> validateServiceRequestCommonRequiredFieldsFilled(int assigneeID, int locationID, String status, String priority)
-    {
-        ArrayList <ServiceRequestValidationErrorItem> errorList = new ArrayList <ServiceRequestValidationErrorItem> ();
-
-        if(checkAssigneeIDFilled(assigneeID) != null)
-        {
-            errorList.add(checkAssigneeIDFilled(assigneeID));
-        }
-        if(checkLocationIDFilled(locationID) != null) {
-            errorList.add(checkLocationIDFilled(locationID));
-        }
-        if(checkPriorityFilled(priority) != null)
-        {
-            errorList.add(checkPriorityFilled(priority));
-        }
-        if(checkStatusFilled(status) != null)
-        {
-            errorList.add(checkStatusFilled(status));
-        }
-
-        if(errorList.size() == 0)
-        {
-            return null;
-        }
-        else
-        {
-            return errorList;
-        }
-    }
-
     public ServiceRequestValidationErrorItem checkAssigneeIDFilled(int assigneeID)
     {
         int assigneeIDLength = (int)(Math.log10(assigneeID)+1);
 
         if(assigneeIDLength == 0)
         {
-            return 
+            return serviceRequestValidationGeneralErrorItemList[1];
         }
         else
         {
@@ -116,19 +83,57 @@ public class ServiceRequestFormEvaluator {
         }
     }
 
+    /**
+     * Determine if the LocationID of a ServiceRequest has been filled.
+     * @param locationID
+     * @return ServiceRequestValidationErrorItem
+     */
     public ServiceRequestValidationErrorItem checkLocationIDFilled(int locationID)
     {
-        return null;
+        int locationIDLength = (int)(Math.log10(locationID)+1);
+
+        if(locationIDLength == 0)
+        {
+            return serviceRequestValidationGeneralErrorItemList[0];
+        }
+        else
+        {
+            return null;
+        }
     }
 
+    /**
+     * Determine if the status of a ServiceRequest has been filled.
+     * @param status
+     * @return ServiceRequestValidationErrorItem
+     */
     public ServiceRequestValidationErrorItem checkStatusFilled(String status)
     {
-       return null;
+       if(status.length() == 0)
+       {
+           return serviceRequestValidationGeneralErrorItemList[2];
+       }
+       else
+       {
+           return null;
+       }
     }
 
+    /**
+     * Determine if the priority of a ServiceRequest has been filled.
+     * @param priority
+     * @return ServiceRequestValidationErrorItem
+     */
     public ServiceRequestValidationErrorItem checkPriorityFilled(String priority)
     {
-        return null;
+        if(priority.length() == 0)
+        {
+            return serviceRequestValidationGeneralErrorItemList[3];
+        }
+        else
+        {
+            return null;
+        }
     }
 
 }
