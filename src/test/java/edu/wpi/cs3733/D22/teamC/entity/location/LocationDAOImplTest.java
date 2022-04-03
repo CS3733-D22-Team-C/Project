@@ -50,7 +50,7 @@ class LocationDAOImplTest {
         String building = "Building";
         Location.NodeType nodeType = Location.NodeType.DEPT;
         String longName = "LongName";
-        String shortName = "ShortName";
+        String shortName = "shortName";
         int x = 10;
         int y = 20;
         Location insertLocation = new Location(floor, building, nodeType, longName, shortName, x, y);
@@ -89,7 +89,7 @@ class LocationDAOImplTest {
         String building = "Building";
         Location.NodeType nodeType = Location.NodeType.HALL;
         String longName = "LongName";
-        String shortName = "ShortName";
+        String shortName = "shortName";
         int x = 10;
         int y = 20;
         Location deleteLocation = new Location(floor, building, nodeType, longName, shortName, x, y);
@@ -123,7 +123,7 @@ class LocationDAOImplTest {
         String building = "Building";
         Location.NodeType nodeType = Location.NodeType.SERV;
         String longName = "LongName";
-        String shortName = "ShortName";
+        String shortName = "shortName";
         int x = 10;
         int y = 20;
         Location updateLocation = new Location(floor, building, nodeType, longName, shortName, x, y);

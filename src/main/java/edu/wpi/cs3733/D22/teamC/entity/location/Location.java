@@ -4,18 +4,36 @@ public class Location {
     private int nodeID;
     private String floor = ""; // TODO: Floors should be objects
     private String building = "";
-    private String nodeType = ""; // TODO: Replace with enums or constraints
+    private NodeType nodeType;
     private String longName = "";
     private String shortName = "";
     private int x = 0, y = 0;
 
+    public enum NodeType {
+        PATI,
+        STOR,
+        DIRT,
+        HALL,
+        ELEV,
+        REST,
+        STAI,
+        DEPT,
+        LABS,
+        INFO,
+        CONF,
+        EXIT,
+        RETL,
+        SERV,
+        BATH
+    }
+
     public Location() {}
-    
+
     public Location(int nodeID) {
         this.nodeID = nodeID;
     }
-    
-    public Location(String floor, String building, String nodeType, String longName, String shortName, int x, int y) {
+
+    public Location(String floor, String building, NodeType nodeType, String longName, String shortName, int x, int y) {
         this.floor = floor;
         this.building = building;
         this.nodeType = nodeType;
@@ -24,9 +42,10 @@ public class Location {
         this.x = x;
         this.y = y;
     }
-    
+
+
     @Deprecated
-    public Location(int nodeID, String floor, String building, String nodeType, String longName, String shortName, int x, int y) {
+    public Location(int nodeID, String floor, String building, NodeType nodeType, String longName, String shortName, int x, int y) {
         this.nodeID = nodeID;
         this.floor = floor;
         this.building = building;
@@ -61,11 +80,11 @@ public class Location {
         this.building = building;
     }
 
-    public String getNodeType() {
+    public NodeType getNodeType() {
         return nodeType;
     }
 
-    public void setNodeType(String nodeType) {
+    public void setNodeType(NodeType nodeType) {
         this.nodeType = nodeType;
     }
 

@@ -9,18 +9,17 @@ import java.sql.Timestamp;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-
 class ServiceRequestDAOImplTest {
     private DBManager testDBManager;
     private ServiceRequestDAOImpl serviceRequestDAO;
 
     @BeforeEach
     void setUp() {
-        // Setup testing database and initialize SR table
+        // Setup testing database and initialize LOCATION table
         testDBManager = DBManager.startup(DBManager.TESTING_DATABASE_NAME);
         testDBManager.initializeServiceRequestTable(true);
         testDBManager.initializeMedicalEquipSRTable(true);
-
+    
         // Setup testing LocationDAOImpl
         serviceRequestDAO = new ServiceRequestDAOImpl();
     }
@@ -32,24 +31,24 @@ class ServiceRequestDAOImplTest {
     }
 
     /**
-     * Test that an empty SR Table DB returns nothing for queries.
+     * Test that an empty Location Table DB returns nothing for queries.
      */
     @Test
-    void testEmptyQuerySR() {
+    void testEmptyQueryLocation() {
         assertEquals(0, serviceRequestDAO.getAllServiceRequests().size());
         assertEquals(null, serviceRequestDAO.getServiceRequest(1234));
     }
 
     /**
-     * Test that insertSR works.
+     * Test that insertLocation works.
      */
     @Test
-    void testInsertSR() {
+    void testInsertLocation() {
         // Check DB is empty
         assertEquals(0, serviceRequestDAO.getAllServiceRequests().size());
         assertEquals(null, serviceRequestDAO.getServiceRequest(1234));
 
-        // Insert SR into DB
+        // Insert Location into DB
         String creatorID = "C1";
         String assigneeID = "A1";
         String location = "loc";
@@ -100,7 +99,7 @@ class ServiceRequestDAOImplTest {
         assertEquals(0, serviceRequestDAO.getAllServiceRequests().size());
         assertEquals(null, serviceRequestDAO.getServiceRequest(1234));
 
-        // Insert SR into DB
+        // Insert ServiceRequest into DB
         String creatorID = "C1";
         String assigneeID = "A1";
         String location = "loc";

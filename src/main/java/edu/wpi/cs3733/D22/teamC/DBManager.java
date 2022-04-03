@@ -166,18 +166,18 @@ public class DBManager {
             );
         }
 
-        /**
-         * Initialize Medical Equipment Service Request Table.
-         * @param clearTable Clear pre-existing table entries if true.
-         */
-        public void initializeMedicalEquipSRTable(boolean clearTable) {
-            initializeTable(
-                    "MEDICAL_EQUIPMENT_SR",
-                    "CREATE TABLE MEDICAL_EQUIPMENT_SR (" +
-                            "ID int, EquipID char(10), EquipType varchar(50), CONSTRAINT fk_ID FOREIGN KEY (ID) " +
-                            "REFERENCES SERVICE_REQUEST (ID) ON DELETE CASCADE)",
-                    clearTable
-            );
-        }
+    /**
+     * Initialize Medical Equipment Service Request Table.
+     * @param clearTable Clear pre-existing table entries if true.
+     */
+    public void initializeMedicalEquipSRTable(boolean clearTable) {
+        initializeTable(
+                "MEDICAL_EQUIPMENT_SR",
+                "CREATE TABLE MEDICAL_EQUIPMENT_SR (" +
+                        "ID int, EquipID char(10), EquipType varchar(50), CONSTRAINT fk_ID FOREIGN KEY (ID) " +
+                        "REFERENCES SERVICE_REQUEST (ID) ON DELETE CASCADE)",
+                clearTable
+        );
+    }
     //endregion
 }

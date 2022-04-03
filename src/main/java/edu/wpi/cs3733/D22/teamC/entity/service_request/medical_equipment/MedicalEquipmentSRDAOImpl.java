@@ -82,7 +82,7 @@ public class MedicalEquipmentSRDAOImpl extends MedicalEquipmentSRDAO {
      * A given MedicalEquipmentServiceRequest specifically to the dedicated table.
      *
      * @param serviceRequest The ServiceRequest to be inserted into the DB via a corresponding entry.
-     * @return If successful return the ID of the entry, else return -1.
+     * @return If successful return true, else return false.
      */
     @Override
     public int insertServiceRequest(MedicalEquipmentSR serviceRequest) {
@@ -96,14 +96,14 @@ public class MedicalEquipmentSRDAOImpl extends MedicalEquipmentSRDAO {
                         "INSERT INTO MEDICAL_EQUIPMENT_SR VALUES(?, ?, ?)"
                 );
                 statement.setInt(1, requestID);
-                // Set child-specific attributes
-                statement.setString(2, serviceRequest.getEquipmentID());
-                statement.setString(3, serviceRequest.getEquipmentType());
+                // Set child-specific attributes by casting
+                statement.setString(2, serviceRequest.getEquipmentID().toString());
+                statement.setString(3, serviceRequest.getEquipmentType().toString());
                 statement.execute();
                 
                 return requestID;
             }
-        } catch (SQLException e) {
+        } catch (SQLException | ClassCastException e) {
             System.out.println("Update to database tables failed");
             e.printStackTrace();
         }
@@ -129,11 +129,11 @@ public class MedicalEquipmentSRDAOImpl extends MedicalEquipmentSRDAO {
                 if (successParent) {
                     // Update the child-unique attributes in the child table.
                     PreparedStatement statement = DBManager.getInstance().connection.prepareStatement(
-                            "UPDATE MEDICAL_EQUIPMENT_SR SET EquipID = ?, EquipType = ? " +
+                            "UPDATE MEDICAL_EQUIPMENT_SR SET EQUIPID = ?, EQUIPTYPE = ? " +
                                     "WHERE ID = ?"
                     );
-                    statement.setString(1, serviceRequest.getEquipmentID());
-                    statement.setString(2, serviceRequest.getEquipmentType());
+                    statement.setString(1, ((MedicalEquipmentSR) serviceRequest).getEquipmentID());
+                    statement.setString(2, serviceRequest.getEquipmentType().toString());
                     statement.setInt(3, serviceRequest.getRequestID());
                     statement.execute();
                     
@@ -141,7 +141,7 @@ public class MedicalEquipmentSRDAOImpl extends MedicalEquipmentSRDAO {
                 }
             }
             
-        } catch (SQLException e) {
+        } catch (SQLException | ClassCastException e) {
             System.out.println("Update to database tables failed.");
             e.printStackTrace();
         }
