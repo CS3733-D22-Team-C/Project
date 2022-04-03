@@ -14,7 +14,7 @@
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.layout.VBox?>
 
-<GridPane alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="664.0" prefWidth="600.0" styleClass="titl" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.wpi.cs3733.D22.teamC.controller.service_request.medical_equipment.MedicalEquipmentSRCreateController">
+<GridPane alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="664.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.wpi.cs3733.D22.teamC.controller.service_request.medical_equipment.MedicalEquipmentSRCreateController">
    <columnConstraints>
       <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
    </columnConstraints>
@@ -64,7 +64,7 @@
             <VBox alignment="CENTER_LEFT" prefHeight="200.0" prefWidth="100.0" styleClass="box-margin" GridPane.columnIndex="1" GridPane.hgrow="ALWAYS" GridPane.rowIndex="1" GridPane.vgrow="ALWAYS">
                <children>
                   <Label styleClass="service-field-label" text="Equipment ID:" />
-                  <TextField fx:id="equipID" />
+                  <JFXComboBox fx:id="equipID" maxWidth="1.7976931348623157E308" onMouseClicked="#equipTypeChanged" prefHeight="26.0" prefWidth="148.0" styleClass="dropdown" stylesheets="@../../../css/base.css" />
                </children>
             </VBox>
             <VBox alignment="CENTER_LEFT" prefHeight="200.0" prefWidth="100.0" styleClass="box-margin" GridPane.columnIndex="2" GridPane.hgrow="ALWAYS" GridPane.rowIndex="1" GridPane.vgrow="ALWAYS">
@@ -102,7 +102,7 @@
             </HBox>
          </children>
       </VBox>
-      <JFXTreeTableView fx:id="table" onMouseClicked="#printRow" GridPane.rowIndex="3" />
+      <JFXTreeTableView fx:id="table" GridPane.rowIndex="3" />
    </children>
    <stylesheets>
       <URL value="@../../../css/request_page.css" />
