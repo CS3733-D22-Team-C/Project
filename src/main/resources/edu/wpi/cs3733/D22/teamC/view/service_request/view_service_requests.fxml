@@ -3,37 +3,67 @@
 <?import com.jfoenix.controls.JFXButton?>
 <?import com.jfoenix.controls.JFXComboBox?>
 <?import com.jfoenix.controls.JFXTreeTableView?>
-<?import java.net.URL?>
-<?import javafx.scene.control.Label?>
-<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="503.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.wpi.cs3733.D22.teamC.controller.general.ServiceRequestsViewController">
+<VBox xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.wpi.cs3733.D22.teamC.controller.general.ServiceRequestsViewController">
    <children>
-      <JFXTreeTableView fx:id="table" layoutX="34.0" layoutY="25.0" onMouseClicked="#getRow" prefHeight="400.0" prefWidth="532.0" />
-      <VBox layoutX="228.0" layoutY="454.0" prefHeight="37.0" prefWidth="139.0">
+      <JFXTreeTableView fx:id="table" onMouseClicked="#getRow" prefHeight="400.0" prefWidth="532.0" />
+      <GridPane>
+         <columnConstraints>
+            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" />
+            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+         </columnConstraints>
+         <rowConstraints>
+            <RowConstraints minHeight="10.0" vgrow="SOMETIMES" />
+         </rowConstraints>
          <children>
-            <Label prefHeight="48.0" prefWidth="139.0" styleClass="textarea" text="Create a Service Request:">
-               <stylesheets>
-                  <URL value="@../../css/base.css" />
-                  <URL value="@../../css/fonts.css" />
-               </stylesheets></Label>
+            <HBox alignment="CENTER_RIGHT" prefHeight="100.0" prefWidth="316.0" GridPane.columnIndex="1">
+               <children>
+                  <JFXButton fx:id="edit" disable="true" onAction="#onEditButton" prefHeight="31.0" prefWidth="72.0" styleClass="button-success" stylesheets="@../../css/base.css" text="Edit">
+                     <HBox.margin>
+                        <Insets right="20.0" />
+                     </HBox.margin>
+                  </JFXButton>
+                  <JFXButton fx:id="resolve" disable="true" onAction="#onResolveButton" prefHeight="31.0" prefWidth="72.0" styleClass="button-confirm" stylesheets="@../../css/base.css" text="Resolve" />
+               </children>
+            </HBox>
+            <HBox>
+               <children>
+                  <VBox prefHeight="5.0" prefWidth="162.0">
+                     <children>
+                        <JFXComboBox fx:id="serviceType" prefHeight="30.0" prefWidth="191.0" promptText="Create a Service Request:" styleClass="dropdown" stylesheets="@../../css/base.css" />
+                     </children>
+                     <opaqueInsets>
+                        <Insets />
+                     </opaqueInsets>
+                  </VBox>
+                  <VBox prefHeight="38.0" prefWidth="53.0">
+                     <children>
+                        <JFXButton fx:id="selectButton" layoutX="10.0" layoutY="10.0" onAction="#onSelectButton" prefHeight="32.5" prefWidth="55.0" styleClass="button-success" stylesheets="@../../css/base.css" text="→">
+                           <font>
+                              <Font size="24.0" />
+                           </font>
+                        </JFXButton>
+                     </children>
+                     <padding>
+                        <Insets left="-5.0" />
+                     </padding>
+                  </VBox>
+               </children>
+               <padding>
+                  <Insets bottom="10.0" top="30.0" />
+               </padding>
+            </HBox>
          </children>
-      </VBox>
-      <VBox layoutX="519.0" layoutY="453.0" prefHeight="38.0" prefWidth="53.0">
-         <children>
-            <JFXButton fx:id="selectButton" layoutX="10.0" layoutY="10.0" onAction="#onSelectButton" prefHeight="38.0" prefWidth="67.0" styleClass="button-success" stylesheets="@../../css/base.css" text="→">
-               <font>
-                  <Font size="24.0" />
-               </font>
-            </JFXButton>
-         </children>
-      </VBox>
-      <VBox layoutX="367.0" layoutY="453.0" prefHeight="37.0" prefWidth="152.0">
-         <children>
-            <JFXComboBox fx:id="serviceType" prefHeight="38.0" prefWidth="158.0" styleClass="dropdown" stylesheets="@../../css/base.css" />
-         </children>
-      </VBox>
+      </GridPane>
    </children>
-</AnchorPane>
+   <padding>
+      <Insets left="30.0" right="30.0" top="30.0" />
+   </padding>
+</VBox>

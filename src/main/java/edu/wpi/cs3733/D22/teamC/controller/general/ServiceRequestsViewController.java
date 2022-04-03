@@ -41,11 +41,11 @@ public class ServiceRequestsViewController implements Initializable {
     @FXML private JFXButton selectButton;
     @FXML private JFXTreeTableView<ServiceRequestTable> table;
     @FXML private JFXComboBox<String> serviceType;
+    @FXML private JFXButton edit;
+    @FXML private JFXButton resolve;
 
     @FXML
     public void initialize(URL url, ResourceBundle rb) {
-
-
 
         //service request dropdown
         serviceType.getItems().add("Medical Equipment");
@@ -104,15 +104,22 @@ public class ServiceRequestsViewController implements Initializable {
         table.setRowFactory(tv -> {
             TreeTableRow<ServiceRequestTable> row = new TreeTableRow<ServiceRequestTable>();
             row.setOnMouseClicked(event -> {
+                // If is clicked twice, open resolve
                 if (! row.isEmpty() && event.getButton()== MouseButton.PRIMARY
                         && event.getClickCount() == 2) {
 
                     ServiceRequestTable clickedRow = row.getItem();
-                    System.out.println(clickedRow.getPriority());
 
                     sendData(clickedRow);
                     App.instance.setView(MEDICAL_EQUIPMENT_RESOLVE_PATH);
+                }
+                // If clicked
+                if (! row.isEmpty() && event.getButton() == MouseButton.PRIMARY){
+                    ServiceRequestTable clickedRow = row.getItem();
 
+                    sendData(clickedRow);
+                    edit.setDisable(false);
+                    resolve.setDisable(false);
                 }
             });
             return row ;
@@ -122,5 +129,12 @@ public class ServiceRequestsViewController implements Initializable {
     private void sendData(ServiceRequestTable row) {
         ServiceRequestSingleton holder = ServiceRequestSingleton.INSTANCE;
         holder.setServerRequestTable(row);
+    }
+
+    public void onEditButton(ActionEvent actionEvent) {
+    }
+
+    public void onResolveButton(ActionEvent actionEvent) {
+        App.instance.setView(MEDICAL_EQUIPMENT_RESOLVE_PATH);
     }
 }

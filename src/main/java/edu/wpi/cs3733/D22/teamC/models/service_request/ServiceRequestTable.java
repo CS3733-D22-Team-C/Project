@@ -150,6 +150,6 @@ public class ServiceRequestTable extends RecursiveTreeObject<ServiceRequestTable
         });
 
         // Sets columns
-        table.getColumns().setAll(priorityCol, assigneeCol, statusCol, locationCol, IDCol, TypeCol);
+        table.getColumns().setAll(IDCol, TypeCol, assigneeCol, statusCol, locationCol, priorityCol);
     }
 }
