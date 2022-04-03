@@ -26,14 +26,14 @@ public class ServiceRequestCreateController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // Priority dropdown
-        priority.getItems().add("Low");
-        priority.getItems().add("Medium");
-        priority.getItems().add("High");
+        for (ServiceRequest.Priority pri : ServiceRequest.Priority.values()) {
+            priority.getItems().add(pri.toString());
+        }
 
         // Status dropdown
-        status.getItems().add("Blank");
-        status.getItems().add("Processing");
-        status.getItems().add("Done");
+        for (ServiceRequest.Status sta : ServiceRequest.Status.values()) {
+            status.getItems().add(sta.toString());
+        }
     }
 
     @FXML

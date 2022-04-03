@@ -1,7 +1,5 @@
 package edu.wpi.cs3733.D22.teamC.entity.service_request;
 
-import java.sql.Time;
-import java.sql.Date;
 import java.sql.Timestamp;
 
 public class ServiceRequest {
@@ -10,10 +8,31 @@ public class ServiceRequest {
     protected String assigneeID;    // TODO: Link to Employee
     protected String location;      // TODO: Link to Location
     protected Timestamp creationTimestamp;
-    protected String status;        // TODO: Make Enum
-    protected String priority;      // TODO: Make Enum
-    protected String requestType;   // TODO: Make Enum
+    protected Status status;
+    protected Priority priority;
+    protected RequestType requestType;
     protected String description;
+
+    public enum Status {
+        Blank,
+        Processing,
+        Done
+    }
+
+    public enum Priority {
+        Low,
+        Medium,
+        High
+    }
+
+    public enum RequestType {
+        Medical_Equipment,
+        Facility_Maintenance,
+        Lab_System,
+        Medicine_Delivery,
+        Sanitation,
+        Security
+    }
 
     public ServiceRequest(){}
     
@@ -28,11 +47,11 @@ public class ServiceRequest {
         this.requestType = serviceRequest.getRequestType();
         this.description = serviceRequest.getDescription();
     }
-    
+
     public ServiceRequest(int requestID) {
         this.requestID = requestID;
     }
-    
+
     public int getRequestID() {
         return requestID;
     }
@@ -73,27 +92,25 @@ public class ServiceRequest {
         this.creationTimestamp = creationTimestamp;
     }
 
-    public String getStatus() {
+    public Status getStatus() {
         return status;
     }
 
-    public void setStatus(String status) {
-        this.status = status;
-    }
+    public void setStatus(Status status) { this.status = status;}
 
-    public String getPriority() {
+    public Priority getPriority() {
         return priority;
     }
 
-    public void setPriority(String priority) {
+    public void setPriority(Priority priority) {
         this.priority = priority;
     }
 
-    public String getRequestType() {
+    public RequestType getRequestType() {
         return requestType;
     }
 
-    public void setRequestType(String requestType) {
+    public void setRequestType(RequestType requestType) {
         this.requestType = requestType;
     }
 
@@ -104,4 +121,5 @@ public class ServiceRequest {
     public void setDescription(String description) {
         this.description = description;
     }
+
 }

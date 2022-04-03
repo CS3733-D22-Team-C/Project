@@ -24,8 +24,8 @@ public class MedicineDeliverySRTable extends RecursiveTreeObject<MedicineDeliver
     public MedicineDeliverySRTable(MedicineDeliverySR medicineDeliverySR) {
         this.assigneeID = new SimpleStringProperty(medicineDeliverySR.getAssigneeID());
         this.location = new SimpleStringProperty(medicineDeliverySR.getLocation());
-        this.status = new SimpleStringProperty(medicineDeliverySR.getStatus());
-        this.priority = new SimpleStringProperty(medicineDeliverySR.getPriority());
+        this.status = new SimpleStringProperty(medicineDeliverySR.getStatus().toString());
+        this.priority = new SimpleStringProperty(medicineDeliverySR.getPriority().toString());
 
         this.medicine = new SimpleStringProperty(medicineDeliverySR.getMedicine());
         this.dosage = new SimpleStringProperty(medicineDeliverySR.getDosage());

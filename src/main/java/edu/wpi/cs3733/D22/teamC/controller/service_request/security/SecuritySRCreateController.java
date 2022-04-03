@@ -5,6 +5,7 @@ import com.jfoenix.controls.JFXTreeTableView;
 import com.jfoenix.controls.RecursiveTreeItem;
 import com.jfoenix.controls.datamodels.treetable.RecursiveTreeObject;
 import edu.wpi.cs3733.D22.teamC.controller.service_request.ServiceRequestCreateController;
+import edu.wpi.cs3733.D22.teamC.entity.service_request.ServiceRequest;
 import edu.wpi.cs3733.D22.teamC.entity.service_request.security.SecuritySR;
 import edu.wpi.cs3733.D22.teamC.models.service_request.security.SecuritySRTable;
 import javafx.collections.FXCollections;
@@ -70,9 +71,11 @@ public class SecuritySRCreateController extends ServiceRequestCreateController {
             securitySR.setLocation(location.getText());
 
             //Sets from combo boxes
-            securitySR.setStatus(status.getValue());
-            securitySR.setPriority(priority.getValue());
-            securitySR.setSecurityType(secType.getValue());
+            securitySR.setStatus(ServiceRequest.Status.valueOf(status.getValue()));
+            securitySR.setPriority(ServiceRequest.Priority.valueOf(priority.getValue()));
+            securitySR.setSecurityType(SecuritySR.SecurityType.valueOf(secType.getValue()));
+
+            securitySR.setRequestType(ServiceRequest.RequestType.Security);
 
             // Table Entry
             clickReset(event);
