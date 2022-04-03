@@ -20,7 +20,15 @@ public class ServiceRequestFormEvaluator {
             new ServiceRequestValidationErrorItem(10, "Required field Dosage is missing"),
             new ServiceRequestValidationErrorItem(11, "Required field Medicine is missing"),
             new ServiceRequestValidationErrorItem(12, "Required field Sanitation Type is missing"),
-            new ServiceRequestValidationErrorItem(13, "Required field Security Type is missing")};
+            new ServiceRequestValidationErrorItem(13, "Required field Security Type is missing"),
+            new ServiceRequestValidationErrorItem(14, "Assignee ID is too short and does not exist"),
+            new ServiceRequestValidationErrorItem(15, "Assignee ID does not exist"),
+            new ServiceRequestValidationErrorItem(16, "Location ID does not exist"),
+            new ServiceRequestValidationErrorItem(17, "Equipment ID does not exist"),
+            new ServiceRequestValidationErrorItem(18, "Maintenance type does not exist"),
+            new ServiceRequestValidationErrorItem(19, "Invalid patient ID"),
+            new ServiceRequestValidationErrorItem(20, "Specified medicine does not exist"),
+            new ServiceRequestValidationErrorItem(21, "Invalid dosage quantity")};
 
     public ServiceRequestFormEvaluator() {}
 
