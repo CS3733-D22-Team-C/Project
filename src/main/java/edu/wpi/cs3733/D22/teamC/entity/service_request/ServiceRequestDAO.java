@@ -6,7 +6,7 @@ import java.util.List;
 
 public abstract class ServiceRequestDAO<T extends ServiceRequest> {
     public abstract List<T> getAllServiceRequests();
-    public abstract T getServiceRequest(String requestID);
+    public abstract T getServiceRequest(int requestID);
     
     public abstract boolean insertServiceRequest(T serviceRequest);
     public abstract boolean updateServiceRequest(T serviceRequest);
@@ -20,7 +20,7 @@ public abstract class ServiceRequestDAO<T extends ServiceRequest> {
      */
     protected T modifyServiceRequest(ResultSet resultSet, T serviceRequest) {
         try {
-            serviceRequest.setRequestID(typesafeTrim(resultSet.getString("REQUESTID")));
+            serviceRequest.setRequestID(resultSet.getInt("REQUESTID"));
             serviceRequest.setCreatorID(typesafeTrim(resultSet.getString("CREATORID")));
             serviceRequest.setAssigneeID(typesafeTrim(resultSet.getString("ASSIGNEEID")));
             serviceRequest.setLocation(typesafeTrim(resultSet.getString("LOCATIONID")));
