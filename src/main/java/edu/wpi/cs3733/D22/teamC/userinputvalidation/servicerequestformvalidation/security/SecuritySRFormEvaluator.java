@@ -1,6 +1,7 @@
 package edu.wpi.cs3733.D22.teamC.userinputvalidation.servicerequestformvalidation.security;
 
 import edu.wpi.cs3733.D22.teamC.userinputvalidation.servicerequestformvalidation.ServiceRequestFormEvaluator;
+import edu.wpi.cs3733.D22.teamC.userinputvalidation.servicerequestformvalidation.ServiceRequestValidationErrorItem;
 
 public class SecuritySRFormEvaluator extends ServiceRequestFormEvaluator {
 
@@ -8,12 +9,12 @@ public class SecuritySRFormEvaluator extends ServiceRequestFormEvaluator {
     {}
 
     @Override
-    public int getValidateAssigneeIDResult(String ID) {
+    public ServiceRequestValidationErrorItem getValidateAssigneeIDResult(int ID) {
         return super.getValidateAssigneeIDResult(ID);
     }
 
     @Override
-    public int getValidateLocationIDResult(String location) {
+    public ServiceRequestValidationErrorItem getValidateLocationIDResult(int location) {
         return super.getValidateLocationIDResult(location);
     }
 }
