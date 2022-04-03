@@ -76,27 +76,34 @@ public class LocationDAOImpl implements LocationDAO {
             Location locationInDB = getLocation(location.getNodeID());
             if (locationInDB == null) {
                 // Execute INSERT Statement
-                PreparedStatement statement =  DBManager.getInstance().connection.prepareStatement(
-                        "INSERT INTO LOCATION VALUES(?, ?, ?, ?, ?, ?, ?, ?)"
-                );
-                statement.setString(1, location.getNodeID());
-                statement.setInt(2, location.getX());
-                statement.setInt(3, location.getY());
-                statement.setString(4, location.getFloor());
-                statement.setString(5, location.getBuilding());
-                statement.setString(6, location.getNodeType().toString());
-                statement.setString(7, location.getLongName());
-                statement.setString(8, location.getShortName());
+                PreparedStatement statement = (location.getNodeID() == 0)
+                        ? DBManager.getInstance().connection.prepareStatement("INSERT INTO LOCATION VALUES(DEFAULT, ?, ?, ?, ?, ?, ?, ?)", Statement.RETURN_GENERATED_KEYS)
+                        : DBManager.getInstance().connection.prepareStatement("INSERT INTO LOCATION VALUES(?, ?, ?, ?, ?, ?, ?, ?)", Statement.RETURN_GENERATED_KEYS);
+
+                int index = 1;
+                if (location.getNodeID() != 0) {
+                    statement.setString(index, String.valueOf(location.getNodeID()));
+                    index++;
+                }
+
+                statement.setInt(index, location.getX()); index++;
+                statement.setInt(index, location.getY()); index++;
+                statement.setString(index, location.getFloor()); index++;
+                statement.setString(index, location.getBuilding()); index++;
+                statement.setString(index, location.getNodeType().toString()); index++;
+                statement.setString(index, location.getLongName()); index++;
+                statement.setString(index, location.getShortName());
                 statement.execute();
 
-                return true;
+                ResultSet resultSetID = statement.getGeneratedKeys();
+                if(resultSetID.next()) return resultSetID.getInt(1);
             }
         } catch (SQLException e) {
             System.out.println("INSERT to LOCATION table failed.");
             e.printStackTrace();
         }
 
-        return false;
+        return -1;
     }
 
     /**
@@ -122,7 +129,7 @@ public class LocationDAOImpl implements LocationDAO {
                 statement.setString(5, location.getNodeType().toString());
                 statement.setString(6, location.getLongName());
                 statement.setString(7, location.getShortName());
-                statement.setString(8, location.getNodeID());
+                statement.setInt(8, location.getNodeID());
                 statement.execute();
 
                 return true;
@@ -150,7 +157,7 @@ public class LocationDAOImpl implements LocationDAO {
                 PreparedStatement statement =  DBManager.getInstance().connection.prepareStatement(
                         "DELETE FROM LOCATION WHERE NODEID = ?"
                 );
-                statement.setString(1, location.getNodeID());
+                statement.setInt(1, location.getNodeID());
                 statement.execute();
 
                 return true;
@@ -170,7 +177,7 @@ public class LocationDAOImpl implements LocationDAO {
      */
     private Location createLocation(ResultSet resultSet) {
         try {
-            Location location = new Location(typesafeTrim(resultSet.getString("NODEID")));
+            Location location = new Location(resultSet.getInt("NODEID"));
             location.setFloor(typesafeTrim(resultSet.getString("FLOOR")));
             location.setBuilding(typesafeTrim(resultSet.getString("BUILDING")));
             location.setNodeType(Location.NodeType.valueOf(resultSet.getString("NODETYPE")));
