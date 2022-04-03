@@ -25,7 +25,7 @@ public class Employee {
         TECHNICIAN,
         JANITOR,
         IT,
-        FOODSERVICE,
+        FOOD_SERVICE,
         PHARMACY
     }
 
