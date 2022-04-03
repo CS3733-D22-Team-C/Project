@@ -7,6 +7,21 @@ import edu.wpi.cs3733.D22.teamC.entity.location.LocationDAOImpl;
 
 public class ServiceRequestFormEvaluator {
 
+    protected static final ServiceRequestValidationErrorItem[] serviceRequestValidationErrorItemList =
+            {new ServiceRequestValidationErrorItem(1, "Required field Location ID is missing"),
+            new ServiceRequestValidationErrorItem(2, "Required field AssigneeID is missing"),
+            new ServiceRequestValidationErrorItem(3, "Required field Status is missing"),
+            new ServiceRequestValidationErrorItem(4, "Required field Priority is missing"),
+            new ServiceRequestValidationErrorItem(5, "Required field Equipment ID is missing"),
+            new ServiceRequestValidationErrorItem(6, "Required field Equipment Type is missing"),
+            new ServiceRequestValidationErrorItem(7, "Required field Maintenance Type is missing"),
+            new ServiceRequestValidationErrorItem(8, "Required field Lab Type is missing"),
+            new ServiceRequestValidationErrorItem(9, "Required field Patient ID is missing"),
+            new ServiceRequestValidationErrorItem(10, "Required field Dosage is missing"),
+            new ServiceRequestValidationErrorItem(11, "Required field Medicine is missing"),
+            new ServiceRequestValidationErrorItem(12, "Required field Sanitation Type is missing"),
+            new ServiceRequestValidationErrorItem(13, "Required field Security Type is missing")};
+
     public ServiceRequestFormEvaluator() {}
 
     /**

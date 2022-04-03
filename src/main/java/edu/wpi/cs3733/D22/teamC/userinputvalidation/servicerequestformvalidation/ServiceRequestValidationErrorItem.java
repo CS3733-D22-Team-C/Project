@@ -4,7 +4,7 @@ public class ServiceRequestValidationErrorItem {
     private String reasonForValidationError;
     private int errorNumber;
 
-    public ServiceRequestValidationErrorItem(String reasonForValidationError, int errorNumber)
+    public ServiceRequestValidationErrorItem(int errorNumber, String reasonForValidationError)
     {
         this.reasonForValidationError = reasonForValidationError;
         this.errorNumber = errorNumber;
