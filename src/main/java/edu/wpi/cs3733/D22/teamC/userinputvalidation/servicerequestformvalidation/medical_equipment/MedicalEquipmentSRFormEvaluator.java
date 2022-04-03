@@ -6,12 +6,6 @@ public class MedicalEquipmentSRFormEvaluator extends ServiceRequestFormEvaluator
 
     public MedicalEquipmentSRFormEvaluator() {}
 
-    public int getMedicalEquipmentSRFormValidationChecksResult(String ID, String location, String equipmentID)
-    {
-        int validationResult = 0;
-        return 0;
-    }
-
     @Override
     public int getValidateAssigneeIDResult(String ID) {
         return super.getValidateAssigneeIDResult(ID);

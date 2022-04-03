@@ -6,12 +6,6 @@ public class MedicineDeliverySRFormEvaluator extends ServiceRequestFormEvaluator
 
     public MedicineDeliverySRFormEvaluator() {}
 
-    public int getMedicineDeliverySRFormValidationChecksResult(String ID, String location, String patientID, String medicine, String dosage)
-    {
-        int validationResult = 0;
-        return 0;
-    }
-
     @Override
     public int getValidateAssigneeIDResult(String ID) {
         return super.getValidateAssigneeIDResult(ID);

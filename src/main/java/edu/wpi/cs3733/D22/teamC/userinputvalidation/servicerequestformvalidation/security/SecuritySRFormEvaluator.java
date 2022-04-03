@@ -7,14 +7,6 @@ public class SecuritySRFormEvaluator extends ServiceRequestFormEvaluator {
     public SecuritySRFormEvaluator()
     {}
 
-    public int getSecuritySRFormValidationChecksResult(String ID, String location)
-    {
-        int validationResult = 0;
-        validationResult = this.getValidateAssigneeIDResult(ID);
-        //...
-        return 0;
-    }
-
     @Override
     public int getValidateAssigneeIDResult(String ID) {
         return super.getValidateAssigneeIDResult(ID);

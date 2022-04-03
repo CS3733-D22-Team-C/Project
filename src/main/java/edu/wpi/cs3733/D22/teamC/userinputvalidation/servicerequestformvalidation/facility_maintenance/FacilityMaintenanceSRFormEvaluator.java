@@ -6,12 +6,6 @@ public class FacilityMaintenanceSRFormEvaluator extends ServiceRequestFormEvalua
 
     public FacilityMaintenanceSRFormEvaluator() {}
 
-    public int getFacilityMaintenanceSRFormValidationChecksResult(String ID, String location, String maintenanceType)
-    {
-        int validationResult = 0;
-        return 0;
-    }
-
     @Override
     public int getValidateAssigneeIDResult(String ID) {
         return super.getValidateAssigneeIDResult(ID);

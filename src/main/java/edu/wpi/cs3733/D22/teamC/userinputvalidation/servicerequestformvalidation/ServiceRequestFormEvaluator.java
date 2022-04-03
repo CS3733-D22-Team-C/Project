@@ -11,7 +11,7 @@ public class ServiceRequestFormEvaluator {
 
     /**
      * Determine if the assigneeID sent from a ServiceRequestCreateController object is valid through checking its length and if it exists in the Employee Table database.
-     * If the assigneeID is too short, return 1. Else if the assigneeID does not exist in the Employee Table of the database, return 2. Else, return 0.
+     * If the assigneeID is too short, return 5. Else if the assigneeID does not exist in the Employee Table of the database, return 2. Else, return 0.
      * @param assigneeID The assigneeID of the service request.
      * @return int.
      */
@@ -22,24 +22,17 @@ public class ServiceRequestFormEvaluator {
 
         if(assigneeID.length() < 10)
         {
-            return 1; //Return 1 if the assigneeID is not the proper length
+            return 5; //Return 1 if the assigneeID is not the proper length
         }
         else
         {
             return 0;
         }
-
-        /*
-        else if() //Return 2 if the assigneeID is not in the database, waiting on EmployeeDAO
-        {
-            return 2;
-        }
-        */
     }
 
     /**
      *Determine if the location ID sent from a ServiceRequestCreateController object exists in the Location Table database.
-     * If the location ID does not exist in the Location Table database, return 3. Else, return 0.
+     * If the location ID does not exist in the Location Table database, return 6. Else, return 0.
      * @param locationID The location ID of the service request
      * @return int
      */
@@ -49,7 +42,7 @@ public class ServiceRequestFormEvaluator {
 
         if(locationDaoVar.getLocation(locationID) == null) //assumes the user inputs a location ID in the service request location field.
         {
-            return 3;
+            return 6;
         }
         else
         {
@@ -57,15 +50,18 @@ public class ServiceRequestFormEvaluator {
         }
     }
 
-    //Overload these methods below:
+    //Overload these methods in each subclass below, it doesn't make sense to have only one type of check for all required fields.
 
     /**
-     * Determine if all required fields of a service request are filled. The required fields for a Facility Maintenance ServiceRequest are assigneeID, LocationID, Status, Priority, and Maintenance Type.
+     * Determine if all required fields of a Service Request are filled. The required fields for a Service Request are at least assigneeID, LocationID, Status, and Priority.
      * If all required fields are not filled, return 4. Else, return 0.
-     * @param
+     * @param locationID The location ID of s service request
+     * @param assigneeID The assigneeID of a service request
+     * @param status The current status of a service request
+     * @param priority The priority of a service request
      * @return int
      */
-    public int getValidateAllRequiredFieldsFilledResult()
+    public int getValidateAllRequiredFieldsFilledResult(String locationID, String assigneeID, String status, String priority)
     {
         return 0;
     }

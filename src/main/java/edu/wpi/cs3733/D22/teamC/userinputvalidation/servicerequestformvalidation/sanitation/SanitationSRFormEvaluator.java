@@ -6,12 +6,6 @@ public class SanitationSRFormEvaluator extends ServiceRequestFormEvaluator {
 
     public SanitationSRFormEvaluator() {}
 
-    public int getSanitationSRFormValidationChecksResult(String ID, String location)
-    {
-        int validationResult = 0;
-        return 0;
-    }
-
     @Override
     public int getValidateAssigneeIDResult(String ID) {
         return super.getValidateAssigneeIDResult(ID);

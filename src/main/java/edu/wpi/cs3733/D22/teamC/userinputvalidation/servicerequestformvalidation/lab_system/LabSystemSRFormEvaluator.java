@@ -6,12 +6,6 @@ public class LabSystemSRFormEvaluator extends ServiceRequestFormEvaluator {
 
     public LabSystemSRFormEvaluator() {}
 
-    public int getLabSystemSRFormValidationChecksResult(String ID, String location)
-    {
-        int validationResult = 0;
-        return 0;
-    }
-
     @Override
     public int getValidateAssigneeIDResult(String ID) {
         return super.getValidateAssigneeIDResult(ID);
