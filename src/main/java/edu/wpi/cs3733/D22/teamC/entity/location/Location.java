@@ -36,8 +36,7 @@ public class Location {
 
 
     @Deprecated
-    public Location(int nodeID, String floor, String building, NodeType nodeType, String longName, String shortName, int x, int y) {
-        this.nodeID = nodeID;
+    public Location(String floor, String building, NodeType nodeType, String longName, String shortName, int x, int y) {
         this.floor = floor;
         this.building = building;
         this.nodeType = nodeType;
