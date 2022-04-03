@@ -10,13 +10,18 @@ import edu.wpi.cs3733.D22.teamC.entity.service_request.ServiceRequest;
 import edu.wpi.cs3733.D22.teamC.entity.service_request.ServiceRequestDAO;
 import edu.wpi.cs3733.D22.teamC.entity.service_request.ServiceRequestDAOImpl;
 import edu.wpi.cs3733.D22.teamC.models.service_request.ServiceRequestTable;
+import edu.wpi.cs3733.D22.teamC.models.service_request.ServiceRequestSingleton;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.TreeItem;
+import javafx.scene.control.TreeTableRow;
+import javafx.scene.input.MouseButton;
+import javafx.scene.input.MouseEvent;
 
+import java.io.IOException;
 import java.net.URL;
 import java.util.List;
 import java.util.ResourceBundle;
@@ -28,6 +33,8 @@ public class ServiceRequestsViewController implements Initializable {
     public static final String SANITATION_CREATE_PATH = "view/service_request/sanitation/create_form.fxml";
     public static final String FACILITY_MAINTENANCE_CREATE_PATH = "view/service_request/facility_maintenance/create_form.fxml";
     public static final String SECURITY_CREATE_PATH = "view/service_request/security/create_form.fxml";
+
+    public static final String MEDICAL_EQUIPMENT_RESOLVE_PATH = "view/service_request/medical_equipment/resolve-form.fxml";
 
 
     //Buttons
@@ -89,5 +96,31 @@ public class ServiceRequestsViewController implements Initializable {
                 break;
             default:
         }
+    }
+
+    //On mouse click
+    @FXML
+    protected void getRow(MouseEvent blah) throws IOException {
+        table.setRowFactory(tv -> {
+            TreeTableRow<ServiceRequestTable> row = new TreeTableRow<ServiceRequestTable>();
+            row.setOnMouseClicked(event -> {
+                if (! row.isEmpty() && event.getButton()== MouseButton.PRIMARY
+                        && event.getClickCount() == 2) {
+
+                    ServiceRequestTable clickedRow = row.getItem();
+                    System.out.println(clickedRow.getPriority());
+
+                    sendData(clickedRow);
+                    App.instance.setView(MEDICAL_EQUIPMENT_RESOLVE_PATH);
+
+                }
+            });
+            return row ;
+        });
+    }
+
+    private void sendData(ServiceRequestTable row) {
+        ServiceRequestSingleton holder = ServiceRequestSingleton.INSTANCE;
+        holder.setServerRequestTable(row);
     }
 }

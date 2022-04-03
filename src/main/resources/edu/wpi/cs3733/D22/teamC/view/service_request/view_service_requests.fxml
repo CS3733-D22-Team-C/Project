@@ -11,7 +11,7 @@
 
 <AnchorPane prefHeight="503.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.wpi.cs3733.D22.teamC.controller.general.ServiceRequestsViewController">
    <children>
-      <JFXTreeTableView fx:id="table" layoutX="34.0" layoutY="25.0" prefHeight="400.0" prefWidth="532.0" />
+      <JFXTreeTableView fx:id="table" layoutX="34.0" layoutY="25.0" onMouseClicked="#getRow" prefHeight="400.0" prefWidth="532.0" />
       <VBox layoutX="228.0" layoutY="454.0" prefHeight="37.0" prefWidth="139.0">
          <children>
             <Label prefHeight="48.0" prefWidth="139.0" styleClass="textarea" text="Create a Service Request:">
