@@ -12,6 +12,7 @@ import edu.wpi.cs3733.D22.teamC.fileio.csv.MedicalEquipmentSRCSVWriter;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
+import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.layout.BorderPane;
 import javafx.stage.Stage;
@@ -119,7 +120,7 @@ public class App extends Application {
 
             // Embed views and components
             baseNode.setCenter(viewNode);
-            baseNode.setTop(menuBarNode);
+//            baseNode.setTop(menuBarNode);
 
             Scene scene = new Scene(baseNode);
             stage.setScene(scene);
