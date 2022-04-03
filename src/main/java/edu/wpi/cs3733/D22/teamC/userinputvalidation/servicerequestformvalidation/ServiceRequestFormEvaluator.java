@@ -12,14 +12,15 @@ public class ServiceRequestFormEvaluator {
     /**
      * Determine if the assigneeID sent from a ServiceRequestCreateController object is valid through checking its length and if it exists in the Employee Table database.
      * If the assigneeID is too short, return 1. Else if the assigneeID does not exist in the Employee Table of the database, return 2. Else, return 0.
-     * @param ID The assigneeID of the service request.
+     * @param assigneeID The assigneeID of the service request.
      * @return int.
      */
-    public int getValidateAssigneeIDResult(String ID)
+    public int getValidateAssigneeIDResult(String assigneeID)
     {
         ServiceRequestDAOImpl serviceRequestDaoVar = new ServiceRequestDAOImpl();
+        int assigneeIDCopy = Integer.parseInt(assigneeID);
 
-        if(ID.length() < 10)
+        if(assigneeID.length() < 10)
         {
             return 1; //Return 1 if the assigneeID is not the proper length
         }
@@ -56,13 +57,16 @@ public class ServiceRequestFormEvaluator {
         }
     }
 
+    //Overload these methods below:
+
     /**
-     * Determine if all required fields of a service request are filled. The required fields for all service requests
+     * Determine if all required fields of a service request are filled. The required fields for a Facility Maintenance ServiceRequest are assigneeID, LocationID, Status, Priority, and Maintenance Type.
      * If all required fields are not filled, return 4. Else, return 0.
-     * @return
+     * @param
+     * @return int
      */
     public int getValidateAllRequiredFieldsFilledResult()
     {
-
+        return 0;
     }
 }
