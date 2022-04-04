@@ -107,4 +107,11 @@ public class MedicalEquipmentSRCreateController extends ServiceRequestCreateCont
 
         return medEquip;
     }
+
+    private boolean medicalEquipmentUserInputValidationTestPassed(int assigneeID, int locationID, int equipID, String priority, String status, String equipType)
+    {
+        return false;
+    }
+
+
 }

@@ -57,10 +57,10 @@ public class SecuritySRCreateController extends ServiceRequestCreateController {
 
         if (assigneeID.getText().isEmpty() || secType.getSelectionModel().isEmpty() ||
         location.getText().isEmpty() || priority.getSelectionModel().isEmpty() ||
-                status.getSelectionModel().isEmpty())
-        {
+                status.getSelectionModel().isEmpty()) {
             return null;
-        } else
+        }
+        else
         {
 
             SecuritySR securitySR = new SecuritySR();
@@ -83,5 +83,10 @@ public class SecuritySRCreateController extends ServiceRequestCreateController {
             METList.add(met);
             return securitySR;
         }
+    }
+
+    private boolean securityUserInputValidationTestPassed(int assigneeID, int locationID, String priority, String status, String securityType)
+    {
+        return false;
     }
 }

@@ -78,4 +78,9 @@ public class MedicineDeliverySRCreateController extends ServiceRequestCreateCont
 
         return medicineDeliverySR;
     }
+
+    private boolean medicineDeliveryUserInputValidationTestPassed(int assigneeID, int locationID, int patientID, String priority, String status, String medicine, String dosage)
+    {
+        return false;
+    }
 }

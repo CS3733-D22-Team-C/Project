@@ -84,5 +84,8 @@ public class LabSystemSRCreateController extends ServiceRequestCreateController 
         return labSystem;
     }
 
-
+    private boolean labSystemUserInputValidationTestPassed(int assigneeID, int locationID, int patientID, String priority, String status, String labType)
+    {
+        return false;
+    }
 }

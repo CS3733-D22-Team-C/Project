@@ -83,4 +83,9 @@ public class SanitationSRCreateController extends ServiceRequestCreateController
 
         return sanitationSR;
     }
+
+    private boolean sanitationUserInputValidationTestPassed(int assigneeID, int locationID, String priority, String status, String sanitationType)
+    {
+        return false;
+    }
 }

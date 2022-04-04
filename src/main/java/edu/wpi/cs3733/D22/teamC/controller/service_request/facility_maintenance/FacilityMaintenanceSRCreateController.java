@@ -4,6 +4,7 @@ import com.jfoenix.controls.*;
 import com.jfoenix.controls.datamodels.treetable.RecursiveTreeObject;
 import edu.wpi.cs3733.D22.teamC.controller.service_request.ServiceRequestCreateController;
 import edu.wpi.cs3733.D22.teamC.entity.service_request.ServiceRequest;
+import edu.wpi.cs3733.D22.teamC.error.error_item.service_request_user_input_validation.ServiceRequestUserInputValidationErrorItem;
 import edu.wpi.cs3733.D22.teamC.models.service_request.facility_maintenance.FacilityMaintenanceSRTable;
 import edu.wpi.cs3733.D22.teamC.entity.service_request.facility_maintenance.FacilityMaintenanceSR;
 import javafx.collections.FXCollections;
@@ -13,6 +14,7 @@ import javafx.fxml.FXML;
 import javafx.scene.control.*;
 
 import java.net.URL;
+import java.util.ArrayList;
 import java.util.ResourceBundle;
 
 public class FacilityMaintenanceSRCreateController extends ServiceRequestCreateController {
@@ -42,28 +44,42 @@ public class FacilityMaintenanceSRCreateController extends ServiceRequestCreateC
         maintType.clear();
     }
 
+    //Confused about how to properly abstract clickSubmit, I needed a downcast for it to work, which doesn't seem right.
     @FXML
     protected FacilityMaintenanceSR clickSubmit(ActionEvent event) {
-        FacilityMaintenanceSR fmsr = new FacilityMaintenanceSR();
-        fmsr.setMaintenanceType(FacilityMaintenanceSR.MaintenanceType.valueOf(maintType.getText()));
-        fmsr.setAssigneeID(assigneeID.getText());
-        fmsr.setLocation(location.getText());
-        fmsr.setPriority(ServiceRequest.Priority.valueOf(priority.getValue())); //getValue directly returns the value of a selected item from a JavaFX ComboBox
-        fmsr.setStatus(ServiceRequest.Status.valueOf(status.getValue()));
-        fmsr.setDescription(description.getText());
 
-        fmsr.setRequestType(ServiceRequest.RequestType.Facility_Maintenance);
+        ArrayList <ServiceRequestUserInputValidationErrorItem> errors = facilityMaintenanceUserInputValidationTestPassed(assigneeID.getText(), location.getText(), priority.getValue(), status.getValue(), maintType.getText())
 
+        if(errors.isEmpty())
+        {
+            FacilityMaintenanceSR fmsr = new FacilityMaintenanceSR();
 
-        //Dealing with the equipment type and the enumerator
-        //int type = fmsr.getMaintenanceTypeEnum(maintType.getText());
-        clickReset(event);
+            fmsr.setAssigneeID(assigneeID.getText());
+            fmsr.setLocation(location.getText());
+            fmsr.setPriority(ServiceRequest.Priority.valueOf(priority.getValue())); //getValue directly returns the value of a selected item from a JavaFX ComboBox
+            fmsr.setStatus(ServiceRequest.Status.valueOf(status.getValue()));
+            fmsr.setDescription(description.getText());
 
-        // Add Table Entry
-        FacilityMaintenanceSRTable met = new FacilityMaintenanceSRTable(fmsr);
-        METList.add(met);
+            fmsr.setMaintenanceType(FacilityMaintenanceSR.MaintenanceType.valueOf(maintType.getText()));
+            fmsr.setRequestType(ServiceRequest.RequestType.Facility_Maintenance);
 
-        return fmsr;
+            clickReset(event);
+
+            // Add Table Entry
+            FacilityMaintenanceSRTable met = new FacilityMaintenanceSRTable(fmsr);
+            METList.add(met);
+
+            return fmsr;
+        }
+        else
+        {
+
+        }
+    }
+
+    private ArrayList<ServiceRequestUserInputValidationErrorItem> facilityMaintenanceUserInputValidationTestPassed(int assigneeID, int locationID, String priority, String status, String maintenanceType)
+    {
+        return null;
     }
 
 }
