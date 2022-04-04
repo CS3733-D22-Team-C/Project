@@ -1,8 +1,8 @@
 package edu.wpi.cs3733.D22.teamC.entity.medical_equipment;
 
 public class MedicalEquipment {
-    protected int locationID;
     protected int equipID;
+    protected int locationID;
     protected EquipmentType equipmentType;
     protected EquipmentStatus equipmentStatus;
 
@@ -22,6 +22,8 @@ public class MedicalEquipment {
     public EquipmentType getEquipmentType() {
         return equipmentType;
     }
+
+    public MedicalEquipment(int equipID) { this.equipID = equipID}
 
     public void setEquipmentType(EquipmentType equipmentType) {
         this.equipmentType = equipmentType;
