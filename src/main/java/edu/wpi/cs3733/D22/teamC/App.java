@@ -35,14 +35,15 @@ public class App extends Application {
     public static final String VIEW_LOCATIONS_PATH = "view/location/view_locations.fxml";
     public static final String VIEW_SERVICE_REQUESTS_PATH = "view/service_request/view_service_requests.fxml";
 
-    // Declare Singleton Instance
+    // Singleton Instance
     public static App instance;
 
     // Variables
     private Stage stage;
     private Scene scene;
-    Node menuBarNode;
-    Node viewNode;
+
+    // References
+    private Node viewNode;
 
     @Override
     public void init() {
@@ -76,38 +77,12 @@ public class App extends Application {
     public void start(Stage primaryStage) {
         // Create singleton instance
         instance = this;
+
         // Store window as stage
         stage = primaryStage;
+        stage.setFullScreen(true);
 
-        try {
-            // Load Base Page
-            FXMLLoader loader = new FXMLLoader();
-            loader.setLocation(getClass().getResource(BASE_COMPONENT_PATH));
-            BorderPane baseNode = loader.load();
-
-            // Load View  HOME_PATH
-            loader = new FXMLLoader(); // might not need this
-            loader.setLocation(getClass().getResource(HOME_PATH));
-            viewNode = loader.load();
-
-            // Load Menu Bar
-            loader = new FXMLLoader();
-            loader.setLocation(getClass().getResource(MENU_BAR_COMPONENT_PATH));
-            menuBarNode = loader.load();
-
-            // Embed views and components
-            baseNode.setCenter(viewNode);
-            baseNode.setTop(menuBarNode);
-
-            scene = new Scene(baseNode);
-            stage.setScene(scene);
-            stage.setFullScreen(true);
-            stage.show();
-        }
-        catch (IOException e) {
-            System.out.println("Could not load file " + HOME_PATH);
-            e.printStackTrace();
-        }
+        setView(HOME_PATH);
     }
 
     @Override
@@ -137,9 +112,8 @@ public class App extends Application {
      * @param viewFile path to the .fxml file to be displayed
      */
     public void setView(String viewFile){
-
         try {
-
+            // Load Base Node
             FXMLLoader loader = new FXMLLoader();
             loader.setLocation(getClass().getResource(BASE_COMPONENT_PATH));
             BorderPane baseNode = loader.load();
@@ -152,26 +126,23 @@ public class App extends Application {
             // Load Menu Bar
             loader = new FXMLLoader();
             loader.setLocation(getClass().getResource(MENU_BAR_COMPONENT_PATH));
-            menuBarNode = loader.load();
+            Node menuBarNode = loader.load();
 
             // Embed views and components
             baseNode.setTop(menuBarNode);
             baseNode.setCenter(viewNode);
             baseNode.autosize();
-            scene.setRoot(baseNode);
+
+            if (scene != null) scene.setRoot(baseNode);
             scene = new Scene(baseNode);
             stage.setScene(scene);
             stage.show();
-
-
-        }
-        catch (IOException e) {
+        } catch (IOException e) {
             System.out.println("Could not load file " + viewFile);
             e.printStackTrace();
         }
-
-
     }
+
     public Stage getStage() {
         return stage;
     }
