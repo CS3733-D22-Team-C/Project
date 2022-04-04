@@ -1,22 +1,13 @@
-package edu.wpi.cs3733.D22.teamC.userinputvalidation.service_request;
+package edu.wpi.cs3733.D22.teamC.user_input_validation.service_request;
 
 //Note: If user input validation expands beyond service requests forms as development continues, then user validation can be further abstracted when refactoring.
 
 import edu.wpi.cs3733.D22.teamC.entity.service_request.ServiceRequestDAOImpl;
 import edu.wpi.cs3733.D22.teamC.entity.location.LocationDAOImpl;
-import edu.wpi.cs3733.D22.teamC.error.error_item.ServiceRequestValidationErrorItem;
+import edu.wpi.cs3733.D22.teamC.error.error_item.service_request_user_input_validation.ServiceRequestUserInputValidationErrorItem;
+import edu.wpi.cs3733.D22.teamC.error.error_record.service_request_user_input_validation.ServiceRequestUserInputValidationErrorRecord;
 
 public class ServiceRequestFormEvaluator {
-
-    protected static final ServiceRequestValidationErrorItem[] serviceRequestValidationGeneralErrorItemList =
-            {new ServiceRequestValidationErrorItem(1, "Required field Location ID is missing"),
-            new ServiceRequestValidationErrorItem(2, "Required field AssigneeID is missing"),
-            new ServiceRequestValidationErrorItem(3, "Required field Status is missing"),
-            new ServiceRequestValidationErrorItem(4, "Required field Priority is missing"),
-                    new ServiceRequestValidationErrorItem(5, "Assignee ID does not exist"),
-                    new ServiceRequestValidationErrorItem(6, "Location ID does not exist"),
-            };
-
 
     public ServiceRequestFormEvaluator() {}
 
@@ -26,7 +17,7 @@ public class ServiceRequestFormEvaluator {
      * @param assigneeID The assigneeID of the service request.
      * @return ServiceRequestValidationErrorItem.
      */
-    public ServiceRequestValidationErrorItem getValidateAssigneeIDResult(int assigneeID)
+    public ServiceRequestUserInputValidationErrorItem getValidateAssigneeIDResult(int assigneeID)
     {
         ServiceRequestDAOImpl serviceRequestDaoVar = new ServiceRequestDAOImpl();
 
@@ -38,7 +29,7 @@ public class ServiceRequestFormEvaluator {
         }
         else
         {
-            return serviceRequestValidationGeneralErrorItemList[4];
+            return ServiceRequestUserInputValidationErrorRecord.serviceRequestUserInputValidationErrorList[4];
         }
 
     }
@@ -49,13 +40,13 @@ public class ServiceRequestFormEvaluator {
      * @param locationID The location ID of the service request
      * @return ServiceRequestValidationErrorItem
      */
-    public ServiceRequestValidationErrorItem getValidateLocationIDResult(int locationID)
+    public ServiceRequestUserInputValidationErrorItem getValidateLocationIDResult(int locationID)
     {
         LocationDAOImpl locationDaoVar = new LocationDAOImpl();
 
         if(locationDaoVar.getLocation(locationID) == null) //assumes the user inputs a location ID in the service request location field.
         {
-            return serviceRequestValidationGeneralErrorItemList[5];
+            return (ServiceRequestUserInputValidationErrorItem) ServiceRequestUserInputValidationErrorRecord.serviceRequestUserInputValidationErrorList[5];
         }
         else
         {
@@ -69,13 +60,13 @@ public class ServiceRequestFormEvaluator {
      * @param assigneeID
      * @return ServiceRequestValidationErrorItem
      */
-    public ServiceRequestValidationErrorItem checkAssigneeIDFilled(int assigneeID)
+    public ServiceRequestUserInputValidationErrorItem checkAssigneeIDFilled(int assigneeID)
     {
         int assigneeIDLength = (int)(Math.log10(assigneeID)+1);
 
         if(assigneeIDLength == 0)
         {
-            return serviceRequestValidationGeneralErrorItemList[1];
+            return ServiceRequestUserInputValidationErrorRecord.serviceRequestUserInputValidationErrorList[1];
         }
         else
         {
@@ -88,13 +79,13 @@ public class ServiceRequestFormEvaluator {
      * @param locationID
      * @return ServiceRequestValidationErrorItem
      */
-    public ServiceRequestValidationErrorItem checkLocationIDFilled(int locationID)
+    public ServiceRequestUserInputValidationErrorItem checkLocationIDFilled(int locationID)
     {
         int locationIDLength = (int)(Math.log10(locationID)+1);
 
         if(locationIDLength == 0)
         {
-            return serviceRequestValidationGeneralErrorItemList[0];
+            return ServiceRequestUserInputValidationErrorRecord.serviceRequestUserInputValidationErrorList[0];
         }
         else
         {
@@ -107,11 +98,11 @@ public class ServiceRequestFormEvaluator {
      * @param status
      * @return ServiceRequestValidationErrorItem
      */
-    public ServiceRequestValidationErrorItem checkStatusFilled(String status)
+    public ServiceRequestUserInputValidationErrorItem checkStatusFilled(String status)
     {
        if(status.length() == 0)
        {
-           return serviceRequestValidationGeneralErrorItemList[2];
+           return ServiceRequestUserInputValidationErrorRecord.serviceRequestUserInputValidationErrorList[2];
        }
        else
        {
@@ -124,11 +115,11 @@ public class ServiceRequestFormEvaluator {
      * @param priority
      * @return ServiceRequestValidationErrorItem
      */
-    public ServiceRequestValidationErrorItem checkPriorityFilled(String priority)
+    public ServiceRequestUserInputValidationErrorItem checkPriorityFilled(String priority)
     {
         if(priority.length() == 0)
         {
-            return serviceRequestValidationGeneralErrorItemList[3];
+            return ServiceRequestUserInputValidationErrorRecord.serviceRequestUserInputValidationErrorList[3];
         }
         else
         {

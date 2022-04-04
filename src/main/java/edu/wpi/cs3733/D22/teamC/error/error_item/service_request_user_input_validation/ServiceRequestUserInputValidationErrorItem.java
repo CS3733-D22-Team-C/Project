@@ -1,11 +1,11 @@
-package edu.wpi.cs3733.D22.teamC.error.error_item;
+package edu.wpi.cs3733.D22.teamC.error.error_item.service_request_user_input_validation;
 
-public class ServiceRequestValidationErrorItem extends ErrorItem {
+public class ServiceRequestUserInputValidationErrorItem {
     private String reasonForValidationError;
+    private int errorNumber;
 
-    public ServiceRequestValidationErrorItem(int errorNumber, String reasonForValidationError)
+    public ServiceRequestUserInputValidationErrorItem(int errorNumber, String reasonForValidationError)
     {
-        this.errorType = "User Input Validation";
         this.reasonForValidationError = reasonForValidationError;
         this.errorNumber = errorNumber;
     }
