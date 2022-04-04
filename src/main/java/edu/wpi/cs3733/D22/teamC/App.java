@@ -11,10 +11,14 @@ import edu.wpi.cs3733.D22.teamC.fileio.csv.MedicalEquipmentSRCSVReader;
 import edu.wpi.cs3733.D22.teamC.fileio.csv.MedicalEquipmentSRCSVWriter;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.Group;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
+import javafx.scene.layout.Pane;
+import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 import lombok.extern.slf4j.Slf4j;
 
@@ -37,6 +41,8 @@ public class App extends Application {
     // Variables
     private Stage stage;
     private Scene scene;
+    Node menuBarNode;
+    Node viewNode;
 
     @Override
     public void init() {
@@ -79,15 +85,15 @@ public class App extends Application {
             loader.setLocation(getClass().getResource(BASE_COMPONENT_PATH));
             BorderPane baseNode = loader.load();
 
-            // Load View
+            // Load View  HOME_PATH
             loader = new FXMLLoader(); // might not need this
             loader.setLocation(getClass().getResource(HOME_PATH));
-            Node viewNode = loader.load();
+            viewNode = loader.load();
 
             // Load Menu Bar
             loader = new FXMLLoader();
             loader.setLocation(getClass().getResource(MENU_BAR_COMPONENT_PATH));
-            Node menuBarNode = loader.load();
+            menuBarNode = loader.load();
 
             // Embed views and components
             baseNode.setCenter(viewNode);
@@ -95,6 +101,7 @@ public class App extends Application {
 
             scene = new Scene(baseNode);
             stage.setScene(scene);
+            stage.setFullScreen(true);
             stage.show();
         }
         catch (IOException e) {
@@ -133,10 +140,29 @@ public class App extends Application {
 
         try {
 
-            FXMLLoader loader = new FXMLLoader(); // might not need this
+            FXMLLoader loader = new FXMLLoader();
+            loader.setLocation(getClass().getResource(BASE_COMPONENT_PATH));
+            BorderPane baseNode = loader.load();
+
+            // Load View
+            loader = new FXMLLoader();
             loader.setLocation(getClass().getResource(viewFile));
-            Parent viewNode = loader.load();
-            scene.setRoot(viewNode);
+            viewNode = loader.load();
+
+            // Load Menu Bar
+            loader = new FXMLLoader();
+            loader.setLocation(getClass().getResource(MENU_BAR_COMPONENT_PATH));
+            menuBarNode = loader.load();
+
+            // Embed views and components
+            baseNode.setTop(menuBarNode);
+            baseNode.setCenter(viewNode);
+
+            scene.setRoot(baseNode);
+            scene = new Scene(baseNode);
+            stage.setScene(scene);
+            stage.show();
+
 
         }
         catch (IOException e) {
@@ -146,7 +172,6 @@ public class App extends Application {
 
 
     }
-
     public Stage getStage() {
         return stage;
     }
