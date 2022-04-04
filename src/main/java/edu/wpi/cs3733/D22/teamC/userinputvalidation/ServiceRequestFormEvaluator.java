@@ -1,10 +1,9 @@
-package edu.wpi.cs3733.D22.teamC.userinputvalidation.servicerequestformvalidation;
+package edu.wpi.cs3733.D22.teamC.userinputvalidation;
 
 //Note: If user input validation expands beyond service requests forms as development continues, then user validation can be further abstracted when refactoring.
 
 import edu.wpi.cs3733.D22.teamC.entity.service_request.ServiceRequestDAOImpl;
 import edu.wpi.cs3733.D22.teamC.entity.location.LocationDAOImpl;
-import java.util.ArrayList;
 
 public class ServiceRequestFormEvaluator {
 
