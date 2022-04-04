@@ -4,7 +4,7 @@ package edu.wpi.cs3733.D22.teamC.userinputvalidation.service_request;
 
 import edu.wpi.cs3733.D22.teamC.entity.service_request.ServiceRequestDAOImpl;
 import edu.wpi.cs3733.D22.teamC.entity.location.LocationDAOImpl;
-import edu.wpi.cs3733.D22.teamC.error.ServiceRequestValidationErrorItem;
+import edu.wpi.cs3733.D22.teamC.error.error_item.ServiceRequestValidationErrorItem;
 
 public class ServiceRequestFormEvaluator {
 

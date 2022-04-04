@@ -1,6 +1,6 @@
 package edu.wpi.cs3733.D22.teamC.userinputvalidation.service_request.sanitation;
 
-import edu.wpi.cs3733.D22.teamC.error.ServiceRequestValidationErrorItem;
+import edu.wpi.cs3733.D22.teamC.error.error_item.ServiceRequestValidationErrorItem;
 import edu.wpi.cs3733.D22.teamC.userinputvalidation.service_request.ServiceRequestFormEvaluator;
 
 public class SanitationSRFormEvaluator extends ServiceRequestFormEvaluator {
