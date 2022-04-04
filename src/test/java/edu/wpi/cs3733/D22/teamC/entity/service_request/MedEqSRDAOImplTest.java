@@ -195,6 +195,8 @@ class MedEqSRDAOImplTest {
         description = "help plz";
         equipID = "BED003";
         equipType = MedicalEquipmentSR.EquipmentType.Bed;
+        String modifierID = "WillSmith";
+        Timestamp modifiedTimestamp = new Timestamp(23098213);
 
         updateSR.setCreatorID(creatorID);
         updateSR.setAssigneeID(assigneeID);
@@ -203,11 +205,13 @@ class MedEqSRDAOImplTest {
         updateSR.setPriority(priority);
         updateSR.setRequestType(requestType);
         updateSR.setDescription(description);
+        updateSR.setModifierID(modifierID);
+        updateSR.setModifiedTimestamp(modifiedTimestamp);
         updateSR.setEquipmentID(equipID);
         updateSR.setEquipmentType(equipType);
         assertTrue(medicalEqDAO.updateServiceRequest(updateSR));
         assertEquals(1, medicalEqDAO.getAllServiceRequests().size());
-
+        
         // Check that DB values are expected
         MedicalEquipmentSR querySR = medicalEqDAO.getServiceRequest(updateSR.getRequestID());
         assertNotNull(querySR);
@@ -221,6 +225,8 @@ class MedEqSRDAOImplTest {
         assertEquals(description, querySR.getDescription());
         assertEquals(equipID, querySR.getEquipmentID());
         assertEquals(equipType, querySR.getEquipmentType());
+        assertEquals(modifierID, querySR.getModifierID());
+        assertEquals(modifiedTimestamp, querySR.getModifiedTimestamp());
 
         // Cannot Update Nonexistent Location
         MedicalEquipmentSR newSR = new MedicalEquipmentSR();

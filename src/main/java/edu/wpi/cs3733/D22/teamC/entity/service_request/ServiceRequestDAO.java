@@ -29,6 +29,8 @@ public abstract class ServiceRequestDAO<T extends ServiceRequest> {
             serviceRequest.setPriority(ServiceRequest.Priority.valueOf(resultSet.getString("PRIORITY")));
             serviceRequest.setRequestType(ServiceRequest.RequestType.valueOf(resultSet.getString("REQUESTTYPE")));
             serviceRequest.setDescription(typesafeTrim(resultSet.getString("DESCRIPTION")));
+            serviceRequest.setModifierID(typesafeTrim(resultSet.getString("ModifierID")));
+            serviceRequest.setModifiedTimestamp(resultSet.getTimestamp("ModifiedTimestamp"));
 
             return serviceRequest;
 

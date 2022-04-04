@@ -126,7 +126,7 @@ public class LabSystemSRDAOImpl extends LabSystemSRDAO {
                 if (successParent) {
                     // Update the child-unique attributes in the child table.
                     PreparedStatement statement = DBManager.getInstance().connection.prepareStatement(
-                            "UPDATE LAB_SYSTEM_SR SET labType = ?, patientID = ? " +
+                            "UPDATE LAB_SYSTEM_SR SET LabType = ?, PatientID = ? " +
                                     "WHERE ID = ?"
                     );
                     statement.setString(1, serviceRequest.getLabType().toString());
