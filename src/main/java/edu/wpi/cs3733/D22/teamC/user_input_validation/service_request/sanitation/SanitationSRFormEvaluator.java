@@ -8,35 +8,7 @@ public class SanitationSRFormEvaluator extends ServiceRequestFormEvaluator {
 
     public SanitationSRFormEvaluator() {}
 
-    @Override
-    public ServiceRequestUserInputValidationErrorItem getValidateAssigneeIDResult(int ID) {
-        return super.getValidateAssigneeIDResult(ID);
-    }
 
-    @Override
-    public ServiceRequestUserInputValidationErrorItem getValidateLocationIDResult(int location) {
-        return super.getValidateLocationIDResult(location);
-    }
-
-    @Override
-    public ServiceRequestUserInputValidationErrorItem checkAssigneeIDFilled(int assigneeID) {
-        return super.checkAssigneeIDFilled(assigneeID);
-    }
-
-    @Override
-    public ServiceRequestUserInputValidationErrorItem checkLocationIDFilled(int locationID) {
-        return super.checkLocationIDFilled(locationID);
-    }
-
-    @Override
-    public ServiceRequestUserInputValidationErrorItem checkStatusFilled(String status) {
-        return super.checkStatusFilled(status);
-    }
-
-    @Override
-    public ServiceRequestUserInputValidationErrorItem checkPriorityFilled(String priority) {
-        return super.checkPriorityFilled(priority);
-    }
 
     /**
      * Determine if the Sanitation Type of Sanitation Service Request has been filled

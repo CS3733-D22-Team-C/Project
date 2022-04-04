@@ -7,9 +7,31 @@ import edu.wpi.cs3733.D22.teamC.entity.location.LocationDAOImpl;
 import edu.wpi.cs3733.D22.teamC.error.error_item.service_request_user_input_validation.ServiceRequestUserInputValidationErrorItem;
 import edu.wpi.cs3733.D22.teamC.error.error_record.service_request_user_input_validation.ServiceRequestUserInputValidationErrorRecord;
 
+import java.util.ArrayList;
+
 public class ServiceRequestFormEvaluator {
 
     public ServiceRequestFormEvaluator() {}
+
+    /**
+     * Determine if all the basic fields of a Service Request (locationID, assigneeID, status, and priority) have been filled,
+     * @param locationID
+     * @param assigneeID
+     * @param status
+     * @param priority
+     * @return ArrayList <ServiceRequestUserInputValidationErrorItem>
+     */
+    public ArrayList<ServiceRequestUserInputValidationErrorItem> getBasicRequiredFieldsFilledValidationResult(int locationID, int assigneeID, String status, String priority)
+    {
+        ArrayList <ServiceRequestUserInputValidationErrorItem> errorList = new ArrayList <ServiceRequestUserInputValidationErrorItem>();
+
+        errorList.add(checkAssigneeIDFilled(assigneeID));
+        errorList.add(checkLocationIDFilled(locationID));
+        errorList.add(checkPriorityFilled(priority));
+        errorList.add(checkStatusFilled(status));
+
+        return errorList;
+    }
 
     /**
      * Determine if the assigneeID sent from a ServiceRequestCreateController object is valid through checking if it exists in the Employee Table database.
@@ -31,7 +53,6 @@ public class ServiceRequestFormEvaluator {
         {
             return ServiceRequestUserInputValidationErrorRecord.serviceRequestUserInputValidationErrorList[4];
         }
-
     }
 
     /**
@@ -46,13 +67,12 @@ public class ServiceRequestFormEvaluator {
 
         if(locationDaoVar.getLocation(locationID) == null) //assumes the user inputs a location ID in the service request location field.
         {
-            return (ServiceRequestUserInputValidationErrorItem) ServiceRequestUserInputValidationErrorRecord.serviceRequestUserInputValidationErrorList[5];
+            return ServiceRequestUserInputValidationErrorRecord.serviceRequestUserInputValidationErrorList[5];
         }
         else
         {
             return null;
         }
-
     }
 
     /**

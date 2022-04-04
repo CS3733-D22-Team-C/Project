@@ -11,39 +11,14 @@ public class FacilityMaintenanceSRFormEvaluator extends ServiceRequestFormEvalua
 
     public ArrayList<ServiceRequestUserInputValidationErrorItem> getFacilityMaintenanceSRValidationTestResult(int locationID, int assigneeID, String status, String priority, String maintenanceType)
     {
-        ArrayList <ServiceRequestUserInputValidationErrorItem> list = new ArrayList <ServiceRequestUserInputValidationErrorItem> ();
+        ArrayList <ServiceRequestUserInputValidationErrorItem> errorList = new ArrayList <ServiceRequestUserInputValidationErrorItem> ();
 
-        return null;
-    }
+        errorList.addAll(super.getBasicRequiredFieldsFilledValidationResult(locationID, assigneeID, status, priority));
+        errorList.add(super.getValidateAssigneeIDResult(assigneeID));
+        errorList.add(super.getValidateLocationIDResult(locationID));
+        errorList.add(checkMaintenanceTypeFilled(maintenanceType));
 
-    @Override
-    public ServiceRequestUserInputValidationErrorItem getValidateAssigneeIDResult(int assigneeID) {
-        return super.getValidateAssigneeIDResult(assigneeID);
-    }
-
-    @Override
-    public ServiceRequestUserInputValidationErrorItem getValidateLocationIDResult(int locationID) {
-        return super.getValidateLocationIDResult(locationID);
-    }
-
-    @Override
-    public ServiceRequestUserInputValidationErrorItem checkAssigneeIDFilled(int assigneeID) {
-        return super.checkAssigneeIDFilled(assigneeID);
-    }
-
-    @Override
-    public ServiceRequestUserInputValidationErrorItem checkLocationIDFilled(int locationID) {
-        return super.checkLocationIDFilled(locationID);
-    }
-
-    @Override
-    public ServiceRequestUserInputValidationErrorItem checkStatusFilled(String status) {
-        return super.checkStatusFilled(status);
-    }
-
-    @Override
-    public ServiceRequestUserInputValidationErrorItem checkPriorityFilled(String priority) {
-        return super.checkPriorityFilled(priority);
+        return errorList;
     }
 
     /**
