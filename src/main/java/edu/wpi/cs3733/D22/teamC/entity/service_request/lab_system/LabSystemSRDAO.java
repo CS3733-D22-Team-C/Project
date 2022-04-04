@@ -22,6 +22,7 @@ public abstract class LabSystemSRDAO extends ServiceRequestDAO<LabSystemSR> {
             serviceRequest.setPatientID(typesafeTrim(resultSet.getString("patientID")));
     
             return serviceRequest;
+
         } catch (SQLException e) {
             System.out.println("Creation of object from database ResultSet failed.");
             e.printStackTrace();

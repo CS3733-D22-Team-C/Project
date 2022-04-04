@@ -196,6 +196,8 @@ public class LabSystemSRDAOImplTest {
         description = "help plz";
         labType = LabSystemSR.LabType.Cat_Scan;
         patientID = "heDeadUh";
+        String modifierID = "WillSmith";
+        Timestamp modifiedTimestamp = new Timestamp(23098213);
         
         updateSR.setCreatorID(creatorID);
         updateSR.setAssigneeID(assigneeID);
@@ -204,6 +206,9 @@ public class LabSystemSRDAOImplTest {
         updateSR.setPriority(priority);
         updateSR.setRequestType(requestType);
         updateSR.setDescription(description);
+        updateSR.setModifierID(modifierID);
+        updateSR.setModifiedTimestamp(modifiedTimestamp);
+
         updateSR.setLabType(labType);
         updateSR.setPatientID(patientID);
         assertTrue(labSystemDAO.updateServiceRequest(updateSR));
@@ -223,6 +228,8 @@ public class LabSystemSRDAOImplTest {
         assertEquals(description, querySR.getDescription());
         assertEquals(labType, querySR.getLabType());
         assertEquals(patientID, querySR.getPatientID());
+        assertEquals(modifierID, querySR.getModifierID());
+        assertEquals(modifiedTimestamp, querySR.getModifiedTimestamp());
         
         // Cannot Update Nonexistent Location
         LabSystemSR newSR = new LabSystemSR();
