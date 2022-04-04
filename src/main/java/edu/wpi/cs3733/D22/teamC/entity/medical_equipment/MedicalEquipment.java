@@ -1,8 +1,11 @@
 package edu.wpi.cs3733.D22.teamC.entity.medical_equipment;
 
 public class MedicalEquipment {
+    protected int locationID;
+    protected int equipID;
     protected EquipmentType equipmentType;
     protected EquipmentStatus equipmentStatus;
+
     public enum EquipmentType {
         Bed,
         Recliner,
@@ -32,8 +35,19 @@ public class MedicalEquipment {
         this.equipmentStatus = equipmentStatus;
     }
 
-    public MedicalEquipment(EquipmentType equipmentType, EquipmentStatus equipmentStatus) {
-        this.equipmentType = equipmentType;
-        this.equipmentStatus = equipmentStatus;
+    public int getLocationID() {
+        return locationID;
+    }
+
+    public void setLocationID(int locationID) {
+        this.locationID = locationID;
+    }
+
+    public int getEquipID() {
+        return equipID;
+    }
+
+    public void setEquipID(int equipID) {
+        this.equipID = equipID;
     }
 }

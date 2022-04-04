@@ -1,10 +1,17 @@
 package edu.wpi.cs3733.D22.teamC.entity.medical_equipment;
 
+import edu.wpi.cs3733.D22.teamC.entity.location.Location;
+
 import java.util.List;
 
 public class MedicalEquipmentDAOImpl implements MedicalEquipmentDAO {
     @Override
     public List<MedicalEquipment> getMedicalEquipments() {
+        return null;
+    }
+
+    @Override
+    public List<MedicalEquipment> getMedicalEquipmentAtLocation(Location location) {
         return null;
     }
 

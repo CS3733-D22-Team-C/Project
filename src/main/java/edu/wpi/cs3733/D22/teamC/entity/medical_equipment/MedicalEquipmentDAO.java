@@ -1,9 +1,12 @@
 package edu.wpi.cs3733.D22.teamC.entity.medical_equipment;
 
+import edu.wpi.cs3733.D22.teamC.entity.location.Location;
+
 import java.util.List;
 
 public interface MedicalEquipmentDAO {
     public List<MedicalEquipment> getMedicalEquipments();
+    public List<MedicalEquipment> getMedicalEquipmentAtLocation(Location location);
     public MedicalEquipment getMedicalEquipment(int equipID);
 
     public int insertMedicalEquipment(MedicalEquipment medical_equipment);

@@ -1,5 +1,7 @@
 package edu.wpi.cs3733.D22.teamC.entity.location;
 
+import edu.wpi.cs3733.D22.teamC.entity.medical_equipment.MedicalEquipment;
+
 import java.util.List;
 
 public interface LocationDAO {
