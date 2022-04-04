@@ -30,6 +30,7 @@ public class App extends Application {
     public static final String HOME_PATH = "view/general/home.fxml";
     public static final String VIEW_LOCATIONS_PATH = "view/location/view_locations.fxml";
     public static final String VIEW_SERVICE_REQUESTS_PATH = "view/service_request/view_service_requests.fxml";
+    public static final String MAP_PATH = "view/location/map/base_map_view.fxml";
 
     // Declare Singleton Instance
     public static App instance;
@@ -72,7 +73,7 @@ public class App extends Application {
         // Store window as stage
         stage = primaryStage;
       
-        setView("view/component/map.fxml");
+        setView(MAP_PATH);
     }
 
     @Override
