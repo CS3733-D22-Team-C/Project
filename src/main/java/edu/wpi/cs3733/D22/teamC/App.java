@@ -157,7 +157,7 @@ public class App extends Application {
             // Embed views and components
             baseNode.setTop(menuBarNode);
             baseNode.setCenter(viewNode);
-
+            baseNode.autosize();
             scene.setRoot(baseNode);
             scene = new Scene(baseNode);
             stage.setScene(scene);
