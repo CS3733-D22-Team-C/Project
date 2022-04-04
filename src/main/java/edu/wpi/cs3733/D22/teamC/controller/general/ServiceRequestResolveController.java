@@ -16,6 +16,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
 
 import java.net.URL;
+import java.util.Locale;
 import java.util.ResourceBundle;
 
 public class ServiceRequestResolveController implements Initializable {
@@ -79,6 +80,15 @@ public class ServiceRequestResolveController implements Initializable {
 
             //Other dropdowns
 
+            //Sets status at bottom
+            firstStatus.setText(srt.getStatus().toString().toLowerCase(Locale.ROOT));
+
+        }
+        else
+        {
+            //Sets status at bottom
+            firstStatus.setText("processing");
+            secondStatus.setText("resolve");
         }
     }
 

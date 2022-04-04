@@ -20,7 +20,7 @@ public class MedicalEquipmentSRResolveController extends ServiceRequestResolveCo
     @FXML private JFXComboBox<String> equipmentType;
 
     //For equipID dropdown
-    private String lastType ="a";
+    private String lastType;
 
     @FXML
     public void initialize(URL url, ResourceBundle rb) {
@@ -36,22 +36,21 @@ public class MedicalEquipmentSRResolveController extends ServiceRequestResolveCo
         description.setText(medicalEquipmentSR.getDescription());
         creationTime.setText(medicalEquipmentSR.getCreationTimestamp().toString());
 
+
         if(isEditMode){
-            //Sets status at bottom
-            firstStatus.setText(status.getValue());
 
             //For equipment type drop down
             for (MedicalEquipmentSR.EquipmentType type : MedicalEquipmentSR.EquipmentType.values()) {
                 equipmentType.getItems().add(type.toString());
             }
 
+            equipmentType.valueProperty().setValue(equipmentType.getPromptText());
+
             //For assigneeID make editable
 
         }
         else {
-            //Sets status at bottom
-            firstStatus.setText("processing");
-            secondStatus.setText("resolve");
+
         }
 
 
@@ -93,7 +92,6 @@ public class MedicalEquipmentSRResolveController extends ServiceRequestResolveCo
             else {
                 lastType = equipmentType.getValue();
 
-
                 //Resetting the values
                 equipmentID.valueProperty().setValue(null);
                 equipmentID.getItems().clear();
@@ -127,9 +125,10 @@ public class MedicalEquipmentSRResolveController extends ServiceRequestResolveCo
                     equipmentID.getItems().add(ID);
                 }
             }
+            //Delete promptText
+            //equipmentID.setPromptText("");
         }
-        //Delete promptText
-        equipmentID.setPromptText("");
+
 
     }
 
