@@ -133,6 +133,7 @@ public class DBManager {
             initializeLocationTable(clearTable);
             initializeServiceRequestTable(clearTable);
             initializeMedicalEquipSRTable(clearTable);
+            initializeLabSystemSRTable(clearTable);
         }
 
         /**
@@ -174,7 +175,21 @@ public class DBManager {
         initializeTable(
                 "MEDICAL_EQUIPMENT_SR",
                 "CREATE TABLE MEDICAL_EQUIPMENT_SR (" +
-                        "ID int, EquipID char(10), EquipType varchar(50), CONSTRAINT fk_ID FOREIGN KEY (ID) " +
+                        "ID int, EquipID char(10), EquipType varchar(50), CONSTRAINT fk_MESRID FOREIGN KEY (ID) " +
+                        "REFERENCES SERVICE_REQUEST (ID) ON DELETE CASCADE)",
+                clearTable
+        );
+    }
+    
+    /**
+     * Initialize Lab System Service Request Table.
+     * @param clearTable Clear pre-existing table entries if true.
+     */
+    public void initializeLabSystemSRTable(boolean clearTable) {
+        initializeTable(
+                "LAB_SYSTEM_SR",
+                "CREATE TABLE LAB_SYSTEM_SR (" +
+                        "ID int, LabType varchar(50), PatientID char(10), CONSTRAINT fk_LSSRID FOREIGN KEY (ID) " +
                         "REFERENCES SERVICE_REQUEST (ID) ON DELETE CASCADE)",
                 clearTable
         );

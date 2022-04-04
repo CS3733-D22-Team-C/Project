@@ -1,8 +1,9 @@
-package edu.wpi.cs3733.D22.teamC.entity.service_request.medical_equipment;
+package edu.wpi.cs3733.D22.teamC.entity.service_request.lab_system;
 
 import edu.wpi.cs3733.D22.teamC.DBManager;
 import edu.wpi.cs3733.D22.teamC.entity.service_request.ServiceRequest;
 import edu.wpi.cs3733.D22.teamC.entity.service_request.ServiceRequestDAOImpl;
+import edu.wpi.cs3733.D22.teamC.entity.service_request.medical_equipment.MedicalEquipmentSR;
 
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -10,38 +11,34 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-/**
- * Inherited ServiceRequestDAOImpl class specifically tailored to handle MedicalEquipmentServiceRequests.
- */
-public class MedicalEquipmentSRDAOImpl extends MedicalEquipmentSRDAO {
-    
+public class LabSystemSRDAOImpl extends LabSystemSRDAO {
     /**
-     * Getting all the entries in the MEDICAL_EQUIPMENT_SR Table to the DB, and
-     * converting them to ServiceRequest objects.
+     * Getting all the entries in the LAB_SYSTEM_SR Table to the DB, and
+     * converting them to LabSystemSR objects.
      *
-     * @return List of all Medical Equipment Service requests objects converted from queries
+     * @return List of all LabSystemSR objects converted from queries
      */
     @Override
-    public List<MedicalEquipmentSR> getAllServiceRequests() {
+    public List<LabSystemSR> getAllServiceRequests() {
         try {
-            //Execute SELECT query to join parent and child table attributes
+            // Execute SELECT query to join parent and child table attributes
             PreparedStatement statement = DBManager.getInstance().connection.prepareStatement(
-                    "SELECT SERVICE_REQUEST.*, MEDICAL_EQUIPMENT_SR.* " +
-                            "FROM SERVICE_REQUEST INNER JOIN MEDICAL_EQUIPMENT_SR " +
-                            "ON SERVICE_REQUEST.ID = MEDICAL_EQUIPMENT_SR.ID "
+                    "SELECT SERVICE_REQUEST.*, LAB_SYSTEM_SR.* " +
+                            "FROM SERVICE_REQUEST INNER JOIN LAB_SYSTEM_SR " +
+                            "ON SERVICE_REQUEST.ID = LAB_SYSTEM_SR.ID "
             );
             ResultSet resultSet = statement.executeQuery();
             
-            //Return ServiceRequest Objects
-            List<MedicalEquipmentSR> serviceRequests = new ArrayList<>();
+            // Return ServiceRequest Objects
+            List<LabSystemSR> serviceRequests = new ArrayList<>();
             while (resultSet.next()) {
-                MedicalEquipmentSR serviceRequest = modifyServiceRequest(resultSet, new MedicalEquipmentSR());
+                LabSystemSR serviceRequest = modifyServiceRequest(resultSet, new LabSystemSR());
                 if (serviceRequest != null) serviceRequests.add(serviceRequest);
             }
             return serviceRequests;
             
         } catch (SQLException e) {
-            System.out.println("Query to MEDICAL_EQUIPMENT_SR failed.");
+            System.out.println("Query to LAB_SYSTEM_SR failed.");
             e.printStackTrace();
         }
         
@@ -49,27 +46,27 @@ public class MedicalEquipmentSRDAOImpl extends MedicalEquipmentSRDAO {
     }
     
     /**
-     * Get entry in the ServiceRequest and MedEqServiceRequest table of the database with a given requestID
-     * and convert it into a MedicalEquipmentServiceRequest object.
+     * Get entry in the ServiceRequest and LAB_SYSTEM_SR table of the database with a given requestID
+     * and convert it into a LabSystemSR object.
      *
      * @param requestID The requestID of the service request.
-     * @return MedicalEquipmentServiceRequest object.
+     * @return LabSystemSR object.
      */
     @Override
-    public MedicalEquipmentSR getServiceRequest(int requestID) {
+    public LabSystemSR getServiceRequest(int requestID) {
         try {
             // Execute SELECT Query to join the parent table and child table attributes
             PreparedStatement statement = DBManager.getInstance().connection.prepareStatement(
-                    "SELECT SERVICE_REQUEST.*, MEDICAL_EQUIPMENT_SR.* " +
-                            "FROM SERVICE_REQUEST INNER JOIN MEDICAL_EQUIPMENT_SR " +
-                            "ON SERVICE_REQUEST.ID = MEDICAL_EQUIPMENT_SR.ID " +
+                    "SELECT SERVICE_REQUEST.*, LAB_SYSTEM_SR.* " +
+                            "FROM SERVICE_REQUEST INNER JOIN LAB_SYSTEM_SR " +
+                            "ON SERVICE_REQUEST.ID = LAB_SYSTEM_SR.ID " +
                             "WHERE SERVICE_REQUEST.ID = ?"
             );
             statement.setInt(1, requestID);
             ResultSet resultSet = statement.executeQuery();
             
             // Return Location Object
-            if (resultSet.next()) return modifyServiceRequest(resultSet, new MedicalEquipmentSR());
+            if (resultSet.next()) return modifyServiceRequest(resultSet, new LabSystemSR());
         } catch (SQLException e) {
             System.out.println("Query to database tables failed.");
             e.printStackTrace();
@@ -79,13 +76,13 @@ public class MedicalEquipmentSRDAOImpl extends MedicalEquipmentSRDAO {
     
     /**
      * Insert entry into ServiceRequest Table of the DB, corresponding to the given ServiceRequest object.
-     * A given MedicalEquipmentServiceRequest specifically to the dedicated table.
+     * A given LabSystemSR specifically to the dedicated table.
      *
      * @param serviceRequest The ServiceRequest to be inserted into the DB via a corresponding entry.
      * @return If successful return true, else return false.
      */
     @Override
-    public int insertServiceRequest(MedicalEquipmentSR serviceRequest) {
+    public int insertServiceRequest(LabSystemSR serviceRequest) {
         try {
             ServiceRequestDAOImpl sRDAO = new ServiceRequestDAOImpl();
             int requestID = sRDAO.insertServiceRequest(serviceRequest);
@@ -93,12 +90,12 @@ public class MedicalEquipmentSRDAOImpl extends MedicalEquipmentSRDAO {
             if (requestID != -1) {
                 // Insert the child-unique attributes to the child table.
                 PreparedStatement statement = DBManager.getInstance().connection.prepareStatement(
-                        "INSERT INTO MEDICAL_EQUIPMENT_SR VALUES(?, ?, ?)"
+                        "INSERT INTO LAB_SYSTEM_SR VALUES(?, ?, ?)"
                 );
                 statement.setInt(1, requestID);
                 // Set child-specific attributes by casting
-                statement.setString(2, serviceRequest.getEquipmentID().toString());
-                statement.setString(3, serviceRequest.getEquipmentType().toString());
+                statement.setString(2, serviceRequest.getLabType().toString());
+                statement.setString(3, serviceRequest.getPatientID());
                 statement.execute();
                 
                 return requestID;
@@ -111,14 +108,14 @@ public class MedicalEquipmentSRDAOImpl extends MedicalEquipmentSRDAO {
     }
     
     /**
-     * Update entry in both the Service_Requests and MEDICAL_EQUIPMENT_SR table  of DB corresponding to
+     * Update entry in both the Service_Requests and LAB_SYSTEM_SR table of DB corresponding to
      * the given ServiceRequest object.
      *
      * @param serviceRequest the ServiceRequest whose corresponding DB entry is to be updated.
      * @return If successful return true, else return false.
      */
     @Override
-    public boolean updateServiceRequest(MedicalEquipmentSR serviceRequest) {
+    public boolean updateServiceRequest(LabSystemSR serviceRequest) {
         try {
             // Check if entry of same requestID exists in either table
             ServiceRequest serviceRequestInDB = getServiceRequest(serviceRequest.getRequestID());
@@ -129,11 +126,11 @@ public class MedicalEquipmentSRDAOImpl extends MedicalEquipmentSRDAO {
                 if (successParent) {
                     // Update the child-unique attributes in the child table.
                     PreparedStatement statement = DBManager.getInstance().connection.prepareStatement(
-                            "UPDATE MEDICAL_EQUIPMENT_SR SET EQUIPID = ?, EQUIPTYPE = ? " +
+                            "UPDATE LAB_SYSTEM_SR SET labType = ?, patientID = ? " +
                                     "WHERE ID = ?"
                     );
-                    statement.setString(1, ((MedicalEquipmentSR) serviceRequest).getEquipmentID());
-                    statement.setString(2, serviceRequest.getEquipmentType().toString());
+                    statement.setString(1, serviceRequest.getLabType().toString());
+                    statement.setString(2, serviceRequest.getPatientID());
                     statement.setInt(3, serviceRequest.getRequestID());
                     statement.execute();
                     
@@ -141,7 +138,7 @@ public class MedicalEquipmentSRDAOImpl extends MedicalEquipmentSRDAO {
                 }
             }
             
-        } catch (SQLException | ClassCastException e) {
+        } catch (SQLException e) {
             System.out.println("Update to database tables failed.");
             e.printStackTrace();
         }
@@ -150,18 +147,18 @@ public class MedicalEquipmentSRDAOImpl extends MedicalEquipmentSRDAO {
     
     /**
      * Delete entry in SERVICE_REQUEST Table of DB corresponding to the given ServiceRequest object.
-     * Will also delete entry in MEDICAL_EQUIPMENT_SR.
+     * Will also delete entry in LAB_SYSTEM_SR.
      *
      * @param serviceRequest The service request to be deleted from the DB.
      * @return True if successful.
      */
     @Override
-    public boolean deleteServiceRequest(MedicalEquipmentSR serviceRequest) {
+    public boolean deleteServiceRequest(LabSystemSR serviceRequest) {
         try {
             // Check if entry of same requestID exists in either table
             ServiceRequest serviceRequestInDB = getServiceRequest(serviceRequest.getRequestID());
             if (serviceRequestInDB != null) {
-                // Execute DELETE Statement for base SR table and Medical Equipment SR table
+                // Execute DELETE Statement for base SR table and LAB_SYSTEM_SR table
                 ServiceRequestDAOImpl sRDAO = new ServiceRequestDAOImpl();
                 sRDAO.deleteServiceRequest(serviceRequest);
                 
@@ -174,5 +171,4 @@ public class MedicalEquipmentSRDAOImpl extends MedicalEquipmentSRDAO {
         
         return false;
     }
-    
 }
