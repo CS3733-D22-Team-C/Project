@@ -7,7 +7,10 @@ import edu.wpi.cs3733.D22.teamC.entity.service_request.ServiceRequest;
 import edu.wpi.cs3733.D22.teamC.entity.service_request.ServiceRequestDAO;
 import edu.wpi.cs3733.D22.teamC.entity.service_request.medical_equipment.MedicalEquipmentSRDAOImpl;
 import edu.wpi.cs3733.D22.teamC.entity.service_request.medical_equipment.MedicalEquipmentSR;
+import edu.wpi.cs3733.D22.teamC.error.error_item.service_request_user_input_validation.ServiceRequestUserInputValidationErrorItem;
 import edu.wpi.cs3733.D22.teamC.models.service_request.medical_equipment.MedicalEquipmentSRTable;
+import edu.wpi.cs3733.D22.teamC.user_input_validation.service_request.facility_maintenance.FacilityMaintenanceSRFormEvaluator;
+import edu.wpi.cs3733.D22.teamC.user_input_validation.service_request.medical_equipment.MedicalEquipmentSRFormEvaluator;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
@@ -18,6 +21,7 @@ import javafx.scene.control.*;
 
 import java.net.URL;
 import java.sql.Timestamp;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.ResourceBundle;
 import java.util.stream.Collectors;
@@ -71,49 +75,60 @@ public class MedicalEquipmentSRCreateController extends ServiceRequestCreateCont
 
     @FXML
     protected MedicalEquipmentSR clickSubmit(ActionEvent event) {
-        MedicalEquipmentSR medEquip = new MedicalEquipmentSR();
 
-        medEquip.setCreationTimestamp(new Timestamp(System.currentTimeMillis()));
+        MedicalEquipmentSRFormEvaluator mESRFE = new MedicalEquipmentSRFormEvaluator();
 
-        //Sets from textFields
-        medEquip.setAssigneeID(assigneeID.getText());
-        medEquip.setDescription(description.getText());
-        medEquip.setLocation(location.getText());
+        //Even though the initialize function in ServiceRequestController sets up the assigneeID and location textfields to only read in integers, parseInt() still needs to be used on these text fields.
+        int assigneeIDInt = Integer.parseInt(assigneeID.getText());
+        int locationInt = Integer.parseInt(location.getText());
+        int equipIDInt = Integer.parseInt(equipID.getText()); //Should be turned into a dropdown
 
-        //Sets from combo boxes
-        medEquip.setStatus(ServiceRequest.Status.valueOf(status.getValue()));
-        medEquip.setPriority(ServiceRequest.Priority.valueOf(priority.getValue()));
-        medEquip.setEquipmentType(MedicalEquipmentSR.EquipmentType.valueOf(equipType.getValue()));
+        ArrayList<ServiceRequestUserInputValidationErrorItem> errors = mESRFE.getMedicalEquipmentSRValidationTestResult(locationInt, assigneeIDInt, status.getSelectionModel(), priority.getSelectionModel(), equipType.getSelectionModel(), equipIDInt);
 
-        //Request ID generator
-        int requestID = (int)(Math.random() * (10000000 + 1)) + 0;
-        String requestIDString = Integer.toString(requestID);
-        medEquip.setRequestID(Integer.parseInt(requestIDString));
-        System.out.println(requestIDString);
+        if(errors.isEmpty())
+        {
+            MedicalEquipmentSR medEquip = new MedicalEquipmentSR();
 
-        //Dealing with the equipment type and the enumerator
-        int type = medEquip.getEquipmentType().ordinal();
-        String num = equipID.getText();
-        medEquip.setEquipmentID(type + num);
-        clickReset(event);
+            medEquip.setCreationTimestamp(new Timestamp(System.currentTimeMillis()));
 
-        medEquip.setRequestType(ServiceRequest.RequestType.Medical_Equipment);
+            //Sets from textFields
+            medEquip.setAssigneeID(assigneeID.getText());
+            medEquip.setDescription(description.getText());
+            medEquip.setLocation(location.getText());
 
-        // Table Entry
-        MedicalEquipmentSRTable met = new MedicalEquipmentSRTable(medEquip);
-        METList.add(met);
+            //Sets from combo boxes
+            medEquip.setStatus(ServiceRequest.Status.valueOf(status.getValue()));
+            medEquip.setPriority(ServiceRequest.Priority.valueOf(priority.getValue()));
+            medEquip.setEquipmentType(MedicalEquipmentSR.EquipmentType.valueOf(equipType.getValue()));
 
-        // Database entry
-        ServiceRequestDAO serviceRequestDAO = new MedicalEquipmentSRDAOImpl();
-        serviceRequestDAO.insertServiceRequest(medEquip);
+            //Request ID generator
+            int requestID = (int)(Math.random() * (10000000 + 1)) + 0;
+            String requestIDString = Integer.toString(requestID);
+            medEquip.setRequestID(Integer.parseInt(requestIDString));
+            System.out.println(requestIDString);
 
-        return medEquip;
+            //Dealing with the equipment type and the enumerator
+            int type = medEquip.getEquipmentType().ordinal();
+            String num = equipID.getText();
+            medEquip.setEquipmentID(type + num);
+            clickReset(event);
+
+            medEquip.setRequestType(ServiceRequest.RequestType.Medical_Equipment);
+
+            // Table Entry
+            MedicalEquipmentSRTable met = new MedicalEquipmentSRTable(medEquip);
+            METList.add(met);
+
+            // Database entry
+            ServiceRequestDAO serviceRequestDAO = new MedicalEquipmentSRDAOImpl();
+            serviceRequestDAO.insertServiceRequest(medEquip);
+
+            return medEquip;
+        }
+        else
+        {
+            return null;
+        }
+
     }
-
-    private boolean medicalEquipmentUserInputValidationTestPassed(int assigneeID, int locationID, int equipID, String priority, String status, String equipType)
-    {
-        return false;
-    }
-
-
 }

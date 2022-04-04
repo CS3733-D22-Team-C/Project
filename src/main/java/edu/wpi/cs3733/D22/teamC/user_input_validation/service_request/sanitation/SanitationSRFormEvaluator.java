@@ -3,6 +3,7 @@ package edu.wpi.cs3733.D22.teamC.user_input_validation.service_request.sanitatio
 import edu.wpi.cs3733.D22.teamC.error.error_item.service_request_user_input_validation.ServiceRequestUserInputValidationErrorItem;
 import edu.wpi.cs3733.D22.teamC.error.error_record.service_request_user_input_validation.ServiceRequestUserInputValidationErrorRecord;
 import edu.wpi.cs3733.D22.teamC.user_input_validation.service_request.ServiceRequestFormEvaluator;
+import javafx.scene.control.SingleSelectionModel;
 
 import java.util.ArrayList;
 
@@ -10,7 +11,7 @@ public class SanitationSRFormEvaluator extends ServiceRequestFormEvaluator {
 
     public SanitationSRFormEvaluator() {}
 
-    public ArrayList<ServiceRequestUserInputValidationErrorItem> getSanitationSRValidationTestResult(int locationID, int assigneeID, String status, String priority, String sanitationType)
+    public ArrayList<ServiceRequestUserInputValidationErrorItem> getSanitationSRValidationTestResult(int locationID, int assigneeID, SingleSelectionModel status, SingleSelectionModel priority, SingleSelectionModel sanitationType)
     {
         ArrayList <ServiceRequestUserInputValidationErrorItem> errorList = new ArrayList <ServiceRequestUserInputValidationErrorItem> ();
 
@@ -27,7 +28,7 @@ public class SanitationSRFormEvaluator extends ServiceRequestFormEvaluator {
      * @param sanitationType
      * @return ServiceRequestUserInputValidationErrorItem
      */
-    public ServiceRequestUserInputValidationErrorItem checkSanitationTypeFilled(String sanitationType)
+    public ServiceRequestUserInputValidationErrorItem checkSanitationTypeFilled(SingleSelectionModel sanitationType)
     {
         if(sanitationType.isEmpty())
         {

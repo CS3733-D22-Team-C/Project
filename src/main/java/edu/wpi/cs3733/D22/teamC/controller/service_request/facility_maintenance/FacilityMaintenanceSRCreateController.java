@@ -7,6 +7,7 @@ import edu.wpi.cs3733.D22.teamC.entity.service_request.ServiceRequest;
 import edu.wpi.cs3733.D22.teamC.error.error_item.service_request_user_input_validation.ServiceRequestUserInputValidationErrorItem;
 import edu.wpi.cs3733.D22.teamC.models.service_request.facility_maintenance.FacilityMaintenanceSRTable;
 import edu.wpi.cs3733.D22.teamC.entity.service_request.facility_maintenance.FacilityMaintenanceSR;
+import edu.wpi.cs3733.D22.teamC.user_input_validation.service_request.facility_maintenance.FacilityMaintenanceSRFormEvaluator;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -48,42 +49,39 @@ public class FacilityMaintenanceSRCreateController extends ServiceRequestCreateC
     @FXML
     protected FacilityMaintenanceSR clickSubmit(ActionEvent event) {
 
+        FacilityMaintenanceSRFormEvaluator fMSRFE = new FacilityMaintenanceSRFormEvaluator();
+
         //Even though the initialize function in ServiceRequestController sets up the assigneeID and location textfields to only read in integers, parseInt() still needs to be used on these text fields.
         int assigneeIDInt = Integer.parseInt(assigneeID.getText());
         int locationInt = Integer.parseInt(location.getText());
 
-        ArrayList <ServiceRequestUserInputValidationErrorItem> errors = facilityMaintenanceUserInputValidationTestPassed(assigneeIDInt, locationInt, priority.getValue(), status.getValue(), maintType.getText());
+        ArrayList <ServiceRequestUserInputValidationErrorItem> errors = fMSRFE.getFacilityMaintenanceSRValidationTestResult(assigneeIDInt, locationInt, priority.getSelectionModel(), status.getSelectionModel(), maintType.getText());
 
         if(errors.isEmpty())
         {
-            FacilityMaintenanceSR fmsr = new FacilityMaintenanceSR();
+            FacilityMaintenanceSR fMSR = new FacilityMaintenanceSR();
 
-            fmsr.setAssigneeID(assigneeID.getText());
-            fmsr.setLocation(location.getText());
-            fmsr.setPriority(ServiceRequest.Priority.valueOf(priority.getValue())); //getValue directly returns the value of a selected item from a JavaFX ComboBox
-            fmsr.setStatus(ServiceRequest.Status.valueOf(status.getValue()));
-            fmsr.setDescription(description.getText());
+            fMSR.setAssigneeID(assigneeID.getText());
+            fMSR.setLocation(location.getText());
+            fMSR.setPriority(ServiceRequest.Priority.valueOf(priority.getValue())); //getValue directly returns the value of a selected item from a JavaFX ComboBox
+            fMSR.setStatus(ServiceRequest.Status.valueOf(status.getValue()));
+            fMSR.setDescription(description.getText());
 
-            fmsr.setMaintenanceType(FacilityMaintenanceSR.MaintenanceType.valueOf(maintType.getText()));
-            fmsr.setRequestType(ServiceRequest.RequestType.Facility_Maintenance);
+            fMSR.setMaintenanceType(FacilityMaintenanceSR.MaintenanceType.valueOf(maintType.getText()));
+            fMSR.setRequestType(ServiceRequest.RequestType.Facility_Maintenance);
 
             clickReset(event);
 
             // Add Table Entry
-            FacilityMaintenanceSRTable met = new FacilityMaintenanceSRTable(fmsr);
+            FacilityMaintenanceSRTable met = new FacilityMaintenanceSRTable(fMSR);
             METList.add(met);
 
-            return fmsr;
+            return fMSR;
         }
         else
         {
-            return null; //Code here to display error messages
+            return null; //Code will be placed here to display error messages
         }
-    }
-
-    private ArrayList<ServiceRequestUserInputValidationErrorItem> facilityMaintenanceUserInputValidationTestPassed(int assigneeID, int locationID, String priority, String status, String maintenanceType)
-    {
-        return null;
     }
 
 }

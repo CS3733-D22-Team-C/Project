@@ -3,6 +3,7 @@ package edu.wpi.cs3733.D22.teamC.user_input_validation.service_request.medical_e
 import edu.wpi.cs3733.D22.teamC.error.error_item.service_request_user_input_validation.ServiceRequestUserInputValidationErrorItem;
 import edu.wpi.cs3733.D22.teamC.error.error_record.service_request_user_input_validation.ServiceRequestUserInputValidationErrorRecord;
 import edu.wpi.cs3733.D22.teamC.user_input_validation.service_request.ServiceRequestFormEvaluator;
+import javafx.scene.control.SingleSelectionModel;
 
 import java.util.ArrayList;
 
@@ -10,7 +11,7 @@ public class MedicalEquipmentSRFormEvaluator extends ServiceRequestFormEvaluator
 
     public MedicalEquipmentSRFormEvaluator() {}
 
-    public ArrayList<ServiceRequestUserInputValidationErrorItem> getMedicalEquipmentSRValidationTestResult(int locationID, int assigneeID, String status, String priority, String equipType, int equipID)
+    public ArrayList<ServiceRequestUserInputValidationErrorItem> getMedicalEquipmentSRValidationTestResult(int locationID, int assigneeID, SingleSelectionModel status, SingleSelectionModel priority, SingleSelectionModel equipType, int equipID)
     {
         ArrayList <ServiceRequestUserInputValidationErrorItem> errorList = new ArrayList <ServiceRequestUserInputValidationErrorItem> ();
 
@@ -28,7 +29,7 @@ public class MedicalEquipmentSRFormEvaluator extends ServiceRequestFormEvaluator
      * @param equipType
      * @return ServiceRequestUserInputValidationErrorItem
      */
-   public ServiceRequestUserInputValidationErrorItem checkEquipmentTypeFilled(String equipType)
+   public ServiceRequestUserInputValidationErrorItem checkEquipmentTypeFilled(SingleSelectionModel equipType)
    {
        if(equipType.isEmpty())
        {

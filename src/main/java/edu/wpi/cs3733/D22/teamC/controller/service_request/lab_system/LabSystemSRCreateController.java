@@ -4,8 +4,10 @@ import com.jfoenix.controls.*;
 import com.jfoenix.controls.datamodels.treetable.RecursiveTreeObject;
 import edu.wpi.cs3733.D22.teamC.controller.service_request.ServiceRequestCreateController;
 import edu.wpi.cs3733.D22.teamC.entity.service_request.ServiceRequest;
+import edu.wpi.cs3733.D22.teamC.error.error_item.service_request_user_input_validation.ServiceRequestUserInputValidationErrorItem;
 import edu.wpi.cs3733.D22.teamC.models.service_request.lab_system.LabSystemSRTable;
 import edu.wpi.cs3733.D22.teamC.entity.service_request.lab_system.LabSystemSR;
+import edu.wpi.cs3733.D22.teamC.user_input_validation.service_request.lab_system.LabSystemSRFormEvaluator;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
@@ -16,6 +18,7 @@ import javafx.scene.control.TextField;
 import javafx.scene.control.TreeItem;
 
 import java.net.URL;
+import java.util.ArrayList;
 import java.util.ResourceBundle;
 
 public class LabSystemSRCreateController extends ServiceRequestCreateController {
@@ -56,6 +59,20 @@ public class LabSystemSRCreateController extends ServiceRequestCreateController 
                 }
             }
         });
+
+        addTextLengthLimiter(patientID, 20);
+    }
+
+    public static void addTextLengthLimiter(final TextField textf, final int maxLength) {
+        textf.textProperty().addListener(new ChangeListener<String>() {
+            @Override
+            public void changed(final ObservableValue<? extends String> ov, final String oldValue, final String newValue) {
+                if (textf.getText().length() > maxLength) {
+                    String s = textf.getText().substring(0, maxLength);
+                    textf.setText(s);
+                }
+            }
+        });
     }
 
     @FXML
@@ -68,37 +85,43 @@ public class LabSystemSRCreateController extends ServiceRequestCreateController 
 
     @FXML
     protected LabSystemSR clickSubmit(ActionEvent event) {
-        // Check if all fields are filled
-        if(labType.getSelectionModel().isEmpty() || patientID.getText().isEmpty() ||
-        assigneeID.getText().isEmpty() || location.getText().isEmpty() || priority.getSelectionModel().isEmpty()
-        || status.getSelectionModel().isEmpty()) return null;
 
-        LabSystemSR labSystem = new LabSystemSR();
+        LabSystemSRFormEvaluator lSSRFE = new LabSystemSRFormEvaluator();
 
-        //Sets from textFields
-        labSystem.setAssigneeID(assigneeID.getText());
-        labSystem.setDescription(description.getText());
-        labSystem.setLocation(location.getText());
-        labSystem.setPatientID(patientID.getText());
+        int assigneeIDInt = Integer.parseInt(assigneeID.getText());
+        int locationInt = Integer.parseInt(location.getText());
+        int patientIDInt = Integer.parseInt(patientID.getText());
 
-        //Sets from combo boxes
-        labSystem.setStatus(ServiceRequest.Status.valueOf(status.getValue()));
-        labSystem.setPriority(ServiceRequest.Priority.valueOf(priority.getValue()));
-        labSystem.setLabType(LabSystemSR.LabType.valueOf(labType.getValue()));
+        ArrayList<ServiceRequestUserInputValidationErrorItem> errors = lSSRFE.getLabSystemSRValidationTestResult(locationInt, assigneeIDInt, status.getSelectionModel(), priority.getSelectionModel(), labType.getSelectionModel(), patientIDInt);
 
-        labSystem.setRequestType(ServiceRequest.RequestType.Lab_System);
+        if(errors.isEmpty())
+        {
+            LabSystemSR labSystem = new LabSystemSR();
 
-        //Table Entry
-        LabSystemSRTable lst = new LabSystemSRTable(labSystem);
-        LSTList.add(lst);
+            //Sets from textFields
+            labSystem.setAssigneeID(assigneeID.getText());
+            labSystem.setDescription(description.getText());
+            labSystem.setLocation(location.getText());
+            labSystem.setPatientID(patientID.getText());
 
-        clickReset(event);
+            //Sets from combo boxes
+            labSystem.setStatus(ServiceRequest.Status.valueOf(status.getValue()));
+            labSystem.setPriority(ServiceRequest.Priority.valueOf(priority.getValue()));
+            labSystem.setLabType(LabSystemSR.LabType.valueOf(labType.getValue()));
 
-        return labSystem;
-    }
+            labSystem.setRequestType(ServiceRequest.RequestType.Lab_System);
 
-    private boolean labSystemUserInputValidationTestPassed(int assigneeID, int locationID, int patientID, String priority, String status, String labType)
-    {
-        return false;
+            //Table Entry
+            LabSystemSRTable lst = new LabSystemSRTable(labSystem);
+            LSTList.add(lst);
+
+            clickReset(event);
+
+            return labSystem;
+        }
+        else
+        {
+            return null;
+        }
     }
 }

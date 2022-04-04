@@ -6,6 +6,7 @@ import edu.wpi.cs3733.D22.teamC.entity.service_request.ServiceRequestDAOImpl;
 import edu.wpi.cs3733.D22.teamC.entity.location.LocationDAOImpl;
 import edu.wpi.cs3733.D22.teamC.error.error_item.service_request_user_input_validation.ServiceRequestUserInputValidationErrorItem;
 import edu.wpi.cs3733.D22.teamC.error.error_record.service_request_user_input_validation.ServiceRequestUserInputValidationErrorRecord;
+import javafx.scene.control.SingleSelectionModel;
 
 import java.util.ArrayList;
 
@@ -21,7 +22,7 @@ public class ServiceRequestFormEvaluator {
      * @param priority
      * @return ArrayList <ServiceRequestUserInputValidationErrorItem>
      */
-    public ArrayList<ServiceRequestUserInputValidationErrorItem> getBasicRequiredFieldsFilledValidationResult(int locationID, int assigneeID, String status, String priority)
+    public ArrayList<ServiceRequestUserInputValidationErrorItem> getBasicRequiredFieldsFilledValidationResult(int locationID, int assigneeID, SingleSelectionModel status, SingleSelectionModel priority)
     {
         ArrayList <ServiceRequestUserInputValidationErrorItem> errorList = new ArrayList <ServiceRequestUserInputValidationErrorItem>();
 
@@ -118,7 +119,7 @@ public class ServiceRequestFormEvaluator {
      * @param status
      * @return ServiceRequestValidationErrorItem
      */
-    public ServiceRequestUserInputValidationErrorItem checkStatusFilled(String status)
+    public ServiceRequestUserInputValidationErrorItem checkStatusFilled(SingleSelectionModel status)
     {
        if(status.isEmpty())
        {
@@ -135,7 +136,7 @@ public class ServiceRequestFormEvaluator {
      * @param priority
      * @return ServiceRequestValidationErrorItem
      */
-    public ServiceRequestUserInputValidationErrorItem checkPriorityFilled(String priority)
+    public ServiceRequestUserInputValidationErrorItem checkPriorityFilled(SingleSelectionModel priority)
     {
         if(priority.isEmpty())
         {

@@ -3,6 +3,7 @@ package edu.wpi.cs3733.D22.teamC.user_input_validation.service_request.medicine_
 import edu.wpi.cs3733.D22.teamC.error.error_item.service_request_user_input_validation.ServiceRequestUserInputValidationErrorItem;
 import edu.wpi.cs3733.D22.teamC.error.error_record.service_request_user_input_validation.ServiceRequestUserInputValidationErrorRecord;
 import edu.wpi.cs3733.D22.teamC.user_input_validation.service_request.ServiceRequestFormEvaluator;
+import javafx.scene.control.SingleSelectionModel;
 
 import java.util.ArrayList;
 
@@ -10,7 +11,7 @@ public class MedicineDeliverySRFormEvaluator extends ServiceRequestFormEvaluator
 
     public MedicineDeliverySRFormEvaluator() {}
 
-    public ArrayList<ServiceRequestUserInputValidationErrorItem> getMedicineDeliverySRValidationTestResult(int locationID, int assigneeID, int patientID, String medicine, String dosage, String status, String priority)
+    public ArrayList<ServiceRequestUserInputValidationErrorItem> getMedicineDeliverySRValidationTestResult(int locationID, int assigneeID, int patientID, String medicine, String dosage, SingleSelectionModel status, SingleSelectionModel priority)
     {
         ArrayList <ServiceRequestUserInputValidationErrorItem> errorList = new ArrayList <ServiceRequestUserInputValidationErrorItem> ();
 

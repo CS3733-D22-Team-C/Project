@@ -3,13 +3,15 @@ package edu.wpi.cs3733.D22.teamC.user_input_validation.service_request.facility_
 import edu.wpi.cs3733.D22.teamC.error.error_item.service_request_user_input_validation.ServiceRequestUserInputValidationErrorItem;
 import edu.wpi.cs3733.D22.teamC.error.error_record.service_request_user_input_validation.ServiceRequestUserInputValidationErrorRecord;
 import edu.wpi.cs3733.D22.teamC.user_input_validation.service_request.ServiceRequestFormEvaluator;
+import javafx.scene.control.SingleSelectionModel;
+
 import java.util.ArrayList;
 
 public class FacilityMaintenanceSRFormEvaluator extends ServiceRequestFormEvaluator {
 
     public FacilityMaintenanceSRFormEvaluator() {}
 
-    public ArrayList<ServiceRequestUserInputValidationErrorItem> getFacilityMaintenanceSRValidationTestResult(int locationID, int assigneeID, String status, String priority, String maintenanceType)
+    public ArrayList<ServiceRequestUserInputValidationErrorItem> getFacilityMaintenanceSRValidationTestResult(int locationID, int assigneeID, SingleSelectionModel status, SingleSelectionModel priority, String maintenanceType)
     {
         ArrayList <ServiceRequestUserInputValidationErrorItem> errorList = new ArrayList <ServiceRequestUserInputValidationErrorItem> ();
 

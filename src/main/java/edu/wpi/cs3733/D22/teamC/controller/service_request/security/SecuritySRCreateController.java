@@ -7,14 +7,19 @@ import com.jfoenix.controls.datamodels.treetable.RecursiveTreeObject;
 import edu.wpi.cs3733.D22.teamC.controller.service_request.ServiceRequestCreateController;
 import edu.wpi.cs3733.D22.teamC.entity.service_request.ServiceRequest;
 import edu.wpi.cs3733.D22.teamC.entity.service_request.security.SecuritySR;
+import edu.wpi.cs3733.D22.teamC.error.error_item.service_request_user_input_validation.ServiceRequestUserInputValidationErrorItem;
 import edu.wpi.cs3733.D22.teamC.models.service_request.security.SecuritySRTable;
+import edu.wpi.cs3733.D22.teamC.user_input_validation.service_request.sanitation.SanitationSRFormEvaluator;
+import edu.wpi.cs3733.D22.teamC.user_input_validation.service_request.security.SecuritySRFormEvaluator;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.scene.control.SingleSelectionModel;
 import javafx.scene.control.TreeItem;
 
 import java.net.URL;
+import java.util.ArrayList;
 import java.util.ResourceBundle;
 
 public class SecuritySRCreateController extends ServiceRequestCreateController {
@@ -55,35 +60,35 @@ public class SecuritySRCreateController extends ServiceRequestCreateController {
     @FXML
     protected SecuritySR clickSubmit(ActionEvent event) {
 
-        if (assigneeID.getText().isEmpty() || secType.getSelectionModel().isEmpty() ||
-        location.getText().isEmpty() || priority.getSelectionModel().isEmpty() ||
-                status.getSelectionModel().isEmpty()) {
-            return null;
-        }
-        else
-        {
+        SecuritySRFormEvaluator sSRFE = new SecuritySRFormEvaluator();
 
-            SecuritySR securitySR = new SecuritySR();
+        //Even though the initialize function in ServiceRequestController sets up the assigneeID and location textfields to only read in integers, parseInt() still needs to be used on these text fields.
+        int assigneeIDInt = Integer.parseInt(assigneeID.getText());
+        int locationInt = Integer.parseInt(location.getText());
 
-            //Sets from textFields
-            securitySR.setAssigneeID(assigneeID.getText());
-            //securityServiceRequest.setDescription(description.getText());
-            securitySR.setLocation(location.getText());
+        ArrayList<ServiceRequestUserInputValidationErrorItem> errors = sSRFE.getSecuritySRValidationTestResult(locationInt, assigneeIDInt, status.getSelectionModel(), priority.getSelectionModel(), secType.getSelectionModel());
 
-            //Sets from combo boxes
-            securitySR.setStatus(ServiceRequest.Status.valueOf(status.getValue()));
-            securitySR.setPriority(ServiceRequest.Priority.valueOf(priority.getValue()));
-            securitySR.setSecurityType(SecuritySR.SecurityType.valueOf(secType.getValue()));
+        SecuritySR securitySR = new SecuritySR();
 
-            securitySR.setRequestType(ServiceRequest.RequestType.Security);
+        //Sets from textFields
+        securitySR.setAssigneeID(assigneeID.getText());
+        //securityServiceRequest.setDescription(description.getText());
+        securitySR.setLocation(location.getText());
 
-            // Table Entry
-            clickReset(event);
-            SecuritySRTable met = new SecuritySRTable(securitySR);
-            METList.add(met);
-            return securitySR;
-        }
+        //Sets from combo boxes
+        securitySR.setStatus(ServiceRequest.Status.valueOf(status.getValue()));
+        securitySR.setPriority(ServiceRequest.Priority.valueOf(priority.getValue()));
+        securitySR.setSecurityType(SecuritySR.SecurityType.valueOf(secType.getValue()));
+
+        securitySR.setRequestType(ServiceRequest.RequestType.Security);
+
+        // Table Entry
+        clickReset(event);
+        SecuritySRTable met = new SecuritySRTable(securitySR);
+        METList.add(met);
+        return securitySR;
     }
+
 
     private boolean securityUserInputValidationTestPassed(int assigneeID, int locationID, String priority, String status, String securityType)
     {

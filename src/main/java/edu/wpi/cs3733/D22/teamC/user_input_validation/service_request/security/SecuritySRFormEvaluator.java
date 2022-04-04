@@ -3,6 +3,7 @@ package edu.wpi.cs3733.D22.teamC.user_input_validation.service_request.security;
 import edu.wpi.cs3733.D22.teamC.error.error_item.service_request_user_input_validation.ServiceRequestUserInputValidationErrorItem;
 import edu.wpi.cs3733.D22.teamC.error.error_record.service_request_user_input_validation.ServiceRequestUserInputValidationErrorRecord;
 import edu.wpi.cs3733.D22.teamC.user_input_validation.service_request.ServiceRequestFormEvaluator;
+import javafx.scene.control.SingleSelectionModel;
 
 import java.util.ArrayList;
 
@@ -11,7 +12,7 @@ public class SecuritySRFormEvaluator extends ServiceRequestFormEvaluator {
     public SecuritySRFormEvaluator()
     {}
 
-    public ArrayList<ServiceRequestUserInputValidationErrorItem> getSecuritySRValidationTestResult(int locationID, int assigneeID, String status, String priority, String securityType)
+    public ArrayList<ServiceRequestUserInputValidationErrorItem> getSecuritySRValidationTestResult(int locationID, int assigneeID, SingleSelectionModel status, SingleSelectionModel priority, SingleSelectionModel securityType)
     {
         ArrayList <ServiceRequestUserInputValidationErrorItem> errorList = new ArrayList <ServiceRequestUserInputValidationErrorItem> ();
 
@@ -28,7 +29,7 @@ public class SecuritySRFormEvaluator extends ServiceRequestFormEvaluator {
      * @param securityType
      * @return ServiceRequestUserInputValidationErrorItem
      */
-    public ServiceRequestUserInputValidationErrorItem checkSecurityTypeFilled(String securityType)
+    public ServiceRequestUserInputValidationErrorItem checkSecurityTypeFilled(SingleSelectionModel securityType)
     {
         if(securityType.isEmpty())
         {
