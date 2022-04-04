@@ -4,8 +4,10 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Node;
+import javafx.scene.control.TextField;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.VBox;
+import org.w3c.dom.Text;
 
 import java.io.IOException;
 import java.net.URL;
@@ -25,6 +27,16 @@ public class BaseMapViewController implements Initializable {
 
     @FXML
     GridPane mapViewGridPane;
+
+    // Text Fields
+    @FXML
+    TextField IDTextField;
+    @FXML
+    TextField LongNameTextField;
+    @FXML
+    TextField ShortNameTextField;
+    @FXML
+    TextField TypeTextField;
 
     // Constants
     public static final String MAP_PATH = "../../../view/location/map/map.fxml";
