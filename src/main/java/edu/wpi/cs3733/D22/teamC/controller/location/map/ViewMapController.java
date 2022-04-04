@@ -29,7 +29,7 @@ public class ViewMapController implements Initializable {
         }
 
         public MapLocation(double x, double y) {
-            this.location = null;
+            this.location = new Location();
             this.node = createNode(x, y);
         }
 
@@ -47,12 +47,20 @@ public class ViewMapController implements Initializable {
             circle.setOnMouseDragged(e -> onMouseDraggedNode(e, this));
             return circle;
         }
+
+        /**
+         * Update Location Position from MapLocation Node attributes.
+         */
+        public void updateLocationPosition() {
+            this.location.setX((int) this.node.getCenterX());
+            this.location.setY((int) this.node.getCenterY());
+        }
     }
 
     // Constants
-    private final static double MAX_SCALE = 4f;
-    private final static double MIN_SCALE = 0.25f;
-    private final static int MAP_BUFFER = 100;
+    protected final static double MAX_SCALE = 1.1f;
+    protected final static double MIN_SCALE = 0.8f;
+    protected final static int MAP_BUFFER = 100;
 
     // FXML
     @FXML ScrollPane scroll;
@@ -71,12 +79,14 @@ public class ViewMapController implements Initializable {
             map.getChildren().add(mapLocation.node);
         }
 
-        // Initialize ScrollPane Size
+        // Initialize ScrollPane Size (Should be rewritten to make use of full screen space
         scroll.setPrefViewportHeight(750);
         scroll.setPrefViewportWidth(750);
 
         // Initialize Map Functionality
         map.setOnMouseClicked(this::onMouseClickedMap);
+        map.setOnMousePressed(this::onMousePressedMap);
+        map.setOnMouseReleased(this::onMouseReleasedMap);
         map.setOnScroll(this::onMouseScrollMap);
     }
 
@@ -92,8 +102,10 @@ public class ViewMapController implements Initializable {
             maxY = Math.max(maxY, location.getY());
         }
 
-        // Initialize Map Size
-        updateMapSize(maxX, maxY);
+        // Initialize Map Size and Position
+        updateMapSize(maxX , maxY);
+        map.setTranslateX(0);
+        map.setTranslateY(0);
 
         return mapLocs;
     }
@@ -136,6 +148,20 @@ public class ViewMapController implements Initializable {
                     offActiveNode(clickedMapLocation);
                     clickedMapLocation = null;
                 }
+            }
+        }
+
+        protected void onMousePressedMap(MouseEvent event) {
+            if (event.getButton().equals(MouseButton.MIDDLE)) {
+                // Middle-Click set pannable map
+                scroll.setPannable(true);
+            }
+        }
+
+        protected void onMouseReleasedMap(MouseEvent event) {
+            if (event.getButton().equals(MouseButton.MIDDLE)) {
+                // Middle-Click set pannable map
+                scroll.setPannable(false);
             }
         }
 
@@ -194,6 +220,13 @@ public class ViewMapController implements Initializable {
 
             map.setPrefWidth(maxX);
             map.setPrefHeight(maxY);
+        }
+
+        protected void offsetAllLocations(double xOffset, double yOffset) {
+            for (MapLocation mapLoc : mapLocations) {
+                mapLoc.node.setCenterX(mapLoc.node.getCenterX() + xOffset);
+                mapLoc.node.setCenterY(mapLoc.node.getCenterY() + yOffset);
+            }
         }
     //#endregion
 }

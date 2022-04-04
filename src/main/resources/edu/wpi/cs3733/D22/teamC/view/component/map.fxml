@@ -1,10 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.Cursor?>
 <?import javafx.scene.control.ScrollPane?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<ScrollPane fx:id="scroll" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minViewportHeight="200.0" minViewportWidth="200.0" minWidth="-Infinity" style="-fx-background: #2e2e2e;" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.wpi.cs3733.D22.teamC.controller.location.map.ViewMapController">
+<ScrollPane fx:id="scroll" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefViewportHeight="200.0" prefViewportWidth="200.0" style="-fx-background: #2e2e2e;" stylesheets="@../../css/map.css" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.wpi.cs3733.D22.teamC.controller.location.map.EditMapController">
    <content>
-      <AnchorPane fx:id="map" style="-fx-background-color: #d9eeff;" />
+      <AnchorPane fx:id="map" prefHeight="200.0" prefWidth="200.0" styleClass="map">
+         <cursor>
+            <Cursor fx:constant="DEFAULT" />
+         </cursor></AnchorPane>
    </content>
 </ScrollPane>
