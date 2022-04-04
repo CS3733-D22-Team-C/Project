@@ -1,16 +1,15 @@
-package edu.wpi.cs3733.D22.teamC.userinputvalidation.security;
+package edu.wpi.cs3733.D22.teamC.userinputvalidation.service_request.sanitation;
 
-import edu.wpi.cs3733.D22.teamC.userinputvalidation.ServiceRequestValidationErrorItem;
-import edu.wpi.cs3733.D22.teamC.userinputvalidation.ServiceRequestFormEvaluator;
+import edu.wpi.cs3733.D22.teamC.userinputvalidation.service_request.ServiceRequestValidationErrorItem;
+import edu.wpi.cs3733.D22.teamC.userinputvalidation.service_request.ServiceRequestFormEvaluator;
 
-public class SecuritySRFormEvaluator extends ServiceRequestFormEvaluator {
+public class SanitationSRFormEvaluator extends ServiceRequestFormEvaluator {
 
-    private static final ServiceRequestValidationErrorItem[] securityServiceRequestValidationErrorItemList = {
-            new ServiceRequestValidationErrorItem(16, "Security Type needs to be filled")
+    private static final ServiceRequestValidationErrorItem[] sanitationServiceRequestValidationErrorItemList = {
+            new ServiceRequestValidationErrorItem(15, "Sanitation Type needs to be filled")
     };
 
-    public SecuritySRFormEvaluator()
-    {}
+    public SanitationSRFormEvaluator() {}
 
     @Override
     public ServiceRequestValidationErrorItem getValidateAssigneeIDResult(int ID) {
@@ -42,8 +41,9 @@ public class SecuritySRFormEvaluator extends ServiceRequestFormEvaluator {
         return super.checkPriorityFilled(priority);
     }
 
-    public ServiceRequestValidationErrorItem checkSecurityTypeFilled(String securityType)
+    public ServiceRequestValidationErrorItem checkSanitationTypeFilled(String sanitationType)
     {
         return null;
     }
+
 }

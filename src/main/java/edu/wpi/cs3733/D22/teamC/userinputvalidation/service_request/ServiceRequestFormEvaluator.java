@@ -1,4 +1,4 @@
-package edu.wpi.cs3733.D22.teamC.userinputvalidation;
+package edu.wpi.cs3733.D22.teamC.userinputvalidation.service_request;
 
 //Note: If user input validation expands beyond service requests forms as development continues, then user validation can be further abstracted when refactoring.
 

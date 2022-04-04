@@ -1,16 +1,16 @@
-package edu.wpi.cs3733.D22.teamC.userinputvalidation.medical_equipment;
+package edu.wpi.cs3733.D22.teamC.userinputvalidation.service_request.security;
 
-import edu.wpi.cs3733.D22.teamC.userinputvalidation.ServiceRequestValidationErrorItem;
-import edu.wpi.cs3733.D22.teamC.userinputvalidation.ServiceRequestFormEvaluator;
+import edu.wpi.cs3733.D22.teamC.userinputvalidation.service_request.ServiceRequestValidationErrorItem;
+import edu.wpi.cs3733.D22.teamC.userinputvalidation.service_request.ServiceRequestFormEvaluator;
 
-public class MedicalEquipmentSRFormEvaluator extends ServiceRequestFormEvaluator {
+public class SecuritySRFormEvaluator extends ServiceRequestFormEvaluator {
 
-    private static final ServiceRequestValidationErrorItem[] medicalEquipmentServiceRequestValidationErrorItemList = {
-                    new ServiceRequestValidationErrorItem(10, "Equipment Type needs to be filled"),
-                    new ServiceRequestValidationErrorItem(11, "Equipment ID needs to be filled")
-            };
+    private static final ServiceRequestValidationErrorItem[] securityServiceRequestValidationErrorItemList = {
+            new ServiceRequestValidationErrorItem(16, "Security Type needs to be filled")
+    };
 
-    public MedicalEquipmentSRFormEvaluator() {}
+    public SecuritySRFormEvaluator()
+    {}
 
     @Override
     public ServiceRequestValidationErrorItem getValidateAssigneeIDResult(int ID) {
@@ -42,13 +42,8 @@ public class MedicalEquipmentSRFormEvaluator extends ServiceRequestFormEvaluator
         return super.checkPriorityFilled(priority);
     }
 
-   public ServiceRequestValidationErrorItem checkEquipmentTypeFilled(String equipType)
-   {
+    public ServiceRequestValidationErrorItem checkSecurityTypeFilled(String securityType)
+    {
         return null;
-   }
-
-   public ServiceRequestValidationErrorItem checkEquipmentIDFilled(String equipID)
-   {
-        return null;
-   }
+    }
 }

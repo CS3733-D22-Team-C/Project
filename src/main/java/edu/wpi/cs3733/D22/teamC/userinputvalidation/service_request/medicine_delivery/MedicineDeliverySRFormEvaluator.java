@@ -1,7 +1,7 @@
-package edu.wpi.cs3733.D22.teamC.userinputvalidation.medicine_delivery;
+package edu.wpi.cs3733.D22.teamC.userinputvalidation.service_request.medicine_delivery;
 
-import edu.wpi.cs3733.D22.teamC.userinputvalidation.ServiceRequestValidationErrorItem;
-import edu.wpi.cs3733.D22.teamC.userinputvalidation.ServiceRequestFormEvaluator;
+import edu.wpi.cs3733.D22.teamC.userinputvalidation.service_request.ServiceRequestValidationErrorItem;
+import edu.wpi.cs3733.D22.teamC.userinputvalidation.service_request.ServiceRequestFormEvaluator;
 
 public class MedicineDeliverySRFormEvaluator extends ServiceRequestFormEvaluator {
 

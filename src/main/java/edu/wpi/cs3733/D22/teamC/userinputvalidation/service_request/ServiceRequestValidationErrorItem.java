@@ -1,4 +1,4 @@
-package edu.wpi.cs3733.D22.teamC.userinputvalidation;
+package edu.wpi.cs3733.D22.teamC.userinputvalidation.service_request;
 
 public class ServiceRequestValidationErrorItem {
     private String reasonForValidationError;
