@@ -17,20 +17,21 @@ public class Employee {
     private boolean isAdmin;
 
     public enum Role{
-        DOCTOR,
-        NURSE,
-        LAB,
-        SECURITY,
-        THERAPIST,
-        TECHNICIAN,
-        JANITOR,
+        Doctor,
+        Nurse,
+        Lab,
+        Security,
+        Therapist,
+        Technician,
+        Janitor,
         IT,
-        FOOD_SERVICE,
-        PHARMACY
+        FoodService,
+        Pharmacist
     }
 
     public Employee(){}
 
+    public Employee(int employeeID){ this.employeeID = employeeID;}
 
     public int getEmployeeID() {
         return employeeID;
