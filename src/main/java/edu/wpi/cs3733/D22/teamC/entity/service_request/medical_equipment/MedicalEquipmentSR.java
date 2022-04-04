@@ -19,12 +19,6 @@ public class MedicalEquipmentSR extends ServiceRequest {
         Infusion_Pump
     }
 
-    public enum EquipmentStatus {
-        Available,
-        Unavailable,
-        Dirty
-    }
-
     public EquipmentType getEquipmentType() {
         return equipmentType;
     }
