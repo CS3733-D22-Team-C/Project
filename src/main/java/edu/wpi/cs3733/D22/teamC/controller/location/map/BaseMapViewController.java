@@ -27,7 +27,7 @@ public class BaseMapViewController implements Initializable {
     GridPane mapViewGridPane;
 
     // Constants
-    public static final String MAP_PATH = "../../../view/component/map.fxml";
+    public static final String MAP_PATH = "../../../view/location/map/map.fxml";
     public static final String EDIT_BUTTON_PANE = "../../../view/location/map/edit_button_pane.fxml";
     public static final String LOCATION_INFO_PANE = "../../../view/location/map/location_info_pane.fxml";
 
