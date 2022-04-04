@@ -1,8 +1,60 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.layout.AnchorPane?>
+<?import com.jfoenix.controls.JFXButton?>
+<?import java.lang.String?>
+<?import java.net.URL?>
+<?import javafx.scene.layout.VBox?>
 
 
-<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.wpi.cs3733.D22.teamC.controller.location.map.BaseMapViewController">
-
-</AnchorPane>
+<VBox alignment="CENTER" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <JFXButton fx:id="exitEditButton" text="Exit">
+         <stylesheets>
+            <URL value="@../../../css/base.css" />
+            <URL value="@../../../css/map.css" />
+         </stylesheets>
+         <styleClass>
+            <String fx:value="button-failure" />
+            <String fx:value="button" />
+         </styleClass>
+      </JFXButton>
+      <JFXButton fx:id="saveAndExitButton" text="Save and Exit">
+         <stylesheets>
+            <URL value="@../../../css/base.css" />
+            <URL value="@../../../css/map.css" />
+         </stylesheets>
+         <styleClass>
+            <String fx:value="button-success" />
+            <String fx:value="button" />
+         </styleClass>
+      </JFXButton>
+      <JFXButton fx:id="importCSVButton" text="Import CSV">
+         <stylesheets>
+            <URL value="@../../../css/base.css" />
+            <URL value="@../../../css/map.css" />
+         </stylesheets>
+         <styleClass>
+            <String fx:value="button-edit" />
+            <String fx:value="button" />
+         </styleClass>
+      </JFXButton>
+      <JFXButton fx:id="exportCSVButton" text="Export CSV">
+         <stylesheets>
+            <URL value="@../../../css/base.css" />
+            <URL value="@../../../css/map.css" />
+         </stylesheets>
+         <styleClass>
+            <String fx:value="button-edit" />
+            <String fx:value="button" />
+         </styleClass>
+      </JFXButton>
+   </children>
+   <stylesheets>
+      <URL value="@../../../css/base.css" />
+      <URL value="@../../../css/map.css" />
+   </stylesheets>
+   <styleClass>
+      <String fx:value="vbox" />
+      <String fx:value="anchor-pane-margin" />
+   </styleClass>
+</VBox>
