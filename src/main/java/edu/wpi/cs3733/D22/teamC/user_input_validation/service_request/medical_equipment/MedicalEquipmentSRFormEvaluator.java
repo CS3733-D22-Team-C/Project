@@ -4,11 +4,24 @@ import edu.wpi.cs3733.D22.teamC.error.error_item.service_request_user_input_vali
 import edu.wpi.cs3733.D22.teamC.error.error_record.service_request_user_input_validation.ServiceRequestUserInputValidationErrorRecord;
 import edu.wpi.cs3733.D22.teamC.user_input_validation.service_request.ServiceRequestFormEvaluator;
 
+import java.util.ArrayList;
+
 public class MedicalEquipmentSRFormEvaluator extends ServiceRequestFormEvaluator {
 
     public MedicalEquipmentSRFormEvaluator() {}
 
+    public ArrayList<ServiceRequestUserInputValidationErrorItem> getMedicalEquipmentSRValidationTestResult(int locationID, int assigneeID, String status, String priority, String equipType, int equipID)
+    {
+        ArrayList <ServiceRequestUserInputValidationErrorItem> errorList = new ArrayList <ServiceRequestUserInputValidationErrorItem> ();
 
+        errorList.addAll(super.getBasicRequiredFieldsFilledValidationResult(locationID, assigneeID, status, priority));
+        errorList.add(super.getValidateAssigneeIDResult(assigneeID));
+        errorList.add(super.getValidateLocationIDResult(locationID));
+        errorList.add(checkEquipmentIDFilled(equipID));
+        errorList.add(checkEquipmentTypeFilled(equipType));
+
+        return errorList;
+    }
 
     /**
      * Determine if the Equipment Type of Medical Equipment Service Request has been filled
