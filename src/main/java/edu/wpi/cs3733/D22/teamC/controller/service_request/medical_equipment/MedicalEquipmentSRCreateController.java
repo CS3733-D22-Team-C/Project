@@ -154,11 +154,7 @@ public class MedicalEquipmentSRCreateController extends ServiceRequestCreateCont
             //Adds all possible values to dropdown
             for (int i = 1; i <= nums; i++) {
                 String ID = type;
-                int digits = (int) (Math.log10(i) + 1);
-                for (int j = 0; j < 7 - digits; j++) {
-                    ID += "0";
-                }
-                ID += i;
+                ID += String.format("%07d" , i);
                 equipID.getItems().add(ID);
             }
         }

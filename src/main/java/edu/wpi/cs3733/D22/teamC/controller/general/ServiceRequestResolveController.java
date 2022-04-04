@@ -64,7 +64,10 @@ public class ServiceRequestResolveController implements Initializable {
         status.setPromptText(srt.getStatus());
         assigneeID.setPromptText(srt.getAssigneeID());
         hospitalLocation.setPromptText(srt.getLocation());
-        requestID.setText(String.valueOf(srt.getID()));
+
+        //requestID with leading 0's
+        requestID.setText(String.format("%07d" , srt.getID()));
+
 
         if(isEditMode){
             //Set title

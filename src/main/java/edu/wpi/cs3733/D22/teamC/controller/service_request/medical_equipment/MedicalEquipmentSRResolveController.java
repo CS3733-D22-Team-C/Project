@@ -20,7 +20,7 @@ public class MedicalEquipmentSRResolveController extends ServiceRequestResolveCo
     @FXML private JFXComboBox<String> equipmentType;
 
     //For equipID dropdown
-    private String lastType;
+    private String lastType ="a";
 
     @FXML
     public void initialize(URL url, ResourceBundle rb) {
@@ -35,20 +35,16 @@ public class MedicalEquipmentSRResolveController extends ServiceRequestResolveCo
         equipmentID.setPromptText(medicalEquipmentSR.getEquipmentID());
         description.setText(medicalEquipmentSR.getDescription());
         creationTime.setText(medicalEquipmentSR.getCreationTimestamp().toString());
-        System.out.println(medicalEquipmentSR.getCreationTimestamp().toString());
 
         if(isEditMode){
             //Sets status at bottom
             firstStatus.setText(status.getValue());
-
-            lastType = equipmentType.getPromptText();
 
             //For equipment type drop down
             for (MedicalEquipmentSR.EquipmentType type : MedicalEquipmentSR.EquipmentType.values()) {
                 equipmentType.getItems().add(type.toString());
             }
 
-            //For equipment ID
             //For assigneeID make editable
 
         }
@@ -90,14 +86,13 @@ public class MedicalEquipmentSRResolveController extends ServiceRequestResolveCo
     @FXML
     void equipTypeChanged(MouseEvent event) {
         if(isEditMode) {
-            //Delete promptText
-            equipmentID.setPromptText("");
-
             //If on the same equipment type
             if (equipmentType.getValue().equals(lastType)) {
                 return;
-            } else {
+            }
+            else {
                 lastType = equipmentType.getValue();
+
 
                 //Resetting the values
                 equipmentID.valueProperty().setValue(null);
@@ -111,16 +106,16 @@ public class MedicalEquipmentSRResolveController extends ServiceRequestResolveCo
                 String type = "";
                 int nums = 0;
 
-                if (equipmentType.getValue().equals(MedicalEquipmentSR.EquipmentType.Bed.toString())) {
+                if (lastType.equals(MedicalEquipmentSR.EquipmentType.Bed.toString())) {
                     type = "BED";
                     nums = numBeds;
-                } else if (equipmentType.getValue().equals(MedicalEquipmentSR.EquipmentType.Recliner.toString())) {
+                } else if (lastType.equals(MedicalEquipmentSR.EquipmentType.Recliner.toString())) {
                     type = "REC";
                     nums = numRecliners;
-                } else if (equipmentType.getValue().equals(MedicalEquipmentSR.EquipmentType.Infusion_Pump.toString())) {
+                } else if (lastType.equals(MedicalEquipmentSR.EquipmentType.Infusion_Pump.toString())) {
                     type = "INF";
                     nums = numInfusion;
-                } else if (equipmentType.getValue().equals(MedicalEquipmentSR.EquipmentType.Portable_X_Ray.toString())) {
+                } else if (lastType.equals(MedicalEquipmentSR.EquipmentType.Portable_X_Ray.toString())) {
                     type = "XRA";
                     nums = numXRay;
                 }
@@ -128,17 +123,13 @@ public class MedicalEquipmentSRResolveController extends ServiceRequestResolveCo
                 //Adds all possible values to dropdown
                 for (int i = 1; i <= nums; i++) {
                     String ID = type;
-                    int digits = (int) (Math.log10(i) + 1);
-                    for (int j = 0; j < 7 - digits; j++) {
-                        ID += "0";
-                    }
-                    ID += i;
+                    ID += String.format("%07d" , i);
                     equipmentID.getItems().add(ID);
                 }
             }
         }
-        else
-            return;
+        //Delete promptText
+        equipmentID.setPromptText("");
 
     }
 
