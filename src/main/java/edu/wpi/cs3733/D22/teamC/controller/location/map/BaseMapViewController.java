@@ -42,6 +42,7 @@ public class BaseMapViewController implements Initializable {
     public static final String MAP_PATH = "../../../view/location/map/map.fxml";
     public static final String EDIT_BUTTON_PANE = "../../../view/location/map/edit_button_pane.fxml";
     public static final String LOCATION_INFO_PANE = "../../../view/location/map/location_info_pane.fxml";
+    public static final String EDIT_MODE_PANE = "../../../view/location/map/edit_map_locations_pane.fxml";
 
 
     @Override
@@ -50,7 +51,7 @@ public class BaseMapViewController implements Initializable {
             mapViewGridPane.setMaxHeight(Double.MAX_VALUE);
             mapViewGridPane.setMaxWidth(Double.MAX_VALUE);
 
-            // Load location info pane into grid pane
+            // Load edit info pane into grid pane
             FXMLLoader loader = new FXMLLoader();
             loader.setLocation(getClass().getResource(EDIT_BUTTON_PANE));
             inspectButtonPane.getChildren().add(loader.load());
