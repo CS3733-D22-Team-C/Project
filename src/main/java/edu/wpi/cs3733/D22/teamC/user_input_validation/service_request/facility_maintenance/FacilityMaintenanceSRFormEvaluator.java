@@ -3,19 +3,27 @@ package edu.wpi.cs3733.D22.teamC.user_input_validation.service_request.facility_
 import edu.wpi.cs3733.D22.teamC.error.error_item.service_request_user_input_validation.ServiceRequestUserInputValidationErrorItem;
 import edu.wpi.cs3733.D22.teamC.error.error_record.service_request_user_input_validation.ServiceRequestUserInputValidationErrorRecord;
 import edu.wpi.cs3733.D22.teamC.user_input_validation.service_request.ServiceRequestFormEvaluator;
+import java.util.ArrayList;
 
 public class FacilityMaintenanceSRFormEvaluator extends ServiceRequestFormEvaluator {
 
     public FacilityMaintenanceSRFormEvaluator() {}
 
-    @Override
-    public ServiceRequestUserInputValidationErrorItem getValidateAssigneeIDResult(int ID) {
-        return super.getValidateAssigneeIDResult(ID);
+    public ArrayList<ServiceRequestUserInputValidationErrorItem> getFacilityMaintenanceSRValidationTestResult(int locationID, int assigneeID, String status, String priority, String maintenanceType)
+    {
+        ArrayList <ServiceRequestUserInputValidationErrorItem> list = new ArrayList <ServiceRequestUserInputValidationErrorItem> ();
+
+        return null;
     }
 
     @Override
-    public ServiceRequestUserInputValidationErrorItem getValidateLocationIDResult(int location) {
-        return super.getValidateLocationIDResult(location);
+    public ServiceRequestUserInputValidationErrorItem getValidateAssigneeIDResult(int assigneeID) {
+        return super.getValidateAssigneeIDResult(assigneeID);
+    }
+
+    @Override
+    public ServiceRequestUserInputValidationErrorItem getValidateLocationIDResult(int locationID) {
+        return super.getValidateLocationIDResult(locationID);
     }
 
     @Override
@@ -39,9 +47,9 @@ public class FacilityMaintenanceSRFormEvaluator extends ServiceRequestFormEvalua
     }
 
     /**
-     * Determine if the Maintenance Type of a Facility Maintenance Service Request is filled
+     * Determine if the Maintenance Type of Facility Maintenance Service Request is filled
      * @param maintenanceType
-     * @return ServiceRequestValidationErrorItem
+     * @return ServiceRequestUserInputValidationErrorItem
      */
     public ServiceRequestUserInputValidationErrorItem checkMaintenanceTypeFilled(String maintenanceType)
     {

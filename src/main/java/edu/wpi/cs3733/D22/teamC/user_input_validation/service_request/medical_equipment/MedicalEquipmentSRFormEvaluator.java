@@ -38,6 +38,11 @@ public class MedicalEquipmentSRFormEvaluator extends ServiceRequestFormEvaluator
         return super.checkPriorityFilled(priority);
     }
 
+    /**
+     * Determine if the Equipment Type of Medical Equipment Service Request has been filled
+     * @param equipType
+     * @return ServiceRequestUserInputValidationErrorItem
+     */
    public ServiceRequestUserInputValidationErrorItem checkEquipmentTypeFilled(String equipType)
    {
        if(equipType.length() == 0 && equipType == null)
@@ -50,8 +55,22 @@ public class MedicalEquipmentSRFormEvaluator extends ServiceRequestFormEvaluator
        }
    }
 
-   public ServiceRequestUserInputValidationErrorItem checkEquipmentIDFilled(String equipID)
+    /**
+     * Determine if the Equipment ID of a Medical Equipment Service Request has been filled
+     * @param equipID
+     * @return ServiceRequestUserInputValidationErrorItem
+     */
+   public ServiceRequestUserInputValidationErrorItem checkEquipmentIDFilled(int equipID)
    {
-        return null;
+       int equipIDLength = (int)(Math.log10(equipID)+1);
+
+       if(equipIDLength == 0)
+       {
+           return ServiceRequestUserInputValidationErrorRecord.serviceRequestUserInputValidationErrorList[10];
+       }
+       else
+       {
+           return null;
+       }
    }
 }

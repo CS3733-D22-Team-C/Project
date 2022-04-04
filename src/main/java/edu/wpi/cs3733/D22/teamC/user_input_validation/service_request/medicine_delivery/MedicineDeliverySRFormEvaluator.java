@@ -37,16 +37,31 @@ public class MedicineDeliverySRFormEvaluator extends ServiceRequestFormEvaluator
         return super.checkPriorityFilled(priority);
     }
 
+    /**
+     * Determine if the Patient ID of a MedicineDelivery Service Request has been filled
+     * @param patientID
+     * @return ServiceRequestUserInputValidationErrorItem
+     */
     public ServiceRequestUserInputValidationErrorItem checkPatientIDFilled(int patientID)
     {
         return null;
     }
 
+    /**
+     * Determine if the Medicine of a MedicineDelivery Service Request has been filled
+     * @param medicine
+     * @return ServiceRequestUserInputValidationErrorItem
+     */
     public ServiceRequestUserInputValidationErrorItem checkMedicineFilled(String medicine)
     {
         return null;
     }
 
+    /**
+     * Determine if the Dosage of a MedicineDelivery Service Request has been filled
+     * @param dosage
+     * @return ServiceRequestUserInputValidationErrorItem
+     */
     public ServiceRequestUserInputValidationErrorItem checkDosageFilled(String dosage)
     {
         return null;

@@ -38,6 +38,11 @@ public class SanitationSRFormEvaluator extends ServiceRequestFormEvaluator {
         return super.checkPriorityFilled(priority);
     }
 
+    /**
+     * Determine if the Sanitation Type of Sanitation Service Request has been filled
+     * @param sanitationType
+     * @return ServiceRequestUserInputValidationErrorItem
+     */
     public ServiceRequestUserInputValidationErrorItem checkSanitationTypeFilled(String sanitationType)
     {
         return ServiceRequestUserInputValidationErrorRecord.serviceRequestUserInputValidationErrorList[14];

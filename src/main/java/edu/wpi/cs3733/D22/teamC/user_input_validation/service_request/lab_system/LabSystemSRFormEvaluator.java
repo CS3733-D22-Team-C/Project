@@ -38,6 +38,11 @@ public class LabSystemSRFormEvaluator extends ServiceRequestFormEvaluator {
         return super.checkPriorityFilled(priority);
     }
 
+    /**
+     * Determine if the Lab Type of Lab System Service Request has been filled
+     * @param labType
+     * @return ServiceRequestUserInputValidationErrorItem
+     */
     public ServiceRequestUserInputValidationErrorItem checkLabTypeFilled(String labType)
     {
         if(labType.length() == 0 && labType == null)
@@ -50,6 +55,11 @@ public class LabSystemSRFormEvaluator extends ServiceRequestFormEvaluator {
         }
     }
 
+    /**
+     * Determine if the Patient ID of Lab System Service Request has been filled.
+     * @param patientID
+     * @return ServiceRequestUserInputValidationErrorItem
+     */
     public ServiceRequestUserInputValidationErrorItem checkPatientIDFilled(int patientID)
     {
         int patientIDLength = (int)(Math.log10(patientID)+1);
