@@ -31,6 +31,15 @@
                   <URL value="@../../css/base.css" />
                   <URL value="@../../css/menu_bar.css" />
                </stylesheets></JFXButton>
+            <JFXButton fx:id="menuBarMapButton" alignment="CENTER" onAction="#onMenuBarMapButtonPress" styleClass="button-inactive" text="MAP" textFill="WHITE">
+               <font>
+                  <Font size="17.0" />
+               </font>
+               <stylesheets>
+                  <URL value="@../../css/base.css" />
+                  <URL value="@../../css/menu_bar.css" />
+               </stylesheets>
+            </JFXButton>
             <JFXButton fx:id="menuBarLocationsButton" onAction="#onMenuBarLocationsButtonPress" styleClass="button-inactive" text="LOCATIONS" textFill="WHITE" HBox.hgrow="SOMETIMES">
                <font>
                   <Font size="17.0" />
@@ -55,7 +64,7 @@
                </stylesheets></JFXButton>
          </children>
       </HBox>
-      <HBox alignment="CENTER_RIGHT" prefHeight="42.0" prefWidth="200.0" styleClass="menu-bar" stylesheets="@../../css/menu_bar.css" GridPane.columnIndex="1" GridPane.hgrow="ALWAYS" GridPane.vgrow="ALWAYS">
+      <HBox alignment="CENTER_RIGHT" prefHeight="42.0" prefWidth="336.0" styleClass="menu-bar" stylesheets="@../../css/menu_bar.css" GridPane.columnIndex="1" GridPane.hgrow="ALWAYS" GridPane.vgrow="ALWAYS">
          <children>
             <JFXButton fx:id="menuBarExitButton" alignment="CENTER" contentDisplay="CENTER" onAction="#onMenuBarExitButtonPress" styleClass="button-inactive" text="EXIT" textFill="WHITE">
                <font>
