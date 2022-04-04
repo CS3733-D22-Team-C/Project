@@ -68,30 +68,37 @@ public class SecuritySRCreateController extends ServiceRequestCreateController {
 
         ArrayList<ServiceRequestUserInputValidationErrorItem> errors = sSRFE.getSecuritySRValidationTestResult(locationInt, assigneeIDInt, status.getSelectionModel(), priority.getSelectionModel(), secType.getSelectionModel());
 
-        SecuritySR securitySR = new SecuritySR();
+        if(errors.isEmpty())
+        {
+            SecuritySR securitySR = new SecuritySR();
 
-        //Sets from textFields
-        securitySR.setAssigneeID(assigneeID.getText());
-        //securityServiceRequest.setDescription(description.getText());
-        securitySR.setLocation(location.getText());
+            //Sets from textFields
+            securitySR.setAssigneeID(assigneeID.getText());
+            //securityServiceRequest.setDescription(description.getText());
+            securitySR.setLocation(location.getText());
 
-        //Sets from combo boxes
-        securitySR.setStatus(ServiceRequest.Status.valueOf(status.getValue()));
-        securitySR.setPriority(ServiceRequest.Priority.valueOf(priority.getValue()));
-        securitySR.setSecurityType(SecuritySR.SecurityType.valueOf(secType.getValue()));
+            //Sets from combo boxes
+            securitySR.setStatus(ServiceRequest.Status.valueOf(status.getValue()));
+            securitySR.setPriority(ServiceRequest.Priority.valueOf(priority.getValue()));
+            securitySR.setSecurityType(SecuritySR.SecurityType.valueOf(secType.getValue()));
 
-        securitySR.setRequestType(ServiceRequest.RequestType.Security);
+            securitySR.setRequestType(ServiceRequest.RequestType.Security);
 
-        // Table Entry
-        clickReset(event);
-        SecuritySRTable met = new SecuritySRTable(securitySR);
-        METList.add(met);
-        return securitySR;
+            // Table Entry
+            clickReset(event);
+            SecuritySRTable met = new SecuritySRTable(securitySR);
+            METList.add(met);
+            return securitySR;
+        }
+        else
+        {
+            generateErrorMessages(errors);
+            return null;
+        }
     }
 
-
-    private boolean securityUserInputValidationTestPassed(int assigneeID, int locationID, String priority, String status, String securityType)
-    {
-        return false;
+    @Override
+    public void generateErrorMessages(ArrayList<ServiceRequestUserInputValidationErrorItem> l) {
+        super.generateErrorMessages(l);
     }
 }

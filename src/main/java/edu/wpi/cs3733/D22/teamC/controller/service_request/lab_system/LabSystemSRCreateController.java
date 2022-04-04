@@ -49,30 +49,18 @@ public class LabSystemSRCreateController extends ServiceRequestCreateController 
         table.setRoot(root);
         table.setShowRoot(false);
 
-        //For Patient ID:
-        patientID.textProperty().addListener(new ChangeListener<String>() {
-            @Override
-            public void changed(ObservableValue<? extends String> observable, String oldValue,
-                                String newValue) {
-                if (!newValue.matches("\\d*")) {
-                    patientID.setText(newValue.replaceAll("[^\\d]", ""));
-                }
-            }
-        });
-
-        addTextLengthLimiter(patientID, 20);
+        setIDFieldToNumeric(patientID);
+        setTextLengthLimiter(patientID, 20);
     }
 
-    public static void addTextLengthLimiter(final TextField textf, final int maxLength) {
-        textf.textProperty().addListener(new ChangeListener<String>() {
-            @Override
-            public void changed(final ObservableValue<? extends String> ov, final String oldValue, final String newValue) {
-                if (textf.getText().length() > maxLength) {
-                    String s = textf.getText().substring(0, maxLength);
-                    textf.setText(s);
-                }
-            }
-        });
+    @Override
+    public void setIDFieldToNumeric(TextField tf) {
+        super.setIDFieldToNumeric(tf);
+    }
+
+    @Override
+    public void setTextLengthLimiter(TextField textF, int maxLength) {
+        super.setTextLengthLimiter(textF, maxLength);
     }
 
     @FXML
@@ -121,7 +109,13 @@ public class LabSystemSRCreateController extends ServiceRequestCreateController 
         }
         else
         {
+            generateErrorMessages(errors);
             return null;
         }
+    }
+
+    @Override
+    public void generateErrorMessages(ArrayList<ServiceRequestUserInputValidationErrorItem> l) {
+        super.generateErrorMessages(l);
     }
 }

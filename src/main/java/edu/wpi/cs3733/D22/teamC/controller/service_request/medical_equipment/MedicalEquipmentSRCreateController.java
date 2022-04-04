@@ -50,9 +50,13 @@ public class MedicalEquipmentSRCreateController extends ServiceRequestCreateCont
             equipType.getItems().add(type.toString());
         }
 
+        //For table
         MedicalEquipmentSRTable.createTableColumns(table);
         table.setRoot(root);
         table.setShowRoot(false);
+
+        //For TextFields:
+        //EquipID is being changed to a dropdown, so holding off on this.
 
         // Query Database
         ServiceRequestDAO serviceRequestDAO = new MedicalEquipmentSRDAOImpl();
@@ -127,8 +131,14 @@ public class MedicalEquipmentSRCreateController extends ServiceRequestCreateCont
         }
         else
         {
+            generateErrorMessages(errors);
             return null;
         }
 
+    }
+
+    @Override
+    public void generateErrorMessages(ArrayList<ServiceRequestUserInputValidationErrorItem> l) {
+        super.generateErrorMessages(l);
     }
 }

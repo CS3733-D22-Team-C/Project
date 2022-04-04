@@ -37,6 +37,12 @@ public class FacilityMaintenanceSRCreateController extends ServiceRequestCreateC
         FacilityMaintenanceSRTable.createTableColumns(table);
         table.setRoot(root);
         table.setShowRoot(false);
+        setTextLengthLimiter(maintType, 20);
+    }
+
+    @Override
+    public void setTextLengthLimiter(TextField textF, int maxLength) {
+        super.setTextLengthLimiter(textF, maxLength);
     }
 
     @FXML
@@ -80,8 +86,13 @@ public class FacilityMaintenanceSRCreateController extends ServiceRequestCreateC
         }
         else
         {
+            generateErrorMessages(errors);
             return null; //Code will be placed here to display error messages
         }
     }
 
+    @Override
+    public void generateErrorMessages(ArrayList<ServiceRequestUserInputValidationErrorItem> l) {
+        super.generateErrorMessages(l);
+    }
 }
