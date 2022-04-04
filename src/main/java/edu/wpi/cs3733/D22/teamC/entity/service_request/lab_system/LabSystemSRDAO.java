@@ -13,15 +13,15 @@ public abstract class LabSystemSRDAO extends ServiceRequestDAO<LabSystemSR> {
      * @return ServiceRequest object.
      */
     protected LabSystemSR modifyServiceRequest(ResultSet resultSet, LabSystemSR serviceRequest) {
+        // Modify ServiceRequest attributes
         serviceRequest = super.modifyServiceRequest(resultSet, serviceRequest);
+
         try {
-            // Create generic SR then convert and modify into MedicalEquipmentServiceRequest
-            serviceRequest.setRequestID(resultSet.getInt("ID")); // redundant?
-            serviceRequest.setLabType(LabSystemSR.LabType.valueOf(resultSet.getString("labType")));
+            // Modify LabSystemSR attributes
+            serviceRequest.setLabType(LabSystemSR.LabType.valueOf(typesafeTrim((resultSet.getString("labType")))));
             serviceRequest.setPatientID(typesafeTrim(resultSet.getString("patientID")));
     
             return serviceRequest;
-    
         } catch (SQLException e) {
             System.out.println("Creation of object from database ResultSet failed.");
             e.printStackTrace();

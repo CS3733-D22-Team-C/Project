@@ -189,7 +189,7 @@ public class DBManager {
         initializeTable(
                 "LAB_SYSTEM_SR",
                 "CREATE TABLE LAB_SYSTEM_SR (" +
-                        "ID int, labType varchar(50), patientID char(10), CONSTRAINT fk_LSSRID FOREIGN KEY (ID) " +
+                        "ID int, LabType varchar(50), PatientID char(10), CONSTRAINT fk_LSSRID FOREIGN KEY (ID) " +
                         "REFERENCES SERVICE_REQUEST (ID) ON DELETE CASCADE)",
                 clearTable
         );
