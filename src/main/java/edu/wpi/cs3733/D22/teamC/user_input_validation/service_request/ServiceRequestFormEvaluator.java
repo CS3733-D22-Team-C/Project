@@ -100,7 +100,7 @@ public class ServiceRequestFormEvaluator {
      */
     public ServiceRequestUserInputValidationErrorItem checkStatusFilled(String status)
     {
-       if(status.length() == 0)
+       if(status.length() == 0 && status == null)
        {
            return ServiceRequestUserInputValidationErrorRecord.serviceRequestUserInputValidationErrorList[2];
        }
@@ -117,7 +117,7 @@ public class ServiceRequestFormEvaluator {
      */
     public ServiceRequestUserInputValidationErrorItem checkPriorityFilled(String priority)
     {
-        if(priority.length() == 0)
+        if(priority.length() == 0 && priority == null)
         {
             return ServiceRequestUserInputValidationErrorRecord.serviceRequestUserInputValidationErrorList[3];
         }

@@ -1,6 +1,7 @@
 package edu.wpi.cs3733.D22.teamC.user_input_validation.service_request.facility_maintenance;
 
 import edu.wpi.cs3733.D22.teamC.error.error_item.service_request_user_input_validation.ServiceRequestUserInputValidationErrorItem;
+import edu.wpi.cs3733.D22.teamC.error.error_record.service_request_user_input_validation.ServiceRequestUserInputValidationErrorRecord;
 import edu.wpi.cs3733.D22.teamC.user_input_validation.service_request.ServiceRequestFormEvaluator;
 
 public class FacilityMaintenanceSRFormEvaluator extends ServiceRequestFormEvaluator {
@@ -44,10 +45,13 @@ public class FacilityMaintenanceSRFormEvaluator extends ServiceRequestFormEvalua
      */
     public ServiceRequestUserInputValidationErrorItem checkMaintenanceTypeFilled(String maintenanceType)
     {
-        if(maintenanceType.length() == 0)
+        if(maintenanceType.length() == 0 && maintenanceType == null)
         {
-
+            return ServiceRequestUserInputValidationErrorRecord.serviceRequestUserInputValidationErrorList[6];
         }
-        return null;
+        else
+        {
+            return null;
+        }
     }
 }

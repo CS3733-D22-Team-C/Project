@@ -1,6 +1,7 @@
 package edu.wpi.cs3733.D22.teamC.user_input_validation.service_request.lab_system;
 
 import edu.wpi.cs3733.D22.teamC.error.error_item.service_request_user_input_validation.ServiceRequestUserInputValidationErrorItem;
+import edu.wpi.cs3733.D22.teamC.error.error_record.service_request_user_input_validation.ServiceRequestUserInputValidationErrorRecord;
 import edu.wpi.cs3733.D22.teamC.user_input_validation.service_request.ServiceRequestFormEvaluator;
 
 public class LabSystemSRFormEvaluator extends ServiceRequestFormEvaluator {
@@ -39,11 +40,27 @@ public class LabSystemSRFormEvaluator extends ServiceRequestFormEvaluator {
 
     public ServiceRequestUserInputValidationErrorItem checkLabTypeFilled(String labType)
     {
-        return null;
+        if(labType.length() == 0 && labType == null)
+        {
+            return ServiceRequestUserInputValidationErrorRecord.serviceRequestUserInputValidationErrorList[7];
+        }
+        else
+        {
+            return null;
+        }
     }
 
     public ServiceRequestUserInputValidationErrorItem checkPatientIDFilled(int patientID)
     {
-        return null;
+        int patientIDLength = (int)(Math.log10(patientID)+1);
+
+        if(patientIDLength == 0)
+        {
+            return ServiceRequestUserInputValidationErrorRecord.serviceRequestUserInputValidationErrorList[8];
+        }
+        else
+        {
+            return null;
+        }
     }
 }

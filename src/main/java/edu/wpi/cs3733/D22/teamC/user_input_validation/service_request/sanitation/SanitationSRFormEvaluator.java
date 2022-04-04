@@ -1,6 +1,7 @@
 package edu.wpi.cs3733.D22.teamC.user_input_validation.service_request.sanitation;
 
 import edu.wpi.cs3733.D22.teamC.error.error_item.service_request_user_input_validation.ServiceRequestUserInputValidationErrorItem;
+import edu.wpi.cs3733.D22.teamC.error.error_record.service_request_user_input_validation.ServiceRequestUserInputValidationErrorRecord;
 import edu.wpi.cs3733.D22.teamC.user_input_validation.service_request.ServiceRequestFormEvaluator;
 
 public class SanitationSRFormEvaluator extends ServiceRequestFormEvaluator {
@@ -39,7 +40,7 @@ public class SanitationSRFormEvaluator extends ServiceRequestFormEvaluator {
 
     public ServiceRequestUserInputValidationErrorItem checkSanitationTypeFilled(String sanitationType)
     {
-        return null;
+        return ServiceRequestUserInputValidationErrorRecord.serviceRequestUserInputValidationErrorList[14];
     }
 
 }
