@@ -7,7 +7,8 @@ import java.util.List;
 public class MedicalEquipmentDAOImpl implements MedicalEquipmentDAO {
     @Override
     public List<MedicalEquipment> getMedicalEquipments() {
-        return null;
+        
+
     }
 
     @Override

@@ -19,7 +19,6 @@ public class MedicalEquipmentSRCSVWriter extends CSVWriter<MedicalEquipmentSR> {
                 "priority",
                 "requestType",
                 "description",
-                "equipType",
                 "equipID"
         };
     }
@@ -59,9 +58,6 @@ public class MedicalEquipmentSRCSVWriter extends CSVWriter<MedicalEquipmentSR> {
                 break;
             case "description":
                 output = serviceRequest.getDescription();
-                break;
-            case "equipType":
-                output = serviceRequest.getEquipmentType().toString();
                 break;
             case "equipID":
                 output = serviceRequest.getEquipmentID();
