@@ -1,6 +1,6 @@
 package edu.wpi.cs3733.D22.teamC.userinputvalidation.service_request.facility_maintenance;
 
-import edu.wpi.cs3733.D22.teamC.userinputvalidation.service_request.ServiceRequestValidationErrorItem;
+import edu.wpi.cs3733.D22.teamC.error.ServiceRequestValidationErrorItem;
 import edu.wpi.cs3733.D22.teamC.userinputvalidation.service_request.ServiceRequestFormEvaluator;
 
 public class FacilityMaintenanceSRFormEvaluator extends ServiceRequestFormEvaluator {
