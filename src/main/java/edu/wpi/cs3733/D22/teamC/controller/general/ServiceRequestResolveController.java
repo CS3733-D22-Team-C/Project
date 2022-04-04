@@ -14,6 +14,7 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
+import javafx.scene.control.TextField;
 
 import java.net.URL;
 import java.util.Locale;
@@ -25,8 +26,8 @@ public class ServiceRequestResolveController implements Initializable {
     // Dropdowns
     @FXML protected JFXComboBox<ServiceRequest.Priority> priority;
     @FXML protected JFXComboBox<String> status;
-    @FXML protected JFXComboBox<?> assigneeID;
-    @FXML private JFXComboBox<?> hospitalLocation;
+    @FXML protected TextField assigneeID;
+    @FXML private JFXComboBox<String> hospitalLocation;
 
 
     // Labels
@@ -63,8 +64,10 @@ public class ServiceRequestResolveController implements Initializable {
         //Setting fields from ServiceRequestTable
         priority.setPromptText(srt.getPriority());
         status.setPromptText(srt.getStatus());
-        assigneeID.setPromptText(srt.getAssigneeID());
         hospitalLocation.setPromptText(srt.getLocation());
+
+        assigneeID.setText(srt.getAssigneeID());
+        assigneeID.setEditable(false);
 
         //requestID with leading 0's
         requestID.setText(String.format("%07d" , srt.getID()));
@@ -78,10 +81,21 @@ public class ServiceRequestResolveController implements Initializable {
                 priority.getItems().add(pri);
             }
 
-            //Other dropdowns
+            //location
+            hospitalLocation.getItems().add("DEPT000001");
+            hospitalLocation.getItems().add("DEPT000002");
+            hospitalLocation.getItems().add("DEPT000003");
+            hospitalLocation.getItems().add("DEPT000004");
+            hospitalLocation.getItems().add("DEPT000005");
+            hospitalLocation.getItems().add("DEPT000006");
+            hospitalLocation.getItems().add("DEPT000007");
+            hospitalLocation.getItems().add("DEPT000008");
+            hospitalLocation.getItems().add("DEPT000009");
 
             //Sets status at bottom
             firstStatus.setText(srt.getStatus().toString().toLowerCase(Locale.ROOT));
+
+            assigneeID.setEditable(true);
 
         }
         else
@@ -104,8 +118,15 @@ public class ServiceRequestResolveController implements Initializable {
             if(priority.getValue() != null) {
                 serviceRequest.setPriority(priority.getValue());
             }
-            //Assignee Id
+            //Assignee ID
+            if(!assigneeID.getText().equals("")){
+                serviceRequest.setAssigneeID(assigneeID.getText());
+            }
             //Location
+            if(!hospitalLocation.getValue().equals(""))
+            {
+               serviceRequest.setLocation(hospitalLocation.getValue());
+            }
             //Status
         }
         else {
