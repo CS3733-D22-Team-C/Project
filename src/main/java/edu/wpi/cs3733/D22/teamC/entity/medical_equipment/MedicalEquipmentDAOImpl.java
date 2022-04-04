@@ -80,16 +80,80 @@ public class MedicalEquipmentDAOImpl implements MedicalEquipmentDAO {
 
     @Override
     public int insertMedicalEquipment(MedicalEquipment medical_equipment) {
-        return 0;
+        try {
+            // Check if entry of same nodeID already exists
+            MedicalEquipment equipmentInDB = getMedicalEquipment(medical_equipment.getEquipID());
+            if (equipmentInDB == null) {
+                // Execute INSERT Statement
+                PreparedStatement statement = (equipmentInDB.getEquipID() == 0)
+                        ? DBManager.getInstance().connection.prepareStatement("INSERT INTO Medical_Equipment VALUES(DEFAULT, ?, ?, ?, ?, ?, ?, ?)", Statement.RETURN_GENERATED_KEYS)
+                        : DBManager.getInstance().connection.prepareStatement("INSERT INTO Medical_Equipment VALUES(?, ?, ?, ?, ?, ?, ?, ?)", Statement.RETURN_GENERATED_KEYS);
+
+                int index = 1;
+                if (equipmentInDB.getEquipID() != 0) {
+                    statement.setInt(index, equipmentInDB.getEquipID());
+                    index++;
+                }
+
+                statement.setString(index, medical_equipment.getEquipmentType().toString()); index++;
+                statement.setString(index, medical_equipment.getEquipmentStatus().toString());
+                statement.execute();
+
+                ResultSet resultSetID = statement.getGeneratedKeys();
+                if(resultSetID.next()) return resultSetID.getInt(1);
+            }
+        } catch (SQLException e) {
+            System.out.println("INSERT to Medical_Equipment table failed.");
+            e.printStackTrace();
+        }
+        return -1;
     }
 
     @Override
     public boolean updateMedicalEquipment(MedicalEquipment medical_equipment) {
+        try {
+            // Check if entry of same nodeID exists
+            MedicalEquipment equipmentInDB = getMedicalEquipment(medical_equipment.getEquipID());
+            if (equipmentInDB != null) {
+                // Execute UPDATE Statement
+                PreparedStatement statement =  DBManager.getInstance().connection.prepareStatement(
+                        "UPDATE Medical_Equipment SET EquipType = ?, EquipStatus = ?" +
+                                " WHERE ID = ?"
+                );
+                statement.setString(1, medical_equipment.getEquipmentType().toString());
+                statement.setString(2, medical_equipment.getEquipmentStatus().toString());
+                statement.execute();
+                return true;
+            }
+        } catch (SQLException e) {
+            System.out.println("Update to Medical_Equipment table failed.");
+            e.printStackTrace();
+        }
+
         return false;
     }
 
     @Override
     public boolean deleteMedicalEquipment(MedicalEquipment medical_equipment) {
+        try {
+            // Check if entry of same nodeID exists
+            MedicalEquipment equipmentInDB = getMedicalEquipment(medical_equipment.getEquipID());
+            if (equipmentInDB != null) {
+                // Execute UPDATE Statement
+                PreparedStatement statement =  DBManager.getInstance().connection.prepareStatement(
+                        "DELETE FROM Medical_Equipment" +
+                                " WHERE ID = ?"
+                );
+                statement.setInt(1, medical_equipment.getEquipID());
+                statement.execute();
+
+                return true;
+            }
+        } catch (SQLException e) {
+            System.out.println("Update to Medical_Equipment table failed.");
+            e.printStackTrace();
+        }
+
         return false;
     }
 
