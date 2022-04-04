@@ -208,6 +208,7 @@ public class LabSystemSRDAOImplTest {
         updateSR.setDescription(description);
         updateSR.setModifierID(modifierID);
         updateSR.setModifiedTimestamp(modifiedTimestamp);
+
         updateSR.setLabType(labType);
         updateSR.setPatientID(patientID);
         assertTrue(labSystemDAO.updateServiceRequest(updateSR));

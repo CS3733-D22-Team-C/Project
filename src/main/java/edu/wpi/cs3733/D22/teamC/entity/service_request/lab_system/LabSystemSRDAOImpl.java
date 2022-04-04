@@ -14,14 +14,14 @@ import java.util.List;
 public class LabSystemSRDAOImpl extends LabSystemSRDAO {
     /**
      * Getting all the entries in the LAB_SYSTEM_SR Table to the DB, and
-     * converting them to ServiceRequest objects.
+     * converting them to LabSystemSR objects.
      *
-     * @return List of all Lab System Service requests objects converted from queries
+     * @return List of all LabSystemSR objects converted from queries
      */
     @Override
     public List<LabSystemSR> getAllServiceRequests() {
         try {
-            //Execute SELECT query to join parent and child table attributes
+            // Execute SELECT query to join parent and child table attributes
             PreparedStatement statement = DBManager.getInstance().connection.prepareStatement(
                     "SELECT SERVICE_REQUEST.*, LAB_SYSTEM_SR.* " +
                             "FROM SERVICE_REQUEST INNER JOIN LAB_SYSTEM_SR " +
@@ -29,7 +29,7 @@ public class LabSystemSRDAOImpl extends LabSystemSRDAO {
             );
             ResultSet resultSet = statement.executeQuery();
             
-            //Return ServiceRequest Objects
+            // Return ServiceRequest Objects
             List<LabSystemSR> serviceRequests = new ArrayList<>();
             while (resultSet.next()) {
                 LabSystemSR serviceRequest = modifyServiceRequest(resultSet, new LabSystemSR());
