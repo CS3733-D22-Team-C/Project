@@ -34,7 +34,7 @@ class ServiceRequestDAOImplTest {
      * Test that an empty Location Table DB returns nothing for queries.
      */
     @Test
-    void testEmptyQueryLocation() {
+    void testEmptyQueryServiceRequest() {
         assertEquals(0, serviceRequestDAO.getAllServiceRequests().size());
         assertEquals(null, serviceRequestDAO.getServiceRequest(1234));
     }
@@ -43,7 +43,7 @@ class ServiceRequestDAOImplTest {
      * Test that insertLocation works.
      */
     @Test
-    void testInsertLocation() {
+    void testInsertServiceRequest() {
         // Check DB is empty
         assertEquals(0, serviceRequestDAO.getAllServiceRequests().size());
         assertEquals(null, serviceRequestDAO.getServiceRequest(1234));

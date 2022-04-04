@@ -1,13 +1,6 @@
 package edu.wpi.cs3733.D22.teamC.entity.Employee;
 
 public class Employee {
-    public Employee(String firstName, String lastName, String email, Role role, boolean isAdmin) {
-        this.firstName = firstName;
-        this.lastName = lastName;
-        this.email = email;
-        this.role = role;
-        this.isAdmin = isAdmin;
-    }
 
     private int employeeID;
     private String firstName;
@@ -30,6 +23,14 @@ public class Employee {
     }
 
     public Employee(){}
+
+    public Employee(String firstName, String lastName, String email, Role role, boolean isAdmin) {
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.email = email;
+        this.role = role;
+        this.isAdmin = isAdmin;
+    }
 
     public Employee(int employeeID){ this.employeeID = employeeID;}
 
