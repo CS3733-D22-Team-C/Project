@@ -3,14 +3,22 @@ package edu.wpi.cs3733.D22.teamC.entity.service_request.lab_system;
 import edu.wpi.cs3733.D22.teamC.entity.service_request.ServiceRequest;
 
 public class LabSystemSR extends ServiceRequest {
-    protected String labType;   // TODO: Make Enum
+    protected LabType labType;
     protected String patientID; // TODO: Link to Patient
 
-    public String getLabType() {
-        return labType;
+   public enum LabType {
+        Blood_Sample,
+        Urine_Sample,
+        X_Ray,
+        Cat_Scan,
+        MRI
     }
 
-    public void setLabType(String labType) {
+    public LabType getLabType() {
+       return labType;
+   }
+
+    public void setLabType(LabType labType) {
         this.labType = labType;
     }
 

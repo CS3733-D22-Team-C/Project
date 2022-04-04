@@ -24,9 +24,9 @@ public class SanitationSRTable extends RecursiveTreeObject<SanitationSRTable> {
     public SanitationSRTable(SanitationSR sanitationSR) {
         this.assigneeID = new SimpleStringProperty(sanitationSR.getAssigneeID());
         this.location = new SimpleStringProperty(sanitationSR.getLocation());
-        this.status = new SimpleStringProperty(sanitationSR.getStatus());
-        this.priority = new SimpleStringProperty(sanitationSR.getPriority());
-        this.sanitationType = new SimpleStringProperty(sanitationSR.getSanitationType());
+        this.status = new SimpleStringProperty(sanitationSR.getStatus().toString());
+        this.priority = new SimpleStringProperty(sanitationSR.getPriority().toString());
+        this.sanitationType = new SimpleStringProperty(sanitationSR.getSanitationType().toString());
     }
 
     public String getAssigneeID() {

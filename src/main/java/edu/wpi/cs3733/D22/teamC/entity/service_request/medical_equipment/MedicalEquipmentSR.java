@@ -3,7 +3,7 @@ package edu.wpi.cs3733.D22.teamC.entity.service_request.medical_equipment;
 import edu.wpi.cs3733.D22.teamC.entity.service_request.ServiceRequest;
 
 public class MedicalEquipmentSR extends ServiceRequest {
-    protected String equipmentType;     // TODO: Make Enum
+    protected EquipmentType equipmentType;
     protected String equipmentID;       // TODO: Link to Medical Equipment
 
     public MedicalEquipmentSR() {}
@@ -11,31 +11,25 @@ public class MedicalEquipmentSR extends ServiceRequest {
     public MedicalEquipmentSR(ServiceRequest serviceRequest) {
         super(serviceRequest);
     }
-    
-    //For the table
-    enum equipEnum {
-        BED, //1
-        RECLINER, //2
-        PORTABLE_XRAY, //3
-        INFUSION_PUMP; //4
+
+    public enum EquipmentType {
+        Bed,
+        Recliner,
+        Portable_X_Ray,
+        Infusion_Pump
     }
 
-    public String getEquipmentType() {
+    public enum EquipmentStatus {
+        Available,
+        Unavailable,
+        Dirty
+    }
+
+    public EquipmentType getEquipmentType() {
         return equipmentType;
     }
 
-    public void setEquipmentType(String equipmentType) {
-        if (equipmentType == null) return;
-
-        if(equipmentType.contains("Bed"))
-            this.equipmentType = "Bed";
-        else if(equipmentType.contains("Recliner"))
-            this.equipmentType = "Recliner";
-        else if(equipmentType.contains("Portable X-Ray"))
-            this.equipmentType = "Portable X-Ray";
-        else
-            this.equipmentType = "Infusion Pump";
-    }
+    public void setEquipmentType(EquipmentType equipmentType) { this.equipmentType = equipmentType; }
 
     public String getEquipmentID() {
         return equipmentID;
@@ -43,31 +37,5 @@ public class MedicalEquipmentSR extends ServiceRequest {
 
     public void setEquipmentID(String equipmentID) {
         this.equipmentID = equipmentID;
-    }
-
-    public int getEquipEnum(String type)
-    {
-        equipEnum number;
-        if(type.contains("Bed"))
-            number = equipEnum.BED;
-        else if(type.contains("Recliner"))
-            number = equipEnum.RECLINER;
-        else if(type.contains("Portable X-Ray"))
-            number = equipEnum.PORTABLE_XRAY;
-        else
-            number = equipEnum.INFUSION_PUMP;
-
-        switch (number) {
-            case BED:
-                return 1;
-            case RECLINER:
-                return 2;
-            case PORTABLE_XRAY:
-                return 3;
-            case INFUSION_PUMP:
-                return 4;
-            default:
-                return -1;
-        }
     }
 }

@@ -14,7 +14,7 @@ import javafx.scene.control.TreeTableView;
 import javafx.util.Callback;
 
 public class LocationTable extends RecursiveTreeObject<LocationTable> {
-    StringProperty nodeID;
+    IntegerProperty nodeID;
     StringProperty nodeType;
     StringProperty shortName;
     StringProperty longName;
@@ -24,8 +24,8 @@ public class LocationTable extends RecursiveTreeObject<LocationTable> {
     IntegerProperty y;
 
     public LocationTable(Location location) {
-        this.nodeID    = new SimpleStringProperty(location.getNodeID());
-        this.nodeType  = new SimpleStringProperty(location.getNodeType());
+        this.nodeID    = new SimpleIntegerProperty(location.getNodeID());
+        this.nodeType  = new SimpleStringProperty(location.getNodeType().toString());
         this.shortName = new SimpleStringProperty(location.getShortName());
         this.longName  = new SimpleStringProperty(location.getLongName());
         this.floor     = new SimpleStringProperty(location.getFloor());
@@ -37,12 +37,12 @@ public class LocationTable extends RecursiveTreeObject<LocationTable> {
     public static void createTableColumns(JFXTreeTableView<LocationTable> table) {
         table.setColumnResizePolicy(TreeTableView.CONSTRAINED_RESIZE_POLICY);
         //Columns for table
-        JFXTreeTableColumn<LocationTable, String> nodeIDCol = new JFXTreeTableColumn<>("Node ID");
+        JFXTreeTableColumn<LocationTable, Integer> nodeIDCol = new JFXTreeTableColumn<>("Node ID");
         nodeIDCol.setMaxWidth(1f * Integer.MAX_VALUE * 12.5);
-        nodeIDCol.setCellValueFactory(new Callback<TreeTableColumn.CellDataFeatures<LocationTable, String>, ObservableValue<String>>() {
+        nodeIDCol.setCellValueFactory(new Callback<TreeTableColumn.CellDataFeatures<LocationTable, Integer>, ObservableValue<Integer>>() {
             @Override
-            public ObservableValue<String> call(TreeTableColumn.CellDataFeatures<LocationTable, String> param) {
-                return param.getValue().getValue().nodeID;
+            public ObservableValue<Integer> call(TreeTableColumn.CellDataFeatures<LocationTable, Integer> param) {
+                return param.getValue().getValue().nodeID.asObject();
             }
         });
         JFXTreeTableColumn<LocationTable, String> nodeTypeCol = new JFXTreeTableColumn<>("Node Type");
