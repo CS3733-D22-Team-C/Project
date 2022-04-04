@@ -27,7 +27,7 @@ public class BaseMapViewController implements Initializable {
     GridPane mapViewGridPane;
 
     // Constants
-    public static final String MAP_PATH = "";
+    public static final String MAP_PATH = "../../../view/component/map.fxml";
     public static final String EDIT_BUTTON_PANE = "../../../view/location/map/edit_button_pane.fxml";
     public static final String LOCATION_INFO_PANE = "../../../view/location/map/location_info_pane.fxml";
 
@@ -35,10 +35,23 @@ public class BaseMapViewController implements Initializable {
     @Override
     public final void initialize(URL location, ResourceBundle resource) {
         try {
+            mapViewGridPane.setMaxHeight(Double.MAX_VALUE);
+            mapViewGridPane.setMaxWidth(Double.MAX_VALUE);
+
+            // Load location info pane into grid pane
             FXMLLoader loader = new FXMLLoader();
+            loader.setLocation(getClass().getResource(EDIT_BUTTON_PANE));
+            inspectButtonPane.getChildren().add(loader.load());
+
+            // Load location info pane into grid pane
+            loader = new FXMLLoader();
             loader.setLocation(getClass().getResource(LOCATION_INFO_PANE));
-            Node node = loader.load();
-            inspectButtonPane.getChildren().add(node);
+            locationDescriptionPane.getChildren().add(loader.load());
+
+            // Load map display into grid pane
+            loader = new FXMLLoader();
+            loader.setLocation(getClass().getResource(MAP_PATH));
+            mapViewGridPane.add(loader.load(), 0,0);
 
         } catch (IOException e) {
             e.printStackTrace();
