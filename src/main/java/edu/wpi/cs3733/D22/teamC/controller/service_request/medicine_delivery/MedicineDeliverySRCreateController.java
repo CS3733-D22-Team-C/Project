@@ -7,6 +7,8 @@ import edu.wpi.cs3733.D22.teamC.controller.service_request.ServiceRequestCreateC
 import edu.wpi.cs3733.D22.teamC.entity.service_request.ServiceRequest;
 import edu.wpi.cs3733.D22.teamC.models.service_request.medicine_delivery.MedicineDeliverySRTable;
 import edu.wpi.cs3733.D22.teamC.entity.service_request.medicine_delivery.MedicineDeliverySR;
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -36,6 +38,17 @@ public class MedicineDeliverySRCreateController extends ServiceRequestCreateCont
         MedicineDeliverySRTable.createTableColumns(table);
         table.setRoot(root);
         table.setShowRoot(false);
+
+        //For Patient ID:
+        patientID.textProperty().addListener(new ChangeListener<String>() {
+            @Override
+            public void changed(ObservableValue<? extends String> observable, String oldValue,
+                                String newValue) {
+                if (!newValue.matches("\\d*")) {
+                    patientID.setText(newValue.replaceAll("[^\\d]", ""));
+                }
+            }
+        });
     }
 
     @FXML

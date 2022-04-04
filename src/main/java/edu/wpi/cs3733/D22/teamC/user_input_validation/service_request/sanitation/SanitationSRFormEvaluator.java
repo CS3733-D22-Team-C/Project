@@ -29,7 +29,14 @@ public class SanitationSRFormEvaluator extends ServiceRequestFormEvaluator {
      */
     public ServiceRequestUserInputValidationErrorItem checkSanitationTypeFilled(String sanitationType)
     {
-        return ServiceRequestUserInputValidationErrorRecord.serviceRequestUserInputValidationErrorList[14];
+        if(sanitationType.isEmpty())
+        {
+            return ServiceRequestUserInputValidationErrorRecord.serviceRequestUserInputValidationErrorList[14];
+        }
+        else
+        {
+            return null;
+        }
     }
 
 }

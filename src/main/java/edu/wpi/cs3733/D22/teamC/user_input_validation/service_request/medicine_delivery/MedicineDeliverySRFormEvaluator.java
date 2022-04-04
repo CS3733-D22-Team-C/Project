@@ -1,6 +1,7 @@
 package edu.wpi.cs3733.D22.teamC.user_input_validation.service_request.medicine_delivery;
 
 import edu.wpi.cs3733.D22.teamC.error.error_item.service_request_user_input_validation.ServiceRequestUserInputValidationErrorItem;
+import edu.wpi.cs3733.D22.teamC.error.error_record.service_request_user_input_validation.ServiceRequestUserInputValidationErrorRecord;
 import edu.wpi.cs3733.D22.teamC.user_input_validation.service_request.ServiceRequestFormEvaluator;
 
 import java.util.ArrayList;
@@ -30,7 +31,16 @@ public class MedicineDeliverySRFormEvaluator extends ServiceRequestFormEvaluator
      */
     public ServiceRequestUserInputValidationErrorItem checkPatientIDFilled(int patientID)
     {
-        return null;
+        int patientIDLength = (int)(Math.log10(patientID)+1);
+
+        if(patientIDLength == 0)
+        {
+            return ServiceRequestUserInputValidationErrorRecord.serviceRequestUserInputValidationErrorList[8];
+        }
+        else
+        {
+            return null;
+        }
     }
 
     /**
@@ -40,7 +50,14 @@ public class MedicineDeliverySRFormEvaluator extends ServiceRequestFormEvaluator
      */
     public ServiceRequestUserInputValidationErrorItem checkMedicineFilled(String medicine)
     {
-        return null;
+        if(medicine.isEmpty())
+        {
+            return ServiceRequestUserInputValidationErrorRecord.serviceRequestUserInputValidationErrorList[12];
+        }
+        else
+        {
+            return null;
+        }
     }
 
     /**
@@ -50,6 +67,13 @@ public class MedicineDeliverySRFormEvaluator extends ServiceRequestFormEvaluator
      */
     public ServiceRequestUserInputValidationErrorItem checkDosageFilled(String dosage)
     {
-        return null;
+        if(dosage.isEmpty())
+        {
+            return ServiceRequestUserInputValidationErrorRecord.serviceRequestUserInputValidationErrorList[13];
+        }
+        else
+        {
+            return null;
+        }
     }
 }

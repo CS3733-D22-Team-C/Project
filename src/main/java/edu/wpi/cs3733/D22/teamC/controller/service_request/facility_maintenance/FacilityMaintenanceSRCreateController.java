@@ -48,7 +48,11 @@ public class FacilityMaintenanceSRCreateController extends ServiceRequestCreateC
     @FXML
     protected FacilityMaintenanceSR clickSubmit(ActionEvent event) {
 
-        ArrayList <ServiceRequestUserInputValidationErrorItem> errors = facilityMaintenanceUserInputValidationTestPassed(assigneeID.getText(), location.getText(), priority.getValue(), status.getValue(), maintType.getText())
+        //Even though the initialize function in ServiceRequestController sets up the assigneeID and location textfields to only read in integers, parseInt() still needs to be used on these text fields.
+        int assigneeIDInt = Integer.parseInt(assigneeID.getText());
+        int locationInt = Integer.parseInt(location.getText());
+
+        ArrayList <ServiceRequestUserInputValidationErrorItem> errors = facilityMaintenanceUserInputValidationTestPassed(assigneeIDInt, locationInt, priority.getValue(), status.getValue(), maintType.getText());
 
         if(errors.isEmpty())
         {
@@ -73,7 +77,7 @@ public class FacilityMaintenanceSRCreateController extends ServiceRequestCreateC
         }
         else
         {
-
+            return null; //Code here to display error messages
         }
     }
 

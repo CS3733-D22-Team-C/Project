@@ -5,6 +5,8 @@ import com.jfoenix.controls.JFXComboBox;
 import com.jfoenix.controls.JFXTextArea;
 import edu.wpi.cs3733.D22.teamC.App;
 import edu.wpi.cs3733.D22.teamC.entity.service_request.ServiceRequest;
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -34,6 +36,27 @@ public class ServiceRequestCreateController implements Initializable {
         for (ServiceRequest.Status sta : ServiceRequest.Status.values()) {
             status.getItems().add(sta.toString());
         }
+
+        //Restrict certain TextFields to only have numeric input
+        assigneeID.textProperty().addListener(new ChangeListener<String>() {
+            @Override
+            public void changed(ObservableValue<? extends String> observable, String oldValue,
+                                String newValue) {
+                if (!newValue.matches("\\d*")) {
+                    assigneeID.setText(newValue.replaceAll("[^\\d]", ""));
+                }
+            }
+        });
+
+        location.textProperty().addListener(new ChangeListener<String>() {
+            @Override
+            public void changed(ObservableValue<? extends String> observable, String oldValue,
+                                String newValue) {
+                if (!newValue.matches("\\d*")) {
+                    location.setText(newValue.replaceAll("[^\\d]", ""));
+                }
+            }
+        });
     }
 
     @FXML

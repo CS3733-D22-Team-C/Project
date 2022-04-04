@@ -30,7 +30,7 @@ public class LabSystemSRFormEvaluator extends ServiceRequestFormEvaluator {
      */
     public ServiceRequestUserInputValidationErrorItem checkLabTypeFilled(String labType)
     {
-        if(labType.length() == 0 && labType == null)
+        if(labType.isEmpty())
         {
             return ServiceRequestUserInputValidationErrorRecord.serviceRequestUserInputValidationErrorList[7];
         }

@@ -30,7 +30,7 @@ public class SecuritySRFormEvaluator extends ServiceRequestFormEvaluator {
      */
     public ServiceRequestUserInputValidationErrorItem checkSecurityTypeFilled(String securityType)
     {
-        if(securityType.length() == 0 && securityType == null)
+        if(securityType.isEmpty())
         {
             return ServiceRequestUserInputValidationErrorRecord.serviceRequestUserInputValidationErrorList[15];
         }

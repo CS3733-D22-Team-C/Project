@@ -30,7 +30,7 @@ public class MedicalEquipmentSRFormEvaluator extends ServiceRequestFormEvaluator
      */
    public ServiceRequestUserInputValidationErrorItem checkEquipmentTypeFilled(String equipType)
    {
-       if(equipType.length() == 0 && equipType == null)
+       if(equipType.isEmpty())
        {
            return ServiceRequestUserInputValidationErrorRecord.serviceRequestUserInputValidationErrorList[9];
        }
