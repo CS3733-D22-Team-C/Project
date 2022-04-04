@@ -106,6 +106,12 @@ public class ServiceRequestCreateController implements Initializable {
 
     public void generateErrorMessages(ArrayList<ServiceRequestUserInputValidationErrorItem> l)
     {
+        for(int x = 0; x < l.size(); x++)
+        {
+            if(l.get(x) != null)
+            {
 
+            }
+        }
     }
 }
