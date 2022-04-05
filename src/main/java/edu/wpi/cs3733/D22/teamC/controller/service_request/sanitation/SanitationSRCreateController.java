@@ -64,7 +64,7 @@ public class SanitationSRCreateController extends ServiceRequestCreateController
 
         ArrayList<ServiceRequestUserInputValidationErrorItem> errors = sSRFE.getSanitationSRValidationTestResult(assigneeID.getText(), location.getText(), priority.getSelectionModel(), status.getSelectionModel(), sanitationType.getSelectionModel());
 
-        if(noUserErrors(errors))
+        if(sSRFE.noServiceRequestFormUserInputErrors(errors))
         {
             SanitationSR sSR = new SanitationSR();
 
@@ -103,8 +103,4 @@ public class SanitationSRCreateController extends ServiceRequestCreateController
         super.prepareErrorMessages(l);
     }
 
-    @Override
-    public boolean noUserErrors(ArrayList<ServiceRequestUserInputValidationErrorItem> l) {
-        return super.noUserErrors(l);
-    }
 }

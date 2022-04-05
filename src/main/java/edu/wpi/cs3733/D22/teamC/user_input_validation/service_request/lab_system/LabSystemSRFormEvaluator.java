@@ -68,4 +68,9 @@ public class LabSystemSRFormEvaluator extends ServiceRequestFormEvaluator {
             }
         }
     }
+
+    @Override
+    public boolean noServiceRequestFormUserInputErrors(ArrayList<ServiceRequestUserInputValidationErrorItem> l) {
+        return super.noServiceRequestFormUserInputErrors(l);
+    }
 }

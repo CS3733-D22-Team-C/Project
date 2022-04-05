@@ -78,7 +78,7 @@ public class LabSystemSRCreateController extends ServiceRequestCreateController 
 
         ArrayList<ServiceRequestUserInputValidationErrorItem> errors = lSSRFE.getLabSystemSRValidationTestResult(location.getText(), assigneeID.getText(), status.getSelectionModel(), priority.getSelectionModel(), labType.getSelectionModel(), patientID.getText());
 
-        if(noUserErrors(errors))
+        if(lSSRFE.noServiceRequestFormUserInputErrors(errors))
         {
             LabSystemSR lSSR = new LabSystemSR();
 
@@ -116,8 +116,4 @@ public class LabSystemSRCreateController extends ServiceRequestCreateController 
         super.prepareErrorMessages(l);
     }
 
-    @Override
-    public boolean noUserErrors(ArrayList<ServiceRequestUserInputValidationErrorItem> l) {
-        return super.noUserErrors(l);
-    }
 }

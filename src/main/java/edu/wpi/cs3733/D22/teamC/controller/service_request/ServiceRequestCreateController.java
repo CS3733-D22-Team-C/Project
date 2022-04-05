@@ -138,16 +138,4 @@ public class ServiceRequestCreateController implements Initializable {
         errorLabel.setFont(Font.font("System", 12));
         errorLabel.setText(errorLabel.getText() + "\n" + i.getReasonForValidationError());
     }
-
-    public boolean noUserErrors(ArrayList <ServiceRequestUserInputValidationErrorItem> l)
-    {
-        for(int x = 0; x < l.size(); x++)
-        {
-            if(l.get(x) != null)
-            {
-                return false;
-            }
-        }
-        return true;
-    }
 }

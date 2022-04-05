@@ -85,4 +85,9 @@ public class MedicineDeliverySRFormEvaluator extends ServiceRequestFormEvaluator
             return null;
         }
     }
+
+    @Override
+    public boolean noServiceRequestFormUserInputErrors(ArrayList<ServiceRequestUserInputValidationErrorItem> l) {
+        return super.noServiceRequestFormUserInputErrors(l);
+    }
 }

@@ -78,7 +78,7 @@ public class MedicineDeliverySRCreateController extends ServiceRequestCreateCont
 
         ArrayList<ServiceRequestUserInputValidationErrorItem> errors = mDSRFE.getMedicineDeliverySRValidationTestResult(location.getText(), assigneeID.getText(), patientID.getText(), medicine.getText(), dosage.getText(), status.getSelectionModel(), priority.getSelectionModel());
 
-        if(noUserErrors(errors))
+        if(mDSRFE.noServiceRequestFormUserInputErrors(errors))
         {
             MedicineDeliverySR mdSR = new MedicineDeliverySR();
 
@@ -114,8 +114,4 @@ public class MedicineDeliverySRCreateController extends ServiceRequestCreateCont
         super.prepareErrorMessages(l);
     }
 
-    @Override
-    public boolean noUserErrors(ArrayList<ServiceRequestUserInputValidationErrorItem> l) {
-        return super.noUserErrors(l);
-    }
 }

@@ -58,7 +58,7 @@ public class FacilityMaintenanceSRCreateController extends ServiceRequestCreateC
 
         ArrayList <ServiceRequestUserInputValidationErrorItem> errors = fMSRFE.getFacilityMaintenanceSRValidationTestResult(assigneeID.getText(), location.getText(), priority.getSelectionModel(), status.getSelectionModel(), maintType.getText());
 
-        if(noUserErrors(errors))
+        if(fMSRFE.noServiceRequestFormUserInputErrors(errors))
         {
             FacilityMaintenanceSR fMSR = new FacilityMaintenanceSR();
 
@@ -91,8 +91,4 @@ public class FacilityMaintenanceSRCreateController extends ServiceRequestCreateC
         super.prepareErrorMessages(l);
     }
 
-    @Override
-    public boolean noUserErrors(ArrayList<ServiceRequestUserInputValidationErrorItem> l) {
-        return super.noUserErrors(l);
-    }
 }

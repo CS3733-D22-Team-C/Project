@@ -175,4 +175,21 @@ public class ServiceRequestFormEvaluator {
         }
     }
 
+    /**
+     * Determine whether or not there are any user input errors on a Service Request
+     * @param l
+     * @return boolean
+     */
+    public boolean noServiceRequestFormUserInputErrors(ArrayList <ServiceRequestUserInputValidationErrorItem> l)
+    {
+        for(int x = 0; x < l.size(); x++)
+        {
+            if(l.get(x) != null)
+            {
+                return false;
+            }
+        }
+        return true;
+    }
+
 }

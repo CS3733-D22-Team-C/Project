@@ -86,7 +86,7 @@ public class MedicalEquipmentSRCreateController extends ServiceRequestCreateCont
 
         ArrayList<ServiceRequestUserInputValidationErrorItem> errors = mESRFE.getMedicalEquipmentSRValidationTestResult(location.getText(), assigneeID.getText(), status.getSelectionModel(), priority.getSelectionModel(), equipType.getSelectionModel(), equipID.getText());
 
-        if(noUserErrors(errors))
+        if(mESRFE.noServiceRequestFormUserInputErrors(errors))
         {
             MedicalEquipmentSR mESR = new MedicalEquipmentSR();
 
@@ -136,10 +136,5 @@ public class MedicalEquipmentSRCreateController extends ServiceRequestCreateCont
     @Override
     public void prepareErrorMessages(ArrayList<ServiceRequestUserInputValidationErrorItem> l) {
         super.prepareErrorMessages(l);
-    }
-
-    @Override
-    public boolean noUserErrors(ArrayList<ServiceRequestUserInputValidationErrorItem> l) {
-        return super.noUserErrors(l);
     }
 }
