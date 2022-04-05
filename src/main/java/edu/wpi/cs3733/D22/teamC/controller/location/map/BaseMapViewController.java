@@ -1,6 +1,7 @@
 package edu.wpi.cs3733.D22.teamC.controller.location.map;
 
 import edu.wpi.cs3733.D22.teamC.App;
+import edu.wpi.cs3733.D22.teamC.entity.location.Location;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -31,6 +32,7 @@ public class BaseMapViewController implements Initializable {
 
     // External controllers
     ViewMapController mapController;
+    LocationInfoPaneController locationInfoController;
 
     // Constants
     public static final String MAP_PATH = "view/location/map/map.fxml";
@@ -52,6 +54,7 @@ public class BaseMapViewController implements Initializable {
         // Load location info pane into grid pane
         App.View locationInfoPane = App.instance.loadView(LOCATION_INFO_PANE);
         locationDescriptionPane.getChildren().add(locationInfoPane.getNode());
+        ((LocationInfoPaneController) locationInfoPane.getController()).setBaseMapViewController(this);
 
         // Load map display into grid pane
         App.View mapPane = App.instance.loadView(MAP_PATH, new ViewMapController());
@@ -60,7 +63,7 @@ public class BaseMapViewController implements Initializable {
     }
 
     public void swapToEditMode() {
-        inspectButtonPane.getChildren().remove(0,1);
+        inspectButtonPane.getChildren().remove(0, 1);
         App.View swapPane = App.instance.loadView(EDIT_MODE_PANE);
         inspectButtonPane.getChildren().add(swapPane.getNode());
         ((EditMapLocationsPaneController) swapPane.getController()).setBaseMapViewController(this);
@@ -69,6 +72,12 @@ public class BaseMapViewController implements Initializable {
         mapViewGridPane.getChildren().remove(0, 0);
         mapViewGridPane.add(mapPane.getNode(), 0,0);
         mapController = (EditMapController) mapPane.getController();
+
+        locationDescriptionPane.getChildren().remove(0, 1);
+        App.View locationPane = App.instance.loadView(LOCATION_INFO_PANE, new LocationInfoPaneController());
+        locationDescriptionPane.getChildren().add(locationPane.getNode());
+        locationInfoController = (LocationInfoPaneController) locationPane.getController();
+        ((LocationInfoPaneController) locationPane.getController()).setEditable(true);
     }
 
     public void swapToViewMode() {
@@ -81,9 +90,19 @@ public class BaseMapViewController implements Initializable {
         mapViewGridPane.getChildren().remove(0, 0);
         mapViewGridPane.add(mapPane.getNode(), 0,0);
         mapController = (ViewMapController) mapPane.getController();
+
+        locationDescriptionPane.getChildren().remove(0,1);
+        App.View locationPane = App.instance.loadView(LOCATION_INFO_PANE, new LocationInfoPaneController());
+        locationDescriptionPane.getChildren().add(locationPane.getNode());
+        locationInfoController = (LocationInfoPaneController) locationPane.getController();
+        ((LocationInfoPaneController) locationPane.getController()).setEditable(false);
     }
 
-    public void saveMap() {
-        ((EditMapController) mapController).saveMap();
+    public ViewMapController getMapController() {
+        return (ViewMapController) mapController;
+    }
+
+    public LocationInfoPaneController getLocationInfoController() {
+        return (LocationInfoPaneController) locationInfoController;
     }
 }

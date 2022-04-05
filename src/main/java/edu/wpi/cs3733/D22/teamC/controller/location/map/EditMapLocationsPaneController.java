@@ -5,7 +5,6 @@ import javafx.fxml.FXML;
 public class EditMapLocationsPaneController {
     BaseMapViewController baseMapViewController;
 
-
     @FXML
     public void onExitEditModeButtonPress() {
         baseMapViewController.swapToViewMode();
@@ -13,7 +12,7 @@ public class EditMapLocationsPaneController {
 
     @FXML
     public void onSaveAndExitButtonPress() {
-        baseMapViewController.saveMap();
+        ((EditMapController) baseMapViewController.getMapController()).saveMap();
         baseMapViewController.swapToViewMode();
     }
 
