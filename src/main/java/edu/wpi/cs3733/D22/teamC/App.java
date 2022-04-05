@@ -212,28 +212,6 @@ public class App extends Application {
         View view = loadView(viewFile);
         try {
             FXMLLoader loader = new FXMLLoader();
-            loader.setLocation(getClass().getResource(BASE_COMPONENT_PATH));
-            BorderPane baseNode = loader.load();
-
-            // Load View
-            loader = new FXMLLoader();
-            loader.setLocation(getClass().getResource(viewFile));
-            viewNode = loader.load();
-
-            // Load Menu Bar
-            loader = new FXMLLoader();
-            loader.setLocation(getClass().getResource(MENU_BAR_COMPONENT_PATH));
-            Node menuBarNode = loader.load();
-
-            // Embed views and components
-            baseNode.setTop(menuBarNode);
-            baseNode.setCenter(viewNode);
-            baseNode.autosize();
-
-            if (scene != null) scene.setRoot(baseNode);
-            else scene = new Scene(baseNode);
-            stage.setScene(scene);
-            stage.show();
             loader.setLocation(App.class.getResource(viewFile));
             loader.setController(controller);
             return new View(loader.load(), loader.getController());
