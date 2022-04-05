@@ -75,7 +75,6 @@ public class LabSystemSRCreateController extends ServiceRequestCreateController 
     protected LabSystemSR clickSubmit(ActionEvent event) {
 
         LabSystemSRFormEvaluator lSSRFE = new LabSystemSRFormEvaluator();
-
         ArrayList<ServiceRequestUserInputValidationErrorItem> errors = lSSRFE.getLabSystemSRValidationTestResult(location.getText(), assigneeID.getText(), status.getSelectionModel(), priority.getSelectionModel(), labType.getSelectionModel(), patientID.getText());
 
         if(lSSRFE.noServiceRequestFormUserInputErrors(errors))
@@ -116,4 +115,8 @@ public class LabSystemSRCreateController extends ServiceRequestCreateController 
         super.prepareErrorMessages(l);
     }
 
+    @Override
+    public void resetErrorMessages() {
+        super.resetErrorMessages();
+    }
 }

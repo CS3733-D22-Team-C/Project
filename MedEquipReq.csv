@@ -11,3 +11,5 @@ requestID,creatorID,assigneeID,location,creationTimestamp,status,priority,reques
 7861096,null,1,1,2022-04-05 03:19:52.947,Blank,Low,Medical_Equipment,,Recliner,11
 3462854,null,2,2,2022-04-05 03:20:13.008,Blank,Medium,Medical_Equipment,,Bed,02
 7798387,null,3,3,2022-04-05 03:20:30.392,Done,Low,Medical_Equipment,,Bed,05
+3563518,null,1,1,2022-04-05 03:34:55.202,Blank,Low,Medical_Equipment,,Bed,01
+5338084,null,10,10,2022-04-05 03:35:21.441,Processing,Medium,Medical_Equipment,,Bed,010

@@ -81,9 +81,6 @@ public class MedicalEquipmentSRCreateController extends ServiceRequestCreateCont
     protected MedicalEquipmentSR clickSubmit(ActionEvent event) {
 
         MedicalEquipmentSRFormEvaluator mESRFE = new MedicalEquipmentSRFormEvaluator();
-
-        //Even though the initialize function in ServiceRequestController sets up the assigneeID and location textfields to only read in integers, parseInt() still needs to be used on these text fields.
-
         ArrayList<ServiceRequestUserInputValidationErrorItem> errors = mESRFE.getMedicalEquipmentSRValidationTestResult(location.getText(), assigneeID.getText(), status.getSelectionModel(), priority.getSelectionModel(), equipType.getSelectionModel(), equipID.getText());
 
         if(mESRFE.noServiceRequestFormUserInputErrors(errors))
@@ -136,5 +133,10 @@ public class MedicalEquipmentSRCreateController extends ServiceRequestCreateCont
     @Override
     public void prepareErrorMessages(ArrayList<ServiceRequestUserInputValidationErrorItem> l) {
         super.prepareErrorMessages(l);
+    }
+
+    @Override
+    public void resetErrorMessages() {
+        super.resetErrorMessages();
     }
 }

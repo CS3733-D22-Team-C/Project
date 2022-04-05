@@ -75,7 +75,6 @@ public class MedicineDeliverySRCreateController extends ServiceRequestCreateCont
     protected MedicineDeliverySR clickSubmit(ActionEvent event) {
 
         MedicineDeliverySRFormEvaluator mDSRFE = new MedicineDeliverySRFormEvaluator();
-
         ArrayList<ServiceRequestUserInputValidationErrorItem> errors = mDSRFE.getMedicineDeliverySRValidationTestResult(location.getText(), assigneeID.getText(), patientID.getText(), medicine.getText(), dosage.getText(), status.getSelectionModel(), priority.getSelectionModel());
 
         if(mDSRFE.noServiceRequestFormUserInputErrors(errors))
@@ -114,4 +113,8 @@ public class MedicineDeliverySRCreateController extends ServiceRequestCreateCont
         super.prepareErrorMessages(l);
     }
 
+    @Override
+    public void resetErrorMessages() {
+        super.resetErrorMessages();
+    }
 }

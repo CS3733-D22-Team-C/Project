@@ -138,4 +138,9 @@ public class ServiceRequestCreateController implements Initializable {
         errorLabel.setFont(Font.font("System", 12));
         errorLabel.setText(errorLabel.getText() + "\n" + i.getReasonForValidationError());
     }
+
+    public void resetErrorMessages()
+    {
+        errorLabel.setText("");
+    }
 }
