@@ -6,6 +6,7 @@ public class MedicalEquipment {
     protected EquipmentType equipmentType;
     protected EquipmentStatus equipmentStatus;
 
+    //current equipment types
     public enum EquipmentType {
         Bed,
         Recliner,
@@ -13,6 +14,7 @@ public class MedicalEquipment {
         Infusion_Pump
     }
 
+    //current statuses for equipment
     public enum EquipmentStatus {
         Available,
         Unavailable,

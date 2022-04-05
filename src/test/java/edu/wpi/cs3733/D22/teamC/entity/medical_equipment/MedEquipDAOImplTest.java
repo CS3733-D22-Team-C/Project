@@ -15,7 +15,7 @@ class MedEquipDAOImplTest {
 
     @BeforeEach
     void setUp() {
-        // Setup testing database and initialize LOCATION table
+        // Setup testing database and initialize Medical_Equipment table
         testDBManager = DBManager.startup(DBManager.TESTING_DATABASE_NAME);
         testDBManager.initializeMedicalEquipmentTable(true);
         testDBManager.initializeLocationTable(true);
@@ -58,7 +58,7 @@ class MedEquipDAOImplTest {
         assertNotEquals(-1, retrievedID);
         assertEquals(1, medicalEquipmentDAO.getMedicalEquipments().size());
 
-        // Cannot Insert Location Again
+        // Cannot Insert Equation Again
         assertEquals(-1, medicalEquipmentDAO.insertMedicalEquipment(insertEquipment));
 
         // Check that DB values are expected
@@ -80,7 +80,7 @@ class MedEquipDAOImplTest {
         assertEquals(null, medicalEquipmentDAO.getMedicalEquipment(1234));
 
 
-        // Insert Location into DB
+        // Insert Equipment into DB
         int locationID = 1234;
         MedicalEquipment.EquipmentType equipmentType = MedicalEquipment.EquipmentType.Recliner;
         MedicalEquipment.EquipmentStatus equipmentStatus = MedicalEquipment.EquipmentStatus.Unavailable;
@@ -90,10 +90,10 @@ class MedEquipDAOImplTest {
         assertNotEquals(-1, retrievedID);
         assertEquals(1, medicalEquipmentDAO.getMedicalEquipments().size());
 
-        // Delete Location from DB
+        // Delete Equipment from DB
         assertTrue(medicalEquipmentDAO.deleteMedicalEquipment(deleteEquipment));
 
-        // Cannot Delete Location Again
+        // Cannot Delete Equipment Again
         assertFalse(medicalEquipmentDAO.deleteMedicalEquipment(deleteEquipment));
 
         // Check DB is empty
@@ -102,16 +102,16 @@ class MedEquipDAOImplTest {
     }
 
     /**
-     * Test that updateLocation works.
+     * Test that updateEquipment works.
      */
     @Test
-    void testUpdateEq() {
+    void testUpdateEquipment() {
         // Check DB is empty
         assertEquals(0, medicalEquipmentDAO.getMedicalEquipments().size());
         assertEquals(null, medicalEquipmentDAO.getMedicalEquipment(1234));
 
 
-        // Insert Location into DB
+        // Insert Equipment into DB
         int locationID = 1234;
         MedicalEquipment.EquipmentType equipmentType = MedicalEquipment.EquipmentType.Infusion_Pump;
         MedicalEquipment.EquipmentStatus equipmentStatus = MedicalEquipment.EquipmentStatus.Available;
@@ -121,7 +121,7 @@ class MedEquipDAOImplTest {
         assertNotEquals(-1, retrievedID);
         assertEquals(1, medicalEquipmentDAO.getMedicalEquipments().size());
 
-        // Update Location in DB
+        // Update Equipment in DB
         int newLocationID = 3456;
         MedicalEquipment.EquipmentType newEquipmentType = MedicalEquipment.EquipmentType.Portable_X_Ray;
         MedicalEquipment.EquipmentStatus newEquipmentStatus = MedicalEquipment.EquipmentStatus.Unavailable;
@@ -139,7 +139,7 @@ class MedEquipDAOImplTest {
         assertEquals(newEquipmentType, queryLocation.getEquipmentType());
         assertEquals(newEquipmentStatus, queryLocation.getEquipmentStatus());
 
-        // Cannot Update Nonexistent Location
+        // Cannot Update Nonexistent Equipment
         MedicalEquipment newEquipment = new MedicalEquipment(1234);
         assertFalse(medicalEquipmentDAO.updateMedicalEquipment(newEquipment));
     }

@@ -12,6 +12,10 @@ import java.util.List;
 
 
 public class MedicalEquipmentDAOImpl implements MedicalEquipmentDAO {
+    /**
+     * executing a SQL query from medical_equipment table to get the list of medical equipments in the current DB
+     * @return the List of Medical Equipments in the current DB
+     */
     @Override
     public List<MedicalEquipment> getMedicalEquipments() {
         try {
@@ -33,7 +37,11 @@ public class MedicalEquipmentDAOImpl implements MedicalEquipmentDAO {
         return null;
     }
 
-
+    /**
+     * takes in a location and returns the list of medical equipments at this current location
+     * @param location the Location object
+     * @return the list of medical equipments at this current location
+     */
     @Override
     public List<MedicalEquipment> getMedicalEquipmentAtLocation(Location location) {
         try {
@@ -58,6 +66,11 @@ public class MedicalEquipmentDAOImpl implements MedicalEquipmentDAO {
         return null;
     }
 
+    /**
+     * takes in the ID and returns the medical equipment associated with it
+     * @param equipID the ID
+     * @return the medical equipment with the given ID
+     */
     @Override
     public MedicalEquipment getMedicalEquipment(int equipID) {
         try {
@@ -78,6 +91,11 @@ public class MedicalEquipmentDAOImpl implements MedicalEquipmentDAO {
         return null;
     }
 
+    /**
+     * inserts the given medical equipment into the DB
+     * @param medical_equipment the equipment ready to be inserted
+     * @return an integer signifying the insertion of the medical equipment into the table
+     */
     @Override
     public int insertMedicalEquipment(MedicalEquipment medical_equipment) {
         try {
@@ -109,6 +127,11 @@ public class MedicalEquipmentDAOImpl implements MedicalEquipmentDAO {
         return -1;
     }
 
+    /**
+     * updating the current medical_equipment of its values
+     * @param medical_equipment the equipment ready to be inserted
+     * @return a boolean signifying the update into table (true if updated successfully)
+     */
     @Override
     public boolean updateMedicalEquipment(MedicalEquipment medical_equipment) {
         try {
@@ -134,6 +157,11 @@ public class MedicalEquipmentDAOImpl implements MedicalEquipmentDAO {
         return false;
     }
 
+    /**
+     * deleting the given medical_equipment from the table
+     * @param medical_equipment the equipment ready to be deleted
+     * @return a boolean signifying the deletion of the equipment from the table (true if deleted successfully)
+     */
     @Override
     public boolean deleteMedicalEquipment(MedicalEquipment medical_equipment) {
         try {
@@ -158,6 +186,11 @@ public class MedicalEquipmentDAOImpl implements MedicalEquipmentDAO {
         return false;
     }
 
+    /**
+     * creates the medical equipment
+     * @param resultSet the resultSet from query to Medical_Equipment DB Table
+     * @return the medical equipment object created from the query.
+     */
     private MedicalEquipment createEquipment(ResultSet resultSet) {
         try {
             MedicalEquipment equipment = new MedicalEquipment(resultSet.getInt("ID"));
