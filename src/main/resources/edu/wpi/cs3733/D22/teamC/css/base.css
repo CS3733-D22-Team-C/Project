@@ -112,6 +112,7 @@ padding goes top, right, bottom, left
     -fx-background-color: -color-button-text;
     -fx-font-family: Inter;
     -fx-font-size: 17;
+    -fx-opacity: .83;
 }
 
 .button-confirm {

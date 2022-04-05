@@ -66,7 +66,7 @@ public class ServiceRequestDAOImpl extends ServiceRequestDAO<ServiceRequest> {
      * Insert entry into ServiceRequest Table of the DB, corresponding to the given ServiceRequest object.
      *
      * @param serviceRequest The ServiceRequest to be inserted into the DB via a corresponding entry.
-     * @return If successful return the ID of the entry, else return -1.
+     * @return If successful return true, else return false.
      */
     @Override
     public int insertServiceRequest(ServiceRequest serviceRequest) {
@@ -75,8 +75,10 @@ public class ServiceRequestDAOImpl extends ServiceRequestDAO<ServiceRequest> {
             ServiceRequest serviceRequestInDB = getServiceRequest(serviceRequest.getRequestID());
             if (serviceRequestInDB == null) {
                 PreparedStatement statement = (serviceRequest.getRequestID() == 0)
-                        ? DBManager.getInstance().connection.prepareStatement("INSERT INTO SERVICE_REQUEST VALUES(DEFAULT, ?, ?, ?, ?, ?, ?, ?, ?)", Statement.RETURN_GENERATED_KEYS)
-                        : DBManager.getInstance().connection.prepareStatement("INSERT INTO SERVICE_REQUEST VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?)", Statement.RETURN_GENERATED_KEYS);
+                        ? DBManager.getInstance().connection.prepareStatement("INSERT INTO SERVICE_REQUEST " +
+                        "VALUES(DEFAULT, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)", Statement.RETURN_GENERATED_KEYS)
+                        : DBManager.getInstance().connection.prepareStatement("INSERT INTO SERVICE_REQUEST " +
+                        "VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)", Statement.RETURN_GENERATED_KEYS);
 
                 int index = 1;
                 if(serviceRequest.getRequestID() != 0){
@@ -87,13 +89,14 @@ public class ServiceRequestDAOImpl extends ServiceRequestDAO<ServiceRequest> {
                 statement.setString(index, serviceRequest.getAssigneeID()); index++;
                 statement.setString(index, serviceRequest.getLocation()); index++;
                 statement.setTimestamp(index, serviceRequest.getCreationTimestamp()); index++;
-                statement.setString(index, serviceRequest.getStatus()); index++;
-                statement.setString(index, serviceRequest.getPriority()); index++;
-                statement.setString(index, serviceRequest.getRequestType()); index++;
-                statement.setString(index, serviceRequest.getDescription());
+                statement.setString(index, serviceRequest.getStatus().toString()); index++;
+                statement.setString(index, serviceRequest.getPriority().toString()); index++;
+                statement.setString(index, serviceRequest.getRequestType().toString()); index++;
+                statement.setString(index, serviceRequest.getDescription()); index++;
+                statement.setString(index, serviceRequest.getModifierID()); index++;
+                statement.setTimestamp(index, serviceRequest.getModifiedTimestamp());
                 statement.execute();
-    
-                // Retrieve generated ID from newly inserted entry
+
                 ResultSet resultSetID = statement.getGeneratedKeys();
                 if(resultSetID.next()) return resultSetID.getInt(1);
             }
@@ -118,19 +121,22 @@ public class ServiceRequestDAOImpl extends ServiceRequestDAO<ServiceRequest> {
             if (serviceRequestInDB != null) {
                 // Execute UPDATE statement
                 PreparedStatement statement = DBManager.getInstance().connection.prepareStatement(
-                        "UPDATE SERVICE_REQUEST SET CreatorID = ?, AssigneeID = ?, LocationID = ?, " +
-                                "CreationTimestamp = ?, Status = ?, Priority = ?, RequestType = ?, Description = ? " +
+                        "UPDATE SERVICE_REQUEST SET CREATORID = ?, ASSIGNEEID = ?, LOCATIONID = ?, " +
+                                "CREATIONTIMESTAMP = ?, STATUS = ?, PRIORITY = ?, REQUESTTYPE = ?, DESCRIPTION = ? , " +
+                                "ModifierID = ?, ModifiedTimestamp = ?" +
                                 "WHERE ID = ?"
                 );
                 statement.setString(1, serviceRequest.getCreatorID());
                 statement.setString(2, serviceRequest.getAssigneeID());
                 statement.setString(3, serviceRequest.getLocation());
                 statement.setTimestamp(4, serviceRequest.getCreationTimestamp());
-                statement.setString(5, serviceRequest.getStatus());
-                statement.setString(6, serviceRequest.getPriority());
-                statement.setString(7, serviceRequest.getRequestType());
+                statement.setString(5, serviceRequest.getStatus().toString());
+                statement.setString(6, serviceRequest.getPriority().toString());
+                statement.setString(7, serviceRequest.getRequestType().toString());
                 statement.setString(8, serviceRequest.getDescription());
-                statement.setInt(9, serviceRequest.getRequestID());
+                statement.setString(9, serviceRequest.getModifierID());
+                statement.setTimestamp(10, serviceRequest.getModifiedTimestamp());
+                statement.setInt(11, serviceRequest.getRequestID());
                 statement.execute();
                 
                 return true;
@@ -172,4 +178,7 @@ public class ServiceRequestDAOImpl extends ServiceRequestDAO<ServiceRequest> {
         return false;
     }
     
+
+    
+
 }

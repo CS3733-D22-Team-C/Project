@@ -25,7 +25,7 @@ public class LocationTable extends RecursiveTreeObject<LocationTable> {
 
     public LocationTable(Location location) {
         this.nodeID    = new SimpleIntegerProperty(location.getNodeID());
-        this.nodeType  = new SimpleStringProperty(location.getNodeType());
+        this.nodeType  = new SimpleStringProperty(location.getNodeType().toString());
         this.shortName = new SimpleStringProperty(location.getShortName());
         this.longName  = new SimpleStringProperty(location.getLongName());
         this.floor     = new SimpleStringProperty(location.getFloor());

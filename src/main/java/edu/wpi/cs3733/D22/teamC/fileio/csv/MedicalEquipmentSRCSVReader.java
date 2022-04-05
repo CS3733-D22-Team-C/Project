@@ -1,5 +1,6 @@
 package edu.wpi.cs3733.D22.teamC.fileio.csv;
 
+import edu.wpi.cs3733.D22.teamC.entity.service_request.ServiceRequest;
 import edu.wpi.cs3733.D22.teamC.entity.service_request.medical_equipment.MedicalEquipmentSR;
 
 import java.sql.Timestamp;
@@ -31,13 +32,13 @@ public class MedicalEquipmentSRCSVReader extends CSVReader<MedicalEquipmentSR>{
                 serviceRequest.setCreationTimestamp(Timestamp.valueOf(value));
                 break;
             case "status":
-                serviceRequest.setStatus(value);
+                serviceRequest.setStatus(ServiceRequest.Status.valueOf(value));
                 break;
             case "priority":
-                serviceRequest.setPriority(value);
+                serviceRequest.setPriority(ServiceRequest.Priority.valueOf(value));
                 break;
             case "requestType":
-                serviceRequest.setRequestType(value);
+                serviceRequest.setRequestType(ServiceRequest.RequestType.valueOf(value));
                 break;
             case "description":
                 serviceRequest.setDescription(value);
@@ -46,7 +47,7 @@ public class MedicalEquipmentSRCSVReader extends CSVReader<MedicalEquipmentSR>{
                 serviceRequest.setEquipmentID(value);
                 break;
             case "equipType":
-                serviceRequest.setEquipmentType(value);
+                serviceRequest.setEquipmentType(MedicalEquipmentSR.EquipmentType.valueOf(value));
                 break;
         }
         return serviceRequest;
