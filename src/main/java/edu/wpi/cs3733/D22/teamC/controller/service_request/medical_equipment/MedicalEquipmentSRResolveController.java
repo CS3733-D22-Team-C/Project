@@ -99,6 +99,7 @@ public class MedicalEquipmentSRResolveController extends ServiceRequestResolveCo
                 return;
             }
             else {
+                equipmentID.setPromptText("");
                 lastType = equipmentType.getValue();
 
                 //Resetting the values

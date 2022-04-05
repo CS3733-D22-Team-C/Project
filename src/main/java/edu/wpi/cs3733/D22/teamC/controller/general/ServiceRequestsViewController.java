@@ -109,7 +109,7 @@ public class ServiceRequestsViewController implements Initializable {
                 // If is clicked twice and is processing, open resolve
                 if (! row.isEmpty() && event.getButton()== MouseButton.PRIMARY
                         && event.getClickCount() == 2 &&
-                        row.getItem().getStatus() == ServiceRequest.Status.Processing.toString()) {
+                        row.getItem().getStatus().equals(ServiceRequest.Status.Processing.toString())) {
 
                     ServiceRequestTable clickedRow = row.getItem();
 
@@ -141,7 +141,7 @@ public class ServiceRequestsViewController implements Initializable {
                 // If is clicked twice and is blank, open edit
                 if (! row.isEmpty() && event.getButton()== MouseButton.PRIMARY
                         && event.getClickCount() == 2 &&
-                        row.getItem().getStatus() == ServiceRequest.Status.Blank.toString()) {
+                        row.getItem().getStatus().equals(ServiceRequest.Status.Blank.toString())) {
 
                     ServiceRequestTable clickedRow = row.getItem();
 
