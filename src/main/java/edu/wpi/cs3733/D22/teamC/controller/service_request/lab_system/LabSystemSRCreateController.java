@@ -76,11 +76,7 @@ public class LabSystemSRCreateController extends ServiceRequestCreateController 
 
         LabSystemSRFormEvaluator lSSRFE = new LabSystemSRFormEvaluator();
 
-        int assigneeIDInt = Integer.parseInt(assigneeID.getText());
-        int locationInt = Integer.parseInt(location.getText());
-        int patientIDInt = Integer.parseInt(patientID.getText());
-
-        ArrayList<ServiceRequestUserInputValidationErrorItem> errors = lSSRFE.getLabSystemSRValidationTestResult(locationInt, assigneeIDInt, status.getSelectionModel(), priority.getSelectionModel(), labType.getSelectionModel(), patientIDInt);
+        ArrayList<ServiceRequestUserInputValidationErrorItem> errors = lSSRFE.getLabSystemSRValidationTestResult(location.getText(), assigneeID.getText(), status.getSelectionModel(), priority.getSelectionModel(), labType.getSelectionModel(), patientID.getText());
 
         if(errors.isEmpty())
         {
