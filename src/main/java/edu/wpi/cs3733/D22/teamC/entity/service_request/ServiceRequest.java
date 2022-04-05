@@ -4,8 +4,8 @@ import java.sql.Timestamp;
 
 public class ServiceRequest {
     protected int requestID;
-    protected String creatorID;     // TODO: Link to Employee
-    protected String assigneeID;    // TODO: Link to Employee
+    protected int creatorID;     // TODO: Link to Employee
+    protected int assigneeID;    // TODO: Link to Employee
     protected String location;      // TODO: Link to Location
     protected Timestamp creationTimestamp;
     protected Status status;
@@ -60,19 +60,19 @@ public class ServiceRequest {
         this.requestID = requestID;
     }
 
-    public String getCreatorID() {
+    public int getCreatorID() {
         return creatorID;
     }
 
-    public void setCreatorID(String creatorID) {
+    public void setCreatorID(int creatorID) {
         this.creatorID = creatorID;
     }
 
-    public String getAssigneeID() {
+    public int getAssigneeID() {
         return assigneeID;
     }
 
-    public void setAssigneeID(String assigneeID) {
+    public void setAssigneeID(int assigneeID) {
         this.assigneeID = assigneeID;
     }
 

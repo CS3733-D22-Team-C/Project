@@ -49,8 +49,8 @@ class ServiceRequestDAOImplTest {
         assertEquals(null, serviceRequestDAO.getServiceRequest(1234));
 
         // Insert Location into DB
-        String creatorID = "C1";
-        String assigneeID = "A1";
+        int creatorID = 1;
+        int assigneeID = 2;
         String location = "loc";
         Timestamp creationTimestamp = new Timestamp(System.currentTimeMillis());
         ServiceRequest.Status status = ServiceRequest.Status.Blank;
@@ -100,8 +100,8 @@ class ServiceRequestDAOImplTest {
         assertEquals(null, serviceRequestDAO.getServiceRequest(1234));
 
         // Insert ServiceRequest into DB
-        String creatorID = "C1";
-        String assigneeID = "A1";
+        int creatorID = 1;
+        int assigneeID = 2;
         String location = "loc";
         Timestamp creationTimestamp = new Timestamp(System.currentTimeMillis());
         ServiceRequest.Status status = ServiceRequest.Status.Processing;
@@ -145,8 +145,8 @@ class ServiceRequestDAOImplTest {
         assertEquals(null, serviceRequestDAO.getServiceRequest(1234));
 
         // Insert ServiceRequest into DB
-        String creatorID = "C1";
-        String assigneeID = "A1";
+        int creatorID = 1;
+        int assigneeID = 2;
         String location = "loc";
         Timestamp creationTimestamp = new Timestamp(System.currentTimeMillis());
         ServiceRequest.Status status = ServiceRequest.Status.Blank;
@@ -171,8 +171,8 @@ class ServiceRequestDAOImplTest {
 
         // Update Location in DB
         // didn't update the requestType
-        String newCreatorID = "C2";
-        String newAssigneeID = "A2";
+        int newCreatorID = 3;
+        int newAssigneeID = 4;
         String newlocation = "new loc";
         Timestamp newCreationTimestamp = new Timestamp(System.currentTimeMillis());
         ServiceRequest.Status newStatus = ServiceRequest.Status.Blank;

@@ -21,8 +21,8 @@ public abstract class ServiceRequestDAO<T extends ServiceRequest> {
     protected T modifyServiceRequest(ResultSet resultSet, T serviceRequest) {
         try {
             serviceRequest.setRequestID(resultSet.getInt("ID"));
-            serviceRequest.setCreatorID(typesafeTrim(resultSet.getString("CREATORID")));
-            serviceRequest.setAssigneeID(typesafeTrim(resultSet.getString("ASSIGNEEID")));
+            serviceRequest.setCreatorID(resultSet.getInt("CREATORID"));
+            serviceRequest.setAssigneeID(resultSet.getInt("ASSIGNEEID"));
             serviceRequest.setLocation(typesafeTrim(resultSet.getString("LOCATIONID")));
             serviceRequest.setCreationTimestamp(resultSet.getTimestamp("CREATIONTIMESTAMP"));
             serviceRequest.setStatus(ServiceRequest.Status.valueOf(resultSet.getString("STATUS")));

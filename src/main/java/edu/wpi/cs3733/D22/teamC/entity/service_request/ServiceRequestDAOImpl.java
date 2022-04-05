@@ -83,8 +83,8 @@ public class ServiceRequestDAOImpl extends ServiceRequestDAO<ServiceRequest> {
                     statement.setString(index, (serviceRequest.getRequestID()!=0) ? String.valueOf(serviceRequest.getRequestID()) : "DEFAULT");
                     index++;
                 }
-                statement.setString(index, serviceRequest.getCreatorID()); index++;
-                statement.setString(index, serviceRequest.getAssigneeID()); index++;
+                statement.setInt(index, serviceRequest.getCreatorID()); index++;
+                statement.setInt(index, serviceRequest.getAssigneeID()); index++;
                 statement.setString(index, serviceRequest.getLocation()); index++;
                 statement.setTimestamp(index, serviceRequest.getCreationTimestamp()); index++;
                 statement.setString(index, serviceRequest.getStatus().toString()); index++;
@@ -121,8 +121,8 @@ public class ServiceRequestDAOImpl extends ServiceRequestDAO<ServiceRequest> {
                                 "CREATIONTIMESTAMP = ?, STATUS = ?, PRIORITY = ?, REQUESTTYPE = ?, DESCRIPTION = ? " +
                                 "WHERE ID = ?"
                 );
-                statement.setString(1, serviceRequest.getCreatorID());
-                statement.setString(2, serviceRequest.getAssigneeID());
+                statement.setInt(1, serviceRequest.getCreatorID());
+                statement.setInt(2, serviceRequest.getAssigneeID());
                 statement.setString(3, serviceRequest.getLocation());
                 statement.setTimestamp(4, serviceRequest.getCreationTimestamp());
                 statement.setString(5, serviceRequest.getStatus().toString());
