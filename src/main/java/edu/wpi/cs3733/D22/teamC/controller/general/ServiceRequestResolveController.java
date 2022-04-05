@@ -123,7 +123,7 @@ public class ServiceRequestResolveController implements Initializable {
                 serviceRequest.setAssigneeID(assigneeID.getText());
             }
             //Location
-            if(!hospitalLocation.getValue().equals(""))
+            if(hospitalLocation.getValue() != null)
             {
                serviceRequest.setLocation(hospitalLocation.getValue());
             }
@@ -155,6 +155,17 @@ public class ServiceRequestResolveController implements Initializable {
     protected boolean receiveIsEditMode(){
         ServiceRequestSingleton holder = ServiceRequestSingleton.INSTANCE;
         return holder.getIsEditMode();
+    }
+
+
+    protected boolean requiredFieldsPresent(){
+        if(priority.getValue() == null && priority.getPromptText().equals(""))
+            return false;
+        if(assigneeID.getText().equals(""))
+            return false;
+        if(hospitalLocation.getValue() == null && hospitalLocation.getPromptText().equals(""))
+            return false;
+        return true;
     }
 
 
