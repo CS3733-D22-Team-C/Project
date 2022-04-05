@@ -1,4 +1,4 @@
-package edu.wpi.cs3733.D22.teamC.controller.general;
+package edu.wpi.cs3733.D22.teamC.controller.service_request;
 
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXComboBox;
@@ -6,10 +6,8 @@ import com.jfoenix.controls.JFXTextArea;
 import edu.wpi.cs3733.D22.teamC.App;
 import edu.wpi.cs3733.D22.teamC.entity.service_request.ServiceRequest;
 import edu.wpi.cs3733.D22.teamC.entity.service_request.ServiceRequestDAOImpl;
-import edu.wpi.cs3733.D22.teamC.entity.service_request.medical_equipment.MedicalEquipmentSR;
-import edu.wpi.cs3733.D22.teamC.entity.service_request.medical_equipment.MedicalEquipmentSRDAOImpl;
-import edu.wpi.cs3733.D22.teamC.models.service_request.ServiceRequestTable;
 import edu.wpi.cs3733.D22.teamC.models.service_request.ServiceRequestSingleton;
+import edu.wpi.cs3733.D22.teamC.models.service_request.ServiceRequestTableDisplay;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -20,15 +18,12 @@ import java.net.URL;
 import java.util.Locale;
 import java.util.ResourceBundle;
 
-public class ServiceRequestResolveController implements Initializable {
-
-    protected boolean isEditMode;
+public class ServiceRequestResolveController {
     // Dropdowns
     @FXML protected JFXComboBox<ServiceRequest.Priority> priority;
     @FXML protected JFXComboBox<String> status;
     @FXML protected TextField assigneeID;
     @FXML private JFXComboBox<String> hospitalLocation;
-
 
     // Labels
     @FXML private Label title;
@@ -49,39 +44,34 @@ public class ServiceRequestResolveController implements Initializable {
     @FXML protected JFXButton confirmButton;
     @FXML protected JFXButton goBackButton;
 
+    // Variables
+    protected boolean isEditMode;
+    protected ServiceRequest serviceRequest;
 
     @FXML
-    public void initialize(URL url, ResourceBundle rb) {
+    public void setup(ServiceRequest serviceRequest, boolean isEditMode) {
+        this.serviceRequest = serviceRequest;
 
-        //Get data from row
-        ServiceRequestTable srt = receiveData();
+        // Set initial values
+        priority.setPromptText(serviceRequest.getPriority().toString());
+        status.setPromptText(serviceRequest.getStatus().toString());
+        hospitalLocation.setPromptText(serviceRequest.getLocation());
+        assigneeID.setText(serviceRequest.getAssigneeID());
 
-        //Check if is in edit mode
-        isEditMode = receiveIsEditMode();
+        // Set labels
+        requestID.setText(String.format("%07d" , serviceRequest.getRequestID()));
 
-        //Set title
-        title.setText("Resolve Medical Equipment Request");
-        //Setting fields from ServiceRequestTable
-        priority.setPromptText(srt.getPriority());
-        status.setPromptText(srt.getStatus());
-        hospitalLocation.setPromptText(srt.getLocation());
-
-        assigneeID.setText(srt.getAssigneeID());
-        assigneeID.setEditable(false);
-
-        //requestID with leading 0's
-        requestID.setText(String.format("%07d" , srt.getID()));
-
-
-        if(isEditMode){
-            //Set title
+        if (isEditMode) {
+            // Set generic title (overridden in children)
             title.setText("Edit Medical Equipment Request");
-            // Priority dropdown
+
+            // Priority Dropdown
             for (ServiceRequest.Priority pri : ServiceRequest.Priority.values()) {
                 priority.getItems().add(pri);
             }
 
-            //location
+            // Location
+            // TODO: Change from hardcoding !!!
             hospitalLocation.getItems().add("DEPT000001");
             hospitalLocation.getItems().add("DEPT000002");
             hospitalLocation.getItems().add("DEPT000003");
@@ -92,20 +82,23 @@ public class ServiceRequestResolveController implements Initializable {
             hospitalLocation.getItems().add("DEPT000008");
             hospitalLocation.getItems().add("DEPT000009");
 
-            //Sets status at bottom
-            firstStatus.setText(srt.getStatus().toString().toLowerCase(Locale.ROOT));
+            // Sets status at bottom
+            firstStatus.setText(serviceRequest.getStatus().toString().toLowerCase());
 
+            // Set fields editable
             assigneeID.setEditable(true);
+        } else {
+            // Set generic title (overridden in children)
+            title.setText("Resolve Service Request");
 
-        }
-        else
-        {
-            //Sets status at bottom
+            // Sets status at bottom
             firstStatus.setText("processing");
             secondStatus.setText("resolve");
+
+            // Set fields uneditable
+            assigneeID.setEditable(false);
         }
     }
-
 
     @FXML
     public void clickConfirm(ActionEvent event) {
@@ -143,31 +136,13 @@ public class ServiceRequestResolveController implements Initializable {
         App.instance.setView(App.VIEW_SERVICE_REQUESTS_PATH);
     }
 
-    protected ServiceRequestTable receiveData() {
-        ServiceRequestSingleton holder = ServiceRequestSingleton.INSTANCE;
-        ServiceRequestTable u = holder.getServiceRequestTable();
-        String p = u.getPriority();
-        System.out.println(p);
-        return u;
-    }
-
-    //If is in edit mode
-    protected boolean receiveIsEditMode(){
-        ServiceRequestSingleton holder = ServiceRequestSingleton.INSTANCE;
-        return holder.getIsEditMode();
-    }
-
-
     protected boolean requiredFieldsPresent(){
-        if(priority.getValue() == null && priority.getPromptText().equals(""))
+        if (priority.getValue() == null && priority.getPromptText().equals(""))
             return false;
-        if(assigneeID.getText().equals(""))
+        if (assigneeID.getText().equals(""))
             return false;
-        if(hospitalLocation.getValue() == null && hospitalLocation.getPromptText().equals(""))
+        if (hospitalLocation.getValue() == null && hospitalLocation.getPromptText().equals(""))
             return false;
         return true;
     }
-
-
-
 }

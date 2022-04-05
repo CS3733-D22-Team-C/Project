@@ -1,5 +1,6 @@
 package edu.wpi.cs3733.D22.teamC;
 
+import edu.wpi.cs3733.D22.teamC.controller.service_request.ServiceRequestResolveController;
 import edu.wpi.cs3733.D22.teamC.entity.location.Location;
 import edu.wpi.cs3733.D22.teamC.entity.location.LocationDAO;
 import edu.wpi.cs3733.D22.teamC.entity.location.LocationDAOImpl;
@@ -59,9 +60,6 @@ public class App extends Application {
     // Variables
     private Stage stage;
     private Scene scene;
-
-    // References
-    private Node viewNode;
 
     @Override
     public void init() {
@@ -126,46 +124,45 @@ public class App extends Application {
     }
 
     /**
-     * Allows us to change the view of the window
-     * @param viewFile path to the .fxml file to be displayed
+     * Set view for window from a file.
+     * @param viewFile Path to the FXML file to be displayed.
      */
     public void setView(String viewFile){
-        try {
-            // TODO: Refactor with abstracted function "loadView"
-            // Load Base Node
-            FXMLLoader loader = new FXMLLoader();
-            loader.setLocation(getClass().getResource(BASE_COMPONENT_PATH));
-            BorderPane baseNode = loader.load();
-
-            // Load View
-            loader = new FXMLLoader();
-            loader.setLocation(getClass().getResource(viewFile));
-            viewNode = loader.load();
-
-            // Load Menu Bar
-            loader = new FXMLLoader();
-            loader.setLocation(getClass().getResource(MENU_BAR_COMPONENT_PATH));
-            Node menuBarNode = loader.load();
-
-            // Embed views and components
-            baseNode.setTop(menuBarNode);
-            baseNode.setCenter(viewNode);
-            baseNode.autosize();
-
-            if (scene != null) scene.setRoot(baseNode);
-            scene = new Scene(baseNode);
-            stage.setScene(scene);
-            stage.show();
-        } catch (IOException e) {
-            System.out.println("Could not load file " + viewFile);
-            e.printStackTrace();
-        }
+        Node node = loadView(viewFile).getNode();
+        setView(node);
     }
 
+    /**
+     * Set view for window from a node.
+     * @param viewNode Node to be displayed.
+     */
+    public void setView(Node viewNode) {
+        // Load Base Node
+        BorderPane baseNode = (BorderPane) loadView(BASE_COMPONENT_PATH).getNode();
+
+        // Load Menu Bar
+        Node menuBarNode = loadView(MENU_BAR_COMPONENT_PATH).getNode();
+
+        // Embed views and components
+        baseNode.setTop(menuBarNode);
+        baseNode.setCenter(viewNode);
+        baseNode.autosize();
+
+        if (scene != null) scene.setRoot(baseNode);
+        else scene = new Scene(baseNode);
+        stage.setScene(scene);
+        stage.show();
+    }
+
+    /**
+     * Load a view from a file.
+     * @param viewFile Path to the FXML file to be loaded.
+     * @return Loaded FXML file wrapped in a View as a Node and Controller.
+     */
     public View loadView(String viewFile) {
         try {
             FXMLLoader loader = new FXMLLoader();
-            loader.setLocation(getClass().getResource(viewFile));
+            loader.setLocation(App.class.getResource(viewFile));
             return new View(loader.load(), loader.getController());
         } catch (IOException e) {
             e.printStackTrace();
@@ -173,11 +170,17 @@ public class App extends Application {
         return null;
     }
 
+    /**
+     * Load a view from a file, setting its controller.
+     * @param viewFile Path to the FXML file to be loaded.
+     * @param controller Controller to be attached to the FXML file.
+     * @return Loaded FXML file wrapped in a View as a Node and Controller.
+     */
     public View loadView(String viewFile, Object controller) {
         View view = loadView(viewFile);
         try {
             FXMLLoader loader = new FXMLLoader();
-            loader.setLocation(getClass().getResource(viewFile));
+            loader.setLocation(App.class.getResource(viewFile));
             loader.setController(controller);
             return new View(loader.load(), loader.getController());
         } catch (IOException e) {

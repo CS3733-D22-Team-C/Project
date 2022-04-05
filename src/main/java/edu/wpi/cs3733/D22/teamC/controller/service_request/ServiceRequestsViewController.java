@@ -3,48 +3,31 @@ package edu.wpi.cs3733.D22.teamC.controller.service_request;
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXComboBox;
 import com.jfoenix.controls.JFXTreeTableView;
+import com.sun.tools.jconsole.JConsoleContext;
 import edu.wpi.cs3733.D22.teamC.App;
 import edu.wpi.cs3733.D22.teamC.entity.service_request.ServiceRequest;
 import edu.wpi.cs3733.D22.teamC.entity.service_request.ServiceRequestDAO;
 import edu.wpi.cs3733.D22.teamC.entity.service_request.ServiceRequestDAOImpl;
-import edu.wpi.cs3733.D22.teamC.models.service_request.ServiceRequestSingleton;
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
-import javafx.event.ActionEvent;
-import javafx.fxml.FXML;
-import javafx.fxml.Initializable;
-import javafx.scene.control.TreeItem;
-import javafx.scene.control.TreeTableRow;
-import javafx.scene.input.MouseButton;
-import javafx.scene.input.MouseEvent;
 import edu.wpi.cs3733.D22.teamC.models.service_request.ServiceRequestTableDisplay;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.TreeTableRow;
+import javafx.scene.input.MouseButton;
 
-import java.awt.*;
-import java.io.IOException;
 import java.net.URL;
 import java.util.List;
-import java.util.Objects;
 import java.util.ResourceBundle;
 
+import static edu.wpi.cs3733.D22.teamC.entity.service_request.ServiceRequest.Status.*;
+
 public class ServiceRequestsViewController implements Initializable {
-    public static final String MEDICAL_EQUIPMENT_CREATE_PATH = "view/service_request/medical_equipment/create_form.fxml";
-    public static final String LAB_SYSTEM_CREATE_PATH = "view/service_request/lab_system/create_form.fxml";
-    public static final String MEDICINE_DELIVERY_CREATE_PATH = "view/service_request/medicine_delivery/create_form.fxml";
-    public static final String SANITATION_CREATE_PATH = "view/service_request/sanitation/create_form.fxml";
-    public static final String FACILITY_MAINTENANCE_CREATE_PATH = "view/service_request/facility_maintenance/create_form.fxml";
-    public static final String SECURITY_CREATE_PATH = "view/service_request/security/create_form.fxml";
+    public static final String BASE_PATH = "view/service_request/";
 
-    public static final String MEDICAL_EQUIPMENT_RESOLVE_PATH = "view/service_request/medical_equipment/resolve_form.fxml";
-    public static final String LAB_SYSTEM_RESOLVE_PATH = "view/service_request/lab_system/resolve_form.fxml";
-    public static final String MEDICINE_DELIVERY_RESOLVE_PATH = "view/service_request/medicine_delivery/resolve_form.fxml";
-    public static final String SANITATION_RESOLVE_PATH = "view/service_request/sanitation/resolve_form.fxml";
-    public static final String FACILITY_MAINTENANCE_RESOLVE_PATH = "view/service_request/facility_maintenance/resolve_form.fxml";
-    public static final String SECURITY_RESOLVE_PATH = "view/service_request/security/resolve_form.fxml";
+    public static final String CREATE_FORM = "create_form.fxml";
+    public static final String RESOLVE_FORM = "resolve_form.fxml";
 
-    //Buttons
+    // Buttons
     @FXML private JFXButton selectButton;
     @FXML private JFXComboBox<String> serviceType;
     @FXML private JFXButton edit;
@@ -55,196 +38,127 @@ public class ServiceRequestsViewController implements Initializable {
 
     // Variables
     private ServiceRequestTableDisplay<ServiceRequest> tableDisplay;
+    private ServiceRequest activeServiceRequest;
 
     @FXML
     public void initialize(URL url, ResourceBundle rb) {
-        //service request dropdown
-        serviceType.getItems().add("Medical Equipment");
-        serviceType.getItems().add("Facility Maintenance");
-        serviceType.getItems().add("Lab System");
-        serviceType.getItems().add("Medicine Delivery");
-        serviceType.getItems().add("Sanitation");
-        serviceType.getItems().add("Security");
+        // Service Request Dropdown
+        for (ServiceRequest.RequestType requestType : ServiceRequest.RequestType.values()) {
+            serviceType.getItems().add(requestType.toString());
+        }
 
+        // Populate Table Display
         ServiceRequestDAO serviceRequestDAO  = new ServiceRequestDAOImpl();
         List<ServiceRequest> serviceRequests = serviceRequestDAO.getAllServiceRequests();
-
         tableDisplay = new ServiceRequestTableDisplay<ServiceRequest>(table);
         serviceRequests.forEach(tableDisplay::addObject);
+
+        // Set Row Interaction with Table Display
+        setRowInteraction();
     }
-    @FXML
-    void onSelectButton(ActionEvent event) {
-        switch (serviceType.getValue()) {
-            case "Medical Equipment":
-                App.instance.setView(MEDICAL_EQUIPMENT_CREATE_PATH);
-                break;
-            case "Facility Maintenance":
-                App.instance.setView(FACILITY_MAINTENANCE_CREATE_PATH);
-                break;
-            case "Lab System":
-                App.instance.setView(LAB_SYSTEM_CREATE_PATH);
-                break;
-            case "Medicine Delivery":
-                App.instance.setView(MEDICINE_DELIVERY_CREATE_PATH);
-                break;
-            case "Sanitation":
-                App.instance.setView(SANITATION_CREATE_PATH);
-                break;
-            case "Security":
-                App.instance.setView(SECURITY_CREATE_PATH);
-                break;
-            default:
+
+    //#region Button Events
+        @FXML
+        void onSelectButton(ActionEvent event) {
+            if (serviceType.getValue() != null) {
+                App.instance.setView(generatePath(ServiceRequest.RequestType.valueOf(serviceType.getValue()), true));
+            }
         }
-    }
 
-    //On mouse click
-    @FXML
-    protected void getRow(MouseEvent blah) throws IOException {
+        @FXML
+        public void onEditButton(ActionEvent actionEvent) {
+            toEditPage(activeServiceRequest);
+        }
+
+        @FXML
+        public void onResolveButton(ActionEvent actionEvent) {
+            toResolvePage(activeServiceRequest);
+        }
+    //#endregion
+
+    /**
+     * Sets row interaction by setting the onMouseClicked events for each row.
+     */
+    protected void setRowInteraction() {
         table.setRowFactory(tv -> {
-            TreeTableRow<ServiceRequestTable> row = new TreeTableRow<ServiceRequestTable>();
+            TreeTableRow<ServiceRequestTableDisplay.ServiceRequestTableEntry> row = new TreeTableRow<ServiceRequestTableDisplay.ServiceRequestTableEntry>();
+
             row.setOnMouseClicked(event -> {
-                // If is clicked twice and is processing, open resolve
-                if (! row.isEmpty() && event.getButton()== MouseButton.PRIMARY
-                        && event.getClickCount() == 2 &&
-                        row.getItem().getStatus().equals(ServiceRequest.Status.Processing.toString())) {
+                if (!row.isEmpty() && event.getButton() == MouseButton.PRIMARY) {
+                    setActiveServiceRequest((ServiceRequest) row.getItem().object);
 
-                    ServiceRequestTable clickedRow = row.getItem();
-
-                    sendData(clickedRow, false);
-                    switch (clickedRow.getType()){
-                        case "Medical_Equipment":
-                            App.instance.setView(MEDICAL_EQUIPMENT_RESOLVE_PATH);
-                            break;
-                        case "Facility_Maintenance":
-                            App.instance.setView(FACILITY_MAINTENANCE_RESOLVE_PATH);
-                            break;
-                        case "Lab_System":
-                            App.instance.setView(LAB_SYSTEM_RESOLVE_PATH);
-                            break;
-                        case "Medicine_Delivery":
-                            App.instance.setView(MEDICINE_DELIVERY_RESOLVE_PATH);
-                            break;
-                        case "Sanitation":
-                            App.instance.setView(SANITATION_RESOLVE_PATH);
-                            break;
-                        case "Security":
-                            App.instance.setView(SECURITY_RESOLVE_PATH);
-                            break;
-                        default:
-                            System.out.println("Not a valid Service Request");
+                    if (event.getClickCount() == 2) {
+                        // Double Click shortcut to service request edit/resolve page
+                        toDefaultPage(activeServiceRequest);
                     }
-
-                    }
-                // If is clicked twice and is blank, open edit
-                if (! row.isEmpty() && event.getButton()== MouseButton.PRIMARY
-                        && event.getClickCount() == 2 &&
-                        row.getItem().getStatus().equals(ServiceRequest.Status.Blank.toString())) {
-
-                    ServiceRequestTable clickedRow = row.getItem();
-
-                    sendData(clickedRow, true);
-                    switch (clickedRow.getType()){
-                        case "Medical_Equipment":
-                            App.instance.setView(MEDICAL_EQUIPMENT_RESOLVE_PATH);
-                            break;
-                        case "Facility_Maintenance":
-                            App.instance.setView(FACILITY_MAINTENANCE_RESOLVE_PATH);
-                            break;
-                        case "Lab_System":
-                            App.instance.setView(LAB_SYSTEM_RESOLVE_PATH);
-                            break;
-                        case "Medicine_Delivery":
-                            App.instance.setView(MEDICINE_DELIVERY_RESOLVE_PATH);
-                            break;
-                        case "Sanitation":
-                            App.instance.setView(SANITATION_RESOLVE_PATH);
-                            break;
-                        case "Security":
-                            App.instance.setView(SECURITY_RESOLVE_PATH);
-                            break;
-                        default:
-                            System.out.println("Not a valid Service Request");
-                    }
-                }
-                // If clicked once, enable edit/resolve buttons
-                if (! row.isEmpty() && event.getButton() == MouseButton.PRIMARY){
-                    ServiceRequestTable clickedRow = row.getItem();
-
-                    sendData(clickedRow, false);
-                    if(Objects.equals(clickedRow.getStatus(), ServiceRequest.Status.Blank.toString())){
-                        edit.setDisable(false);
-                        resolve.setDisable(true);
-                    }
-                    else if (Objects.equals(clickedRow.getStatus(), ServiceRequest.Status.Processing.toString())){
-                        edit.setDisable(false);
-                        resolve.setDisable(false);
-                    }
-                    else if (Objects.equals(clickedRow.getStatus(), ServiceRequest.Status.Done.toString())){
-                        edit.setDisable(true);
-                        resolve.setDisable(true);
-                    }
-
                 }
             });
+
             return row ;
         });
     }
 
-    private void sendData(ServiceRequestTable row, boolean isEditMode) {
-        ServiceRequestSingleton holder = ServiceRequestSingleton.INSTANCE;
-        holder.setServerRequestTable(row);
-        holder.setEditMode(isEditMode);
-    }
+    /**
+     * Sets the currently active Service Request (will have its information passed to edit/resolve pages).
+     * @param serviceRequest The Service Request to be set as active.
+     */
+    private void setActiveServiceRequest(ServiceRequest serviceRequest) {
+        activeServiceRequest = serviceRequest;
 
-    public void onEditButton(ActionEvent actionEvent) {
-        ServiceRequestSingleton.INSTANCE.setEditMode(true);
-        switch (ServiceRequestSingleton.INSTANCE.getServiceRequestTable().getType()){
-            case "Medical_Equipment":
-                App.instance.setView(MEDICAL_EQUIPMENT_RESOLVE_PATH);
-                break;
-            case "Facility_Maintenance":
-                App.instance.setView(FACILITY_MAINTENANCE_RESOLVE_PATH);
-                break;
-            case "Lab_System":
-                App.instance.setView(LAB_SYSTEM_RESOLVE_PATH);
-                break;
-            case "Medicine_Delivery":
-                App.instance.setView(MEDICINE_DELIVERY_RESOLVE_PATH);
-                break;
-            case "Sanitation":
-                App.instance.setView(SANITATION_RESOLVE_PATH);
-                break;
-            case "Security":
-                App.instance.setView(SECURITY_RESOLVE_PATH);
-                break;
-            default:
-                System.out.println("Not a valid Service Request");
+        // Update Edit/Resolve Buttons
+        if (activeServiceRequest.getStatus() == Blank) {
+            edit.setDisable(false);
+            resolve.setDisable(true);
+        } else if (activeServiceRequest.getStatus() == Processing) {
+            edit.setDisable(false);
+            resolve.setDisable(false);
+        } else if (activeServiceRequest.getStatus() == Done) {
+            edit.setDisable(true);
+            resolve.setDisable(true);
         }
     }
 
-    public void onResolveButton(ActionEvent actionEvent) {
-        ServiceRequestSingleton.INSTANCE.setEditMode(false);
-        switch (ServiceRequestSingleton.INSTANCE.getServiceRequestTable().getType()){
-            case "Medical_Equipment":
-                App.instance.setView(MEDICAL_EQUIPMENT_RESOLVE_PATH);
-                break;
-            case "Facility_Maintenance":
-                App.instance.setView(FACILITY_MAINTENANCE_RESOLVE_PATH);
-                break;
-            case "Lab_System":
-                App.instance.setView(LAB_SYSTEM_RESOLVE_PATH);
-                break;
-            case "Medicine_Delivery":
-                App.instance.setView(MEDICINE_DELIVERY_RESOLVE_PATH);
-                break;
-            case "Sanitation":
-                App.instance.setView(SANITATION_RESOLVE_PATH);
-                break;
-            case "Security":
-                App.instance.setView(SECURITY_RESOLVE_PATH);
-                break;
-            default:
-                System.out.println("Not a valid Service Request");
+    //#region Page Navigation
+        private void toDefaultPage(ServiceRequest serviceRequest) {
+            switch (serviceRequest.getStatus()) {
+                case Blank:
+                    toEditPage(serviceRequest);
+                    break;
+                case Processing:
+                    toResolvePage(serviceRequest);
+                    break;
+                case Done:
+                    // "Done" Service Requests cannot be edited or resolved
+                    return;
+            }
         }
-    }
+
+        private void toEditPage(ServiceRequest serviceRequest) {
+            System.out.println(generatePath(serviceRequest.getRequestType(), true));
+            App.View<ServiceRequestResolveController> view = App.instance.loadView(generatePath(serviceRequest.getRequestType(), false));
+            view.getController().setup(serviceRequest, true);
+            App.instance.setView(view.getNode());
+        }
+
+        private void toResolvePage(ServiceRequest serviceRequest) {
+            System.out.println(generatePath(serviceRequest.getRequestType(), false));
+            App.View<ServiceRequestResolveController> view = App.instance.loadView(generatePath(serviceRequest.getRequestType(), false));
+            view.getController().setup(serviceRequest, false);
+            App.instance.setView(view.getNode());
+        }
+
+        /**
+         * Generate view for given service request and context.
+         * @param requestType The service request type for which view we are creating.
+         * @param create Boolean for generating the create form path (true), or resolve form (false).
+         * @return The generated path name.
+         */
+        private String generatePath(ServiceRequest.RequestType requestType, boolean create) {
+            String pathName = BASE_PATH;
+            pathName += (requestType.toString()).toLowerCase();
+            pathName += "/";
+            pathName += (create) ? CREATE_FORM : RESOLVE_FORM;
+            return pathName;
+        }
+    //#endregion
 }

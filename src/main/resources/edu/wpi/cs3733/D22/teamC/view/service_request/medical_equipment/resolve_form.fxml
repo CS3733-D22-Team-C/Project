@@ -13,7 +13,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<GridPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="600.0" styleClass="home-page-button" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.wpi.cs3733.D22.teamC.controller.service_request.medical_equipment.MedicalEquipmentSRResolveController">
+<GridPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="600.0" styleClass="home-page-button" stylesheets="@../../../css/base.css" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.wpi.cs3733.D22.teamC.controller.service_request.medical_equipment.MedicalEquipmentSRResolveController">
   <columnConstraints>
     <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
   </columnConstraints>
@@ -28,7 +28,7 @@
          <children>
             <HBox>
                <children>
-                  <Label fx:id="title" prefHeight="41.0" prefWidth="427.0" styleClass="page-title" stylesheets="@../../../css/base.css" underline="true">
+                  <Label fx:id="title" prefHeight="41.0" prefWidth="427.0" styleClass="page-title" underline="true">
                      <font>
                         <Font size="24.0" />
                      </font>
@@ -37,8 +37,8 @@
             </HBox>
             <HBox prefHeight="6.0" prefWidth="520.0">
                <children>
-                  <Label prefHeight="14.0" prefWidth="200.0" styleClass="page-title" stylesheets="@../../../css/base.css" text="Service Request ID:  " />
-                  <Label fx:id="requestID" styleClass="page-title" stylesheets="@../../../css/base.css" text="00000000" />
+                  <Label prefHeight="14.0" prefWidth="200.0" styleClass="page-title" text="Service Request ID:  " />
+                  <Label fx:id="requestID" styleClass="page-title" text="00000000" />
                </children>
                <VBox.margin>
                   <Insets top="-15.0" />
@@ -57,14 +57,14 @@
                <children>
                   <HBox prefHeight="100.0" prefWidth="200.0" spacing="6.0" GridPane.columnIndex="1">
                      <children>
-                        <Label styleClass="service-field-label" stylesheets="@../../../css/base.css" text="Creation Time:" />
-                        <Label fx:id="creationTime" prefHeight="22.0" prefWidth="190.0" styleClass="service-field-label" stylesheets="@../../../css/base.css" text="00000000000000000000000" underline="true" />
+                        <Label styleClass="service-field-label" text="Creation Time:" />
+                        <Label fx:id="creationTime" prefHeight="22.0" prefWidth="190.0" styleClass="service-field-label" text="00000000000000000000000" underline="true" />
                      </children>
                   </HBox>
                   <HBox prefHeight="100.0" prefWidth="200.0" spacing="6.0">
                      <children>
-                        <Label styleClass="service-field-label" stylesheets="@../../../css/base.css" text="Created By:" />
-                        <Label fx:id="createdBy" styleClass="service-field-label" stylesheets="@../../../css/base.css" text="00000000" underline="true" />
+                        <Label styleClass="service-field-label" text="Created By:" />
+                        <Label fx:id="createdBy" styleClass="service-field-label" text="00000000" underline="true" />
                      </children>
                      <GridPane.margin>
                         <Insets left="10.0" />
@@ -72,8 +72,8 @@
                   </HBox>
                   <HBox prefHeight="100.0" prefWidth="200.0" spacing="6.0" GridPane.rowIndex="1">
                      <children>
-                        <Label styleClass="service-field-label" stylesheets="@../../../css/base.css" text="Updated By:" />
-                        <Label fx:id="updatedBy" styleClass="service-field-label" stylesheets="@../../../css/base.css" text="00000000" underline="true" />
+                        <Label styleClass="service-field-label" text="Updated By:" />
+                        <Label fx:id="updatedBy" styleClass="service-field-label" text="00000000" underline="true" />
                      </children>
                      <GridPane.margin>
                         <Insets left="10.0" />
@@ -81,8 +81,8 @@
                   </HBox>
                   <HBox prefHeight="100.0" prefWidth="200.0" spacing="6.0" GridPane.columnIndex="1" GridPane.rowIndex="1">
                      <children>
-                        <Label styleClass="service-field-label" stylesheets="@../../../css/base.css" text="Last Updated:" />
-                        <Label fx:id="lastUpdated" prefHeight="22.0" prefWidth="191.0" styleClass="service-field-label" stylesheets="@../../../css/base.css" text="00000000000000000000000" underline="true" />
+                        <Label styleClass="service-field-label" text="Last Updated:" />
+                        <Label fx:id="lastUpdated" prefHeight="22.0" prefWidth="191.0" styleClass="service-field-label" text="00000000000000000000000" underline="true" />
                      </children>
                   </HBox>
                </children>
@@ -122,7 +122,7 @@
                   <VBox alignment="CENTER_LEFT" prefHeight="200.0" prefWidth="100.0" styleClass="box-margin" GridPane.columnIndex="1" GridPane.rowIndex="1">
                      <children>
                         <Label styleClass="service-field-label" text="Status:" />
-                        <JFXComboBox fx:id="status" maxWidth="1.7976931348623157E308" onAction="#statusUpdated" prefHeight="26.0" prefWidth="132.0" styleClass="dropdown" stylesheets="@../../../css/base.css" />
+                        <JFXComboBox fx:id="status" maxWidth="1.7976931348623157E308" onAction="#statusUpdated" prefHeight="26.0" prefWidth="132.0" styleClass="dropdown" />
                      </children>
                      <GridPane.margin>
                         <Insets left="10.0" right="10.0" />
@@ -131,7 +131,7 @@
                   <VBox prefHeight="200.0" prefWidth="100.0" styleClass="box-margin" GridPane.columnIndex="2" GridPane.rowIndex="1">
                      <children>
                         <Label styleClass="service-field-label" text="Location:" />
-                        <JFXComboBox fx:id="hospitalLocation" maxWidth="1.7976931348623157E308" onAction="#statusUpdated" prefHeight="26.0" prefWidth="132.0" styleClass="dropdown" stylesheets="@../../../css/base.css" />
+                        <JFXComboBox fx:id="hospitalLocation" maxWidth="1.7976931348623157E308" onAction="#statusUpdated" prefHeight="26.0" prefWidth="132.0" styleClass="dropdown" />
                      </children>
                      <GridPane.margin>
                         <Insets left="20.0" />
@@ -140,7 +140,7 @@
                   <VBox alignment="CENTER_LEFT" prefHeight="200.0" prefWidth="100.0" styleClass="box-margin" GridPane.rowIndex="2">
                      <children>
                         <Label styleClass="service-field-label" text="Equipment Type:" />
-                        <JFXComboBox fx:id="equipmentType" maxWidth="1.7976931348623157E308" onAction="#statusUpdated" prefHeight="26.0" prefWidth="132.0" styleClass="dropdown" stylesheets="@../../../css/base.css" />
+                        <JFXComboBox fx:id="equipmentType" maxWidth="1.7976931348623157E308" onAction="#statusUpdated" prefHeight="26.0" prefWidth="132.0" styleClass="dropdown" />
                      </children>
                      <GridPane.margin>
                         <Insets right="20.0" top="80.0" />
@@ -149,7 +149,7 @@
                   <VBox alignment="CENTER_LEFT" prefHeight="200.0" prefWidth="100.0" styleClass="box-margin" GridPane.columnIndex="1" GridPane.rowIndex="2">
                      <children>
                         <Label styleClass="service-field-label" text="Equipment ID:" />
-                        <JFXComboBox fx:id="equipmentID" maxWidth="1.7976931348623157E308" onAction="#statusUpdated" onMouseClicked="#equipTypeChanged" prefHeight="26.0" prefWidth="132.0" styleClass="dropdown" stylesheets="@../../../css/base.css" />
+                        <JFXComboBox fx:id="equipmentID" maxWidth="1.7976931348623157E308" onAction="#statusUpdated" onMouseClicked="#equipTypeChanged" prefHeight="26.0" prefWidth="132.0" styleClass="dropdown" />
                      </children>
                      <GridPane.margin>
                         <Insets left="10.0" right="10.0" top="80.0" />
@@ -160,7 +160,7 @@
                         <Label styleClass="service-field-label" text="Priority:" />
                         <VBox>
                            <children>
-                              <JFXComboBox fx:id="priority" maxWidth="1.7976931348623157E308" onAction="#statusUpdated" prefHeight="26.0" prefWidth="132.0" styleClass="dropdown" stylesheets="@../../../css/base.css" />
+                              <JFXComboBox fx:id="priority" maxWidth="1.7976931348623157E308" onAction="#statusUpdated" prefHeight="26.0" prefWidth="132.0" styleClass="dropdown" />
                            </children>
                         </VBox>
                      </children>
@@ -177,7 +177,7 @@
       <VBox GridPane.rowIndex="2">
          <children>
             <Label styleClass="service-field-label" text="Additional Notes:" />
-            <JFXTextArea fx:id="description" styleClass="textarea" stylesheets="@../../../css/base.css" />
+            <JFXTextArea fx:id="description" styleClass="textarea" />
          </children>
          <GridPane.margin>
             <Insets top="30.0" />
@@ -187,22 +187,22 @@
          <children>
             <HBox alignment="BOTTOM_CENTER" prefHeight="100.0" prefWidth="200.0">
                <children>
-                  <Label styleClass="text-field-with-margin" stylesheets="@../../../css/base.css" text="Status:" />
-                  <Label fx:id="firstStatus" styleClass="text-field-with-margin" stylesheets="@../../../css/base.css" />
-                  <Label styleClass="text-field-with-margin" stylesheets="@../../../css/base.css" text="→" />
-                  <Label fx:id="secondStatus" styleClass="text-field-with-margin" stylesheets="@../../../css/base.css" />
+                  <Label styleClass="text-field-with-margin" text="Status:" />
+                  <Label fx:id="firstStatus" styleClass="text-field-with-margin" />
+                  <Label styleClass="text-field-with-margin" text="→" />
+                  <Label fx:id="secondStatus" styleClass="text-field-with-margin" />
                </children>
             </HBox>
             <HBox prefHeight="100.0" prefWidth="200.0">
                <children>
                   <HBox prefHeight="75.0" prefWidth="341.0">
                      <children>
-                        <JFXButton fx:id="goBackButton" onAction="#clickGoBack" styleClass="button-back" stylesheets="@../../../css/base.css" text="Go Back" />
+                        <JFXButton fx:id="goBackButton" onAction="#clickGoBack" styleClass="button-back" text="Go Back" />
                      </children>
                   </HBox>
                   <HBox alignment="TOP_RIGHT" prefHeight="75.0" prefWidth="349.0">
                      <children>
-                        <JFXButton fx:id="confirmButton" onAction="#clickConfirm" styleClass="button-confirm" stylesheets="@../../../css/base.css" text="Confirm" />
+                        <JFXButton fx:id="confirmButton" onAction="#clickConfirm" styleClass="button-confirm" text="Confirm" />
                      </children>
                   </HBox>
                </children>

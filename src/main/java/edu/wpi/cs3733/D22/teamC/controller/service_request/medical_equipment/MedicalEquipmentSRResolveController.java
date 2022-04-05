@@ -2,7 +2,7 @@ package edu.wpi.cs3733.D22.teamC.controller.service_request.medical_equipment;
 
 import com.jfoenix.controls.JFXComboBox;
 import edu.wpi.cs3733.D22.teamC.App;
-import edu.wpi.cs3733.D22.teamC.controller.general.ServiceRequestResolveController;
+import edu.wpi.cs3733.D22.teamC.controller.service_request.ServiceRequestResolveController;
 import edu.wpi.cs3733.D22.teamC.entity.service_request.ServiceRequest;
 import edu.wpi.cs3733.D22.teamC.entity.service_request.medical_equipment.MedicalEquipmentSR;
 import edu.wpi.cs3733.D22.teamC.entity.service_request.medical_equipment.MedicalEquipmentSRDAOImpl;
@@ -23,15 +23,15 @@ public class MedicalEquipmentSRResolveController extends ServiceRequestResolveCo
     //For equipID dropdown
     private String lastType;
 
-    @FXML
-    public void initialize(URL url, ResourceBundle rb) {
+    @Override
+    public void setup(ServiceRequest serviceRequest, boolean isEditMode) {
+        super.setup(serviceRequest, isEditMode);
 
-        super.initialize(url, rb);
-        //Querying
+        // Querying for full Medical Equipment Service Request
         MedicalEquipmentSRDAOImpl medicalEquipmentSRDAOImpl = new MedicalEquipmentSRDAOImpl();
-        MedicalEquipmentSR medicalEquipmentSR = medicalEquipmentSRDAOImpl.getServiceRequest(Integer.parseInt(requestID.getText()));
+        MedicalEquipmentSR medicalEquipmentSR = medicalEquipmentSRDAOImpl.getServiceRequest(serviceRequest.getRequestID());
 
-        //Setting fields from Querying Database
+        // Setting fields from Querying Database
         equipmentType.setPromptText(medicalEquipmentSR.getEquipmentType().toString());
         equipmentID.setPromptText(medicalEquipmentSR.getEquipmentID());
         description.setText(medicalEquipmentSR.getDescription());
@@ -39,28 +39,16 @@ public class MedicalEquipmentSRResolveController extends ServiceRequestResolveCo
 
 
         if(isEditMode){
-
-            //For equipment type drop down
+            // Equipment Type Dropdown
             for (MedicalEquipmentSR.EquipmentType type : MedicalEquipmentSR.EquipmentType.values()) {
                 equipmentType.getItems().add(type.toString());
             }
-
             equipmentType.valueProperty().setValue(equipmentType.getPromptText());
 
-
             //Status labels at bottom
-            if(requiredFieldsPresent()){
-                secondStatus.setText("processing");
-            }
-            else
-                secondStatus.setText("blank");
-
+            if (requiredFieldsPresent()) secondStatus.setText("processing");
+            else secondStatus.setText("blank");
         }
-        else {
-
-        }
-
-
     }
 
 
@@ -70,7 +58,7 @@ public class MedicalEquipmentSRResolveController extends ServiceRequestResolveCo
         super.clickConfirm(event);
         //Accessing Service Request in Database
         MedicalEquipmentSRDAOImpl medicalEquipmentSRDAOImpl = new MedicalEquipmentSRDAOImpl();
-        MedicalEquipmentSR medicalEquipmentSR = medicalEquipmentSRDAOImpl.getServiceRequest(Integer.parseInt(requestID.getText()));
+        MedicalEquipmentSR medicalEquipmentSR = medicalEquipmentSRDAOImpl.getServiceRequest(serviceRequest.getRequestID());
         if(isEditMode){
             //check if value has changed
             if(equipmentID.getValue() != null)
