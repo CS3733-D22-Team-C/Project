@@ -1,15 +1,12 @@
-package edu.wpi.cs3733.D22.teamC.controller.general;
+package edu.wpi.cs3733.D22.teamC.controller.service_request;
 
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXComboBox;
 import com.jfoenix.controls.JFXTreeTableView;
-import com.jfoenix.controls.RecursiveTreeItem;
-import com.jfoenix.controls.datamodels.treetable.RecursiveTreeObject;
 import edu.wpi.cs3733.D22.teamC.App;
 import edu.wpi.cs3733.D22.teamC.entity.service_request.ServiceRequest;
 import edu.wpi.cs3733.D22.teamC.entity.service_request.ServiceRequestDAO;
 import edu.wpi.cs3733.D22.teamC.entity.service_request.ServiceRequestDAOImpl;
-import edu.wpi.cs3733.D22.teamC.models.service_request.ServiceRequestTable;
 import edu.wpi.cs3733.D22.teamC.models.service_request.ServiceRequestSingleton;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -20,6 +17,10 @@ import javafx.scene.control.TreeItem;
 import javafx.scene.control.TreeTableRow;
 import javafx.scene.input.MouseButton;
 import javafx.scene.input.MouseEvent;
+import edu.wpi.cs3733.D22.teamC.models.service_request.ServiceRequestTableDisplay;
+import javafx.event.ActionEvent;
+import javafx.fxml.FXML;
+import javafx.fxml.Initializable;
 
 import java.awt.*;
 import java.io.IOException;
@@ -45,14 +46,18 @@ public class ServiceRequestsViewController implements Initializable {
 
     //Buttons
     @FXML private JFXButton selectButton;
-    @FXML private JFXTreeTableView<ServiceRequestTable> table;
     @FXML private JFXComboBox<String> serviceType;
     @FXML private JFXButton edit;
     @FXML private JFXButton resolve;
 
+    // Table
+    @FXML private JFXTreeTableView table;
+
+    // Variables
+    private ServiceRequestTableDisplay<ServiceRequest> tableDisplay;
+
     @FXML
     public void initialize(URL url, ResourceBundle rb) {
-
         //service request dropdown
         serviceType.getItems().add("Medical Equipment");
         serviceType.getItems().add("Facility Maintenance");
@@ -64,20 +69,8 @@ public class ServiceRequestsViewController implements Initializable {
         ServiceRequestDAO serviceRequestDAO  = new ServiceRequestDAOImpl();
         List<ServiceRequest> serviceRequests = serviceRequestDAO.getAllServiceRequests();
 
-        ObservableList<ServiceRequestTable> METList = FXCollections.observableArrayList();
-        final TreeItem<ServiceRequestTable> root = new RecursiveTreeItem<ServiceRequestTable>(METList, RecursiveTreeObject::getChildren);
-        ServiceRequestTable.createTableColumns(table);
-
-        table.setRoot(root);
-        table.setShowRoot(false);
-
-
-
-        for (ServiceRequest serviceRequest  :  serviceRequests)
-        {
-            ServiceRequestTable serviceRequestTable = new ServiceRequestTable(serviceRequest);
-            METList.add(serviceRequestTable);
-        }
+        tableDisplay = new ServiceRequestTableDisplay<ServiceRequest>(table);
+        serviceRequests.forEach(tableDisplay::addObject);
     }
     @FXML
     void onSelectButton(ActionEvent event) {
