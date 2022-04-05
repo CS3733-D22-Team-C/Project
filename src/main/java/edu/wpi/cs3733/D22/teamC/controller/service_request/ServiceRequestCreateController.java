@@ -119,13 +119,13 @@ public class ServiceRequestCreateController implements Initializable {
         return sR;
     }
 
-    public void generateErrorMessages(ArrayList<ServiceRequestUserInputValidationErrorItem> l)
+    public void prepareErrorMessages(ArrayList<ServiceRequestUserInputValidationErrorItem> l)
     {
         for(int i = 0; i < l.size(); i++)
         {
             if(l.get(i) != null)
             {
-
+                App.instance.addErrorToView(l.get(i));
             }
         }
     }

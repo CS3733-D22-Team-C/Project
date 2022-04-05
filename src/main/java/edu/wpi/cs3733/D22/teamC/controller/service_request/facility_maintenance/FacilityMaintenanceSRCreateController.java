@@ -79,13 +79,13 @@ public class FacilityMaintenanceSRCreateController extends ServiceRequestCreateC
         }
         else
         {
-            generateErrorMessages(errors);
+            prepareErrorMessages(errors);
             return null; //Code will be placed here to display error messages
         }
     }
 
     @Override
-    public void generateErrorMessages(ArrayList<ServiceRequestUserInputValidationErrorItem> l) {
-        super.generateErrorMessages(l);
+    public void prepareErrorMessages(ArrayList<ServiceRequestUserInputValidationErrorItem> l) {
+        super.prepareErrorMessages(l);
     }
 }

@@ -92,13 +92,13 @@ public class SanitationSRCreateController extends ServiceRequestCreateController
         }
         else
         {
-            generateErrorMessages(errors);
+            prepareErrorMessages(errors);
             return null;
         }
     }
 
     @Override
-    public void generateErrorMessages(ArrayList<ServiceRequestUserInputValidationErrorItem> l) {
-        super.generateErrorMessages(l);
+    public void prepareErrorMessages(ArrayList<ServiceRequestUserInputValidationErrorItem> l) {
+        super.prepareErrorMessages(l);
     }
 }
