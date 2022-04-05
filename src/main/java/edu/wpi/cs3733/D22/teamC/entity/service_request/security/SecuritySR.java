@@ -7,6 +7,7 @@ public class SecuritySR extends ServiceRequest {
 
     public enum SecurityType {
         // TODO: Create Enum Types
+        Intruder
     }
 
     public SecurityType getSecurityType() {

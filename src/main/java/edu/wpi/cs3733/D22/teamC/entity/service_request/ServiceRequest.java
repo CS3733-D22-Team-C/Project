@@ -12,6 +12,8 @@ public class ServiceRequest {
     protected Priority priority;
     protected RequestType requestType;
     protected String description;
+    protected String modifierID;
+    protected Timestamp modifiedTimestamp;
 
     public enum Status {
         Blank,
@@ -46,6 +48,8 @@ public class ServiceRequest {
         this.priority = serviceRequest.getPriority();
         this.requestType = serviceRequest.getRequestType();
         this.description = serviceRequest.getDescription();
+        this.modifierID = serviceRequest.getModifierID();
+        this.modifiedTimestamp = serviceRequest.getModifiedTimestamp();
     }
 
     public ServiceRequest(int requestID) {
@@ -121,5 +125,20 @@ public class ServiceRequest {
     public void setDescription(String description) {
         this.description = description;
     }
-
+    
+    public String getModifierID() {
+        return modifierID;
+    }
+    
+    public void setModifierID(String modifierID) {
+        this.modifierID = modifierID;
+    }
+    
+    public Timestamp getModifiedTimestamp() {
+        return modifiedTimestamp;
+    }
+    
+    public void setModifiedTimestamp(Timestamp modifiedTimestamp) {
+        this.modifiedTimestamp = modifiedTimestamp;
+    }
 }
