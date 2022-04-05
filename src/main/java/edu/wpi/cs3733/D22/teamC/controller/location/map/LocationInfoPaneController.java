@@ -33,6 +33,10 @@ public class LocationInfoPaneController implements Initializable {
         this.baseMapViewController = baseMapViewController;
     }
 
+    /**
+     * Set all text fields within the location description panes to be editable/uneditable
+     * @param editable boolean if fields should be editable
+     */
     public void setEditable(boolean editable) {
         IDTextField.setEditable(editable);
         LongNameTextField.setEditable(editable);
@@ -40,6 +44,7 @@ public class LocationInfoPaneController implements Initializable {
         TypeTextField.setEditable(editable);
     }
 
+    // TODO: Hook this up to on hover functionality
     public void setVisible(boolean visible) {
         LocationVBox.setVisible(visible);
     }
