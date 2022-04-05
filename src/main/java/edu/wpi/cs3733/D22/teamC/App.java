@@ -3,6 +3,7 @@ package edu.wpi.cs3733.D22.teamC;
 import edu.wpi.cs3733.D22.teamC.entity.floor.Floor;
 import edu.wpi.cs3733.D22.teamC.entity.floor.FloorDAO;
 import edu.wpi.cs3733.D22.teamC.entity.floor.FloorDAOImpl;
+import edu.wpi.cs3733.D22.teamC.controller.service_request.ServiceRequestResolveController;
 import edu.wpi.cs3733.D22.teamC.entity.location.Location;
 import edu.wpi.cs3733.D22.teamC.entity.location.LocationDAO;
 import edu.wpi.cs3733.D22.teamC.entity.location.LocationDAOImpl;
@@ -27,6 +28,24 @@ import java.util.List;
 
 @Slf4j
 public class App extends Application {
+    public static class View<T> {
+        Node node;
+        T controller;
+
+        public View(Node node, T controller) {
+            this.node = node;
+            this.controller = controller;
+        }
+
+        public Node getNode() {
+            return node;
+        }
+
+        public T getController() {
+            return controller;
+        }
+    }
+
     // Constants
     public static final String BASE_COMPONENT_PATH = "view/component/base.fxml";
     public static final String MENU_BAR_COMPONENT_PATH = "view/component/menu_bar.fxml";
@@ -41,9 +60,6 @@ public class App extends Application {
     // Variables
     private Stage stage;
     private Scene scene;
-
-    // References
-    private Node viewNode;
 
     @Override
     public void init() {
@@ -140,12 +156,61 @@ public class App extends Application {
     }
 
     /**
-     * Allows us to change the view of the window
-     * @param viewFile path to the .fxml file to be displayed
+     * Set view for window from a file.
+     * @param viewFile Path to the FXML file to be displayed.
      */
     public void setView(String viewFile){
+        Node node = loadView(viewFile).getNode();
+        setView(node);
+    }
+
+    /**
+     * Set view for window from a node.
+     * @param viewNode Node to be displayed.
+     */
+    public void setView(Node viewNode) {
+        // Load Base Node
+        BorderPane baseNode = (BorderPane) loadView(BASE_COMPONENT_PATH).getNode();
+
+        // Load Menu Bar
+        Node menuBarNode = loadView(MENU_BAR_COMPONENT_PATH).getNode();
+
+        // Embed views and components
+        baseNode.setTop(menuBarNode);
+        baseNode.setCenter(viewNode);
+        baseNode.autosize();
+
+        if (scene != null) scene.setRoot(baseNode);
+        else scene = new Scene(baseNode);
+        stage.setScene(scene);
+        stage.show();
+    }
+
+    /**
+     * Load a view from a file.
+     * @param viewFile Path to the FXML file to be loaded.
+     * @return Loaded FXML file wrapped in a View as a Node and Controller.
+     */
+    public View loadView(String viewFile) {
         try {
-            // Load Base Node
+            FXMLLoader loader = new FXMLLoader();
+            loader.setLocation(App.class.getResource(viewFile));
+            return new View(loader.load(), loader.getController());
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
+
+    /**
+     * Load a view from a file, setting its controller.
+     * @param viewFile Path to the FXML file to be loaded.
+     * @param controller Controller to be attached to the FXML file.
+     * @return Loaded FXML file wrapped in a View as a Node and Controller.
+     */
+    public View loadView(String viewFile, Object controller) {
+        View view = loadView(viewFile);
+        try {
             FXMLLoader loader = new FXMLLoader();
             loader.setLocation(getClass().getResource(BASE_COMPONENT_PATH));
             BorderPane baseNode = loader.load();
@@ -169,10 +234,13 @@ public class App extends Application {
             else scene = new Scene(baseNode);
             stage.setScene(scene);
             stage.show();
+            loader.setLocation(App.class.getResource(viewFile));
+            loader.setController(controller);
+            return new View(loader.load(), loader.getController());
         } catch (IOException e) {
-            System.out.println("Could not load file " + viewFile);
             e.printStackTrace();
         }
+        return null;
     }
 
     public Stage getStage() {
