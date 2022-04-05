@@ -167,17 +167,29 @@ class MedEquipDAOImplTest {
         MedicalEquipment equipment2 = new MedicalEquipment(locationID, equipmentType2, equipmentStatus2);
         MedicalEquipment equipment3 = new MedicalEquipment(locationID, equipmentType3, equipmentStatus3);
 
-        ArrayList<MedicalEquipment> medicalEquipmentList = new ArrayList<MedicalEquipment>();
-        medicalEquipmentList.add(equipment1);
-        medicalEquipmentList.add(equipment2);
-        medicalEquipmentList.add(equipment3);
+        //this equipment will NOT be in the queried list
+        MedicalEquipment equipment4 = new MedicalEquipment(12345, equipmentType, equipmentStatus);
+
+        medicalEquipmentDAO.insertMedicalEquipment(equipment1);
+        medicalEquipmentDAO.insertMedicalEquipment(equipment2);
+        medicalEquipmentDAO.insertMedicalEquipment(equipment3);
+        medicalEquipmentDAO.insertMedicalEquipment(equipment4);
+
 
         List<MedicalEquipment> queriedList = medicalEquipmentDAO.getMedicalEquipmentAtLocation(locationID);
 
-        int counter = 0;
-        while(counter < queriedList.size()) {
-            assertEquals(medicalEquipmentList.get(counter), queriedList.get(counter));
-            counter++;
-        }
+        assertEquals(3, queriedList.size());
+
+        assertEquals(equipment1.getLocationID(), queriedList.get(0).getLocationID());
+        assertEquals(equipment1.getEquipmentType(), queriedList.get(0).getEquipmentType());
+        assertEquals(equipment1.getEquipmentStatus(), queriedList.get(0).getEquipmentStatus());
+
+        assertEquals(equipment2.getLocationID(), queriedList.get(1).getLocationID());
+        assertEquals(equipment2.getEquipmentType(), queriedList.get(1).getEquipmentType());
+        assertEquals(equipment2.getEquipmentStatus(), queriedList.get(1).getEquipmentStatus());
+
+        assertEquals(equipment3.getLocationID(), queriedList.get(2).getLocationID());
+        assertEquals(equipment3.getEquipmentType(), queriedList.get(2).getEquipmentType());
+        assertEquals(equipment3.getEquipmentStatus(), queriedList.get(2).getEquipmentStatus());
     }
 }

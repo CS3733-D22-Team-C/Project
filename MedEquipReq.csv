@@ -1,1 +1,10 @@
 requestID,creatorID,assigneeID,location,creationTimestamp,status,priority,requestType,description,equipID
+1,ECR0000001,EAS0000001,DEPT000001,2021-05-06 12:06:06.0,Blank,Low,Medical_Equipment,urgent care,1
+2,ECR0000002,EAS0000002,DEPT000002,2022-01-16 11:04:03.0,Processing,Medium,Medical_Equipment,fat guy,2
+3,ECR0000003,EAS0000003,DEPT000003,2022-01-23 12:06:53.0,Done,High,Medical_Equipment,scanning,3
+4,ECR0000004,EAS0000004,DEPT000004,2022-01-25 22:07:23.0,Blank,Low,Medical_Equipment,blood test,4
+5,ECR0000005,EAS0000005,DEPT000005,2022-01-28 05:08:37.0,Processing,Medium,Medical_Equipment,emergency,5
+6,ECR0000006,EAS0000006,DEPT000006,2022-01-28 01:50:57.0,Done,High,Medical_Equipment,lazy disorder,6
+7,ECR0000007,EAS0000007,DEPT000007,2022-01-31 07:10:59.0,Blank,Low,Medical_Equipment,liquid test,7
+8,ECR0000008,EAS0000008,DEPT000008,2022-02-02 04:11:41.0,Processing,Medium,Medical_Equipment,fluidity,8
+9,ECR0000009,EAS0000009,DEPT000009,2022-02-04 05:12:37.0,Done,High,Medical_Equipment,physical,9
