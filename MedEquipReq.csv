@@ -1,12 +1,12 @@
-requestID,creatorID,assigneeID,location,creationTimestamp,status,priority,requestType,description,equipID
-1,ECR0000001,EAS0000001,1110,2021-05-06 12:06:06.0,Processing,Low,Medical_Equipment,urgent care,BED0000001
-2,ECR0000002,EAS0000002,1111,2022-01-16 11:04:03.0,Blank,Medium,Medical_Equipment,fat guy,REC0000001
-3,ECR0000003,EAS0000003,1112,2022-01-23 12:06:53.0,Processing,High,Medical_Equipment,scanning,XRA0000001
-4,ECR0000004,EAS0000004,1113,2022-01-25 22:07:23.0,Blank,Low,Medical_Equipment,blood test,INF0000001
-5,ECR0000005,EAS0000005,1114,2022-01-28 05:08:37.0,Processing,Medium,Medical_Equipment,emergency,BED0000002
-6,ECR0000006,EAS0000006,1115,2022-01-28 01:50:57.0,Done,High,Medical_Equipment,lazy disorder,REC0000002
-7,ECR0000007,EAS0000007,1116,2022-01-31 07:10:59.0,Blank,Low,Medical_Equipment,liquid test,INF0000002
-8,ECR0000008,EAS0000008,1117,2022-02-02 04:11:41.0,Processing,Medium,Medical_Equipment,fluidity,INF0000003
-9,ECR0000009,EAS0000009,1118,2022-02-04 05:12:37.0,Done,High,Medical_Equipment,physical,BED0000003
-7827755,null,ss,1119,2022-04-04 21:15:56.785,Processing,High,Medical_Equipment,sleep,BED0000002
+requestID,creatorID,assigneeID,locationID,creationTimestamp,status,priority,requestType,description,equipID
+1,1000001,1000011,1110,2021-05-06 12:06:06.0,Processing,Low,Medical_Equipment,urgent care,21
+2,1000002,1000021,1111,2022-01-16 11:04:03.0,Blank,Medium,Medical_Equipment,fat guy,31
+3,1000004,1000031,1112,2022-01-23 12:06:53.0,Processing,High,Medical_Equipment,scanning,41
+4,1000002,1000041,1113,2022-01-25 22:07:23.0,Blank,Low,Medical_Equipment,blood test,51
+5,1000003,1000051,1114,2022-01-28 05:08:37.0,Processing,Medium,Medical_Equipment,emergency,61
+6,1000005,1000061,1115,2022-01-28 01:50:57.0,Done,High,Medical_Equipment,lazy disorder,71
+7,1000006,1000071,1116,2022-01-31 07:10:59.0,Blank,Low,Medical_Equipment,liquid test,81
+8,1000007,1000081,1117,2022-02-02 04:11:41.0,Processing,Medium,Medical_Equipment,fluidity,91
+9,1000007,1000091,1118,2022-02-04 05:12:37.0,Done,High,Medical_Equipment,physical,22
+7827755,1000006,1000004,1119,2022-04-04 21:15:56.785,Processing,High,Medical_Equipment,sleep,23
 

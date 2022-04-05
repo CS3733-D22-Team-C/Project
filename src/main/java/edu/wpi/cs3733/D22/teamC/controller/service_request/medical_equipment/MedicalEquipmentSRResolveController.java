@@ -3,6 +3,7 @@ package edu.wpi.cs3733.D22.teamC.controller.service_request.medical_equipment;
 import com.jfoenix.controls.JFXComboBox;
 import edu.wpi.cs3733.D22.teamC.App;
 import edu.wpi.cs3733.D22.teamC.controller.service_request.ServiceRequestResolveController;
+import edu.wpi.cs3733.D22.teamC.entity.medical_equipment.MedicalEquipment;
 import edu.wpi.cs3733.D22.teamC.entity.service_request.ServiceRequest;
 import edu.wpi.cs3733.D22.teamC.entity.service_request.medical_equipment.MedicalEquipmentSR;
 import edu.wpi.cs3733.D22.teamC.entity.service_request.medical_equipment.MedicalEquipmentSRDAOImpl;
@@ -32,15 +33,14 @@ public class MedicalEquipmentSRResolveController extends ServiceRequestResolveCo
         MedicalEquipmentSR medicalEquipmentSR = medicalEquipmentSRDAOImpl.getServiceRequest(serviceRequest.getRequestID());
 
         // Setting fields from Querying Database
-        equipmentType.setPromptText(medicalEquipmentSR.getEquipmentType().toString());
-        equipmentID.setPromptText(medicalEquipmentSR.getEquipmentID());
+        equipmentID.setPromptText(String.valueOf(medicalEquipmentSR.getEquipmentID()));
         description.setText(medicalEquipmentSR.getDescription());
         creationTime.setText(medicalEquipmentSR.getCreationTimestamp().toString());
 
 
         if(isEditMode){
             // Equipment Type Dropdown
-            for (MedicalEquipmentSR.EquipmentType type : MedicalEquipmentSR.EquipmentType.values()) {
+            for (MedicalEquipment.EquipmentType type : MedicalEquipment.EquipmentType.values()) {
                 equipmentType.getItems().add(type.toString());
             }
             equipmentType.valueProperty().setValue(equipmentType.getPromptText());
@@ -63,10 +63,10 @@ public class MedicalEquipmentSRResolveController extends ServiceRequestResolveCo
             //check if value has changed
             if(equipmentID.getValue() != null)
             {
-                medicalEquipmentSR.setEquipmentID(equipmentID.getValue());
+                medicalEquipmentSR.setEquipmentID(Integer.parseInt(equipmentID.getValue()));
             }
             if(equipmentType.getValue() != null) {
-                medicalEquipmentSR.setEquipmentType(MedicalEquipmentSR.EquipmentType.valueOf(equipmentType.getValue()));
+                medicalEquipmentSR.setEquipmentType(MedicalEquipment.EquipmentType.valueOf(equipmentType.getValue()));
             }
 
             System.out.println(requiredFieldsPresent());
@@ -106,16 +106,16 @@ public class MedicalEquipmentSRResolveController extends ServiceRequestResolveCo
                 String type = "";
                 int nums = 0;
 
-                if (lastType.equals(MedicalEquipmentSR.EquipmentType.Bed.toString())) {
+                if (lastType.equals(MedicalEquipment.EquipmentType.Bed.toString())) {
                     type = "BED";
                     nums = numBeds;
-                } else if (lastType.equals(MedicalEquipmentSR.EquipmentType.Recliner.toString())) {
+                } else if (lastType.equals(MedicalEquipment.EquipmentType.Recliner.toString())) {
                     type = "REC";
                     nums = numRecliners;
-                } else if (lastType.equals(MedicalEquipmentSR.EquipmentType.Infusion_Pump.toString())) {
+                } else if (lastType.equals(MedicalEquipment.EquipmentType.Infusion_Pump.toString())) {
                     type = "INF";
                     nums = numInfusion;
-                } else if (lastType.equals(MedicalEquipmentSR.EquipmentType.Portable_X_Ray.toString())) {
+                } else if (lastType.equals(MedicalEquipment.EquipmentType.Portable_X_Ray.toString())) {
                     type = "XRA";
                     nums = numXRay;
                 }
