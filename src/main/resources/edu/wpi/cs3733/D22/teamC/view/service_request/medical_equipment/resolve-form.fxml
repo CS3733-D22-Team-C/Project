@@ -5,6 +5,7 @@
 <?import com.jfoenix.controls.JFXTextArea?>
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.ColumnConstraints?>
 <?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.HBox?>
@@ -25,15 +26,19 @@
    <children>
       <VBox prefHeight="200.0" prefWidth="100.0">
          <children>
-            <Label prefHeight="41.0" prefWidth="427.0" styleClass="page-title" stylesheets="@../../../css/base.css" text="Resolve Medical Equipment Service Request" underline="true">
-               <font>
-                  <Font size="24.0" />
-               </font>
-            </Label>
+            <HBox>
+               <children>
+                  <Label fx:id="title" prefHeight="41.0" prefWidth="427.0" styleClass="page-title" stylesheets="@../../../css/base.css" underline="true">
+                     <font>
+                        <Font size="24.0" />
+                     </font>
+                  </Label>
+               </children>
+            </HBox>
             <HBox prefHeight="6.0" prefWidth="520.0">
                <children>
                   <Label prefHeight="14.0" prefWidth="200.0" styleClass="page-title" stylesheets="@../../../css/base.css" text="Service Request ID:  " />
-                  <Label fx:id="requestID" styleClass="page-title" stylesheets="@../../../css/base.css" text="00000000" underline="true" />
+                  <Label fx:id="requestID" styleClass="page-title" stylesheets="@../../../css/base.css" text="00000000" />
                </children>
                <VBox.margin>
                   <Insets top="-15.0" />
@@ -108,7 +113,7 @@
                   <VBox alignment="CENTER_LEFT" prefHeight="200.0" prefWidth="100.0" styleClass="box-margin" GridPane.rowIndex="1">
                      <children>
                         <Label styleClass="service-field-label" text="Assign to:" />
-                        <JFXComboBox fx:id="assigneeID" maxWidth="1.7976931348623157E308" prefHeight="26.0" prefWidth="132.0" styleClass="dropdown" stylesheets="@../../../css/base.css" />
+                        <TextField fx:id="assigneeID" />
                      </children>
                      <GridPane.margin>
                         <Insets right="20.0" />
@@ -144,7 +149,7 @@
                   <VBox alignment="CENTER_LEFT" prefHeight="200.0" prefWidth="100.0" styleClass="box-margin" GridPane.columnIndex="1" GridPane.rowIndex="2">
                      <children>
                         <Label styleClass="service-field-label" text="Equipment ID:" />
-                        <JFXComboBox fx:id="equipmentID" maxWidth="1.7976931348623157E308" prefHeight="26.0" prefWidth="132.0" styleClass="dropdown" stylesheets="@../../../css/base.css" />
+                        <JFXComboBox fx:id="equipmentID" maxWidth="1.7976931348623157E308" onMouseClicked="#equipTypeChanged" prefHeight="26.0" prefWidth="132.0" styleClass="dropdown" stylesheets="@../../../css/base.css" />
                      </children>
                      <GridPane.margin>
                         <Insets left="10.0" right="10.0" top="80.0" />
