@@ -23,8 +23,6 @@ import java.util.ResourceBundle;
 import static edu.wpi.cs3733.D22.teamC.entity.service_request.ServiceRequest.Status.*;
 
 
-    public static final String MEDICAL_EQUIPMENT_RESOLVE_PATH = "view/service_request/medical_equipment/resolve-form.fxml";
-
 public class ServiceRequestsViewController implements Initializable {
     public static final String BASE_PATH = "view/service_request/";
 
