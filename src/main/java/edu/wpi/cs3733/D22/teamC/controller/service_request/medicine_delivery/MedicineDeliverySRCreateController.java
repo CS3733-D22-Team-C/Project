@@ -107,4 +107,9 @@ public class MedicineDeliverySRCreateController extends ServiceRequestCreateCont
     public void prepareErrorMessages(ArrayList<ServiceRequestUserInputValidationErrorItem> l) {
         super.prepareErrorMessages(l);
     }
+
+    @Override
+    public boolean noUserErrors(ArrayList<ServiceRequestUserInputValidationErrorItem> l) {
+        return super.noUserErrors(l);
+    }
 }

@@ -93,4 +93,9 @@ public class SecuritySRCreateController extends ServiceRequestCreateController {
     public void prepareErrorMessages(ArrayList<ServiceRequestUserInputValidationErrorItem> l) {
         super.prepareErrorMessages(l);
     }
+
+    @Override
+    public boolean noUserErrors(ArrayList<ServiceRequestUserInputValidationErrorItem> l) {
+        return super.noUserErrors(l);
+    }
 }
