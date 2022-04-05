@@ -6,14 +6,12 @@ import edu.wpi.cs3733.D22.teamC.controller.service_request.ServiceRequestResolve
 import edu.wpi.cs3733.D22.teamC.entity.service_request.ServiceRequest;
 import edu.wpi.cs3733.D22.teamC.entity.service_request.lab_system.LabSystemSR;
 import edu.wpi.cs3733.D22.teamC.entity.service_request.lab_system.LabSystemSRDAOImpl;
-import edu.wpi.cs3733.D22.teamC.entity.service_request.medical_equipment.MedicalEquipmentSR;
-import edu.wpi.cs3733.D22.teamC.entity.service_request.medical_equipment.MedicalEquipmentSRDAOImpl;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.scene.control.TextField;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 
-import java.awt.*;
 
 public class LabSystemSRResolveController extends ServiceRequestResolveController {
 
@@ -41,7 +39,7 @@ public class LabSystemSRResolveController extends ServiceRequestResolveControlle
 
         if(isEditMode){
             // Equipment Type Dropdown
-            for (MedicalEquipmentSR.EquipmentType type : MedicalEquipmentSR.EquipmentType.values()) {
+            for (LabSystemSR.LabType type : LabSystemSR.LabType.values()) {
                 labType.getItems().add(type.toString());
             }
             labType.valueProperty().setValue(labType.getPromptText());
