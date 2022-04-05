@@ -132,11 +132,6 @@ public class App extends Application {
         }
     }
 
-    public void addErrorToView(ServiceRequestUserInputValidationErrorItem i)
-    {
-
-    }
-
     public Stage getStage() {
         return stage;
     }
