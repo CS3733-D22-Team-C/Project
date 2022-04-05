@@ -137,14 +137,12 @@ public class ServiceRequestsViewController implements Initializable {
         }
 
         private void toEditPage(ServiceRequest serviceRequest) {
-            System.out.println(generatePath(serviceRequest.getRequestType(), true));
             App.View<ServiceRequestResolveController> view = App.instance.loadView(generatePath(serviceRequest.getRequestType(), false));
             view.getController().setup(serviceRequest, true);
             App.instance.setView(view.getNode());
         }
 
         private void toResolvePage(ServiceRequest serviceRequest) {
-            System.out.println(generatePath(serviceRequest.getRequestType(), false));
             App.View<ServiceRequestResolveController> view = App.instance.loadView(generatePath(serviceRequest.getRequestType(), false));
             view.getController().setup(serviceRequest, false);
             App.instance.setView(view.getNode());
