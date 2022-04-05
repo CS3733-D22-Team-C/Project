@@ -149,7 +149,7 @@ public class MedicalEquipmentSRResolveController extends ServiceRequestResolveCo
     protected boolean requiredFieldsPresent(){
         if(equipmentType.getValue() == null && equipmentType.getPromptText().equals(""))
             return false;
-        if(equipmentID.getValue() == null && equipmentType.getPromptText().equals(""))
+        if(equipmentID.getValue() == null && equipmentID.getPromptText().equals(""))
             return false;
         return super.requiredFieldsPresent();
     }
