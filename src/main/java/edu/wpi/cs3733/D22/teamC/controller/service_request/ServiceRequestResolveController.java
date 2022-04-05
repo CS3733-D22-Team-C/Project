@@ -44,7 +44,7 @@ public class ServiceRequestResolveController {
     @FXML
     public void setup(ServiceRequest serviceRequest, boolean isEditMode) {
         this.serviceRequest = serviceRequest;
-
+        this.isEditMode = isEditMode;
         // Set initial values
         priority.setPromptText(serviceRequest.getPriority().toString());
         status.setPromptText(serviceRequest.getStatus().toString());
@@ -105,14 +105,13 @@ public class ServiceRequestResolveController {
                 serviceRequest.setPriority(priority.getValue());
             }
             //Assignee ID
-            if(!assigneeID.getText().equals("")){
-                serviceRequest.setAssigneeID(assigneeID.getText());
-            }
+            serviceRequest.setAssigneeID(assigneeID.getText());
             //Location
             if(hospitalLocation.getValue() != null)
             {
                serviceRequest.setLocation(hospitalLocation.getValue());
             }
+
             //Status
         }
         else {
