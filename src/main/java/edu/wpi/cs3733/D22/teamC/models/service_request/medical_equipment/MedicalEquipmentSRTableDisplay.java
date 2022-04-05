@@ -16,7 +16,7 @@ public class MedicalEquipmentSRTableDisplay extends ServiceRequestTableDisplay<M
             super(medicalEquipmentSR);
 
             this.equipmentID = new SimpleStringProperty(medicalEquipmentSR.getEquipmentID());
-            this.equipmentType = new SimpleStringProperty(medicalEquipmentSR.getEquipmentType());
+            this.equipmentType = new SimpleStringProperty(medicalEquipmentSR.getEquipmentType().toString());
         }
     }
 
