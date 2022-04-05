@@ -73,7 +73,16 @@ public class MedicalEquipmentSRResolveController extends ServiceRequestResolveCo
             if(equipmentType.getValue() != null) {
                 medicalEquipmentSR.setEquipmentType(MedicalEquipmentSR.EquipmentType.valueOf(equipmentType.getValue()));
             }
+
+            System.out.println(requiredFieldsPresent());
+            //Status
+            if(requiredFieldsPresent())
+                medicalEquipmentSR.setStatus(ServiceRequest.Status.Processing);
+            else
+                medicalEquipmentSR.setStatus(ServiceRequest.Status.Blank);
             medicalEquipmentSRDAOImpl.updateServiceRequest(medicalEquipmentSR);
+
+
         }
         else {
         }
@@ -130,6 +139,16 @@ public class MedicalEquipmentSRResolveController extends ServiceRequestResolveCo
         }
 
 
+    }
+
+    protected boolean requiredFieldsPresent(){
+        boolean superRequiredFieldsPresent = super.requiredFieldsPresent();
+
+        if(equipmentType.getValue() == null && equipmentType.getPromptText().equals(""))
+            return false;
+        if(equipmentID.getValue() == null && equipmentType.getPromptText().equals(""))
+            return false;
+        return true && superRequiredFieldsPresent;
     }
 
 

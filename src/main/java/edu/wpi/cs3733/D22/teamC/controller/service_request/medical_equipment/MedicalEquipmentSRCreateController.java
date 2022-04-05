@@ -88,10 +88,10 @@ public class MedicalEquipmentSRCreateController extends ServiceRequestCreateCont
         medEquip.setEquipmentType(MedicalEquipmentSR.EquipmentType.valueOf(equipType.getValue()));
 
         //Request ID generator
-        int requestID = (int)(Math.random() * (10000000 + 1)) + 0;
-        String requestIDString = Integer.toString(requestID);
-        medEquip.setRequestID(Integer.parseInt(requestIDString));
-        System.out.println(requestIDString);
+//        int requestID = (int)(Math.random() * (10000000 + 1)) + 0;
+//        String requestIDString = Integer.toString(requestID);
+//        medEquip.setRequestID(Integer.parseInt(requestIDString));
+//        System.out.println(requestIDString);
 
         //Dealing with the equipment type and the enumerator
         int type = medEquip.getEquipmentType().ordinal();
