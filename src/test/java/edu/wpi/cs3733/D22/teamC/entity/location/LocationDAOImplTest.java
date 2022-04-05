@@ -81,6 +81,10 @@ class LocationDAOImplTest {
         assertEquals(shortName, queryLocation.getShortName());
         assertEquals(x, queryLocation.getX());
         assertEquals(y, queryLocation.getY());
+
+        // Cannot insert with bad FloorID
+        Location badInsertLocation = new Location(floorID + 1, building, nodeType, longName, shortName, x, y);
+        assertEquals(-1, locationDAO.insertLocation(badInsertLocation));
     }
 
     /**

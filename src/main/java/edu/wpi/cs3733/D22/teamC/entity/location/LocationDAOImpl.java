@@ -69,7 +69,7 @@ public class LocationDAOImpl implements LocationDAO {
     /**
      * Insert entry in LOCATION Table of DB corresponding to the given Location object.
      * @param location The Location to be inserted into the DB via a corresponding entry.
-     * @return If successful return true, else return false.
+     * @return If successful return ID, else return -1.
      */
     @Override
     public int insertLocation(Location location) {

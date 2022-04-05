@@ -10,18 +10,18 @@ import org.junit.jupiter.api.BeforeEach;
 import static org.junit.jupiter.api.Assertions.*;
 
  class FloorDAOImplTest {
-     private DBManager testManager;
+     private DBManager testDBManager;
      private FloorDAOImpl floorDAO;
      LocationDAOImpl locationDAO = new LocationDAOImpl();
 
      @BeforeEach
      void SetUp() {
          //Setting up each Floor DB and initializing the FLOOR table
-         testManager = DBManager.startup(DBManager.TESTING_DATABASE_NAME);
+         testDBManager = DBManager.startup(DBManager.TESTING_DATABASE_NAME);
 
          //Initializes the table
-         testManager.initializeFloorTable(true);
-         testManager.initializeLocationTable(true);
+         testDBManager.initializeFloorTable(true);
+         testDBManager.initializeLocationTable(true);
 
          //SetUp testing the FloorDAOImpl
          floorDAO = new FloorDAOImpl();
@@ -160,7 +160,6 @@ import static org.junit.jupiter.api.Assertions.*;
 
      @Test
      void testGetAllLocations() {
-
          // Setup testing LocationDAOImpl
          locationDAO = new LocationDAOImpl();
 
@@ -188,6 +187,56 @@ import static org.junit.jupiter.api.Assertions.*;
 
          assertEquals(1,floorDAO.getAllFloors().size());
 
+     }
+
+     /**
+      * Test that On Delete Cascade works with LOCATION.
+      */
+     @Test
+     void testDeleteCascade() {
+         // Check DB is empty
+         assertEquals(0, locationDAO.getAllLocations().size());
+         assertEquals(null, locationDAO.getLocation(1234));
+
+         // insert Floor into DB
+         int order = 1;
+         String longName = "Really Big Room";
+         String shortName = "BigRoom";
+
+         Floor floor = new Floor();
+         floor.setOrder(order);
+         floor.setLongName(longName);
+         floor.setShortName(shortName);
+
+         int retrievedID = floorDAO.insertFloor(floor);
+         floor.setFloorID(retrievedID);
+
+         // Insert Location into DB
+         int floorID = floor.getFloorID();;
+         String building = "Building";
+         Location.NodeType nodeType = Location.NodeType.HALL;
+         String longNameLoc = "LongName";
+         String shortNameLoc = "shortName";
+         int x = 10;
+         int y = 20;
+
+         Location location = new Location(floorID, building, nodeType, longNameLoc, shortNameLoc, x, y);
+         int retrievedIDLoc = locationDAO.insertLocation(location);
+         location.setNodeID(retrievedID);
+
+         assertNotEquals(-1, retrievedID);
+         assertEquals(1, locationDAO.getAllLocations().size());
+
+         // Delete Floor from DB
+         assertTrue(floorDAO.deleteFloor(floor));
+
+         // Check Floor DB is empty
+         assertEquals(0, floorDAO.getAllFloors().size());
+         assertEquals(null, floorDAO.getFloor(floor.getFloorID()));
+
+         // Check Location DB is empty
+         assertEquals(0, locationDAO.getAllLocations().size());
+         assertEquals(null, locationDAO.getLocation(1234));
      }
  }
 

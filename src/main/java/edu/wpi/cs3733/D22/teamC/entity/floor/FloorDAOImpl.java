@@ -16,42 +16,48 @@ import java.util.List;
 public class FloorDAOImpl implements FloorDAO {
     LocationDAOImpl locationDAO = new LocationDAOImpl();
 
-
-
+    /**
+     * Return a list of locations associated with the given floorID.
+     * @param floorID Floor ID used for querying locations of the given floor.
+     * @return Return a list of locations associated with the given floorID.
+     */
     @Override
-    public List<Location> getAllLocations(int floor) {
+    public List<Location> getAllLocations(int floorID) {
         try {
             PreparedStatement selectStatement = DBManager.getInstance().connection.prepareStatement(
                     "SELECT * FROM LOCATION WHERE Floor = ?");
-            selectStatement.setInt(1, floor);
+            selectStatement.setInt(1, floorID);
             ResultSet resultSet = selectStatement.executeQuery();
 
-
-            List<Location> floorList = new ArrayList<>();
+            List<Location> locations = new ArrayList<>();
 
             while(resultSet.next()){
                 Location foundLocation = locationDAO.createLocation(resultSet);
                 if(foundLocation != null){
-                    floorList.add(foundLocation);
+                    locations.add(foundLocation);
                 }
             }
-            return floorList;
-        } catch
-        (SQLException e) {
+
+            return locations;
+        } catch (SQLException e) {
             System.out.println("Query to FLOOR table failed.");
             e.printStackTrace();
         }
         return null;
-
     }
 
-
+    /**
+     * Insert entry in FLOOR Table of DB corresponding to the given Floor object.
+     * @param floor The Floor to be inserted into the DB via a corresponding entry.
+     * @return If successful return ID, else return -1.
+     */
     @Override
     public int insertFloor(Floor floor){
         try{
-            // check if the entry of the same floorID already exits
+            // check if the entry of the same floorID already exists
             Floor floorInDB = getFloor(floor.getFloorID());
-            if(floorInDB == null){
+
+            if (floorInDB == null) {
                 // execute INSERT statement
                 PreparedStatement statement = (floor.getFloorID()==0)
                         ? DBManager.getInstance().connection.prepareStatement("INSERT INTO FLOOR VALUES (DEFAULT,?,?,?)", Statement.RETURN_GENERATED_KEYS)
@@ -59,7 +65,7 @@ public class FloorDAOImpl implements FloorDAO {
 
                 int index = 1;
 
-                if(floor.getFloorID() != 0){
+                if (floor.getFloorID() != 0) {
                     statement.setString(index, String.valueOf(floor.getFloorID()));
                     index++;
                 }
@@ -69,25 +75,27 @@ public class FloorDAOImpl implements FloorDAO {
                 statement.execute();
 
                 ResultSet resultSet = statement.getGeneratedKeys();
-                if(resultSet.next()) return resultSet.getInt(1);
-
+                if (resultSet.next()) return resultSet.getInt(1);
             }
-
-        }catch(SQLException e){
+        } catch(SQLException e) {
             System.out.println("INSERT to FLOOR table failed.");
             e.printStackTrace();
         }
         return -1;
-
     }
 
+    /**
+     * Update entry in FLOOR Table of DB corresponding to the given Floor object.
+     * @param floor The FLOOR whose corresponding DB entry is to be updated.
+     * @return If successful return true, else return false.
+     */
     @Override
     public boolean updateFloor(Floor floor) {
         try {
-            //check if entry of the same employeeID exits
+            // check if the entry of the same floorID already exists
             Floor floorInDB = getFloor(floor.getFloorID());
 
-            if(floorInDB != null){
+            if (floorInDB != null) {
                 PreparedStatement statement = DBManager.getInstance().connection.prepareStatement(
                         "UPDATE FLOOR SET FloorOrder=?, LongName=?, ShortName=? WHERE ID=?"
                 );
@@ -107,36 +115,39 @@ public class FloorDAOImpl implements FloorDAO {
         return false;
     }
 
+    /**
+     * Delete entry in FLOOR Table of DB corresponding to the given Floor object.
+     * @param floor The Floor whose corresponding DB entry is to be deleted.
+     * @return If successful return true, else return false.
+     */
     @Override
     public boolean deleteFloor(Floor floor) {
         try{
+            // check if the entry of the same floorID already exists
             Floor floorInDB = getFloor(floor.getFloorID());
-            if(floorInDB != null){
 
-                List<Location> locationsToDelete = getAllLocations(floor.getFloorID());
-                for(Location location :locationsToDelete){
-                    locationDAO.deleteLocation(location);
-                }
+            if (floorInDB != null) {
+//                List<Location> locationsToDelete = getAllLocations(floor.getFloorID());
+//                for (Location location : locationsToDelete) {
+//                    locationDAO.deleteLocation(location);
+//                }
 
                 PreparedStatement statement = DBManager.getInstance().connection.prepareStatement(
                         "DELETE FROM FLOOR WHERE ID = ?"
                 );
-                statement.setInt(1,floor.getFloorID());
+                statement.setInt(1, floor.getFloorID());
                 statement.execute();
 
                 return true;
             }
-
-        }catch(SQLException e){
+        } catch(SQLException e) {
             System.out.println("DELETE from FLOOR table failed.");
             e.printStackTrace();
         }
         return false;
-
-
     }
 
-    public Floor createFloor(ResultSet resultset) {
+    private Floor createFloor(ResultSet resultset) {
         try {
             Floor floor = new Floor(resultset.getInt("ID"));
             floor.setOrder(resultset.getInt("FloorOrder"));
