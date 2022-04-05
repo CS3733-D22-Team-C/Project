@@ -19,7 +19,6 @@ public class FacilityMaintenanceSRFormEvaluator extends ServiceRequestFormEvalua
         errorList.add(super.getValidateAssigneeIDResult(assigneeID));
         errorList.add(super.getValidateLocationIDResult(locationID));
         errorList.add(checkMaintenanceTypeFilled(maintenanceType));
-        errorList.add(checkMaintenanceTypeIsCorrect(maintenanceType));
 
         return errorList;
     }
@@ -38,22 +37,6 @@ public class FacilityMaintenanceSRFormEvaluator extends ServiceRequestFormEvalua
         else
         {
             return null;
-        }
-    }
-
-    public ServiceRequestUserInputValidationErrorItem checkMaintenanceTypeIsCorrect(String maintenanceType)
-    {
-        if(maintenanceType.equals("Cleaning"))
-        {
-            return null;
-        }
-        else if(maintenanceType.equals("Organizing"))
-        {
-            return null;
-        }
-        else
-        {
-            return ServiceRequestUserInputValidationErrorRecord.serviceRequestUserInputValidationErrorList[16];
         }
     }
 

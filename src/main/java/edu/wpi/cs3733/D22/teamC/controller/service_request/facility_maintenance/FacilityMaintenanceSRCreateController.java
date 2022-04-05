@@ -21,7 +21,7 @@ import java.util.ResourceBundle;
 public class FacilityMaintenanceSRCreateController extends ServiceRequestCreateController {
 
     //Fields:
-    @FXML private TextField maintType;
+    @FXML private JFXComboBox<String> maintType;
 
     // For table
     @FXML private JFXTreeTableView<FacilityMaintenanceSRTable> table;
@@ -37,25 +37,22 @@ public class FacilityMaintenanceSRCreateController extends ServiceRequestCreateC
         FacilityMaintenanceSRTable.createTableColumns(table);
         table.setRoot(root);
         table.setShowRoot(false);
-        setTextLengthLimiter(maintType, 20);
-    }
 
-    @Override
-    public void setTextLengthLimiter(TextField textF, int maxLength) {
-        super.setTextLengthLimiter(textF, maxLength);
+        maintType.getItems().add("Cleaning");
+        maintType.getItems().add("Organizing");
     }
 
     @FXML
     protected void clickReset(ActionEvent event) { //A JavaFX action event is a JavaFX Event, which represents some kind of action performed by the user or the program.
         super.clickReset(event);
-        maintType.clear();
+        maintType.setValue(null);
     }
 
     @FXML
     protected FacilityMaintenanceSR clickSubmit(ActionEvent event) {
         resetErrorMessages();
         FacilityMaintenanceSRFormEvaluator fMSRFE = new FacilityMaintenanceSRFormEvaluator();
-        ArrayList <ServiceRequestUserInputValidationErrorItem> errors = fMSRFE.getFacilityMaintenanceSRValidationTestResult(assigneeID.getText(), location.getText(), priority.getSelectionModel(), status.getSelectionModel(), maintType.getText());
+        ArrayList <ServiceRequestUserInputValidationErrorItem> errors = fMSRFE.getFacilityMaintenanceSRValidationTestResult(assigneeID.getText(), location.getText(), priority.getSelectionModel(), status.getSelectionModel(), maintType.getValue());
 
         if(fMSRFE.noServiceRequestFormUserInputErrors(errors))
         {
@@ -67,7 +64,7 @@ public class FacilityMaintenanceSRCreateController extends ServiceRequestCreateC
             fMSR.setStatus(ServiceRequest.Status.valueOf(status.getValue()));
             fMSR.setDescription(description.getText());
 
-            fMSR.setMaintenanceType(FacilityMaintenanceSR.MaintenanceType.valueOf(maintType.getText()));
+            fMSR.setMaintenanceType(FacilityMaintenanceSR.MaintenanceType.valueOf(maintType.getValue()));
             fMSR.setRequestType(ServiceRequest.RequestType.Facility_Maintenance);
 
             clickReset(event);
