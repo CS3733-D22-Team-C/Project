@@ -25,6 +25,7 @@ import java.awt.*;
 import java.io.IOException;
 import java.net.URL;
 import java.util.List;
+import java.util.Objects;
 import java.util.ResourceBundle;
 
 public class ServiceRequestsViewController implements Initializable {
@@ -105,9 +106,42 @@ public class ServiceRequestsViewController implements Initializable {
         table.setRowFactory(tv -> {
             TreeTableRow<ServiceRequestTable> row = new TreeTableRow<ServiceRequestTable>();
             row.setOnMouseClicked(event -> {
-                // If is clicked twice, open resolve
+                // If is clicked twice and is processing, open resolve
                 if (! row.isEmpty() && event.getButton()== MouseButton.PRIMARY
-                        && event.getClickCount() == 2) {
+                        && event.getClickCount() == 2 &&
+                        row.getItem().getStatus() == ServiceRequest.Status.Processing.toString()) {
+
+                    ServiceRequestTable clickedRow = row.getItem();
+
+                    sendData(clickedRow, false);
+                    switch (clickedRow.getType()){
+                        case "Medical_Equipment":
+                            App.instance.setView(MEDICAL_EQUIPMENT_RESOLVE_PATH);
+                            break;
+                        case "Facility_Maintenance":
+                            // TODO: Add Resolve Path
+                            break;
+                        case "Lab_System":
+                            // TODO: Add Resolve Path
+                            break;
+                        case "Medicine_Delivery":
+                            // TODO: Add Resolve Path
+                            break;
+                        case "Sanitation":
+                            // TODO: Add Resolve Path
+                            break;
+                        case "Security":
+                            // TODO: Add Resolve Path
+                            break;
+                        default:
+                            System.out.println("Not a valid Service Request");
+                    }
+
+                    }
+                // If is clicked twice and is blank, open edit
+                if (! row.isEmpty() && event.getButton()== MouseButton.PRIMARY
+                        && event.getClickCount() == 2 &&
+                        row.getItem().getStatus() == ServiceRequest.Status.Blank.toString()) {
 
                     ServiceRequestTable clickedRow = row.getItem();
 
@@ -116,20 +150,43 @@ public class ServiceRequestsViewController implements Initializable {
                         case "Medical_Equipment":
                             App.instance.setView(MEDICAL_EQUIPMENT_RESOLVE_PATH);
                             break;
-                        default:
-                            App.instance.setView(App.HOME_PATH);
+                        case "Facility_Maintenance":
+                            // TODO: Add Resolve Path
                             break;
-
+                        case "Lab_System":
+                            // TODO: Add Resolve Path
+                            break;
+                        case "Medicine_Delivery":
+                            // TODO: Add Resolve Path
+                            break;
+                        case "Sanitation":
+                            // TODO: Add Resolve Path
+                            break;
+                        case "Security":
+                            // TODO: Add Resolve Path
+                            break;
+                        default:
+                            System.out.println("Not a valid Service Request");
                     }
                 }
-                // If clicked
+                // If clicked once, enable edit/resolve buttons
                 if (! row.isEmpty() && event.getButton() == MouseButton.PRIMARY){
                     ServiceRequestTable clickedRow = row.getItem();
 
                     sendData(clickedRow, false);
-                    //if(clickedRow.getStatus() == )
-                    edit.setDisable(false);
-                    resolve.setDisable(false);
+                    if(Objects.equals(clickedRow.getStatus(), ServiceRequest.Status.Blank.toString())){
+                        edit.setDisable(false);
+                        resolve.setDisable(true);
+                    }
+                    else if (Objects.equals(clickedRow.getStatus(), ServiceRequest.Status.Processing.toString())){
+                        edit.setDisable(false);
+                        resolve.setDisable(false);
+                    }
+                    else if (Objects.equals(clickedRow.getStatus(), ServiceRequest.Status.Done.toString())){
+                        edit.setDisable(true);
+                        resolve.setDisable(true);
+                    }
+
                 }
             });
             return row ;
@@ -143,9 +200,54 @@ public class ServiceRequestsViewController implements Initializable {
     }
 
     public void onEditButton(ActionEvent actionEvent) {
+        ServiceRequestSingleton.INSTANCE.setEditMode(true);
+        switch (ServiceRequestSingleton.INSTANCE.getServiceRequestTable().getType()){
+            case "Medical_Equipment":
+                App.instance.setView(MEDICAL_EQUIPMENT_RESOLVE_PATH);
+                break;
+            case "Facility_Maintenance":
+                // TODO: Add Resolve Path
+                break;
+            case "Lab_System":
+                // TODO: Add Resolve Path
+                break;
+            case "Medicine_Delivery":
+                // TODO: Add Resolve Path
+                break;
+            case "Sanitation":
+                // TODO: Add Resolve Path
+                break;
+            case "Security":
+                // TODO: Add Resolve Path
+                break;
+            default:
+                System.out.println("Not a valid Service Request");
+        }
     }
 
     public void onResolveButton(ActionEvent actionEvent) {
-        App.instance.setView(MEDICAL_EQUIPMENT_RESOLVE_PATH);
+        ServiceRequestSingleton.INSTANCE.setEditMode(false);
+        switch (ServiceRequestSingleton.INSTANCE.getServiceRequestTable().getType()){
+            case "Medical_Equipment":
+                App.instance.setView(MEDICAL_EQUIPMENT_RESOLVE_PATH);
+                break;
+            case "Facility_Maintenance":
+                // TODO: Add Resolve Path
+                break;
+            case "Lab_System":
+                // TODO: Add Resolve Path
+                break;
+            case "Medicine_Delivery":
+                // TODO: Add Resolve Path
+                break;
+            case "Sanitation":
+                // TODO: Add Resolve Path
+                break;
+            case "Security":
+                // TODO: Add Resolve Path
+                break;
+            default:
+                System.out.println("Not a valid Service Request");
+        }
     }
 }
