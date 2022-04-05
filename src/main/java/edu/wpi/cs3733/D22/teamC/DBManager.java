@@ -175,9 +175,9 @@ public class DBManager {
         initializeTable(
                 "MEDICAL_EQUIPMENT_SR",
                 "CREATE TABLE MEDICAL_EQUIPMENT_SR (" +
-                        "ID int, EquipID char(10), CONSTRAINT fk_ID FOREIGN KEY (ID) " +
+                        "ID int, EquipID int, CONSTRAINT fk_ID FOREIGN KEY (ID) " +
                         "REFERENCES SERVICE_REQUEST (ID) ON DELETE CASCADE, CONSTRAINT fk_EquipID FOREIGN KEY (EquipID) " +
-                        "REFERENCES Medical_Equipment (equipID) ON DELETE CASCADE)",
+                        "REFERENCES Medical_Equipment (ID) ON DELETE CASCADE)",
                 clearTable
         );
     }

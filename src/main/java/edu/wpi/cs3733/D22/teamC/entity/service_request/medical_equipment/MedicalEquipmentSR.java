@@ -4,7 +4,7 @@ import edu.wpi.cs3733.D22.teamC.entity.service_request.ServiceRequest;
 
 public class MedicalEquipmentSR extends ServiceRequest {
 
-    protected String equipmentID;       // TODO: Link to Medical Equipment
+    protected int equipmentID;       // TODO: Link to Medical Equipment
 
     public MedicalEquipmentSR() {}
     
@@ -13,11 +13,11 @@ public class MedicalEquipmentSR extends ServiceRequest {
     }
 
 
-    public String getEquipmentID() {
+    public int getEquipmentID() {
         return equipmentID;
     }
 
-    public void setEquipmentID(String equipmentID) {
+    public void setEquipmentID(int equipmentID) {
         this.equipmentID = equipmentID;
     }
 }

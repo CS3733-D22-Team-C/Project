@@ -17,7 +17,7 @@ public abstract class MedicalEquipmentSRDAO extends ServiceRequestDAO<MedicalEqu
         try {
             // Create generic SR then convert and modify into MedicalEquipmentServiceRequest
             serviceRequest.setRequestID(resultSet.getInt("ID")); // redundant?
-            serviceRequest.setEquipmentID(typesafeTrim(resultSet.getString("EQUIPID")));
+            serviceRequest.setEquipmentID(resultSet.getInt("EQUIPID"));
 
             return serviceRequest;
 
