@@ -22,16 +22,44 @@ public class FacilityMaintenanceSRResolveController extends ServiceRequestResolv
     @Override
     public void setup(ServiceRequest serviceRequest, boolean isEditMode) {
         super.setup(serviceRequest, isEditMode);
-        //Need the DAO to complete this resolve page
+        //Need the FacilityMaintenanceDAOImpl to complete this function
     }
 
     @Override
     public void clickConfirm(ActionEvent event) {
+        //Need access to the FacilityMaintenanceDAOImpl to complete this function
         super.clickConfirm(event);
+    }
+
+    @FXML
+    void maintTypeChanged(MouseEvent mouseEvent) {
+
     }
 
     @Override
     protected boolean requiredFieldsPresent() {
+        if(maintType.getValue() == null && maintType.getPromptText().equals(""))
+            return false;
         return super.requiredFieldsPresent();
+    }
+
+    @FXML
+    void statusUpdated(ActionEvent event)
+    {
+        //Only in edit mode
+        if(!isEditMode)
+            return;
+        if(requiredFieldsPresent()){
+            secondStatus.setText("processing");
+        }
+        else
+            secondStatus.setText("blank");
+    }
+
+    //Just for textfields
+    //on key pressed (in scenebuilder)
+    @FXML
+    void statusUpdatedKeyEvent(KeyEvent event) {
+        statusUpdated(null);
     }
 }

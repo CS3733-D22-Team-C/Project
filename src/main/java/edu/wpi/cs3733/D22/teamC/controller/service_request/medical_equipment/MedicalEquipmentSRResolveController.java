@@ -161,7 +161,4 @@ public class MedicalEquipmentSRResolveController extends ServiceRequestResolveCo
     void statusUpdatedKeyEvent(KeyEvent event) {
         statusUpdated(null);
     }
-
-
-
 }
