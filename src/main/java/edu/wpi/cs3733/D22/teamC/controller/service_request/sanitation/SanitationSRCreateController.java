@@ -41,7 +41,7 @@ public class SanitationSRCreateController extends ServiceRequestCreateController
         sanitationType.getItems().add("General");
         sanitationType.getItems().add("Hazardous");
         sanitationType.getItems().add("Biohazard");
-        sanitationType.getItems().add("Daily Cleaning");
+        sanitationType.getItems().add("Daily_Cleaning");
 
         SanitationSRTable.createTableColumns(table);
         table.setRoot(root);

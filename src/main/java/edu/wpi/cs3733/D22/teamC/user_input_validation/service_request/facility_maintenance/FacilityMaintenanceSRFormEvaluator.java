@@ -11,7 +11,7 @@ public class FacilityMaintenanceSRFormEvaluator extends ServiceRequestFormEvalua
 
     public FacilityMaintenanceSRFormEvaluator() {}
 
-    public ArrayList<ServiceRequestUserInputValidationErrorItem> getFacilityMaintenanceSRValidationTestResult(String locationID, String assigneeID, SingleSelectionModel status, SingleSelectionModel priority, String maintenanceType)
+    public ArrayList<ServiceRequestUserInputValidationErrorItem> getFacilityMaintenanceSRValidationTestResult(String locationID, String assigneeID, SingleSelectionModel status, SingleSelectionModel priority, SingleSelectionModel maintenanceType)
     {
         ArrayList <ServiceRequestUserInputValidationErrorItem> errorList = new ArrayList <ServiceRequestUserInputValidationErrorItem> ();
 
@@ -28,7 +28,7 @@ public class FacilityMaintenanceSRFormEvaluator extends ServiceRequestFormEvalua
      * @param maintenanceType
      * @return ServiceRequestUserInputValidationErrorItem
      */
-    public ServiceRequestUserInputValidationErrorItem checkMaintenanceTypeFilled(String maintenanceType)
+    public ServiceRequestUserInputValidationErrorItem checkMaintenanceTypeFilled(SingleSelectionModel maintenanceType)
     {
         if(maintenanceType.isEmpty())
         {

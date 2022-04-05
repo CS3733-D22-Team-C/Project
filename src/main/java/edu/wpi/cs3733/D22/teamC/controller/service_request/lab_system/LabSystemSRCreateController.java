@@ -39,10 +39,10 @@ public class LabSystemSRCreateController extends ServiceRequestCreateController 
     public void initialize(URL url, ResourceBundle rb) {
         super.initialize(url, rb);
         //For equipment type drop down
-        labType.getItems().add("Blood Sample");
-        labType.getItems().add("Urine Sample");
-        labType.getItems().add("X-Ray");
-        labType.getItems().add("CAT scans");
+        labType.getItems().add("Blood_Sample");
+        labType.getItems().add("Urine_Sample");
+        labType.getItems().add("X_Ray");
+        labType.getItems().add("Cat_Scan");
         labType.getItems().add("MRI");
 
         LabSystemSRTable.createTableColumns(table);
