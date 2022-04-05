@@ -6,17 +6,10 @@ import com.jfoenix.controls.JFXTextArea;
 import edu.wpi.cs3733.D22.teamC.App;
 import edu.wpi.cs3733.D22.teamC.entity.service_request.ServiceRequest;
 import edu.wpi.cs3733.D22.teamC.entity.service_request.ServiceRequestDAOImpl;
-import edu.wpi.cs3733.D22.teamC.models.service_request.ServiceRequestSingleton;
-import edu.wpi.cs3733.D22.teamC.models.service_request.ServiceRequestTableDisplay;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
-
-import java.net.URL;
-import java.util.Locale;
-import java.util.ResourceBundle;
 
 public class ServiceRequestResolveController {
     // Dropdowns
