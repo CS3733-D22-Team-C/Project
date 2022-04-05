@@ -2,6 +2,8 @@ package edu.wpi.cs3733.D22.teamC.controller.location.map;
 
 import edu.wpi.cs3733.D22.teamC.App;
 import edu.wpi.cs3733.D22.teamC.entity.location.Location;
+import javafx.beans.property.SimpleIntegerProperty;
+import javafx.beans.property.SimpleStringProperty;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -60,6 +62,7 @@ public class BaseMapViewController implements Initializable {
         App.View mapPane = App.instance.loadView(MAP_PATH, new ViewMapController());
         mapViewGridPane.add(mapPane.getNode(), 0,0);
         mapController = (ViewMapController) mapPane.getController();
+        ((ViewMapController) mapPane.getController()).setBaseMapViewController(this);
     }
 
     public void swapToEditMode() {
@@ -104,5 +107,14 @@ public class BaseMapViewController implements Initializable {
 
     public LocationInfoPaneController getLocationInfoController() {
         return (LocationInfoPaneController) locationInfoController;
+    }
+
+    public void onLocationFocus(ViewMapController.MapLocation clickedMapLocation) {
+        SimpleStringProperty longName, shortName, type;
+        SimpleIntegerProperty staffID;
+
+        longName.bind();
+
+        locationInfoController.IDTextField.setText();
     }
 }

@@ -3,6 +3,8 @@ package edu.wpi.cs3733.D22.teamC.controller.location.map;
 import edu.wpi.cs3733.D22.teamC.entity.location.Location;
 import edu.wpi.cs3733.D22.teamC.entity.location.LocationDAO;
 import edu.wpi.cs3733.D22.teamC.entity.location.LocationDAOImpl;
+import javafx.beans.property.SimpleIntegerProperty;
+import javafx.beans.property.SimpleStringProperty;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.ScrollPane;
@@ -70,6 +72,9 @@ public class ViewMapController implements Initializable {
     protected MapLocation clickedMapLocation, hoveredMapLocation;
     protected List<MapLocation> mapLocations;
 
+    // References
+    protected BaseMapViewController baseMapViewController;
+
     @Override
     public final void initialize(URL location, ResourceBundle resources) {
         // Testing !!!
@@ -128,10 +133,13 @@ public class ViewMapController implements Initializable {
                     if (clickedMapLocation != null) offActiveNode(clickedMapLocation);
 
                     if (clickedMapLocation == mapLocation) {
-                        clickedMapLocation = null;
+                        //clickedMapLocation = null;
+                        setClickMapLocation(null);
                     } else {
                         onActiveNode(mapLocation);
-                        clickedMapLocation = mapLocation;
+                        //clickedMapLocation = mapLocation;
+                        setClickMapLocation(mapLocation);
+
                     }
                 }
 
@@ -139,14 +147,25 @@ public class ViewMapController implements Initializable {
             }
         }
 
-        protected void onMouseDraggedNode(MouseEvent event, MapLocation mapLocation) {}
+    private void setClickMapLocation(MapLocation mapLocation) {
+        // TODO: figure out how to bind things
+        clickedMapLocation = mapLocation;
+        baseMapViewController.onLocationFocus(clickedMapLocation);
+    }
+
+    public void setBaseMapViewController(BaseMapViewController baseMapViewController) {
+        this.baseMapViewController = baseMapViewController;
+    }
+
+    protected void onMouseDraggedNode(MouseEvent event, MapLocation mapLocation) {}
 
         protected void onMouseClickedMap(MouseEvent event) {
             if (event.getButton().equals(MouseButton.PRIMARY)) {
                 // Single-Click reset active MapLocation
                 if (clickedMapLocation != null && clickedMapLocation != hoveredMapLocation) {
                     offActiveNode(clickedMapLocation);
-                    clickedMapLocation = null;
+                    //clickedMapLocation = null;
+                    setClickMapLocation(null);
                 }
             }
         }
@@ -229,4 +248,6 @@ public class ViewMapController implements Initializable {
             }
         }
     //#endregion
+
+
 }

@@ -41,6 +41,7 @@ public class LocationInfoPaneController implements Initializable {
      * @param type Type of room that the location is
      */
     public void setTextFieldText(String ID, String longName, String shortName, String type) {
+        // can't use this need bindings
         IDTextField.setText(ID);
         LongNameTextField.setText(longName);
         ShortNameTextField.setText(shortName);
