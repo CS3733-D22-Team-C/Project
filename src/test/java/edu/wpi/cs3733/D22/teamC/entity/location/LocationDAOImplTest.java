@@ -48,9 +48,9 @@ class LocationDAOImplTest {
         // Insert Location into DB
         String floor = "L1";
         String building = "Building";
-        String nodeType = "NODE";
+        Location.NodeType nodeType = Location.NodeType.DEPT;
         String longName = "LongName";
-        String shortName = "ShortName";
+        String shortName = "shortName";
         int x = 10;
         int y = 20;
         Location insertLocation = new Location(floor, building, nodeType, longName, shortName, x, y);
@@ -87,9 +87,9 @@ class LocationDAOImplTest {
         // Insert Location into DB
         String floor = "L1";
         String building = "Building";
-        String nodeType = "NODE";
+        Location.NodeType nodeType = Location.NodeType.HALL;
         String longName = "LongName";
-        String shortName = "ShortName";
+        String shortName = "shortName";
         int x = 10;
         int y = 20;
         Location deleteLocation = new Location(floor, building, nodeType, longName, shortName, x, y);
@@ -121,9 +121,9 @@ class LocationDAOImplTest {
         // Insert Location into DB
         String floor = "L1";
         String building = "Building";
-        String nodeType = "NODE";
+        Location.NodeType nodeType = Location.NodeType.SERV;
         String longName = "LongName";
-        String shortName = "ShortName";
+        String shortName = "shortName";
         int x = 10;
         int y = 20;
         Location updateLocation = new Location(floor, building, nodeType, longName, shortName, x, y);
@@ -135,7 +135,7 @@ class LocationDAOImplTest {
         // Update Location in DB
         String newFloor = "L2";
         String newBuilding = "Building2";
-        String newNodeType = "TYPE";
+        Location.NodeType newNodeType = Location.NodeType.CONF;
         String newLongName = "LongName2";
         String newShortName = "shortName2";
         int newX = 100;

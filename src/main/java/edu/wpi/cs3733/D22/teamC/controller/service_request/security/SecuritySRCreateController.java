@@ -2,6 +2,7 @@ package edu.wpi.cs3733.D22.teamC.controller.service_request.security;
 
 import com.jfoenix.controls.JFXComboBox;
 import edu.wpi.cs3733.D22.teamC.controller.service_request.ServiceRequestCreateController;
+import edu.wpi.cs3733.D22.teamC.entity.service_request.ServiceRequest;
 import edu.wpi.cs3733.D22.teamC.entity.service_request.security.SecuritySR;
 import edu.wpi.cs3733.D22.teamC.models.service_request.security.SecuritySRTableDisplay;
 import javafx.event.ActionEvent;
@@ -54,9 +55,11 @@ public class SecuritySRCreateController extends ServiceRequestCreateController {
             securitySR.setLocation(location.getText());
 
             //Sets from combo boxes
-            securitySR.setStatus((String) status.getValue());
-            securitySR.setPriority((String) priority.getValue());
-            securitySR.setSecurityType(secType.getValue());
+            securitySR.setStatus(ServiceRequest.Status.valueOf(status.getValue()));
+            securitySR.setPriority(ServiceRequest.Priority.valueOf(priority.getValue()));
+            securitySR.setSecurityType(SecuritySR.SecurityType.valueOf(secType.getValue()));
+
+            securitySR.setRequestType(ServiceRequest.RequestType.Security);
 
             // Table Entry
             clickReset(event);

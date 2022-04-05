@@ -2,6 +2,8 @@ package edu.wpi.cs3733.D22.teamC.controller.service_request.lab_system;
 
 import com.jfoenix.controls.*;
 import edu.wpi.cs3733.D22.teamC.controller.service_request.ServiceRequestCreateController;
+import edu.wpi.cs3733.D22.teamC.entity.service_request.ServiceRequest;
+import edu.wpi.cs3733.D22.teamC.models.service_request.lab_system.LabSystemSRTable;
 import edu.wpi.cs3733.D22.teamC.entity.service_request.lab_system.LabSystemSR;
 import edu.wpi.cs3733.D22.teamC.models.service_request.lab_system.LabSystemSRTableDisplay;
 import javafx.event.ActionEvent;
@@ -56,9 +58,11 @@ public class LabSystemSRCreateController extends ServiceRequestCreateController<
         labSystem.setPatientID(patientID.getText());
 
         //Sets from combo boxes
-        labSystem.setStatus(status.getValue());
-        labSystem.setPriority(priority.getValue());
-        labSystem.setLabType(labType.getValue());
+        labSystem.setStatus(ServiceRequest.Status.valueOf(status.getValue()));
+        labSystem.setPriority(ServiceRequest.Priority.valueOf(priority.getValue()));
+        labSystem.setLabType(LabSystemSR.LabType.valueOf(labType.getValue()));
+
+        labSystem.setRequestType(ServiceRequest.RequestType.Lab_System);
 
         //Table Entry
         tableDisplay.addObject(labSystem);

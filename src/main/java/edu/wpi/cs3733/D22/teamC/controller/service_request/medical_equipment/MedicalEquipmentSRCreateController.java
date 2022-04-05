@@ -28,10 +28,9 @@ public class MedicalEquipmentSRCreateController extends ServiceRequestCreateCont
         super.initialize(url, rb);
 
         //For equipment type drop down
-        equipType.getItems().add("Bed (20)");
-        equipType.getItems().add("Recliners (6)");
-        equipType.getItems().add("Portable X-Ray");
-        equipType.getItems().add("Infusion Pumps (30)");
+        for (MedicalEquipmentSR.EquipmentType type : MedicalEquipmentSR.EquipmentType.values()) {
+            equipType.getItems().add(type.toString());
+        }
 
         tableDisplay = new MedicalEquipmentSRTableDisplay(table);
 
@@ -63,15 +62,23 @@ public class MedicalEquipmentSRCreateController extends ServiceRequestCreateCont
         medEquip.setLocation(location.getText());
 
         //Sets from combo boxes
-        medEquip.setStatus(status.getValue());
-        medEquip.setPriority(priority.getValue());
-        medEquip.setEquipmentType(equipType.getValue());
+        medEquip.setStatus(ServiceRequest.Status.valueOf(status.getValue()));
+        medEquip.setPriority(ServiceRequest.Priority.valueOf(priority.getValue()));
+        medEquip.setEquipmentType(MedicalEquipmentSR.EquipmentType.valueOf(equipType.getValue()));
+
+        //Request ID generator
+        int requestID = (int)(Math.random() * (10000000 + 1)) + 0;
+        String requestIDString = Integer.toString(requestID);
+        medEquip.setRequestID(Integer.parseInt(requestIDString));
+        System.out.println(requestIDString);
 
         //Dealing with the equipment type and the enumerator
-        int type = medEquip.getEquipEnum(equipType.getValue());
+        int type = medEquip.getEquipmentType().ordinal();
         String num = equipID.getText();
         medEquip.setEquipmentID(type + num);
         clickReset(event);
+
+        medEquip.setRequestType(ServiceRequest.RequestType.Medical_Equipment);
 
         // Table Entry
         tableDisplay.addObject(medEquip);

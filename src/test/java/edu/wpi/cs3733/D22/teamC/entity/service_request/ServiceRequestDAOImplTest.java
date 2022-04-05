@@ -9,18 +9,17 @@ import java.sql.Timestamp;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-
 class ServiceRequestDAOImplTest {
     private DBManager testDBManager;
     private ServiceRequestDAOImpl serviceRequestDAO;
 
     @BeforeEach
     void setUp() {
-        // Setup testing database and initialize SR table
+        // Setup testing database and initialize LOCATION table
         testDBManager = DBManager.startup(DBManager.TESTING_DATABASE_NAME);
         testDBManager.initializeServiceRequestTable(true);
         testDBManager.initializeMedicalEquipSRTable(true);
-
+    
         // Setup testing LocationDAOImpl
         serviceRequestDAO = new ServiceRequestDAOImpl();
     }
@@ -32,31 +31,31 @@ class ServiceRequestDAOImplTest {
     }
 
     /**
-     * Test that an empty SR Table DB returns nothing for queries.
+     * Test that an empty Location Table DB returns nothing for queries.
      */
     @Test
-    void testEmptyQuerySR() {
+    void testEmptyQueryLocation() {
         assertEquals(0, serviceRequestDAO.getAllServiceRequests().size());
         assertEquals(null, serviceRequestDAO.getServiceRequest(1234));
     }
 
     /**
-     * Test that insertSR works.
+     * Test that insertLocation works.
      */
     @Test
-    void testInsertSR() {
+    void testInsertLocation() {
         // Check DB is empty
         assertEquals(0, serviceRequestDAO.getAllServiceRequests().size());
         assertEquals(null, serviceRequestDAO.getServiceRequest(1234));
 
-        // Insert SR into DB
+        // Insert Location into DB
         String creatorID = "C1";
         String assigneeID = "A1";
         String location = "loc";
         Timestamp creationTimestamp = new Timestamp(System.currentTimeMillis());
-        String status = "Assigned";
-        String priority = "Not Emergency";
-        String requestType = "MedicalEquipmentServiceRequest";
+        ServiceRequest.Status status = ServiceRequest.Status.Blank;
+        ServiceRequest.Priority priority = ServiceRequest.Priority.Low;
+        ServiceRequest.RequestType requestType = ServiceRequest.RequestType.valueOf("Medical_Equipment");
         String description = "Move the bed before noon today";
 
         ServiceRequest insertSR = new ServiceRequest();
@@ -100,14 +99,14 @@ class ServiceRequestDAOImplTest {
         assertEquals(0, serviceRequestDAO.getAllServiceRequests().size());
         assertEquals(null, serviceRequestDAO.getServiceRequest(1234));
 
-        // Insert SR into DB
+        // Insert ServiceRequest into DB
         String creatorID = "C1";
         String assigneeID = "A1";
         String location = "loc";
         Timestamp creationTimestamp = new Timestamp(System.currentTimeMillis());
-        String status = "Assigned";
-        String priority = "Not Emergency";
-        String requestType = "MedicalEquipmentServiceRequest";
+        ServiceRequest.Status status = ServiceRequest.Status.Processing;
+        ServiceRequest.Priority priority = ServiceRequest.Priority.Low;
+        ServiceRequest.RequestType requestType = ServiceRequest.RequestType.valueOf("Medical_Equipment");
         String description = "Move the bed before noon today";
 
         ServiceRequest deleteSR = new ServiceRequest();
@@ -150,9 +149,9 @@ class ServiceRequestDAOImplTest {
         String assigneeID = "A1";
         String location = "loc";
         Timestamp creationTimestamp = new Timestamp(System.currentTimeMillis());
-        String status = "Assigned";
-        String priority = "Not Emergency";
-        String requestType = "MedicalEquipmentServiceRequest";
+        ServiceRequest.Status status = ServiceRequest.Status.Blank;
+        ServiceRequest.Priority priority = ServiceRequest.Priority.High;
+        ServiceRequest.RequestType requestType = ServiceRequest.RequestType.Medical_Equipment;
         String description = "Move the bed before noon today";
 
         ServiceRequest updateSR = new ServiceRequest();
@@ -176,9 +175,11 @@ class ServiceRequestDAOImplTest {
         String newAssigneeID = "A2";
         String newlocation = "new loc";
         Timestamp newCreationTimestamp = new Timestamp(System.currentTimeMillis());
-        String newStatus = "Not Assigned";
-        String newPriority = "Emergency";
+        ServiceRequest.Status newStatus = ServiceRequest.Status.Blank;
+        ServiceRequest.Priority newPriority = ServiceRequest.Priority.High;
         String newDescription = "Move the bed IMMEDIATELY";
+        String modifierID = "WillSmith";
+        Timestamp modifiedTimestamp = new Timestamp(23098213);
 
         updateSR.setCreatorID(newCreatorID);
         updateSR.setAssigneeID(newAssigneeID);
@@ -187,6 +188,9 @@ class ServiceRequestDAOImplTest {
         updateSR.setStatus(newStatus);
         updateSR.setPriority(newPriority);
         updateSR.setDescription(newDescription);
+        updateSR.setModifierID(modifierID);
+        updateSR.setModifiedTimestamp(modifiedTimestamp);
+        
         assertTrue(serviceRequestDAO.updateServiceRequest(updateSR));
         assertEquals(1, serviceRequestDAO.getAllServiceRequests().size());
 
@@ -202,7 +206,9 @@ class ServiceRequestDAOImplTest {
         assertEquals(newPriority, querySR.getPriority());
         assertEquals(requestType, querySR.getRequestType());
         assertEquals(newDescription, querySR.getDescription());
-
+        assertEquals(modifierID, querySR.getModifierID());
+        assertEquals(modifiedTimestamp, querySR.getModifiedTimestamp());
+    
         // Cannot Update Nonexistent SR
         ServiceRequest newSR = new ServiceRequest(1234);
         assertFalse(serviceRequestDAO.updateServiceRequest(newSR));
