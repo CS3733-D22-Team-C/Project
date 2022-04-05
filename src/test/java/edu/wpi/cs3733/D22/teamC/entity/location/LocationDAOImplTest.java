@@ -1,9 +1,6 @@
 package edu.wpi.cs3733.D22.teamC.entity.location;
 
 import edu.wpi.cs3733.D22.teamC.DBManager;
-import edu.wpi.cs3733.D22.teamC.entity.floor.Floor;
-import edu.wpi.cs3733.D22.teamC.entity.floor.FloorDAO;
-import edu.wpi.cs3733.D22.teamC.entity.floor.FloorDAOImpl;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -13,7 +10,6 @@ import static org.junit.jupiter.api.Assertions.*;
 class LocationDAOImplTest {
     private DBManager testDBManager;
     private LocationDAOImpl locationDAO;
-    private Floor floor;
 
     @BeforeEach
     void setUp() {
@@ -23,10 +19,6 @@ class LocationDAOImplTest {
 
         // Setup testing LocationDAOImpl
         locationDAO = new LocationDAOImpl();
-
-        // add a floor
-        FloorDAO floorDAO = new FloorDAOImpl();
-        floor = floorDAO.getFloor(floorDAO.insertFloor(new Floor()));
     }
 
     @AfterEach
@@ -54,14 +46,14 @@ class LocationDAOImplTest {
         assertEquals(null, locationDAO.getLocation(1234));
 
         // Insert Location into DB
-        int floorID = floor.getFloorID();
+        String floor = "L1";
         String building = "Building";
         Location.NodeType nodeType = Location.NodeType.DEPT;
         String longName = "LongName";
         String shortName = "shortName";
         int x = 10;
         int y = 20;
-        Location insertLocation = new Location(floorID, building, nodeType, longName, shortName, x, y);
+        Location insertLocation = new Location(floor, building, nodeType, longName, shortName, x, y);
         int retrievedID = locationDAO.insertLocation(insertLocation);
         insertLocation.setNodeID(retrievedID);
         assertNotEquals(-1, retrievedID);
@@ -74,7 +66,7 @@ class LocationDAOImplTest {
         Location queryLocation = locationDAO.getLocation(insertLocation.getNodeID());
         assertNotNull(queryLocation);
         assertEquals(retrievedID, queryLocation.getNodeID());
-        assertEquals(floorID, queryLocation.getFloor());
+        assertEquals(floor, queryLocation.getFloor());
         assertEquals(building, queryLocation.getBuilding());
         assertEquals(nodeType, queryLocation.getNodeType());
         assertEquals(longName, queryLocation.getLongName());
@@ -93,14 +85,14 @@ class LocationDAOImplTest {
         assertEquals(null, locationDAO.getLocation(1234));
 
         // Insert Location into DB
-        int floorID = floor.getFloorID();;
+        String floor = "L1";
         String building = "Building";
         Location.NodeType nodeType = Location.NodeType.HALL;
         String longName = "LongName";
         String shortName = "shortName";
         int x = 10;
         int y = 20;
-        Location deleteLocation = new Location(floorID, building, nodeType, longName, shortName, x, y);
+        Location deleteLocation = new Location(floor, building, nodeType, longName, shortName, x, y);
         int retrievedID = locationDAO.insertLocation(deleteLocation);
         deleteLocation.setNodeID(retrievedID);
         assertNotEquals(-1, retrievedID);
@@ -127,26 +119,28 @@ class LocationDAOImplTest {
         assertEquals(null, locationDAO.getLocation(1234));
 
         // Insert Location into DB
-        int floorID = floor.getFloorID();;
+        String floor = "L1";
         String building = "Building";
         Location.NodeType nodeType = Location.NodeType.SERV;
         String longName = "LongName";
         String shortName = "shortName";
         int x = 10;
         int y = 20;
-        Location updateLocation = new Location(floorID, building, nodeType, longName, shortName, x, y);
+        Location updateLocation = new Location(floor, building, nodeType, longName, shortName, x, y);
         int retrievedID = locationDAO.insertLocation(updateLocation);
         updateLocation.setNodeID(retrievedID);
         assertNotEquals(-1, retrievedID);
         assertEquals(1, locationDAO.getAllLocations().size());
 
         // Update Location in DB
+        String newFloor = "L2";
         String newBuilding = "Building2";
         Location.NodeType newNodeType = Location.NodeType.CONF;
         String newLongName = "LongName2";
         String newShortName = "shortName2";
         int newX = 100;
         int newY = 200;
+        updateLocation.setFloor(newFloor);
         updateLocation.setBuilding(newBuilding);
         updateLocation.setNodeType(newNodeType);
         updateLocation.setLongName(newLongName);
@@ -160,6 +154,7 @@ class LocationDAOImplTest {
         Location queryLocation = locationDAO.getLocation(updateLocation.getNodeID());
         assertNotNull(queryLocation);
         assertEquals(retrievedID, queryLocation.getNodeID());
+        assertEquals(newFloor, queryLocation.getFloor());
         assertEquals(newBuilding, queryLocation.getBuilding());
         assertEquals(newNodeType, queryLocation.getNodeType());
         assertEquals(newLongName, queryLocation.getLongName());

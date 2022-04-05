@@ -2,7 +2,7 @@ package edu.wpi.cs3733.D22.teamC.entity.location;
 
 public class Location {
     private int nodeID;
-    private int floor; // TODO: Floors should be objects
+    private String floor = ""; // TODO: Floors should be objects
     private String building = "";
     private NodeType nodeType;
     private String longName = "";
@@ -33,7 +33,7 @@ public class Location {
         this.nodeID = nodeID;
     }
 
-    public Location(int floor, String building, NodeType nodeType, String longName, String shortName, int x, int y) {
+    public Location(String floor, String building, NodeType nodeType, String longName, String shortName, int x, int y) {
         this.floor = floor;
         this.building = building;
         this.nodeType = nodeType;
@@ -45,7 +45,7 @@ public class Location {
 
 
     @Deprecated
-    public Location(int nodeID, int floor, String building, NodeType nodeType, String longName, String shortName, int x, int y) {
+    public Location(int nodeID, String floor, String building, NodeType nodeType, String longName, String shortName, int x, int y) {
         this.nodeID = nodeID;
         this.floor = floor;
         this.building = building;
@@ -64,11 +64,11 @@ public class Location {
         this.nodeID = nodeID;
     }
 
-    public int getFloor() {
+    public String getFloor() {
         return floor;
     }
 
-    public void setFloor(int floor) {
+    public void setFloor(String floor) {
         this.floor = floor;
     }
 

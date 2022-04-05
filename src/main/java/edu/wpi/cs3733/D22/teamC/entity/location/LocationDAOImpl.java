@@ -1,8 +1,6 @@
 package edu.wpi.cs3733.D22.teamC.entity.location;
 
 import edu.wpi.cs3733.D22.teamC.DBManager;
-import edu.wpi.cs3733.D22.teamC.entity.floor.Floor;
-import edu.wpi.cs3733.D22.teamC.entity.floor.FloorDAOImpl;
 
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -76,8 +74,7 @@ public class LocationDAOImpl implements LocationDAO {
         try {
             // Check if entry of same nodeID already exists
             Location locationInDB = getLocation(location.getNodeID());
-            Floor floor = (new FloorDAOImpl()).getFloor(location.getFloor());
-            if (locationInDB == null && floor != null) {
+            if (locationInDB == null) {
                 // Execute INSERT Statement
                 PreparedStatement statement = (location.getNodeID() == 0)
                         ? DBManager.getInstance().connection.prepareStatement("INSERT INTO LOCATION VALUES(DEFAULT, ?, ?, ?, ?, ?, ?, ?)", Statement.RETURN_GENERATED_KEYS)
@@ -91,7 +88,7 @@ public class LocationDAOImpl implements LocationDAO {
 
                 statement.setInt(index, location.getX()); index++;
                 statement.setInt(index, location.getY()); index++;
-                statement.setInt(index, location.getFloor()); index++;
+                statement.setString(index, location.getFloor()); index++;
                 statement.setString(index, location.getBuilding()); index++;
                 statement.setString(index, location.getNodeType().toString()); index++;
                 statement.setString(index, location.getLongName()); index++;
@@ -127,7 +124,7 @@ public class LocationDAOImpl implements LocationDAO {
                 );
                 statement.setInt(1, location.getX());
                 statement.setInt(2, location.getY());
-                statement.setInt(3, location.getFloor());
+                statement.setString(3, location.getFloor());
                 statement.setString(4, location.getBuilding());
                 statement.setString(5, location.getNodeType().toString());
                 statement.setString(6, location.getLongName());
@@ -178,10 +175,10 @@ public class LocationDAOImpl implements LocationDAO {
      * @param resultSet ResultSet from query to Location DB Table.
      * @return Location object converted from query.
      */
-    public Location createLocation(ResultSet resultSet) {
+    private Location createLocation(ResultSet resultSet) {
         try {
             Location location = new Location(resultSet.getInt("ID"));
-            location.setFloor(resultSet.getInt("FLOOR"));
+            location.setFloor(typesafeTrim(resultSet.getString("FLOOR")));
             location.setBuilding(typesafeTrim(resultSet.getString("BUILDING")));
             location.setNodeType(Location.NodeType.valueOf(resultSet.getString("NODETYPE")));
             location.setLongName(typesafeTrim(resultSet.getString("LONGNAME")));
