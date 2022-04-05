@@ -30,8 +30,7 @@ public class BaseMapViewController implements Initializable {
     GridPane mapViewGridPane;
 
     // External controllers
-    EditMapController editMapController;
-    ViewMapController viewMapController;
+    ViewMapController mapController;
 
     // Constants
     public static final String MAP_PATH = "view/location/map/map.fxml";
@@ -57,6 +56,7 @@ public class BaseMapViewController implements Initializable {
         // Load map display into grid pane
         App.View mapPane = App.instance.loadView(MAP_PATH, new ViewMapController());
         mapViewGridPane.add(mapPane.getNode(), 0,0);
+        mapController = (ViewMapController) mapPane.getController();
     }
 
     public void swapToEditMode() {
@@ -68,6 +68,7 @@ public class BaseMapViewController implements Initializable {
         App.View mapPane = App.instance.loadView(MAP_PATH, new EditMapController());
         mapViewGridPane.getChildren().remove(0, 0);
         mapViewGridPane.add(mapPane.getNode(), 0,0);
+        mapController = (EditMapController) mapPane.getController();
     }
 
     public void swapToViewMode() {
@@ -79,9 +80,10 @@ public class BaseMapViewController implements Initializable {
         App.View mapPane = App.instance.loadView(MAP_PATH, new ViewMapController());
         mapViewGridPane.getChildren().remove(0, 0);
         mapViewGridPane.add(mapPane.getNode(), 0,0);
+        mapController = (ViewMapController) mapPane.getController();
     }
 
     public void saveMap() {
-
+        ((EditMapController) mapController).saveMap();
     }
 }
