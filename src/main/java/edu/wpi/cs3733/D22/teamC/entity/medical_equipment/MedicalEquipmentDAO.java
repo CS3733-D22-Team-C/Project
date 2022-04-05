@@ -6,7 +6,7 @@ import java.util.List;
 
 public interface MedicalEquipmentDAO {
     public List<MedicalEquipment> getMedicalEquipments();
-    public List<MedicalEquipment> getMedicalEquipmentAtLocation(Location location);
+    public List<MedicalEquipment> getMedicalEquipmentAtLocation(int locationID);
     public MedicalEquipment getMedicalEquipment(int equipID);
 
     public int insertMedicalEquipment(MedicalEquipment medical_equipment);

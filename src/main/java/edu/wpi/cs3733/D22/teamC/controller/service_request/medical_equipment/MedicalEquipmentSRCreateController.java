@@ -3,6 +3,7 @@ package edu.wpi.cs3733.D22.teamC.controller.service_request.medical_equipment;
 import com.jfoenix.controls.*;
 import com.jfoenix.controls.datamodels.treetable.RecursiveTreeObject;
 import edu.wpi.cs3733.D22.teamC.controller.service_request.ServiceRequestCreateController;
+import edu.wpi.cs3733.D22.teamC.entity.medical_equipment.MedicalEquipment;
 import edu.wpi.cs3733.D22.teamC.entity.service_request.ServiceRequest;
 import edu.wpi.cs3733.D22.teamC.entity.service_request.ServiceRequestDAO;
 import edu.wpi.cs3733.D22.teamC.entity.service_request.medical_equipment.MedicalEquipmentSRDAOImpl;
@@ -40,7 +41,7 @@ public class MedicalEquipmentSRCreateController extends ServiceRequestCreateCont
         super.initialize(url, rb);
 
         //For equipment type drop down
-        for (MedicalEquipmentSR.EquipmentType type : MedicalEquipmentSR.EquipmentType.values()) {
+        for (MedicalEquipment.EquipmentType type : MedicalEquipment.EquipmentType.values()) {
             equipType.getItems().add(type.toString());
         }
 
@@ -81,7 +82,6 @@ public class MedicalEquipmentSRCreateController extends ServiceRequestCreateCont
         //Sets from combo boxes
         medEquip.setStatus(ServiceRequest.Status.valueOf(status.getValue()));
         medEquip.setPriority(ServiceRequest.Priority.valueOf(priority.getValue()));
-        medEquip.setEquipmentType(MedicalEquipmentSR.EquipmentType.valueOf(equipType.getValue()));
 
         //Request ID generator
         int requestID = (int)(Math.random() * (10000000 + 1)) + 0;
@@ -89,10 +89,6 @@ public class MedicalEquipmentSRCreateController extends ServiceRequestCreateCont
         medEquip.setRequestID(Integer.parseInt(requestIDString));
         System.out.println(requestIDString);
 
-        //Dealing with the equipment type and the enumerator
-        int type = medEquip.getEquipmentType().ordinal();
-        String num = equipID.getText();
-        medEquip.setEquipmentID(type + num);
         clickReset(event);
 
         medEquip.setRequestType(ServiceRequest.RequestType.Medical_Equipment);

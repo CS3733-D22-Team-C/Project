@@ -7,6 +7,9 @@ import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import static org.junit.jupiter.api.Assertions.*;
 
 class MedEquipDAOImplTest {
@@ -17,8 +20,8 @@ class MedEquipDAOImplTest {
     void setUp() {
         // Setup testing database and initialize Medical_Equipment table
         testDBManager = DBManager.startup(DBManager.TESTING_DATABASE_NAME);
-        testDBManager.initializeMedicalEquipmentTable(true);
         testDBManager.initializeLocationTable(true);
+        testDBManager.initializeMedicalEquipmentTable(true);
 
         // Setup testing LocationDAOImpl
         medicalEquipmentDAO = new MedicalEquipmentDAOImpl();
@@ -65,8 +68,8 @@ class MedEquipDAOImplTest {
         MedicalEquipment queryLocation = medicalEquipmentDAO.getMedicalEquipment(insertEquipment.getEquipID());
         assertNotNull(queryLocation);
         assertEquals(retrievedID, queryLocation.getEquipID());
-        assertEquals(equipmentStatus, queryLocation.getEquipmentStatus().toString());
-        assertEquals(equipmentType, queryLocation.getEquipmentType().toString());
+        assertEquals(equipmentStatus, queryLocation.getEquipmentStatus());
+        assertEquals(equipmentType, queryLocation.getEquipmentType());
         assertEquals(locationID, queryLocation.getLocationID());
     }
 
@@ -142,5 +145,39 @@ class MedEquipDAOImplTest {
         // Cannot Update Nonexistent Equipment
         MedicalEquipment newEquipment = new MedicalEquipment(1234);
         assertFalse(medicalEquipmentDAO.updateMedicalEquipment(newEquipment));
+    }
+    @Test
+    void testEquipmentAtLocation() {
+        assertEquals(0, medicalEquipmentDAO.getMedicalEquipments().size());
+        assertEquals(null, medicalEquipmentDAO.getMedicalEquipment(1234));
+
+        //Insert Equipments into DB
+        int locationID = 1234;
+
+        MedicalEquipment.EquipmentType equipmentType = MedicalEquipment.EquipmentType.Infusion_Pump;
+        MedicalEquipment.EquipmentStatus equipmentStatus = MedicalEquipment.EquipmentStatus.Available;
+
+        MedicalEquipment.EquipmentType equipmentType2 = MedicalEquipment.EquipmentType.Portable_X_Ray;
+        MedicalEquipment.EquipmentStatus equipmentStatus2 = MedicalEquipment.EquipmentStatus.Unavailable;
+
+        MedicalEquipment.EquipmentType equipmentType3 = MedicalEquipment.EquipmentType.Bed;
+        MedicalEquipment.EquipmentStatus equipmentStatus3 = MedicalEquipment.EquipmentStatus.Dirty;
+
+        MedicalEquipment equipment1 = new MedicalEquipment(locationID, equipmentType, equipmentStatus);
+        MedicalEquipment equipment2 = new MedicalEquipment(locationID, equipmentType2, equipmentStatus2);
+        MedicalEquipment equipment3 = new MedicalEquipment(locationID, equipmentType3, equipmentStatus3);
+
+        ArrayList<MedicalEquipment> medicalEquipmentList = new ArrayList<MedicalEquipment>();
+        medicalEquipmentList.add(equipment1);
+        medicalEquipmentList.add(equipment2);
+        medicalEquipmentList.add(equipment3);
+
+        List<MedicalEquipment> queriedList = medicalEquipmentDAO.getMedicalEquipmentAtLocation(locationID);
+
+        int counter = 0;
+        while(counter < queriedList.size()) {
+            assertEquals(medicalEquipmentList.get(counter), queriedList.get(counter));
+            counter++;
+        }
     }
 }

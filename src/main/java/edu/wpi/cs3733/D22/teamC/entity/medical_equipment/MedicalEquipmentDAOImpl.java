@@ -39,17 +39,17 @@ public class MedicalEquipmentDAOImpl implements MedicalEquipmentDAO {
 
     /**
      * takes in a location and returns the list of medical equipments at this current location
-     * @param location the Location object
+     * @param locationID the id of the location given
      * @return the list of medical equipments at this current location
      */
     @Override
-    public List<MedicalEquipment> getMedicalEquipmentAtLocation(Location location) {
+    public List<MedicalEquipment> getMedicalEquipmentAtLocation(int locationID) {
         try {
             // Execute SELECT Query
             PreparedStatement statement =  DBManager.getInstance().connection.prepareStatement(
                     "SELECT * FROM Medical_Equipment WHERE locationID = ?"
             );
-            statement.setInt(1, location.getNodeID());
+            statement.setInt(1, locationID);
             ResultSet resultSet = statement.executeQuery();
 
             List<MedicalEquipment> equipments = new ArrayList<>();
@@ -103,16 +103,16 @@ public class MedicalEquipmentDAOImpl implements MedicalEquipmentDAO {
             MedicalEquipment equipmentInDB = getMedicalEquipment(medical_equipment.getEquipID());
             if (equipmentInDB == null) {
                 // Execute INSERT Statement
-                PreparedStatement statement = (equipmentInDB.getEquipID() == 0)
-                        ? DBManager.getInstance().connection.prepareStatement("INSERT INTO Medical_Equipment VALUES(DEFAULT, ?, ?, ?)", Statement.RETURN_GENERATED_KEYS)
-                        : DBManager.getInstance().connection.prepareStatement("INSERT INTO Medical_Equipment VALUES(?, ?, ?, ?)", Statement.RETURN_GENERATED_KEYS);
+                PreparedStatement statement = (medical_equipment.getEquipID() == 0)
+                        ? DBManager.getInstance().connection.prepareStatement("INSERT INTO MEDICAL_EQUIPMENT VALUES(DEFAULT, ?, ?, ?)", Statement.RETURN_GENERATED_KEYS)
+                        : DBManager.getInstance().connection.prepareStatement("INSERT INTO MEDICAL_EQUIPMENT VALUES(?, ?, ?, ?)", Statement.RETURN_GENERATED_KEYS);
 
                 int index = 1;
-                if (equipmentInDB.getEquipID() != 0) {
-                    statement.setInt(index, equipmentInDB.getEquipID());
+                if (medical_equipment.getEquipID() != 0) {
+                    statement.setInt(index, medical_equipment.getEquipID());
                     index++;
                 }
-
+                statement.setInt(index, medical_equipment.getLocationID()); index++;
                 statement.setString(index, medical_equipment.getEquipmentType().toString()); index++;
                 statement.setString(index, medical_equipment.getEquipmentStatus().toString());
                 statement.execute();
@@ -146,6 +146,7 @@ public class MedicalEquipmentDAOImpl implements MedicalEquipmentDAO {
                 statement.setInt(1, medical_equipment.getLocationID());
                 statement.setString(2, medical_equipment.getEquipmentType().toString());
                 statement.setString(3, medical_equipment.getEquipmentStatus().toString());
+                statement.setInt(4, medical_equipment.getEquipID());
                 statement.execute();
                 return true;
             }
