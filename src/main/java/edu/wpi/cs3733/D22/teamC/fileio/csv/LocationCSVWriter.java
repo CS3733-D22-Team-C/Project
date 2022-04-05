@@ -41,7 +41,7 @@ public class LocationCSVWriter extends CSVWriter<Location> {
                 output = Integer.toString(object.getY());
                 break;
             case "floor":
-                output = object.getFloor();
+                output = Integer.toString(object.getFloor());
                 break;
             case "building":
                 output = object.getBuilding();

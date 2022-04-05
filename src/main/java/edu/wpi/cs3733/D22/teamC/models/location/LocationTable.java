@@ -18,7 +18,7 @@ public class LocationTable extends RecursiveTreeObject<LocationTable> {
     StringProperty nodeType;
     StringProperty shortName;
     StringProperty longName;
-    StringProperty floor;
+    IntegerProperty floor;
     StringProperty building;
     IntegerProperty x;
     IntegerProperty y;
@@ -28,7 +28,7 @@ public class LocationTable extends RecursiveTreeObject<LocationTable> {
         this.nodeType  = new SimpleStringProperty(location.getNodeType().toString());
         this.shortName = new SimpleStringProperty(location.getShortName());
         this.longName  = new SimpleStringProperty(location.getLongName());
-        this.floor     = new SimpleStringProperty(location.getFloor());
+        this.floor     = new SimpleIntegerProperty(location.getFloor());
         this.building  = new SimpleStringProperty(location.getBuilding());
         this.x = new SimpleIntegerProperty(location.getX());
         this.y = new SimpleIntegerProperty(location.getY());
@@ -69,12 +69,12 @@ public class LocationTable extends RecursiveTreeObject<LocationTable> {
                 return param.getValue().getValue().longName;
             }
         });
-        JFXTreeTableColumn<LocationTable, String> floorCol = new JFXTreeTableColumn<>("Floor");
+        JFXTreeTableColumn<LocationTable, Integer> floorCol = new JFXTreeTableColumn<>("Floor");
         floorCol.setMaxWidth(1f * Integer.MAX_VALUE * 12.5);
-        floorCol.setCellValueFactory(new Callback<TreeTableColumn.CellDataFeatures<LocationTable, String>, ObservableValue<String>>() {
+        floorCol.setCellValueFactory(new Callback<TreeTableColumn.CellDataFeatures<LocationTable, Integer>, ObservableValue<Integer>>() {
             @Override
-            public ObservableValue<String> call(TreeTableColumn.CellDataFeatures<LocationTable, String> param) {
-                return param.getValue().getValue().floor;
+            public ObservableValue<Integer> call(TreeTableColumn.CellDataFeatures<LocationTable, Integer> param) {
+                return param.getValue().getValue().floor.asObject();
             }
         });
         JFXTreeTableColumn<LocationTable, String> buildingCol = new JFXTreeTableColumn<>("Building");
