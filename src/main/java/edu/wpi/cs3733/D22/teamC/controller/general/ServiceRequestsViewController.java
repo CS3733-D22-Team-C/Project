@@ -118,6 +118,7 @@ public class ServiceRequestsViewController implements Initializable {
                     ServiceRequestTable clickedRow = row.getItem();
 
                     sendData(clickedRow);
+                    //if(clickedRow.getStatus() == )
                     edit.setDisable(false);
                     resolve.setDisable(false);
                 }
