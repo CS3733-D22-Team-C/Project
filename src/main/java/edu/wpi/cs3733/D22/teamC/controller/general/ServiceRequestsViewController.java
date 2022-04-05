@@ -36,8 +36,12 @@ public class ServiceRequestsViewController implements Initializable {
     public static final String FACILITY_MAINTENANCE_CREATE_PATH = "view/service_request/facility_maintenance/create_form.fxml";
     public static final String SECURITY_CREATE_PATH = "view/service_request/security/create_form.fxml";
 
-    public static final String MEDICAL_EQUIPMENT_RESOLVE_PATH = "view/service_request/medical_equipment/resolve-form.fxml";
-
+    public static final String MEDICAL_EQUIPMENT_RESOLVE_PATH = "view/service_request/medical_equipment/resolve_form.fxml";
+    public static final String LAB_SYSTEM_RESOLVE_PATH = "view/service_request/lab_system/resolve_form.fxml";
+    public static final String MEDICINE_DELIVERY_RESOLVE_PATH = "view/service_request/medicine_delivery/resolve_form.fxml";
+    public static final String SANITATION_RESOLVE_PATH = "view/service_request/sanitation/resolve_form.fxml";
+    public static final String FACILITY_MAINTENANCE_RESOLVE_PATH = "view/service_request/facility_maintenance/resolve_form.fxml";
+    public static final String SECURITY_RESOLVE_PATH = "view/service_request/security/resolve_form.fxml";
 
     //Buttons
     @FXML private JFXButton selectButton;
@@ -119,19 +123,19 @@ public class ServiceRequestsViewController implements Initializable {
                             App.instance.setView(MEDICAL_EQUIPMENT_RESOLVE_PATH);
                             break;
                         case "Facility_Maintenance":
-                            // TODO: Add Resolve Path
+                            App.instance.setView(FACILITY_MAINTENANCE_RESOLVE_PATH);
                             break;
                         case "Lab_System":
-                            // TODO: Add Resolve Path
+                            App.instance.setView(LAB_SYSTEM_RESOLVE_PATH);
                             break;
                         case "Medicine_Delivery":
-                            // TODO: Add Resolve Path
+                            App.instance.setView(MEDICINE_DELIVERY_RESOLVE_PATH);
                             break;
                         case "Sanitation":
-                            // TODO: Add Resolve Path
+                            App.instance.setView(SANITATION_RESOLVE_PATH);
                             break;
                         case "Security":
-                            // TODO: Add Resolve Path
+                            App.instance.setView(SECURITY_RESOLVE_PATH);
                             break;
                         default:
                             System.out.println("Not a valid Service Request");
@@ -151,19 +155,19 @@ public class ServiceRequestsViewController implements Initializable {
                             App.instance.setView(MEDICAL_EQUIPMENT_RESOLVE_PATH);
                             break;
                         case "Facility_Maintenance":
-                            // TODO: Add Resolve Path
+                            App.instance.setView(FACILITY_MAINTENANCE_RESOLVE_PATH);
                             break;
                         case "Lab_System":
-                            // TODO: Add Resolve Path
+                            App.instance.setView(LAB_SYSTEM_RESOLVE_PATH);
                             break;
                         case "Medicine_Delivery":
-                            // TODO: Add Resolve Path
+                            App.instance.setView(MEDICINE_DELIVERY_RESOLVE_PATH);
                             break;
                         case "Sanitation":
-                            // TODO: Add Resolve Path
+                            App.instance.setView(SANITATION_RESOLVE_PATH);
                             break;
                         case "Security":
-                            // TODO: Add Resolve Path
+                            App.instance.setView(SECURITY_RESOLVE_PATH);
                             break;
                         default:
                             System.out.println("Not a valid Service Request");
@@ -206,19 +210,19 @@ public class ServiceRequestsViewController implements Initializable {
                 App.instance.setView(MEDICAL_EQUIPMENT_RESOLVE_PATH);
                 break;
             case "Facility_Maintenance":
-                // TODO: Add Resolve Path
+                App.instance.setView(FACILITY_MAINTENANCE_RESOLVE_PATH);
                 break;
             case "Lab_System":
-                // TODO: Add Resolve Path
+                App.instance.setView(LAB_SYSTEM_RESOLVE_PATH);
                 break;
             case "Medicine_Delivery":
-                // TODO: Add Resolve Path
+                App.instance.setView(MEDICINE_DELIVERY_RESOLVE_PATH);
                 break;
             case "Sanitation":
-                // TODO: Add Resolve Path
+                App.instance.setView(SANITATION_RESOLVE_PATH);
                 break;
             case "Security":
-                // TODO: Add Resolve Path
+                App.instance.setView(SECURITY_RESOLVE_PATH);
                 break;
             default:
                 System.out.println("Not a valid Service Request");
@@ -232,19 +236,19 @@ public class ServiceRequestsViewController implements Initializable {
                 App.instance.setView(MEDICAL_EQUIPMENT_RESOLVE_PATH);
                 break;
             case "Facility_Maintenance":
-                // TODO: Add Resolve Path
+                App.instance.setView(FACILITY_MAINTENANCE_RESOLVE_PATH);
                 break;
             case "Lab_System":
-                // TODO: Add Resolve Path
+                App.instance.setView(LAB_SYSTEM_RESOLVE_PATH);
                 break;
             case "Medicine_Delivery":
-                // TODO: Add Resolve Path
+                App.instance.setView(MEDICINE_DELIVERY_RESOLVE_PATH);
                 break;
             case "Sanitation":
-                // TODO: Add Resolve Path
+                App.instance.setView(SANITATION_RESOLVE_PATH);
                 break;
             case "Security":
-                // TODO: Add Resolve Path
+                App.instance.setView(SECURITY_RESOLVE_PATH);
                 break;
             default:
                 System.out.println("Not a valid Service Request");
