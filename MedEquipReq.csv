@@ -8,3 +8,6 @@ requestID,creatorID,assigneeID,location,creationTimestamp,status,priority,reques
 7,ECR0000007,EAS0000007,DEPT000007,2022-01-31 07:10:59.0,Blank,Low,Medical_Equipment,liquid test,Infusion_Pump,INF0000002
 8,ECR0000008,EAS0000008,DEPT000008,2022-02-02 04:11:41.0,Processing,Medium,Medical_Equipment,fluidity,Infusion_Pump,INF0000003
 9,ECR0000009,EAS0000009,DEPT000009,2022-02-04 05:12:37.0,Done,High,Medical_Equipment,physical,Bed,BED0000003
+7861096,null,1,1,2022-04-05 03:19:52.947,Blank,Low,Medical_Equipment,,Recliner,11
+3462854,null,2,2,2022-04-05 03:20:13.008,Blank,Medium,Medical_Equipment,,Bed,02
+7798387,null,3,3,2022-04-05 03:20:30.392,Done,Low,Medical_Equipment,,Bed,05
