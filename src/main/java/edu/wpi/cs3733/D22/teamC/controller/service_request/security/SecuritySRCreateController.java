@@ -40,10 +40,7 @@ public class SecuritySRCreateController extends ServiceRequestCreateController {
         super.initialize(url, rb);
 
         //For equipment type drop down
-        secType.getItems().add("Security_guard");
-        secType.getItems().add("Fire_protection");
-        secType.getItems().add("Police_force");
-        secType.getItems().add("Lockdown");
+        secType.getItems().add("intruder");
 
         SecuritySRTable.createTableColumns(table);
         table.setRoot(root);
