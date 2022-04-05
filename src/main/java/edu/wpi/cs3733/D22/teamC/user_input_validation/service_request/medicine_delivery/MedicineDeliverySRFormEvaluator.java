@@ -34,7 +34,7 @@ public class MedicineDeliverySRFormEvaluator extends ServiceRequestFormEvaluator
     {
         if(patientID.isEmpty())
         {
-            return ServiceRequestUserInputValidationErrorRecord.serviceRequestUserInputValidationErrorList[8];
+            return ServiceRequestUserInputValidationErrorRecord.serviceRequestUserInputValidationErrorList[10];
         }
         else
         {
@@ -43,7 +43,7 @@ public class MedicineDeliverySRFormEvaluator extends ServiceRequestFormEvaluator
 
             if(patientIDLength == 0)
             {
-                return ServiceRequestUserInputValidationErrorRecord.serviceRequestUserInputValidationErrorList[8];
+                return ServiceRequestUserInputValidationErrorRecord.serviceRequestUserInputValidationErrorList[10];
             }
             else
             {
@@ -61,7 +61,7 @@ public class MedicineDeliverySRFormEvaluator extends ServiceRequestFormEvaluator
     {
         if(medicine.isEmpty())
         {
-            return ServiceRequestUserInputValidationErrorRecord.serviceRequestUserInputValidationErrorList[12];
+            return ServiceRequestUserInputValidationErrorRecord.serviceRequestUserInputValidationErrorList[11];
         }
         else
         {
@@ -78,7 +78,7 @@ public class MedicineDeliverySRFormEvaluator extends ServiceRequestFormEvaluator
     {
         if(dosage.isEmpty())
         {
-            return ServiceRequestUserInputValidationErrorRecord.serviceRequestUserInputValidationErrorList[13];
+            return ServiceRequestUserInputValidationErrorRecord.serviceRequestUserInputValidationErrorList[12];
         }
         else
         {

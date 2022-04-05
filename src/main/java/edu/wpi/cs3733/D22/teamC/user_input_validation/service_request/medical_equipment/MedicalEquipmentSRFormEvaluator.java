@@ -33,7 +33,7 @@ public class MedicalEquipmentSRFormEvaluator extends ServiceRequestFormEvaluator
    {
        if(equipType.isEmpty())
        {
-           return ServiceRequestUserInputValidationErrorRecord.serviceRequestUserInputValidationErrorList[9];
+           return ServiceRequestUserInputValidationErrorRecord.serviceRequestUserInputValidationErrorList[8];
        }
        else
        {
@@ -50,7 +50,7 @@ public class MedicalEquipmentSRFormEvaluator extends ServiceRequestFormEvaluator
    {
        if(equipID.isEmpty())
        {
-            return ServiceRequestUserInputValidationErrorRecord.serviceRequestUserInputValidationErrorList[10];
+            return ServiceRequestUserInputValidationErrorRecord.serviceRequestUserInputValidationErrorList[9];
        }
        else
        {
@@ -60,7 +60,7 @@ public class MedicalEquipmentSRFormEvaluator extends ServiceRequestFormEvaluator
 
            if(equipIDLength == 0)
            {
-               return ServiceRequestUserInputValidationErrorRecord.serviceRequestUserInputValidationErrorList[10];
+               return ServiceRequestUserInputValidationErrorRecord.serviceRequestUserInputValidationErrorList[9];
            }
            else
            {

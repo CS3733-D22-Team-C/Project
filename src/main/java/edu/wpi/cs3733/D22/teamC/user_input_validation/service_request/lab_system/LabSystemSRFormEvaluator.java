@@ -33,7 +33,7 @@ public class LabSystemSRFormEvaluator extends ServiceRequestFormEvaluator {
     {
         if(labType.isEmpty())
         {
-            return ServiceRequestUserInputValidationErrorRecord.serviceRequestUserInputValidationErrorList[7];
+            return ServiceRequestUserInputValidationErrorRecord.serviceRequestUserInputValidationErrorList[6];
         }
         else
         {
@@ -51,7 +51,7 @@ public class LabSystemSRFormEvaluator extends ServiceRequestFormEvaluator {
 
         if(patientID.isEmpty())
         {
-            return ServiceRequestUserInputValidationErrorRecord.serviceRequestUserInputValidationErrorList[8];
+            return ServiceRequestUserInputValidationErrorRecord.serviceRequestUserInputValidationErrorList[10];
         }
         else
         {
@@ -60,7 +60,7 @@ public class LabSystemSRFormEvaluator extends ServiceRequestFormEvaluator {
 
             if(patientIDLength == 0)
             {
-                return ServiceRequestUserInputValidationErrorRecord.serviceRequestUserInputValidationErrorList[8];
+                return ServiceRequestUserInputValidationErrorRecord.serviceRequestUserInputValidationErrorList[10];
             }
             else
             {

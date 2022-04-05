@@ -26,7 +26,6 @@ public class ServiceRequestFormEvaluator {
     {
         ArrayList <ServiceRequestUserInputValidationErrorItem> errorList = new ArrayList <ServiceRequestUserInputValidationErrorItem>();
 
-        errorList.add(checkAssigneeIDFilled(assigneeID));
         errorList.add(checkLocationIDFilled(locationID));
         errorList.add(checkPriorityFilled(priority));
         errorList.add(checkStatusFilled(status));
@@ -52,7 +51,7 @@ public class ServiceRequestFormEvaluator {
         }
         else
         {
-            return ServiceRequestUserInputValidationErrorRecord.serviceRequestUserInputValidationErrorList[4];
+            return ServiceRequestUserInputValidationErrorRecord.serviceRequestUserInputValidationErrorList[3];
         }
     }
 
@@ -76,35 +75,7 @@ public class ServiceRequestFormEvaluator {
 
             if(locationDaoVar.getLocation(locationConv) == null) //assumes the user inputs a location ID in the service request location field.
             {
-                return ServiceRequestUserInputValidationErrorRecord.serviceRequestUserInputValidationErrorList[5];
-            }
-            else
-            {
-                return null;
-            }
-        }
-    }
-
-    /**
-     * Determine if the assigneeID of a ServiceRequest is filled.
-     * @param assigneeID
-     * @return ServiceRequestValidationErrorItem
-     */
-    public ServiceRequestUserInputValidationErrorItem checkAssigneeIDFilled(String assigneeID)
-    {
-
-        if(assigneeID.isEmpty())
-        {
-            return ServiceRequestUserInputValidationErrorRecord.serviceRequestUserInputValidationErrorList[1];
-        }
-        else
-        {
-            int assigneeIDConv = Integer.parseInt(assigneeID);
-            int assigneeIDLength = (int)(Math.log10(assigneeIDConv)+1);
-
-            if(assigneeIDLength == 0)
-            {
-                return ServiceRequestUserInputValidationErrorRecord.serviceRequestUserInputValidationErrorList[1];
+                return ServiceRequestUserInputValidationErrorRecord.serviceRequestUserInputValidationErrorList[4];
             }
             else
             {
@@ -150,7 +121,7 @@ public class ServiceRequestFormEvaluator {
     {
        if(status.isEmpty())
        {
-           return ServiceRequestUserInputValidationErrorRecord.serviceRequestUserInputValidationErrorList[2];
+           return ServiceRequestUserInputValidationErrorRecord.serviceRequestUserInputValidationErrorList[1];
        }
        else
        {
@@ -167,7 +138,7 @@ public class ServiceRequestFormEvaluator {
     {
         if(priority.isEmpty())
         {
-            return ServiceRequestUserInputValidationErrorRecord.serviceRequestUserInputValidationErrorList[3];
+            return ServiceRequestUserInputValidationErrorRecord.serviceRequestUserInputValidationErrorList[2];
         }
         else
         {

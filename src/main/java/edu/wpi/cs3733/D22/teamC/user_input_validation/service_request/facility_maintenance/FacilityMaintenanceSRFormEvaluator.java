@@ -32,7 +32,7 @@ public class FacilityMaintenanceSRFormEvaluator extends ServiceRequestFormEvalua
     {
         if(maintenanceType.isEmpty())
         {
-            return ServiceRequestUserInputValidationErrorRecord.serviceRequestUserInputValidationErrorList[6];
+            return ServiceRequestUserInputValidationErrorRecord.serviceRequestUserInputValidationErrorList[5];
         }
         else
         {

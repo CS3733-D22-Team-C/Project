@@ -32,7 +32,7 @@ public class SanitationSRFormEvaluator extends ServiceRequestFormEvaluator {
     {
         if(sanitationType.isEmpty())
         {
-            return ServiceRequestUserInputValidationErrorRecord.serviceRequestUserInputValidationErrorList[14];
+            return ServiceRequestUserInputValidationErrorRecord.serviceRequestUserInputValidationErrorList[13];
         }
         else
         {
