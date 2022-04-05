@@ -83,11 +83,8 @@ public class MedicalEquipmentSRCreateController extends ServiceRequestCreateCont
         MedicalEquipmentSRFormEvaluator mESRFE = new MedicalEquipmentSRFormEvaluator();
 
         //Even though the initialize function in ServiceRequestController sets up the assigneeID and location textfields to only read in integers, parseInt() still needs to be used on these text fields.
-        int assigneeIDInt = Integer.parseInt(assigneeID.getText());
-        int locationInt = Integer.parseInt(location.getText());
-        int equipIDInt = Integer.parseInt(equipID.getText()); //Should be turned into a dropdown
 
-        ArrayList<ServiceRequestUserInputValidationErrorItem> errors = mESRFE.getMedicalEquipmentSRValidationTestResult(locationInt, assigneeIDInt, status.getSelectionModel(), priority.getSelectionModel(), equipType.getSelectionModel(), equipIDInt);
+        ArrayList<ServiceRequestUserInputValidationErrorItem> errors = mESRFE.getMedicalEquipmentSRValidationTestResult(location.getText(), assigneeID.getText(), status.getSelectionModel(), priority.getSelectionModel(), equipType.getSelectionModel(), equipID.getText());
 
         if(errors.isEmpty())
         {
