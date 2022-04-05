@@ -1,6 +1,7 @@
 package edu.wpi.cs3733.D22.teamC.models.location;
 
 import com.jfoenix.controls.JFXTreeTableView;
+import edu.wpi.cs3733.D22.teamC.entity.floor.FloorDAOImpl;
 import edu.wpi.cs3733.D22.teamC.entity.location.Location;
 import edu.wpi.cs3733.D22.teamC.models.generic.TableDisplay;
 import javafx.beans.property.IntegerProperty;
@@ -23,9 +24,9 @@ public class LocationTableDisplay extends TableDisplay<Location> {
             super(location);
 
             id          = new SimpleIntegerProperty(location.getNodeID());
-            floor       = new SimpleStringProperty(location.getFloor());
+            floor       = new SimpleStringProperty((new FloorDAOImpl()).getFloor(location.getFloor()).getShortName());
             building    = new SimpleStringProperty(location.getBuilding());
-            nodeType    = new SimpleStringProperty(location.getNodeType());
+            nodeType    = new SimpleStringProperty(location.getNodeType().toString());
             longName    = new SimpleStringProperty(location.getLongName());
             shortName   = new SimpleStringProperty(location.getShortName());
             x           = new SimpleIntegerProperty(location.getX());

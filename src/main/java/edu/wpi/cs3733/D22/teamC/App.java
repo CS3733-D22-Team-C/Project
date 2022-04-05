@@ -1,14 +1,14 @@
 package edu.wpi.cs3733.D22.teamC;
 
+import edu.wpi.cs3733.D22.teamC.entity.floor.Floor;
+import edu.wpi.cs3733.D22.teamC.entity.floor.FloorDAO;
+import edu.wpi.cs3733.D22.teamC.entity.floor.FloorDAOImpl;
 import edu.wpi.cs3733.D22.teamC.entity.location.Location;
 import edu.wpi.cs3733.D22.teamC.entity.location.LocationDAO;
 import edu.wpi.cs3733.D22.teamC.entity.location.LocationDAOImpl;
 import edu.wpi.cs3733.D22.teamC.entity.service_request.medical_equipment.MedicalEquipmentSR;
 import edu.wpi.cs3733.D22.teamC.entity.service_request.medical_equipment.MedicalEquipmentSRDAOImpl;
-import edu.wpi.cs3733.D22.teamC.fileio.csv.LocationCSVReader;
-import edu.wpi.cs3733.D22.teamC.fileio.csv.LocationCSVWriter;
-import edu.wpi.cs3733.D22.teamC.fileio.csv.MedicalEquipmentSRCSVReader;
-import edu.wpi.cs3733.D22.teamC.fileio.csv.MedicalEquipmentSRCSVWriter;
+import edu.wpi.cs3733.D22.teamC.fileio.csv.*;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Group;
@@ -50,23 +50,39 @@ public class App extends Application {
         // Initialize Database Manager
         DBManager.startup(DBManager.DEVELOPMENT_DATABASE_NAME).initializeTables(true);
 
-        // Load CSV Data
-        LocationCSVReader csvReader = new LocationCSVReader();
-        List<Location> locations = csvReader.readFile("TowerLocations.csv");
-        if (locations != null) {
-            LocationDAO locationDAO = new LocationDAOImpl();
-            for (Location location : locations) {
-                locationDAO.insertLocation(location);
+        // Load CSV Data - Floor
+        {
+            FloorCSVReader csvReader = new FloorCSVReader();
+            List<Floor> floors = csvReader.readFile("TowerFloors.csv");
+            if (floors != null) {
+                FloorDAO floorDAO = new FloorDAOImpl();
+                for (Floor floor : floors) {
+                    floorDAO.insertFloor(floor);
+                }
             }
         }
 
-        // loading CSV for medical equipment service request
-        MedicalEquipmentSRCSVReader mECSVReader = new MedicalEquipmentSRCSVReader();
-        List<MedicalEquipmentSR> MedicalEquipmentSRs = mECSVReader.readFile("MedEquipReq.csv");
-        if(MedicalEquipmentSRs != null){
-            MedicalEquipmentSRDAOImpl serviceRequestDAO = new MedicalEquipmentSRDAOImpl();
-            for(MedicalEquipmentSR medEquipSR : MedicalEquipmentSRs){
-                serviceRequestDAO.insertServiceRequest(medEquipSR);
+        // Load CSV Data - Location
+        {
+            LocationCSVReader csvReader = new LocationCSVReader();
+            List<Location> locations = csvReader.readFile("TowerLocations.csv");
+            if (locations != null) {
+                LocationDAO locationDAO = new LocationDAOImpl();
+                for (Location location : locations) {
+                    locationDAO.insertLocation(location);
+                }
+            }
+        }
+
+        // Load CSV Data - Medical Equipment Service Request
+        {
+            MedicalEquipmentSRCSVReader csvReader = new MedicalEquipmentSRCSVReader();
+            List<MedicalEquipmentSR> MedicalEquipmentSRs = csvReader.readFile("MedEquipReq.csv");
+            if(MedicalEquipmentSRs != null){
+                MedicalEquipmentSRDAOImpl serviceRequestDAO = new MedicalEquipmentSRDAOImpl();
+                for(MedicalEquipmentSR medEquipSR : MedicalEquipmentSRs){
+                    serviceRequestDAO.insertServiceRequest(medEquipSR);
+                }
             }
         }
 
@@ -87,20 +103,36 @@ public class App extends Application {
 
     @Override
     public void stop() {
-        // Export CSV Data
-        LocationCSVWriter csvWriter = new LocationCSVWriter();
-        LocationDAO locationDAO = new LocationDAOImpl();
-        List<Location> locations = locationDAO.getAllLocations();
-        if (locations != null) {
-            csvWriter.writeFile("TowerLocations.csv", locations);
+        // Export CSV Data - Floor
+        {
+            FloorCSVWriter csvWriter = new FloorCSVWriter();
+            FloorDAO floorDAO = new FloorDAOImpl();
+            List<Floor> floors = floorDAO.getAllFloors();
+            if (floors != null) {
+                csvWriter.writeFile("TowerFloors.csv", floors);
+            }
         }
-        MedicalEquipmentSRCSVWriter mECSVWriter = new MedicalEquipmentSRCSVWriter();
-        MedicalEquipmentSRDAOImpl serviceRequestDAO = new MedicalEquipmentSRDAOImpl();
-        List<MedicalEquipmentSR> serviceRequests = serviceRequestDAO.getAllServiceRequests();
-        
-        if(serviceRequests != null){
-            mECSVWriter.writeFile("MedEquipReq.csv", serviceRequests);
+
+        // Export CSV Data - Location
+        {
+            LocationCSVWriter csvWriter = new LocationCSVWriter();
+            LocationDAO locationDAO = new LocationDAOImpl();
+            List<Location> locations = locationDAO.getAllLocations();
+            if (locations != null) {
+                csvWriter.writeFile("TowerLocations.csv", locations);
+            }
         }
+
+        // Export CSV Data - Medical Equipment Service Requests
+        {
+            MedicalEquipmentSRCSVWriter csvWriter = new MedicalEquipmentSRCSVWriter();
+            MedicalEquipmentSRDAOImpl serviceRequestDAO = new MedicalEquipmentSRDAOImpl();
+            List<MedicalEquipmentSR> serviceRequests = serviceRequestDAO.getAllServiceRequests();
+            if (serviceRequests != null){
+                csvWriter.writeFile("MedEquipReq.csv", serviceRequests);
+            }
+        }
+
         // Shutdown Database Manager
         DBManager.shutdown();
 
@@ -134,7 +166,7 @@ public class App extends Application {
             baseNode.autosize();
 
             if (scene != null) scene.setRoot(baseNode);
-            scene = new Scene(baseNode);
+            else scene = new Scene(baseNode);
             stage.setScene(scene);
             stage.show();
         } catch (IOException e) {

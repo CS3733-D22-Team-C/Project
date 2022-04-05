@@ -14,7 +14,7 @@ public class SecuritySRTableDisplay extends ServiceRequestTableDisplay<SecurityS
         public SecuritySRTableEntry(SecuritySR securitySR) {
             super(securitySR);
 
-            this.securityType = new SimpleStringProperty(securitySR.getSecurityType());
+            this.securityType = new SimpleStringProperty(securitySR.getSecurityType().toString());
         }
     }
 
