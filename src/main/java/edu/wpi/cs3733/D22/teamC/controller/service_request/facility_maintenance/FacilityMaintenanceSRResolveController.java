@@ -31,11 +31,6 @@ public class FacilityMaintenanceSRResolveController extends ServiceRequestResolv
         super.clickConfirm(event);
     }
 
-    @FXML
-    void maintTypeChanged(MouseEvent mouseEvent) {
-
-    }
-
     @Override
     protected boolean requiredFieldsPresent() {
         if(maintType.getValue() == null && maintType.getPromptText().equals(""))
