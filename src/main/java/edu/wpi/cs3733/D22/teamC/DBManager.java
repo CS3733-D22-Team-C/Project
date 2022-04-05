@@ -121,6 +121,7 @@ public class DBManager {
             } catch (SQLException e) {
                 System.out.println("Table creation failed for " + tableName + ". Check output console.");
                 e.printStackTrace();
+                System.exit(-1);
             }
         }
 
