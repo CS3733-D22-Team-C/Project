@@ -1,8 +1,8 @@
 package edu.wpi.cs3733.D22.teamC.fileio.csv;
 
-import edu.wpi.cs3733.D22.teamC.entity.location.Location;
+import edu.wpi.cs3733.D22.teamC.entity.floor.Floor;
 
-public class LocationCSVWriter extends CSVWriter<Location> {
+public class FloorCSVWriter extends CSVWriter<Floor> {
     /**
      * Manually define headers of attributes output to CSV.
      * @return The array of headers to be output to CSV.
@@ -10,12 +10,8 @@ public class LocationCSVWriter extends CSVWriter<Location> {
     @Override
     protected String[] compileHeaders() {
         return new String[]{
-                "nodeID",
-                "xcoord",
-                "ycoord",
-                "floor",
-                "building",
-                "nodeType",
+                "id",
+                "order",
                 "longName",
                 "shortName"
         };
@@ -28,26 +24,14 @@ public class LocationCSVWriter extends CSVWriter<Location> {
      * @return The retrieved value to be output to the CSV.
      */
     @Override
-    protected String compileAttribute(Location object, String header) {
+    protected String compileAttribute(Floor object, String header) {
         String output = "";
         switch (header) {
-            case "nodeID":
-                output = Integer.toString(object.getNodeID());
+            case "id":
+                output = Integer.toString(object.getFloorID());
                 break;
-            case "xcoord":
-                output = Integer.toString(object.getX());
-                break;
-            case "ycoord":
-                output = Integer.toString(object.getY());
-                break;
-            case "floor":
-                output = Integer.toString(object.getFloor());
-                break;
-            case "building":
-                output = object.getBuilding();
-                break;
-            case "nodeType":
-                output = object.getNodeType().toString();
+            case "order":
+                output = Integer.toString(object.getOrder());
                 break;
             case "longName":
                 output = object.getLongName();

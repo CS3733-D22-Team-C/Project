@@ -1,14 +1,15 @@
 package edu.wpi.cs3733.D22.teamC;
 
+import edu.wpi.cs3733.D22.teamC.entity.floor.Floor;
+import edu.wpi.cs3733.D22.teamC.entity.floor.FloorDAO;
+import edu.wpi.cs3733.D22.teamC.entity.floor.FloorDAOImpl;
+import edu.wpi.cs3733.D22.teamC.controller.service_request.ServiceRequestResolveController;
 import edu.wpi.cs3733.D22.teamC.entity.location.Location;
 import edu.wpi.cs3733.D22.teamC.entity.location.LocationDAO;
 import edu.wpi.cs3733.D22.teamC.entity.location.LocationDAOImpl;
 import edu.wpi.cs3733.D22.teamC.entity.service_request.medical_equipment.MedicalEquipmentSR;
 import edu.wpi.cs3733.D22.teamC.entity.service_request.medical_equipment.MedicalEquipmentSRDAOImpl;
-import edu.wpi.cs3733.D22.teamC.fileio.csv.LocationCSVReader;
-import edu.wpi.cs3733.D22.teamC.fileio.csv.LocationCSVWriter;
-import edu.wpi.cs3733.D22.teamC.fileio.csv.MedicalEquipmentSRCSVReader;
-import edu.wpi.cs3733.D22.teamC.fileio.csv.MedicalEquipmentSRCSVWriter;
+import edu.wpi.cs3733.D22.teamC.fileio.csv.*;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Group;
@@ -61,31 +62,44 @@ public class App extends Application {
     private Stage stage;
     private Scene scene;
 
-    // References
-    private Node viewNode;
-
     @Override
     public void init() {
         // Initialize Database Manager
         DBManager.startup(DBManager.DEVELOPMENT_DATABASE_NAME).initializeTables(true);
 
-        // Load CSV Data
-        LocationCSVReader csvReader = new LocationCSVReader();
-        List<Location> locations = csvReader.readFile("TowerLocations.csv");
-        if (locations != null) {
-            LocationDAO locationDAO = new LocationDAOImpl();
-            for (Location location : locations) {
-                locationDAO.insertLocation(location);
+        // Load CSV Data - Floor
+        {
+            FloorCSVReader csvReader = new FloorCSVReader();
+            List<Floor> floors = csvReader.readFile("TowerFloors.csv");
+            if (floors != null) {
+                FloorDAO floorDAO = new FloorDAOImpl();
+                for (Floor floor : floors) {
+                    floorDAO.insertFloor(floor);
+                }
             }
         }
 
-        // loading CSV for medical equipment service request
-        MedicalEquipmentSRCSVReader mECSVReader = new MedicalEquipmentSRCSVReader();
-        List<MedicalEquipmentSR> MedicalEquipmentSRs = mECSVReader.readFile("MedEquipReq.csv");
-        if(MedicalEquipmentSRs != null){
-            MedicalEquipmentSRDAOImpl serviceRequestDAO = new MedicalEquipmentSRDAOImpl();
-            for(MedicalEquipmentSR medEquipSR : MedicalEquipmentSRs){
-                serviceRequestDAO.insertServiceRequest(medEquipSR);
+        // Load CSV Data - Location
+        {
+            LocationCSVReader csvReader = new LocationCSVReader();
+            List<Location> locations = csvReader.readFile("TowerLocations.csv");
+            if (locations != null) {
+                LocationDAO locationDAO = new LocationDAOImpl();
+                for (Location location : locations) {
+                    locationDAO.insertLocation(location);
+                }
+            }
+        }
+
+        // Load CSV Data - Medical Equipment Service Request
+        {
+            MedicalEquipmentSRCSVReader csvReader = new MedicalEquipmentSRCSVReader();
+            List<MedicalEquipmentSR> MedicalEquipmentSRs = csvReader.readFile("MedEquipReq.csv");
+            if(MedicalEquipmentSRs != null){
+                MedicalEquipmentSRDAOImpl serviceRequestDAO = new MedicalEquipmentSRDAOImpl();
+                for(MedicalEquipmentSR medEquipSR : MedicalEquipmentSRs){
+                    serviceRequestDAO.insertServiceRequest(medEquipSR);
+                }
             }
         }
 
@@ -108,20 +122,36 @@ public class App extends Application {
 
     @Override
     public void stop() {
-        // Export CSV Data
-        LocationCSVWriter csvWriter = new LocationCSVWriter();
-        LocationDAO locationDAO = new LocationDAOImpl();
-        List<Location> locations = locationDAO.getAllLocations();
-        if (locations != null) {
-            csvWriter.writeFile("TowerLocations.csv", locations);
+        // Export CSV Data - Floor
+        {
+            FloorCSVWriter csvWriter = new FloorCSVWriter();
+            FloorDAO floorDAO = new FloorDAOImpl();
+            List<Floor> floors = floorDAO.getAllFloors();
+            if (floors != null) {
+                csvWriter.writeFile("TowerFloors.csv", floors);
+            }
         }
-        MedicalEquipmentSRCSVWriter mECSVWriter = new MedicalEquipmentSRCSVWriter();
-        MedicalEquipmentSRDAOImpl serviceRequestDAO = new MedicalEquipmentSRDAOImpl();
-        List<MedicalEquipmentSR> serviceRequests = serviceRequestDAO.getAllServiceRequests();
-        
-        if(serviceRequests != null){
-            mECSVWriter.writeFile("MedEquipReq.csv", serviceRequests);
+
+        // Export CSV Data - Location
+        {
+            LocationCSVWriter csvWriter = new LocationCSVWriter();
+            LocationDAO locationDAO = new LocationDAOImpl();
+            List<Location> locations = locationDAO.getAllLocations();
+            if (locations != null) {
+                csvWriter.writeFile("TowerLocations.csv", locations);
+            }
         }
+
+        // Export CSV Data - Medical Equipment Service Requests
+        {
+            MedicalEquipmentSRCSVWriter csvWriter = new MedicalEquipmentSRCSVWriter();
+            MedicalEquipmentSRDAOImpl serviceRequestDAO = new MedicalEquipmentSRDAOImpl();
+            List<MedicalEquipmentSR> serviceRequests = serviceRequestDAO.getAllServiceRequests();
+            if (serviceRequests != null){
+                csvWriter.writeFile("MedEquipReq.csv", serviceRequests);
+            }
+        }
+
         // Shutdown Database Manager
         DBManager.shutdown();
 
@@ -129,40 +159,69 @@ public class App extends Application {
     }
 
     /**
-     * Allows us to change the view of the window
-     * @param viewFile path to the .fxml file to be displayed
+     * Set view for window from a file.
+     * @param viewFile Path to the FXML file to be displayed.
      */
     public void setView(String viewFile){
+        Node node = loadView(viewFile).getNode();
+        setView(node);
+    }
+
+    /**
+     * Set view for window from a node.
+     * @param viewNode Node to be displayed.
+     */
+    public void setView(Node viewNode) {
+        // Load Base Node
+        BorderPane baseNode = (BorderPane) loadView(BASE_COMPONENT_PATH).getNode();
+
+        // Load Menu Bar
+        Node menuBarNode = loadView(MENU_BAR_COMPONENT_PATH).getNode();
+
+        // Embed views and components
+        baseNode.setTop(menuBarNode);
+        baseNode.setCenter(viewNode);
+        baseNode.autosize();
+
+        if (scene != null) scene.setRoot(baseNode);
+        else scene = new Scene(baseNode);
+        stage.setScene(scene);
+        stage.show();
+    }
+
+    /**
+     * Load a view from a file.
+     * @param viewFile Path to the FXML file to be loaded.
+     * @return Loaded FXML file wrapped in a View as a Node and Controller.
+     */
+    public View loadView(String viewFile) {
         try {
-            // TODO: Refactor with abstracted function "loadView"
-            // Load Base Node
             FXMLLoader loader = new FXMLLoader();
-            loader.setLocation(getClass().getResource(BASE_COMPONENT_PATH));
-            BorderPane baseNode = loader.load();
-
-            // Load View
-            loader = new FXMLLoader();
-            loader.setLocation(getClass().getResource(viewFile));
-            viewNode = loader.load();
-
-            // Load Menu Bar
-            loader = new FXMLLoader();
-            loader.setLocation(getClass().getResource(MENU_BAR_COMPONENT_PATH));
-            Node menuBarNode = loader.load();
-
-            // Embed views and components
-            baseNode.setTop(menuBarNode);
-            baseNode.setCenter(viewNode);
-            baseNode.autosize();
-
-            if (scene != null) scene.setRoot(baseNode);
-            scene = new Scene(baseNode);
-            stage.setScene(scene);
-            stage.show();
+            loader.setLocation(App.class.getResource(viewFile));
+            return new View(loader.load(), loader.getController());
         } catch (IOException e) {
-            System.out.println("Could not load file " + viewFile);
             e.printStackTrace();
         }
+        return null;
+    }
+
+    /**
+     * Load a view from a file, setting its controller.
+     * @param viewFile Path to the FXML file to be loaded.
+     * @param controller Controller to be attached to the FXML file.
+     * @return Loaded FXML file wrapped in a View as a Node and Controller.
+     */
+    public View loadView(String viewFile, Object controller) {
+        View view = loadView(viewFile);
+        try {
+            FXMLLoader loader = new FXMLLoader();
+            loader.setLocation(App.class.getResource(viewFile));
+            loader.setController(controller);
+            return new View(loader.load(), loader.getController());
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return null;
     }
 
     public View loadView(String viewFile) {
