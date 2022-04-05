@@ -24,7 +24,7 @@ public class LocationCSVReader extends CSVReader<Location> {
                 object.setY(Integer.parseInt(value));
                 break;
             case "floor":
-                object.setFloor(value);
+                object.setFloor(Integer.parseInt(value));
                 break;
             case "building":
                 object.setBuilding(value);
