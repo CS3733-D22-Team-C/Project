@@ -44,6 +44,7 @@ public class ServiceRequestResolveController {
     @FXML
     public void setup(ServiceRequest serviceRequest, boolean isEditMode) {
         this.serviceRequest = serviceRequest;
+        this.isEditMode = isEditMode;
 
         // Set initial values
         priority.setPromptText(serviceRequest.getPriority().toString());
