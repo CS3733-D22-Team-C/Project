@@ -74,7 +74,7 @@ public class BaseMapViewController implements Initializable {
         mapController = (EditMapController) mapPane.getController();
 
         locationDescriptionPane.getChildren().remove(0, 1);
-        App.View locationPane = App.instance.loadView(LOCATION_INFO_PANE, new LocationInfoPaneController());
+        App.View locationPane = App.instance.loadView(LOCATION_INFO_PANE);
         locationDescriptionPane.getChildren().add(locationPane.getNode());
         locationInfoController = (LocationInfoPaneController) locationPane.getController();
         ((LocationInfoPaneController) locationPane.getController()).setEditable(true);
@@ -92,7 +92,7 @@ public class BaseMapViewController implements Initializable {
         mapController = (ViewMapController) mapPane.getController();
 
         locationDescriptionPane.getChildren().remove(0,1);
-        App.View locationPane = App.instance.loadView(LOCATION_INFO_PANE, new LocationInfoPaneController());
+        App.View locationPane = App.instance.loadView(LOCATION_INFO_PANE);
         locationDescriptionPane.getChildren().add(locationPane.getNode());
         locationInfoController = (LocationInfoPaneController) locationPane.getController();
         ((LocationInfoPaneController) locationPane.getController()).setEditable(false);

@@ -11,6 +11,7 @@ public class FloorEditPaneController {
     public void onEnterEditModeButtonPress() {
         // TODO: Check if the user is an admin, think we would want to do this before rendering the scene with an initialize
         baseMapViewController.swapToEditMode();
+        baseMapViewController.getLocationInfoController().setEditable(true);
     }
 
     public void setBaseMapViewController(BaseMapViewController baseMapViewController) {
