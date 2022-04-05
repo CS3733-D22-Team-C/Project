@@ -11,10 +11,14 @@ import edu.wpi.cs3733.D22.teamC.fileio.csv.MedicalEquipmentSRCSVReader;
 import edu.wpi.cs3733.D22.teamC.fileio.csv.MedicalEquipmentSRCSVWriter;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.Group;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
+import javafx.scene.layout.Pane;
+import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 import lombok.extern.slf4j.Slf4j;
 
@@ -32,11 +36,15 @@ public class App extends Application {
     public static final String VIEW_SERVICE_REQUESTS_PATH = "view/service_request/view_service_requests.fxml";
     public static final String MAP_PATH = "view/location/map/base_map_view.fxml";
 
-    // Declare Singleton Instance
+    // Singleton Instance
     public static App instance;
 
     // Variables
     private Stage stage;
+    private Scene scene;
+
+    // References
+    private Node viewNode;
 
     @Override
     public void init() {
@@ -70,10 +78,14 @@ public class App extends Application {
     public void start(Stage primaryStage) {
         // Create singleton instance
         instance = this;
+
         // Store window as stage
         stage = primaryStage;
-      
+        
+        stage.setFullScreen(true);
+        
         setView(MAP_PATH);
+
     }
 
     @Override
@@ -102,17 +114,17 @@ public class App extends Application {
      * Allows us to change the view of the window
      * @param viewFile path to the .fxml file to be displayed
      */
-    public void setView(String viewFile) {
+    public void setView(String viewFile){
         try {
-            // Load Base Page
+            // Load Base Node
             FXMLLoader loader = new FXMLLoader();
             loader.setLocation(getClass().getResource(BASE_COMPONENT_PATH));
             BorderPane baseNode = loader.load();
 
             // Load View
-            loader = new FXMLLoader(); // might not need this
+            loader = new FXMLLoader();
             loader.setLocation(getClass().getResource(viewFile));
-            Node viewNode = loader.load();
+            viewNode = loader.load();
 
             // Load Menu Bar
             loader = new FXMLLoader();
@@ -120,14 +132,15 @@ public class App extends Application {
             Node menuBarNode = loader.load();
 
             // Embed views and components
-            baseNode.setCenter(viewNode);
             baseNode.setTop(menuBarNode);
+            baseNode.setCenter(viewNode);
+            baseNode.autosize();
 
-            Scene scene = new Scene(baseNode);
+            if (scene != null) scene.setRoot(baseNode);
+            scene = new Scene(baseNode);
             stage.setScene(scene);
             stage.show();
-        }
-        catch (IOException e) {
+        } catch (IOException e) {
             System.out.println("Could not load file " + viewFile);
             e.printStackTrace();
         }
