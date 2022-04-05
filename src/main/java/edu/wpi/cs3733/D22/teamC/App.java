@@ -27,6 +27,24 @@ import java.util.List;
 
 @Slf4j
 public class App extends Application {
+    public static class View<T> {
+        Node node;
+        T controller;
+
+        public View(Node node, T controller) {
+            this.node = node;
+            this.controller = controller;
+        }
+
+        public Node getNode() {
+            return node;
+        }
+
+        public T getController() {
+            return controller;
+        }
+    }
+
     // Constants
     public static final String BASE_COMPONENT_PATH = "view/component/base.fxml";
     public static final String MENU_BAR_COMPONENT_PATH = "view/component/menu_bar.fxml";
@@ -116,6 +134,7 @@ public class App extends Application {
      */
     public void setView(String viewFile){
         try {
+            // TODO: Refactor with abstracted function "loadView"
             // Load Base Node
             FXMLLoader loader = new FXMLLoader();
             loader.setLocation(getClass().getResource(BASE_COMPONENT_PATH));
@@ -144,6 +163,30 @@ public class App extends Application {
             System.out.println("Could not load file " + viewFile);
             e.printStackTrace();
         }
+    }
+
+    public View loadView(String viewFile) {
+        try {
+            FXMLLoader loader = new FXMLLoader();
+            loader.setLocation(getClass().getResource(viewFile));
+            return new View(loader.load(), loader.getController());
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+       return null;
+    }
+
+    public View loadView(String viewFile, Object controller) {
+        View view = loadView(viewFile);
+        try {
+            FXMLLoader loader = new FXMLLoader();
+            loader.setLocation(getClass().getResource(viewFile));
+            loader.setController(controller);
+            return new View(loader.load(), loader.getController());
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return null;
     }
 
     public Stage getStage() {
