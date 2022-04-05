@@ -2,7 +2,7 @@ package edu.wpi.cs3733.D22.teamC.controller.location.map;
 
 import javafx.fxml.FXML;
 
-public class EditMapLocationsPaneController {
+public class EditMapControlsController {
     BaseMapViewController baseMapViewController;
 
     @FXML

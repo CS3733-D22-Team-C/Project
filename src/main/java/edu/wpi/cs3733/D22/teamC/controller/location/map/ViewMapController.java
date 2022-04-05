@@ -3,8 +3,6 @@ package edu.wpi.cs3733.D22.teamC.controller.location.map;
 import edu.wpi.cs3733.D22.teamC.entity.location.Location;
 import edu.wpi.cs3733.D22.teamC.entity.location.LocationDAO;
 import edu.wpi.cs3733.D22.teamC.entity.location.LocationDAOImpl;
-import javafx.beans.property.SimpleIntegerProperty;
-import javafx.beans.property.SimpleStringProperty;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.ScrollPane;
@@ -32,6 +30,8 @@ public class ViewMapController implements Initializable {
 
         public MapLocation(double x, double y) {
             this.location = new Location();
+            this.location.setNodeType(Location.NodeType.values()[0]);
+
             this.node = createNode(x, y);
         }
 
@@ -73,11 +73,11 @@ public class ViewMapController implements Initializable {
     protected List<MapLocation> mapLocations;
 
     // References
-    protected BaseMapViewController baseMapViewController;
+    protected BaseMapViewController parentController;
 
     @Override
     public final void initialize(URL location, ResourceBundle resources) {
-        // Testing !!!
+        // TODO: Replace with floor specific, kept for testing !!!
         LocationDAO locationDAO = new LocationDAOImpl();
         mapLocations = renderLocations(locationDAO.getAllLocations());
         for (MapLocation mapLocation : mapLocations) {
@@ -115,14 +115,34 @@ public class ViewMapController implements Initializable {
         return mapLocs;
     }
 
+    //#region Update State
+        private void setClickMapLocation(MapLocation mapLocation) {
+            clickedMapLocation = mapLocation;
+            parentController.getLocationInfoController().onMapLocationFocus(mapLocation);
+        }
+
+        private void setHoveredMapLocation(MapLocation mapLocation) {
+            hoveredMapLocation = mapLocation;
+            if (clickedMapLocation == null) {
+                parentController.getLocationInfoController().onMapLocationFocus(mapLocation);
+            }
+        }
+    //#endregion
+
+    //#region External Setup
+        public void setParentController(BaseMapViewController baseMapViewController) {
+            this.parentController = baseMapViewController;
+        }
+    //#endregion
+
     //#region Mouse Events
         protected void onMouseEnterNode(MouseEvent event, MapLocation mapLocation) {
-            hoveredMapLocation = mapLocation;
+            setHoveredMapLocation(mapLocation);
             onHoverNode(mapLocation);
         }
 
         protected void onMouseExitNode(MouseEvent event, MapLocation mapLocation) {
-            hoveredMapLocation = null;
+            setHoveredMapLocation(null);
             offHoverNode(mapLocation);
         }
 
@@ -147,17 +167,7 @@ public class ViewMapController implements Initializable {
             }
         }
 
-    private void setClickMapLocation(MapLocation mapLocation) {
-        // TODO: figure out how to bind things
-        clickedMapLocation = mapLocation;
-        baseMapViewController.onLocationFocus(clickedMapLocation);
-    }
-
-    public void setBaseMapViewController(BaseMapViewController baseMapViewController) {
-        this.baseMapViewController = baseMapViewController;
-    }
-
-    protected void onMouseDraggedNode(MouseEvent event, MapLocation mapLocation) {}
+        protected void onMouseDraggedNode(MouseEvent event, MapLocation mapLocation) {}
 
         protected void onMouseClickedMap(MouseEvent event) {
             if (event.getButton().equals(MouseButton.PRIMARY)) {

@@ -1,120 +1,112 @@
 package edu.wpi.cs3733.D22.teamC.controller.location.map;
 
 import edu.wpi.cs3733.D22.teamC.App;
-import edu.wpi.cs3733.D22.teamC.entity.location.Location;
-import javafx.beans.property.SimpleIntegerProperty;
-import javafx.beans.property.SimpleStringProperty;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
-import javafx.scene.Node;
-import javafx.scene.control.TextField;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.VBox;
-import org.w3c.dom.Text;
 
-import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
 public class BaseMapViewController implements Initializable {
+    // Containers
+    @FXML GridPane gridPane;
+    @FXML VBox mapBox;
+    @FXML VBox mapControlsBox;
+    @FXML VBox locationInfoBox;
 
-    // Base view components
-    @FXML
-    VBox inspectButtonPane;
-
-    @FXML
-    VBox locationDescriptionPane;
-
-    @FXML
-    VBox mapPane;
-
-    @FXML
-    GridPane mapViewGridPane;
-
-    // External controllers
+    // Controllers
     ViewMapController mapController;
-    LocationInfoPaneController locationInfoController;
+    LocationInfoController locationInfoController;
 
     // Constants
     public static final String MAP_PATH = "view/location/map/map.fxml";
-    public static final String FLOOR_EDIT_PANE = "view/location/map/floor_edit_pane.fxml";
-    public static final String LOCATION_INFO_PANE = "view/location/map/location_info_pane.fxml";
-    public static final String EDIT_MODE_PANE = "view/location/map/edit_map_locations_pane.fxml";
-
+    public static final String VIEW_MAP_CONTROLS_PATH = "view/location/map/view_map_controls.fxml";
+    public static final String EDIT_MAP_CONTROLS_PATH = "view/location/map/edit_map_controls.fxml";
+    public static final String LOCATION_INFO_PATH = "view/location/map/location_info.fxml";
 
     @Override
     public final void initialize(URL location, ResourceBundle resource) {
-        mapViewGridPane.setMaxHeight(Double.MAX_VALUE);
-        mapViewGridPane.setMaxWidth(Double.MAX_VALUE);
+        gridPane.setMaxHeight(Double.MAX_VALUE);
+        gridPane.setMaxWidth(Double.MAX_VALUE);
 
-        // Load edit info pane into grid pane
-        App.View floorPane = App.instance.loadView(FLOOR_EDIT_PANE);
-        inspectButtonPane.getChildren().add(floorPane.getNode());
-        ((FloorEditPaneController) floorPane.getController()).setBaseMapViewController(this);
-
-        // Load location info pane into grid pane
-        App.View locationInfoPane = App.instance.loadView(LOCATION_INFO_PANE);
-        locationDescriptionPane.getChildren().add(locationInfoPane.getNode());
-        ((LocationInfoPaneController) locationInfoPane.getController()).setBaseMapViewController(this);
-
-        // Load map display into grid pane
-        App.View mapPane = App.instance.loadView(MAP_PATH, new ViewMapController());
-        mapViewGridPane.add(mapPane.getNode(), 0,0);
-        mapController = (ViewMapController) mapPane.getController();
-        ((ViewMapController) mapPane.getController()).setBaseMapViewController(this);
+        setViewMode();
     }
 
-    public void swapToEditMode() {
-        inspectButtonPane.getChildren().remove(0, 1);
-        App.View swapPane = App.instance.loadView(EDIT_MODE_PANE);
-        inspectButtonPane.getChildren().add(swapPane.getNode());
-        ((EditMapLocationsPaneController) swapPane.getController()).setBaseMapViewController(this);
+    //#region Mode Switching
+        /**
+         * Swap to Edit Mode, clearing first.
+         */
+        public void swapToEditMode() {
+            clearLastMode();
+            setEditMode();
+        }
 
-        App.View mapPane = App.instance.loadView(MAP_PATH, new EditMapController());
-        mapViewGridPane.getChildren().remove(0, 0);
-        mapViewGridPane.add(mapPane.getNode(), 0,0);
-        mapController = (EditMapController) mapPane.getController();
+        /**
+         * Set to Edit Mode by replacing Nodes & Controllers.
+         */
+        private void setEditMode() {
+            App.View mapPane = App.instance.loadView(MAP_PATH, new EditMapController());
+            gridPane.add(mapPane.getNode(), 0,0);
+            mapController = (EditMapController) mapPane.getController();
+            mapController.setParentController(this);
 
-        locationDescriptionPane.getChildren().remove(0, 1);
-        App.View locationPane = App.instance.loadView(LOCATION_INFO_PANE);
-        locationDescriptionPane.getChildren().add(locationPane.getNode());
-        locationInfoController = (LocationInfoPaneController) locationPane.getController();
-        ((LocationInfoPaneController) locationPane.getController()).setEditable(true);
-    }
+            App.View swapPane = App.instance.loadView(EDIT_MAP_CONTROLS_PATH);
+            mapControlsBox.getChildren().add(swapPane.getNode());
+            ((EditMapControlsController) swapPane.getController()).setBaseMapViewController(this);
 
-    public void swapToViewMode() {
-        inspectButtonPane.getChildren().remove(0,1);
-        App.View swapPane = App.instance.loadView(FLOOR_EDIT_PANE);
-        inspectButtonPane.getChildren().add(swapPane.getNode());
-        ((FloorEditPaneController) swapPane.getController()).setBaseMapViewController(this);
+            App.View locationPane = App.instance.loadView(LOCATION_INFO_PATH);
+            locationInfoBox.getChildren().add(locationPane.getNode());
+            locationInfoController = (LocationInfoController) locationPane.getController();
+            locationInfoController.setParentController(this);
+            locationInfoController.setEditable(true);
+            locationInfoController.setVisible(false);
+        }
 
-        App.View mapPane = App.instance.loadView(MAP_PATH, new ViewMapController());
-        mapViewGridPane.getChildren().remove(0, 0);
-        mapViewGridPane.add(mapPane.getNode(), 0,0);
-        mapController = (ViewMapController) mapPane.getController();
+        /**
+         * Swap to View Mode, clearing first.
+         */
+        public void swapToViewMode() {
+            clearLastMode();
+            setViewMode();
+        }
 
-        locationDescriptionPane.getChildren().remove(0,1);
-        App.View locationPane = App.instance.loadView(LOCATION_INFO_PANE);
-        locationDescriptionPane.getChildren().add(locationPane.getNode());
-        locationInfoController = (LocationInfoPaneController) locationPane.getController();
-        ((LocationInfoPaneController) locationPane.getController()).setEditable(false);
-    }
+        /**
+         * Swap to View Mode by replacing Nodes & Controllers.
+         */
+        private void setViewMode() {
+            App.View mapPane = App.instance.loadView(MAP_PATH, new ViewMapController());
+            gridPane.add(mapPane.getNode(), 0,0);
+            mapController = (ViewMapController) mapPane.getController();
+            mapController.setParentController(this);
 
-    public ViewMapController getMapController() {
-        return (ViewMapController) mapController;
-    }
+            App.View swapPane = App.instance.loadView(VIEW_MAP_CONTROLS_PATH);
+            mapControlsBox.getChildren().add(swapPane.getNode());
+            ((ViewMapControlsController) swapPane.getController()).setParentController(this);
 
-    public LocationInfoPaneController getLocationInfoController() {
-        return (LocationInfoPaneController) locationInfoController;
-    }
+            App.View locationPane = App.instance.loadView(LOCATION_INFO_PATH);
+            locationInfoBox.getChildren().add(locationPane.getNode());
+            locationInfoController = (LocationInfoController) locationPane.getController();
+            locationInfoController.setParentController(this);
+            locationInfoController.setEditable(false);
+            locationInfoController.setVisible(false);
+        }
 
-    public void onLocationFocus(ViewMapController.MapLocation clickedMapLocation) {
-        SimpleStringProperty longName, shortName, type;
-        SimpleIntegerProperty staffID;
+        public void clearLastMode() {
+            gridPane.getChildren().remove(0, 0);
+            mapControlsBox.getChildren().remove(0, 1);
+            locationInfoBox.getChildren().remove(0, 1);
+        }
+    //#endregion
 
-        longName.bind();
+    //#region External Referencing
+        public ViewMapController getMapController() {
+            return (ViewMapController) mapController;
+        }
 
-        locationInfoController.IDTextField.setText();
-    }
+        public LocationInfoController getLocationInfoController() {
+            return (LocationInfoController) locationInfoController;
+        }
+    //#endregion
 }
