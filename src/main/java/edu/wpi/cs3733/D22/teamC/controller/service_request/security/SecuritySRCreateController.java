@@ -1,18 +1,12 @@
 package edu.wpi.cs3733.D22.teamC.controller.service_request.security;
 
 import com.jfoenix.controls.JFXComboBox;
-import com.jfoenix.controls.JFXTreeTableView;
-import com.jfoenix.controls.RecursiveTreeItem;
-import com.jfoenix.controls.datamodels.treetable.RecursiveTreeObject;
 import edu.wpi.cs3733.D22.teamC.controller.service_request.ServiceRequestCreateController;
 import edu.wpi.cs3733.D22.teamC.entity.service_request.ServiceRequest;
 import edu.wpi.cs3733.D22.teamC.entity.service_request.security.SecuritySR;
-import edu.wpi.cs3733.D22.teamC.models.service_request.security.SecuritySRTable;
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
+import edu.wpi.cs3733.D22.teamC.models.service_request.security.SecuritySRTableDisplay;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.scene.control.TreeItem;
 
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -21,14 +15,6 @@ public class SecuritySRCreateController extends ServiceRequestCreateController {
 
     // Dropdowns
     @FXML private JFXComboBox<String> secType;
-
-    // For table
-    @FXML private JFXTreeTableView<SecuritySRTable> table;
-    ObservableList<SecuritySRTable> METList = FXCollections.observableArrayList();
-    final TreeItem<SecuritySRTable> root = new RecursiveTreeItem<SecuritySRTable>(METList, RecursiveTreeObject::getChildren);
-
-    ObservableList<SecuritySRTable> data;
-
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
@@ -40,9 +26,7 @@ public class SecuritySRCreateController extends ServiceRequestCreateController {
         secType.getItems().add("Security Type 3");
         secType.getItems().add("Security Type 4");
 
-        SecuritySRTable.createTableColumns(table);
-        table.setRoot(root);
-        table.setShowRoot(false);
+        tableDisplay = new SecuritySRTableDisplay(table);
     }
 
     @FXML
@@ -67,20 +51,21 @@ public class SecuritySRCreateController extends ServiceRequestCreateController {
 
             //Sets from textFields
             securitySR.setAssigneeID(assigneeID.getText());
-            //securityServiceRequest.setDescription(description.getText());
+            securitySR.setDescription(description.getText());
             securitySR.setLocation(location.getText());
 
             //Sets from combo boxes
-            securitySR.setStatus(ServiceRequest.Status.valueOf(status.getValue()));
-            securitySR.setPriority(ServiceRequest.Priority.valueOf(priority.getValue()));
+            securitySR.setStatus(ServiceRequest.Status.valueOf(status.getValue().toString()));
+            securitySR.setPriority(ServiceRequest.Priority.valueOf(priority.getValue().toString()));
             securitySR.setSecurityType(SecuritySR.SecurityType.valueOf(secType.getValue()));
 
             securitySR.setRequestType(ServiceRequest.RequestType.Security);
 
             // Table Entry
             clickReset(event);
-            SecuritySRTable met = new SecuritySRTable(securitySR);
-            METList.add(met);
+
+            tableDisplay.addObject(securitySR);
+
             return securitySR;
         }
     }

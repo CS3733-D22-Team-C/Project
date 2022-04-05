@@ -1,8 +1,9 @@
 package edu.wpi.cs3733.D22.teamC.entity.service_request;
 
 import edu.wpi.cs3733.D22.teamC.DBManager;
-import edu.wpi.cs3733.D22.teamC.entity.service_request.medical_equipment.MedicalEquipmentSRDAOImpl;
-import edu.wpi.cs3733.D22.teamC.entity.service_request.medical_equipment.MedicalEquipmentSR;
+import edu.wpi.cs3733.D22.teamC.entity.service_request.security.SecuritySR;
+import edu.wpi.cs3733.D22.teamC.entity.service_request.security.SecuritySRDAO;
+import edu.wpi.cs3733.D22.teamC.entity.service_request.security.SecuritySRDAOImpl;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -11,19 +12,19 @@ import java.sql.Timestamp;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-class MedEqSRDAOImplTest {
+public class SecuritySRDAOImplTest {
     private DBManager testDBManager;
-    private MedicalEquipmentSRDAOImpl medicalEqDAO;
+    private SecuritySRDAO securityDAO;
     
     @BeforeEach
     void setUp() {
-        // Setup testing database and initialize LOCATION table
+        // Setup testing database and initialize SR table
         testDBManager = DBManager.startup(DBManager.TESTING_DATABASE_NAME);
         testDBManager.initializeServiceRequestTable(true);
-        testDBManager.initializeMedicalEquipSRTable(true);
+        testDBManager.initializeSecuritySRTable(true);
         
-        // Setup testing medicalEqDAOImpl
-        medicalEqDAO = new MedicalEquipmentSRDAOImpl();
+        // Setup testing SecuritySRDAOImpl
+        securityDAO = new SecuritySRDAOImpl();
     }
     
     @AfterEach
@@ -37,8 +38,8 @@ class MedEqSRDAOImplTest {
      */
     @Test
     void testEmptyQuerySR() {
-        assertEquals(0, medicalEqDAO.getAllServiceRequests().size());
-        assertEquals(null, medicalEqDAO.getServiceRequest(1234));
+        assertEquals(0, securityDAO.getAllServiceRequests().size());
+        assertEquals(null, securityDAO.getServiceRequest(1234));
     }
     
     /**
@@ -47,8 +48,8 @@ class MedEqSRDAOImplTest {
     @Test
     void testInsertSR() {
         // Check DB is empty
-        assertEquals(0, medicalEqDAO.getAllServiceRequests().size());
-        assertEquals(null, medicalEqDAO.getServiceRequest(1234));
+        assertEquals(0, securityDAO.getAllServiceRequests().size());
+        assertEquals(null, securityDAO.getServiceRequest(1234));
         
         // Insert SR into DB
         String creatorID = "bshin100";
@@ -57,12 +58,11 @@ class MedEqSRDAOImplTest {
         Timestamp creationTimeStamp = new Timestamp(694201234);
         ServiceRequest.Status status = ServiceRequest.Status.Blank;
         ServiceRequest.Priority priority = ServiceRequest.Priority.High;
-        ServiceRequest.RequestType requestType = ServiceRequest.RequestType.Medical_Equipment;
+        ServiceRequest.RequestType requestType = ServiceRequest.RequestType.Security;
         String description = "soft eng is spain without the s";
-        int equipID = 356;
-
+        SecuritySR.SecurityType securityType = SecuritySR.SecurityType.Intruder;
         
-        MedicalEquipmentSR insertSR = new MedicalEquipmentSR();
+        SecuritySR insertSR = new SecuritySR();
         insertSR.setCreatorID(creatorID);
         insertSR.setAssigneeID(assigneeID);
         insertSR.setLocation(locationID);
@@ -71,18 +71,18 @@ class MedEqSRDAOImplTest {
         insertSR.setPriority(priority);
         insertSR.setRequestType(requestType);
         insertSR.setDescription(description);
-        insertSR.setEquipmentID(equipID);
-
-        int retrievedID = medicalEqDAO.insertServiceRequest(insertSR);
+        insertSR.setSecurityType(securityType);
+        
+        int retrievedID = securityDAO.insertServiceRequest(insertSR);
         insertSR.setRequestID(retrievedID);
         assertNotEquals(-1, retrievedID);
-        assertEquals(1, medicalEqDAO.getAllServiceRequests().size());
-
+        assertEquals(1, securityDAO.getAllServiceRequests().size());
+        
         // Cannot Insert SR Again
-        assertEquals(-1, medicalEqDAO.insertServiceRequest(insertSR));
-
+        assertEquals(-1, securityDAO.insertServiceRequest(insertSR));
+        
         // Check that DB values are expected
-        MedicalEquipmentSR querySR = medicalEqDAO.getServiceRequest(insertSR.getRequestID());
+        SecuritySR querySR = securityDAO.getServiceRequest(insertSR.getRequestID());
         assertNotNull(querySR);
         assertEquals(retrievedID, querySR.getRequestID());
         assertEquals(creatorID, querySR.getCreatorID());
@@ -93,7 +93,7 @@ class MedEqSRDAOImplTest {
         assertEquals(priority, querySR.getPriority());
         assertEquals(requestType, querySR.getRequestType());
         assertEquals(description, querySR.getDescription());
-        assertEquals(equipID, querySR.getEquipmentID());
+        assertEquals(securityType, querySR.getSecurityType());
     }
     
     /**
@@ -102,9 +102,9 @@ class MedEqSRDAOImplTest {
     @Test
     void testDeleteServiceRequest() {
         // Check DB is empty
-        assertEquals(0, medicalEqDAO.getAllServiceRequests().size());
-        assertEquals(null, medicalEqDAO.getServiceRequest(1234));
-    
+        assertEquals(0, securityDAO.getAllServiceRequests().size());
+        assertEquals(null, securityDAO.getServiceRequest(1234));
+        
         // Insert SR into DB
         String creatorID = "bshin100";
         String assigneeID = "nick1234";
@@ -112,11 +112,11 @@ class MedEqSRDAOImplTest {
         Timestamp creationTimeStamp = new Timestamp(694201234);
         ServiceRequest.Status status = ServiceRequest.Status.Blank;
         ServiceRequest.Priority priority = ServiceRequest.Priority.High;
-        ServiceRequest.RequestType requestType = ServiceRequest.RequestType.Medical_Equipment;
+        ServiceRequest.RequestType requestType = ServiceRequest.RequestType.Security;
         String description = "soft eng is spain without the s";
-        int equipID = 356;
-
-        MedicalEquipmentSR deleteSR = new MedicalEquipmentSR();
+        SecuritySR.SecurityType securityType = SecuritySR.SecurityType.Intruder;
+        
+        SecuritySR deleteSR = new SecuritySR();
         deleteSR.setCreatorID(creatorID);
         deleteSR.setAssigneeID(assigneeID);
         deleteSR.setLocation(locationID);
@@ -125,22 +125,22 @@ class MedEqSRDAOImplTest {
         deleteSR.setPriority(priority);
         deleteSR.setRequestType(requestType);
         deleteSR.setDescription(description);
-        deleteSR.setEquipmentID(equipID);
-
-        int retrievedID = medicalEqDAO.insertServiceRequest(deleteSR);
+        deleteSR.setSecurityType(securityType);
+        
+        int retrievedID = securityDAO.insertServiceRequest(deleteSR);
         deleteSR.setRequestID(retrievedID);
         assertNotEquals(-1, retrievedID);
-        assertEquals(1, medicalEqDAO.getAllServiceRequests().size());
-
+        assertEquals(1, securityDAO.getAllServiceRequests().size());
+        
         // Delete Location from DB
-        assertTrue(medicalEqDAO.deleteServiceRequest(deleteSR));
-
+        assertTrue(securityDAO.deleteServiceRequest(deleteSR));
+        
         // Cannot Delete Location Again
-        assertFalse(medicalEqDAO.deleteServiceRequest(deleteSR));
-
+        assertFalse(securityDAO.deleteServiceRequest(deleteSR));
+        
         // Check DB is empty
-        assertEquals(0, medicalEqDAO.getAllServiceRequests().size());
-        assertEquals(null, medicalEqDAO.getServiceRequest(1234));
+        assertEquals(0, securityDAO.getAllServiceRequests().size());
+        assertEquals(null, securityDAO.getServiceRequest(1234));
     }
     
     /**
@@ -149,9 +149,9 @@ class MedEqSRDAOImplTest {
     @Test
     void testUpdateServiceRequest() {
         // Check DB is empty
-        assertEquals(0, medicalEqDAO.getAllServiceRequests().size());
-        assertEquals(null, medicalEqDAO.getServiceRequest(1234));
-    
+        assertEquals(0, securityDAO.getAllServiceRequests().size());
+        assertEquals(null, securityDAO.getServiceRequest(1234));
+        
         // Insert SR into DB
         String creatorID = "bshin100";
         String assigneeID = "nick1234";
@@ -161,9 +161,9 @@ class MedEqSRDAOImplTest {
         ServiceRequest.Priority priority = ServiceRequest.Priority.High;
         ServiceRequest.RequestType requestType = ServiceRequest.RequestType.Medical_Equipment;
         String description = "soft eng is spain without the s";
-        int equipID = 356;
-
-        MedicalEquipmentSR updateSR = new MedicalEquipmentSR();
+        SecuritySR.SecurityType securityType = SecuritySR.SecurityType.Intruder;
+        
+        SecuritySR updateSR = new SecuritySR();
         updateSR.setCreatorID(creatorID);
         updateSR.setAssigneeID(assigneeID);
         updateSR.setLocation(locationID);
@@ -172,12 +172,12 @@ class MedEqSRDAOImplTest {
         updateSR.setPriority(priority);
         updateSR.setRequestType(requestType);
         updateSR.setDescription(description);
-        updateSR.setEquipmentID(equipID);
-
-        int retrievedID = medicalEqDAO.insertServiceRequest(updateSR);
+        updateSR.setSecurityType(securityType);
+        
+        int retrievedID = securityDAO.insertServiceRequest(updateSR);
         updateSR.setRequestID(retrievedID);
         assertNotEquals(-1, retrievedID);
-        assertEquals(1, medicalEqDAO.getAllServiceRequests().size());
+        assertEquals(1, securityDAO.getAllServiceRequests().size());
         
         // Update Location in DB
         creatorID = "bshin100";
@@ -185,15 +185,12 @@ class MedEqSRDAOImplTest {
         locationID = "SMARTWORLD";
         status = ServiceRequest.Status.Done;
         priority = ServiceRequest.Priority.High;
-        requestType = ServiceRequest.RequestType.Medical_Equipment;
+        requestType = ServiceRequest.RequestType.Security;
         description = "help plz";
-
-        equipID = 356;
-
-
+        securityType = SecuritySR.SecurityType.Intruder;
         String modifierID = "WillSmith";
         Timestamp modifiedTimestamp = new Timestamp(23098213);
-
+        
         updateSR.setCreatorID(creatorID);
         updateSR.setAssigneeID(assigneeID);
         updateSR.setLocation(locationID);
@@ -203,29 +200,29 @@ class MedEqSRDAOImplTest {
         updateSR.setDescription(description);
         updateSR.setModifierID(modifierID);
         updateSR.setModifiedTimestamp(modifiedTimestamp);
-        updateSR.setEquipmentID(equipID);
-        assertTrue(medicalEqDAO.updateServiceRequest(updateSR));
-        assertEquals(1, medicalEqDAO.getAllServiceRequests().size());
+        updateSR.setSecurityType(securityType);
+        assertTrue(securityDAO.updateServiceRequest(updateSR));
+        assertEquals(1, securityDAO.getAllServiceRequests().size());
         
         // Check that DB values are expected
-        MedicalEquipmentSR querySR = medicalEqDAO.getServiceRequest(updateSR.getRequestID());
+        SecuritySR querySR = securityDAO.getServiceRequest(updateSR.getRequestID());
         assertNotNull(querySR);
         assertEquals(retrievedID, querySR.getRequestID());
         assertEquals(creatorID, querySR.getCreatorID());
         assertEquals(assigneeID, querySR.getAssigneeID());
         assertEquals(locationID, querySR.getLocation());
+        assertEquals(creationTimeStamp, querySR.getCreationTimestamp());
         assertEquals(status, querySR.getStatus());
         assertEquals(priority, querySR.getPriority());
         assertEquals(requestType, querySR.getRequestType());
         assertEquals(description, querySR.getDescription());
-        assertEquals(equipID, querySR.getEquipmentID());
-
+        assertEquals(securityType, querySR.getSecurityType());
         assertEquals(modifierID, querySR.getModifierID());
         assertEquals(modifiedTimestamp, querySR.getModifiedTimestamp());
-
+        
         // Cannot Update Nonexistent Location
-        MedicalEquipmentSR newSR = new MedicalEquipmentSR();
+        SecuritySR newSR = new SecuritySR();
         newSR.setRequestID(1234);
-        assertFalse(medicalEqDAO.updateServiceRequest(newSR));
+        assertFalse(securityDAO.updateServiceRequest(newSR));
     }
 }
