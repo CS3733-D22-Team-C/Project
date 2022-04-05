@@ -141,5 +141,6 @@ public class ServiceRequestCreateController implements Initializable {
     public void resetErrorMessages()
     {
         errorLabel.setText("");
+        errorLabel.setVisible(false);
     }
 }
