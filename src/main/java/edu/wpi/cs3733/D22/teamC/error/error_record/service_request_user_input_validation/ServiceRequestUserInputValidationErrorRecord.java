@@ -19,8 +19,7 @@ public class ServiceRequestUserInputValidationErrorRecord {
             new ServiceRequestUserInputValidationErrorItem(13, "Required field Medicine is missing"),
             new ServiceRequestUserInputValidationErrorItem(14, "Required field Dosage is missing"),
             new ServiceRequestUserInputValidationErrorItem(15, "Required field Sanitation Type is missing"),
-            new ServiceRequestUserInputValidationErrorItem(16, "Required field Security Type is missing"),
-            new ServiceRequestUserInputValidationErrorItem(17, "Maintenance Type must be Cleaning or Organizing")
+            new ServiceRequestUserInputValidationErrorItem(16, "Required field Security Type is missing")
     };
 
 }
