@@ -22,7 +22,7 @@ public class ServiceRequestFormEvaluator {
      * @param priority
      * @return ArrayList <ServiceRequestUserInputValidationErrorItem>
      */
-    public ArrayList<ServiceRequestUserInputValidationErrorItem> getBasicRequiredFieldsFilledValidationResult(int locationID, int assigneeID, SingleSelectionModel status, SingleSelectionModel priority)
+    public ArrayList<ServiceRequestUserInputValidationErrorItem> getBasicRequiredFieldsFilledValidationResult(String locationID, String assigneeID, SingleSelectionModel status, SingleSelectionModel priority)
     {
         ArrayList <ServiceRequestUserInputValidationErrorItem> errorList = new ArrayList <ServiceRequestUserInputValidationErrorItem>();
 
@@ -40,7 +40,7 @@ public class ServiceRequestFormEvaluator {
      * @param assigneeID The assigneeID of the service request.
      * @return ServiceRequestValidationErrorItem.
      */
-    public ServiceRequestUserInputValidationErrorItem getValidateAssigneeIDResult(int assigneeID)
+    public ServiceRequestUserInputValidationErrorItem getValidateAssigneeIDResult(String assigneeID)
     {
         ServiceRequestDAOImpl serviceRequestDaoVar = new ServiceRequestDAOImpl();
 
@@ -62,11 +62,12 @@ public class ServiceRequestFormEvaluator {
      * @param locationID The location ID of the service request
      * @return ServiceRequestValidationErrorItem
      */
-    public ServiceRequestUserInputValidationErrorItem getValidateLocationIDResult(int locationID)
+    public ServiceRequestUserInputValidationErrorItem getValidateLocationIDResult(String locationID)
     {
         LocationDAOImpl locationDaoVar = new LocationDAOImpl();
+        int locationConv = Integer.parseInt(locationID);
 
-        if(locationDaoVar.getLocation(locationID) == null) //assumes the user inputs a location ID in the service request location field.
+        if(locationDaoVar.getLocation(locationConv) == null) //assumes the user inputs a location ID in the service request location field.
         {
             return ServiceRequestUserInputValidationErrorRecord.serviceRequestUserInputValidationErrorList[5];
         }
@@ -81,17 +82,26 @@ public class ServiceRequestFormEvaluator {
      * @param assigneeID
      * @return ServiceRequestValidationErrorItem
      */
-    public ServiceRequestUserInputValidationErrorItem checkAssigneeIDFilled(int assigneeID)
+    public ServiceRequestUserInputValidationErrorItem checkAssigneeIDFilled(String assigneeID)
     {
-        int assigneeIDLength = (int)(Math.log10(assigneeID)+1);
 
-        if(assigneeIDLength == 0)
+        if(assigneeID.isEmpty())
         {
             return ServiceRequestUserInputValidationErrorRecord.serviceRequestUserInputValidationErrorList[1];
         }
         else
         {
-            return null;
+            int assigneeIDConv = Integer.parseInt(assigneeID);
+            int assigneeIDLength = (int)(Math.log10(assigneeIDConv)+1);
+
+            if(assigneeIDLength == 0)
+            {
+                return ServiceRequestUserInputValidationErrorRecord.serviceRequestUserInputValidationErrorList[1];
+            }
+            else
+            {
+                return null;
+            }
         }
     }
 
@@ -100,17 +110,26 @@ public class ServiceRequestFormEvaluator {
      * @param locationID
      * @return ServiceRequestValidationErrorItem
      */
-    public ServiceRequestUserInputValidationErrorItem checkLocationIDFilled(int locationID)
+    public ServiceRequestUserInputValidationErrorItem checkLocationIDFilled(String locationID)
     {
-        int locationIDLength = (int)(Math.log10(locationID)+1);
 
-        if(locationIDLength == 0)
+        if(locationID.isEmpty())
         {
             return ServiceRequestUserInputValidationErrorRecord.serviceRequestUserInputValidationErrorList[0];
         }
         else
         {
-            return null;
+            int locationIDConv = Integer.parseInt(locationID);
+            int locationIDLength = (int)(Math.log10(locationIDConv)+1);
+
+            if(locationIDLength == 0)
+            {
+                return ServiceRequestUserInputValidationErrorRecord.serviceRequestUserInputValidationErrorList[0];
+            }
+            else
+            {
+                return null;
+            }
         }
     }
 

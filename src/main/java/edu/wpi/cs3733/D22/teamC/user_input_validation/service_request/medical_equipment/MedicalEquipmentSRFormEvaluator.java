@@ -52,16 +52,20 @@ public class MedicalEquipmentSRFormEvaluator extends ServiceRequestFormEvaluator
        {
             return ServiceRequestUserInputValidationErrorRecord.serviceRequestUserInputValidationErrorList[10];
        }
-
-       int equipIDLength = (int)(Math.log10(equipID)+1);
-
-       if(equipIDLength == 0)
-       {
-           return ServiceRequestUserInputValidationErrorRecord.serviceRequestUserInputValidationErrorList[10];
-       }
        else
        {
-           return null;
+           int equipIDConv = Integer.parseInt(equipID);
+
+           int equipIDLength = (int)(Math.log10(equipIDConv)+1);
+
+           if(equipIDLength == 0)
+           {
+               return ServiceRequestUserInputValidationErrorRecord.serviceRequestUserInputValidationErrorList[10];
+           }
+           else
+           {
+               return null;
+           }
        }
    }
 }
