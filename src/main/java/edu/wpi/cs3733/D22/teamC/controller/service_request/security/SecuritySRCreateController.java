@@ -64,6 +64,9 @@ public class SecuritySRCreateController extends ServiceRequestCreateController {
 
         ArrayList<ServiceRequestUserInputValidationErrorItem> errors = sSRFE.getSecuritySRValidationTestResult(location.getText(), assigneeID.getText(), status.getSelectionModel(), priority.getSelectionModel(), secType.getSelectionModel());
 
+        //Check to see if errors contains all null entries
+
+
         if(errors.isEmpty())
         {
             SecuritySR securitySR = (SecuritySR) super.clickSubmit(event);
