@@ -78,6 +78,7 @@ public class FacilityMaintenanceSRCreateController extends ServiceRequestCreateC
         else
         {
             prepareErrorMessages(errors);
+            errors.clear();
             return null; //Code will be placed here to display error messages
         }
     }

@@ -106,6 +106,7 @@ public class LabSystemSRCreateController extends ServiceRequestCreateController 
         else
         {
             prepareErrorMessages(errors);
+            errors.clear();
             return null;
         }
     }

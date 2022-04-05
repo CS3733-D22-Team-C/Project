@@ -91,7 +91,6 @@ public class ServiceRequestFormEvaluator {
      */
     public ServiceRequestUserInputValidationErrorItem checkLocationIDFilled(String locationID)
     {
-
         if(locationID.isEmpty())
         {
             return ServiceRequestUserInputValidationErrorRecord.serviceRequestUserInputValidationErrorList[0];

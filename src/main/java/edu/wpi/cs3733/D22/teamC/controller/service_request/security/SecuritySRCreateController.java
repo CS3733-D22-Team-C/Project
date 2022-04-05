@@ -84,6 +84,7 @@ public class SecuritySRCreateController extends ServiceRequestCreateController {
         else
         {
             prepareErrorMessages(errors);
+            errors.clear();
             return null;
         }
     }

@@ -125,6 +125,7 @@ public class MedicalEquipmentSRCreateController extends ServiceRequestCreateCont
         else
         {
             prepareErrorMessages(errors);
+            errors.clear();
             return null;
         }
 

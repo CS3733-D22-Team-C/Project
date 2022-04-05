@@ -93,6 +93,7 @@ public class SanitationSRCreateController extends ServiceRequestCreateController
         else
         {
             prepareErrorMessages(errors);
+            errors.clear();
             return null;
         }
     }
