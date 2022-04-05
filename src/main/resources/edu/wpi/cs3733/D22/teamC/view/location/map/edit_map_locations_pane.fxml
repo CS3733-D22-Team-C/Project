@@ -5,10 +5,9 @@
 <?import java.net.URL?>
 <?import javafx.scene.layout.VBox?>
 
-
-<VBox alignment="CENTER" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1">
+<VBox alignment="CENTER" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.wpi.cs3733.D22.teamC.controller.location.map.EditMapLocationsPaneController">
    <children>
-      <JFXButton fx:id="exitEditButton" text="Exit">
+      <JFXButton onAction="#onExitEditModeButtonPress" text="Exit">
          <stylesheets>
             <URL value="@../../../css/base.css" />
             <URL value="@../../../css/map.css" />
@@ -18,7 +17,7 @@
             <String fx:value="button" />
          </styleClass>
       </JFXButton>
-      <JFXButton fx:id="saveAndExitButton" text="Save and Exit">
+      <JFXButton onAction="#onSaveAndExitButtonPress" text="Save and Exit">
          <stylesheets>
             <URL value="@../../../css/base.css" />
             <URL value="@../../../css/map.css" />
@@ -28,7 +27,7 @@
             <String fx:value="button" />
          </styleClass>
       </JFXButton>
-      <JFXButton fx:id="importCSVButton" text="Import CSV">
+      <JFXButton onAction="#onImportCSVButtonPress" text="Import CSV">
          <stylesheets>
             <URL value="@../../../css/base.css" />
             <URL value="@../../../css/map.css" />
@@ -38,7 +37,7 @@
             <String fx:value="button" />
          </styleClass>
       </JFXButton>
-      <JFXButton fx:id="exportCSVButton" text="Export CSV">
+      <JFXButton onAction="#onExportCSVButtonPress" text="Export CSV">
          <stylesheets>
             <URL value="@../../../css/base.css" />
             <URL value="@../../../css/map.css" />
