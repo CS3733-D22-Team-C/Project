@@ -135,6 +135,7 @@ public class DBManager {
             initializeMedicalEquipSRTable(clearTable);
             initializeLabSystemSRTable(clearTable);
             initializeSecuritySRTable(clearTable);
+            initializeMedicineDeliverySRTable(clearTable);
         }
 
         /**
@@ -206,6 +207,21 @@ public class DBManager {
                 "SECURITY_SR",
                 "CREATE TABLE SECURITY_SR (" +
                         "ID int, SecurityType varchar(50), CONSTRAINT fk_SSRID FOREIGN KEY (ID) " +
+                        "REFERENCES SERVICE_REQUEST (ID) ON DELETE CASCADE)",
+                clearTable
+        );
+    }
+    
+    
+    /**
+     * Initialize Medicine Delivery Service Request Table.
+     * @param clearTable Clear pre-existing table entries if true.
+     */
+    public void initializeMedicineDeliverySRTable(boolean clearTable) {
+        initializeTable(
+                "MEDICINE_DELIVERY_SR",
+                "CREATE TABLE MEDICINE_DELIVERY_SR (" +
+                        "ID int, Medicine char(30), Dosage char(20), PatientID int, CONSTRAINT fk_MDSRID FOREIGN KEY (ID) " +
                         "REFERENCES SERVICE_REQUEST (ID) ON DELETE CASCADE)",
                 clearTable
         );
