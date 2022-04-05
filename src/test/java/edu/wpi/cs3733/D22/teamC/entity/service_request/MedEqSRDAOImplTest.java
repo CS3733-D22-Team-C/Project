@@ -59,7 +59,7 @@ class MedEqSRDAOImplTest {
         ServiceRequest.Priority priority = ServiceRequest.Priority.High;
         ServiceRequest.RequestType requestType = ServiceRequest.RequestType.Medical_Equipment;
         String description = "soft eng is spain without the s";
-        String equipID = "BED003";
+        int equipID = 356;
 
         
         MedicalEquipmentSR insertSR = new MedicalEquipmentSR();
@@ -108,7 +108,7 @@ class MedEqSRDAOImplTest {
         ServiceRequest.Priority priority = ServiceRequest.Priority.High;
         ServiceRequest.RequestType requestType = ServiceRequest.RequestType.Medical_Equipment;
         String description = "soft eng is spain without the s";
-        String equipID = "BED003";
+        int equipID = 356;
 
         MedicalEquipmentSR deleteSR = new MedicalEquipmentSR();
         deleteSR.setCreatorID(creatorID);
@@ -155,7 +155,7 @@ class MedEqSRDAOImplTest {
         ServiceRequest.Priority priority = ServiceRequest.Priority.High;
         ServiceRequest.RequestType requestType = ServiceRequest.RequestType.Medical_Equipment;
         String description = "soft eng is spain without the s";
-        String equipID = "BED003";
+        int equipID = 356;
 
         MedicalEquipmentSR updateSR = new MedicalEquipmentSR();
         updateSR.setCreatorID(creatorID);
@@ -181,7 +181,7 @@ class MedEqSRDAOImplTest {
         priority = ServiceRequest.Priority.High;
         requestType = ServiceRequest.RequestType.Medical_Equipment;
         description = "help plz";
-        equipID = "BED003";
+        equipID = 356;
 
         updateSR.setCreatorID(creatorID);
         updateSR.setAssigneeID(assigneeID);
