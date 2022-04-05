@@ -2,14 +2,14 @@ package edu.wpi.cs3733.D22.teamC.entity.floor;
 
 import edu.wpi.cs3733.D22.teamC.DBManager;
 import edu.wpi.cs3733.D22.teamC.entity.location.Location;
-import edu.wpi.cs3733.D22.teamC.entity.location.LocationDAO;
 import edu.wpi.cs3733.D22.teamC.entity.location.LocationDAOImpl;
-import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
+
 import static org.junit.jupiter.api.Assertions.*;
 
- class FloorDAOImplTest {
+class FloorDAOImplTest {
      private DBManager testDBManager;
      private FloorDAOImpl floorDAO;
      LocationDAOImpl locationDAO = new LocationDAOImpl();
@@ -19,7 +19,7 @@ import static org.junit.jupiter.api.Assertions.*;
          //Setting up each Floor DB and initializing the FLOOR table
          testDBManager = DBManager.startup(DBManager.TESTING_DATABASE_NAME);
 
-         //Initializes the table
+         //Initialize tables
          testDBManager.initializeFloorTable(true);
          testDBManager.initializeLocationTable(true);
 
@@ -39,14 +39,14 @@ import static org.junit.jupiter.api.Assertions.*;
      @Test
      void testEmptyQueryFloor() {
          assertEquals(0, floorDAO.getAllFloors().size());
-         assertEquals(null, floorDAO.getFloor(1001));
+         assertNull(floorDAO.getFloor(1001));
      }
 
      @Test
      void testInsertFloor() {
          //check if the DB is empty
          assertEquals(0, floorDAO.getAllFloors().size());
-         assertEquals(null, floorDAO.getFloor(1001));
+         assertNull(floorDAO.getFloor(1001));
 
          int order = 1;
          String longName = "Really Big Room";
@@ -81,7 +81,7 @@ import static org.junit.jupiter.api.Assertions.*;
      void testDeleteFloor() {
          //check if the DB is empty
          assertEquals(0, floorDAO.getAllFloors().size());
-         assertEquals(null, floorDAO.getFloor(1001));
+         assertNull(floorDAO.getFloor(1001));
 
          int order = 1;
          String longName = "Really Big Room";
@@ -106,14 +106,14 @@ import static org.junit.jupiter.api.Assertions.*;
 
          //check if the DB is empty after the deletion
          assertEquals(0, floorDAO.getAllFloors().size());
-         assertEquals(null, floorDAO.getFloor(1001));
+         assertNull(floorDAO.getFloor(1001));
      }
 
      @Test
      void testUpdateFloor() {
          //check if the DB is empty
          assertEquals(0, floorDAO.getAllFloors().size());
-         assertEquals(null, floorDAO.getFloor(1001));
+         assertNull(floorDAO.getFloor(1001));
 
          // insert Floor into DB
          int order = 1;
@@ -165,11 +165,11 @@ import static org.junit.jupiter.api.Assertions.*;
 
          //check if the DB is empty
          assertEquals(0, floorDAO.getAllFloors().size());
-         assertEquals(null, floorDAO.getFloor(1001));
+         assertNull(floorDAO.getFloor(1001));
 
          // Check DB is empty
          assertEquals(0, locationDAO.getAllLocations().size());
-         assertEquals(null, locationDAO.getLocation(1234));
+         assertNull(locationDAO.getLocation(1234));
 
          // Insert Location into DB
          Floor testFloor = floorDAO.getFloor(floorDAO.insertFloor(new Floor()));
@@ -196,7 +196,7 @@ import static org.junit.jupiter.api.Assertions.*;
      void testDeleteCascade() {
          // Check DB is empty
          assertEquals(0, locationDAO.getAllLocations().size());
-         assertEquals(null, locationDAO.getLocation(1234));
+         assertNull(locationDAO.getLocation(1234));
 
          // insert Floor into DB
          int order = 1;
@@ -212,7 +212,7 @@ import static org.junit.jupiter.api.Assertions.*;
          floor.setFloorID(retrievedID);
 
          // Insert Location into DB
-         int floorID = floor.getFloorID();;
+         int floorID = floor.getFloorID();
          String building = "Building";
          Location.NodeType nodeType = Location.NodeType.HALL;
          String longNameLoc = "LongName";
@@ -232,13 +232,13 @@ import static org.junit.jupiter.api.Assertions.*;
 
          // Check Floor DB is empty
          assertEquals(0, floorDAO.getAllFloors().size());
-         assertEquals(null, floorDAO.getFloor(floor.getFloorID()));
+         assertNull(floorDAO.getFloor(floor.getFloorID()));
 
          // Check Location DB is empty
          assertEquals(0, locationDAO.getAllLocations().size());
-         assertEquals(null, locationDAO.getLocation(1234));
+         assertNull(locationDAO.getLocation(1234));
      }
- }
+}
 
 
 

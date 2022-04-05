@@ -19,7 +19,10 @@ class LocationDAOImplTest {
     void setUp() {
         // Setup testing database and initialize LOCATION table
         testDBManager = DBManager.startup(DBManager.TESTING_DATABASE_NAME);
+
+        //Initialize tables
         testDBManager.initializeLocationTable(true);
+        testDBManager.initializeFloorTable(true);
 
         // Setup testing LocationDAOImpl
         locationDAO = new LocationDAOImpl();
@@ -97,7 +100,7 @@ class LocationDAOImplTest {
         assertEquals(null, locationDAO.getLocation(1234));
 
         // Insert Location into DB
-        int floorID = floor.getFloorID();;
+        int floorID = floor.getFloorID();
         String building = "Building";
         Location.NodeType nodeType = Location.NodeType.HALL;
         String longName = "LongName";
@@ -131,7 +134,7 @@ class LocationDAOImplTest {
         assertEquals(null, locationDAO.getLocation(1234));
 
         // Insert Location into DB
-        int floorID = floor.getFloorID();;
+        int floorID = floor.getFloorID();
         String building = "Building";
         Location.NodeType nodeType = Location.NodeType.SERV;
         String longName = "LongName";
