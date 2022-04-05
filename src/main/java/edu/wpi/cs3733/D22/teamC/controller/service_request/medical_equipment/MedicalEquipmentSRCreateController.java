@@ -1,15 +1,12 @@
 package edu.wpi.cs3733.D22.teamC.controller.service_request.medical_equipment;
 
 import com.jfoenix.controls.*;
-import com.jfoenix.controls.datamodels.treetable.RecursiveTreeObject;
 import edu.wpi.cs3733.D22.teamC.controller.service_request.ServiceRequestCreateController;
-import edu.wpi.cs3733.D22.teamC.entity.service_request.ServiceRequest;
 import edu.wpi.cs3733.D22.teamC.entity.service_request.ServiceRequestDAO;
+import edu.wpi.cs3733.D22.teamC.entity.service_request.medical_equipment.MedicalEquipmentSRDAO;
 import edu.wpi.cs3733.D22.teamC.entity.service_request.medical_equipment.MedicalEquipmentSRDAOImpl;
 import edu.wpi.cs3733.D22.teamC.entity.service_request.medical_equipment.MedicalEquipmentSR;
-import edu.wpi.cs3733.D22.teamC.models.service_request.medical_equipment.MedicalEquipmentSRTable;
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
+import edu.wpi.cs3733.D22.teamC.models.service_request.medical_equipment.MedicalEquipmentSRTableDisplay;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
@@ -18,22 +15,13 @@ import java.net.URL;
 import java.sql.Timestamp;
 import java.util.List;
 import java.util.ResourceBundle;
-import java.util.stream.Collectors;
 
-public class MedicalEquipmentSRCreateController extends ServiceRequestCreateController {
+public class MedicalEquipmentSRCreateController extends ServiceRequestCreateController<MedicalEquipmentSR> {
     // Fields
     @FXML private TextField equipID;
 
     // Dropdowns
     @FXML private JFXComboBox<String> equipType;
-
-    // For table
-    @FXML private JFXTreeTableView<MedicalEquipmentSRTable> table;
-    ObservableList<MedicalEquipmentSRTable> METList = FXCollections.observableArrayList();
-    final TreeItem<MedicalEquipmentSRTable> root = new RecursiveTreeItem<MedicalEquipmentSRTable>(METList, RecursiveTreeObject::getChildren);
-
-    ObservableList<MedicalEquipmentSRTable> data;
-
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
@@ -44,18 +32,13 @@ public class MedicalEquipmentSRCreateController extends ServiceRequestCreateCont
             equipType.getItems().add(type.toString());
         }
 
-        MedicalEquipmentSRTable.createTableColumns(table);
-        table.setRoot(root);
-        table.setShowRoot(false);
+        tableDisplay = new MedicalEquipmentSRTableDisplay(table);
 
         // Query Database
-        ServiceRequestDAO serviceRequestDAO = new MedicalEquipmentSRDAOImpl();
-        List<ServiceRequest> serviceRequests = serviceRequestDAO.getAllServiceRequests();
-        List<MedicalEquipmentSR> medicalEquipmentSRs = serviceRequests.stream().map(SR -> {
-            return (MedicalEquipmentSR) SR;
-        }).collect(Collectors.toList());
+        MedicalEquipmentSRDAO medicalEquipmentSRDAO = new MedicalEquipmentSRDAOImpl();
+        List<MedicalEquipmentSR> medicalEquipmentSRs = medicalEquipmentSRDAO.getAllServiceRequests();
         for (MedicalEquipmentSR medicalEquipmentSR : medicalEquipmentSRs) {
-            METList.add(new MedicalEquipmentSRTable(medicalEquipmentSR));
+            tableDisplay.addObject(medicalEquipmentSR);
         }
     }
 
@@ -98,8 +81,7 @@ public class MedicalEquipmentSRCreateController extends ServiceRequestCreateCont
         medEquip.setRequestType(ServiceRequest.RequestType.Medical_Equipment);
 
         // Table Entry
-        MedicalEquipmentSRTable met = new MedicalEquipmentSRTable(medEquip);
-        METList.add(met);
+        tableDisplay.addObject(medEquip);
 
         // Database entry
         ServiceRequestDAO serviceRequestDAO = new MedicalEquipmentSRDAOImpl();
