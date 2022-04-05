@@ -9,7 +9,7 @@
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.text.Font?>
 
-<GridPane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="51.0" prefWidth="741.0" stylesheets="@../../css/menu_bar.css" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.wpi.cs3733.D22.teamC.controller.component.MenuBarController">
+<GridPane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="51.0" prefWidth="880.0" stylesheets="@../../css/menu_bar.css" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.wpi.cs3733.D22.teamC.controller.component.MenuBarController">
   <columnConstraints>
     <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
     <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
@@ -64,7 +64,7 @@
                </stylesheets></JFXButton>
          </children>
       </HBox>
-      <HBox alignment="CENTER_RIGHT" prefHeight="42.0" prefWidth="336.0" styleClass="menu-bar" stylesheets="@../../css/menu_bar.css" GridPane.columnIndex="1" GridPane.hgrow="ALWAYS" GridPane.vgrow="ALWAYS">
+      <HBox alignment="CENTER_RIGHT" prefHeight="42.0" prefWidth="453.0" styleClass="menu-bar" stylesheets="@../../css/menu_bar.css" GridPane.columnIndex="1" GridPane.hgrow="ALWAYS" GridPane.vgrow="ALWAYS">
          <children>
             <JFXButton fx:id="menuBarExitButton" alignment="CENTER" contentDisplay="CENTER" onAction="#onMenuBarExitButtonPress" styleClass="button-inactive" text="EXIT" textFill="WHITE">
                <font>
