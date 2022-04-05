@@ -34,6 +34,20 @@ public class LocationInfoPaneController implements Initializable {
     }
 
     /**
+     * Sets location pane text fields to their respective types
+     * @param ID Employee ID Number
+     * @param longName Long name of the location
+     * @param shortName Short name of the location
+     * @param type Type of room that the location is
+     */
+    public void setTextFieldText(String ID, String longName, String shortName, String type) {
+        IDTextField.setText(ID);
+        LongNameTextField.setText(longName);
+        ShortNameTextField.setText(shortName);
+        TypeTextField.setText(type);
+    }
+
+    /**
      * Set all text fields within the location description panes to be editable/uneditable
      * @param editable boolean if fields should be editable
      */
