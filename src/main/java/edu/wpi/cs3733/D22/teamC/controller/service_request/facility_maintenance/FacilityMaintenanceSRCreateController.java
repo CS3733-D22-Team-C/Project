@@ -1,13 +1,10 @@
 package edu.wpi.cs3733.D22.teamC.controller.service_request.facility_maintenance;
 
-import com.jfoenix.controls.*;
-import com.jfoenix.controls.datamodels.treetable.RecursiveTreeObject;
 import edu.wpi.cs3733.D22.teamC.controller.service_request.ServiceRequestCreateController;
 import edu.wpi.cs3733.D22.teamC.entity.service_request.ServiceRequest;
 import edu.wpi.cs3733.D22.teamC.models.service_request.facility_maintenance.FacilityMaintenanceSRTable;
 import edu.wpi.cs3733.D22.teamC.entity.service_request.facility_maintenance.FacilityMaintenanceSR;
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
+import edu.wpi.cs3733.D22.teamC.models.service_request.facility_maintenance.FacilityMaintenanceSRTableDisplay;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
@@ -15,25 +12,16 @@ import javafx.scene.control.*;
 import java.net.URL;
 import java.util.ResourceBundle;
 
-public class FacilityMaintenanceSRCreateController extends ServiceRequestCreateController {
+public class FacilityMaintenanceSRCreateController extends ServiceRequestCreateController<FacilityMaintenanceSR> {
 
     //Fields:
     @FXML private TextField maintType;
-
-    // For table
-    @FXML private JFXTreeTableView<FacilityMaintenanceSRTable> table;
-    ObservableList<FacilityMaintenanceSRTable> METList = FXCollections.observableArrayList();
-    final TreeItem<FacilityMaintenanceSRTable> root = new RecursiveTreeItem<FacilityMaintenanceSRTable>(METList, RecursiveTreeObject::getChildren);
-
-    ObservableList<FacilityMaintenanceSRTable> data;
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         super.initialize(url, rb);
 
-        FacilityMaintenanceSRTable.createTableColumns(table);
-        table.setRoot(root);
-        table.setShowRoot(false);
+        tableDisplay = new FacilityMaintenanceSRTableDisplay(table);
     }
 
     @FXML
@@ -60,8 +48,7 @@ public class FacilityMaintenanceSRCreateController extends ServiceRequestCreateC
         clickReset(event);
 
         // Add Table Entry
-        FacilityMaintenanceSRTable met = new FacilityMaintenanceSRTable(fmsr);
-        METList.add(met);
+        tableDisplay.addObject(fmsr);
 
         return fmsr;
     }
