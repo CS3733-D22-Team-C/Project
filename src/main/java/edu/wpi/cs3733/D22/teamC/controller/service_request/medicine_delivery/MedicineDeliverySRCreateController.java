@@ -76,11 +76,7 @@ public class MedicineDeliverySRCreateController extends ServiceRequestCreateCont
 
         MedicineDeliverySRFormEvaluator mDSRFE = new MedicineDeliverySRFormEvaluator();
 
-        int assigneeIDInt = Integer.parseInt(assigneeID.getText());
-        int locationInt = Integer.parseInt(location.getText());
-        int patientIDInt = Integer.parseInt(patientID.getText());
-
-        ArrayList<ServiceRequestUserInputValidationErrorItem> errors = mDSRFE.getMedicineDeliverySRValidationTestResult(locationInt, assigneeIDInt, patientIDInt, medicine.getText(), dosage.getText(), status.getSelectionModel(), priority.getSelectionModel());
+        ArrayList<ServiceRequestUserInputValidationErrorItem> errors = mDSRFE.getMedicineDeliverySRValidationTestResult(location.getText(), assigneeID.getText(), patientID.getText(), medicine.getText(), dosage.getText(), status.getSelectionModel(), priority.getSelectionModel());
 
         if(errors.isEmpty())
         {

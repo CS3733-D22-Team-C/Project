@@ -11,7 +11,7 @@ public class MedicineDeliverySRFormEvaluator extends ServiceRequestFormEvaluator
 
     public MedicineDeliverySRFormEvaluator() {}
 
-    public ArrayList<ServiceRequestUserInputValidationErrorItem> getMedicineDeliverySRValidationTestResult(int locationID, int assigneeID, int patientID, String medicine, String dosage, SingleSelectionModel status, SingleSelectionModel priority)
+    public ArrayList<ServiceRequestUserInputValidationErrorItem> getMedicineDeliverySRValidationTestResult(String locationID, String assigneeID, String patientID, String medicine, String dosage, SingleSelectionModel status, SingleSelectionModel priority)
     {
         ArrayList <ServiceRequestUserInputValidationErrorItem> errorList = new ArrayList <ServiceRequestUserInputValidationErrorItem> ();
 
@@ -30,17 +30,25 @@ public class MedicineDeliverySRFormEvaluator extends ServiceRequestFormEvaluator
      * @param patientID
      * @return ServiceRequestUserInputValidationErrorItem
      */
-    public ServiceRequestUserInputValidationErrorItem checkPatientIDFilled(int patientID)
+    public ServiceRequestUserInputValidationErrorItem checkPatientIDFilled(String patientID)
     {
-        int patientIDLength = (int)(Math.log10(patientID)+1);
-
-        if(patientIDLength == 0)
+        if(patientID.isEmpty())
         {
             return ServiceRequestUserInputValidationErrorRecord.serviceRequestUserInputValidationErrorList[8];
         }
         else
         {
-            return null;
+            int patientIDConv = Integer.parseInt(patientID);
+            int patientIDLength = (int)(Math.log10(patientIDConv)+1);
+
+            if(patientIDLength == 0)
+            {
+                return ServiceRequestUserInputValidationErrorRecord.serviceRequestUserInputValidationErrorList[8];
+            }
+            else
+            {
+                return null;
+            }
         }
     }
 

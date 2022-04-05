@@ -12,7 +12,7 @@ public class SecuritySRFormEvaluator extends ServiceRequestFormEvaluator {
     public SecuritySRFormEvaluator()
     {}
 
-    public ArrayList<ServiceRequestUserInputValidationErrorItem> getSecuritySRValidationTestResult(int locationID, int assigneeID, SingleSelectionModel status, SingleSelectionModel priority, SingleSelectionModel securityType)
+    public ArrayList<ServiceRequestUserInputValidationErrorItem> getSecuritySRValidationTestResult(String locationID, String assigneeID, SingleSelectionModel status, SingleSelectionModel priority, SingleSelectionModel securityType)
     {
         ArrayList <ServiceRequestUserInputValidationErrorItem> errorList = new ArrayList <ServiceRequestUserInputValidationErrorItem> ();
 

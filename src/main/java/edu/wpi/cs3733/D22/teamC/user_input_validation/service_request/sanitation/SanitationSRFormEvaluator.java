@@ -11,7 +11,7 @@ public class SanitationSRFormEvaluator extends ServiceRequestFormEvaluator {
 
     public SanitationSRFormEvaluator() {}
 
-    public ArrayList<ServiceRequestUserInputValidationErrorItem> getSanitationSRValidationTestResult(int locationID, int assigneeID, SingleSelectionModel status, SingleSelectionModel priority, SingleSelectionModel sanitationType)
+    public ArrayList<ServiceRequestUserInputValidationErrorItem> getSanitationSRValidationTestResult(String locationID, String assigneeID, SingleSelectionModel status, SingleSelectionModel priority, SingleSelectionModel sanitationType)
     {
         ArrayList <ServiceRequestUserInputValidationErrorItem> errorList = new ArrayList <ServiceRequestUserInputValidationErrorItem> ();
 

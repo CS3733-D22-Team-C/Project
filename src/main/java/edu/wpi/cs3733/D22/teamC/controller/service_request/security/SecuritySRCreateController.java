@@ -62,11 +62,7 @@ public class SecuritySRCreateController extends ServiceRequestCreateController {
 
         SecuritySRFormEvaluator sSRFE = new SecuritySRFormEvaluator();
 
-        //Even though the initialize function in ServiceRequestController sets up the assigneeID and location textfields to only read in integers, parseInt() still needs to be used on these text fields.
-        int assigneeIDInt = Integer.parseInt(assigneeID.getText());
-        int locationInt = Integer.parseInt(location.getText());
-
-        ArrayList<ServiceRequestUserInputValidationErrorItem> errors = sSRFE.getSecuritySRValidationTestResult(locationInt, assigneeIDInt, status.getSelectionModel(), priority.getSelectionModel(), secType.getSelectionModel());
+        ArrayList<ServiceRequestUserInputValidationErrorItem> errors = sSRFE.getSecuritySRValidationTestResult(location.getText(), assigneeID.getText(), status.getSelectionModel(), priority.getSelectionModel(), secType.getSelectionModel());
 
         if(errors.isEmpty())
         {

@@ -62,11 +62,7 @@ public class SanitationSRCreateController extends ServiceRequestCreateController
 
         SanitationSRFormEvaluator sSRFE = new SanitationSRFormEvaluator();
 
-        //Even though the initialize function in ServiceRequestController sets up the assigneeID and location textfields to only read in integers, parseInt() still needs to be used on these text fields.
-        int assigneeIDInt = Integer.parseInt(assigneeID.getText());
-        int locationInt = Integer.parseInt(location.getText());
-
-        ArrayList<ServiceRequestUserInputValidationErrorItem> errors = sSRFE.getSanitationSRValidationTestResult(assigneeIDInt, locationInt, priority.getSelectionModel(), status.getSelectionModel(), sanitationType.getSelectionModel());
+        ArrayList<ServiceRequestUserInputValidationErrorItem> errors = sSRFE.getSanitationSRValidationTestResult(assigneeID.getText(), location.getText(), priority.getSelectionModel(), status.getSelectionModel(), sanitationType.getSelectionModel());
 
         if(errors.isEmpty())
         {
