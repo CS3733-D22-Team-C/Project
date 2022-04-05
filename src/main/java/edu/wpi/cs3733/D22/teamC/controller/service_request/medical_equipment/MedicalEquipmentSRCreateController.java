@@ -2,6 +2,7 @@ package edu.wpi.cs3733.D22.teamC.controller.service_request.medical_equipment;
 
 import com.jfoenix.controls.*;
 import edu.wpi.cs3733.D22.teamC.controller.service_request.ServiceRequestCreateController;
+import edu.wpi.cs3733.D22.teamC.entity.service_request.ServiceRequest;
 import edu.wpi.cs3733.D22.teamC.entity.service_request.ServiceRequestDAO;
 import edu.wpi.cs3733.D22.teamC.entity.service_request.medical_equipment.MedicalEquipmentSRDAO;
 import edu.wpi.cs3733.D22.teamC.entity.service_request.medical_equipment.MedicalEquipmentSRDAOImpl;
@@ -24,16 +25,8 @@ public class MedicalEquipmentSRCreateController extends ServiceRequestCreateCont
     // Dropdowns
     @FXML private JFXComboBox<String> equipType;
 
-    // For table
-    @FXML private JFXTreeTableView<MedicalEquipmentSRTable> table;
-    ObservableList<MedicalEquipmentSRTable> METList = FXCollections.observableArrayList();
-    final TreeItem<MedicalEquipmentSRTable> root = new RecursiveTreeItem<MedicalEquipmentSRTable>(METList, RecursiveTreeObject::getChildren);
-
-    ObservableList<MedicalEquipmentSRTable> data;
-
     //For equipID dropdown
     private String lastType;
-
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
@@ -77,12 +70,6 @@ public class MedicalEquipmentSRCreateController extends ServiceRequestCreateCont
         medEquip.setStatus(ServiceRequest.Status.valueOf(status.getValue()));
         medEquip.setPriority(ServiceRequest.Priority.valueOf(priority.getValue()));
         medEquip.setEquipmentType(MedicalEquipmentSR.EquipmentType.valueOf(equipType.getValue()));
-
-        //Request ID generator
-//        int requestID = (int)(Math.random() * (10000000 + 1)) + 0;
-//        String requestIDString = Integer.toString(requestID);
-//        medEquip.setRequestID(Integer.parseInt(requestIDString));
-//        System.out.println(requestIDString);
 
         //Dealing with the equipment type and the enumerator
         int type = medEquip.getEquipmentType().ordinal();

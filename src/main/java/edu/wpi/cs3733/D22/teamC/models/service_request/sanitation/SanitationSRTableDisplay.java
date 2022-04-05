@@ -14,7 +14,7 @@ public class SanitationSRTableDisplay extends ServiceRequestTableDisplay<Sanitat
         public SanitationSRTableEntry(SanitationSR sanitationSR) {
             super(sanitationSR);
 
-            this.sanitationType = new SimpleStringProperty(sanitationSR.getSanitationType());
+            this.sanitationType = new SimpleStringProperty(sanitationSR.getSanitationType().toString());
         }
     }
 
