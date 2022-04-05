@@ -19,11 +19,17 @@ public class MedicalEquipment {
         Dirty
     }
 
+    public MedicalEquipment(int equipID) { this.equipID = equipID; }
+
+    public MedicalEquipment(int locationID, EquipmentType equipmentType, EquipmentStatus equipmentStatus) {
+        this.locationID = locationID;
+        this.equipmentType = equipmentType;
+        this.equipmentStatus = equipmentStatus;
+    }
+
     public EquipmentType getEquipmentType() {
         return equipmentType;
     }
-
-    public MedicalEquipment(int equipID) { this.equipID = equipID}
 
     public void setEquipmentType(EquipmentType equipmentType) {
         this.equipmentType = equipmentType;

@@ -86,8 +86,8 @@ public class MedicalEquipmentDAOImpl implements MedicalEquipmentDAO {
             if (equipmentInDB == null) {
                 // Execute INSERT Statement
                 PreparedStatement statement = (equipmentInDB.getEquipID() == 0)
-                        ? DBManager.getInstance().connection.prepareStatement("INSERT INTO Medical_Equipment VALUES(DEFAULT, ?, ?, ?, ?, ?, ?, ?)", Statement.RETURN_GENERATED_KEYS)
-                        : DBManager.getInstance().connection.prepareStatement("INSERT INTO Medical_Equipment VALUES(?, ?, ?, ?, ?, ?, ?, ?)", Statement.RETURN_GENERATED_KEYS);
+                        ? DBManager.getInstance().connection.prepareStatement("INSERT INTO Medical_Equipment VALUES(DEFAULT, ?, ?, ?)", Statement.RETURN_GENERATED_KEYS)
+                        : DBManager.getInstance().connection.prepareStatement("INSERT INTO Medical_Equipment VALUES(?, ?, ?, ?)", Statement.RETURN_GENERATED_KEYS);
 
                 int index = 1;
                 if (equipmentInDB.getEquipID() != 0) {
@@ -117,11 +117,12 @@ public class MedicalEquipmentDAOImpl implements MedicalEquipmentDAO {
             if (equipmentInDB != null) {
                 // Execute UPDATE Statement
                 PreparedStatement statement =  DBManager.getInstance().connection.prepareStatement(
-                        "UPDATE Medical_Equipment SET EquipType = ?, EquipStatus = ?" +
+                        "UPDATE Medical_Equipment SET locationID = ?, EquipType = ?, EquipStatus = ?" +
                                 " WHERE ID = ?"
                 );
-                statement.setString(1, medical_equipment.getEquipmentType().toString());
-                statement.setString(2, medical_equipment.getEquipmentStatus().toString());
+                statement.setInt(1, medical_equipment.getLocationID());
+                statement.setString(2, medical_equipment.getEquipmentType().toString());
+                statement.setString(3, medical_equipment.getEquipmentStatus().toString());
                 statement.execute();
                 return true;
             }

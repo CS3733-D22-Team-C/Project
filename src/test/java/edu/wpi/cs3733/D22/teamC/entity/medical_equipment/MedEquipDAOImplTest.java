@@ -11,16 +11,17 @@ import static org.junit.jupiter.api.Assertions.*;
 
 class MedEquipDAOImplTest {
     private DBManager testDBManager;
-    private LocationDAOImpl locationDAO;
+    private MedicalEquipmentDAOImpl medicalEquipmentDAO;
 
     @BeforeEach
     void setUp() {
         // Setup testing database and initialize LOCATION table
         testDBManager = DBManager.startup(DBManager.TESTING_DATABASE_NAME);
+        testDBManager.initializeMedicalEquipmentTable(true);
         testDBManager.initializeLocationTable(true);
 
         // Setup testing LocationDAOImpl
-        locationDAO = new LocationDAOImpl();
+        medicalEquipmentDAO = new MedicalEquipmentDAOImpl();
     }
 
     @AfterEach
@@ -30,142 +31,116 @@ class MedEquipDAOImplTest {
     }
 
     /**
-     * Test that an empty Location Table DB returns nothing for queries.
+     * Test that an empty Medical_Equipment Table DB returns nothing for queries.
      */
     @Test
     void testEmptyQueryLocation() {
-        assertEquals(0, locationDAO.getAllLocations().size());
-        assertEquals(null, locationDAO.getLocation(1234));
+        assertEquals(0, medicalEquipmentDAO.getMedicalEquipments().size());
+        assertEquals(null, medicalEquipmentDAO.getMedicalEquipment(1234));
     }
 
     /**
-     * Test that insertLocation works.
+     * Test that insertEquipment works.
      */
     @Test
-    void testInsertLocation() {
+    void testInsertEquipment() {
         // Check DB is empty
-        assertEquals(0, locationDAO.getAllLocations().size());
-        assertEquals(null, locationDAO.getLocation(1234));
+        assertEquals(0, medicalEquipmentDAO.getMedicalEquipments().size());
+        assertEquals(null, medicalEquipmentDAO.getMedicalEquipment(1234));
 
-        // Insert Location into DB
-        String floor = "L1";
-        String building = "Building";
-        Location.NodeType nodeType = Location.NodeType.DEPT;
-        String longName = "LongName";
-        String shortName = "shortName";
-        int x = 10;
-        int y = 20;
-        Location insertLocation = new Location(floor, building, nodeType, longName, shortName, x, y);
-        int retrievedID = locationDAO.insertLocation(insertLocation);
-        insertLocation.setNodeID(retrievedID);
+        // Insert Equipment into DB
+        int locationID = 1234;
+        MedicalEquipment.EquipmentType equipmentType = MedicalEquipment.EquipmentType.Bed;
+        MedicalEquipment.EquipmentStatus equipmentStatus = MedicalEquipment.EquipmentStatus.Dirty;
+        MedicalEquipment insertEquipment = new MedicalEquipment(locationID, equipmentType, equipmentStatus);
+        int retrievedID = medicalEquipmentDAO.insertMedicalEquipment(insertEquipment);
+        insertEquipment.setEquipID(retrievedID);
         assertNotEquals(-1, retrievedID);
-        assertEquals(1, locationDAO.getAllLocations().size());
+        assertEquals(1, medicalEquipmentDAO.getMedicalEquipments().size());
 
         // Cannot Insert Location Again
-        assertEquals(-1, locationDAO.insertLocation(insertLocation));
+        assertEquals(-1, medicalEquipmentDAO.insertMedicalEquipment(insertEquipment));
 
         // Check that DB values are expected
-        Location queryLocation = locationDAO.getLocation(insertLocation.getNodeID());
+        MedicalEquipment queryLocation = medicalEquipmentDAO.getMedicalEquipment(insertEquipment.getEquipID());
         assertNotNull(queryLocation);
-        assertEquals(retrievedID, queryLocation.getNodeID());
-        assertEquals(floor, queryLocation.getFloor());
-        assertEquals(building, queryLocation.getBuilding());
-        assertEquals(nodeType, queryLocation.getNodeType());
-        assertEquals(longName, queryLocation.getLongName());
-        assertEquals(shortName, queryLocation.getShortName());
-        assertEquals(x, queryLocation.getX());
-        assertEquals(y, queryLocation.getY());
+        assertEquals(retrievedID, queryLocation.getEquipID());
+        assertEquals(equipmentStatus, queryLocation.getEquipmentStatus().toString());
+        assertEquals(equipmentType, queryLocation.getEquipmentType().toString());
+        assertEquals(locationID, queryLocation.getLocationID());
     }
 
     /**
-     * Test that deleteLocation works.
+     * Test that deleteEquipment works.
      */
     @Test
     void testDeleteLocation() {
         // Check DB is empty
-        assertEquals(0, locationDAO.getAllLocations().size());
-        assertEquals(null, locationDAO.getLocation(1234));
+        assertEquals(0, medicalEquipmentDAO.getMedicalEquipments().size());
+        assertEquals(null, medicalEquipmentDAO.getMedicalEquipment(1234));
+
 
         // Insert Location into DB
-        String floor = "L1";
-        String building = "Building";
-        Location.NodeType nodeType = Location.NodeType.HALL;
-        String longName = "LongName";
-        String shortName = "shortName";
-        int x = 10;
-        int y = 20;
-        Location deleteLocation = new Location(floor, building, nodeType, longName, shortName, x, y);
-        int retrievedID = locationDAO.insertLocation(deleteLocation);
-        deleteLocation.setNodeID(retrievedID);
+        int locationID = 1234;
+        MedicalEquipment.EquipmentType equipmentType = MedicalEquipment.EquipmentType.Recliner;
+        MedicalEquipment.EquipmentStatus equipmentStatus = MedicalEquipment.EquipmentStatus.Unavailable;
+        MedicalEquipment deleteEquipment = new MedicalEquipment(locationID, equipmentType, equipmentStatus);
+        int retrievedID = medicalEquipmentDAO.insertMedicalEquipment(deleteEquipment);
+        deleteEquipment.setEquipID(retrievedID);
         assertNotEquals(-1, retrievedID);
-        assertEquals(1, locationDAO.getAllLocations().size());
+        assertEquals(1, medicalEquipmentDAO.getMedicalEquipments().size());
 
         // Delete Location from DB
-        assertTrue(locationDAO.deleteLocation(deleteLocation));
+        assertTrue(medicalEquipmentDAO.deleteMedicalEquipment(deleteEquipment));
 
         // Cannot Delete Location Again
-        assertFalse(locationDAO.deleteLocation(deleteLocation));
+        assertFalse(medicalEquipmentDAO.deleteMedicalEquipment(deleteEquipment));
 
         // Check DB is empty
-        assertEquals(0, locationDAO.getAllLocations().size());
-        assertEquals(null, locationDAO.getLocation(1234));
+        assertEquals(0, medicalEquipmentDAO.getMedicalEquipments().size());
+        assertEquals(null, medicalEquipmentDAO.getMedicalEquipment(1234));
     }
 
     /**
      * Test that updateLocation works.
      */
     @Test
-    void testUpdateLocation() {
+    void testUpdateEq() {
         // Check DB is empty
-        assertEquals(0, locationDAO.getAllLocations().size());
-        assertEquals(null, locationDAO.getLocation(1234));
+        assertEquals(0, medicalEquipmentDAO.getMedicalEquipments().size());
+        assertEquals(null, medicalEquipmentDAO.getMedicalEquipment(1234));
+
 
         // Insert Location into DB
-        String floor = "L1";
-        String building = "Building";
-        Location.NodeType nodeType = Location.NodeType.SERV;
-        String longName = "LongName";
-        String shortName = "shortName";
-        int x = 10;
-        int y = 20;
-        Location updateLocation = new Location(floor, building, nodeType, longName, shortName, x, y);
-        int retrievedID = locationDAO.insertLocation(updateLocation);
-        updateLocation.setNodeID(retrievedID);
+        int locationID = 1234;
+        MedicalEquipment.EquipmentType equipmentType = MedicalEquipment.EquipmentType.Infusion_Pump;
+        MedicalEquipment.EquipmentStatus equipmentStatus = MedicalEquipment.EquipmentStatus.Available;
+        MedicalEquipment updateEquipment = new MedicalEquipment(locationID, equipmentType, equipmentStatus);
+        int retrievedID = medicalEquipmentDAO.insertMedicalEquipment(updateEquipment);
+        updateEquipment.setEquipID(retrievedID);
         assertNotEquals(-1, retrievedID);
-        assertEquals(1, locationDAO.getAllLocations().size());
+        assertEquals(1, medicalEquipmentDAO.getMedicalEquipments().size());
 
         // Update Location in DB
-        String newFloor = "L2";
-        String newBuilding = "Building2";
-        Location.NodeType newNodeType = Location.NodeType.CONF;
-        String newLongName = "LongName2";
-        String newShortName = "shortName2";
-        int newX = 100;
-        int newY = 200;
-        updateLocation.setFloor(newFloor);
-        updateLocation.setBuilding(newBuilding);
-        updateLocation.setNodeType(newNodeType);
-        updateLocation.setLongName(newLongName);
-        updateLocation.setShortName(newShortName);
-        updateLocation.setX(newX);
-        updateLocation.setY(newY);
-        assertTrue(locationDAO.updateLocation(updateLocation));
-        assertEquals(1, locationDAO.getAllLocations().size());
+        int newLocationID = 3456;
+        MedicalEquipment.EquipmentType newEquipmentType = MedicalEquipment.EquipmentType.Portable_X_Ray;
+        MedicalEquipment.EquipmentStatus newEquipmentStatus = MedicalEquipment.EquipmentStatus.Unavailable;
+        updateEquipment.setLocationID(newLocationID);
+        updateEquipment.setEquipmentType(newEquipmentType);
+        updateEquipment.setEquipmentStatus(newEquipmentStatus);
+        assertTrue(medicalEquipmentDAO.updateMedicalEquipment(updateEquipment));
+        assertEquals(1, medicalEquipmentDAO.getMedicalEquipments().size());
 
         // Check that DB values are expected
-        Location queryLocation = locationDAO.getLocation(updateLocation.getNodeID());
+        MedicalEquipment queryLocation = medicalEquipmentDAO.getMedicalEquipment(updateEquipment.getEquipID());
         assertNotNull(queryLocation);
-        assertEquals(retrievedID, queryLocation.getNodeID());
-        assertEquals(newFloor, queryLocation.getFloor());
-        assertEquals(newBuilding, queryLocation.getBuilding());
-        assertEquals(newNodeType, queryLocation.getNodeType());
-        assertEquals(newLongName, queryLocation.getLongName());
-        assertEquals(newShortName, queryLocation.getShortName());
-        assertEquals(newX, queryLocation.getX());
-        assertEquals(newY, queryLocation.getY());
+        assertEquals(retrievedID, queryLocation.getEquipID());
+        assertEquals(newLocationID, queryLocation.getLocationID());
+        assertEquals(newEquipmentType, queryLocation.getEquipmentType());
+        assertEquals(newEquipmentStatus, queryLocation.getEquipmentStatus());
 
         // Cannot Update Nonexistent Location
-        Location newLocation = new Location(1234);
-        assertFalse(locationDAO.updateLocation(newLocation));
+        MedicalEquipment newEquipment = new MedicalEquipment(1234);
+        assertFalse(medicalEquipmentDAO.updateMedicalEquipment(newEquipment));
     }
 }
