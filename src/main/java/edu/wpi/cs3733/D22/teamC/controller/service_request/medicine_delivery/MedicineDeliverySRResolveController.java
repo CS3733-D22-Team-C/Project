@@ -29,8 +29,8 @@ public class MedicineDeliverySRResolveController extends ServiceRequestResolveCo
 
         //title
         title.setText("Resolve Medicine Delivery Service Request");
-        // Setting fields from Querying Database
 
+        // Setting fields from Querying Database
         medicine.setText(medicineDeliverySR.getMedicine());
         dosage.setText(medicineDeliverySR.getDosage());
         patientID.setText(medicineDeliverySR.getPatientID());
