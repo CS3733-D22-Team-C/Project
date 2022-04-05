@@ -64,23 +64,26 @@ public class SecuritySRCreateController extends ServiceRequestCreateController {
 
         ArrayList<ServiceRequestUserInputValidationErrorItem> errors = sSRFE.getSecuritySRValidationTestResult(location.getText(), assigneeID.getText(), status.getSelectionModel(), priority.getSelectionModel(), secType.getSelectionModel());
 
-        //Check to see if errors contains all null entries
-
-
-        if(errors.isEmpty())
+        if(noUserErrors(errors))
         {
-            SecuritySR securitySR = (SecuritySR) super.clickSubmit(event);
+            SecuritySR sESR = new SecuritySR();
+
+            sESR.setAssigneeID(assigneeID.getText());
+            sESR.setLocation(location.getText());
+            sESR.setPriority(ServiceRequest.Priority.valueOf(priority.getValue()));
+            sESR.setStatus(ServiceRequest.Status.valueOf(status.getValue()));
+            sESR.setDescription(description.getText());
 
             //Sets from combo boxes
-            securitySR.setSecurityType(SecuritySR.SecurityType.valueOf(secType.getValue()));
+            sESR.setSecurityType(SecuritySR.SecurityType.valueOf(secType.getValue()));
 
-            securitySR.setRequestType(ServiceRequest.RequestType.Security);
+            sESR.setRequestType(ServiceRequest.RequestType.Security);
 
             // Table Entry
             clickReset(event);
-            SecuritySRTable met = new SecuritySRTable(securitySR);
+            SecuritySRTable met = new SecuritySRTable(sESR);
             METList.add(met);
-            return securitySR;
+            return sESR;
         }
         else
         {

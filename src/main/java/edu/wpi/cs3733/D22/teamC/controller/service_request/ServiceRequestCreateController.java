@@ -110,20 +110,15 @@ public class ServiceRequestCreateController implements Initializable {
         status.valueProperty().set(null);
     }
 
-    //Downcasting is okay here
+    /*
     @FXML
     protected ServiceRequest clickSubmit(ActionEvent event)
     {
         ServiceRequest sR = new ServiceRequest();
-
-        sR.setAssigneeID(assigneeID.getText());
-        sR.setLocation(location.getText());
-        sR.setPriority(ServiceRequest.Priority.valueOf(priority.getValue()));
-        sR.setStatus(ServiceRequest.Status.valueOf(status.getValue()));
-        sR.setDescription(description.getText());
-
+        //Downcasting as a result of the code here causes a ClassCastException, might need some advice getting around this to complete the abstraction.
         return sR;
     }
+    */
 
     public void prepareErrorMessages(ArrayList<ServiceRequestUserInputValidationErrorItem> l)
     {

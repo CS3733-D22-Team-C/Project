@@ -58,9 +58,15 @@ public class FacilityMaintenanceSRCreateController extends ServiceRequestCreateC
 
         ArrayList <ServiceRequestUserInputValidationErrorItem> errors = fMSRFE.getFacilityMaintenanceSRValidationTestResult(assigneeID.getText(), location.getText(), priority.getSelectionModel(), status.getSelectionModel(), maintType.getText());
 
-        if(errors.isEmpty())
+        if(noUserErrors(errors))
         {
-            FacilityMaintenanceSR fMSR = (FacilityMaintenanceSR) super.clickSubmit(event);
+            FacilityMaintenanceSR fMSR = new FacilityMaintenanceSR();
+
+            fMSR.setAssigneeID(assigneeID.getText());
+            fMSR.setLocation(location.getText());
+            fMSR.setPriority(ServiceRequest.Priority.valueOf(priority.getValue()));
+            fMSR.setStatus(ServiceRequest.Status.valueOf(status.getValue()));
+            fMSR.setDescription(description.getText());
 
             fMSR.setMaintenanceType(FacilityMaintenanceSR.MaintenanceType.valueOf(maintType.getText()));
             fMSR.setRequestType(ServiceRequest.RequestType.Facility_Maintenance);

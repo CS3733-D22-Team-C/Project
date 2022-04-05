@@ -78,25 +78,31 @@ public class LabSystemSRCreateController extends ServiceRequestCreateController 
 
         ArrayList<ServiceRequestUserInputValidationErrorItem> errors = lSSRFE.getLabSystemSRValidationTestResult(location.getText(), assigneeID.getText(), status.getSelectionModel(), priority.getSelectionModel(), labType.getSelectionModel(), patientID.getText());
 
-        if(errors.isEmpty())
+        if(noUserErrors(errors))
         {
-            LabSystemSR labSystem = (LabSystemSR) super.clickSubmit(event);
+            LabSystemSR lSSR = new LabSystemSR();
+
+            lSSR.setAssigneeID(assigneeID.getText());
+            lSSR.setLocation(location.getText());
+            lSSR.setPriority(ServiceRequest.Priority.valueOf(priority.getValue()));
+            lSSR.setStatus(ServiceRequest.Status.valueOf(status.getValue()));
+            lSSR.setDescription(description.getText());
 
             //Sets from textFields
-            labSystem.setPatientID(patientID.getText());
+            lSSR.setPatientID(patientID.getText());
 
             //Sets from combo boxes
-            labSystem.setLabType(LabSystemSR.LabType.valueOf(labType.getValue()));
+            lSSR.setLabType(LabSystemSR.LabType.valueOf(labType.getValue()));
 
-            labSystem.setRequestType(ServiceRequest.RequestType.Lab_System);
+            lSSR.setRequestType(ServiceRequest.RequestType.Lab_System);
 
             //Table Entry
-            LabSystemSRTable lst = new LabSystemSRTable(labSystem);
+            LabSystemSRTable lst = new LabSystemSRTable(lSSR);
             LSTList.add(lst);
 
             clickReset(event);
 
-            return labSystem;
+            return lSSR;
         }
         else
         {

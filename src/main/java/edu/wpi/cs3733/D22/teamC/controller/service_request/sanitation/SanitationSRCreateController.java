@@ -64,27 +64,32 @@ public class SanitationSRCreateController extends ServiceRequestCreateController
 
         ArrayList<ServiceRequestUserInputValidationErrorItem> errors = sSRFE.getSanitationSRValidationTestResult(assigneeID.getText(), location.getText(), priority.getSelectionModel(), status.getSelectionModel(), sanitationType.getSelectionModel());
 
-        if(errors.isEmpty())
+        if(noUserErrors(errors))
         {
-            SanitationSR sanitationSR = (SanitationSR) super.clickSubmit(event);
+            SanitationSR sSR = new SanitationSR();
 
             // Start setting up a Java object for a SanitationServiceRequest
+            sSR.setAssigneeID(assigneeID.getText());
+            sSR.setLocation(location.getText());
+            sSR.setPriority(ServiceRequest.Priority.valueOf(priority.getValue()));
+            sSR.setStatus(ServiceRequest.Status.valueOf(status.getValue()));
+            sSR.setDescription(description.getText());
 
             // Dropdown Boxes
-            sanitationSR.setSanitationType(SanitationSR.SanitationType.valueOf(sanitationType.getValue()));
+            sSR.setSanitationType(SanitationSR.SanitationType.valueOf(sanitationType.getValue()));
 
             // Sanitation type to enum
             int sanitationTypeEnum = SanitationSR.SanitationType.valueOf(sanitationType.getValue()).ordinal();
 
-            sanitationSR.setRequestType(ServiceRequest.RequestType.Sanitation);
+            sSR.setRequestType(ServiceRequest.RequestType.Sanitation);
 
             clickReset(event);
 
-            SanitationSRTable tableEntry = new SanitationSRTable(sanitationSR);
+            SanitationSRTable tableEntry = new SanitationSRTable(sSR);
 
             sanitationList.add(tableEntry);
 
-            return sanitationSR;
+            return sSR;
         }
         else
         {
