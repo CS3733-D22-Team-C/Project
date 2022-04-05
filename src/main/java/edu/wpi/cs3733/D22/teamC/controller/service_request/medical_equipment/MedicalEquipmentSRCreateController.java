@@ -79,7 +79,7 @@ public class MedicalEquipmentSRCreateController extends ServiceRequestCreateCont
 
     @FXML
     protected MedicalEquipmentSR clickSubmit(ActionEvent event) {
-
+        resetErrorMessages();
         MedicalEquipmentSRFormEvaluator mESRFE = new MedicalEquipmentSRFormEvaluator();
         ArrayList<ServiceRequestUserInputValidationErrorItem> errors = mESRFE.getMedicalEquipmentSRValidationTestResult(location.getText(), assigneeID.getText(), status.getSelectionModel(), priority.getSelectionModel(), equipType.getSelectionModel(), equipID.getText());
 

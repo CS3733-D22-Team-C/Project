@@ -59,7 +59,7 @@ public class SecuritySRCreateController extends ServiceRequestCreateController {
 
     @FXML
     protected SecuritySR clickSubmit(ActionEvent event) {
-
+        resetErrorMessages();
         SecuritySRFormEvaluator sSRFE = new SecuritySRFormEvaluator();
         ArrayList<ServiceRequestUserInputValidationErrorItem> errors = sSRFE.getSecuritySRValidationTestResult(location.getText(), assigneeID.getText(), status.getSelectionModel(), priority.getSelectionModel(), secType.getSelectionModel());
 

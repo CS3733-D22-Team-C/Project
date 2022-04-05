@@ -73,7 +73,7 @@ public class MedicineDeliverySRCreateController extends ServiceRequestCreateCont
 
     @FXML
     protected MedicineDeliverySR clickSubmit(ActionEvent event) {
-
+        resetErrorMessages();
         MedicineDeliverySRFormEvaluator mDSRFE = new MedicineDeliverySRFormEvaluator();
         ArrayList<ServiceRequestUserInputValidationErrorItem> errors = mDSRFE.getMedicineDeliverySRValidationTestResult(location.getText(), assigneeID.getText(), patientID.getText(), medicine.getText(), dosage.getText(), status.getSelectionModel(), priority.getSelectionModel());
 
