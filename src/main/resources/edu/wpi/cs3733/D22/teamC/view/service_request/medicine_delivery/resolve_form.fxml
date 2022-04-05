@@ -115,7 +115,7 @@
                         <VBox alignment="CENTER_LEFT" prefHeight="200.0" prefWidth="100.0" styleClass="box-margin" GridPane.rowIndex="1">
                             <children>
                                 <Label styleClass="service-field-label" text="Assign to:" />
-                                <TextField fx:id="assigneeID" onAction="#statusUpdated" onKeyPressed="#statusUpdatedKeyEvent" />
+                                <TextField fx:id="assigneeID" editable="false" onAction="#statusUpdated" onKeyPressed="#statusUpdatedKeyEvent" />
                             </children>
                             <GridPane.margin>
                                 <Insets right="20.0" />
@@ -155,7 +155,7 @@
                   <VBox alignment="CENTER_LEFT" onKeyPressed="#statusUpdatedKeyEvent" prefHeight="200.0" prefWidth="100.0" styleClass="box-margin" GridPane.rowIndex="2">
                      <children>
                         <Label styleClass="service-field-label" text="Patient ID:" />
-                        <TextField fx:id="assigneeID1" onAction="#statusUpdated" onKeyPressed="#statusUpdatedKeyEvent" />
+                        <TextField fx:id="assigneeID1" editable="false" onAction="#statusUpdated" onKeyPressed="#statusUpdatedKeyEvent" />
                      </children>
                      <GridPane.margin>
                         <Insets right="20.0" top="80.0" />
@@ -164,7 +164,7 @@
                   <VBox alignment="CENTER_LEFT" prefHeight="200.0" prefWidth="100.0" styleClass="box-margin" GridPane.columnIndex="1" GridPane.rowIndex="2">
                      <children>
                         <Label styleClass="service-field-label" text="Medicine: " />
-                        <TextField fx:id="medicine" onAction="#statusUpdated" onKeyPressed="#statusUpdatedKeyEvent" />
+                        <TextField fx:id="medicine" editable="false" onAction="#statusUpdated" onKeyPressed="#statusUpdatedKeyEvent" />
                      </children>
                      <GridPane.margin>
                         <Insets left="10.0" right="10.0" top="80.0" />
@@ -173,7 +173,7 @@
                   <VBox alignment="CENTER_LEFT" prefHeight="200.0" prefWidth="100.0" styleClass="box-margin" GridPane.columnIndex="2" GridPane.rowIndex="2">
                      <children>
                         <Label styleClass="service-field-label" text="Dosage:" />
-                        <TextField fx:id="dosage" onAction="#statusUpdated" onKeyPressed="#statusUpdatedKeyEvent" />
+                        <TextField fx:id="dosage" editable="false" onAction="#statusUpdated" onKeyPressed="#statusUpdatedKeyEvent" />
                      </children>
                      <GridPane.margin>
                         <Insets left="20.0" top="80.0" />

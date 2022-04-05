@@ -6,6 +6,7 @@ import edu.wpi.cs3733.D22.teamC.controller.service_request.ServiceRequestResolve
 import edu.wpi.cs3733.D22.teamC.entity.service_request.ServiceRequest;
 import edu.wpi.cs3733.D22.teamC.entity.service_request.medical_equipment.MedicalEquipmentSR;
 import edu.wpi.cs3733.D22.teamC.entity.service_request.medical_equipment.MedicalEquipmentSRDAOImpl;
+import edu.wpi.cs3733.D22.teamC.entity.service_request.medicine_delivery.MedicineDeliverySR;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.TextField;
@@ -24,27 +25,35 @@ public class MedicineDeliverySRResolveController extends ServiceRequestResolveCo
 
         // Querying for full Medical Equipment Service Request
         MedicalEquipmentSRDAOImpl medicalEquipmentSRDAOImpl = new MedicalEquipmentSRDAOImpl();
-        MedicalEquipmentSR medicalEquipmentSR = medicalEquipmentSRDAOImpl.getServiceRequest(serviceRequest.getRequestID());
+        MedicineDeliverySR medicineDeliverySR = medicalEquipmentSRDAOImpl.getServiceRequest(serviceRequest.getRequestID());
 
+        //title
+        title.setText("Resolve Medicine Delivery Service Request");
         // Setting fields from Querying Database
-        equipmentType.setPromptText(medicalEquipmentSR.getEquipmentType().toString());
-        equipmentID.setPromptText(medicalEquipmentSR.getEquipmentID());
-        description.setText(medicalEquipmentSR.getDescription());
-        creationTime.setText(medicalEquipmentSR.getCreationTimestamp().toString());
 
+        medicine.setText(medicineDeliverySR.getMedicine());
+        dosage.setText(medicineDeliverySR.getDosage());
+        patientID.setText(medicineDeliverySR.getPatientID());
+        description.setText(medicineDeliverySR.getDescription());
+        creationTime.setText(medicineDeliverySR.getCreationTimestamp().toString());
+
+        medicine.setEditable(false);
+        dosage.setEditable(false);
+        patientID.setEditable(false);
 
         if(isEditMode){
-            // Equipment Type Dropdown
-            for (MedicalEquipmentSR.EquipmentType type : MedicalEquipmentSR.EquipmentType.values()) {
-                equipmentType.getItems().add(type.toString());
-            }
-            equipmentType.valueProperty().setValue(equipmentType.getPromptText());
+            //title
+            title.setText("Edit Medicine Delivery Service Request");
+
+            //Textboxes now editable
+            medicine.setEditable(true);
+            dosage.setEditable(true);
+            patientID.setEditable(true);
 
             //Status labels at bottom
             if (requiredFieldsPresent()) secondStatus.setText("processing");
             else secondStatus.setText("blank");
         }
-        System.out.println(isEditMode);
     }
 
 
@@ -54,24 +63,19 @@ public class MedicineDeliverySRResolveController extends ServiceRequestResolveCo
         super.clickConfirm(event);
         //Accessing Service Request in Database
         MedicalEquipmentSRDAOImpl medicalEquipmentSRDAOImpl = new MedicalEquipmentSRDAOImpl();
-        MedicalEquipmentSR medicalEquipmentSR = medicalEquipmentSRDAOImpl.getServiceRequest(serviceRequest.getRequestID());
+        MedicineDeliverySR medicineDeliverySR = medicalEquipmentSRDAOImpl.getServiceRequest(serviceRequest.getRequestID());
         if(isEditMode){
-            //check if value has changed
-            if(equipmentID.getValue() != null)
-            {
-                medicalEquipmentSR.setEquipmentID(equipmentID.getValue());
-            }
-            if(equipmentType.getValue() != null) {
-                medicalEquipmentSR.setEquipmentType(MedicalEquipmentSR.EquipmentType.valueOf(equipmentType.getValue()));
-            }
 
-            System.out.println(requiredFieldsPresent());
+            medicineDeliverySR.setMedicine(medicine.getText());
+            medicineDeliverySR.setDosage(dosage.getText());
+            medicineDeliverySR.setPatientID(patientID.getText());
+
             //Status
             if(requiredFieldsPresent())
-                medicalEquipmentSR.setStatus(ServiceRequest.Status.Processing);
+                medicineDeliverySR.setStatus(ServiceRequest.Status.Processing);
             else
-                medicalEquipmentSR.setStatus(ServiceRequest.Status.Blank);
-            medicalEquipmentSRDAOImpl.updateServiceRequest(medicalEquipmentSR);
+                medicineDeliverySR.setStatus(ServiceRequest.Status.Blank);
+            medicalEquipmentSRDAOImpl.updateServiceRequest(medicineDeliverySR);
 
         }
 
@@ -80,9 +84,11 @@ public class MedicineDeliverySRResolveController extends ServiceRequestResolveCo
     }
 
     protected boolean requiredFieldsPresent(){
-        if(equipmentType.getValue() == null && equipmentType.getPromptText().equals(""))
+        if(medicine.getText().equals(""))
             return false;
-        if(equipmentID.getValue() == null && equipmentID.getPromptText().equals(""))
+        if(dosage.getText().equals(""))
+            return false;
+        if(patientID.getText().equals(""))
             return false;
         return super.requiredFieldsPresent();
     }

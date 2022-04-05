@@ -19,7 +19,7 @@ public class ServiceRequestResolveController {
     @FXML private JFXComboBox<String> hospitalLocation;
 
     // Labels
-    @FXML private Label title;
+    @FXML protected Label title;
         // DB Labels
     @FXML protected Label createdBy;
     @FXML protected Label creationTime;
