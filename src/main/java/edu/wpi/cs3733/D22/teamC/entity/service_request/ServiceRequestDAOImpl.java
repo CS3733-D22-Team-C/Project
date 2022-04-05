@@ -75,8 +75,10 @@ public class ServiceRequestDAOImpl extends ServiceRequestDAO<ServiceRequest> {
             ServiceRequest serviceRequestInDB = getServiceRequest(serviceRequest.getRequestID());
             if (serviceRequestInDB == null) {
                 PreparedStatement statement = (serviceRequest.getRequestID() == 0)
-                        ? DBManager.getInstance().connection.prepareStatement("INSERT INTO SERVICE_REQUEST VALUES(DEFAULT, ?, ?, ?, ?, ?, ?, ?, ?)", Statement.RETURN_GENERATED_KEYS)
-                        : DBManager.getInstance().connection.prepareStatement("INSERT INTO SERVICE_REQUEST VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?)", Statement.RETURN_GENERATED_KEYS);
+                        ? DBManager.getInstance().connection.prepareStatement("INSERT INTO SERVICE_REQUEST " +
+                        "VALUES(DEFAULT, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)", Statement.RETURN_GENERATED_KEYS)
+                        : DBManager.getInstance().connection.prepareStatement("INSERT INTO SERVICE_REQUEST " +
+                        "VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)", Statement.RETURN_GENERATED_KEYS);
 
                 int index = 1;
                 if(serviceRequest.getRequestID() != 0){
@@ -90,7 +92,9 @@ public class ServiceRequestDAOImpl extends ServiceRequestDAO<ServiceRequest> {
                 statement.setString(index, serviceRequest.getStatus().toString()); index++;
                 statement.setString(index, serviceRequest.getPriority().toString()); index++;
                 statement.setString(index, serviceRequest.getRequestType().toString()); index++;
-                statement.setString(index, serviceRequest.getDescription());
+                statement.setString(index, serviceRequest.getDescription()); index++;
+                statement.setString(index, serviceRequest.getModifierID()); index++;
+                statement.setTimestamp(index, serviceRequest.getModifiedTimestamp());
                 statement.execute();
 
                 ResultSet resultSetID = statement.getGeneratedKeys();
@@ -118,7 +122,8 @@ public class ServiceRequestDAOImpl extends ServiceRequestDAO<ServiceRequest> {
                 // Execute UPDATE statement
                 PreparedStatement statement = DBManager.getInstance().connection.prepareStatement(
                         "UPDATE SERVICE_REQUEST SET CREATORID = ?, ASSIGNEEID = ?, LOCATIONID = ?, " +
-                                "CREATIONTIMESTAMP = ?, STATUS = ?, PRIORITY = ?, REQUESTTYPE = ?, DESCRIPTION = ? " +
+                                "CREATIONTIMESTAMP = ?, STATUS = ?, PRIORITY = ?, REQUESTTYPE = ?, DESCRIPTION = ? , " +
+                                "ModifierID = ?, ModifiedTimestamp = ?" +
                                 "WHERE ID = ?"
                 );
                 statement.setInt(1, serviceRequest.getCreatorID());
@@ -129,7 +134,9 @@ public class ServiceRequestDAOImpl extends ServiceRequestDAO<ServiceRequest> {
                 statement.setString(6, serviceRequest.getPriority().toString());
                 statement.setString(7, serviceRequest.getRequestType().toString());
                 statement.setString(8, serviceRequest.getDescription());
-                statement.setInt(9, serviceRequest.getRequestID());
+                statement.setString(9, serviceRequest.getModifierID());
+                statement.setTimestamp(10, serviceRequest.getModifiedTimestamp());
+                statement.setInt(11, serviceRequest.getRequestID());
                 statement.execute();
                 
                 return true;

@@ -178,6 +178,8 @@ class ServiceRequestDAOImplTest {
         ServiceRequest.Status newStatus = ServiceRequest.Status.Blank;
         ServiceRequest.Priority newPriority = ServiceRequest.Priority.High;
         String newDescription = "Move the bed IMMEDIATELY";
+        String modifierID = "WillSmith";
+        Timestamp modifiedTimestamp = new Timestamp(23098213);
 
         updateSR.setCreatorID(newCreatorID);
         updateSR.setAssigneeID(newAssigneeID);
@@ -186,6 +188,9 @@ class ServiceRequestDAOImplTest {
         updateSR.setStatus(newStatus);
         updateSR.setPriority(newPriority);
         updateSR.setDescription(newDescription);
+        updateSR.setModifierID(modifierID);
+        updateSR.setModifiedTimestamp(modifiedTimestamp);
+        
         assertTrue(serviceRequestDAO.updateServiceRequest(updateSR));
         assertEquals(1, serviceRequestDAO.getAllServiceRequests().size());
 
@@ -201,7 +206,9 @@ class ServiceRequestDAOImplTest {
         assertEquals(newPriority, querySR.getPriority());
         assertEquals(requestType, querySR.getRequestType());
         assertEquals(newDescription, querySR.getDescription());
-
+        assertEquals(modifierID, querySR.getModifierID());
+        assertEquals(modifiedTimestamp, querySR.getModifiedTimestamp());
+    
         // Cannot Update Nonexistent SR
         ServiceRequest newSR = new ServiceRequest(1234);
         assertFalse(serviceRequestDAO.updateServiceRequest(newSR));

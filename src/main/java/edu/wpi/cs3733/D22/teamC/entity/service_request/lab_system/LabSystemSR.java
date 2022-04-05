@@ -13,7 +13,10 @@ public class LabSystemSR extends ServiceRequest {
         Cat_Scan,
         MRI
     }
-    public LabType getLabType() {return labType;}
+
+    public LabType getLabType() {
+       return labType;
+   }
 
     public void setLabType(LabType labType) {
         this.labType = labType;

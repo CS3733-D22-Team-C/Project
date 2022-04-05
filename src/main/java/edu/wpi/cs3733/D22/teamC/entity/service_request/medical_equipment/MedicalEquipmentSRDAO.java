@@ -28,8 +28,5 @@ public abstract class MedicalEquipmentSRDAO extends ServiceRequestDAO<MedicalEqu
 
             return null;
         }
-
-
-
     }
 }
