@@ -84,17 +84,12 @@ public class LabSystemSRCreateController extends ServiceRequestCreateController 
 
         if(errors.isEmpty())
         {
-            LabSystemSR labSystem = new LabSystemSR();
+            LabSystemSR labSystem = (LabSystemSR) super.clickSubmit(event);
 
             //Sets from textFields
-            labSystem.setAssigneeID(assigneeID.getText());
-            labSystem.setDescription(description.getText());
-            labSystem.setLocation(location.getText());
             labSystem.setPatientID(patientID.getText());
 
             //Sets from combo boxes
-            labSystem.setStatus(ServiceRequest.Status.valueOf(status.getValue()));
-            labSystem.setPriority(ServiceRequest.Priority.valueOf(priority.getValue()));
             labSystem.setLabType(LabSystemSR.LabType.valueOf(labType.getValue()));
 
             labSystem.setRequestType(ServiceRequest.RequestType.Lab_System);

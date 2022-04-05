@@ -70,16 +70,9 @@ public class SecuritySRCreateController extends ServiceRequestCreateController {
 
         if(errors.isEmpty())
         {
-            SecuritySR securitySR = new SecuritySR();
-
-            //Sets from textFields
-            securitySR.setAssigneeID(assigneeID.getText());
-            //securityServiceRequest.setDescription(description.getText());
-            securitySR.setLocation(location.getText());
+            SecuritySR securitySR = (SecuritySR) super.clickSubmit(event);
 
             //Sets from combo boxes
-            securitySR.setStatus(ServiceRequest.Status.valueOf(status.getValue()));
-            securitySR.setPriority(ServiceRequest.Priority.valueOf(priority.getValue()));
             securitySR.setSecurityType(SecuritySR.SecurityType.valueOf(secType.getValue()));
 
             securitySR.setRequestType(ServiceRequest.RequestType.Security);

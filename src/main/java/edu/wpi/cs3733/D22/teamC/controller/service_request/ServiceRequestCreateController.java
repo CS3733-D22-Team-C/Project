@@ -104,11 +104,26 @@ public class ServiceRequestCreateController implements Initializable {
         status.valueProperty().set(null);
     }
 
+    //Downcasting is okay here
+    @FXML
+    protected ServiceRequest clickSubmit(ActionEvent event)
+    {
+        ServiceRequest sR = new ServiceRequest();
+
+        sR.setAssigneeID(assigneeID.getText());
+        sR.setLocation(location.getText());
+        sR.setPriority(ServiceRequest.Priority.valueOf(priority.getValue()));
+        sR.setStatus(ServiceRequest.Status.valueOf(status.getValue()));
+        sR.setDescription(description.getText());
+
+        return sR;
+    }
+
     public void generateErrorMessages(ArrayList<ServiceRequestUserInputValidationErrorItem> l)
     {
-        for(int x = 0; x < l.size(); x++)
+        for(int i = 0; i < l.size(); i++)
         {
-            if(l.get(x) != null)
+            if(l.get(i) != null)
             {
 
             }

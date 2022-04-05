@@ -84,20 +84,12 @@ public class MedicineDeliverySRCreateController extends ServiceRequestCreateCont
 
         if(errors.isEmpty())
         {
-            MedicineDeliverySR medicineDeliverySR = new MedicineDeliverySR();
+            MedicineDeliverySR medicineDeliverySR = (MedicineDeliverySR) super.clickSubmit(event);
 
             // Set from Field
-            medicineDeliverySR.setAssigneeID(assigneeID.getText());
-            medicineDeliverySR.setDescription(description.getText());
-            medicineDeliverySR.setLocation(location.getText());
-
             medicineDeliverySR.setMedicine(medicine.getText());
             medicineDeliverySR.setDosage(dosage.getText());
             medicineDeliverySR.setPatientID(patientID.getText());
-
-            // Set from Dropdowns
-            medicineDeliverySR.setStatus(ServiceRequest.Status.valueOf(status.getValue()));
-            medicineDeliverySR.setPriority(ServiceRequest.Priority.valueOf(priority.getValue()));
 
             medicineDeliverySR.setRequestType(ServiceRequest.RequestType.Medicine_Delivery);
 

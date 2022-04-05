@@ -91,18 +91,10 @@ public class MedicalEquipmentSRCreateController extends ServiceRequestCreateCont
 
         if(errors.isEmpty())
         {
-            MedicalEquipmentSR medEquip = new MedicalEquipmentSR();
-
+            MedicalEquipmentSR medEquip = (MedicalEquipmentSR) super.clickSubmit(event);
             medEquip.setCreationTimestamp(new Timestamp(System.currentTimeMillis()));
 
-            //Sets from textFields
-            medEquip.setAssigneeID(assigneeID.getText());
-            medEquip.setDescription(description.getText());
-            medEquip.setLocation(location.getText());
-
-            //Sets from combo boxes
-            medEquip.setStatus(ServiceRequest.Status.valueOf(status.getValue()));
-            medEquip.setPriority(ServiceRequest.Priority.valueOf(priority.getValue()));
+            //Set values from combo boxes:
             medEquip.setEquipmentType(MedicalEquipmentSR.EquipmentType.valueOf(equipType.getValue()));
 
             //Request ID generator

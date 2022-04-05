@@ -5,6 +5,7 @@ import edu.wpi.cs3733.D22.teamC.entity.location.LocationDAO;
 import edu.wpi.cs3733.D22.teamC.entity.location.LocationDAOImpl;
 import edu.wpi.cs3733.D22.teamC.entity.service_request.medical_equipment.MedicalEquipmentSR;
 import edu.wpi.cs3733.D22.teamC.entity.service_request.medical_equipment.MedicalEquipmentSRDAOImpl;
+import edu.wpi.cs3733.D22.teamC.error.error_item.service_request_user_input_validation.ServiceRequestUserInputValidationErrorItem;
 import edu.wpi.cs3733.D22.teamC.fileio.csv.LocationCSVReader;
 import edu.wpi.cs3733.D22.teamC.fileio.csv.LocationCSVWriter;
 import edu.wpi.cs3733.D22.teamC.fileio.csv.MedicalEquipmentSRCSVReader;
@@ -129,6 +130,11 @@ public class App extends Application {
             System.out.println("Could not load file " + viewFile);
             e.printStackTrace();
         }
+    }
+
+    public void addErrorToView(ServiceRequestUserInputValidationErrorItem i)
+    {
+
     }
 
     public Stage getStage() {

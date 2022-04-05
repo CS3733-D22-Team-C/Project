@@ -51,7 +51,6 @@ public class FacilityMaintenanceSRCreateController extends ServiceRequestCreateC
         maintType.clear();
     }
 
-    //Confused about how to properly abstract clickSubmit, I needed a downcast for it to work, which doesn't seem right.
     @FXML
     protected FacilityMaintenanceSR clickSubmit(ActionEvent event) {
 
@@ -65,13 +64,7 @@ public class FacilityMaintenanceSRCreateController extends ServiceRequestCreateC
 
         if(errors.isEmpty())
         {
-            FacilityMaintenanceSR fMSR = new FacilityMaintenanceSR();
-
-            fMSR.setAssigneeID(assigneeID.getText());
-            fMSR.setLocation(location.getText());
-            fMSR.setPriority(ServiceRequest.Priority.valueOf(priority.getValue())); //getValue directly returns the value of a selected item from a JavaFX ComboBox
-            fMSR.setStatus(ServiceRequest.Status.valueOf(status.getValue()));
-            fMSR.setDescription(description.getText());
+            FacilityMaintenanceSR fMSR = (FacilityMaintenanceSR) super.clickSubmit(event);
 
             fMSR.setMaintenanceType(FacilityMaintenanceSR.MaintenanceType.valueOf(maintType.getText()));
             fMSR.setRequestType(ServiceRequest.RequestType.Facility_Maintenance);

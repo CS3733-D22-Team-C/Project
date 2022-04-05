@@ -70,17 +70,12 @@ public class SanitationSRCreateController extends ServiceRequestCreateController
 
         if(errors.isEmpty())
         {
-            SanitationSR sanitationSR = new SanitationSR();
+            SanitationSR sanitationSR = (SanitationSR) super.clickSubmit(event);
 
             // Start setting up a Java object for a SanitationServiceRequest
-            // Text field setting
-            sanitationSR.setAssigneeID(assigneeID.getText());
-            sanitationSR.setLocation(location.getText());
 
             // Dropdown Boxes
-            sanitationSR.setStatus(ServiceRequest.Status.valueOf(status.getValue()));
             sanitationSR.setSanitationType(SanitationSR.SanitationType.valueOf(sanitationType.getValue()));
-            sanitationSR.setPriority(ServiceRequest.Priority.valueOf(priority.getValue()));
 
             // Sanitation type to enum
             int sanitationTypeEnum = SanitationSR.SanitationType.valueOf(sanitationType.getValue()).ordinal();
