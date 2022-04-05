@@ -65,15 +65,23 @@ public class ServiceRequestFormEvaluator {
     public ServiceRequestUserInputValidationErrorItem getValidateLocationIDResult(String locationID)
     {
         LocationDAOImpl locationDaoVar = new LocationDAOImpl();
-        int locationConv = Integer.parseInt(locationID);
 
-        if(locationDaoVar.getLocation(locationConv) == null) //assumes the user inputs a location ID in the service request location field.
+        if(locationID.isEmpty())
         {
-            return ServiceRequestUserInputValidationErrorRecord.serviceRequestUserInputValidationErrorList[5];
+            return null;
         }
         else
         {
-            return null;
+            int locationConv = Integer.parseInt(locationID);
+
+            if(locationDaoVar.getLocation(locationConv) == null) //assumes the user inputs a location ID in the service request location field.
+            {
+                return ServiceRequestUserInputValidationErrorRecord.serviceRequestUserInputValidationErrorList[5];
+            }
+            else
+            {
+                return null;
+            }
         }
     }
 
