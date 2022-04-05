@@ -8,6 +8,7 @@ import edu.wpi.cs3733.D22.teamC.entity.service_request.medical_equipment.Medical
 import edu.wpi.cs3733.D22.teamC.entity.service_request.medical_equipment.MedicalEquipmentSRDAOImpl;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 
 import java.net.URL;
@@ -46,7 +47,13 @@ public class MedicalEquipmentSRResolveController extends ServiceRequestResolveCo
 
             equipmentType.valueProperty().setValue(equipmentType.getPromptText());
 
-            //For assigneeID make editable
+
+            //Status labels at bottom
+            if(requiredFieldsPresent()){
+                secondStatus.setText("processing");
+            }
+            else
+                secondStatus.setText("blank");
 
         }
         else {
@@ -82,9 +89,6 @@ public class MedicalEquipmentSRResolveController extends ServiceRequestResolveCo
                 medicalEquipmentSR.setStatus(ServiceRequest.Status.Blank);
             medicalEquipmentSRDAOImpl.updateServiceRequest(medicalEquipmentSR);
 
-
-        }
-        else {
         }
 
         //Back to service request view
@@ -143,13 +147,31 @@ public class MedicalEquipmentSRResolveController extends ServiceRequestResolveCo
     }
 
     protected boolean requiredFieldsPresent(){
-        boolean superRequiredFieldsPresent = super.requiredFieldsPresent();
-
         if(equipmentType.getValue() == null && equipmentType.getPromptText().equals(""))
             return false;
         if(equipmentID.getValue() == null && equipmentType.getPromptText().equals(""))
             return false;
-        return true && superRequiredFieldsPresent;
+        return super.requiredFieldsPresent();
+    }
+
+    //On action (in scenebuilder)
+    @FXML
+    void statusUpdated(ActionEvent event) {
+        //Only in edit mode
+        if(!isEditMode)
+            return;
+        if(requiredFieldsPresent()){
+            secondStatus.setText("processing");
+        }
+        else
+            secondStatus.setText("blank");
+    }
+
+    //Just for textfields
+    //on key pressed (in scenebuilder)
+    @FXML
+    void statusUpdatedKeyEvent(KeyEvent event) {
+        statusUpdated(null);
     }
 
 
