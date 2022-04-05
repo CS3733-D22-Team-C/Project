@@ -14,6 +14,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
+import javafx.scene.text.Font;
 
 import java.net.URL;
 import java.util.ArrayList;
@@ -50,6 +51,9 @@ public class ServiceRequestCreateController implements Initializable {
         setTextLengthLimiter(assigneeID, 20);
         setTextLengthLimiter(location, 20);
         setTextLengthLimiter(description, 100);
+
+        //Hide error label
+        errorLabel.setVisible(false);
     }
 
     public void setIDFieldToNumeric(TextField tf)
@@ -132,8 +136,9 @@ public class ServiceRequestCreateController implements Initializable {
         }
     }
 
-    private void addErrorToView(ServiceRequestUserInputValidationErrorItem i)
+    public void addErrorToView(ServiceRequestUserInputValidationErrorItem i)
     {
-
+        errorLabel.setFont(Font.font("System", 12));
+        errorLabel.setText(errorLabel.getText() + "\n" + i.getReasonForValidationError());
     }
 }
