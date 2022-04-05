@@ -135,7 +135,6 @@ public class ServiceRequestCreateController implements Initializable {
 
     private void addErrorToView(ServiceRequestUserInputValidationErrorItem i)
     {
-        errorLabel.setFont(Font.font("System", 12));
         errorLabel.setText(errorLabel.getText() + "\n" + i.getReasonForValidationError());
     }
 
