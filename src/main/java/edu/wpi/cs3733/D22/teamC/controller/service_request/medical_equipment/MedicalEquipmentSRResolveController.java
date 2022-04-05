@@ -65,9 +65,9 @@ public class MedicalEquipmentSRResolveController extends ServiceRequestResolveCo
             {
                 medicalEquipmentSR.setEquipmentID(Integer.parseInt(equipmentID.getValue()));
             }
-            if(equipmentType.getValue() != null) {
-                medicalEquipmentSR.setEquipmentType(MedicalEquipment.EquipmentType.valueOf(equipmentType.getValue()));
-            }
+//            if(equipmentType.getValue() != null) {
+//                medicalEquipmentSR.setEquipmentType(MedicalEquipment.EquipmentType.valueOf(equipmentType.getValue()));
+//            }
 
             System.out.println(requiredFieldsPresent());
             //Status

@@ -3,20 +3,22 @@ package edu.wpi.cs3733.D22.teamC.models.service_request.medical_equipment;
 import com.jfoenix.controls.JFXTreeTableView;
 import edu.wpi.cs3733.D22.teamC.entity.service_request.medical_equipment.MedicalEquipmentSR;
 import edu.wpi.cs3733.D22.teamC.models.service_request.ServiceRequestTableDisplay;
+import javafx.beans.property.IntegerProperty;
+import javafx.beans.property.SimpleIntegerProperty;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
 
 public class MedicalEquipmentSRTableDisplay extends ServiceRequestTableDisplay<MedicalEquipmentSR> {
     public class MedicalEquipmentSRTableEntry extends ServiceRequestTableEntry {
         // Properties
-        public StringProperty equipmentID;
+        public IntegerProperty equipmentID;
         public StringProperty equipmentType;
 
         public MedicalEquipmentSRTableEntry(MedicalEquipmentSR medicalEquipmentSR) {
             super(medicalEquipmentSR);
 
-            this.equipmentID = new SimpleStringProperty(medicalEquipmentSR.getEquipmentID());
-            this.equipmentType = new SimpleStringProperty(medicalEquipmentSR.getEquipmentType().toString());
+            this.equipmentID = new SimpleIntegerProperty(medicalEquipmentSR.getEquipmentID());
+//            this.equipmentType = new SimpleStringProperty(medicalEquipmentSR.getEquipmentType().toString());
         }
     }
 

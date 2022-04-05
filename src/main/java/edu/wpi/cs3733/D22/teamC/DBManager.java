@@ -130,6 +130,7 @@ public class DBManager {
          * @param clearTable Clear pre-existing table entries for all tables if true.
          */
         public void initializeTables(boolean clearTable) {
+            initializeFloorTable(clearTable);
             initializeLocationTable(clearTable);
             initializeMedicalEquipmentTable(clearTable);
 
@@ -137,8 +138,6 @@ public class DBManager {
             initializeMedicalEquipSRTable(clearTable);
             initializeLabSystemSRTable(clearTable);
             initializeSecuritySRTable(clearTable);
-
-            initializeFloorTable(clearTable);
         }
 
         /**
