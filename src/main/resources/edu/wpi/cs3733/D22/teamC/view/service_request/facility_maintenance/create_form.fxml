@@ -15,30 +15,35 @@
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.layout.VBox?>
 
-<GridPane alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="664.0" prefWidth="600.0" styleClass="titl" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.wpi.cs3733.D22.teamC.controller.service_request.facility_maintenance.FacilityMaintenanceSRCreateController">
+<GridPane alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="752.0" prefWidth="600.0" styleClass="titl" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.wpi.cs3733.D22.teamC.controller.service_request.facility_maintenance.FacilityMaintenanceSRCreateController">
    <columnConstraints>
       <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
    </columnConstraints>
    <rowConstraints>
-      <RowConstraints maxHeight="95.60001220703126" minHeight="0.0" prefHeight="39.20001220703125" vgrow="SOMETIMES" />
-      <RowConstraints maxHeight="377.6" minHeight="10.0" prefHeight="216.5999847412109" vgrow="SOMETIMES" />
+      <RowConstraints maxHeight="195.19998626708986" minHeight="0.0" prefHeight="182.3999984741211" vgrow="SOMETIMES" />
+      <RowConstraints maxHeight="377.6" minHeight="10.0" prefHeight="159.20000152587892" vgrow="SOMETIMES" />
       <RowConstraints maxHeight="250.4000122070313" minHeight="10.0" prefHeight="183.2" vgrow="SOMETIMES" />
       <RowConstraints maxHeight="226.40000000000003" minHeight="0.0" prefHeight="226.40000000000003" vgrow="SOMETIMES" />
    </rowConstraints>
    <children>
-      <Label styleClass="page-title" text="Facility Maintenance Service Request " />
-      <GridPane GridPane.hgrow="ALWAYS" GridPane.rowIndex="1" GridPane.vgrow="ALWAYS">
+      <VBox prefHeight="200.0" prefWidth="100.0">
+         <children>
+            <Label prefHeight="32.0" prefWidth="361.0" styleClass="page-title" text="Facility Maintenance Service Request " />
+            <Label prefHeight="143.0" prefWidth="600.0" wrapText="true" />
+         </children>
+      </VBox>
+      <GridPane prefHeight="135.0" prefWidth="600.0" GridPane.hgrow="ALWAYS" GridPane.rowIndex="1" GridPane.vgrow="ALWAYS">
          <columnConstraints>
             <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
             <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
             <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
          </columnConstraints>
          <rowConstraints>
-            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+            <RowConstraints maxHeight="233.6000244140625" minHeight="10.0" prefHeight="82.59998626708983" vgrow="SOMETIMES" />
+            <RowConstraints maxHeight="244.79998626708988" minHeight="10.0" prefHeight="77.80001373291014" vgrow="SOMETIMES" />
          </rowConstraints>
          <children>
-            <VBox alignment="CENTER_LEFT" prefHeight="200.0" prefWidth="100.0" styleClass="box-margin" GridPane.hgrow="ALWAYS" GridPane.vgrow="ALWAYS">
+            <VBox alignment="CENTER_LEFT" prefHeight="195.0" prefWidth="200.0" styleClass="box-margin" GridPane.hgrow="ALWAYS" GridPane.vgrow="ALWAYS">
                <children>
                   <Label styleClass="service-field-label" text="Assign To:" />
                   <TextField fx:id="assigneeID" />
@@ -110,7 +115,7 @@
             </HBox>
          </children>
       </VBox>
-      <JFXTreeTableView fx:id="table" GridPane.rowIndex="3" />
+      <JFXTreeTableView fx:id="table" prefHeight="50.0" prefWidth="600.0" GridPane.rowIndex="3" />
    </children>
    <stylesheets>
       <URL value="@../../../css/request_page.css" />
