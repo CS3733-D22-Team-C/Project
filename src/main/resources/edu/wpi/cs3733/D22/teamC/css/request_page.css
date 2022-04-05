@@ -1,6 +1,14 @@
 @import "colors.css";
+@import "fonts.css";
 
 .button-alignment {
     -fx-spacing: 5px;
+}
+
+.error-message {
+    -fx-text-fill: -color-button-failure;
+    -fx-padding: 10px;
+    -fx-font-size: 12;
+    -fx-font-family: -font-field-label;
 }
 

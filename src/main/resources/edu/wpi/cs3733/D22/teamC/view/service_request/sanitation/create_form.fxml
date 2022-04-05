@@ -29,7 +29,7 @@
       <VBox prefHeight="200.0" prefWidth="100.0">
          <children>
             <Label prefHeight="32.0" prefWidth="361.0" styleClass="page-title" text="Sanitation Service Request " />
-            <Label fx:id="errorLabel" prefHeight="143.0" prefWidth="600.0" wrapText="true" />
+            <Label fx:id="errorLabel" prefHeight="143.0" prefWidth="600.0" styleClass="error-message" stylesheets="@../../../css/request_page.css" wrapText="true" />
          </children>
       </VBox>
       <GridPane prefHeight="135.0" prefWidth="600.0" GridPane.hgrow="ALWAYS" GridPane.rowIndex="1" GridPane.vgrow="ALWAYS">
