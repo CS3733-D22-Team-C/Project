@@ -135,7 +135,7 @@ public class DBManager {
             initializeMedicalEquipSRTable(clearTable);
             initializeLabSystemSRTable(clearTable);
             initializeSecuritySRTable(clearTable);
-
+            initializeFacilityMaintenanceSRTable(clearTable);
             initializeFloorTable(clearTable);
             initializeLocationTable(clearTable);
         }
@@ -215,15 +215,27 @@ public class DBManager {
         );
     }
 
+
     public void initializeSanitationSRTable(boolean clearTable) {
         initializeTable(
                 "SANITATION_SR",
                 "CREATE TABLE SANITATION_SR (" +
                         "ID int, sanitationType varchar(50), CONSTRAINT fk_sanitationID FOREIGN KEY (ID)" +
+
+    /**
+     * Initialize facility maintenance Service Request Table.
+     * @param clearTable Clear pre-existing table entries if true.
+     */
+    public void initializeFacilityMaintenanceSRTable(boolean clearTable) {
+        initializeTable(
+                "SECURITY_SR",
+                "CREATE TABLE FACILITY_MAINTENANCE_SR (" +
+                        "ID int, MaintenanceType varchar(50), CONSTRAINT fk_FMSRID FOREIGN KEY (ID) " +
                         "REFERENCES SERVICE_REQUEST (ID) ON DELETE CASCADE)",
                 clearTable
         );
     }
+
     public void initializeFloorTable(boolean clearTable) {
         initializeTable(
                 "FLOOR",
