@@ -6,9 +6,12 @@ public class FacilityMaintenanceSR extends ServiceRequest {
     protected MaintenanceType maintenanceType;
 
     public enum MaintenanceType {
+        //TODO: Create more ENUM types
         Cleaning,
         Organizing
     }
+
+    //public FacilityMaintainanceSR(){}
 
     public MaintenanceType getMaintenanceType() {
         return maintenanceType;
