@@ -93,11 +93,12 @@ public class MedicalEquipmentSRDAOImpl extends MedicalEquipmentSRDAO {
             if (requestID != -1) {
                 // Insert the child-unique attributes to the child table.
                 PreparedStatement statement = DBManager.getInstance().connection.prepareStatement(
-                        "INSERT INTO MEDICAL_EQUIPMENT_SR VALUES(?, ?)"
+                        "INSERT INTO MEDICAL_EQUIPMENT_SR VALUES(?, ?, ?)"
                 );
                 statement.setInt(1, requestID);
                 // Set child-specific attributes by casting
                 statement.setString(2, serviceRequest.getEquipmentID().toString());
+                statement.setString(3, serviceRequest.getEquipmentType().toString());
                 statement.execute();
                 
                 return requestID;
