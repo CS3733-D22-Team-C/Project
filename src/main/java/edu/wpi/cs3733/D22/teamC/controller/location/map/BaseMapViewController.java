@@ -48,7 +48,7 @@ public class BaseMapViewController implements Initializable {
         gridPane.setMaxWidth(Double.MAX_VALUE);
 
         setViewMode();
-        loadSVGs();
+//        loadSVGs();
     }
 
     //#region SVG stuff
@@ -177,6 +177,4 @@ public class BaseMapViewController implements Initializable {
             return (LocationInfoController) locationInfoController;
         }
     //#endregion
-
-
 }
