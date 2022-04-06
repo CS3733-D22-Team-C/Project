@@ -224,7 +224,6 @@ public class App extends Application {
         return null;
     }
 
-
     public Stage getStage() {
         return stage;
     }

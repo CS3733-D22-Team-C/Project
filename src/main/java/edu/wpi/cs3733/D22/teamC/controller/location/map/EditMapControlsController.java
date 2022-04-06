@@ -3,17 +3,17 @@ package edu.wpi.cs3733.D22.teamC.controller.location.map;
 import javafx.fxml.FXML;
 
 public class EditMapControlsController {
-    BaseMapViewController baseMapViewController;
+    BaseMapViewController parentController;
 
     @FXML
     public void onExitEditModeButtonPress() {
-        baseMapViewController.swapToViewMode();
+        parentController.swapToViewMode();
     }
 
     @FXML
     public void onSaveAndExitButtonPress() {
-        ((EditMapController) baseMapViewController.getMapController()).saveMap();
-        baseMapViewController.swapToViewMode();
+        ((EditMapController) parentController.getMapController()).saveMap();
+        parentController.swapToViewMode();
     }
 
     @FXML
@@ -26,7 +26,7 @@ public class EditMapControlsController {
 
     }
 
-    public void setBaseMapViewController(BaseMapViewController baseMapViewController) {
-        this.baseMapViewController = baseMapViewController;
+    public void setParentController(BaseMapViewController baseMapViewController) {
+        this.parentController = baseMapViewController;
     }
 }

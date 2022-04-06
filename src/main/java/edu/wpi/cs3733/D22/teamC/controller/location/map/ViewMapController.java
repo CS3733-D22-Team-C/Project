@@ -1,5 +1,8 @@
 package edu.wpi.cs3733.D22.teamC.controller.location.map;
 
+import edu.wpi.cs3733.D22.teamC.entity.floor.Floor;
+import edu.wpi.cs3733.D22.teamC.entity.floor.FloorDAO;
+import edu.wpi.cs3733.D22.teamC.entity.floor.FloorDAOImpl;
 import edu.wpi.cs3733.D22.teamC.entity.location.Location;
 import edu.wpi.cs3733.D22.teamC.entity.location.LocationDAO;
 import edu.wpi.cs3733.D22.teamC.entity.location.LocationDAOImpl;
@@ -16,6 +19,7 @@ import javafx.scene.shape.Circle;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 import java.util.ResourceBundle;
 
 public class ViewMapController implements Initializable {
@@ -77,13 +81,6 @@ public class ViewMapController implements Initializable {
 
     @Override
     public final void initialize(URL location, ResourceBundle resources) {
-        // TODO: Replace with floor specific, kept for testing !!!
-        LocationDAO locationDAO = new LocationDAOImpl();
-        mapLocations = renderLocations(locationDAO.getAllLocations());
-        for (MapLocation mapLocation : mapLocations) {
-            map.getChildren().add(mapLocation.node);
-        }
-
         // Initialize ScrollPane Size (Should be rewritten to make use of full screen space
         scroll.setPrefViewportHeight(750);
         scroll.setPrefViewportWidth(750);
@@ -95,24 +92,36 @@ public class ViewMapController implements Initializable {
         map.setOnScroll(this::onMouseScrollMap);
     }
 
+    private final void resetLocations() {
+        if (mapLocations != null) {
+            for (MapLocation mapLocation : mapLocations) {
+                map.getChildren().remove(mapLocation.node);
+            }
+        }
+    }
+
     private final List<MapLocation> renderLocations(List<Location> locations) {
-        List<MapLocation> mapLocs = new ArrayList<>();
-        int maxX = 0, maxY = 0;
+        if (locations != null) {
+            List<MapLocation> mapLocs = new ArrayList<>();
+            int maxX = 0, maxY = 0;
 
-        for (Location location : locations) {
-            MapLocation mapLocation = new MapLocation(location);
-            mapLocs.add(mapLocation);
+            for (Location location : locations) {
+                MapLocation mapLocation = new MapLocation(location);
+                mapLocs.add(mapLocation);
 
-            maxX = Math.max(maxX, location.getX());
-            maxY = Math.max(maxY, location.getY());
+                maxX = Math.max(maxX, location.getX());
+                maxY = Math.max(maxY, location.getY());
+            }
+
+            // Initialize Map Size and Position
+            updateMapSize(maxX , maxY);
+            map.setTranslateX(0);
+            map.setTranslateY(0);
+
+            return mapLocs;
         }
 
-        // Initialize Map Size and Position
-        updateMapSize(maxX , maxY);
-        map.setTranslateX(0);
-        map.setTranslateY(0);
-
-        return mapLocs;
+        return null;
     }
 
     //#region Update State
@@ -132,6 +141,18 @@ public class ViewMapController implements Initializable {
     //#region External Setup
         public void setParentController(BaseMapViewController baseMapViewController) {
             this.parentController = baseMapViewController;
+        }
+
+        public void setFloor(Floor floor) {
+            resetLocations();
+
+            FloorDAO floorDAO = new FloorDAOImpl();
+            List<Location> locations = floorDAO.getAllLocations(floor.getFloorID());
+
+            mapLocations = renderLocations(locations);
+            for (MapLocation mapLocation : mapLocations) {
+                map.getChildren().add(mapLocation.node);
+            }
         }
     //#endregion
 
