@@ -105,7 +105,7 @@ public class FloorDAOImpl implements FloorDAO {
                 statement.setString(2, floor.getLongName());
                 statement.setString(3, floor.getShortName());
                 statement.setString(4, floor.getImageSrc());
-                statement.setInt(4, floor.getFloorID());
+                statement.setInt(5, floor.getFloorID());
                 statement.execute();
 
                 return true;
