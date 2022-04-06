@@ -30,13 +30,13 @@ public abstract class CSVReader<T> {
             // Parse header line
             Map<String, Integer> headerMap;
             line = br.readLine();
-            String[] headers = trimStringArray(line.split(","));
+            String[] headers = trimStringArray(line.split(",", -1));
             headerMap = parseHeaders(headers);
 
             // Parse data lines
             line = br.readLine();
             while (line != null) {
-                String[] attributes = trimStringArray(line.split(","));
+                String[] attributes = trimStringArray(line.split(",", -1));
                 T object = parseObject(headerMap, attributes);
                 objects.add(object);
                 line = br.readLine();
