@@ -118,7 +118,6 @@ public class ServiceRequestResolveController {
             {
                serviceRequest.setLocation(hospitalLocation.getValue());
             }
-
             //Status
         }
         else {
