@@ -81,7 +81,7 @@ public class ServiceRequestResolveController {
             // Set fields editable
             assigneeID.setEditable(true);
             priority.setDisable(false);
-            status.setDisable(false);
+            status.setDisable(true);
             hospitalLocation.setDisable(false);
 
         } else {
