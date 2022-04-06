@@ -47,23 +47,23 @@ public class FacilityMaintenanceSRCreateController extends ServiceRequestCreateC
 
         if(fMSRFE.noServiceRequestFormUserInputErrors(errors))
         {
-            FacilityMaintenanceSR fMSR = new FacilityMaintenanceSR();
+            FacilityMaintenanceSR fmsr = new FacilityMaintenanceSR();
 
-            fMSR.setAssigneeID(assigneeID.getText());
-            fMSR.setLocation(location.getText());
-            fMSR.setPriority(ServiceRequest.Priority.valueOf(priority.getValue()));
-            fMSR.setStatus(ServiceRequest.Status.valueOf(status.getValue()));
-            fMSR.setDescription(description.getText());
+            fmsr.setAssigneeID(assigneeID.getText());
+            fmsr.setLocation(location.getText());
+            fmsr.setPriority(ServiceRequest.Priority.valueOf(priority.getValue()));
+            fmsr.setStatus(ServiceRequest.Status.valueOf(status.getValue()));
+            fmsr.setDescription(description.getText());
 
-            fMSR.setMaintenanceType(FacilityMaintenanceSR.MaintenanceType.valueOf(maintType.getValue()));
-            fMSR.setRequestType(ServiceRequest.RequestType.Facility_Maintenance);
+            fmsr.setMaintenanceType(FacilityMaintenanceSR.MaintenanceType.valueOf(maintType.getValue()));
+            fmsr.setRequestType(ServiceRequest.RequestType.Facility_Maintenance);
 
             clickReset(event);
 
             // Add Table Entry
-            tableDisplay.addObject(fMSR);
+            tableDisplay.addObject(fmsr);
 
-            return fMSR;
+            return fmsr;
         }
         else
         {

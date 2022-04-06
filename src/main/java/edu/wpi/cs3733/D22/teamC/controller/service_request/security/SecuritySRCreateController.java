@@ -53,22 +53,22 @@ public class SecuritySRCreateController extends ServiceRequestCreateController <
 
         if(sSRFE.noServiceRequestFormUserInputErrors(errors))
         {
-            SecuritySR sESR = new SecuritySR();
+            SecuritySR securitySR = new SecuritySR();
 
-            sESR.setAssigneeID(assigneeID.getText());
-            sESR.setLocation(location.getText());
-            sESR.setPriority(ServiceRequest.Priority.valueOf(priority.getValue()));
-            sESR.setStatus(ServiceRequest.Status.valueOf(status.getValue()));
-            sESR.setDescription(description.getText());
+            securitySR.setAssigneeID(assigneeID.getText());
+            securitySR.setLocation(location.getText());
+            securitySR.setPriority(ServiceRequest.Priority.valueOf(priority.getValue()));
+            securitySR.setStatus(ServiceRequest.Status.valueOf(status.getValue()));
+            securitySR.setDescription(description.getText());
 
             //Sets from combo boxes
-            sESR.setSecurityType(SecuritySR.SecurityType.valueOf(secType.getValue()));
+            securitySR.setSecurityType(SecuritySR.SecurityType.valueOf(secType.getValue()));
 
-            sESR.setRequestType(ServiceRequest.RequestType.Security);
+            securitySR.setRequestType(ServiceRequest.RequestType.Security);
 
             // Table Entry
             clickReset(event);
-            return sESR;
+            return securitySR;
         }
         else
         {

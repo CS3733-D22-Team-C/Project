@@ -77,41 +77,41 @@ public class MedicalEquipmentSRCreateController extends ServiceRequestCreateCont
 
         if(mESRFE.noServiceRequestFormUserInputErrors(errors))
         {
-            MedicalEquipmentSR mESR = new MedicalEquipmentSR();
+            MedicalEquipmentSR medEquip = new MedicalEquipmentSR();
 
-            mESR.setCreationTimestamp(new Timestamp(System.currentTimeMillis()));
+            medEquip.setCreationTimestamp(new Timestamp(System.currentTimeMillis()));
 
-            mESR.setAssigneeID(assigneeID.getText());
-            mESR.setLocation(location.getText());
-            mESR.setPriority(ServiceRequest.Priority.valueOf(priority.getValue()));
-            mESR.setStatus(ServiceRequest.Status.valueOf(status.getValue()));
-            mESR.setDescription(description.getText());
+            medEquip.setAssigneeID(assigneeID.getText());
+            medEquip.setLocation(location.getText());
+            medEquip.setPriority(ServiceRequest.Priority.valueOf(priority.getValue()));
+            medEquip.setStatus(ServiceRequest.Status.valueOf(status.getValue()));
+            medEquip.setDescription(description.getText());
 
             //Set values from combo boxes:
-            mESR.setEquipmentType(MedicalEquipmentSR.EquipmentType.valueOf(equipType.getValue()));
+            medEquip.setEquipmentType(MedicalEquipmentSR.EquipmentType.valueOf(equipType.getValue()));
 
             //Request ID generator
             int requestID = (int)(Math.random() * (10000000 + 1)) + 0;
             String requestIDString = Integer.toString(requestID);
-            mESR.setRequestID(Integer.parseInt(requestIDString));
+            medEquip.setRequestID(Integer.parseInt(requestIDString));
             System.out.println(requestIDString);
 
             //Dealing with the equipment type and the enumerator
-            int type = mESR.getEquipmentType().ordinal();
+            int type =  medEquip.getEquipmentType().ordinal();
             String num = equipID.getValue();
-            mESR.setEquipmentID(type + num);
+            medEquip.setEquipmentID(type + num);
             clickReset(event);
 
-            mESR.setRequestType(ServiceRequest.RequestType.Medical_Equipment);
+            medEquip.setRequestType(ServiceRequest.RequestType.Medical_Equipment);
 
             // Table Entry
-            tableDisplay.addObject(mESR);
+            tableDisplay.addObject(medEquip);
 
             // Database entry
             ServiceRequestDAO serviceRequestDAO = new MedicalEquipmentSRDAOImpl();
-            serviceRequestDAO.insertServiceRequest(mESR);
+            serviceRequestDAO.insertServiceRequest(medEquip);
 
-            return mESR;
+            return medEquip;
         }
         else
         {

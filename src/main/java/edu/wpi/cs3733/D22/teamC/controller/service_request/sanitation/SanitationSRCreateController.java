@@ -55,28 +55,28 @@ public class SanitationSRCreateController extends ServiceRequestCreateController
 
         if(sSRFE.noServiceRequestFormUserInputErrors(errors))
         {
-            SanitationSR sSR = new SanitationSR();
+            SanitationSR sanitationSR = new SanitationSR();
 
             // Start setting up a Java object for a SanitationServiceRequest
-            sSR.setAssigneeID(assigneeID.getText());
-            sSR.setLocation(location.getText());
-            sSR.setStatus(ServiceRequest.Status.valueOf(status.getValue().toString()));
-            sSR.setPriority(ServiceRequest.Priority.valueOf(priority.getValue().toString()));
-            sSR.setDescription(description.getText());
+            sanitationSR.setAssigneeID(assigneeID.getText());
+            sanitationSR.setLocation(location.getText());
+            sanitationSR.setStatus(ServiceRequest.Status.valueOf(status.getValue().toString()));
+            sanitationSR.setPriority(ServiceRequest.Priority.valueOf(priority.getValue().toString()));
+            sanitationSR.setDescription(description.getText());
 
             // Dropdown Boxes
-            sSR.setSanitationType(SanitationSR.SanitationType.valueOf(sanitationType.getValue()));
+            sanitationSR.setSanitationType(SanitationSR.SanitationType.valueOf(sanitationType.getValue()));
 
             // Sanitation type to enum
             int sanitationTypeEnum = SanitationSR.SanitationType.valueOf(sanitationType.getValue()).ordinal();
 
-            sSR.setRequestType(ServiceRequest.RequestType.Sanitation);
+            sanitationSR.setRequestType(ServiceRequest.RequestType.Sanitation);
 
             clickReset(event);
 
-            tableDisplay.addObject(sSR);
+            tableDisplay.addObject(sanitationSR);
 
-            return sSR;
+            return sanitationSR;
         }
         else
         {

@@ -73,27 +73,27 @@ public class MedicineDeliverySRCreateController extends ServiceRequestCreateCont
 
         if(mDSRFE.noServiceRequestFormUserInputErrors(errors))
         {
-            MedicineDeliverySR mdSR = new MedicineDeliverySR();
+            MedicineDeliverySR medicineDeliverySR = new MedicineDeliverySR();
 
-            mdSR.setAssigneeID(assigneeID.getText());
-            mdSR.setLocation(location.getText());
-            mdSR.setPriority(ServiceRequest.Priority.valueOf(priority.getValue()));
-            mdSR.setStatus(ServiceRequest.Status.valueOf(status.getValue()));
-            mdSR.setDescription(description.getText());
+            medicineDeliverySR.setAssigneeID(assigneeID.getText());
+            medicineDeliverySR.setLocation(location.getText());
+            medicineDeliverySR.setPriority(ServiceRequest.Priority.valueOf(priority.getValue()));
+            medicineDeliverySR.setStatus(ServiceRequest.Status.valueOf(status.getValue()));
+            medicineDeliverySR.setDescription(description.getText());
 
             // Set from Field
-            mdSR.setMedicine(medicine.getText());
-            mdSR.setDosage(dosage.getText());
-            mdSR.setPatientID(patientID.getText());
+            medicineDeliverySR.setMedicine(medicine.getText());
+            medicineDeliverySR.setDosage(dosage.getText());
+            medicineDeliverySR.setPatientID(patientID.getText());
 
-            mdSR.setRequestType(ServiceRequest.RequestType.Medicine_Delivery);
+            medicineDeliverySR.setRequestType(ServiceRequest.RequestType.Medicine_Delivery);
 
             clickReset(event);
 
             // Add to Table List
-            tableDisplay.addObject(mdSR);
+            tableDisplay.addObject(medicineDeliverySR);
 
-            return mdSR;
+            return medicineDeliverySR;
         }
         else
         {
