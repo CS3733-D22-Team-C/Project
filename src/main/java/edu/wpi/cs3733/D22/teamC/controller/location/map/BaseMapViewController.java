@@ -47,6 +47,10 @@ public class BaseMapViewController implements Initializable {
         mapController.setFloor(floor);
     }
 
+    public Floor getFloor() {
+        return floor;
+    }
+
     //#region Mode Switching
         /**
          * Swap to Edit Mode, clearing first.

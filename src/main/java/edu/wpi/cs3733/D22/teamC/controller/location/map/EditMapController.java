@@ -1,5 +1,6 @@
 package edu.wpi.cs3733.D22.teamC.controller.location.map;
 
+import edu.wpi.cs3733.D22.teamC.entity.location.Location;
 import edu.wpi.cs3733.D22.teamC.entity.location.LocationDAO;
 import edu.wpi.cs3733.D22.teamC.entity.location.LocationDAOImpl;
 import javafx.scene.input.MouseButton;
@@ -74,6 +75,11 @@ public class EditMapController extends ViewMapController {
         mapLocations.add(newMapLoc);
         map.getChildren().add(newMapLoc.node);
 
+        Location location = newMapLoc.location;
+        location.setFloor(parentController.getFloor().getFloorID());
+        location.setX((int) x);
+        location.setY((int) y);
+
         additions.add(newMapLoc);
     }
 
@@ -113,7 +119,7 @@ public class EditMapController extends ViewMapController {
 
         // Delete deletion locations
         for (MapLocation mapLocation : deletions) {
-            locationDAO.insertLocation(mapLocation.location);
+            locationDAO.deleteLocation(mapLocation.location);
         }
         deletions = new ArrayList<>();
     }

@@ -85,7 +85,7 @@ public class LocationDAOImpl implements LocationDAO {
 
                 int index = 1;
                 if (location.getNodeID() != 0) {
-                    statement.setString(index, String.valueOf(location.getNodeID()));
+                    statement.setInt(index, location.getNodeID());
                     index++;
                 }
 
