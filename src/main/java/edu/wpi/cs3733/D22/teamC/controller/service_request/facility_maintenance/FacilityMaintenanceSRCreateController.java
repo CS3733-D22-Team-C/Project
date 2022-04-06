@@ -58,10 +58,12 @@ public class FacilityMaintenanceSRCreateController extends ServiceRequestCreateC
             fmsr.setMaintenanceType(FacilityMaintenanceSR.MaintenanceType.valueOf(maintType.getValue()));
             fmsr.setRequestType(ServiceRequest.RequestType.Facility_Maintenance);
 
-            clickReset(event);
-
             // Add Table Entry
             tableDisplay.addObject(fmsr);
+
+            clickReset(event);
+
+            //Add database entry:
 
             return fmsr;
         }

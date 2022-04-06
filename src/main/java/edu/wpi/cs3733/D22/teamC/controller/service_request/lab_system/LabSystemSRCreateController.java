@@ -95,8 +95,7 @@ public class LabSystemSRCreateController extends ServiceRequestCreateController<
             labSystem.setPriority(ServiceRequest.Priority.valueOf(priority.getValue()));
             labSystem.setStatus(ServiceRequest.Status.valueOf(status.getValue()));
             labSystem.setDescription(description.getText());
-        LabSystemSR labSystem = new LabSystemSR();
-        labSystem.setCreationTimestamp(new Timestamp(System.currentTimeMillis()));
+            labSystem.setCreationTimestamp(new Timestamp(System.currentTimeMillis()));
 
             //Sets from textFields
             labSystem.setPatientID(patientID.getText());
@@ -110,11 +109,10 @@ public class LabSystemSRCreateController extends ServiceRequestCreateController<
             tableDisplay.addObject(labSystem);
 
             clickReset(event);
-        // Database entry
-        LabSystemSRDAO labSystemSRDAO = new LabSystemSRDAOImpl();
-        labSystemSRDAO.insertServiceRequest(labSystem);
 
-        clickReset(event);
+            // Database entry
+            LabSystemSRDAO labSystemSRDAO = new LabSystemSRDAOImpl();
+            labSystemSRDAO.insertServiceRequest(labSystem);
 
             return labSystem;
         }

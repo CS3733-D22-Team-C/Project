@@ -100,12 +100,13 @@ public class MedicalEquipmentSRCreateController extends ServiceRequestCreateCont
             int type =  medEquip.getEquipmentType().ordinal();
             String num = equipID.getValue();
             medEquip.setEquipmentID(type + num);
-            clickReset(event);
 
             medEquip.setRequestType(ServiceRequest.RequestType.Medical_Equipment);
 
             // Table Entry
             tableDisplay.addObject(medEquip);
+
+            clickReset(event);
 
             // Database entry
             ServiceRequestDAO serviceRequestDAO = new MedicalEquipmentSRDAOImpl();

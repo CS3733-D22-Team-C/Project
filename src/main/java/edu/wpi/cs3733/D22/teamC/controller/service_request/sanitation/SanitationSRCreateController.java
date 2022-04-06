@@ -86,9 +86,13 @@ public class SanitationSRCreateController extends ServiceRequestCreateController
 
             sanitationSR.setRequestType(ServiceRequest.RequestType.Sanitation);
 
+            tableDisplay.addObject(sanitationSR);
+
             clickReset(event);
 
-            tableDisplay.addObject(sanitationSR);
+            // Database entry
+            ServiceRequestDAO serviceRequestDAO = new SanitationSRDAOImpl();
+            serviceRequestDAO.insertServiceRequest(sanitationSR);
 
             return sanitationSR;
         }
@@ -108,12 +112,5 @@ public class SanitationSRCreateController extends ServiceRequestCreateController
     @Override
     public void resetErrorMessages() {
         super.resetErrorMessages();
-
-        // Database entry
-        ServiceRequestDAO serviceRequestDAO = new SanitationSRDAOImpl();
-        serviceRequestDAO.insertServiceRequest(sanitationSR);
-
-        return sanitationSR;
-
     }
 }

@@ -69,8 +69,6 @@ public class SecuritySRCreateController extends ServiceRequestCreateController <
             //Sets from combo boxes
             securitySR.setSecurityType(SecuritySR.SecurityType.valueOf(secType.getValue()));
 
-        SecuritySR securitySR = new SecuritySR();
-
         securitySR.setCreationTimestamp(new Timestamp(System.currentTimeMillis()));
 
         //Sets from textFields
@@ -86,10 +84,16 @@ public class SecuritySRCreateController extends ServiceRequestCreateController <
         securitySR.setRequestType(ServiceRequest.RequestType.Security);
 
         securitySR.setRequestType(ServiceRequest.RequestType.Security);
+
+        // Table Entry
         tableDisplay.addObject(securitySR);
 
-            // Table Entry
-            clickReset(event);
+        clickReset(event);
+
+        //Database entry:
+            ServiceRequestDAO serviceRequestDAO = new SecuritySRDAOImpl();
+            serviceRequestDAO.insertServiceRequest(securitySR);
+
             return securitySR;
         }
         else
@@ -108,13 +112,6 @@ public class SecuritySRCreateController extends ServiceRequestCreateController <
     @Override
     public void resetErrorMessages() {
         super.resetErrorMessages();
-
-        ServiceRequestDAO serviceRequestDAO = new SecuritySRDAOImpl();
-        serviceRequestDAO.insertServiceRequest(securitySR);
-
-        // Table Entry
-        clickReset(event);
-        return securitySR;
     }
 }
 

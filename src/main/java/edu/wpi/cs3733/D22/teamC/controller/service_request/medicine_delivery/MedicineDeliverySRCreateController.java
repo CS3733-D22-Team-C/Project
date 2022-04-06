@@ -98,10 +98,14 @@ public class MedicineDeliverySRCreateController extends ServiceRequestCreateCont
 
             medicineDeliverySR.setRequestType(ServiceRequest.RequestType.Medicine_Delivery);
 
-            clickReset(event);
-
             // Add to Table List
             tableDisplay.addObject(medicineDeliverySR);
+
+            clickReset(event);
+
+            //Database entry:
+            ServiceRequestDAO serviceRequestDAO = new MedicineDeliverySRDAOImpl();
+            serviceRequestDAO.insertServiceRequest(medicineDeliverySR);
 
             return medicineDeliverySR;
         }
@@ -121,11 +125,5 @@ public class MedicineDeliverySRCreateController extends ServiceRequestCreateCont
     @Override
     public void resetErrorMessages() {
         super.resetErrorMessages();
-
-        ServiceRequestDAO serviceRequestDAO = new MedicineDeliverySRDAOImpl();
-        serviceRequestDAO.insertServiceRequest(medicineDeliverySR);
-
-        return medicineDeliverySR;
-
     }
 }
