@@ -50,7 +50,7 @@ public class LabSystemSRCreateController extends ServiceRequestCreateController 
         table.setShowRoot(false);
 
         setIDFieldToNumeric(patientID);
-        setTextLengthLimiter(patientID, 20);
+        setTextLengthLimiter(patientID, 10);
     }
 
     @Override
@@ -75,7 +75,7 @@ public class LabSystemSRCreateController extends ServiceRequestCreateController 
     protected LabSystemSR clickSubmit(ActionEvent event) {
         resetErrorMessages();
         LabSystemSRFormEvaluator lSSRFE = new LabSystemSRFormEvaluator();
-        ArrayList<ServiceRequestUserInputValidationErrorItem> errors = lSSRFE.getLabSystemSRValidationTestResult(location.getText(), assigneeID.getText(), status.getSelectionModel(), priority.getSelectionModel(), labType.getSelectionModel(), patientID.getText());
+        ArrayList<ServiceRequestUserInputValidationErrorItem> errors = lSSRFE.getLabSystemSRValidationTestResult(location.getText(), assigneeID.getText(), priority.getSelectionModel(), status.getSelectionModel(), labType.getSelectionModel(), patientID.getText());
 
         if(lSSRFE.noServiceRequestFormUserInputErrors(errors))
         {

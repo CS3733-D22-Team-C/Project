@@ -11,13 +11,13 @@ public class FacilityMaintenanceSRFormEvaluator extends ServiceRequestFormEvalua
 
     public FacilityMaintenanceSRFormEvaluator() {}
 
-    public ArrayList<ServiceRequestUserInputValidationErrorItem> getFacilityMaintenanceSRValidationTestResult(String locationID, String assigneeID, SingleSelectionModel status, SingleSelectionModel priority, SingleSelectionModel maintenanceType)
+    public ArrayList<ServiceRequestUserInputValidationErrorItem> getFacilityMaintenanceSRValidationTestResult(String location, String assigneeID, SingleSelectionModel priority, SingleSelectionModel status, SingleSelectionModel maintenanceType)
     {
         ArrayList <ServiceRequestUserInputValidationErrorItem> errorList = new ArrayList <ServiceRequestUserInputValidationErrorItem> ();
 
-        errorList.addAll(super.getBasicRequiredFieldsFilledValidationResult(locationID, assigneeID, status, priority));
+        errorList.addAll(super.getBasicRequiredFieldsFilledValidationResult(location, assigneeID, priority, status));
         errorList.add(super.getValidateAssigneeIDResult(assigneeID));
-        errorList.add(super.getValidateLocationIDResult(locationID));
+        errorList.add(super.getValidateLocationIDResult(location));
         errorList.add(checkMaintenanceTypeFilled(maintenanceType));
 
         return errorList;

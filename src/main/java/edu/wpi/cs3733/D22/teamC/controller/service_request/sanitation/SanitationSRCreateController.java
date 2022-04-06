@@ -61,7 +61,7 @@ public class SanitationSRCreateController extends ServiceRequestCreateController
     protected SanitationSR clickSubmit(ActionEvent event) {
         resetErrorMessages();
         SanitationSRFormEvaluator sSRFE = new SanitationSRFormEvaluator();
-        ArrayList<ServiceRequestUserInputValidationErrorItem> errors = sSRFE.getSanitationSRValidationTestResult(assigneeID.getText(), location.getText(), priority.getSelectionModel(), status.getSelectionModel(), sanitationType.getSelectionModel());
+        ArrayList<ServiceRequestUserInputValidationErrorItem> errors = sSRFE.getSanitationSRValidationTestResult(location.getText(), assigneeID.getText(), priority.getSelectionModel(), status.getSelectionModel(), sanitationType.getSelectionModel());
 
         if(sSRFE.noServiceRequestFormUserInputErrors(errors))
         {

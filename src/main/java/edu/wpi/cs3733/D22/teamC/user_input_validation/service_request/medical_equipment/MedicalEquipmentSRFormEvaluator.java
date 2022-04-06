@@ -11,13 +11,13 @@ public class MedicalEquipmentSRFormEvaluator extends ServiceRequestFormEvaluator
 
     public MedicalEquipmentSRFormEvaluator() {}
 
-    public ArrayList<ServiceRequestUserInputValidationErrorItem> getMedicalEquipmentSRValidationTestResult(String locationID, String assigneeID, SingleSelectionModel status, SingleSelectionModel priority, SingleSelectionModel equipType, String equipID)
+    public ArrayList<ServiceRequestUserInputValidationErrorItem> getMedicalEquipmentSRValidationTestResult(String location, String assigneeID, SingleSelectionModel priority, SingleSelectionModel status, SingleSelectionModel equipType, String equipID)
     {
         ArrayList <ServiceRequestUserInputValidationErrorItem> errorList = new ArrayList <ServiceRequestUserInputValidationErrorItem> ();
 
-        errorList.addAll(super.getBasicRequiredFieldsFilledValidationResult(locationID, assigneeID, status, priority));
+        errorList.addAll(super.getBasicRequiredFieldsFilledValidationResult(location, assigneeID, priority, status));
         errorList.add(super.getValidateAssigneeIDResult(assigneeID));
-        errorList.add(super.getValidateLocationIDResult(locationID));
+        errorList.add(super.getValidateLocationIDResult(location));
         errorList.add(checkEquipmentIDFilled(equipID));
         errorList.add(checkEquipmentTypeFilled(equipType));
 

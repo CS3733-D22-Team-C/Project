@@ -16,17 +16,17 @@ public class ServiceRequestFormEvaluator {
 
     /**
      * Determine if all the basic fields of a Service Request (locationID, assigneeID, status, and priority) have been filled,
-     * @param locationID
+     * @param location
      * @param assigneeID
      * @param status
      * @param priority
      * @return ArrayList <ServiceRequestUserInputValidationErrorItem>
      */
-    public ArrayList<ServiceRequestUserInputValidationErrorItem> getBasicRequiredFieldsFilledValidationResult(String locationID, String assigneeID, SingleSelectionModel status, SingleSelectionModel priority)
+    public ArrayList<ServiceRequestUserInputValidationErrorItem> getBasicRequiredFieldsFilledValidationResult(String location, String assigneeID, SingleSelectionModel priority, SingleSelectionModel status)
     {
         ArrayList <ServiceRequestUserInputValidationErrorItem> errorList = new ArrayList <ServiceRequestUserInputValidationErrorItem>();
 
-        errorList.add(checkLocationIDFilled(locationID));
+        errorList.add(checkLocationIDFilled(location));
         errorList.add(checkPriorityFilled(priority));
         errorList.add(checkStatusFilled(status));
 

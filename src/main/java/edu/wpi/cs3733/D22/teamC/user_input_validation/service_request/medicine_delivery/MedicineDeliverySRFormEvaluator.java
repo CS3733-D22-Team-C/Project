@@ -11,13 +11,13 @@ public class MedicineDeliverySRFormEvaluator extends ServiceRequestFormEvaluator
 
     public MedicineDeliverySRFormEvaluator() {}
 
-    public ArrayList<ServiceRequestUserInputValidationErrorItem> getMedicineDeliverySRValidationTestResult(String locationID, String assigneeID, String patientID, String medicine, String dosage, SingleSelectionModel status, SingleSelectionModel priority)
+    public ArrayList<ServiceRequestUserInputValidationErrorItem> getMedicineDeliverySRValidationTestResult(String location, String assigneeID, SingleSelectionModel priority, SingleSelectionModel status, String patientID, String medicine, String dosage)
     {
         ArrayList <ServiceRequestUserInputValidationErrorItem> errorList = new ArrayList <ServiceRequestUserInputValidationErrorItem> ();
 
-        errorList.addAll(super.getBasicRequiredFieldsFilledValidationResult(locationID, assigneeID, status, priority));
+        errorList.addAll(super.getBasicRequiredFieldsFilledValidationResult(location, assigneeID, priority, status));
         errorList.add(super.getValidateAssigneeIDResult(assigneeID));
-        errorList.add(super.getValidateLocationIDResult(locationID));
+        errorList.add(super.getValidateLocationIDResult(location));
         errorList.add(checkPatientIDFilled(patientID));
         errorList.add(checkMedicineFilled(medicine));
         errorList.add(checkDosageFilled(dosage));

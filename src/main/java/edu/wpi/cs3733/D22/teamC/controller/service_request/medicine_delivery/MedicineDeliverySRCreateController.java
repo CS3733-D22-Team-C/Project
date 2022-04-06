@@ -47,9 +47,9 @@ public class MedicineDeliverySRCreateController extends ServiceRequestCreateCont
         //For Patient ID:
         setIDFieldToNumeric(patientID);
 
-        setTextLengthLimiter(medicine, 20);
-        setTextLengthLimiter(dosage, 20);
-        setTextLengthLimiter(patientID, 20);
+        setTextLengthLimiter(medicine, 10);
+        setTextLengthLimiter(dosage, 10);
+        setTextLengthLimiter(patientID, 10);
     }
 
     @Override
@@ -75,7 +75,7 @@ public class MedicineDeliverySRCreateController extends ServiceRequestCreateCont
     protected MedicineDeliverySR clickSubmit(ActionEvent event) {
         resetErrorMessages();
         MedicineDeliverySRFormEvaluator mDSRFE = new MedicineDeliverySRFormEvaluator();
-        ArrayList<ServiceRequestUserInputValidationErrorItem> errors = mDSRFE.getMedicineDeliverySRValidationTestResult(location.getText(), assigneeID.getText(), patientID.getText(), medicine.getText(), dosage.getText(), status.getSelectionModel(), priority.getSelectionModel());
+        ArrayList<ServiceRequestUserInputValidationErrorItem> errors = mDSRFE.getMedicineDeliverySRValidationTestResult(location.getText(), assigneeID.getText(), status.getSelectionModel(), priority.getSelectionModel(), patientID.getText(), medicine.getText(), dosage.getText());
 
         if(mDSRFE.noServiceRequestFormUserInputErrors(errors))
         {

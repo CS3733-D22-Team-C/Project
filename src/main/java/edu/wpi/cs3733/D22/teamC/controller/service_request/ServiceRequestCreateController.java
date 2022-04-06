@@ -48,8 +48,8 @@ public class ServiceRequestCreateController implements Initializable {
         setIDFieldToNumeric(location);
 
         //Limit the length of TextFields and TextAreas so that users can input a limited number of characters:
-        setTextLengthLimiter(assigneeID, 20);
-        setTextLengthLimiter(location, 20);
+        setTextLengthLimiter(assigneeID, 10);
+        setTextLengthLimiter(location, 10);
         setTextLengthLimiter(description, 100);
 
         //Hide error label

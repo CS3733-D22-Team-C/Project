@@ -81,7 +81,7 @@ public class MedicalEquipmentSRCreateController extends ServiceRequestCreateCont
     protected MedicalEquipmentSR clickSubmit(ActionEvent event) {
         resetErrorMessages();
         MedicalEquipmentSRFormEvaluator mESRFE = new MedicalEquipmentSRFormEvaluator();
-        ArrayList<ServiceRequestUserInputValidationErrorItem> errors = mESRFE.getMedicalEquipmentSRValidationTestResult(location.getText(), assigneeID.getText(), status.getSelectionModel(), priority.getSelectionModel(), equipType.getSelectionModel(), equipID.getText());
+        ArrayList<ServiceRequestUserInputValidationErrorItem> errors = mESRFE.getMedicalEquipmentSRValidationTestResult(location.getText(), assigneeID.getText(), priority.getSelectionModel(), status.getSelectionModel(), equipType.getSelectionModel(), equipID.getText());
 
         if(mESRFE.noServiceRequestFormUserInputErrors(errors))
         {
