@@ -7,6 +7,7 @@ import edu.wpi.cs3733.D22.teamC.entity.service_request.ServiceRequest;
 import edu.wpi.cs3733.D22.teamC.entity.service_request.medical_equipment.MedicalEquipmentSR;
 import edu.wpi.cs3733.D22.teamC.entity.service_request.medical_equipment.MedicalEquipmentSRDAOImpl;
 import edu.wpi.cs3733.D22.teamC.entity.service_request.medicine_delivery.MedicineDeliverySR;
+import edu.wpi.cs3733.D22.teamC.entity.service_request.medicine_delivery.MedicineDeliverySRDAOImpl;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.TextField;
@@ -24,8 +25,8 @@ public class MedicineDeliverySRResolveController extends ServiceRequestResolveCo
         super.setup(serviceRequest, isEditMode);
 
         // Querying for full Medical Equipment Service Request
-        MedicalEquipmentSRDAOImpl medicalEquipmentSRDAOImpl = new MedicalEquipmentSRDAOImpl();
-        MedicineDeliverySR medicineDeliverySR = medicalEquipmentSRDAOImpl.getServiceRequest(serviceRequest.getRequestID());
+        MedicineDeliverySRDAOImpl medicineDeliverySRDAOImpl = new MedicineDeliverySRDAOImpl();
+        MedicineDeliverySR medicineDeliverySR = medicineDeliverySRDAOImpl.getServiceRequest(serviceRequest.getRequestID());
 
         //title
         title.setText("Resolve Medicine Delivery Service Request");
@@ -62,7 +63,7 @@ public class MedicineDeliverySRResolveController extends ServiceRequestResolveCo
 
         super.clickConfirm(event);
         //Accessing Service Request in Database
-        MedicalEquipmentSRDAOImpl medicalEquipmentSRDAOImpl = new MedicalEquipmentSRDAOImpl();
+        MedicineDeliverySRDAOImpl medicalEquipmentSRDAOImpl = new MedicineDeliverySRDAOImpl();
         MedicineDeliverySR medicineDeliverySR = medicalEquipmentSRDAOImpl.getServiceRequest(serviceRequest.getRequestID());
         if(isEditMode){
 

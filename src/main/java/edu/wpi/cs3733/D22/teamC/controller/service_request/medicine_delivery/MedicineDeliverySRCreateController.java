@@ -3,13 +3,17 @@ package edu.wpi.cs3733.D22.teamC.controller.service_request.medicine_delivery;
 import com.jfoenix.controls.JFXTreeTableView;
 import edu.wpi.cs3733.D22.teamC.controller.service_request.ServiceRequestCreateController;
 import edu.wpi.cs3733.D22.teamC.entity.service_request.ServiceRequest;
+import edu.wpi.cs3733.D22.teamC.entity.service_request.ServiceRequestDAO;
+import edu.wpi.cs3733.D22.teamC.entity.service_request.medical_equipment.MedicalEquipmentSRDAOImpl;
 import edu.wpi.cs3733.D22.teamC.entity.service_request.medicine_delivery.MedicineDeliverySR;
+import edu.wpi.cs3733.D22.teamC.entity.service_request.medicine_delivery.MedicineDeliverySRDAOImpl;
 import edu.wpi.cs3733.D22.teamC.models.service_request.medicine_delivery.MedicineDeliverySRTableDisplay;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.TextField;
 
 import java.net.URL;
+import java.sql.Timestamp;
 import java.util.ResourceBundle;
 
 public class MedicineDeliverySRCreateController extends ServiceRequestCreateController<MedicineDeliverySR> {
@@ -38,6 +42,8 @@ public class MedicineDeliverySRCreateController extends ServiceRequestCreateCont
     protected MedicineDeliverySR clickSubmit(ActionEvent event) {
         MedicineDeliverySR medicineDeliverySR = new MedicineDeliverySR();
 
+        medicineDeliverySR.setCreationTimestamp(new Timestamp(System.currentTimeMillis()));
+
         if (assigneeID.getText().isEmpty() || location.getText().isEmpty() || priority.getSelectionModel().isEmpty() || status.getSelectionModel().isEmpty()
         || medicine.getText().isEmpty() || dosage.getText().isEmpty() || patientID.getText().isEmpty()) {
             return null;
@@ -62,6 +68,9 @@ public class MedicineDeliverySRCreateController extends ServiceRequestCreateCont
 
         // Add to Table List
         tableDisplay.addObject(medicineDeliverySR);
+
+        ServiceRequestDAO serviceRequestDAO = new MedicineDeliverySRDAOImpl();
+        serviceRequestDAO.insertServiceRequest(medicineDeliverySR);
 
         return medicineDeliverySR;
     }
