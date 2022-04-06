@@ -35,6 +35,7 @@ public class LabSystemSRResolveController extends ServiceRequestResolveControlle
         patientID.setText(labSystemSR.getPatientID());
         description.setText(labSystemSR.getDescription());
         creationTime.setText(labSystemSR.getCreationTimestamp().toString());
+        patientID.setEditable(false);
 
 
         if(isEditMode){
@@ -43,10 +44,12 @@ public class LabSystemSRResolveController extends ServiceRequestResolveControlle
                 labType.getItems().add(type.toString());
             }
             labType.valueProperty().setValue(labType.getPromptText());
+            title.setText("Edit Lab System Request");
 
             //Status labels at bottom
             if (requiredFieldsPresent()) secondStatus.setText("processing");
             else secondStatus.setText("blank");
+            patientID.setEditable(true);
         }
     }
 
@@ -60,10 +63,7 @@ public class LabSystemSRResolveController extends ServiceRequestResolveControlle
         LabSystemSR labSystemSR = labSystemSRDAOImpl.getServiceRequest(serviceRequest.getRequestID());
         if(isEditMode){
             //check if value has changed
-            if(patientID.getText().equals(""))
-            {
-                labSystemSR.setPatientID(patientID.getText());
-            }
+            labSystemSR.setPatientID(patientID.getText());
             if(labType.getValue() != null) {
                 labSystemSR.setLabType(LabSystemSR.LabType.valueOf(labType.getValue()));
             }
