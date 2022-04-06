@@ -221,7 +221,7 @@ public class DBManager {
         initializeTable(
                 "MEDICINE_DELIVERY_SR",
                 "CREATE TABLE MEDICINE_DELIVERY_SR (" +
-                        "ID int, Medicine char(30), Dosage char(20), PatientID int, CONSTRAINT fk_MDSRID FOREIGN KEY (ID) " +
+                        "ID int, Medicine char(30), Dosage char(20), PatientID char(10), CONSTRAINT fk_MDSRID FOREIGN KEY (ID) " +
                         "REFERENCES SERVICE_REQUEST (ID) ON DELETE CASCADE)",
                 clearTable
         );
