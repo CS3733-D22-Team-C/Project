@@ -131,6 +131,7 @@ public class DBManager {
          */
         public void initializeTables(boolean clearTable) {
             initializeServiceRequestTable(clearTable);
+            initializeSanitationSRTable(clearTable);
             initializeMedicalEquipSRTable(clearTable);
             initializeLabSystemSRTable(clearTable);
             initializeSecuritySRTable(clearTable);
@@ -213,6 +214,16 @@ public class DBManager {
                 clearTable
         );
     }
+
+    public void initializeSanitationSRTable(boolean clearTable) {
+        initializeTable(
+                "SANITATION_SR",
+                "CREATE TABLE SANITATION_SR (" +
+                        "ID int, sanitationType varchar(50), CONSTRAINT fk_sanitationID FOREIGN KEY (ID)" +
+                        "REFERENCES SERVICE_REQUEST (ID) ON DELETE CASCADE)",
+                clearTable
+        );
+    }
     public void initializeFloorTable(boolean clearTable) {
         initializeTable(
                 "FLOOR",
@@ -222,5 +233,6 @@ public class DBManager {
                 clearTable
         );
     }
+
     //endregion
 }
