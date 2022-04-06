@@ -135,6 +135,7 @@ public class DBManager {
             initializeMedicalEquipSRTable(clearTable);
             initializeLabSystemSRTable(clearTable);
             initializeSecuritySRTable(clearTable);
+            initializeMedicineDeliverySRTable(clearTable);
 
             initializeFloorTable(clearTable);
             initializeLocationTable(clearTable);
@@ -214,6 +215,20 @@ public class DBManager {
                 clearTable
         );
     }
+    
+    /**
+     * Initialize Medicine Delivery Service Request Table.
+     * @param clearTable Clear pre-existing table entries if true.
+     */
+    public void initializeMedicineDeliverySRTable(boolean clearTable) {
+        initializeTable(
+                "MEDICINE_DELIVERY_SR",
+                "CREATE TABLE MEDICINE_DELIVERY_SR (" +
+                        "ID int, Medicine char(30), Dosage char(20), PatientID char(10), CONSTRAINT fk_MDSRID FOREIGN KEY (ID) " +
+                        "REFERENCES SERVICE_REQUEST (ID) ON DELETE CASCADE)",
+                clearTable
+        );
+    }
 
     public void initializeSanitationSRTable(boolean clearTable) {
         initializeTable(
@@ -224,6 +239,7 @@ public class DBManager {
                 clearTable
         );
     }
+
     public void initializeFloorTable(boolean clearTable) {
         initializeTable(
                 "FLOOR",

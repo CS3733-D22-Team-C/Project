@@ -48,7 +48,9 @@ public class SanitationSRResolveController extends ServiceRequestResolveControll
             else secondStatus.setText("blank");
 
             sanitationType.setDisable(false);
+
             title.setText("Edit Sanitation Request");
+
         }
         System.out.println(isEditMode);
     }

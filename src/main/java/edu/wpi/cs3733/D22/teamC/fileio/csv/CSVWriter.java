@@ -2,6 +2,7 @@ package edu.wpi.cs3733.D22.teamC.fileio.csv;
 
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -18,7 +19,28 @@ public abstract class CSVWriter<T> {
      * @param objects The list of Objects of T to write to CSV.
      * @return true if successful, else false.
      */
-    public boolean writeFile(String fileName, List<T> objects) {
+    public final boolean writeFile(String fileName, List<T> objects) {
+        File outputFile = new File(fileName);
+        try {
+            PrintWriter pw = new PrintWriter(outputFile);
+            return writeFileInternal(pw, outputFile, objects);
+        } catch (IOException e) {
+            e.printStackTrace();
+            return false;
+        }
+    }
+
+    public final boolean writeFile(File file, List<T> objects) {
+        try {
+            PrintWriter pw = new PrintWriter(file);
+            return writeFileInternal(pw, file, objects);
+        } catch (IOException e) {
+            e.printStackTrace();
+            return false;
+        }
+    }
+
+    private boolean writeFileInternal(PrintWriter pw, File outputFile, List<T> objects) throws IOException {
         // Compile headers for output order
         final String[] headers = compileHeaders();
         final String headerString = convertToCSV(headers);
@@ -27,17 +49,12 @@ public abstract class CSVWriter<T> {
         final String[] objectStrings = objects.stream().map(object -> compileObject(object, headers)).toArray(String[]::new);
 
         // Write Strings to CSV Output File
-        File outputFile = new File(fileName);
-        try (PrintWriter pw = new PrintWriter(outputFile)) {
-            pw.println(headerString);
-            for (String objectString : objectStrings) {
-                pw.println(objectString);
-            }
-        } catch (FileNotFoundException e) {
-            e.printStackTrace();
-            return false;
+        pw.println(headerString);
+        for (String objectString : objectStrings) {
+            pw.println(objectString);
         }
 
+        pw.close();
         return outputFile.exists();
     }
 

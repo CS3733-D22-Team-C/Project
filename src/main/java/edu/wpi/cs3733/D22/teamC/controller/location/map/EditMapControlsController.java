@@ -16,16 +16,6 @@ public class EditMapControlsController {
         parentController.swapToViewMode();
     }
 
-    @FXML
-    public void onImportCSVButtonPress() {
-
-    }
-
-    @FXML
-    public void onExportCSVButtonPress() {
-
-    }
-
     public void setParentController(BaseMapViewController baseMapViewController) {
         this.parentController = baseMapViewController;
     }
