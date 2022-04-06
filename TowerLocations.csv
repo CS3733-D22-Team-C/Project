@@ -150,3 +150,4 @@ nodeID,xcoord,ycoord,floor,building,nodeType,longName,shortName
 149,647,580,3,Tower,PATI,Pod C Patient Room 10,Pod C PR10
 150,717,215,3,Tower,STOR,Pods AB Bed and Recliner Parking,PodsAB BRP
 151,717,595,3,Tower,STOR,Pods CD Bed and Recliner Parking,PodsCD BRP
+402,176,244,1,,HALL,TestT,TEst

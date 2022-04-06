@@ -40,6 +40,9 @@ public class MedicalEquipmentSRResolveController extends ServiceRequestResolveCo
         description.setText(medicalEquipmentSR.getDescription());
         creationTime.setText(medicalEquipmentSR.getCreationTimestamp().toString());
 
+        equipmentID.setDisable(true);
+        equipmentType.setDisable(true);
+
 
         if(isEditMode){
             // Equipment Type Dropdown
@@ -54,6 +57,10 @@ public class MedicalEquipmentSRResolveController extends ServiceRequestResolveCo
 
             //Set title
             title.setText("Edit Medical Equipment Service Request");
+
+            equipmentID.setDisable(false);
+            equipmentType.setDisable(false);
+
         }
         System.out.println(isEditMode);
     }
