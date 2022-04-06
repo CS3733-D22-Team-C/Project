@@ -16,7 +16,7 @@ public class SecuritySRFormEvaluator extends ServiceRequestFormEvaluator {
     {
         ArrayList <ServiceRequestUserInputValidationErrorItem> errorList = new ArrayList <ServiceRequestUserInputValidationErrorItem> ();
 
-        errorList.addAll(super.getBasicRequiredFieldsFilledValidationResult(location, assigneeID, status, priority));
+        errorList.addAll(super.getBasicRequiredFieldsFilledValidationResult(location, assigneeID, priority, status));
         errorList.add(super.getValidateAssigneeIDResult(assigneeID));
         errorList.add(super.getValidateLocationIDResult(location));
         errorList.add(checkSecurityTypeFilled(securityType));
