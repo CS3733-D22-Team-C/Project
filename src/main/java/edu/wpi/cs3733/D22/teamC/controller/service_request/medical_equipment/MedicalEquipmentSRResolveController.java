@@ -49,6 +49,7 @@ public class MedicalEquipmentSRResolveController extends ServiceRequestResolveCo
             if (requiredFieldsPresent()) secondStatus.setText("processing");
             else secondStatus.setText("blank");
         }
+        System.out.println(isEditMode);
     }
 
 
@@ -127,8 +128,6 @@ public class MedicalEquipmentSRResolveController extends ServiceRequestResolveCo
                     equipmentID.getItems().add(ID);
                 }
             }
-            //Delete promptText
-            //equipmentID.setPromptText("");
         }
 
 
