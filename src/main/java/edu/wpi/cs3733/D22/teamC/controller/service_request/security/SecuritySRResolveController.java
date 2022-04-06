@@ -29,6 +29,7 @@ public class SecuritySRResolveController extends ServiceRequestResolveController
 //        MedicalEquipmentSR medicalEquipmentSR = medicalEquipmentSRDAOImpl.getServiceRequest(serviceRequest.getRequestID());
         SecuritySRDAOImpl securitySRDAOImpl = new SecuritySRDAOImpl();
         SecuritySR securitySR = securitySRDAOImpl.getServiceRequest(serviceRequest.getRequestID());
+        title.setText("Resolve Security Service Request");
 
 
 
@@ -39,6 +40,7 @@ public class SecuritySRResolveController extends ServiceRequestResolveController
 
 
         if(isEditMode){
+            title.setText("Edit Security Service Request");
             // Equipment Type Dropdown
             for (SecuritySR.SecurityType type : SecuritySR.SecurityType.values()) {
                 securityType.getItems().add(type.toString());
