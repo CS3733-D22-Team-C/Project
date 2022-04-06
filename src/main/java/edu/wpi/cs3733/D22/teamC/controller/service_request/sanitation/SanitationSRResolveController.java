@@ -7,6 +7,7 @@ import edu.wpi.cs3733.D22.teamC.entity.service_request.ServiceRequest;
 import edu.wpi.cs3733.D22.teamC.entity.service_request.medical_equipment.MedicalEquipmentSR;
 import edu.wpi.cs3733.D22.teamC.entity.service_request.medical_equipment.MedicalEquipmentSRDAOImpl;
 import edu.wpi.cs3733.D22.teamC.entity.service_request.sanitation.SanitationSR;
+import edu.wpi.cs3733.D22.teamC.entity.service_request.sanitation.SanitationSRDAOImpl;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.input.KeyEvent;
@@ -23,8 +24,8 @@ public class SanitationSRResolveController extends ServiceRequestResolveControll
         super.setup(serviceRequest, isEditMode);
 
         // Querying for full Medical Equipment Service Request
-        MedicalEquipmentSRDAOImpl sanitationSRDAOImpl = new MedicalEquipmentSRDAOImpl();
-        SanitationSR sanitationSR = medicalEquipmentSRDAOImpl.getServiceRequest(serviceRequest.getRequestID());
+        SanitationSRDAOImpl sanitationSRDAOImpl = new SanitationSRDAOImpl();
+        SanitationSR sanitationSR = sanitationSRDAOImpl.getServiceRequest(serviceRequest.getRequestID());
 
         // Setting fields from Querying Database
         sanitationType.setPromptText(sanitationSR.getSanitationType().toString());
@@ -45,6 +46,8 @@ public class SanitationSRResolveController extends ServiceRequestResolveControll
             //Status labels at bottom
             if (requiredFieldsPresent()) secondStatus.setText("processing");
             else secondStatus.setText("blank");
+
+            sanitationType.setDisable(false);
         }
         System.out.println(isEditMode);
     }
@@ -55,7 +58,7 @@ public class SanitationSRResolveController extends ServiceRequestResolveControll
 
         super.clickConfirm(event);
         //Accessing Service Request in Database
-        MedicalEquipmentSRDAOImpl sanitationSRDAOImpl = new MedicalEquipmentSRDAOImpl();
+        SanitationSRDAOImpl sanitationSRDAOImpl = new SanitationSRDAOImpl();
         SanitationSR sanitationSR = sanitationSRDAOImpl.getServiceRequest(serviceRequest.getRequestID());
         if(isEditMode){
             //check if value has changed
