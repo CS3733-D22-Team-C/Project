@@ -12,6 +12,9 @@ public class SanitationSR extends ServiceRequest {
         Daily_Cleaning
     }
 
+    public SanitationSR() {}
+    public SanitationSR(ServiceRequest serviceRequest) {super(serviceRequest);}
+
     public SanitationType getSanitationType() {
         return sanitationType;
     }

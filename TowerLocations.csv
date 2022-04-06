@@ -101,29 +101,29 @@ nodeID,xcoord,ycoord,floor,building,nodeType,longName,shortName
 100,707,750,3,Tower,STAI,Stairwell 1 Floor 3,Stairwell
 101,817,400,3,Tower,ELEV,Elevator L Floor 3,Elevator L3
 102,842,765,3,Tower,ELEV,Elevator M Floor 3,Elevator M3
-103,1007,319,L1,Tower,DEPT,Day Surgery Family Waiting Floor L1,Department C002L1
-104,872,319,L1,Tower,DEPT,Day Surgery Family Waiting Exit Floor L1,Department C003L1
-105,759,399,L1,Tower,HALL,Hallway 1 Floor L1,Hallway C001L1
-106,777,759,L1,Tower,HALL,Hallway 5 Floor L1,Hallway C005L1
-107,1157,759,L1,Tower,HALL,Hallway 6 Floor L1,Hallway C006L1
-108,1157,520,L1,Tower,HALL,Hallway 7 Floor L1,Hallway C007L1
-109,872,399,L1,Tower,HALL,Hallway 14 Floor L1,Hallway C014L1
-110,992,759,L1,Tower,LABS,Outpatient Fluoroscopy Floor L1,Lab C001L1
-111,777,565,L1,Tower,LABS,Pre-Op PACU Floor L1,Lab C002L1
-112,759,494,L1,Tower,REST,Restroom L Elevator Floor L1,Restroom C001L1
-113,1092,759,L1,Tower,REST,Restroom M Elevator Floor L1,Restroom C002L1
-114,812,399,L1,Tower,ELEV,Elevator L Floor L1,Elevator LL1
-115,847,759,L1,Tower,ELEV,Elevator M Floor L1,Elevator ML1
-116,772,755,L2,Tower,HALL,Hallway 5 Floor L2,Hallway C005L2
-117,772,484,L2,Tower,HALL,Hallway 6 Floor L2,Hallway C006L2
-118,757,484,L2,Tower,HALL,Hallway 7 Floor L2,Hallway C007L2
-119,757,399,L2,Tower,HALL,Hallway 8 Floor L2,Hallway C008L2
-120,757,324,L2,Tower,HALL,Hallway 9 Floor L2,Hallway C009L2
-121,1157,324,L2,Tower,HALL,Hallway 10 Floor L2,Hallway C010L2
-122,812,399,L2,Tower,ELEV,Elevator L Floor L2,Elevator LL2
-123,847,755,L2,Tower,ELEV,Elevator M Floor L2,Elevator ML2
-124,772,999,L2,Tower,HALL,Hallway Connector 1 Floor L2,Hallway W01L2
-125,577,310,L1,Tower,STOR,OR Bed Park Floor L1,OR BP L1
+103,1007,319,4,Tower,DEPT,Day Surgery Family Waiting Floor L1,Department C002L1
+104,872,319,4,Tower,DEPT,Day Surgery Family Waiting Exit Floor L1,Department C003L1
+105,759,399,4,Tower,HALL,Hallway 1 Floor L1,Hallway C001L1
+106,777,759,4,Tower,HALL,Hallway 5 Floor L1,Hallway C005L1
+107,1157,759,4,Tower,HALL,Hallway 6 Floor L1,Hallway C006L1
+108,1157,520,4,Tower,HALL,Hallway 7 Floor L1,Hallway C007L1
+109,872,399,4,Tower,HALL,Hallway 14 Floor L1,Hallway C014L1
+110,992,759,4,Tower,LABS,Outpatient Fluoroscopy Floor L1,Lab C001L1
+111,777,565,4,Tower,LABS,Pre-Op PACU Floor L1,Lab C002L1
+112,759,494,4,Tower,REST,Restroom L Elevator Floor L1,Restroom C001L1
+113,1092,759,4,Tower,REST,Restroom M Elevator Floor L1,Restroom C002L1
+114,812,399,4,Tower,ELEV,Elevator L Floor L1,Elevator LL1
+115,847,759,4,Tower,ELEV,Elevator M Floor L1,Elevator ML1
+116,772,755,5,Tower,HALL,Hallway 5 Floor L2,Hallway C005L2
+117,772,484,5,Tower,HALL,Hallway 6 Floor L2,Hallway C006L2
+118,757,484,5,Tower,HALL,Hallway 7 Floor L2,Hallway C007L2
+119,757,399,5,Tower,HALL,Hallway 8 Floor L2,Hallway C008L2
+120,757,324,5,Tower,HALL,Hallway 9 Floor L2,Hallway C009L2
+121,1157,324,5,Tower,HALL,Hallway 10 Floor L2,Hallway C010L2
+122,812,399,5,Tower,ELEV,Elevator L Floor L2,Elevator LL2
+123,847,755,5,Tower,ELEV,Elevator M Floor L2,Elevator ML2
+124,772,999,5,Tower,HALL,Hallway Connector 1 Floor L2,Hallway W01L2
+125,577,310,4,Tower,STOR,OR Bed Park Floor L1,OR BP L1
 126,537,400,1,Tower,STOR,West Plaza,Wplaza
 127,557,235,3,Tower,STOR,Pod B Clean Equipment Storage (Floor 3),Pod B3 CES
 128,547,565,3,Tower,STOR,Pod C Clean Equipment Storage (Floor 3),Pod C3 CES
@@ -150,3 +150,4 @@ nodeID,xcoord,ycoord,floor,building,nodeType,longName,shortName
 149,647,580,3,Tower,PATI,Pod C Patient Room 10,Pod C PR10
 150,717,215,3,Tower,STOR,Pods AB Bed and Recliner Parking,PodsAB BRP
 151,717,595,3,Tower,STOR,Pods CD Bed and Recliner Parking,PodsCD BRP
+402,176,244,1,,HALL,TestT,TEst
