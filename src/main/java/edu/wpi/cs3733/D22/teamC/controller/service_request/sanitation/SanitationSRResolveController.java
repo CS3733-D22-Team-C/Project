@@ -34,7 +34,7 @@ public class SanitationSRResolveController extends ServiceRequestResolveControll
 
         sanitationType.setDisable(true);
 
-
+        title.setText("Resolve Sanitation Request");
 
         if(isEditMode){
             // Equipment Type Dropdown
@@ -48,6 +48,7 @@ public class SanitationSRResolveController extends ServiceRequestResolveControll
             else secondStatus.setText("blank");
 
             sanitationType.setDisable(false);
+            title.setText("Edit Sanitation Request");
         }
         System.out.println(isEditMode);
     }
