@@ -5,7 +5,7 @@
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.layout.VBox?>
 
-<VBox alignment="CENTER" styleClass="anchor-pane-margin" stylesheets="@../../../css/base.css" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.wpi.cs3733.D22.teamC.controller.location.map.ViewMapControlsController">
+<VBox alignment="CENTER" spacing="10.0" styleClass="anchor-pane-margin" stylesheets="@../../../css/base.css" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.wpi.cs3733.D22.teamC.controller.location.map.ViewMapControlsController">
    <children>
       <VBox alignment="CENTER">
          <children>
@@ -15,7 +15,7 @@
       <VBox>
          <children>
             <Label text="Floor:" />
-            <JFXComboBox maxWidth="1.7976931348623157E308" VBox.vgrow="ALWAYS" />
+            <JFXComboBox fx:id="floorField" maxWidth="1.7976931348623157E308" onAction="#onFloorChanged" VBox.vgrow="ALWAYS" />
          </children>
       </VBox>
    </children>

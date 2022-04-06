@@ -224,30 +224,6 @@ public class App extends Application {
         return null;
     }
 
-    public View loadView(String viewFile) {
-        try {
-            FXMLLoader loader = new FXMLLoader();
-            loader.setLocation(getClass().getResource(viewFile));
-            return new View(loader.load(), loader.getController());
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-       return null;
-    }
-
-    public View loadView(String viewFile, Object controller) {
-        View view = loadView(viewFile);
-        try {
-            FXMLLoader loader = new FXMLLoader();
-            loader.setLocation(getClass().getResource(viewFile));
-            loader.setController(controller);
-            return new View(loader.load(), loader.getController());
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        return null;
-    }
-
     public Stage getStage() {
         return stage;
     }

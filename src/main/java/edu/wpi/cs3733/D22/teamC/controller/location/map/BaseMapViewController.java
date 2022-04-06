@@ -1,12 +1,17 @@
 package edu.wpi.cs3733.D22.teamC.controller.location.map;
 
 import edu.wpi.cs3733.D22.teamC.App;
+import edu.wpi.cs3733.D22.teamC.entity.floor.Floor;
+import edu.wpi.cs3733.D22.teamC.entity.floor.FloorDAO;
+import edu.wpi.cs3733.D22.teamC.entity.location.Location;
+import edu.wpi.cs3733.D22.teamC.entity.location.LocationDAOImpl;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.VBox;
 
 import java.net.URL;
+import java.util.List;
 import java.util.ResourceBundle;
 
 public class BaseMapViewController implements Initializable {
@@ -26,12 +31,20 @@ public class BaseMapViewController implements Initializable {
     public static final String EDIT_MAP_CONTROLS_PATH = "view/location/map/edit_map_controls.fxml";
     public static final String LOCATION_INFO_PATH = "view/location/map/location_info.fxml";
 
+    // Variables
+    private Floor floor;
+
     @Override
     public final void initialize(URL location, ResourceBundle resource) {
         gridPane.setMaxHeight(Double.MAX_VALUE);
         gridPane.setMaxWidth(Double.MAX_VALUE);
 
         setViewMode();
+    }
+
+    public void setFloor(Floor floor) {
+        this.floor = floor;
+        mapController.setFloor(floor);
     }
 
     //#region Mode Switching
@@ -47,14 +60,10 @@ public class BaseMapViewController implements Initializable {
          * Set to Edit Mode by replacing Nodes & Controllers.
          */
         private void setEditMode() {
-            App.View mapPane = App.instance.loadView(MAP_PATH, new EditMapController());
-            gridPane.add(mapPane.getNode(), 0,0);
-            mapController = (EditMapController) mapPane.getController();
-            mapController.setParentController(this);
-
             App.View swapPane = App.instance.loadView(EDIT_MAP_CONTROLS_PATH);
             mapControlsBox.getChildren().add(swapPane.getNode());
-            ((EditMapControlsController) swapPane.getController()).setBaseMapViewController(this);
+            EditMapControlsController editMapControlsController = (EditMapControlsController) swapPane.getController();
+            editMapControlsController.setParentController(this);
 
             App.View locationPane = App.instance.loadView(LOCATION_INFO_PATH);
             locationInfoBox.getChildren().add(locationPane.getNode());
@@ -62,6 +71,13 @@ public class BaseMapViewController implements Initializable {
             locationInfoController.setParentController(this);
             locationInfoController.setEditable(true);
             locationInfoController.setVisible(false);
+
+            App.View mapPane = App.instance.loadView(MAP_PATH, new EditMapController());
+            gridPane.add(mapPane.getNode(), 0,0);
+            mapController = (EditMapController) mapPane.getController();
+            mapController.setParentController(this);
+
+            mapController.setFloor(floor);
         }
 
         /**
@@ -76,14 +92,10 @@ public class BaseMapViewController implements Initializable {
          * Swap to View Mode by replacing Nodes & Controllers.
          */
         private void setViewMode() {
-            App.View mapPane = App.instance.loadView(MAP_PATH, new ViewMapController());
-            gridPane.add(mapPane.getNode(), 0,0);
-            mapController = (ViewMapController) mapPane.getController();
-            mapController.setParentController(this);
-
             App.View swapPane = App.instance.loadView(VIEW_MAP_CONTROLS_PATH);
             mapControlsBox.getChildren().add(swapPane.getNode());
-            ((ViewMapControlsController) swapPane.getController()).setParentController(this);
+            ViewMapControlsController viewMapControlsController = (ViewMapControlsController) swapPane.getController();
+            viewMapControlsController.setParentController(this);
 
             App.View locationPane = App.instance.loadView(LOCATION_INFO_PATH);
             locationInfoBox.getChildren().add(locationPane.getNode());
@@ -91,6 +103,14 @@ public class BaseMapViewController implements Initializable {
             locationInfoController.setParentController(this);
             locationInfoController.setEditable(false);
             locationInfoController.setVisible(false);
+
+            App.View mapPane = App.instance.loadView(MAP_PATH, new ViewMapController());
+            gridPane.add(mapPane.getNode(), 0,0);
+            mapController = (ViewMapController) mapPane.getController();
+            mapController.setParentController(this);
+
+            ((ViewMapControlsController) swapPane.getController()).setup(this, floor);
+            mapController.setFloor(floor);
         }
 
         public void clearLastMode() {
