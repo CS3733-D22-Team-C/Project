@@ -1,0 +1,10 @@
+﻿ID,FirstName,LastName,Email,Role,IsAdmin
+1,Vishnu,U,u@mail.com,Doctor,TRUE
+2,Nick,K,k@mail.com,Nurse,TRUE
+3,Mia,A,a@mail.com,Doctor,FALSE
+4,Brandon,N,n@mail.com,Nurse,FALSE
+5,Brian,N,n@mail.com,Doctor,TRUE
+6,Grace,E,e@mail.com,Nurse,FALSE
+7,Matthew,M,m@mail.com,Doctor,TRUE
+8,Vagmi,V,v@mail.com,Nurse,FALSE
+9,Jack,K,k@mail.com,Doctor,TRUE
