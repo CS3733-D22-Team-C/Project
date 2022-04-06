@@ -221,6 +221,10 @@ public class DBManager {
                 "SANITATION_SR",
                 "CREATE TABLE SANITATION_SR (" +
                         "ID int, sanitationType varchar(50), CONSTRAINT fk_sanitationID FOREIGN KEY (ID)" +
+                        "REFERENCES SERVICE_REQUEST (ID) ON DELETE CASCADE)",
+                clearTable
+        );
+    }
 
     /**
      * Initialize facility maintenance Service Request Table.
@@ -245,6 +249,5 @@ public class DBManager {
                 clearTable
         );
     }
-
     //endregion
 }

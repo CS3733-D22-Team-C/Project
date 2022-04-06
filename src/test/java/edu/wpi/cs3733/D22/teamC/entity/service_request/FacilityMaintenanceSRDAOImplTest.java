@@ -156,8 +156,8 @@ public class FacilityMaintenanceSRDAOImplTest {
         assertEquals(null, facilityDAO.getServiceRequest(1234));
 
         // Insert SR into DB
-        int creatorID = 1;
-        int assigneeID = 2;
+        String creatorID = "1";
+        String assigneeID = "2";
         String locationID = "FOISIE";
         Timestamp creationTimeStamp = new Timestamp(694201234);
         ServiceRequest.Status status = ServiceRequest.Status.Processing;
@@ -183,8 +183,8 @@ public class FacilityMaintenanceSRDAOImplTest {
         assertEquals(1, facilityDAO.getAllServiceRequests().size());
 
         // Update Location in DB
-        creatorID = 1;
-        assigneeID = 1;
+        creatorID = "1";
+        assigneeID = "213";
         locationID = "SMARTWORLD";
         status = ServiceRequest.Status.Done;
         priority = ServiceRequest.Priority.High;
@@ -203,12 +203,12 @@ public class FacilityMaintenanceSRDAOImplTest {
         updateSR.setDescription(description);
         updateSR.setModifierID(modifierID);
         updateSR.setModifiedTimestamp(modifiedTimestamp);
-        updateSR.setSecurityType(securityType);
-        assertTrue(securityDAO.updateServiceRequest(updateSR));
-        assertEquals(1, securityDAO.getAllServiceRequests().size());
+        updateSR.setMaintenanceType(maintenanceType);
+        assertTrue(facilityDAO.updateServiceRequest(updateSR));
+        assertEquals(1, facilityDAO.getAllServiceRequests().size());
 
         // Check that DB values are expected
-        SecuritySR querySR = securityDAO.getServiceRequest(updateSR.getRequestID());
+        FacilityMaintenanceSR querySR = facilityDAO.getServiceRequest(updateSR.getRequestID());
         assertNotNull(querySR);
         assertEquals(retrievedID, querySR.getRequestID());
         assertEquals(creatorID, querySR.getCreatorID());
@@ -219,14 +219,14 @@ public class FacilityMaintenanceSRDAOImplTest {
         assertEquals(priority, querySR.getPriority());
         assertEquals(requestType, querySR.getRequestType());
         assertEquals(description, querySR.getDescription());
-        assertEquals(securityType, querySR.getSecurityType());
+        assertEquals(maintenanceType, querySR.getMaintenanceType());
         assertEquals(modifierID, querySR.getModifierID());
         assertEquals(modifiedTimestamp, querySR.getModifiedTimestamp());
 
         // Cannot Update Nonexistent Location
-        SecuritySR newSR = new SecuritySR();
+        FacilityMaintenanceSR newSR = new FacilityMaintenanceSR();
         newSR.setRequestID(1234);
-        assertFalse(securityDAO.updateServiceRequest(newSR));
+        assertFalse(facilityDAO.updateServiceRequest(newSR));
     }
 
 
