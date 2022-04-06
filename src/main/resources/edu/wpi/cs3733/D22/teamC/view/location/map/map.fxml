@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.Cursor?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<ScrollPane fx:id="scroll" prefViewportHeight="200.0" prefViewportWidth="200.0" style="-fx-background: #2e2e2e;" stylesheets="@../../../css/map.css" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1">
+   <content>
+      <AnchorPane fx:id="map" prefHeight="200.0" prefWidth="200.0" styleClass="map">
+         <cursor>
+            <Cursor fx:constant="DEFAULT" />
+         </cursor></AnchorPane>
+   </content>
+</ScrollPane>
