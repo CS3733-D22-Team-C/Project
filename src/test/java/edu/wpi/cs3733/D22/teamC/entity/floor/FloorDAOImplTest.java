@@ -145,7 +145,8 @@ class FloorDAOImplTest {
 
          updateFloo.setOrder(newOrder);
          updateFloo.setLongName(newLongName);
-         updateFloo.setShortName(newImageSrc);
+         updateFloo.setShortName(newShortName);
+         updateFloo.setImageSrc(newImageSrc);
 
          assertTrue(floorDAO.updateFloor(updateFloo));
          assertEquals(1, floorDAO.getAllFloors().size());
