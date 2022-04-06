@@ -51,8 +51,8 @@ class MedEqSRDAOImplTest {
         assertEquals(null, medicalEqDAO.getServiceRequest(1234));
         
         // Insert SR into DB
-        String creatorID = "bshin100";
-        String assigneeID = "nick1234";
+        int creatorID = 1;
+        int assigneeID = 2;
         String locationID = "FOISIE";
         Timestamp creationTimeStamp = new Timestamp(694201234);
         ServiceRequest.Status status = ServiceRequest.Status.Blank;
@@ -108,8 +108,8 @@ class MedEqSRDAOImplTest {
         assertEquals(null, medicalEqDAO.getServiceRequest(1234));
     
         // Insert SR into DB
-        String creatorID = "bshin100";
-        String assigneeID = "nick1234";
+        int creatorID = 1;
+        int assigneeID = 2;
         String locationID = "FOISIE";
         Timestamp creationTimeStamp = new Timestamp(694201234);
         ServiceRequest.Status status = ServiceRequest.Status.Blank;
@@ -157,8 +157,8 @@ class MedEqSRDAOImplTest {
         assertEquals(null, medicalEqDAO.getServiceRequest(1234));
     
         // Insert SR into DB
-        String creatorID = "bshin100";
-        String assigneeID = "nick1234";
+        int creatorID = 1;
+        int assigneeID = 2;
         String locationID = "FOISIE";
         Timestamp creationTimeStamp = new Timestamp(694201234);
         ServiceRequest.Status status = ServiceRequest.Status.Processing;
@@ -186,8 +186,8 @@ class MedEqSRDAOImplTest {
         assertEquals(1, medicalEqDAO.getAllServiceRequests().size());
         
         // Update Location in DB
-        creatorID = "bshin100";
-        assigneeID = "nick1234";
+        creatorID = 1;
+        assigneeID = 1;
         locationID = "SMARTWORLD";
         status = ServiceRequest.Status.Done;
         priority = ServiceRequest.Priority.High;

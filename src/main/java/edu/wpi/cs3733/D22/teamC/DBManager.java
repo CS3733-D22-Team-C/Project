@@ -165,8 +165,8 @@ public class DBManager {
                             "CreationTimestamp timestamp, Status varchar(50), Priority varchar(50), " +
                             "RequestType varchar(50), Description varchar(150), " +  
                             "ModifierID char(10), ModifiedTimestamp timestamp," +
-                            "CONSTRAINT pk_SRID PRIMARY KEY (ID),  CONSTRAINT FK_CreatorID FOREIGN KEY (CreatorID) REFERENCES EMPLOYEE(ID)," +
-                            "CONSTRAINT FK_AssigneeID FOREIGN KEY (AssigneeID) REFERENCES EMPLOYEE(ID))",
+                            "CONSTRAINT pk_SRID PRIMARY KEY (ID))",
+//                          "CONSTRAINT FK_CreatorID FOREIGN KEY (CreatorID) REFERENCES EMPLOYEE(ID), CONSTRAINT FK_AssigneeID FOREIGN KEY (AssigneeID) REFERENCES EMPLOYEE(ID))",
                     clearTable
             );
         }

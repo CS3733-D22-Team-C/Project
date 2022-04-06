@@ -17,6 +17,7 @@ class ServiceRequestDAOImplTest {
     void setUp() {
         // Setup testing database and initialize LOCATION table
         testDBManager = DBManager.startup(DBManager.TESTING_DATABASE_NAME);
+        testDBManager.initializeEmployeeTable(true);
         testDBManager.initializeServiceRequestTable(true);
         testDBManager.initializeMedicalEquipSRTable(true);
     
@@ -57,6 +58,8 @@ class ServiceRequestDAOImplTest {
         ServiceRequest.Priority priority = ServiceRequest.Priority.Low;
         ServiceRequest.RequestType requestType = ServiceRequest.RequestType.valueOf("Medical_Equipment");
         String description = "Move the bed before noon today";
+        String modifierID = "123";
+        Timestamp creationTimestampModifier = new Timestamp(System.currentTimeMillis());
 
         ServiceRequest insertSR = new ServiceRequest();
         insertSR.setCreatorID(creatorID);
@@ -67,6 +70,8 @@ class ServiceRequestDAOImplTest {
         insertSR.setPriority(priority);
         insertSR.setRequestType(requestType);
         insertSR.setDescription(description);
+        insertSR.setModifierID(modifierID);
+        insertSR.setModifiedTimestamp(creationTimestampModifier);
 
         int retrievedID = serviceRequestDAO.insertServiceRequest(insertSR);
         insertSR.setRequestID(retrievedID);
@@ -88,6 +93,9 @@ class ServiceRequestDAOImplTest {
         assertEquals(priority, querySR.getPriority());
         assertEquals(requestType, querySR.getRequestType());
         assertEquals(description, querySR.getDescription());
+        assertEquals(modifierID, querySR.getModifierID());
+        assertEquals(creationTimestampModifier, querySR.getModifiedTimestamp());
+
     }
 
     /**
@@ -108,6 +116,8 @@ class ServiceRequestDAOImplTest {
         ServiceRequest.Priority priority = ServiceRequest.Priority.Low;
         ServiceRequest.RequestType requestType = ServiceRequest.RequestType.valueOf("Medical_Equipment");
         String description = "Move the bed before noon today";
+        String modifierID = "123";
+        Timestamp creationTimestampModifier = new Timestamp(System.currentTimeMillis());
 
         ServiceRequest deleteSR = new ServiceRequest();
         deleteSR.setCreatorID(creatorID);
@@ -118,6 +128,8 @@ class ServiceRequestDAOImplTest {
         deleteSR.setPriority(priority);
         deleteSR.setRequestType(requestType);
         deleteSR.setDescription(description);
+        deleteSR.setModifierID(modifierID);
+        deleteSR.setModifiedTimestamp(creationTimestampModifier);
 
         int retrievedID = serviceRequestDAO.insertServiceRequest(deleteSR);
         deleteSR.setRequestID(retrievedID);
@@ -153,6 +165,8 @@ class ServiceRequestDAOImplTest {
         ServiceRequest.Priority priority = ServiceRequest.Priority.High;
         ServiceRequest.RequestType requestType = ServiceRequest.RequestType.Medical_Equipment;
         String description = "Move the bed before noon today";
+        String modifierID = "123";
+        Timestamp creationTimestampModifier = new Timestamp(System.currentTimeMillis());
 
         ServiceRequest updateSR = new ServiceRequest();
         updateSR.setCreatorID(creatorID);
@@ -172,13 +186,16 @@ class ServiceRequestDAOImplTest {
         // Update Location in DB
         // didn't update the requestType
 
+        int newCreatorID = 1;
+        int newAssigneeID = 1;
+
         String newlocation = "new loc";
         Timestamp newCreationTimestamp = new Timestamp(System.currentTimeMillis());
         ServiceRequest.Status newStatus = ServiceRequest.Status.Blank;
         ServiceRequest.Priority newPriority = ServiceRequest.Priority.High;
         String newDescription = "Move the bed IMMEDIATELY";
-        String modifierID = "WillSmith";
-        Timestamp modifiedTimestamp = new Timestamp(23098213);
+        String newModifierID = "WillSmith";
+        Timestamp newModifiedTimestamp = new Timestamp(23098213);
 
         updateSR.setCreatorID(newCreatorID);
         updateSR.setAssigneeID(newAssigneeID);
@@ -187,8 +204,8 @@ class ServiceRequestDAOImplTest {
         updateSR.setStatus(newStatus);
         updateSR.setPriority(newPriority);
         updateSR.setDescription(newDescription);
-        updateSR.setModifierID(modifierID);
-        updateSR.setModifiedTimestamp(modifiedTimestamp);
+        updateSR.setModifierID(newModifierID);
+        updateSR.setModifiedTimestamp(newModifiedTimestamp);
         
         assertTrue(serviceRequestDAO.updateServiceRequest(updateSR));
         assertEquals(1, serviceRequestDAO.getAllServiceRequests().size());
@@ -205,8 +222,8 @@ class ServiceRequestDAOImplTest {
         assertEquals(newPriority, querySR.getPriority());
         assertEquals(requestType, querySR.getRequestType());
         assertEquals(newDescription, querySR.getDescription());
-        assertEquals(modifierID, querySR.getModifierID());
-        assertEquals(modifiedTimestamp, querySR.getModifiedTimestamp());
+        assertEquals(newModifierID, querySR.getModifierID());
+        assertEquals(newModifiedTimestamp, querySR.getModifiedTimestamp());
     
         // Cannot Update Nonexistent SR
         ServiceRequest newSR = new ServiceRequest(1234);

@@ -52,8 +52,8 @@ public class LabSystemSRDAOImplTest {
         assertEquals(null, labSystemDAO.getServiceRequest(1234));
         
         // Insert SR into DB
-        String creatorID = "bshin100";
-        String assigneeID = "nick1234";
+        int creatorID = 1;
+        int assigneeID = 2;
         String locationID = "FOISIE";
         Timestamp creationTimeStamp = new Timestamp(694201234);
         ServiceRequest.Status status = ServiceRequest.Status.Blank;
@@ -109,8 +109,8 @@ public class LabSystemSRDAOImplTest {
         assertEquals(null, labSystemDAO.getServiceRequest(1234));
         
         // Insert SR into DB
-        String creatorID = "bshin100";
-        String assigneeID = "nick1234"; // error due to this
+        int creatorID = 1;
+        int assigneeID = 2; // error due to this
         String locationID = "FOISIE";
         Timestamp creationTimeStamp = new Timestamp(694201234);
         ServiceRequest.Status status = ServiceRequest.Status.Blank;
@@ -158,8 +158,8 @@ public class LabSystemSRDAOImplTest {
         assertEquals(null, labSystemDAO.getServiceRequest(1234));
         
         // Insert SR into DB
-        String creatorID = "bshin100";
-        String assigneeID = "nick1234";
+        int creatorID = 1;
+        int assigneeID = 2;
         String locationID = "FOISIE";
         Timestamp creationTimeStamp = new Timestamp(694201234);
         ServiceRequest.Status status = ServiceRequest.Status.Processing;
@@ -187,8 +187,8 @@ public class LabSystemSRDAOImplTest {
         assertEquals(1, labSystemDAO.getAllServiceRequests().size());
         
         // Update Location in DB
-        creatorID = "bshin100";
-        assigneeID = "nick1234";
+        creatorID = 1;
+        assigneeID = 2;
         locationID = "SMARTWORLD";
         status = ServiceRequest.Status.Done;
         priority = ServiceRequest.Priority.High;
