@@ -5,8 +5,8 @@ import com.jfoenix.controls.datamodels.treetable.RecursiveTreeObject;
 import edu.wpi.cs3733.D22.teamC.controller.service_request.ServiceRequestCreateController;
 import edu.wpi.cs3733.D22.teamC.entity.service_request.ServiceRequest;
 import edu.wpi.cs3733.D22.teamC.error.error_item.service_request_user_input_validation.ServiceRequestUserInputValidationErrorItem;
-import edu.wpi.cs3733.D22.teamC.models.service_request.lab_system.LabSystemSRTable;
 import edu.wpi.cs3733.D22.teamC.entity.service_request.lab_system.LabSystemSR;
+import edu.wpi.cs3733.D22.teamC.models.service_request.lab_system.LabSystemSRTableDisplay;
 import edu.wpi.cs3733.D22.teamC.user_input_validation.service_request.lab_system.LabSystemSRFormEvaluator;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
@@ -21,19 +21,13 @@ import java.net.URL;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
 
-public class LabSystemSRCreateController extends ServiceRequestCreateController {
+public class LabSystemSRCreateController extends ServiceRequestCreateController<LabSystemSR> {
 
     //Fields
     @FXML private TextField patientID;
 
-
     //Dropdowns
     @FXML private JFXComboBox<String> labType;
-
-    //For table
-    @FXML private JFXTreeTableView<LabSystemSRTable> table;
-    ObservableList<LabSystemSRTable> LSTList = FXCollections.observableArrayList();
-    final TreeItem<LabSystemSRTable> root = new RecursiveTreeItem<LabSystemSRTable>(LSTList, RecursiveTreeObject::getChildren);
 
     @FXML
     public void initialize(URL url, ResourceBundle rb) {
@@ -45,9 +39,7 @@ public class LabSystemSRCreateController extends ServiceRequestCreateController 
         labType.getItems().add("Cat_Scan");
         labType.getItems().add("MRI");
 
-        LabSystemSRTable.createTableColumns(table);
-        table.setRoot(root);
-        table.setShowRoot(false);
+        tableDisplay = new LabSystemSRTableDisplay(table);
 
         setIDFieldToNumeric(patientID);
         setTextLengthLimiter(patientID, 10);
@@ -96,8 +88,7 @@ public class LabSystemSRCreateController extends ServiceRequestCreateController 
             lSSR.setRequestType(ServiceRequest.RequestType.Lab_System);
 
             //Table Entry
-            LabSystemSRTable lst = new LabSystemSRTable(lSSR);
-            LSTList.add(lst);
+            tableDisplay.addObject(lSSR);
 
             clickReset(event);
 

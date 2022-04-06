@@ -3,9 +3,11 @@ package edu.wpi.cs3733.D22.teamC.controller.service_request;
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXComboBox;
 import com.jfoenix.controls.JFXTextArea;
+import com.jfoenix.controls.JFXTreeTableView;
 import edu.wpi.cs3733.D22.teamC.App;
 import edu.wpi.cs3733.D22.teamC.entity.service_request.ServiceRequest;
 import edu.wpi.cs3733.D22.teamC.error.error_item.service_request_user_input_validation.ServiceRequestUserInputValidationErrorItem;
+import edu.wpi.cs3733.D22.teamC.models.service_request.ServiceRequestTableDisplay;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.event.ActionEvent;
@@ -20,7 +22,7 @@ import java.net.URL;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
 
-public class ServiceRequestCreateController implements Initializable {
+public abstract class ServiceRequestCreateController <T extends ServiceRequest> implements Initializable {
     // Fields
     @FXML protected TextField assigneeID;
     @FXML protected JFXTextArea description;
@@ -30,6 +32,12 @@ public class ServiceRequestCreateController implements Initializable {
     // Dropdowns
     @FXML protected JFXComboBox<String> priority;
     @FXML protected JFXComboBox<String> status;
+
+    // Table
+    @FXML protected JFXTreeTableView table;
+
+    // Variables
+    protected ServiceRequestTableDisplay<T> tableDisplay;
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {

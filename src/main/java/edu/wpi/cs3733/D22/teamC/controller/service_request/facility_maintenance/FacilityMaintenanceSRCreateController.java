@@ -5,8 +5,8 @@ import com.jfoenix.controls.datamodels.treetable.RecursiveTreeObject;
 import edu.wpi.cs3733.D22.teamC.controller.service_request.ServiceRequestCreateController;
 import edu.wpi.cs3733.D22.teamC.entity.service_request.ServiceRequest;
 import edu.wpi.cs3733.D22.teamC.error.error_item.service_request_user_input_validation.ServiceRequestUserInputValidationErrorItem;
-import edu.wpi.cs3733.D22.teamC.models.service_request.facility_maintenance.FacilityMaintenanceSRTable;
 import edu.wpi.cs3733.D22.teamC.entity.service_request.facility_maintenance.FacilityMaintenanceSR;
+import edu.wpi.cs3733.D22.teamC.models.service_request.facility_maintenance.FacilityMaintenanceSRTableDisplay;
 import edu.wpi.cs3733.D22.teamC.user_input_validation.service_request.facility_maintenance.FacilityMaintenanceSRFormEvaluator;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -18,25 +18,16 @@ import java.net.URL;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
 
-public class FacilityMaintenanceSRCreateController extends ServiceRequestCreateController {
+public class FacilityMaintenanceSRCreateController extends ServiceRequestCreateController<FacilityMaintenanceSR> {
 
     //Fields:
     @FXML private JFXComboBox<String> maintType;
-
-    // For table
-    @FXML private JFXTreeTableView<FacilityMaintenanceSRTable> table;
-    ObservableList<FacilityMaintenanceSRTable> METList = FXCollections.observableArrayList();
-    final TreeItem<FacilityMaintenanceSRTable> root = new RecursiveTreeItem<FacilityMaintenanceSRTable>(METList, RecursiveTreeObject::getChildren);
-
-    ObservableList<FacilityMaintenanceSRTable> data;
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         super.initialize(url, rb);
 
-        FacilityMaintenanceSRTable.createTableColumns(table);
-        table.setRoot(root);
-        table.setShowRoot(false);
+        tableDisplay = new FacilityMaintenanceSRTableDisplay(table);
 
         maintType.getItems().add("Cleaning");
         maintType.getItems().add("Organizing");
@@ -70,8 +61,7 @@ public class FacilityMaintenanceSRCreateController extends ServiceRequestCreateC
             clickReset(event);
 
             // Add Table Entry
-            FacilityMaintenanceSRTable met = new FacilityMaintenanceSRTable(fMSR);
-            METList.add(met);
+            tableDisplay.addObject(fMSR);
 
             return fMSR;
         }

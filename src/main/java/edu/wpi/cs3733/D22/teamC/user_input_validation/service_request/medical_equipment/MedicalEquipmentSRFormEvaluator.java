@@ -11,7 +11,7 @@ public class MedicalEquipmentSRFormEvaluator extends ServiceRequestFormEvaluator
 
     public MedicalEquipmentSRFormEvaluator() {}
 
-    public ArrayList<ServiceRequestUserInputValidationErrorItem> getMedicalEquipmentSRValidationTestResult(String location, String assigneeID, SingleSelectionModel priority, SingleSelectionModel status, SingleSelectionModel equipType, String equipID)
+    public ArrayList<ServiceRequestUserInputValidationErrorItem> getMedicalEquipmentSRValidationTestResult(String location, String assigneeID, SingleSelectionModel priority, SingleSelectionModel status, SingleSelectionModel equipType, SingleSelectionModel equipID)
     {
         ArrayList <ServiceRequestUserInputValidationErrorItem> errorList = new ArrayList <ServiceRequestUserInputValidationErrorItem> ();
 
@@ -46,7 +46,7 @@ public class MedicalEquipmentSRFormEvaluator extends ServiceRequestFormEvaluator
      * @param equipID
      * @return ServiceRequestUserInputValidationErrorItem
      */
-   public ServiceRequestUserInputValidationErrorItem checkEquipmentIDFilled(String equipID)
+   public ServiceRequestUserInputValidationErrorItem checkEquipmentIDFilled(SingleSelectionModel equipID)
    {
        if(equipID.isEmpty())
        {
@@ -54,18 +54,7 @@ public class MedicalEquipmentSRFormEvaluator extends ServiceRequestFormEvaluator
        }
        else
        {
-           int equipIDConv = Integer.parseInt(equipID);
-
-           int equipIDLength = (int)(Math.log10(equipIDConv)+1);
-
-           if(equipIDLength == 0)
-           {
-               return ServiceRequestUserInputValidationErrorRecord.serviceRequestUserInputValidationErrorList[9];
-           }
-           else
-           {
-               return null;
-           }
+           return null;
        }
    }
 

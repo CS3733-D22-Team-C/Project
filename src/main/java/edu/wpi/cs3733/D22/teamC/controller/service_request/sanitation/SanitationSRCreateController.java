@@ -7,8 +7,8 @@ import com.jfoenix.controls.datamodels.treetable.RecursiveTreeObject;
 import edu.wpi.cs3733.D22.teamC.controller.service_request.ServiceRequestCreateController;
 import edu.wpi.cs3733.D22.teamC.entity.service_request.ServiceRequest;
 import edu.wpi.cs3733.D22.teamC.error.error_item.service_request_user_input_validation.ServiceRequestUserInputValidationErrorItem;
-import edu.wpi.cs3733.D22.teamC.models.service_request.sanitation.SanitationSRTable;
 import edu.wpi.cs3733.D22.teamC.entity.service_request.sanitation.SanitationSR;
+import edu.wpi.cs3733.D22.teamC.models.service_request.sanitation.SanitationSRTableDisplay;
 import edu.wpi.cs3733.D22.teamC.user_input_validation.service_request.facility_maintenance.FacilityMaintenanceSRFormEvaluator;
 import edu.wpi.cs3733.D22.teamC.user_input_validation.service_request.sanitation.SanitationSRFormEvaluator;
 import javafx.collections.FXCollections;
@@ -21,17 +21,10 @@ import java.net.URL;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
 
-public class SanitationSRCreateController extends ServiceRequestCreateController {
+public class SanitationSRCreateController extends ServiceRequestCreateController<SanitationSR>{
     // Class specific dropdown
     @FXML
     private JFXComboBox<String> sanitationType;
-
-    // Table stuff
-    @FXML
-    private JFXTreeTableView<SanitationSRTable> table;
-    ObservableList<SanitationSRTable> sanitationList = FXCollections.observableArrayList();
-    final TreeItem<SanitationSRTable> root = new RecursiveTreeItem<SanitationSRTable>(sanitationList, RecursiveTreeObject::getChildren);
-    ObservableList<SanitationSRTable> data;
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
@@ -43,10 +36,7 @@ public class SanitationSRCreateController extends ServiceRequestCreateController
         sanitationType.getItems().add("Biohazard");
         sanitationType.getItems().add("Daily_Cleaning");
 
-        SanitationSRTable.createTableColumns(table);
-        table.setRoot(root);
-        table.setShowRoot(false);
-
+        tableDisplay = new SanitationSRTableDisplay(table);
     }
 
     @FXML
@@ -70,8 +60,8 @@ public class SanitationSRCreateController extends ServiceRequestCreateController
             // Start setting up a Java object for a SanitationServiceRequest
             sSR.setAssigneeID(assigneeID.getText());
             sSR.setLocation(location.getText());
-            sSR.setPriority(ServiceRequest.Priority.valueOf(priority.getValue()));
-            sSR.setStatus(ServiceRequest.Status.valueOf(status.getValue()));
+            sSR.setStatus(ServiceRequest.Status.valueOf(status.getValue().toString()));
+            sSR.setPriority(ServiceRequest.Priority.valueOf(priority.getValue().toString()));
             sSR.setDescription(description.getText());
 
             // Dropdown Boxes
@@ -84,9 +74,7 @@ public class SanitationSRCreateController extends ServiceRequestCreateController
 
             clickReset(event);
 
-            SanitationSRTable tableEntry = new SanitationSRTable(sSR);
-
-            sanitationList.add(tableEntry);
+            tableDisplay.addObject(sSR);
 
             return sSR;
         }

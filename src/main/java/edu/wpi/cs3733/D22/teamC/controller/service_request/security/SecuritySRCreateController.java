@@ -8,7 +8,7 @@ import edu.wpi.cs3733.D22.teamC.controller.service_request.ServiceRequestCreateC
 import edu.wpi.cs3733.D22.teamC.entity.service_request.ServiceRequest;
 import edu.wpi.cs3733.D22.teamC.entity.service_request.security.SecuritySR;
 import edu.wpi.cs3733.D22.teamC.error.error_item.service_request_user_input_validation.ServiceRequestUserInputValidationErrorItem;
-import edu.wpi.cs3733.D22.teamC.models.service_request.security.SecuritySRTable;
+import edu.wpi.cs3733.D22.teamC.models.service_request.security.SecuritySRTableDisplay;
 import edu.wpi.cs3733.D22.teamC.user_input_validation.service_request.sanitation.SanitationSRFormEvaluator;
 import edu.wpi.cs3733.D22.teamC.user_input_validation.service_request.security.SecuritySRFormEvaluator;
 import javafx.collections.FXCollections;
@@ -22,17 +22,10 @@ import java.net.URL;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
 
-public class SecuritySRCreateController extends ServiceRequestCreateController {
+public class SecuritySRCreateController extends ServiceRequestCreateController <SecuritySR> {
 
     // Dropdowns
     @FXML private JFXComboBox<String> secType;
-
-    // For table
-    @FXML private JFXTreeTableView<SecuritySRTable> table;
-    ObservableList<SecuritySRTable> METList = FXCollections.observableArrayList();
-    final TreeItem<SecuritySRTable> root = new RecursiveTreeItem<SecuritySRTable>(METList, RecursiveTreeObject::getChildren);
-
-    ObservableList<SecuritySRTable> data;
 
 
     @Override
@@ -42,9 +35,7 @@ public class SecuritySRCreateController extends ServiceRequestCreateController {
         //For equipment type drop down
         secType.getItems().add("intruder");
 
-        SecuritySRTable.createTableColumns(table);
-        table.setRoot(root);
-        table.setShowRoot(false);
+        tableDisplay = new SecuritySRTableDisplay(table);
     }
 
     @FXML
@@ -77,8 +68,6 @@ public class SecuritySRCreateController extends ServiceRequestCreateController {
 
             // Table Entry
             clickReset(event);
-            SecuritySRTable met = new SecuritySRTable(sESR);
-            METList.add(met);
             return sESR;
         }
         else

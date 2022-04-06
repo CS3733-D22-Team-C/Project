@@ -64,7 +64,7 @@
             <VBox alignment="CENTER_LEFT" prefHeight="200.0" prefWidth="100.0" styleClass="box-margin" GridPane.columnIndex="1" GridPane.hgrow="ALWAYS" GridPane.rowIndex="1" GridPane.vgrow="ALWAYS">
                <children>
                   <Label styleClass="service-field-label" text="Equipment ID" />
-                  <TextField fx:id="equipID" />
+                  <JFXComboBox fx:id="equipID" maxWidth="1.7976931348623157E308" onMouseClicked="#equipTypeChanged" styleClass="dropdown" stylesheets="@../../../css/base.css" />
                </children>
             </VBox>
             <VBox alignment="CENTER_LEFT" prefHeight="200.0" prefWidth="100.0" styleClass="box-margin" GridPane.columnIndex="2" GridPane.hgrow="ALWAYS" GridPane.rowIndex="1" GridPane.vgrow="ALWAYS">

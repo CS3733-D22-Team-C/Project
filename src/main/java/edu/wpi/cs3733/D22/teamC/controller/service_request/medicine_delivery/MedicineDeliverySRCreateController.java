@@ -5,9 +5,11 @@ import com.jfoenix.controls.RecursiveTreeItem;
 import com.jfoenix.controls.datamodels.treetable.RecursiveTreeObject;
 import edu.wpi.cs3733.D22.teamC.controller.service_request.ServiceRequestCreateController;
 import edu.wpi.cs3733.D22.teamC.entity.service_request.ServiceRequest;
+import edu.wpi.cs3733.D22.teamC.entity.service_request.medical_equipment.MedicalEquipmentSR;
 import edu.wpi.cs3733.D22.teamC.error.error_item.service_request_user_input_validation.ServiceRequestUserInputValidationErrorItem;
-import edu.wpi.cs3733.D22.teamC.models.service_request.medicine_delivery.MedicineDeliverySRTable;
+import edu.wpi.cs3733.D22.teamC.models.service_request.medical_equipment.MedicalEquipmentSRTableDisplay;
 import edu.wpi.cs3733.D22.teamC.entity.service_request.medicine_delivery.MedicineDeliverySR;
+import edu.wpi.cs3733.D22.teamC.models.service_request.medicine_delivery.MedicineDeliverySRTableDisplay;
 import edu.wpi.cs3733.D22.teamC.user_input_validation.service_request.lab_system.LabSystemSRFormEvaluator;
 import edu.wpi.cs3733.D22.teamC.user_input_validation.service_request.medicine_delivery.MedicineDeliverySRFormEvaluator;
 import javafx.beans.value.ChangeListener;
@@ -24,25 +26,17 @@ import java.net.URL;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
 
-public class MedicineDeliverySRCreateController extends ServiceRequestCreateController {
+public class MedicineDeliverySRCreateController extends ServiceRequestCreateController<MedicineDeliverySR> {
     // Fields
     @FXML private TextField medicine;
     @FXML private TextField dosage;
     @FXML private TextField patientID;
 
-    // For table
-    @FXML private JFXTreeTableView<MedicineDeliverySRTable> table;
-    ObservableList<MedicineDeliverySRTable> tableList = FXCollections.observableArrayList();
-    final TreeItem<MedicineDeliverySRTable> root = new RecursiveTreeItem<MedicineDeliverySRTable>(tableList, RecursiveTreeObject::getChildren);
-    ObservableList<MedicineDeliverySRTable> data;
-
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         super.initialize(url, rb);
 
-        MedicineDeliverySRTable.createTableColumns(table);
-        table.setRoot(root);
-        table.setShowRoot(false);
+        tableDisplay = new MedicineDeliverySRTableDisplay(table);
 
         //For Patient ID:
         setIDFieldToNumeric(patientID);
@@ -97,7 +91,7 @@ public class MedicineDeliverySRCreateController extends ServiceRequestCreateCont
             clickReset(event);
 
             // Add to Table List
-            tableList.add(new MedicineDeliverySRTable(mdSR));
+            tableDisplay.addObject(mdSR);
 
             return mdSR;
         }
