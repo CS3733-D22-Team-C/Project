@@ -83,7 +83,7 @@ public class BaseMapViewController implements Initializable {
 
         }
 
-        //TODO: create instance of a medical equipment icon
+    //TODO: create instance of a medical equipment icon
     //#endregion
 
     public void setFloor(Floor floor) {

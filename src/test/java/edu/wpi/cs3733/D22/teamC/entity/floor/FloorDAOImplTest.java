@@ -51,12 +51,13 @@ class FloorDAOImplTest {
          int order = 1;
          String longName = "Really Big Room";
          String shortName = "BigRoom";
+         String imageSrc = "/";
 
          Floor insertFlo = new Floor();
          insertFlo.setOrder(order);
          insertFlo.setLongName(longName);
          insertFlo.setShortName(shortName);
-
+         insertFlo.setImageSrc(imageSrc);
 
          int retrievedID = floorDAO.insertFloor(insertFlo);
          insertFlo.setFloorID(retrievedID);
@@ -74,7 +75,7 @@ class FloorDAOImplTest {
          assertEquals(order, queryFlo.getOrder());
          assertEquals(longName, queryFlo.getLongName());
          assertEquals(shortName, queryFlo.getShortName());
-
+         assertEquals(imageSrc, queryFlo.getImageSrc());
      }
 
      @Test
@@ -86,11 +87,13 @@ class FloorDAOImplTest {
          int order = 1;
          String longName = "Really Big Room";
          String shortName = "BigRoom";
+         String imageSrc = "/";
 
          Floor deleteFlo = new Floor();
          deleteFlo.setOrder(order);
          deleteFlo.setLongName(longName);
          deleteFlo.setShortName(shortName);
+         deleteFlo.setImageSrc(imageSrc);
 
          int retrievedID = floorDAO.insertFloor(deleteFlo);
          deleteFlo.setFloorID(retrievedID);
@@ -119,11 +122,13 @@ class FloorDAOImplTest {
          int order = 1;
          String longName = "Really Big Room";
          String shortName = "BigRoom";
+         String imageSrc = "/1";
 
          Floor updateFloo = new Floor();
          updateFloo.setOrder(order);
          updateFloo.setLongName(longName);
          updateFloo.setShortName(shortName);
+         updateFloo.setImageSrc(imageSrc);
 
          int retrievedID = floorDAO.insertFloor(updateFloo);
          updateFloo.setFloorID(retrievedID);
@@ -135,11 +140,12 @@ class FloorDAOImplTest {
          int newOrder = 7;
          String newLongName = "TinyBabyRoom";
          String newShortName = "TinyRoom";
+         String newImageSrc = "/2";
 
 
          updateFloo.setOrder(newOrder);
          updateFloo.setLongName(newLongName);
-         updateFloo.setShortName(newShortName);
+         updateFloo.setShortName(newImageSrc);
 
          assertTrue(floorDAO.updateFloor(updateFloo));
          assertEquals(1, floorDAO.getAllFloors().size());
@@ -151,6 +157,7 @@ class FloorDAOImplTest {
          assertEquals(newOrder, queryFlo.getOrder());
          assertEquals(newLongName, queryFlo.getLongName());
          assertEquals(newShortName, queryFlo.getShortName());
+         assertEquals(newImageSrc, queryFlo.getImageSrc());
 
          //Cannot update NonExistent Floor
          Floor newFloo = new Floor(1001);
@@ -202,11 +209,13 @@ class FloorDAOImplTest {
          int order = 1;
          String longName = "Really Big Room";
          String shortName = "BigRoom";
+         String imageSrc = "/";
 
          Floor floor = new Floor();
          floor.setOrder(order);
          floor.setLongName(longName);
          floor.setShortName(shortName);
+         floor.setImageSrc(imageSrc);
 
          int retrievedID = floorDAO.insertFloor(floor);
          floor.setFloorID(retrievedID);

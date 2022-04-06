@@ -9,6 +9,8 @@ import edu.wpi.cs3733.D22.teamC.entity.location.LocationDAOImpl;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.ScrollPane;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseButton;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.input.ScrollEvent;
@@ -17,6 +19,8 @@ import javafx.scene.paint.Color;
 import javafx.scene.shape.Circle;
 
 import java.net.URL;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
@@ -66,11 +70,11 @@ public class ViewMapController implements Initializable {
     // Constants
     protected final static double MAX_SCALE = 1.1f;
     protected final static double MIN_SCALE = 0.8f;
-    protected final static int MAP_BUFFER = 100;
 
     // FXML
-    @FXML ScrollPane scroll;
-    @FXML Pane map;
+    @FXML ScrollPane scrollPane;
+    @FXML ImageView mapImage;
+    @FXML Pane mapPane;
 
     // Variables
     protected MapLocation clickedMapLocation, hoveredMapLocation;
@@ -81,21 +85,17 @@ public class ViewMapController implements Initializable {
 
     @Override
     public final void initialize(URL location, ResourceBundle resources) {
-        // Initialize ScrollPane Size (Should be rewritten to make use of full screen space
-        scroll.setPrefViewportHeight(750);
-        scroll.setPrefViewportWidth(750);
-
         // Initialize Map Functionality
-        map.setOnMouseClicked(this::onMouseClickedMap);
-        map.setOnMousePressed(this::onMousePressedMap);
-        map.setOnMouseReleased(this::onMouseReleasedMap);
-        map.setOnScroll(this::onMouseScrollMap);
+        mapPane.setOnMouseClicked(this::onMouseClickedMap);
+        mapPane.setOnMousePressed(this::onMousePressedMap);
+        mapPane.setOnMouseReleased(this::onMouseReleasedMap);
+        mapPane.setOnScroll(this::onMouseScrollMap);
     }
 
     private final void resetLocations() {
         if (mapLocations != null) {
             for (MapLocation mapLocation : mapLocations) {
-                map.getChildren().remove(mapLocation.node);
+                mapPane.getChildren().remove(mapLocation.node);
             }
         }
     }
@@ -103,20 +103,15 @@ public class ViewMapController implements Initializable {
     private final List<MapLocation> renderLocations(List<Location> locations) {
         if (locations != null) {
             List<MapLocation> mapLocs = new ArrayList<>();
-            int maxX = 0, maxY = 0;
 
             for (Location location : locations) {
                 MapLocation mapLocation = new MapLocation(location);
                 mapLocs.add(mapLocation);
-
-                maxX = Math.max(maxX, location.getX());
-                maxY = Math.max(maxY, location.getY());
             }
 
             // Initialize Map Size and Position
-            updateMapSize(maxX , maxY);
-            map.setTranslateX(0);
-            map.setTranslateY(0);
+            mapPane.setTranslateX(0);
+            mapPane.setTranslateY(0);
 
             return mapLocs;
         }
@@ -146,12 +141,20 @@ public class ViewMapController implements Initializable {
         public void setFloor(Floor floor) {
             resetLocations();
 
+            // Set Image
+            Path filePath = Paths.get("maps/" + floor.getImageSrc());
+            System.out.println(filePath);
+            Image image = new Image("file:" + filePath);
+            mapImage.setImage(image);
+            mapPane.setPrefWidth(image.getWidth());
+            mapPane.setPrefHeight(image.getHeight());
+
+            // Draw MapLocations
             FloorDAO floorDAO = new FloorDAOImpl();
             List<Location> locations = floorDAO.getAllLocations(floor.getFloorID());
-
             mapLocations = renderLocations(locations);
             for (MapLocation mapLocation : mapLocations) {
-                map.getChildren().add(mapLocation.node);
+                mapPane.getChildren().add(mapLocation.node);
             }
         }
     //#endregion
@@ -174,13 +177,10 @@ public class ViewMapController implements Initializable {
                     if (clickedMapLocation != null) offActiveNode(clickedMapLocation);
 
                     if (clickedMapLocation == mapLocation) {
-                        //clickedMapLocation = null;
                         setClickMapLocation(null);
                     } else {
                         onActiveNode(mapLocation);
-                        //clickedMapLocation = mapLocation;
                         setClickMapLocation(mapLocation);
-
                     }
                 }
 
@@ -195,7 +195,6 @@ public class ViewMapController implements Initializable {
                 // Single-Click reset active MapLocation
                 if (clickedMapLocation != null && clickedMapLocation != hoveredMapLocation) {
                     offActiveNode(clickedMapLocation);
-                    //clickedMapLocation = null;
                     setClickMapLocation(null);
                 }
             }
@@ -204,24 +203,26 @@ public class ViewMapController implements Initializable {
         protected void onMousePressedMap(MouseEvent event) {
             if (event.getButton().equals(MouseButton.MIDDLE)) {
                 // Middle-Click set pannable map
-                scroll.setPannable(true);
+                scrollPane.setPannable(true);
             }
         }
 
         protected void onMouseReleasedMap(MouseEvent event) {
             if (event.getButton().equals(MouseButton.MIDDLE)) {
                 // Middle-Click set pannable map
-                scroll.setPannable(false);
+                scrollPane.setPannable(false);
             }
         }
 
         protected void onMouseScrollMap(ScrollEvent event) {
             if (event.getDeltaY() != 0) {
                 double scale = (event.getDeltaY() < 0)
-                    ? Math.max(map.getScaleX() - 0.1, MIN_SCALE)
-                    : Math.min(map.getScaleX() + 0.1, MAX_SCALE);
-                map.setScaleX(scale);
-                map.setScaleY(scale);
+                    ? Math.max(mapPane.getScaleX() - 0.1, MIN_SCALE)
+                    : Math.min(mapPane.getScaleX() + 0.1, MAX_SCALE);
+                mapPane.setScaleX(scale);
+                mapImage.setScaleX(scale);
+                mapPane.setScaleY(scale);
+                mapImage.setScaleY(scale);
 
                 event.consume();
             }
@@ -263,22 +264,5 @@ public class ViewMapController implements Initializable {
 
             return circle;
         }
-
-        protected void updateMapSize(double x, double y) {
-            double maxX = Math.max(map.getPrefWidth(), x + MAP_BUFFER);
-            double maxY = Math.max(map.getPrefHeight(), y + MAP_BUFFER);
-
-            map.setPrefWidth(maxX);
-            map.setPrefHeight(maxY);
-        }
-
-        protected void offsetAllLocations(double xOffset, double yOffset) {
-            for (MapLocation mapLoc : mapLocations) {
-                mapLoc.node.setCenterX(mapLoc.node.getCenterX() + xOffset);
-                mapLoc.node.setCenterY(mapLoc.node.getCenterY() + yOffset);
-            }
-        }
     //#endregion
-
-
 }

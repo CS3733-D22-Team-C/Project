@@ -6,6 +6,7 @@ public class Floor {
     private int order;
     private String longName;
     private String shortName;
+    private String imageSrc;
 
     public Floor(){}
 
@@ -50,6 +51,11 @@ public class Floor {
         this.shortName = shortName;
     }
 
+    public String getImageSrc() {
+        return imageSrc;
+    }
 
+    public void setImageSrc(String imageSrc) {
+        this.imageSrc = imageSrc;
+    }
 }
-

@@ -10,8 +10,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class EditMapController extends ViewMapController {
-    private final static double MAP_GROWTH = 2;
-
     List<MapLocation> additions = new ArrayList<>();
     List<MapLocation> deletions = new ArrayList<>();
 
@@ -34,7 +32,6 @@ public class EditMapController extends ViewMapController {
                 // Double-Click create new MapLocation
                 if (event.getClickCount() == 2) {
                     addMapLocation(event.getX(), event.getY());
-                    updateMapSize(event.getX(), event.getY());
                 }
             }
         }
@@ -48,19 +45,14 @@ public class EditMapController extends ViewMapController {
                 double offsetY = event.getY() - mapLocation.node.getCenterY();
 
                 double newMapX = mapLocation.node.getCenterX() + offsetX;
-                newMapX = Math.max(newMapX, MAP_BUFFER-MAP_GROWTH);
+                newMapX = Math.max(0, newMapX);
+                newMapX = Math.min(mapPane.getPrefWidth(), newMapX);
                 double newMapY = mapLocation.node.getCenterY() + offsetY;
-                newMapY = Math.max(newMapY, MAP_BUFFER-MAP_GROWTH);
+                newMapY = Math.max(0, newMapY);
+                newMapY = Math.min(mapPane.getPrefHeight(), newMapY);
 
                 mapLocation.node.setCenterX(newMapX);
                 mapLocation.node.setCenterY(newMapY);
-
-                if (newMapX < MAP_BUFFER || newMapY < MAP_BUFFER) {
-                    offsetAllLocations(Math.max(MAP_BUFFER-newMapX, 0), Math.max(MAP_BUFFER-newMapY, 0));
-                    updateMapSize(map.getPrefWidth() - MAP_BUFFER + MAP_GROWTH, map.getPrefHeight() - MAP_BUFFER + MAP_GROWTH);
-                } else if (newMapX + MAP_BUFFER > map.getPrefWidth() || newMapY  + MAP_BUFFER > map.getPrefHeight()) {
-                    updateMapSize(event.getX(), event.getY());
-                }
             }
         }
     //#endregion
@@ -73,7 +65,7 @@ public class EditMapController extends ViewMapController {
     private void addMapLocation(double x, double y) {
         MapLocation newMapLoc = new MapLocation(x, y);
         mapLocations.add(newMapLoc);
-        map.getChildren().add(newMapLoc.node);
+        mapPane.getChildren().add(newMapLoc.node);
 
         Location location = newMapLoc.location;
         location.setFloor(parentController.getFloor().getFloorID());
@@ -88,7 +80,7 @@ public class EditMapController extends ViewMapController {
      * @param mapLocation The MapLocation to be deleted.
      */
     private void deleteMapLocation(MapLocation mapLocation) {
-        map.getChildren().remove(mapLocation.node);
+        mapPane.getChildren().remove(mapLocation.node);
 
         if (additions.contains(mapLocation)) {
             additions.remove(mapLocation);

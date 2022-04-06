@@ -60,8 +60,8 @@ public class FloorDAOImpl implements FloorDAO {
             if (floorInDB == null) {
                 // execute INSERT statement
                 PreparedStatement statement = (floor.getFloorID()==0)
-                        ? DBManager.getInstance().connection.prepareStatement("INSERT INTO FLOOR VALUES (DEFAULT,?,?,?)", Statement.RETURN_GENERATED_KEYS)
-                        : DBManager.getInstance().connection.prepareStatement("INSERT INTO FLOOR VALUES (?,?,?,?)", Statement.RETURN_GENERATED_KEYS);
+                        ? DBManager.getInstance().connection.prepareStatement("INSERT INTO FLOOR VALUES (DEFAULT,?,?,?,?)", Statement.RETURN_GENERATED_KEYS)
+                        : DBManager.getInstance().connection.prepareStatement("INSERT INTO FLOOR VALUES (?,?,?,?,?)", Statement.RETURN_GENERATED_KEYS);
 
                 int index = 1;
 
@@ -71,7 +71,8 @@ public class FloorDAOImpl implements FloorDAO {
                 }
                 statement.setInt(index, floor.getOrder()); index++;
                 statement.setString(index, floor.getLongName()); index++;
-                statement.setString(index, floor.getShortName());
+                statement.setString(index, floor.getShortName()); index++;
+                statement.setString(index, floor.getImageSrc()); index++;
                 statement.execute();
 
                 ResultSet resultSet = statement.getGeneratedKeys();
@@ -97,12 +98,13 @@ public class FloorDAOImpl implements FloorDAO {
 
             if (floorInDB != null) {
                 PreparedStatement statement = DBManager.getInstance().connection.prepareStatement(
-                        "UPDATE FLOOR SET FloorOrder=?, LongName=?, ShortName=? WHERE ID=?"
+                        "UPDATE FLOOR SET FloorOrder=?, LongName=?, ShortName=?, ImageSrc=? WHERE ID=?"
                 );
 
-                statement.setInt(1,floor.getOrder());
-                statement.setString(2,floor.getLongName());
-                statement.setString(3,floor.getShortName());
+                statement.setInt(1, floor.getOrder());
+                statement.setString(2, floor.getLongName());
+                statement.setString(3, floor.getShortName());
+                statement.setString(4, floor.getImageSrc());
                 statement.setInt(4, floor.getFloorID());
                 statement.execute();
 
@@ -127,11 +129,6 @@ public class FloorDAOImpl implements FloorDAO {
             Floor floorInDB = getFloor(floor.getFloorID());
 
             if (floorInDB != null) {
-//                List<Location> locationsToDelete = getAllLocations(floor.getFloorID());
-//                for (Location location : locationsToDelete) {
-//                    locationDAO.deleteLocation(location);
-//                }
-
                 PreparedStatement statement = DBManager.getInstance().connection.prepareStatement(
                         "DELETE FROM FLOOR WHERE ID = ?"
                 );
@@ -153,9 +150,9 @@ public class FloorDAOImpl implements FloorDAO {
             floor.setOrder(resultset.getInt("FloorOrder"));
             floor.setLongName(typesafeTrim(resultset.getString("LongName")));
             floor.setShortName(typesafeTrim(resultset.getString("ShortName")));
+            floor.setImageSrc(typesafeTrim(resultset.getString("ImageSrc")));
 
             return floor;
-
         } catch (SQLException e) {
             System.out.println("Creation of object from FLOOR ResultSet failed.");
             e.printStackTrace();
