@@ -3,7 +3,6 @@ package edu.wpi.cs3733.D22.teamC.controller.service_request.lab_system;
 import com.jfoenix.controls.*;
 import edu.wpi.cs3733.D22.teamC.controller.service_request.ServiceRequestCreateController;
 import edu.wpi.cs3733.D22.teamC.entity.service_request.ServiceRequest;
-import edu.wpi.cs3733.D22.teamC.models.service_request.lab_system.LabSystemSRTable;
 import edu.wpi.cs3733.D22.teamC.entity.service_request.lab_system.LabSystemSR;
 import edu.wpi.cs3733.D22.teamC.models.service_request.lab_system.LabSystemSRTableDisplay;
 import javafx.event.ActionEvent;
@@ -52,7 +51,7 @@ public class LabSystemSRCreateController extends ServiceRequestCreateController<
         LabSystemSR labSystem = new LabSystemSR();
 
         //Sets from textFields
-        labSystem.setAssigneeID(assigneeID.getText());
+        labSystem.setAssigneeID(Integer.parseInt(assigneeID.getText()));
         labSystem.setDescription(description.getText());
         labSystem.setLocation(location.getText());
         labSystem.setPatientID(patientID.getText());

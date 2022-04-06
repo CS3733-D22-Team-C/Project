@@ -2,6 +2,7 @@ package edu.wpi.cs3733.D22.teamC.controller.service_request.medical_equipment;
 
 import com.jfoenix.controls.*;
 import edu.wpi.cs3733.D22.teamC.controller.service_request.ServiceRequestCreateController;
+import edu.wpi.cs3733.D22.teamC.entity.service_request.ServiceRequest;
 import edu.wpi.cs3733.D22.teamC.entity.service_request.ServiceRequestDAO;
 import edu.wpi.cs3733.D22.teamC.entity.service_request.medical_equipment.MedicalEquipmentSRDAO;
 import edu.wpi.cs3733.D22.teamC.entity.service_request.medical_equipment.MedicalEquipmentSRDAOImpl;
@@ -57,7 +58,7 @@ public class MedicalEquipmentSRCreateController extends ServiceRequestCreateCont
         medEquip.setCreationTimestamp(new Timestamp(System.currentTimeMillis()));
 
         //Sets from textFields
-        medEquip.setAssigneeID(assigneeID.getText());
+        medEquip.setAssigneeID(Integer.parseInt(assigneeID.getText()));
         medEquip.setDescription(description.getText());
         medEquip.setLocation(location.getText());
 

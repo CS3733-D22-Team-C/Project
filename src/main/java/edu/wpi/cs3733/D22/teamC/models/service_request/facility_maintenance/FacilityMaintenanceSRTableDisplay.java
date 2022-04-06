@@ -14,7 +14,7 @@ public class FacilityMaintenanceSRTableDisplay extends ServiceRequestTableDispla
         public FacilityMaintenanceSRTableEntry(FacilityMaintenanceSR facilityMaintenanceSR) {
             super(facilityMaintenanceSR);
 
-            this.maintenanceType = new SimpleStringProperty(facilityMaintenanceSR.getMaintenanceType());
+            this.maintenanceType = new SimpleStringProperty(facilityMaintenanceSR.getMaintenanceType().toString());
         }
     }
 

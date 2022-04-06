@@ -2,7 +2,6 @@ package edu.wpi.cs3733.D22.teamC.controller.service_request.facility_maintenance
 
 import edu.wpi.cs3733.D22.teamC.controller.service_request.ServiceRequestCreateController;
 import edu.wpi.cs3733.D22.teamC.entity.service_request.ServiceRequest;
-import edu.wpi.cs3733.D22.teamC.models.service_request.facility_maintenance.FacilityMaintenanceSRTable;
 import edu.wpi.cs3733.D22.teamC.entity.service_request.facility_maintenance.FacilityMaintenanceSR;
 import edu.wpi.cs3733.D22.teamC.models.service_request.facility_maintenance.FacilityMaintenanceSRTableDisplay;
 import javafx.event.ActionEvent;
@@ -34,7 +33,7 @@ public class FacilityMaintenanceSRCreateController extends ServiceRequestCreateC
     protected FacilityMaintenanceSR clickSubmit(ActionEvent event) {
         FacilityMaintenanceSR fmsr = new FacilityMaintenanceSR();
         fmsr.setMaintenanceType(FacilityMaintenanceSR.MaintenanceType.valueOf(maintType.getText()));
-        fmsr.setAssigneeID(assigneeID.getText());
+        fmsr.setAssigneeID(Integer.parseInt(assigneeID.getText()));
         fmsr.setLocation(location.getText());
         fmsr.setPriority(ServiceRequest.Priority.valueOf(priority.getValue())); //getValue directly returns the value of a selected item from a JavaFX ComboBox
         fmsr.setStatus(ServiceRequest.Status.valueOf(status.getValue()));

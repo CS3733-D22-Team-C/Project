@@ -171,8 +171,7 @@ class ServiceRequestDAOImplTest {
 
         // Update Location in DB
         // didn't update the requestType
-        int newCreatorID = 3;
-        int newAssigneeID = 4;
+
         String newlocation = "new loc";
         Timestamp newCreationTimestamp = new Timestamp(System.currentTimeMillis());
         ServiceRequest.Status newStatus = ServiceRequest.Status.Blank;

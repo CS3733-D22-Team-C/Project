@@ -37,10 +37,10 @@ public class MedicalEquipmentSRCSVWriter extends CSVWriter<MedicalEquipmentSR> {
                 output = Integer.toString(serviceRequest.getRequestID());
                 break;
             case "creatorID":
-                output = serviceRequest.getCreatorID();
+                output = Integer.toString(serviceRequest.getCreatorID());
                 break;
             case "assigneeID":
-                output = serviceRequest.getAssigneeID();
+                output = Integer.toString(serviceRequest.getAssigneeID());
                 break;
             case "location":
                 output = serviceRequest.getLocation();

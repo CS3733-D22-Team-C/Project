@@ -3,7 +3,6 @@ package edu.wpi.cs3733.D22.teamC.controller.service_request.sanitation;
 import com.jfoenix.controls.JFXComboBox;
 import edu.wpi.cs3733.D22.teamC.controller.service_request.ServiceRequestCreateController;
 import edu.wpi.cs3733.D22.teamC.entity.service_request.ServiceRequest;
-import edu.wpi.cs3733.D22.teamC.models.service_request.sanitation.SanitationSRTable;
 import edu.wpi.cs3733.D22.teamC.entity.service_request.sanitation.SanitationSR;
 import edu.wpi.cs3733.D22.teamC.models.service_request.sanitation.SanitationSRTableDisplay;
 import javafx.event.ActionEvent;
@@ -47,13 +46,13 @@ public class SanitationSRCreateController extends ServiceRequestCreateController
         }
         // Start setting up a Java object for a SanitationServiceRequest
         // Text field setting
-        sanitationSR.setAssigneeID(assigneeID.getText());
+        sanitationSR.setAssigneeID(Integer.parseInt(assigneeID.getText()));
         sanitationSR.setLocation(location.getText());
 
         // Dropdown Boxes
-        sanitationSR.setStatus(ServiceRequest.Status.valueOf(status.getValue()));
+        sanitationSR.setStatus(ServiceRequest.Status.valueOf(status.getValue().toString()));
         sanitationSR.setSanitationType(SanitationSR.SanitationType.valueOf(sanitationType.getValue()));
-        sanitationSR.setPriority(ServiceRequest.Priority.valueOf(priority.getValue()));
+        sanitationSR.setPriority(ServiceRequest.Priority.valueOf(priority.getValue().toString()));
 
         // Sanitation type to enum
         int sanitationTypeEnum = SanitationSR.SanitationType.valueOf(sanitationType.getValue()).ordinal();

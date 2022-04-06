@@ -14,7 +14,7 @@ public class ServiceRequestTableDisplay<T extends ServiceRequest> extends TableD
         // Properties
         public IntegerProperty id;
         public StringProperty type;
-        public StringProperty assigneeID;
+        public IntegerProperty assigneeID;
         public StringProperty location;
         public StringProperty status;
         public StringProperty priority;
@@ -23,11 +23,11 @@ public class ServiceRequestTableDisplay<T extends ServiceRequest> extends TableD
             super(serviceRequest);
 
             this.id         = new SimpleIntegerProperty(serviceRequest.getRequestID());
-            this.type       = new SimpleStringProperty(serviceRequest.getRequestType());
-            this.assigneeID = new SimpleStringProperty(serviceRequest.getAssigneeID());
+            this.type       = new SimpleStringProperty(serviceRequest.getRequestType().toString());
+            this.assigneeID = new SimpleIntegerProperty(serviceRequest.getAssigneeID());
             this.location   = new SimpleStringProperty(serviceRequest.getLocation());
-            this.status     = new SimpleStringProperty(serviceRequest.getStatus());
-            this.priority   = new SimpleStringProperty(serviceRequest.getPriority());
+            this.status     = new SimpleStringProperty(serviceRequest.getStatus().toString());
+            this.priority   = new SimpleStringProperty(serviceRequest.getPriority().toString());
         }
     }
 

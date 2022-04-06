@@ -3,7 +3,6 @@ package edu.wpi.cs3733.D22.teamC.controller.service_request.medicine_delivery;
 import com.jfoenix.controls.JFXTreeTableView;
 import edu.wpi.cs3733.D22.teamC.controller.service_request.ServiceRequestCreateController;
 import edu.wpi.cs3733.D22.teamC.entity.service_request.ServiceRequest;
-import edu.wpi.cs3733.D22.teamC.models.service_request.medicine_delivery.MedicineDeliverySRTable;
 import edu.wpi.cs3733.D22.teamC.entity.service_request.medicine_delivery.MedicineDeliverySR;
 import edu.wpi.cs3733.D22.teamC.models.service_request.medicine_delivery.MedicineDeliverySRTableDisplay;
 import javafx.event.ActionEvent;
@@ -45,7 +44,7 @@ public class MedicineDeliverySRCreateController extends ServiceRequestCreateCont
         }
 
         // Set from Field
-        medicineDeliverySR.setAssigneeID(assigneeID.getText());
+        medicineDeliverySR.setAssigneeID(Integer.parseInt(assigneeID.getText()));
         medicineDeliverySR.setDescription(description.getText());
         medicineDeliverySR.setLocation(location.getText());
 

@@ -20,10 +20,10 @@ public class MedicalEquipmentSRCSVReader extends CSVReader<MedicalEquipmentSR>{
                 serviceRequest.setRequestID(Integer.parseInt(value));
                 break;
             case "creatorID":
-                serviceRequest.setCreatorID(value);
+                serviceRequest.setCreatorID(Integer.parseInt(value));
                 break;
             case "assigneeID":
-                serviceRequest.setAssigneeID(value);
+                serviceRequest.setAssigneeID(Integer.parseInt(value));
                 break;
             case "location":
                 serviceRequest.setLocation(value);

@@ -110,7 +110,7 @@ public class LabSystemSRDAOImplTest {
         
         // Insert SR into DB
         String creatorID = "bshin100";
-        String assigneeID = "nick1234";
+        String assigneeID = "nick1234"; // error due to this
         String locationID = "FOISIE";
         Timestamp creationTimeStamp = new Timestamp(694201234);
         ServiceRequest.Status status = ServiceRequest.Status.Blank;
