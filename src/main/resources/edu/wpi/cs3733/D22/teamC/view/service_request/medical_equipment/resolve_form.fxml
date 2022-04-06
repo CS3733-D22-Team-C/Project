@@ -183,7 +183,7 @@
             <Insets top="30.0" />
          </GridPane.margin>
       </VBox>
-      <VBox prefHeight="200.0" prefWidth="100.0" GridPane.rowIndex="3">
+      <VBox prefHeight="200.0" prefWidth="521.0" GridPane.rowIndex="3">
          <children>
             <HBox alignment="BOTTOM_CENTER" prefHeight="100.0" prefWidth="200.0">
                <children>
@@ -193,14 +193,14 @@
                   <Label fx:id="secondStatus" styleClass="text-field-with-margin" />
                </children>
             </HBox>
-            <HBox prefHeight="100.0" prefWidth="200.0">
+            <HBox prefHeight="29.0" prefWidth="552.0">
                <children>
-                  <HBox prefHeight="75.0" prefWidth="341.0">
+                  <HBox maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="29.0" prefWidth="260.0">
                      <children>
                         <JFXButton fx:id="goBackButton" onAction="#clickGoBack" styleClass="button-back" text="Go Back" />
                      </children>
                   </HBox>
-                  <HBox alignment="TOP_RIGHT" prefHeight="75.0" prefWidth="349.0">
+                  <HBox alignment="CENTER_RIGHT" prefHeight="29.0" prefWidth="264.0">
                      <children>
                         <JFXButton fx:id="confirmButton" onAction="#clickConfirm" styleClass="button-confirm" text="Confirm" />
                      </children>
