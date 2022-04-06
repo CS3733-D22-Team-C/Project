@@ -27,26 +27,6 @@
             <String fx:value="button" />
          </styleClass>
       </JFXButton>
-      <JFXButton onAction="#onImportCSVButtonPress" text="Import CSV">
-         <stylesheets>
-            <URL value="@../../../css/base.css" />
-            <URL value="@../../../css/map.css" />
-         </stylesheets>
-         <styleClass>
-            <String fx:value="button-edit" />
-            <String fx:value="button" />
-         </styleClass>
-      </JFXButton>
-      <JFXButton onAction="#onExportCSVButtonPress" text="Export CSV">
-         <stylesheets>
-            <URL value="@../../../css/base.css" />
-            <URL value="@../../../css/map.css" />
-         </stylesheets>
-         <styleClass>
-            <String fx:value="button-edit" />
-            <String fx:value="button" />
-         </styleClass>
-      </JFXButton>
    </children>
    <stylesheets>
       <URL value="@../../../css/base.css" />

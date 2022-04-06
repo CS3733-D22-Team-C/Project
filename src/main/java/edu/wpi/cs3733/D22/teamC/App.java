@@ -117,7 +117,6 @@ public class App extends Application {
         stage.setFullScreen(true);
         
         setView(MAP_PATH);
-
     }
 
     @Override
