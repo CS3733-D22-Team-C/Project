@@ -36,6 +36,7 @@ public class LabSystemSRResolveController extends ServiceRequestResolveControlle
         description.setText(labSystemSR.getDescription());
         creationTime.setText(labSystemSR.getCreationTimestamp().toString());
         patientID.setEditable(false);
+        labType.setDisable(true);
 
 
         if(isEditMode){
@@ -50,6 +51,7 @@ public class LabSystemSRResolveController extends ServiceRequestResolveControlle
             if (requiredFieldsPresent()) secondStatus.setText("processing");
             else secondStatus.setText("blank");
             patientID.setEditable(true);
+            labType.setDisable(false);
         }
     }
 
