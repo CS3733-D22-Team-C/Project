@@ -3,12 +3,16 @@ package edu.wpi.cs3733.D22.teamC.controller.service_request.sanitation;
 import com.jfoenix.controls.JFXComboBox;
 import edu.wpi.cs3733.D22.teamC.controller.service_request.ServiceRequestCreateController;
 import edu.wpi.cs3733.D22.teamC.entity.service_request.ServiceRequest;
+import edu.wpi.cs3733.D22.teamC.entity.service_request.ServiceRequestDAO;
+import edu.wpi.cs3733.D22.teamC.entity.service_request.medical_equipment.MedicalEquipmentSRDAOImpl;
 import edu.wpi.cs3733.D22.teamC.entity.service_request.sanitation.SanitationSR;
+import edu.wpi.cs3733.D22.teamC.entity.service_request.sanitation.SanitationSRDAOImpl;
 import edu.wpi.cs3733.D22.teamC.models.service_request.sanitation.SanitationSRTableDisplay;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 
 import java.net.URL;
+import java.sql.Timestamp;
 import java.util.ResourceBundle;
 
 public class SanitationSRCreateController extends ServiceRequestCreateController {
@@ -41,6 +45,7 @@ public class SanitationSRCreateController extends ServiceRequestCreateController
     protected SanitationSR clickSubmit(ActionEvent event) {
         SanitationSR sanitationSR = new SanitationSR();
 
+        sanitationSR.setCreationTimestamp(new Timestamp(System.currentTimeMillis()));
         if(assigneeID.getText().isEmpty() || location.getText().isEmpty() || priority.getSelectionModel().isEmpty() || status.getSelectionModel().isEmpty() || sanitationType.getSelectionModel().isEmpty()) {
             return null;
         }
@@ -48,6 +53,7 @@ public class SanitationSRCreateController extends ServiceRequestCreateController
         // Text field setting
         sanitationSR.setAssigneeID(assigneeID.getText());
         sanitationSR.setLocation(location.getText());
+        sanitationSR.setDescription(description.getText());
 
         // Dropdown Boxes
         sanitationSR.setStatus(ServiceRequest.Status.valueOf(status.getValue().toString()));
@@ -63,6 +69,10 @@ public class SanitationSRCreateController extends ServiceRequestCreateController
 
 
         tableDisplay.addObject(sanitationSR);
+
+        // Database entry
+        ServiceRequestDAO serviceRequestDAO = new SanitationSRDAOImpl();
+        serviceRequestDAO.insertServiceRequest(sanitationSR);
 
         return sanitationSR;
     }

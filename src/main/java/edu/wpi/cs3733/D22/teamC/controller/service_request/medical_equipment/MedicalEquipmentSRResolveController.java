@@ -40,6 +40,9 @@ public class MedicalEquipmentSRResolveController extends ServiceRequestResolveCo
         equipmentID.setDisable(true);
         equipmentType.setDisable(true);
 
+        //Title
+        title.setText("Resolve Sanitation Service Request");
+
 
         if(isEditMode){
             // Equipment Type Dropdown
@@ -54,6 +57,8 @@ public class MedicalEquipmentSRResolveController extends ServiceRequestResolveCo
 
             equipmentID.setDisable(false);
             equipmentType.setDisable(false);
+
+            title.setText("Edit Sanitation Service Request");
         }
         System.out.println(isEditMode);
     }
