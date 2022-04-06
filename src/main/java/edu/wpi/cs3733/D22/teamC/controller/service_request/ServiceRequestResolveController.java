@@ -80,6 +80,10 @@ public class ServiceRequestResolveController {
 
             // Set fields editable
             assigneeID.setEditable(true);
+            priority.setDisable(false);
+            status.setDisable(false);
+            hospitalLocation.setDisable(false);
+
         } else {
             // Set generic title (overridden in children)
             title.setText("Resolve Service Request");
@@ -90,6 +94,9 @@ public class ServiceRequestResolveController {
 
             // Set fields uneditable
             assigneeID.setEditable(false);
+            priority.setDisable(true);
+            status.setDisable(true);
+            hospitalLocation.setDisable(true);
         }
     }
 
