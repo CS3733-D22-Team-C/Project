@@ -34,6 +34,17 @@
     -fx-background-color: -color-button-back-hover;
 }
 
+.button-edit {
+    -fx-text-fill: -color-button-text;
+    -fx-background-color: -color-button-edit;
+    -fx-font-size: 15;
+    -fx-spacing: 5px;
+}
+
+.button-edit:hover {
+    -fx-background-color: -color-button-edit-hover;
+}
+
 /*
 padding goes top, right, bottom, left
  */
@@ -113,4 +124,11 @@ padding goes top, right, bottom, left
     -fx-font-family: Inter;
     -fx-font-size: 17;
     -fx-opacity: .83;
+}
+
+.button-confirm {
+    -fx-text-fill: -color-button-text;
+    -fx-background-color: -color-button-confirm;
+    -fx-font-size: 15;
+    -fx-spacing: 5px;
 }
