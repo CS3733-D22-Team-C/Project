@@ -1,6 +1,9 @@
 package edu.wpi.cs3733.D22.teamC.entity.medical_equipment;
 
 import edu.wpi.cs3733.D22.teamC.DBManager;
+import edu.wpi.cs3733.D22.teamC.entity.floor.Floor;
+import edu.wpi.cs3733.D22.teamC.entity.floor.FloorDAO;
+import edu.wpi.cs3733.D22.teamC.entity.floor.FloorDAOImpl;
 import edu.wpi.cs3733.D22.teamC.entity.location.Location;
 import edu.wpi.cs3733.D22.teamC.entity.location.LocationDAOImpl;
 import org.junit.jupiter.api.AfterEach;
@@ -15,16 +18,31 @@ import static org.junit.jupiter.api.Assertions.*;
 class MedEquipDAOImplTest {
     private DBManager testDBManager;
     private MedicalEquipmentDAOImpl medicalEquipmentDAO;
+    private LocationDAOImpl locationDAO;
+    private Floor floor;
+    private Location location;
 
     @BeforeEach
     void setUp() {
         // Setup testing database and initialize Medical_Equipment table
+        //Initialize tables
         testDBManager = DBManager.startup(DBManager.TESTING_DATABASE_NAME);
+        testDBManager.initializeFloorTable(true);
         testDBManager.initializeLocationTable(true);
         testDBManager.initializeMedicalEquipmentTable(true);
 
         // Setup testing LocationDAOImpl
+        locationDAO = new LocationDAOImpl();
+
+        // add a floor
+        FloorDAO floorDAO = new FloorDAOImpl();
+        floor = floorDAO.getFloor(floorDAO.insertFloor(new Floor()));
+        Location dummyLoc = new Location();
+        dummyLoc.setFloor(floor.getFloorID());
+        location = locationDAO.getLocation(locationDAO.insertLocation(dummyLoc));
+
         medicalEquipmentDAO = new MedicalEquipmentDAOImpl();
+
     }
 
     @AfterEach
@@ -37,7 +55,7 @@ class MedEquipDAOImplTest {
      * Test that an empty Medical_Equipment Table DB returns nothing for queries.
      */
     @Test
-    void testEmptyQueryLocation() {
+    void testEmptyQueryEquipment() {
         assertEquals(0, medicalEquipmentDAO.getMedicalEquipments().size());
         assertEquals(null, medicalEquipmentDAO.getMedicalEquipment(1234));
     }
@@ -52,12 +70,16 @@ class MedEquipDAOImplTest {
         assertEquals(null, medicalEquipmentDAO.getMedicalEquipment(1234));
 
         // Insert Equipment into DB
-        int locationID = 1234;
         MedicalEquipment.EquipmentType equipmentType = MedicalEquipment.EquipmentType.Bed;
         MedicalEquipment.EquipmentStatus equipmentStatus = MedicalEquipment.EquipmentStatus.Dirty;
-        MedicalEquipment insertEquipment = new MedicalEquipment(locationID, equipmentType, equipmentStatus);
+        MedicalEquipment insertEquipment = new MedicalEquipment();
+        insertEquipment.setEquipmentType(equipmentType);
+        insertEquipment.setEquipmentStatus(equipmentStatus);
+
         int retrievedID = medicalEquipmentDAO.insertMedicalEquipment(insertEquipment);
+
         insertEquipment.setEquipID(retrievedID);
+        insertEquipment.setLocationID(location.getNodeID());
         assertNotEquals(-1, retrievedID);
         assertEquals(1, medicalEquipmentDAO.getMedicalEquipments().size());
 
@@ -70,14 +92,14 @@ class MedEquipDAOImplTest {
         assertEquals(retrievedID, queryLocation.getEquipID());
         assertEquals(equipmentStatus, queryLocation.getEquipmentStatus());
         assertEquals(equipmentType, queryLocation.getEquipmentType());
-        assertEquals(locationID, queryLocation.getLocationID());
+        assertEquals(location.getNodeID(), queryLocation.getLocationID());
     }
 
     /**
      * Test that deleteEquipment works.
      */
     @Test
-    void testDeleteLocation() {
+    void testDeleteMedicalEquipment() {
         // Check DB is empty
         assertEquals(0, medicalEquipmentDAO.getMedicalEquipments().size());
         assertEquals(null, medicalEquipmentDAO.getMedicalEquipment(1234));

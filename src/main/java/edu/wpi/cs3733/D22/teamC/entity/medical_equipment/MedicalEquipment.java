@@ -21,6 +21,7 @@ public class MedicalEquipment {
         Dirty
     }
 
+    public MedicalEquipment() {}
     public MedicalEquipment(int equipID) { this.equipID = equipID; }
 
     public MedicalEquipment(int locationID, EquipmentType equipmentType, EquipmentStatus equipmentStatus) {

@@ -1,6 +1,8 @@
 package edu.wpi.cs3733.D22.teamC.entity.service_request;
 
 import edu.wpi.cs3733.D22.teamC.DBManager;
+import edu.wpi.cs3733.D22.teamC.entity.medical_equipment.MedicalEquipment;
+import edu.wpi.cs3733.D22.teamC.entity.medical_equipment.MedicalEquipmentDAOImpl;
 import edu.wpi.cs3733.D22.teamC.entity.service_request.medical_equipment.MedicalEquipmentSRDAOImpl;
 import edu.wpi.cs3733.D22.teamC.entity.service_request.medical_equipment.MedicalEquipmentSR;
 import org.junit.jupiter.api.AfterEach;
@@ -13,17 +15,17 @@ import static org.junit.jupiter.api.Assertions.*;
 
 class MedEqSRDAOImplTest {
     private DBManager testDBManager;
-    private MedicalEquipmentSRDAOImpl medicalEqDAO;
+    private MedicalEquipmentSRDAOImpl medicalEquipmentSRDAO;
     
     @BeforeEach
     void setUp() {
-        // Setup testing database and initialize LOCATION table
+        // Setup testing database and initialize Medical_Equipment table
         testDBManager = DBManager.startup(DBManager.TESTING_DATABASE_NAME);
         testDBManager.initializeServiceRequestTable(true);
         testDBManager.initializeMedicalEquipSRTable(true);
         
-        // Setup testing medicalEqDAOImpl
-        medicalEqDAO = new MedicalEquipmentSRDAOImpl();
+        // Setup testing medicalEquipmentSRDAOImpl
+        medicalEquipmentSRDAO = new MedicalEquipmentSRDAOImpl();
     }
     
     @AfterEach
@@ -37,19 +39,21 @@ class MedEqSRDAOImplTest {
      */
     @Test
     void testEmptyQuerySR() {
-        assertEquals(0, medicalEqDAO.getAllServiceRequests().size());
-        assertEquals(null, medicalEqDAO.getServiceRequest(1234));
+        assertEquals(0, medicalEquipmentSRDAO.getAllServiceRequests().size());
+        assertEquals(null, medicalEquipmentSRDAO.getServiceRequest(1234));
     }
     
     /**
-     * Test that insertLocation works.
+     * Test that insertSR works.
      */
     @Test
     void testInsertSR() {
         // Check DB is empty
-        assertEquals(0, medicalEqDAO.getAllServiceRequests().size());
-        assertEquals(null, medicalEqDAO.getServiceRequest(1234));
-        
+        assertEquals(0, medicalEquipmentSRDAO.getAllServiceRequests().size());
+        assertEquals(null, medicalEquipmentSRDAO.getServiceRequest(1234));
+
+
+
         // Insert SR into DB
         String creatorID = "bshin100";
         String assigneeID = "nick1234";
@@ -60,7 +64,6 @@ class MedEqSRDAOImplTest {
         ServiceRequest.RequestType requestType = ServiceRequest.RequestType.Medical_Equipment;
         String description = "soft eng is spain without the s";
         int equipID = 356;
-
         
         MedicalEquipmentSR insertSR = new MedicalEquipmentSR();
         insertSR.setCreatorID(creatorID);
@@ -73,16 +76,16 @@ class MedEqSRDAOImplTest {
         insertSR.setDescription(description);
         insertSR.setEquipmentID(equipID);
 
-        int retrievedID = medicalEqDAO.insertServiceRequest(insertSR);
+        int retrievedID = medicalEquipmentSRDAO.insertServiceRequest(insertSR);
         insertSR.setRequestID(retrievedID);
         assertNotEquals(-1, retrievedID);
-        assertEquals(1, medicalEqDAO.getAllServiceRequests().size());
+        assertEquals(1, medicalEquipmentSRDAO.getAllServiceRequests().size());
 
         // Cannot Insert SR Again
-        assertEquals(-1, medicalEqDAO.insertServiceRequest(insertSR));
+        assertEquals(-1, medicalEquipmentSRDAO.insertServiceRequest(insertSR));
 
         // Check that DB values are expected
-        MedicalEquipmentSR querySR = medicalEqDAO.getServiceRequest(insertSR.getRequestID());
+        MedicalEquipmentSR querySR = medicalEquipmentSRDAO.getServiceRequest(insertSR.getRequestID());
         assertNotNull(querySR);
         assertEquals(retrievedID, querySR.getRequestID());
         assertEquals(creatorID, querySR.getCreatorID());
@@ -102,9 +105,9 @@ class MedEqSRDAOImplTest {
     @Test
     void testDeleteServiceRequest() {
         // Check DB is empty
-        assertEquals(0, medicalEqDAO.getAllServiceRequests().size());
-        assertEquals(null, medicalEqDAO.getServiceRequest(1234));
-    
+        assertEquals(0, medicalEquipmentSRDAO.getAllServiceRequests().size());
+        assertEquals(null, medicalEquipmentSRDAO.getServiceRequest(1234));
+
         // Insert SR into DB
         String creatorID = "bshin100";
         String assigneeID = "nick1234";
@@ -127,20 +130,20 @@ class MedEqSRDAOImplTest {
         deleteSR.setDescription(description);
         deleteSR.setEquipmentID(equipID);
 
-        int retrievedID = medicalEqDAO.insertServiceRequest(deleteSR);
+        int retrievedID = medicalEquipmentSRDAO.insertServiceRequest(deleteSR);
         deleteSR.setRequestID(retrievedID);
         assertNotEquals(-1, retrievedID);
-        assertEquals(1, medicalEqDAO.getAllServiceRequests().size());
+        assertEquals(1, medicalEquipmentSRDAO.getAllServiceRequests().size());
 
         // Delete Location from DB
-        assertTrue(medicalEqDAO.deleteServiceRequest(deleteSR));
+        assertTrue(medicalEquipmentSRDAO.deleteServiceRequest(deleteSR));
 
         // Cannot Delete Location Again
-        assertFalse(medicalEqDAO.deleteServiceRequest(deleteSR));
+        assertFalse(medicalEquipmentSRDAO.deleteServiceRequest(deleteSR));
 
         // Check DB is empty
-        assertEquals(0, medicalEqDAO.getAllServiceRequests().size());
-        assertEquals(null, medicalEqDAO.getServiceRequest(1234));
+        assertEquals(0, medicalEquipmentSRDAO.getAllServiceRequests().size());
+        assertEquals(null, medicalEquipmentSRDAO.getServiceRequest(1234));
     }
     
     /**
@@ -149,9 +152,9 @@ class MedEqSRDAOImplTest {
     @Test
     void testUpdateServiceRequest() {
         // Check DB is empty
-        assertEquals(0, medicalEqDAO.getAllServiceRequests().size());
-        assertEquals(null, medicalEqDAO.getServiceRequest(1234));
-    
+        assertEquals(0, medicalEquipmentSRDAO.getAllServiceRequests().size());
+        assertEquals(null, medicalEquipmentSRDAO.getServiceRequest(1234));
+
         // Insert SR into DB
         String creatorID = "bshin100";
         String assigneeID = "nick1234";
@@ -174,10 +177,10 @@ class MedEqSRDAOImplTest {
         updateSR.setDescription(description);
         updateSR.setEquipmentID(equipID);
 
-        int retrievedID = medicalEqDAO.insertServiceRequest(updateSR);
+        int retrievedID = medicalEquipmentSRDAO.insertServiceRequest(updateSR);
         updateSR.setRequestID(retrievedID);
         assertNotEquals(-1, retrievedID);
-        assertEquals(1, medicalEqDAO.getAllServiceRequests().size());
+        assertEquals(1, medicalEquipmentSRDAO.getAllServiceRequests().size());
         
         // Update Location in DB
         creatorID = "bshin100";
@@ -204,11 +207,11 @@ class MedEqSRDAOImplTest {
         updateSR.setModifierID(modifierID);
         updateSR.setModifiedTimestamp(modifiedTimestamp);
         updateSR.setEquipmentID(equipID);
-        assertTrue(medicalEqDAO.updateServiceRequest(updateSR));
-        assertEquals(1, medicalEqDAO.getAllServiceRequests().size());
+        assertTrue(medicalEquipmentSRDAO.updateServiceRequest(updateSR));
+        assertEquals(1, medicalEquipmentSRDAO.getAllServiceRequests().size());
         
         // Check that DB values are expected
-        MedicalEquipmentSR querySR = medicalEqDAO.getServiceRequest(updateSR.getRequestID());
+        MedicalEquipmentSR querySR = medicalEquipmentSRDAO.getServiceRequest(updateSR.getRequestID());
         assertNotNull(querySR);
         assertEquals(retrievedID, querySR.getRequestID());
         assertEquals(creatorID, querySR.getCreatorID());
@@ -226,6 +229,6 @@ class MedEqSRDAOImplTest {
         // Cannot Update Nonexistent Location
         MedicalEquipmentSR newSR = new MedicalEquipmentSR();
         newSR.setRequestID(1234);
-        assertFalse(medicalEqDAO.updateServiceRequest(newSR));
+        assertFalse(medicalEquipmentSRDAO.updateServiceRequest(newSR));
     }
 }
