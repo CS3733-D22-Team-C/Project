@@ -6,8 +6,11 @@ import com.jfoenix.controls.RecursiveTreeItem;
 import com.jfoenix.controls.datamodels.treetable.RecursiveTreeObject;
 import edu.wpi.cs3733.D22.teamC.controller.service_request.ServiceRequestCreateController;
 import edu.wpi.cs3733.D22.teamC.entity.service_request.ServiceRequest;
+import edu.wpi.cs3733.D22.teamC.entity.service_request.ServiceRequestDAO;
+import edu.wpi.cs3733.D22.teamC.entity.service_request.ServiceRequestDAOImpl;
 import edu.wpi.cs3733.D22.teamC.entity.service_request.security.SecuritySR;
 import edu.wpi.cs3733.D22.teamC.error.error_item.service_request_user_input_validation.ServiceRequestUserInputValidationErrorItem;
+import edu.wpi.cs3733.D22.teamC.entity.service_request.security.SecuritySRDAOImpl;
 import edu.wpi.cs3733.D22.teamC.models.service_request.security.SecuritySRTableDisplay;
 import edu.wpi.cs3733.D22.teamC.user_input_validation.service_request.sanitation.SanitationSRFormEvaluator;
 import edu.wpi.cs3733.D22.teamC.user_input_validation.service_request.security.SecuritySRFormEvaluator;
@@ -20,20 +23,22 @@ import javafx.scene.control.TreeItem;
 
 import java.net.URL;
 import java.util.ArrayList;
+import java.sql.Timestamp;
 import java.util.ResourceBundle;
 
 public class SecuritySRCreateController extends ServiceRequestCreateController <SecuritySR> {
 
     // Dropdowns
-    @FXML private JFXComboBox<String> secType;
-
+    @FXML
+    private JFXComboBox<String> secType;
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         super.initialize(url, rb);
 
         //For equipment type drop down
-        secType.getItems().add("intruder");
+
+        secType.getItems().add("Intruder");
 
         tableDisplay = new SecuritySRTableDisplay(table);
     }
@@ -64,7 +69,24 @@ public class SecuritySRCreateController extends ServiceRequestCreateController <
             //Sets from combo boxes
             securitySR.setSecurityType(SecuritySR.SecurityType.valueOf(secType.getValue()));
 
-            securitySR.setRequestType(ServiceRequest.RequestType.Security);
+        SecuritySR securitySR = new SecuritySR();
+
+        securitySR.setCreationTimestamp(new Timestamp(System.currentTimeMillis()));
+
+        //Sets from textFields
+        securitySR.setAssigneeID(assigneeID.getText());
+        securitySR.setDescription(description.getText());
+        securitySR.setLocation(location.getText());
+
+        //Sets from combo boxes
+        securitySR.setStatus(ServiceRequest.Status.valueOf(status.getValue().toString()));
+        securitySR.setPriority(ServiceRequest.Priority.valueOf(priority.getValue().toString()));
+        securitySR.setSecurityType(SecuritySR.SecurityType.valueOf(secType.getValue()));
+
+        securitySR.setRequestType(ServiceRequest.RequestType.Security);
+
+        securitySR.setRequestType(ServiceRequest.RequestType.Security);
+        tableDisplay.addObject(securitySR);
 
             // Table Entry
             clickReset(event);
@@ -86,5 +108,14 @@ public class SecuritySRCreateController extends ServiceRequestCreateController <
     @Override
     public void resetErrorMessages() {
         super.resetErrorMessages();
+
+        ServiceRequestDAO serviceRequestDAO = new SecuritySRDAOImpl();
+        serviceRequestDAO.insertServiceRequest(securitySR);
+
+        // Table Entry
+        clickReset(event);
+        return securitySR;
     }
 }
+
+

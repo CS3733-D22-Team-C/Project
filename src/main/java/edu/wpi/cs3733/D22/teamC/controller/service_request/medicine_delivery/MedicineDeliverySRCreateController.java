@@ -8,7 +8,10 @@ import edu.wpi.cs3733.D22.teamC.entity.service_request.ServiceRequest;
 import edu.wpi.cs3733.D22.teamC.entity.service_request.medical_equipment.MedicalEquipmentSR;
 import edu.wpi.cs3733.D22.teamC.error.error_item.service_request_user_input_validation.ServiceRequestUserInputValidationErrorItem;
 import edu.wpi.cs3733.D22.teamC.models.service_request.medical_equipment.MedicalEquipmentSRTableDisplay;
+import edu.wpi.cs3733.D22.teamC.entity.service_request.ServiceRequestDAO;
+import edu.wpi.cs3733.D22.teamC.entity.service_request.medical_equipment.MedicalEquipmentSRDAOImpl;
 import edu.wpi.cs3733.D22.teamC.entity.service_request.medicine_delivery.MedicineDeliverySR;
+import edu.wpi.cs3733.D22.teamC.entity.service_request.medicine_delivery.MedicineDeliverySRDAOImpl;
 import edu.wpi.cs3733.D22.teamC.models.service_request.medicine_delivery.MedicineDeliverySRTableDisplay;
 import edu.wpi.cs3733.D22.teamC.user_input_validation.service_request.lab_system.LabSystemSRFormEvaluator;
 import edu.wpi.cs3733.D22.teamC.user_input_validation.service_request.medicine_delivery.MedicineDeliverySRFormEvaluator;
@@ -24,6 +27,7 @@ import javafx.scene.control.TreeItem;
 
 import java.net.URL;
 import java.util.ArrayList;
+import java.sql.Timestamp;
 import java.util.ResourceBundle;
 
 public class MedicineDeliverySRCreateController extends ServiceRequestCreateController<MedicineDeliverySR> {
@@ -74,6 +78,12 @@ public class MedicineDeliverySRCreateController extends ServiceRequestCreateCont
         if(mDSRFE.noServiceRequestFormUserInputErrors(errors))
         {
             MedicineDeliverySR medicineDeliverySR = new MedicineDeliverySR();
+            medicineDeliverySR.setCreationTimestamp(new Timestamp(System.currentTimeMillis()));
+
+        if (assigneeID.getText().isEmpty() || location.getText().isEmpty() || priority.getSelectionModel().isEmpty() || status.getSelectionModel().isEmpty()
+        || medicine.getText().isEmpty() || dosage.getText().isEmpty() || patientID.getText().isEmpty()) {
+            return null;
+        }
 
             medicineDeliverySR.setAssigneeID(assigneeID.getText());
             medicineDeliverySR.setLocation(location.getText());
@@ -111,5 +121,11 @@ public class MedicineDeliverySRCreateController extends ServiceRequestCreateCont
     @Override
     public void resetErrorMessages() {
         super.resetErrorMessages();
+
+        ServiceRequestDAO serviceRequestDAO = new MedicineDeliverySRDAOImpl();
+        serviceRequestDAO.insertServiceRequest(medicineDeliverySR);
+
+        return medicineDeliverySR;
+
     }
 }

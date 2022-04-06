@@ -27,6 +27,9 @@ public class MedicalEquipmentSRResolveController extends ServiceRequestResolveCo
     public void setup(ServiceRequest serviceRequest, boolean isEditMode) {
         super.setup(serviceRequest, isEditMode);
 
+        //Set title
+        title.setText("Resolve Medical Equipment Service Request");
+
         // Querying for full Medical Equipment Service Request
         MedicalEquipmentSRDAOImpl medicalEquipmentSRDAOImpl = new MedicalEquipmentSRDAOImpl();
         MedicalEquipmentSR medicalEquipmentSR = medicalEquipmentSRDAOImpl.getServiceRequest(serviceRequest.getRequestID());
@@ -36,6 +39,12 @@ public class MedicalEquipmentSRResolveController extends ServiceRequestResolveCo
         equipmentID.setPromptText(medicalEquipmentSR.getEquipmentID());
         description.setText(medicalEquipmentSR.getDescription());
         creationTime.setText(medicalEquipmentSR.getCreationTimestamp().toString());
+
+        equipmentID.setDisable(true);
+        equipmentType.setDisable(true);
+
+        //Title
+        title.setText("Resolve Sanitation Service Request");
 
 
         if(isEditMode){
@@ -48,6 +57,12 @@ public class MedicalEquipmentSRResolveController extends ServiceRequestResolveCo
             //Status labels at bottom
             if (requiredFieldsPresent()) secondStatus.setText("processing");
             else secondStatus.setText("blank");
+
+            //Set title
+            title.setText("Edit Medical Equipment Service Request");
+
+            equipmentID.setDisable(false);
+            equipmentType.setDisable(false);
         }
         System.out.println(isEditMode);
     }

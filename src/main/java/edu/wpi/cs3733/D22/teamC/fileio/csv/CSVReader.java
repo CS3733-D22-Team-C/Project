@@ -1,6 +1,8 @@
 package edu.wpi.cs3733.D22.teamC.fileio.csv;
 
 import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileReader;
 import java.io.IOException;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
@@ -19,32 +21,47 @@ public abstract class CSVReader<T> {
      * @return List of objects of type T.
      */
     public final List<T> readFile(String fileName) {
-        List<T> objects = new ArrayList<>();
-
         try {
             // Open buffered reader from filepath
             Path filePath = Paths.get(fileName);
             BufferedReader br = Files.newBufferedReader(filePath, StandardCharsets.US_ASCII);
-            String line;
-
-            // Parse header line
-            Map<String, Integer> headerMap;
-            line = br.readLine();
-            String[] headers = trimStringArray(line.split(","));
-            headerMap = parseHeaders(headers);
-
-            // Parse data lines
-            line = br.readLine();
-            while (line != null) {
-                String[] attributes = trimStringArray(line.split(","));
-                T object = parseObject(headerMap, attributes);
-                objects.add(object);
-                line = br.readLine();
-            }
+            return readFileInternal(br);
         } catch (IOException ioe) {
             System.out.println("Failed to read file " + fileName + ".");
             ioe.printStackTrace();
             return null;
+        }
+    }
+
+    public final List<T> readFile(File file) {
+        try {
+            // Open buffered reader from filepath
+            BufferedReader br = new BufferedReader(new FileReader(file));
+            return readFileInternal(br);
+        } catch (IOException ioe) {
+            System.out.println("Failed to read file " + file.getName() + ".");
+            ioe.printStackTrace();
+            return null;
+        }
+    }
+
+    private final List<T> readFileInternal(BufferedReader bufferedReader) throws IOException {
+        List<T> objects = new ArrayList<>();
+        String line;
+
+        // Parse header line
+        Map<String, Integer> headerMap;
+        line = bufferedReader.readLine();
+        String[] headers = trimStringArray(line.split(",", -1));
+        headerMap = parseHeaders(headers);
+
+        // Parse data lines
+        line = bufferedReader.readLine();
+        while (line != null) {
+            String[] attributes = trimStringArray(line.split(",", -1));
+            T object = parseObject(headerMap, attributes);
+            objects.add(object);
+            line = bufferedReader.readLine();
         }
 
         return objects;

@@ -19,7 +19,7 @@ public class ServiceRequestResolveController {
     @FXML private JFXComboBox<String> hospitalLocation;
 
     // Labels
-    @FXML private Label title;
+    @FXML protected Label title;
         // DB Labels
     @FXML protected Label createdBy;
     @FXML protected Label creationTime;
@@ -80,6 +80,10 @@ public class ServiceRequestResolveController {
 
             // Set fields editable
             assigneeID.setEditable(true);
+            priority.setDisable(false);
+            status.setDisable(true);
+            hospitalLocation.setDisable(false);
+
         } else {
             // Set generic title (overridden in children)
             title.setText("Resolve Service Request");
@@ -90,6 +94,9 @@ public class ServiceRequestResolveController {
 
             // Set fields uneditable
             assigneeID.setEditable(false);
+            priority.setDisable(true);
+            status.setDisable(true);
+            hospitalLocation.setDisable(true);
         }
     }
 
@@ -111,7 +118,6 @@ public class ServiceRequestResolveController {
             {
                serviceRequest.setLocation(hospitalLocation.getValue());
             }
-
             //Status
         }
         else {

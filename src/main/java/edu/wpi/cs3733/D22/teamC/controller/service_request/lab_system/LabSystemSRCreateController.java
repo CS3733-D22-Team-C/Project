@@ -6,6 +6,8 @@ import edu.wpi.cs3733.D22.teamC.controller.service_request.ServiceRequestCreateC
 import edu.wpi.cs3733.D22.teamC.entity.service_request.ServiceRequest;
 import edu.wpi.cs3733.D22.teamC.error.error_item.service_request_user_input_validation.ServiceRequestUserInputValidationErrorItem;
 import edu.wpi.cs3733.D22.teamC.entity.service_request.lab_system.LabSystemSR;
+import edu.wpi.cs3733.D22.teamC.entity.service_request.lab_system.LabSystemSRDAO;
+import edu.wpi.cs3733.D22.teamC.entity.service_request.lab_system.LabSystemSRDAOImpl;
 import edu.wpi.cs3733.D22.teamC.models.service_request.lab_system.LabSystemSRTableDisplay;
 import edu.wpi.cs3733.D22.teamC.user_input_validation.service_request.lab_system.LabSystemSRFormEvaluator;
 import javafx.beans.value.ChangeListener;
@@ -19,6 +21,8 @@ import javafx.scene.control.TreeItem;
 
 import java.net.URL;
 import java.util.ArrayList;
+import java.sql.Timestamp;
+import java.util.List;
 import java.util.ResourceBundle;
 
 public class LabSystemSRCreateController extends ServiceRequestCreateController<LabSystemSR> {
@@ -53,6 +57,19 @@ public class LabSystemSRCreateController extends ServiceRequestCreateController<
     @Override
     public void setTextLengthLimiter(TextField textF, int maxLength) {
         super.setTextLengthLimiter(textF, maxLength);
+      
+       for (LabSystemSR.LabType type : LabSystemSR.LabType.values()){
+           labType.getItems().add(type.toString());
+       }
+
+        tableDisplay = new LabSystemSRTableDisplay(table);
+
+       // Query Database
+        LabSystemSRDAO labSystemSRDAO = new LabSystemSRDAOImpl();
+        List<LabSystemSR> labSystemSRs = labSystemSRDAO.getAllServiceRequests();
+        for (LabSystemSR labSystemSR : labSystemSRs){
+            tableDisplay.addObject(labSystemSR);
+        }
     }
 
     @FXML
@@ -78,6 +95,8 @@ public class LabSystemSRCreateController extends ServiceRequestCreateController<
             labSystem.setPriority(ServiceRequest.Priority.valueOf(priority.getValue()));
             labSystem.setStatus(ServiceRequest.Status.valueOf(status.getValue()));
             labSystem.setDescription(description.getText());
+        LabSystemSR labSystem = new LabSystemSR();
+        labSystem.setCreationTimestamp(new Timestamp(System.currentTimeMillis()));
 
             //Sets from textFields
             labSystem.setPatientID(patientID.getText());
@@ -91,6 +110,11 @@ public class LabSystemSRCreateController extends ServiceRequestCreateController<
             tableDisplay.addObject(labSystem);
 
             clickReset(event);
+        // Database entry
+        LabSystemSRDAO labSystemSRDAO = new LabSystemSRDAOImpl();
+        labSystemSRDAO.insertServiceRequest(labSystem);
+
+        clickReset(event);
 
             return labSystem;
         }
