@@ -24,4 +24,9 @@ public class MenuBarController {
         // Get the stage window and close it
         App.instance.getStage().close();
     }
+
+    @FXML
+    protected void onMenuBarMapButtonPress() {
+        App.instance.setView(App.MAP_PATH);
+    }
 }
