@@ -15,7 +15,7 @@
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.layout.VBox?>
 
-<GridPane alignment="CENTER" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.wpi.cs3733.D22.teamC.controller.service_request.BaseServiceRequestCreateController">
+<GridPane alignment="CENTER" maxWidth="1.7976931348623157E308" prefHeight="683.0" prefWidth="458.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.wpi.cs3733.D22.teamC.controller.service_request.BaseServiceRequestCreateController">
     <columnConstraints>
       <ColumnConstraints hgrow="SOMETIMES" maxWidth="478.4000244140625" minWidth="10.0" prefWidth="272.79998779296875" />
     </columnConstraints>
@@ -29,7 +29,7 @@
         <Label styleClass="page-title" text="Generic Service Request " />
       <VBox fx:id="fieldsBox" prefHeight="200.0" prefWidth="100.0" GridPane.rowIndex="1">
          <children>
-            <HBox VBox.vgrow="NEVER">
+            <HBox maxHeight="-Infinity" prefHeight="124.0" prefWidth="490.0" VBox.vgrow="NEVER">
                <children>
                   <VBox alignment="CENTER_LEFT" prefHeight="200.0" prefWidth="100.0" styleClass="box-margin" HBox.hgrow="ALWAYS">
                      <children>
@@ -53,10 +53,14 @@
             </HBox>
          </children>
       </VBox>
-        <VBox prefHeight="0.0" prefWidth="600.0" styleClass="box-margin" GridPane.rowIndex="2">
+        <VBox maxWidth="1.7976931348623157E308" prefHeight="0.0" prefWidth="600.0" styleClass="box-margin" GridPane.rowIndex="2">
             <children>
-                <Label styleClass="service-field-label" text="Additional Notes:" />
-                <JFXTextArea fx:id="description" prefHeight="81.0" prefWidth="426.0" VBox.vgrow="NEVER" />
+            <VBox>
+               <children>
+                      <Label styleClass="service-field-label" text="Additional Notes:" />
+                      <JFXTextArea fx:id="description" prefHeight="81.0" prefWidth="426.0" />
+               </children>
+            </VBox>
             <HBox prefHeight="100.0" prefWidth="200.0" styleClass="box-margin">
                <children>
                   <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="200.0" HBox.hgrow="ALWAYS">
@@ -93,7 +97,7 @@
             </HBox>
             </children>
         </VBox>
-      <JFXTreeTableView fx:id="table" GridPane.rowIndex="3" />
+      <JFXTreeTableView fx:id="table" maxWidth="1.7976931348623157E308" GridPane.rowIndex="3" />
     </children>
     <stylesheets>
         <URL value="@../../../css/request_page.css" />
