@@ -15,7 +15,7 @@
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.layout.VBox?>
 
-<GridPane alignment="CENTER" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.wpi.cs3733.D22.teamC.controller.service_request.BaseServiceRequestController">
+<GridPane alignment="CENTER" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.wpi.cs3733.D22.teamC.controller.service_request.BaseServiceRequestCreateController">
     <columnConstraints>
       <ColumnConstraints hgrow="SOMETIMES" maxWidth="478.4000244140625" minWidth="10.0" prefWidth="272.79998779296875" />
     </columnConstraints>
@@ -40,7 +40,7 @@
                   <VBox alignment="CENTER_LEFT" prefHeight="200.0" prefWidth="100.0" styleClass="box-margin" HBox.hgrow="ALWAYS">
                      <children>
                         <Label styleClass="service-field-label" text="Location:" />
-                        <TextField fx:id="location" />
+                        <TextField fx:id="locationField" />
                      </children>
                   </VBox>
                   <VBox alignment="CENTER_LEFT" prefHeight="200.0" prefWidth="100.0" styleClass="box-margin" HBox.hgrow="ALWAYS">

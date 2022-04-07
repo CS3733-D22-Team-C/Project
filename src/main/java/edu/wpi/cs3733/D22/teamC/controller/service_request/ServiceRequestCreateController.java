@@ -41,29 +41,55 @@ public abstract class ServiceRequestCreateController <T extends ServiceRequest> 
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        // Priority dropdown
-        for (ServiceRequest.Priority pri : ServiceRequest.Priority.values()) {
-            priority.getItems().add(pri.toString());
-        }
-
-        // Status dropdown
-        for (ServiceRequest.Status sta : ServiceRequest.Status.values()) {
-            status.getItems().add(sta.toString());
-        }
-
-        //Restrict ID TextFields to only contain numeric values
-        setIDFieldToNumeric(assigneeID);
-        setIDFieldToNumeric(location);
-
-        //Limit the length of TextFields and TextAreas so that users can input a limited number of characters:
-        setTextLengthLimiter(assigneeID, 10);
-        setTextLengthLimiter(location, 10);
-        setTextLengthLimiter(description, 100);
-
         //Hide error label
         errorLabel.setVisible(false);
     }
 
+    @FXML
+    protected void clickGoBack(ActionEvent event) {
+
+    }
+
+    @FXML
+    protected void clickReset(ActionEvent event) {
+
+    }
+
+    /*
+    @FXML
+    protected ServiceRequest clickSubmit(ActionEvent event)
+    {
+        ServiceRequest sR = new ServiceRequest();
+        //Downcasting as a result of the code here causes a ClassCastException, might need some advice getting around this to complete the abstraction.
+        return sR;
+    }
+    */
+
+    public void prepareErrorMessages(ArrayList<ServiceRequestUserInputValidationErrorItem> l)
+    {
+        errorLabel.setVisible(true);
+
+        for(int i = 0; i < l.size(); i++)
+        {
+            if(l.get(i) != null)
+            {
+                addErrorToView(l.get(i));
+            }
+        }
+    }
+
+    private void addErrorToView(ServiceRequestUserInputValidationErrorItem i)
+    {
+        errorLabel.setText(errorLabel.getText() + "\n" + i.getReasonForValidationError());
+    }
+
+    public void resetErrorMessages()
+    {
+        errorLabel.setText("");
+        errorLabel.setVisible(false);
+    }
+
+    //#region Field Constraints
     public void setIDFieldToNumeric(TextField tf)
     {
         tf.textProperty().addListener(new ChangeListener<String>() {
@@ -100,55 +126,5 @@ public abstract class ServiceRequestCreateController <T extends ServiceRequest> 
             }
         });
     }
-
-    @FXML
-    protected void clickGoBack(ActionEvent event) {
-        App.instance.setView(App.VIEW_SERVICE_REQUESTS_PATH);
-    }
-
-    @FXML
-    protected void clickReset(ActionEvent event) {
-        // Clearing Fields
-        assigneeID.clear();
-        location.clear();
-        description.clear();
-
-        // Clearing Dropdowns
-        priority.valueProperty().set(null);
-        status.valueProperty().set(null);
-    }
-
-    /*
-    @FXML
-    protected ServiceRequest clickSubmit(ActionEvent event)
-    {
-        ServiceRequest sR = new ServiceRequest();
-        //Downcasting as a result of the code here causes a ClassCastException, might need some advice getting around this to complete the abstraction.
-        return sR;
-    }
-    */
-
-    public void prepareErrorMessages(ArrayList<ServiceRequestUserInputValidationErrorItem> l)
-    {
-        errorLabel.setVisible(true);
-
-        for(int i = 0; i < l.size(); i++)
-        {
-            if(l.get(i) != null)
-            {
-                addErrorToView(l.get(i));
-            }
-        }
-    }
-
-    private void addErrorToView(ServiceRequestUserInputValidationErrorItem i)
-    {
-        errorLabel.setText(errorLabel.getText() + "\n" + i.getReasonForValidationError());
-    }
-
-    public void resetErrorMessages()
-    {
-        errorLabel.setText("");
-        errorLabel.setVisible(false);
-    }
+    //#endregion
 }

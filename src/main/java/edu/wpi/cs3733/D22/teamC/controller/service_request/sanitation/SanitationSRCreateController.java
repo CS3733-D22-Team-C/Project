@@ -33,22 +33,11 @@ public class SanitationSRCreateController extends ServiceRequestCreateController
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         super.initialize(url, rb);
-
-        // Sanitation Dropdown
-        sanitationType.getItems().add("General");
-        sanitationType.getItems().add("Hazardous");
-        sanitationType.getItems().add("Biohazard");
-        sanitationType.getItems().add("Daily_Cleaning");
-
-        tableDisplay = new SanitationSRTableDisplay(table);
     }
 
     @FXML
     protected void clickReset(javafx.event.ActionEvent event) {
         super.clickReset(event);
-
-        // Clear dropdown menu
-        sanitationType.valueProperty().set(null);
     }
 
     @FXML
