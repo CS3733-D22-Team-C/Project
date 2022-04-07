@@ -13,6 +13,7 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.VBox;
@@ -34,6 +35,9 @@ public class BaseServiceRequestCreateController<T extends ServiceRequest> {
 
     @FXML
     private TextField locationField;
+
+    @FXML
+    private Label title;
 
     @FXML
     private JFXComboBox<String> priority;
@@ -59,6 +63,29 @@ public class BaseServiceRequestCreateController<T extends ServiceRequest> {
 
     public void setup(ServiceRequest.RequestType requestType) {
         this.requestType = requestType;
+
+        switch (requestType)
+        {
+            case Medical_Equipment:
+                title.setText("Create Medical Equipment Service Request");
+                break;
+            case Facility_Maintenance:
+                title.setText("Create Facility Maintenance Service Request");
+                break;
+            case Lab_System:
+                title.setText("Create Lab System Service Request");
+                break;
+            case Medicine_Delivery:
+                title.setText("Create Medicine Delivery Service Request");
+                break;
+            case Security:
+                title.setText("Create Security Service Request");
+                break;
+            case Sanitation:
+                title.setText("Create Sanitation Service Request");
+                break;
+            default:
+        }
 
         // Setup Insert
         setInsert(requestType);
