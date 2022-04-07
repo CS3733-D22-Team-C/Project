@@ -29,19 +29,19 @@
          <children>
             <HBox alignment="CENTER_RIGHT" prefHeight="100.0" prefWidth="316.0" GridPane.columnIndex="1">
                <children>
-                  <JFXButton fx:id="edit" disable="true" onAction="#onEditButton" prefHeight="31.0" prefWidth="72.0" styleClass="button-success" stylesheets="@../../css/base.css" text="Edit">
+                  <JFXButton fx:id="edit" disable="true" onAction="#onEditButton" prefHeight="31.0" prefWidth="72.0" styleClass="button-success" stylesheets="@../../css/insert_components/dropdown.css" text="Edit">
                      <HBox.margin>
                         <Insets right="20.0" />
                      </HBox.margin>
                   </JFXButton>
-                  <JFXButton fx:id="resolve" disable="true" onAction="#onResolveButton" prefHeight="31.0" prefWidth="72.0" styleClass="button-confirm" stylesheets="@../../css/base.css" text="Resolve" />
+                  <JFXButton fx:id="resolve" disable="true" onAction="#onResolveButton" prefHeight="31.0" prefWidth="72.0" styleClass="button-confirm" stylesheets="@../../css/insert_components/dropdown.css" text="Resolve" />
                </children>
             </HBox>
             <HBox>
                <children>
                   <VBox prefHeight="5.0" prefWidth="162.0">
                      <children>
-                        <JFXComboBox fx:id="serviceType" prefHeight="30.0" prefWidth="191.0" promptText="Create a Service Request:" styleClass="dropdown" stylesheets="@../../css/base.css" />
+                        <JFXComboBox fx:id="serviceType" prefHeight="30.0" prefWidth="191.0" promptText="Create a Service Request:" styleClass="dropdown" stylesheets="@../../css/insert_components/dropdown.css" />
                      </children>
                      <opaqueInsets>
                         <Insets />
@@ -49,7 +49,7 @@
                   </VBox>
                   <VBox prefHeight="38.0" prefWidth="53.0">
                      <children>
-                        <JFXButton fx:id="selectButton" layoutX="10.0" layoutY="10.0" onAction="#onSelectButton" prefHeight="32.5" prefWidth="55.0" styleClass="button-success" stylesheets="@../../css/base.css" text="→">
+                        <JFXButton fx:id="selectButton" layoutX="10.0" layoutY="10.0" onAction="#onSelectButton" prefHeight="32.5" prefWidth="55.0" styleClass="button-success" stylesheets="@../../css/insert_components/dropdown.css" text="→">
                            <font>
                               <Font size="24.0" />
                            </font>

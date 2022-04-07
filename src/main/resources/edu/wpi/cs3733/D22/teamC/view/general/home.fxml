@@ -26,9 +26,9 @@
           <RowConstraints maxHeight="60.0" minHeight="10.0" prefHeight="60.0" vgrow="SOMETIMES" />
         </rowConstraints>
          <children>
-            <JFXButton onAction="#onClickMaps" prefHeight="55.0" prefWidth="207.0" styleClass="home-page-button" stylesheets="@../../css/base.css" text="Location" />
-            <JFXButton onAction="#onClickServiceRequests" prefHeight="55.0" prefWidth="207.0" styleClass="home-page-button" stylesheets="@../../css/base.css" text="Service Requests" GridPane.columnIndex="1" />
-            <JFXButton onAction="#onClickExit" prefHeight="55.0" prefWidth="207.0" styleClass="home-page-button" stylesheets="@../../css/base.css" text="Exit" GridPane.columnIndex="2" />
+            <JFXButton onAction="#onClickMaps" prefHeight="55.0" prefWidth="207.0" styleClass="home-page-button" stylesheets="@../../css/insert_components/dropdown.css" text="Location" />
+            <JFXButton onAction="#onClickServiceRequests" prefHeight="55.0" prefWidth="207.0" styleClass="home-page-button" stylesheets="@../../css/insert_components/dropdown.css" text="Service Requests" GridPane.columnIndex="1" />
+            <JFXButton onAction="#onClickExit" prefHeight="55.0" prefWidth="207.0" styleClass="home-page-button" stylesheets="@../../css/insert_components/dropdown.css" text="Exit" GridPane.columnIndex="2" />
          </children>
       </GridPane>
    </children>

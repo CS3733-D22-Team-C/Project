@@ -120,7 +120,7 @@
     </children>
     <stylesheets>
         <URL value="@../../../css/request_page.css" />
-        <URL value="@../../../css/base.css" />
+        <URL value="@../../../css/insert_components/dropdown.css" />
     </stylesheets>
    <padding>
       <Insets bottom="8.0" left="8.0" right="8.0" top="8.0" />

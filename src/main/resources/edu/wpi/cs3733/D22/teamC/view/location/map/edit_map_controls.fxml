@@ -9,8 +9,8 @@
    <children>
       <JFXButton onAction="#onExitEditModeButtonPress" text="Exit">
          <stylesheets>
-            <URL value="@../../../css/base.css" />
-            <URL value="@../../../css/map.css" />
+            <URL value="@../../../css/insert_components/dropdown.css" />
+            <URL value="@../../../css/insert_components/map_node.css" />
          </stylesheets>
          <styleClass>
             <String fx:value="button-failure" />
@@ -19,8 +19,8 @@
       </JFXButton>
       <JFXButton onAction="#onSaveAndExitButtonPress" text="Save and Exit">
          <stylesheets>
-            <URL value="@../../../css/base.css" />
-            <URL value="@../../../css/map.css" />
+            <URL value="@../../../css/insert_components/dropdown.css" />
+            <URL value="@../../../css/insert_components/map_node.css" />
          </stylesheets>
          <styleClass>
             <String fx:value="button-success" />
@@ -29,8 +29,8 @@
       </JFXButton>
    </children>
    <stylesheets>
-      <URL value="@../../../css/base.css" />
-      <URL value="@../../../css/map.css" />
+      <URL value="@../../../css/insert_components/dropdown.css" />
+      <URL value="@../../../css/insert_components/map_node.css" />
    </stylesheets>
    <styleClass>
       <String fx:value="vbox" />
