@@ -29,4 +29,6 @@ public interface InsertServiceRequestCreateController<T extends ServiceRequest> 
      * @return Service Request Table Display of type T.
      */
     ServiceRequestTableDisplay<T> setupTable(JFXTreeTableView<?> table);
+
+    boolean requiredFieldsPresent();
 }

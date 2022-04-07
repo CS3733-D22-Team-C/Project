@@ -103,4 +103,12 @@ public class MedicalEquipmentSRInsertCreateController implements InsertServiceRe
             }
         }
     }
+    @Override
+    public boolean requiredFieldsPresent(){
+        if(equipmentID.getValue() == null)
+            return false;
+        if(equipmentType.getValue() == null)
+            return false;
+        return true;
+    }
 }

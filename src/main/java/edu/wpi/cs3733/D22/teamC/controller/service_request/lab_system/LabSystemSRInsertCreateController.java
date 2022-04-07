@@ -20,21 +20,21 @@ import java.util.ResourceBundle;
 
 public class LabSystemSRInsertCreateController implements InsertServiceRequestCreateController<LabSystemSR>, Initializable {
     @FXML
-    private JFXComboBox<String> LabType;
+    private JFXComboBox<String> labType;
     @FXML
     private TextField patientID;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         // Priority dropdown
-        for (LabSystemSR.LabType labType : LabSystemSR.LabType.values()) {
-            LabType.getItems().add(labType.toString());
+        for (LabSystemSR.LabType labs : LabSystemSR.LabType.values()) {
+            labType.getItems().add(labs.toString());
         }
     }
 
     @Override
     public void clearFields() {
-        LabType.valueProperty().setValue(null);
+        labType.valueProperty().setValue(null);
         patientID.setText(null);
     }
 
@@ -42,7 +42,7 @@ public class LabSystemSRInsertCreateController implements InsertServiceRequestCr
     public LabSystemSR createServiceRequest() {
         LabSystemSR labSR = new LabSystemSR();
 
-        labSR.setLabType(LabSystemSR.LabType.valueOf(LabType.getValue()));
+        labSR.setLabType(LabSystemSR.LabType.valueOf(labType.getValue()));
         labSR.setPatientID(patientID.getText());
 
         return labSR;
@@ -56,6 +56,15 @@ public class LabSystemSRInsertCreateController implements InsertServiceRequestCr
     @Override
     public ServiceRequestTableDisplay<LabSystemSR> setupTable(JFXTreeTableView<?> table) {
         return new LabSystemSRTableDisplay(table);
+    }
+
+    @Override
+    public boolean requiredFieldsPresent(){
+        if(labType.getValue() == null)
+            return false;
+        if(patientID.getText().equals(""))
+            return false;
+        return true;
     }
 
 

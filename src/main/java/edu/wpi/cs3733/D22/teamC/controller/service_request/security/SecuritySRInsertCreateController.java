@@ -48,4 +48,10 @@ public class SecuritySRInsertCreateController implements InsertServiceRequestCre
     public ServiceRequestTableDisplay<SecuritySR> setupTable(JFXTreeTableView<?> table) {
         return new ServiceRequestTableDisplay(table);
     }
+    @Override
+    public boolean requiredFieldsPresent(){
+        if(securityType.getValue() == null)
+            return false;
+        return true;
+    }
 }

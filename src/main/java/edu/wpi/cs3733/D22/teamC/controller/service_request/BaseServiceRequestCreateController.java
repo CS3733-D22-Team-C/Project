@@ -16,6 +16,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
+import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.VBox;
 
 import java.net.URL;
@@ -108,6 +109,18 @@ public class BaseServiceRequestCreateController<T extends ServiceRequest> {
         tableDisplay = insertController.setupTable(table);
     }
 
+
+    boolean requiredFieldsPresent(){
+        if (priority.getValue() == null && priority.getPromptText().equals(""))
+            return false;
+        if (assigneeID.getText().equals(""))
+            return false;
+        if (locationField.getText() .equals(""))
+            return false;
+        return insertController.requiredFieldsPresent();
+    }
+
+
     public void setInsert(ServiceRequest.RequestType requestType) {
         String viewFile = "view/service_request/" + requestType.toString() + "/create_insert.fxml";
 
@@ -136,6 +149,11 @@ public class BaseServiceRequestCreateController<T extends ServiceRequest> {
         serviceRequest.setLocation(locationField.getText());
         serviceRequest.setDescription(description.getText());
         serviceRequest.setPriority(ServiceRequest.Priority.valueOf(priority.getValue()));
+
+        if(requiredFieldsPresent())
+            serviceRequest.setStatus(ServiceRequest.Status.Processing);
+        else
+            serviceRequest.setStatus(ServiceRequest.Status.Blank);
 
         serviceRequest.setCreationTimestamp(new Timestamp(System.currentTimeMillis()));
 //        serviceRequest.setCreatorID();
@@ -168,6 +186,7 @@ public class BaseServiceRequestCreateController<T extends ServiceRequest> {
     @FXML
     void clickSubmit(ActionEvent event) {
         createServiceRequest();
+        clickGoBack(null);
     }
     //#endregion
 

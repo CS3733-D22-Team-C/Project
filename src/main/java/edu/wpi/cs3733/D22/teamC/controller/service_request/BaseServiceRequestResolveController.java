@@ -136,7 +136,7 @@ public class BaseServiceRequestResolveController<T extends ServiceRequest> {
         serviceRequestDAO.updateServiceRequest(serviceRequest);
         insertController.updateServiceRequest(serviceRequest);
 
-        App.instance.setView(App.VIEW_SERVICE_REQUESTS_PATH);
+        clickGoBack(null);
 
     }
 

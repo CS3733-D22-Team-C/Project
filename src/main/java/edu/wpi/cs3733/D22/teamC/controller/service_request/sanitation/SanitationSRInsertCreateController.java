@@ -49,4 +49,13 @@ public class SanitationSRInsertCreateController implements InsertServiceRequestC
     public ServiceRequestTableDisplay<SanitationSR> setupTable(JFXTreeTableView<?> table) {
         return new SanitationSRTableDisplay(table);
     }
+
+    @Override
+    public boolean requiredFieldsPresent(){
+        if(sanitationType.getValue() == null)
+            return false;
+        return true;
+    }
+
+
 }

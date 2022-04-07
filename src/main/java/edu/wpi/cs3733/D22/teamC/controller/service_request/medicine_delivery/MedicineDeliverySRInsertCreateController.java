@@ -53,4 +53,14 @@ public class MedicineDeliverySRInsertCreateController implements InsertServiceRe
     public ServiceRequestTableDisplay<MedicineDeliverySR> setupTable(JFXTreeTableView<?> table) {
         return new ServiceRequestTableDisplay(table);
     }
+    @Override
+    public boolean requiredFieldsPresent(){
+        if(medicine.getText().equals(""))
+            return false;
+        if(dosage.getText().equals(""))
+            return false;
+        if(patientID.getText().equals(""))
+            return false;
+        return true;
+    }
 }
