@@ -28,7 +28,7 @@
                   <Insets />
                </HBox.margin>
                <stylesheets>
-                  <URL value="@../../css/insert_components/dropdown.css" />
+                  <URL value="@../../css/component/functional_component/dropdown/dropdown.css" />
                   <URL value="@../../css/menu_bar.css" />
                </stylesheets></JFXButton>
             <JFXButton fx:id="menuBarMapButton" alignment="CENTER" onAction="#onMenuBarMapButtonPress" styleClass="button-inactive" text="MAP" textFill="WHITE">
@@ -36,7 +36,7 @@
                   <Font size="17.0" />
                </font>
                <stylesheets>
-                  <URL value="@../../css/insert_components/dropdown.css" />
+                  <URL value="@../../css/component/functional_component/dropdown/dropdown.css" />
                   <URL value="@../../css/menu_bar.css" />
                </stylesheets>
             </JFXButton>
@@ -48,7 +48,7 @@
                   <Insets />
                </HBox.margin>
                <stylesheets>
-                  <URL value="@../../css/insert_components/dropdown.css" />
+                  <URL value="@../../css/component/functional_component/dropdown/dropdown.css" />
                   <URL value="@../../css/menu_bar.css" />
                </stylesheets></JFXButton>
             <JFXButton fx:id="menuBarServiceRequestsButton" onAction="#onMenuBarServiceRequestsButtonPress" styleClass="button-inactive" text="SERVICE REQUESTS" textFill="WHITE" HBox.hgrow="SOMETIMES">
@@ -60,7 +60,7 @@
                </HBox.margin>
                <stylesheets>
                   <URL value="@../../css/menu_bar.css" />
-                  <URL value="@../../css/insert_components/dropdown.css" />
+                  <URL value="@../../css/component/functional_component/dropdown/dropdown.css" />
                </stylesheets></JFXButton>
          </children>
       </HBox>
@@ -74,7 +74,7 @@
                   <Insets />
                </HBox.margin>
                <stylesheets>
-                  <URL value="@../../css/insert_components/dropdown.css" />
+                  <URL value="@../../css/component/functional_component/dropdown/dropdown.css" />
                   <URL value="@../../css/menu_bar.css" />
                </stylesheets></JFXButton>
          </children>
@@ -82,6 +82,6 @@
    </children>
    <stylesheets>
       <URL value="@../../css/menu_bar.css" />
-      <URL value="@../../css/insert_components/dropdown.css" />
+      <URL value="@../../css/component/functional_component/dropdown/dropdown.css" />
    </stylesheets>
 </GridPane>

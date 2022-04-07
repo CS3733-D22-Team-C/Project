@@ -8,9 +8,9 @@
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.layout.VBox?>
 
-<VBox alignment="CENTER" spacing="10.0" styleClass="anchor-pane-margin" stylesheets="@../../../css/insert_components/dropdown.css" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.wpi.cs3733.D22.teamC.controller.location.map.ViewMapControlsController">
+<VBox alignment="CENTER" spacing="10.0" styleClass="anchor-pane-margin" stylesheets="@../../../css/component/functional_component/dropdown/dropdown.css" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.wpi.cs3733.D22.teamC.controller.location.map.ViewMapControlsController">
    <children>
-      <JFXButton onAction="#onEnterEditModeButtonPress" styleClass="button-success" stylesheets="@../../../css/insert_components/dropdown.css" text="Enter Edit Mode" VBox.vgrow="ALWAYS">
+      <JFXButton onAction="#onEnterEditModeButtonPress" styleClass="button-success" stylesheets="@../../../css/component/functional_component/dropdown/dropdown.css" text="Enter Edit Mode" VBox.vgrow="ALWAYS">
          <VBox.margin>
             <Insets />
          </VBox.margin>
@@ -23,8 +23,8 @@
       </VBox>
       <JFXButton onAction="#onImportCSVButtonPress" text="Import CSV">
          <stylesheets>
-            <URL value="@../../../css/insert_components/dropdown.css" />
-            <URL value="@../../../css/insert_components/map_node.css" />
+            <URL value="@../../../css/component/functional_component/dropdown/dropdown.css" />
+            <URL value="@../../../css/component/functional_component/map_node/map_node.css" />
          </stylesheets>
          <styleClass>
             <String fx:value="button-edit" />
@@ -36,8 +36,8 @@
       </JFXButton>
       <JFXButton onAction="#onExportCSVButtonPress" text="Export CSV">
          <stylesheets>
-            <URL value="@../../../css/insert_components/dropdown.css" />
-            <URL value="@../../../css/insert_components/map_node.css" />
+            <URL value="@../../../css/component/functional_component/dropdown/dropdown.css" />
+            <URL value="@../../../css/component/functional_component/map_node/map_node.css" />
          </stylesheets>
          <styleClass>
             <String fx:value="button-edit" />

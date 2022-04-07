@@ -1,0 +1,15 @@
+.login-base {
+    position: absolute;
+    width: 379px;
+    height: 672px;
+    left: 532px;
+    top: 0px;
+
+    background: #FFFFFF;
+}
+
+.login-image {
+    position: relative;
+    width: 1440px;
+    height: 1024px;
+}

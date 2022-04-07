@@ -4,7 +4,7 @@
 <?import javafx.scene.control.ScrollPane?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<ScrollPane fx:id="scroll" prefViewportHeight="200.0" prefViewportWidth="200.0" style="-fx-background: #2e2e2e;" stylesheets="@../../../css/insert_components/map_node.css" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1">
+<ScrollPane fx:id="scroll" prefViewportHeight="200.0" prefViewportWidth="200.0" style="-fx-background: #2e2e2e;" stylesheets="@../../../css/component/functional_component/map_node/map_node.css" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1">
    <content>
       <AnchorPane fx:id="map" prefHeight="200.0" prefWidth="200.0" styleClass="map">
          <cursor>
