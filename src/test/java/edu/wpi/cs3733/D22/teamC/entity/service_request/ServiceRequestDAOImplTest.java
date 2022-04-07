@@ -61,46 +61,29 @@ class ServiceRequestDAOImplTest implements IDAOImplTest {
         assertEquals(0, serviceRequestDAO.getAllServiceRequests().size());
         assertEquals(null, serviceRequestDAO.getServiceRequest(1234));
 
-        // Insert Location into DB
-        String creatorID = "C1";
-        String assigneeID = "A1";
-        String location = "loc";
-        Timestamp creationTimestamp = new Timestamp(System.currentTimeMillis());
-        ServiceRequest.Status status = ServiceRequest.Status.Blank;
-        ServiceRequest.Priority priority = ServiceRequest.Priority.Low;
-        ServiceRequest.RequestType requestType = ServiceRequest.RequestType.valueOf("Medical_Equipment");
-        String description = "Move the bed before noon today";
+        ServiceRequest sR = serviceRequestFactory.create(new ServiceRequest());
+        sR.setRequestType(ServiceRequest.RequestType.Medical_Equipment);
 
-        ServiceRequest insertSR = new ServiceRequest();
-        insertSR.setCreatorID(creatorID);
-        insertSR.setAssigneeID(assigneeID);
-        insertSR.setLocation(location);
-        insertSR.setCreationTimestamp(creationTimestamp);
-        insertSR.setStatus(status);
-        insertSR.setPriority(priority);
-        insertSR.setRequestType(requestType);
-        insertSR.setDescription(description);
-
-        int retrievedID = serviceRequestDAO.insertServiceRequest(insertSR);
-        insertSR.setRequestID(retrievedID);
+        int retrievedID = serviceRequestDAO.insertServiceRequest(sR);
+        sR.setRequestID(retrievedID);
         assertNotEquals(-1, retrievedID);
         assertEquals(1, serviceRequestDAO.getAllServiceRequests().size());
 
         // Cannot Insert Service Request Again
-        assertEquals(-1, serviceRequestDAO.insertServiceRequest(insertSR));
+        assertEquals(-1, serviceRequestDAO.insertServiceRequest(sR));
 
         // Check that DB values are expected
-        ServiceRequest querySR = serviceRequestDAO.getServiceRequest(insertSR.getRequestID());
+        ServiceRequest querySR = serviceRequestDAO.getServiceRequest(sR.getRequestID());
         assertNotNull(querySR);
         assertEquals(retrievedID, querySR.getRequestID());
-        assertEquals(creatorID, querySR.getCreatorID());
-        assertEquals(assigneeID, querySR.getAssigneeID());
-        assertEquals(location, querySR.getLocation());
-        assertEquals(creationTimestamp, querySR.getCreationTimestamp());
-        assertEquals(status, querySR.getStatus());
-        assertEquals(priority, querySR.getPriority());
-        assertEquals(requestType, querySR.getRequestType());
-        assertEquals(description, querySR.getDescription());
+        assertEquals(sR.getCreatorID(), querySR.getCreatorID());
+        assertEquals(sR.getAssigneeID(), querySR.getAssigneeID());
+        assertEquals(sR.getLocation(), querySR.getLocation());
+        assertEquals(sR.getCreationTimestamp(), querySR.getCreationTimestamp());
+        assertEquals(sR.getStatus(), querySR.getStatus());
+        assertEquals(sR.getPriority(), querySR.getPriority());
+        assertEquals(sR.getRequestType(), querySR.getRequestType());
+        assertEquals(sR.getDescription(), querySR.getDescription());
     }
 
     /**
@@ -113,35 +96,19 @@ class ServiceRequestDAOImplTest implements IDAOImplTest {
         assertEquals(null, serviceRequestDAO.getServiceRequest(1234));
 
         // Insert ServiceRequest into DB
-        String creatorID = "C1";
-        String assigneeID = "A1";
-        String location = "loc";
-        Timestamp creationTimestamp = new Timestamp(System.currentTimeMillis());
-        ServiceRequest.Status status = ServiceRequest.Status.Processing;
-        ServiceRequest.Priority priority = ServiceRequest.Priority.Low;
-        ServiceRequest.RequestType requestType = ServiceRequest.RequestType.valueOf("Medical_Equipment");
-        String description = "Move the bed before noon today";
+        ServiceRequest sR = serviceRequestFactory.create(new ServiceRequest());
+        sR.setRequestType(ServiceRequest.RequestType.Medical_Equipment);
 
-        ServiceRequest deleteSR = new ServiceRequest();
-        deleteSR.setCreatorID(creatorID);
-        deleteSR.setAssigneeID(assigneeID);
-        deleteSR.setLocation(location);
-        deleteSR.setCreationTimestamp(creationTimestamp);
-        deleteSR.setStatus(status);
-        deleteSR.setPriority(priority);
-        deleteSR.setRequestType(requestType);
-        deleteSR.setDescription(description);
-
-        int retrievedID = serviceRequestDAO.insertServiceRequest(deleteSR);
-        deleteSR.setRequestID(retrievedID);
+        int retrievedID = serviceRequestDAO.insertServiceRequest(sR);
+        sR.setRequestID(retrievedID);
         assertNotEquals(-1, retrievedID);
         assertEquals(1, serviceRequestDAO.getAllServiceRequests().size());
 
         // Delete SR from DB
-        assertTrue(serviceRequestDAO.deleteServiceRequest(deleteSR));
+        assertTrue(serviceRequestDAO.deleteServiceRequest(sR));
 
         // Cannot Delete SR Again
-        assertFalse(serviceRequestDAO.deleteServiceRequest(deleteSR));
+        assertFalse(serviceRequestDAO.deleteServiceRequest(sR));
 
         // Check DB is empty
         assertEquals(0, serviceRequestDAO.getAllServiceRequests().size());
@@ -158,31 +125,15 @@ class ServiceRequestDAOImplTest implements IDAOImplTest {
         assertEquals(null, serviceRequestDAO.getServiceRequest(1234));
 
         // Insert ServiceRequest into DB
-        String creatorID = "C1";
-        String assigneeID = "A1";
-        String location = "loc";
-        Timestamp creationTimestamp = new Timestamp(System.currentTimeMillis());
-        ServiceRequest.Status status = ServiceRequest.Status.Blank;
-        ServiceRequest.Priority priority = ServiceRequest.Priority.High;
-        ServiceRequest.RequestType requestType = ServiceRequest.RequestType.Medical_Equipment;
-        String description = "Move the bed before noon today";
+        ServiceRequest sR = serviceRequestFactory.create(new ServiceRequest());
+        sR.setRequestType(ServiceRequest.RequestType.Medical_Equipment);
 
-        ServiceRequest updateSR = new ServiceRequest();
-        updateSR.setCreatorID(creatorID);
-        updateSR.setAssigneeID(assigneeID);
-        updateSR.setLocation(location);
-        updateSR.setCreationTimestamp(creationTimestamp);
-        updateSR.setStatus(status);
-        updateSR.setPriority(priority);
-        updateSR.setRequestType(requestType);
-        updateSR.setDescription(description);
-
-        int retrievedID = serviceRequestDAO.insertServiceRequest(updateSR);
-        updateSR.setRequestID(retrievedID);
+        int retrievedID = serviceRequestDAO.insertServiceRequest(sR);
+        sR.setRequestID(retrievedID);
         assertNotEquals(-1, retrievedID);
         assertEquals(1, serviceRequestDAO.getAllServiceRequests().size());
 
-        // Update Location in DB
+        // Update Service Request in DB
         // didn't update the requestType
         String newCreatorID = "C2";
         String newAssigneeID = "A2";
@@ -194,21 +145,21 @@ class ServiceRequestDAOImplTest implements IDAOImplTest {
         String modifierID = "WillSmith";
         Timestamp modifiedTimestamp = new Timestamp(23098213);
 
-        updateSR.setCreatorID(newCreatorID);
-        updateSR.setAssigneeID(newAssigneeID);
-        updateSR.setLocation(newlocation);
-        updateSR.setCreationTimestamp(newCreationTimestamp);
-        updateSR.setStatus(newStatus);
-        updateSR.setPriority(newPriority);
-        updateSR.setDescription(newDescription);
-        updateSR.setModifierID(modifierID);
-        updateSR.setModifiedTimestamp(modifiedTimestamp);
+        sR.setCreatorID(newCreatorID);
+        sR.setAssigneeID(newAssigneeID);
+        sR.setLocation(newlocation);
+        sR.setCreationTimestamp(newCreationTimestamp);
+        sR.setStatus(newStatus);
+        sR.setPriority(newPriority);
+        sR.setDescription(newDescription);
+        sR.setModifierID(modifierID);
+        sR.setModifiedTimestamp(modifiedTimestamp);
         
-        assertTrue(serviceRequestDAO.updateServiceRequest(updateSR));
+        assertTrue(serviceRequestDAO.updateServiceRequest(sR));
         assertEquals(1, serviceRequestDAO.getAllServiceRequests().size());
 
         // Check that DB values are expected
-        ServiceRequest querySR = serviceRequestDAO.getServiceRequest(updateSR.getRequestID());
+        ServiceRequest querySR = serviceRequestDAO.getServiceRequest(sR.getRequestID());
         assertNotNull(querySR);
         assertEquals(retrievedID, querySR.getRequestID());
         assertEquals(newCreatorID, querySR.getCreatorID());
