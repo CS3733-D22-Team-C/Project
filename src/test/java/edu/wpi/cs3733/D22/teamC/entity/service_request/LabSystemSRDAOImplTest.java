@@ -16,7 +16,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 public class LabSystemSRDAOImplTest implements IDAOImplTest {
     private DBManager testDBManager;
     private LabSystemSRDAOImpl labSystemDAO;
-    
+    private LabSystemSRFactory labSystemSRFactory;
     @BeforeEach
     void setUp() {
         // Setup testing database and initialize SR table
@@ -26,6 +26,9 @@ public class LabSystemSRDAOImplTest implements IDAOImplTest {
         
         // Setup testing LabSystemSRDAOImpl
         labSystemDAO = new LabSystemSRDAOImpl();
+        labSystemSRFactory = new LabSystemSRFactory();
+
+
     }
     
     @AfterEach
@@ -63,29 +66,7 @@ public class LabSystemSRDAOImplTest implements IDAOImplTest {
         assertEquals(null, labSystemDAO.getServiceRequest(1234));
         
         // Insert SR into DB
-        String creatorID = "bshin100";
-        String assigneeID = "nick1234";
-        String locationID = "FOISIE";
-        Timestamp creationTimeStamp = new Timestamp(694201234);
-        ServiceRequest.Status status = ServiceRequest.Status.Blank;
-        ServiceRequest.Priority priority = ServiceRequest.Priority.High;
-        ServiceRequest.RequestType requestType = ServiceRequest.RequestType.Lab_System;
-        String description = "soft eng is spain without the s";
-        LabSystemSR.LabType labType = LabSystemSR.LabType.Cat_Scan;
-        String patientID = "JohnCena";
-        
-        LabSystemSR insertSR = new LabSystemSR();
-        insertSR.setCreatorID(creatorID);
-        insertSR.setAssigneeID(assigneeID);
-        insertSR.setLocation(locationID);
-        insertSR.setCreationTimestamp(creationTimeStamp);
-        insertSR.setStatus(status);
-        insertSR.setPriority(priority);
-        insertSR.setRequestType(requestType);
-        insertSR.setDescription(description);
-        insertSR.setLabType(labType);
-        insertSR.setPatientID(patientID);
-        
+        LabSystemSR insertSR = labSystemSRFactory.create();
         int retrievedID = labSystemDAO.insertServiceRequest(insertSR);
         insertSR.setRequestID(retrievedID);
         assertNotEquals(-1, retrievedID);
@@ -97,17 +78,17 @@ public class LabSystemSRDAOImplTest implements IDAOImplTest {
         // Check that DB values are expected
         LabSystemSR querySR = labSystemDAO.getServiceRequest(insertSR.getRequestID());
         assertNotNull(querySR);
-        assertEquals(retrievedID, querySR.getRequestID());
-        assertEquals(creatorID, querySR.getCreatorID());
-        assertEquals(assigneeID, querySR.getAssigneeID());
-        assertEquals(locationID, querySR.getLocation());
-        assertEquals(creationTimeStamp, querySR.getCreationTimestamp());
-        assertEquals(status, querySR.getStatus());
-        assertEquals(priority, querySR.getPriority());
-        assertEquals(requestType, querySR.getRequestType());
-        assertEquals(description, querySR.getDescription());
-        assertEquals(labType, querySR.getLabType());
-        assertEquals(patientID, querySR.getPatientID());
+        assertEquals(insertSR.getCreatorID(), querySR.getCreatorID());
+        assertEquals(insertSR.getCreatorID(), querySR.getCreatorID());
+        assertEquals(insertSR.getAssigneeID(), querySR.getAssigneeID());
+        assertEquals(insertSR.getLocation(), querySR.getLocation());
+        assertEquals(insertSR.getCreationTimestamp(), querySR.getCreationTimestamp());
+        assertEquals(insertSR.getStatus(), querySR.getStatus());
+        assertEquals(insertSR.getPriority(), querySR.getPriority());
+        assertEquals(insertSR.getRequestType(), querySR.getRequestType());
+        assertEquals(insertSR.getDescription(), querySR.getDescription());
+        assertEquals(insertSR.getLabType(), querySR.getLabType());
+        assertEquals(insertSR.getPatientID(), querySR.getPatientID());
     }
     
     /**
@@ -120,28 +101,7 @@ public class LabSystemSRDAOImplTest implements IDAOImplTest {
         assertEquals(null, labSystemDAO.getServiceRequest(1234));
         
         // Insert SR into DB
-        String creatorID = "bshin100";
-        String assigneeID = "nick1234";
-        String locationID = "FOISIE";
-        Timestamp creationTimeStamp = new Timestamp(694201234);
-        ServiceRequest.Status status = ServiceRequest.Status.Blank;
-        ServiceRequest.Priority priority = ServiceRequest.Priority.High;
-        ServiceRequest.RequestType requestType = ServiceRequest.RequestType.Medical_Equipment;
-        String description = "soft eng is spain without the s";
-        LabSystemSR.LabType labType = LabSystemSR.LabType.Cat_Scan;
-        String patientID = "JohnCena";
-        
-        LabSystemSR deleteSR = new LabSystemSR();
-        deleteSR.setCreatorID(creatorID);
-        deleteSR.setAssigneeID(assigneeID);
-        deleteSR.setLocation(locationID);
-        deleteSR.setCreationTimestamp(creationTimeStamp);
-        deleteSR.setStatus(status);
-        deleteSR.setPriority(priority);
-        deleteSR.setRequestType(requestType);
-        deleteSR.setDescription(description);
-        deleteSR.setLabType(labType);
-        deleteSR.setPatientID(patientID);
+       LabSystemSR deleteSR = labSystemSRFactory.create();
         
         int retrievedID = labSystemDAO.insertServiceRequest(deleteSR);
         deleteSR.setRequestID(retrievedID);
@@ -169,28 +129,7 @@ public class LabSystemSRDAOImplTest implements IDAOImplTest {
         assertEquals(null, labSystemDAO.getServiceRequest(1234));
         
         // Insert SR into DB
-        String creatorID = "bshin100";
-        String assigneeID = "nick1234";
-        String locationID = "FOISIE";
-        Timestamp creationTimeStamp = new Timestamp(694201234);
-        ServiceRequest.Status status = ServiceRequest.Status.Processing;
-        ServiceRequest.Priority priority = ServiceRequest.Priority.High;
-        ServiceRequest.RequestType requestType = ServiceRequest.RequestType.Medical_Equipment;
-        String description = "soft eng is spain without the s";
-        LabSystemSR.LabType labType = LabSystemSR.LabType.Cat_Scan;
-        String patientID = "JohnCena";
-        
-        LabSystemSR updateSR = new LabSystemSR();
-        updateSR.setCreatorID(creatorID);
-        updateSR.setAssigneeID(assigneeID);
-        updateSR.setLocation(locationID);
-        updateSR.setCreationTimestamp(creationTimeStamp);
-        updateSR.setStatus(status);
-        updateSR.setPriority(priority);
-        updateSR.setRequestType(requestType);
-        updateSR.setDescription(description);
-        updateSR.setLabType(labType);
-        updateSR.setPatientID(patientID);
+        LabSystemSR updateSR = labSystemSRFactory.create();
         
         int retrievedID = labSystemDAO.insertServiceRequest(updateSR);
         updateSR.setRequestID(retrievedID);
@@ -198,30 +137,9 @@ public class LabSystemSRDAOImplTest implements IDAOImplTest {
         assertEquals(1, labSystemDAO.getAllServiceRequests().size());
         
         // Update Location in DB
-        creatorID = "bshin100";
-        assigneeID = "nick1234";
-        locationID = "SMARTWORLD";
-        status = ServiceRequest.Status.Done;
-        priority = ServiceRequest.Priority.High;
-        requestType = ServiceRequest.RequestType.Medical_Equipment;
-        description = "help plz";
-        labType = LabSystemSR.LabType.Cat_Scan;
-        patientID = "heDeadUh";
-        String modifierID = "WillSmith";
-        Timestamp modifiedTimestamp = new Timestamp(23098213);
-        
-        updateSR.setCreatorID(creatorID);
-        updateSR.setAssigneeID(assigneeID);
-        updateSR.setLocation(locationID);
-        updateSR.setStatus(status);
-        updateSR.setPriority(priority);
-        updateSR.setRequestType(requestType);
-        updateSR.setDescription(description);
-        updateSR.setModifierID(modifierID);
-        updateSR.setModifiedTimestamp(modifiedTimestamp);
+        updateSR = labSystemSRFactory.create();
+        updateSR.setRequestID(retrievedID);
 
-        updateSR.setLabType(labType);
-        updateSR.setPatientID(patientID);
         assertTrue(labSystemDAO.updateServiceRequest(updateSR));
         assertEquals(1, labSystemDAO.getAllServiceRequests().size());
         
@@ -229,18 +147,18 @@ public class LabSystemSRDAOImplTest implements IDAOImplTest {
         LabSystemSR querySR = labSystemDAO.getServiceRequest(updateSR.getRequestID());
         assertNotNull(querySR);
         assertEquals(retrievedID, querySR.getRequestID());
-        assertEquals(creatorID, querySR.getCreatorID());
-        assertEquals(assigneeID, querySR.getAssigneeID());
-        assertEquals(locationID, querySR.getLocation());
-        assertEquals(creationTimeStamp, querySR.getCreationTimestamp());
-        assertEquals(status, querySR.getStatus());
-        assertEquals(priority, querySR.getPriority());
-        assertEquals(requestType, querySR.getRequestType());
-        assertEquals(description, querySR.getDescription());
-        assertEquals(labType, querySR.getLabType());
-        assertEquals(patientID, querySR.getPatientID());
-        assertEquals(modifierID, querySR.getModifierID());
-        assertEquals(modifiedTimestamp, querySR.getModifiedTimestamp());
+        assertEquals(updateSR.getCreatorID(), querySR.getCreatorID());
+        assertEquals(updateSR.getAssigneeID(), querySR.getAssigneeID());
+        assertEquals(updateSR.getLocation(), querySR.getLocation());
+        //assertEquals(initialTS, querySR.getCreationTimestamp());
+        assertEquals(updateSR.getStatus(), querySR.getStatus());
+        assertEquals(updateSR.getPriority(), querySR.getPriority());
+        assertEquals(updateSR.getRequestType(), querySR.getRequestType());
+        assertEquals(updateSR.getDescription(), querySR.getDescription());
+        assertEquals(updateSR.getLabType(), querySR.getLabType());
+        assertEquals(updateSR.getPatientID(), querySR.getPatientID());
+        assertEquals(updateSR.getModifierID(), querySR.getModifierID());
+        assertEquals(updateSR.getModifiedTimestamp(), querySR.getModifiedTimestamp());
         
         // Cannot Update Nonexistent Location
         LabSystemSR newSR = new LabSystemSR();

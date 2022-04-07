@@ -15,7 +15,7 @@ import static org.junit.jupiter.api.Assertions.*;
 class MedEqSRDAOImplTest implements IDAOImplTest {
     private DBManager testDBManager;
     private MedicalEquipmentSRDAOImpl medicalEqDAO;
-    
+    private MedicalEquipmentSRFactory medicalEquipmentSRFactory;
     @BeforeEach
     void setUp() {
         // Setup testing database and initialize LOCATION table
@@ -25,6 +25,7 @@ class MedEqSRDAOImplTest implements IDAOImplTest {
         
         // Setup testing medicalEqDAOImpl
         medicalEqDAO = new MedicalEquipmentSRDAOImpl();
+        medicalEquipmentSRFactory = new MedicalEquipmentSRFactory();
     }
     
     @AfterEach
@@ -62,28 +63,7 @@ class MedEqSRDAOImplTest implements IDAOImplTest {
         assertEquals(null, medicalEqDAO.getServiceRequest(1234));
         
         // Insert SR into DB
-        String creatorID = "bshin100";
-        String assigneeID = "nick1234";
-        String locationID = "FOISIE";
-        Timestamp creationTimeStamp = new Timestamp(694201234);
-        ServiceRequest.Status status = ServiceRequest.Status.Blank;
-        ServiceRequest.Priority priority = ServiceRequest.Priority.High;
-        ServiceRequest.RequestType requestType = ServiceRequest.RequestType.Medical_Equipment;
-        String description = "soft eng is spain without the s";
-        String equipID = "BED003";
-        MedicalEquipmentSR.EquipmentType equipType = MedicalEquipmentSR.EquipmentType.Bed;
-        
-        MedicalEquipmentSR insertSR = new MedicalEquipmentSR();
-        insertSR.setCreatorID(creatorID);
-        insertSR.setAssigneeID(assigneeID);
-        insertSR.setLocation(locationID);
-        insertSR.setCreationTimestamp(creationTimeStamp);
-        insertSR.setStatus(status);
-        insertSR.setPriority(priority);
-        insertSR.setRequestType(requestType);
-        insertSR.setDescription(description);
-        insertSR.setEquipmentID(equipID);
-        insertSR.setEquipmentType(equipType);
+        MedicalEquipmentSR insertSR = medicalEquipmentSRFactory.create();
 
         int retrievedID = medicalEqDAO.insertServiceRequest(insertSR);
         insertSR.setRequestID(retrievedID);
@@ -97,16 +77,16 @@ class MedEqSRDAOImplTest implements IDAOImplTest {
         MedicalEquipmentSR querySR = medicalEqDAO.getServiceRequest(insertSR.getRequestID());
         assertNotNull(querySR);
         assertEquals(retrievedID, querySR.getRequestID());
-        assertEquals(creatorID, querySR.getCreatorID());
-        assertEquals(assigneeID, querySR.getAssigneeID());
-        assertEquals(locationID, querySR.getLocation());
-        assertEquals(creationTimeStamp, querySR.getCreationTimestamp());
-        assertEquals(status, querySR.getStatus());
-        assertEquals(priority, querySR.getPriority());
-        assertEquals(requestType, querySR.getRequestType());
-        assertEquals(description, querySR.getDescription());
-        assertEquals(equipID, querySR.getEquipmentID());
-        assertEquals(equipType, querySR.getEquipmentType());
+        assertEquals(insertSR.getCreatorID(), querySR.getCreatorID());
+        assertEquals(insertSR.getAssigneeID(), querySR.getAssigneeID());
+        assertEquals(insertSR.getLocation(), querySR.getLocation());
+        assertEquals(insertSR.getCreationTimestamp(), querySR.getCreationTimestamp());
+        assertEquals(insertSR.getStatus(), querySR.getStatus());
+        assertEquals(insertSR.getPriority(), querySR.getPriority());
+        assertEquals(insertSR.getRequestType(), querySR.getRequestType());
+        assertEquals(insertSR.getDescription(), querySR.getDescription());
+        assertEquals(insertSR.getEquipmentID(), querySR.getEquipmentID());
+        assertEquals(insertSR.getEquipmentType(), querySR.getEquipmentType());
     }
     
     /**
@@ -119,28 +99,7 @@ class MedEqSRDAOImplTest implements IDAOImplTest {
         assertEquals(null, medicalEqDAO.getServiceRequest(1234));
     
         // Insert SR into DB
-        String creatorID = "bshin100";
-        String assigneeID = "nick1234";
-        String locationID = "FOISIE";
-        Timestamp creationTimeStamp = new Timestamp(694201234);
-        ServiceRequest.Status status = ServiceRequest.Status.Blank;
-        ServiceRequest.Priority priority = ServiceRequest.Priority.High;
-        ServiceRequest.RequestType requestType = ServiceRequest.RequestType.Medical_Equipment;
-        String description = "soft eng is spain without the s";
-        String equipID = "BED003";
-        MedicalEquipmentSR.EquipmentType equipType = MedicalEquipmentSR.EquipmentType.Bed;
-    
-        MedicalEquipmentSR deleteSR = new MedicalEquipmentSR();
-        deleteSR.setCreatorID(creatorID);
-        deleteSR.setAssigneeID(assigneeID);
-        deleteSR.setLocation(locationID);
-        deleteSR.setCreationTimestamp(creationTimeStamp);
-        deleteSR.setStatus(status);
-        deleteSR.setPriority(priority);
-        deleteSR.setRequestType(requestType);
-        deleteSR.setDescription(description);
-        deleteSR.setEquipmentID(equipID);
-        deleteSR.setEquipmentType(equipType);
+        MedicalEquipmentSR deleteSR = medicalEquipmentSRFactory.create();
 
         int retrievedID = medicalEqDAO.insertServiceRequest(deleteSR);
         deleteSR.setRequestID(retrievedID);
@@ -168,28 +127,7 @@ class MedEqSRDAOImplTest implements IDAOImplTest {
         assertEquals(null, medicalEqDAO.getServiceRequest(1234));
     
         // Insert SR into DB
-        String creatorID = "bshin100";
-        String assigneeID = "nick1234";
-        String locationID = "FOISIE";
-        Timestamp creationTimeStamp = new Timestamp(694201234);
-        ServiceRequest.Status status = ServiceRequest.Status.Processing;
-        ServiceRequest.Priority priority = ServiceRequest.Priority.High;
-        ServiceRequest.RequestType requestType = ServiceRequest.RequestType.Medical_Equipment;
-        String description = "soft eng is spain without the s";
-        String equipID = "BED003";
-        MedicalEquipmentSR.EquipmentType equipType = MedicalEquipmentSR.EquipmentType.Bed;
-    
-        MedicalEquipmentSR updateSR = new MedicalEquipmentSR();
-        updateSR.setCreatorID(creatorID);
-        updateSR.setAssigneeID(assigneeID);
-        updateSR.setLocation(locationID);
-        updateSR.setCreationTimestamp(creationTimeStamp);
-        updateSR.setStatus(status);
-        updateSR.setPriority(priority);
-        updateSR.setRequestType(requestType);
-        updateSR.setDescription(description);
-        updateSR.setEquipmentID(equipID);
-        updateSR.setEquipmentType(equipType);
+        MedicalEquipmentSR updateSR = medicalEquipmentSRFactory.create();
 
         int retrievedID = medicalEqDAO.insertServiceRequest(updateSR);
         updateSR.setRequestID(retrievedID);
@@ -197,47 +135,26 @@ class MedEqSRDAOImplTest implements IDAOImplTest {
         assertEquals(1, medicalEqDAO.getAllServiceRequests().size());
         
         // Update Location in DB
-        creatorID = "bshin100";
-        assigneeID = "nick1234";
-        locationID = "SMARTWORLD";
-        status = ServiceRequest.Status.Done;
-        priority = ServiceRequest.Priority.High;
-        requestType = ServiceRequest.RequestType.Medical_Equipment;
-        description = "help plz";
-        equipID = "BED003";
-        equipType = MedicalEquipmentSR.EquipmentType.Bed;
-        String modifierID = "WillSmith";
-        Timestamp modifiedTimestamp = new Timestamp(23098213);
-
-        updateSR.setCreatorID(creatorID);
-        updateSR.setAssigneeID(assigneeID);
-        updateSR.setLocation(locationID);
-        updateSR.setStatus(status);
-        updateSR.setPriority(priority);
-        updateSR.setRequestType(requestType);
-        updateSR.setDescription(description);
-        updateSR.setModifierID(modifierID);
-        updateSR.setModifiedTimestamp(modifiedTimestamp);
-        updateSR.setEquipmentID(equipID);
-        updateSR.setEquipmentType(equipType);
+        updateSR = medicalEquipmentSRFactory.create();
+        updateSR.setRequestID(retrievedID);
         assertTrue(medicalEqDAO.updateServiceRequest(updateSR));
         assertEquals(1, medicalEqDAO.getAllServiceRequests().size());
         
         // Check that DB values are expected
         MedicalEquipmentSR querySR = medicalEqDAO.getServiceRequest(updateSR.getRequestID());
         assertNotNull(querySR);
-        assertEquals(retrievedID, querySR.getRequestID());
-        assertEquals(creatorID, querySR.getCreatorID());
-        assertEquals(assigneeID, querySR.getAssigneeID());
-        assertEquals(locationID, querySR.getLocation());
-        assertEquals(status, querySR.getStatus());
-        assertEquals(priority, querySR.getPriority());
-        assertEquals(requestType, querySR.getRequestType());
-        assertEquals(description, querySR.getDescription());
-        assertEquals(equipID, querySR.getEquipmentID());
-        assertEquals(equipType, querySR.getEquipmentType());
-        assertEquals(modifierID, querySR.getModifierID());
-        assertEquals(modifiedTimestamp, querySR.getModifiedTimestamp());
+        assertEquals(updateSR.getCreatorID(), querySR.getCreatorID());
+        assertEquals(updateSR.getAssigneeID(), querySR.getAssigneeID());
+        assertEquals(updateSR.getLocation(), querySR.getLocation());
+        //assertEquals(initialTS, querySR.getCreationTimestamp());
+        assertEquals(updateSR.getStatus(), querySR.getStatus());
+        assertEquals(updateSR.getPriority(), querySR.getPriority());
+        assertEquals(updateSR.getRequestType(), querySR.getRequestType());
+        assertEquals(updateSR.getDescription(), querySR.getDescription());
+        assertEquals(updateSR.getEquipmentID(), querySR.getEquipmentID());
+        assertEquals(updateSR.getEquipmentType(), querySR.getEquipmentType());
+        assertEquals(updateSR.getModifierID(), querySR.getModifierID());
+        assertEquals(updateSR.getModifiedTimestamp(), querySR.getModifiedTimestamp());
 
         // Cannot Update Nonexistent Location
         MedicalEquipmentSR newSR = new MedicalEquipmentSR();

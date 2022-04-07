@@ -17,7 +17,7 @@ import static org.junit.jupiter.api.Assertions.*;
 public class MedicineDeliverySRDAOImplTest implements IDAOImplTest {
     private DBManager testDBManager;
     private MedicineDeliverySRDAO medicineDeliveryDAO;
-    
+    private MedicineDeliverySRFactory medicineDeliverySRFactory;
     @BeforeEach
     void setUp() {
         // Setup testing database and initialize SR table
@@ -27,6 +27,8 @@ public class MedicineDeliverySRDAOImplTest implements IDAOImplTest {
         
         // Setup testing MedicineDeliveryDAOImpl
         medicineDeliveryDAO = new MedicineDeliverySRDAOImpl();
+
+        medicineDeliverySRFactory = new MedicineDeliverySRFactory();
     }
     
     @AfterEach
@@ -64,30 +66,7 @@ public class MedicineDeliverySRDAOImplTest implements IDAOImplTest {
         assertEquals(null, medicineDeliveryDAO.getServiceRequest(1234));
         
         // Insert SR into DB
-        String creatorID = "bshin100";
-        String assigneeID = "nick1234";
-        String locationID = "FOISIE";
-        Timestamp creationTimeStamp = new Timestamp(694201234);
-        ServiceRequest.Status status = ServiceRequest.Status.Blank;
-        ServiceRequest.Priority priority = ServiceRequest.Priority.High;
-        ServiceRequest.RequestType requestType = ServiceRequest.RequestType.Lab_System;
-        String description = "soft eng is spain without the s";
-        String medicine = "methamphetamine HCL";
-        String dosage = "18mg oral";
-        String patientID = "JohnCena";
-        
-        MedicineDeliverySR insertSR = new MedicineDeliverySR();
-        insertSR.setCreatorID(creatorID);
-        insertSR.setAssigneeID(assigneeID);
-        insertSR.setLocation(locationID);
-        insertSR.setCreationTimestamp(creationTimeStamp);
-        insertSR.setStatus(status);
-        insertSR.setPriority(priority);
-        insertSR.setRequestType(requestType);
-        insertSR.setDescription(description);
-        insertSR.setMedicine(medicine);
-        insertSR.setDosage(dosage);
-        insertSR.setPatientID(patientID);
+        MedicineDeliverySR insertSR = medicineDeliverySRFactory.create();
         
         int retrievedID = medicineDeliveryDAO.insertServiceRequest(insertSR);
         insertSR.setRequestID(retrievedID);
@@ -101,17 +80,17 @@ public class MedicineDeliverySRDAOImplTest implements IDAOImplTest {
         MedicineDeliverySR querySR = medicineDeliveryDAO.getServiceRequest(insertSR.getRequestID());
         assertNotNull(querySR);
         assertEquals(retrievedID, querySR.getRequestID());
-        assertEquals(creatorID, querySR.getCreatorID());
-        assertEquals(assigneeID, querySR.getAssigneeID());
-        assertEquals(locationID, querySR.getLocation());
-        assertEquals(creationTimeStamp, querySR.getCreationTimestamp());
-        assertEquals(status, querySR.getStatus());
-        assertEquals(priority, querySR.getPriority());
-        assertEquals(requestType, querySR.getRequestType());
-        assertEquals(description, querySR.getDescription());
-        assertEquals(medicine, querySR.getMedicine());
-        assertEquals(dosage, querySR.getDosage());
-        assertEquals(patientID, querySR.getPatientID());
+        assertEquals(insertSR.getCreatorID(), querySR.getCreatorID());
+        assertEquals(insertSR.getAssigneeID(), querySR.getAssigneeID());
+        assertEquals(insertSR.getLocation(), querySR.getLocation());
+        assertEquals(insertSR.getCreationTimestamp(), querySR.getCreationTimestamp());
+        assertEquals(insertSR.getStatus(), querySR.getStatus());
+        assertEquals(insertSR.getPriority(), querySR.getPriority());
+        assertEquals(insertSR.getRequestType(), querySR.getRequestType());
+        assertEquals(insertSR.getDescription(), querySR.getDescription());
+        assertEquals(insertSR.getMedicine(), querySR.getMedicine());
+        assertEquals(insertSR.getDosage(), querySR.getDosage());
+        assertEquals(insertSR.getPatientID(), querySR.getPatientID());
     }
     
     /**
@@ -124,30 +103,7 @@ public class MedicineDeliverySRDAOImplTest implements IDAOImplTest {
         assertEquals(null, medicineDeliveryDAO.getServiceRequest(1234));
         
         // Insert SR into DB
-        String creatorID = "bshin100";
-        String assigneeID = "nick1234";
-        String locationID = "FOISIE";
-        Timestamp creationTimeStamp = new Timestamp(694201234);
-        ServiceRequest.Status status = ServiceRequest.Status.Blank;
-        ServiceRequest.Priority priority = ServiceRequest.Priority.High;
-        ServiceRequest.RequestType requestType = ServiceRequest.RequestType.Medical_Equipment;
-        String description = "soft eng is spain without the s";
-        String medicine = "methamphetamine HCL";
-        String dosage = "18mg oral";
-        String patientID = "JohnCena";
-        
-        MedicineDeliverySR deleteSR = new MedicineDeliverySR();
-        deleteSR.setCreatorID(creatorID);
-        deleteSR.setAssigneeID(assigneeID);
-        deleteSR.setLocation(locationID);
-        deleteSR.setCreationTimestamp(creationTimeStamp);
-        deleteSR.setStatus(status);
-        deleteSR.setPriority(priority);
-        deleteSR.setRequestType(requestType);
-        deleteSR.setDescription(description);
-        deleteSR.setMedicine(medicine);
-        deleteSR.setDosage(dosage);
-        deleteSR.setPatientID(patientID);
+       MedicineDeliverySR deleteSR = medicineDeliverySRFactory.create();
         
         int retrievedID = medicineDeliveryDAO.insertServiceRequest(deleteSR);
         deleteSR.setRequestID(retrievedID);
@@ -175,63 +131,16 @@ public class MedicineDeliverySRDAOImplTest implements IDAOImplTest {
         assertEquals(null, medicineDeliveryDAO.getServiceRequest(1234));
         
         // Insert SR into DB
-        String creatorID = "bshin100";
-        String assigneeID = "nick1234";
-        String locationID = "FOISIE";
-        Timestamp creationTimeStamp = new Timestamp(694201234);
-        ServiceRequest.Status status = ServiceRequest.Status.Processing;
-        ServiceRequest.Priority priority = ServiceRequest.Priority.High;
-        ServiceRequest.RequestType requestType = ServiceRequest.RequestType.Medical_Equipment;
-        String description = "soft eng is spain without the s";
-        String medicine = "methamphetamine HCL";
-        String dosage = "18mg oral";
-        String patientID = "JohnCena";
-        
-        MedicineDeliverySR updateSR = new MedicineDeliverySR();
-        updateSR.setCreatorID(creatorID);
-        updateSR.setAssigneeID(assigneeID);
-        updateSR.setLocation(locationID);
-        updateSR.setCreationTimestamp(creationTimeStamp);
-        updateSR.setStatus(status);
-        updateSR.setPriority(priority);
-        updateSR.setRequestType(requestType);
-        updateSR.setDescription(description);
-        updateSR.setMedicine(medicine);
-        updateSR.setDosage(dosage);
-        updateSR.setPatientID(patientID);
-        
+        MedicineDeliverySR updateSR = medicineDeliverySRFactory.create();
         int retrievedID = medicineDeliveryDAO.insertServiceRequest(updateSR);
         updateSR.setRequestID(retrievedID);
         assertNotEquals(-1, retrievedID);
         assertEquals(1, medicineDeliveryDAO.getAllServiceRequests().size());
         
         // Update MedicineDeliverySR in DB
-        creatorID = "bshin100";
-        assigneeID = "nick1234";
-        locationID = "SMARTWORLD";
-        status = ServiceRequest.Status.Done;
-        priority = ServiceRequest.Priority.High;
-        requestType = ServiceRequest.RequestType.Medical_Equipment;
-        description = "help plz";
-        medicine = "methamphetamine HCL";
-        dosage = "100mg intravenous";
-        patientID = "heDeadUh";
-        String modifierID = "WillSmith";
-        Timestamp modifiedTimestamp = new Timestamp(23098213);
-        
-        updateSR.setCreatorID(creatorID);
-        updateSR.setAssigneeID(assigneeID);
-        updateSR.setLocation(locationID);
-        updateSR.setStatus(status);
-        updateSR.setPriority(priority);
-        updateSR.setRequestType(requestType);
-        updateSR.setDescription(description);
-        updateSR.setModifierID(modifierID);
-        updateSR.setModifiedTimestamp(modifiedTimestamp);
-        
-        updateSR.setMedicine(medicine);
-        updateSR.setDosage(dosage);
-        updateSR.setPatientID(patientID);
+        updateSR = medicineDeliverySRFactory.create();
+        updateSR.setRequestID(retrievedID);
+
         assertTrue(medicineDeliveryDAO.updateServiceRequest(updateSR));
         assertEquals(1, medicineDeliveryDAO.getAllServiceRequests().size());
         
@@ -239,19 +148,19 @@ public class MedicineDeliverySRDAOImplTest implements IDAOImplTest {
         MedicineDeliverySR querySR = medicineDeliveryDAO.getServiceRequest(updateSR.getRequestID());
         assertNotNull(querySR);
         assertEquals(retrievedID, querySR.getRequestID());
-        assertEquals(creatorID, querySR.getCreatorID());
-        assertEquals(assigneeID, querySR.getAssigneeID());
-        assertEquals(locationID, querySR.getLocation());
-        assertEquals(creationTimeStamp, querySR.getCreationTimestamp());
-        assertEquals(status, querySR.getStatus());
-        assertEquals(priority, querySR.getPriority());
-        assertEquals(requestType, querySR.getRequestType());
-        assertEquals(description, querySR.getDescription());
-        assertEquals(medicine, querySR.getMedicine());
-        assertEquals(dosage, querySR.getDosage());
-        assertEquals(patientID, querySR.getPatientID());
-        assertEquals(modifierID, querySR.getModifierID());
-        assertEquals(modifiedTimestamp, querySR.getModifiedTimestamp());
+        assertEquals(updateSR.getCreatorID(), querySR.getCreatorID());
+        assertEquals(updateSR.getAssigneeID(), querySR.getAssigneeID());
+        assertEquals(updateSR.getLocation(), querySR.getLocation());
+        //assertEquals(initialTS, querySR.getCreationTimestamp());
+        assertEquals(updateSR.getStatus(), querySR.getStatus());
+        assertEquals(updateSR.getPriority(), querySR.getPriority());
+        assertEquals(updateSR.getRequestType(), querySR.getRequestType());
+        assertEquals(updateSR.getDescription(), querySR.getDescription());
+        assertEquals(updateSR.getMedicine(), querySR.getMedicine());
+        assertEquals(updateSR.getDosage(), querySR.getDosage());
+        assertEquals(updateSR.getPatientID(), querySR.getPatientID());
+        assertEquals(updateSR.getModifierID(), querySR.getModifierID());
+        assertEquals(updateSR.getModifiedTimestamp(), querySR.getModifiedTimestamp());
         
         // Cannot Update Nonexistent MedicineDeliverySR
         MedicineDeliverySR newSR = new MedicineDeliverySR();

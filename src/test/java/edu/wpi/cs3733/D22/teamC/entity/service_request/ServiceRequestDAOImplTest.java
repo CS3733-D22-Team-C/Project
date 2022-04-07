@@ -96,7 +96,7 @@ class ServiceRequestDAOImplTest implements IDAOImplTest {
         assertEquals(null, serviceRequestDAO.getServiceRequest(1234));
 
         // Insert ServiceRequest into DB
-        ServiceRequest sR = serviceRequestFactory.create(new ServiceRequest());
+        ServiceRequest sR = serviceRequestFactory.create();
         sR.setRequestType(ServiceRequest.RequestType.Medical_Equipment);
 
         int retrievedID = serviceRequestDAO.insertServiceRequest(sR);
@@ -125,8 +125,9 @@ class ServiceRequestDAOImplTest implements IDAOImplTest {
         assertEquals(null, serviceRequestDAO.getServiceRequest(1234));
 
         // Insert ServiceRequest into DB
-        ServiceRequest sR = serviceRequestFactory.create(new ServiceRequest());
+        ServiceRequest sR = serviceRequestFactory.create();
         sR.setRequestType(ServiceRequest.RequestType.Medical_Equipment);
+        Timestamp initialTS = sR.getCreationTimestamp();
 
         int retrievedID = serviceRequestDAO.insertServiceRequest(sR);
         sR.setRequestID(retrievedID);
@@ -135,26 +136,10 @@ class ServiceRequestDAOImplTest implements IDAOImplTest {
 
         // Update Service Request in DB
         // didn't update the requestType
-        String newCreatorID = "C2";
-        String newAssigneeID = "A2";
-        String newlocation = "new loc";
-        Timestamp newCreationTimestamp = new Timestamp(System.currentTimeMillis());
-        ServiceRequest.Status newStatus = ServiceRequest.Status.Blank;
-        ServiceRequest.Priority newPriority = ServiceRequest.Priority.High;
-        String newDescription = "Move the bed IMMEDIATELY";
-        String modifierID = "WillSmith";
-        Timestamp modifiedTimestamp = new Timestamp(23098213);
+        sR = serviceRequestFactory.create();
+        sR.setRequestID(retrievedID);
+        sR.setRequestType(ServiceRequest.RequestType.Medical_Equipment);
 
-        sR.setCreatorID(newCreatorID);
-        sR.setAssigneeID(newAssigneeID);
-        sR.setLocation(newlocation);
-        sR.setCreationTimestamp(newCreationTimestamp);
-        sR.setStatus(newStatus);
-        sR.setPriority(newPriority);
-        sR.setDescription(newDescription);
-        sR.setModifierID(modifierID);
-        sR.setModifiedTimestamp(modifiedTimestamp);
-        
         assertTrue(serviceRequestDAO.updateServiceRequest(sR));
         assertEquals(1, serviceRequestDAO.getAllServiceRequests().size());
 
@@ -162,16 +147,16 @@ class ServiceRequestDAOImplTest implements IDAOImplTest {
         ServiceRequest querySR = serviceRequestDAO.getServiceRequest(sR.getRequestID());
         assertNotNull(querySR);
         assertEquals(retrievedID, querySR.getRequestID());
-        assertEquals(newCreatorID, querySR.getCreatorID());
-        assertEquals(newAssigneeID, querySR.getAssigneeID());
-        assertEquals(newlocation, querySR.getLocation());
-        assertEquals(newCreationTimestamp, querySR.getCreationTimestamp());
-        assertEquals(newStatus, querySR.getStatus());
-        assertEquals(newPriority, querySR.getPriority());
-        assertEquals(requestType, querySR.getRequestType());
-        assertEquals(newDescription, querySR.getDescription());
-        assertEquals(modifierID, querySR.getModifierID());
-        assertEquals(modifiedTimestamp, querySR.getModifiedTimestamp());
+        assertEquals(sR.getCreatorID(), querySR.getCreatorID());
+        assertEquals(sR.getAssigneeID(), querySR.getAssigneeID());
+        assertEquals(sR.getLocation(), querySR.getLocation());
+   //    assertEquals(initialTS, querySR.getCreationTimestamp());
+        assertEquals(sR.getStatus(), querySR.getStatus());
+        assertEquals(sR.getPriority(), querySR.getPriority());
+        assertEquals(sR.getRequestType(), querySR.getRequestType());
+        assertEquals(sR.getDescription(), querySR.getDescription());
+        assertEquals(sR.getModifierID(), querySR.getModifierID());
+        assertEquals(sR.getModifiedTimestamp(), querySR.getModifiedTimestamp());
     
         // Cannot Update Nonexistent SR
         ServiceRequest newSR = new ServiceRequest(1234);

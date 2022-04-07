@@ -2,7 +2,7 @@ package edu.wpi.cs3733.D22.teamC.entity.service_request;
 
 import edu.wpi.cs3733.D22.teamC.entity.service_request.medical_equipment.MedicalEquipmentSR;
 
-public class MedEqSRFactory extends ServiceRequestFactory<MedicalEquipmentSR> {
+public class MedicalEquipmentSRFactory extends ServiceRequestFactory<MedicalEquipmentSR> {
     public MedicalEquipmentSR create() {
 
         MedicalEquipmentSR serviceRequest = new MedicalEquipmentSR();
