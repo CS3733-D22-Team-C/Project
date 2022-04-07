@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXComboBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+
+<HBox prefHeight="46.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.wpi.cs3733.D22.teamC.controller.service_request.medical_equipment.MedicalEquipmentSRInsertCreateController">
+   <children>
+      <VBox prefWidth="227.0" styleClass="box-margin">
+         <children>
+            <Label styleClass="service-field-label" text="Equipment Type" />
+            <JFXComboBox fx:id="equipmentType" maxWidth="1.7976931348623157E308" prefWidth="190.0" styleClass="dropdown" stylesheets="@../../../css/base.css" VBox.vgrow="ALWAYS" />
+         </children>
+      </VBox>
+      <VBox alignment="CENTER_LEFT" prefWidth="227.0" styleClass="box-margin">
+         <children>
+            <Label styleClass="service-field-label" text="Equipment ID" />
+            <JFXComboBox fx:id="equipmentID" maxWidth="1.7976931348623157E308" onMouseClicked="#equipTypeChanged" prefWidth="190.0" styleClass="dropdown" stylesheets="@../../../css/base.css" />
+         </children></VBox>
+      <VBox alignment="CENTER_LEFT" prefWidth="227.0" styleClass="box-margin" />
+   </children>
+</HBox>

@@ -21,12 +21,12 @@
     </columnConstraints>
     <rowConstraints>
         <RowConstraints maxHeight="95.60001220703126" minHeight="0.0" prefHeight="39.20001220703125" vgrow="SOMETIMES" />
-        <RowConstraints maxHeight="377.6" minHeight="10.0" prefHeight="216.5999847412109" vgrow="SOMETIMES" />
-        <RowConstraints maxHeight="250.4000122070313" minHeight="10.0" prefHeight="183.2" vgrow="SOMETIMES" />
-        <RowConstraints maxHeight="226.40000000000003" minHeight="0.0" prefHeight="226.40000000000003" vgrow="SOMETIMES" />
+        <RowConstraints maxHeight="377.6" minHeight="10.0" prefHeight="109.0" vgrow="SOMETIMES" />
+        <RowConstraints maxHeight="293.5" minHeight="10.0" prefHeight="244.5" vgrow="SOMETIMES" />
+        <RowConstraints maxHeight="273.5" minHeight="0.0" prefHeight="273.5" vgrow="SOMETIMES" />
     </rowConstraints>
     <children>
-        <Label styleClass="page-title" text="Generic Service Request " />
+        <Label fx:id="title" styleClass="page-title" text="Generic Service Request " />
       <VBox fx:id="fieldsBox" prefHeight="200.0" prefWidth="100.0" GridPane.rowIndex="1">
          <children>
             <HBox maxHeight="-Infinity" prefHeight="124.0" prefWidth="490.0" VBox.vgrow="NEVER">
@@ -58,7 +58,7 @@
             <VBox>
                <children>
                       <Label styleClass="service-field-label" text="Additional Notes:" />
-                      <JFXTextArea fx:id="description" prefHeight="81.0" prefWidth="426.0" />
+                      <JFXTextArea fx:id="description" prefHeight="190.0" prefWidth="422.0" />
                </children>
             </VBox>
             <HBox prefHeight="100.0" prefWidth="200.0" styleClass="box-margin">
@@ -97,7 +97,7 @@
             </HBox>
             </children>
         </VBox>
-      <JFXTreeTableView fx:id="table" maxWidth="1.7976931348623157E308" GridPane.rowIndex="3" />
+      <JFXTreeTableView fx:id="table" maxWidth="1.7976931348623157E308" prefHeight="262.0" prefWidth="442.0" GridPane.rowIndex="3" />
     </children>
     <stylesheets>
         <URL value="@../../../css/request_page.css" />
