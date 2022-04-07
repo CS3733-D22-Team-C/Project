@@ -117,6 +117,7 @@ compileJava.dependsOn 'spotlessApply'
 spotless {
     java {
         googleJavaFormat()
+        indentWithTabs(2)
     }
 }
 */

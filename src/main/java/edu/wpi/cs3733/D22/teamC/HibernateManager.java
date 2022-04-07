@@ -1,78 +1,103 @@
 package edu.wpi.cs3733.D22.teamC;
 
-import org.hibernate.Session;
-
 import java.util.List;
+import org.hibernate.Session;
+import org.hibernate.query.Query;
 
-/**
- * Run Hibernate ORM Framework
- */
+/** Run Hibernate ORM Framework */
 public class HibernateManager {
-    
-    private HibernateManager() {}
-    
-    /**
-     * Save an object to the database.
-     * @param obj Object to save.
-     */
-    public static void saveObj(Object obj) {
-        Session session = SessionManager.getSession();
-        try {
-            session.beginTransaction();
-            session.save(obj);
-            session.getTransaction().commit();
-            session.close();
-        } catch (Exception e) {
-            session.getTransaction().rollback();
-            session.close();
-            e.printStackTrace();
-        }
-    }
-    
-    /**
-     * Save a list of objects to the database.
-     * @param objectList A list of objects to save.
-     */
-    public static <T> void saveObjectList(List<T> objectList) {
-        for (Object obj : objectList) {
-            saveObj(obj);
-        }
-    }
-    
-    /**
-     * Updates an existing object in the database.
-     * @param obj An existing object to update.
-     */
-    public static void updateObj(Object obj) {
-        Session session = SessionManager.getSession();
-        try {
-            session.beginTransaction();
-            session.update(obj);
-            session.getTransaction().commit();
-            session.close();
-        } catch (Exception e) {
-            session.getTransaction().rollback();
-            session.close();
-            e.printStackTrace();
-        }
-    }
-    
-    /**
-     * Deletes an existing object in the database.
-     * @param obj An existing object to delete.
-     */
-    public static void deleteObj(Object obj) {
-        Session session = SessionManager.getSession();
-        try {
-            session.beginTransaction();
-            session.delete(obj);
-            session.getTransaction().commit();
-            session.close();
-        } catch (Exception e) {
-            session.getTransaction().rollback();
-            session.close();
-            e.printStackTrace();
-        }
-    }
-    
+
+	private HibernateManager() {}
+
+	/**
+	* Save an object to the database (insert).
+	*
+	* @param obj Object to save.
+	*/
+	public static int insertObj(Object obj) {
+		Session session = SessionManager.getSession();
+		try {
+			session.beginTransaction();
+			int generatedID = (Integer) session.save(obj);
+			session.getTransaction().commit();
+			session.close();
+			return generatedID;
+		} catch (Exception e) {
+			session.getTransaction().rollback();
+			session.close();
+			e.printStackTrace();
+			return -1;
+		}
+	}
+
+	/**
+	* Save a list of objects to the database.
+	*
+	* @param objectList A list of objects to save.
+	*/
+	public static <T> void insertObjectList(List<T> objectList) {
+		for (Object obj : objectList) {
+			insertObj(obj);
+		}
+	}
+
+	/**
+	* Updates an existing object in the database.
+	*
+	* @param obj An existing object to update.
+	*/
+	public static void updateObj(Object obj) {
+		Session session = SessionManager.getSession();
+		try {
+			session.beginTransaction();
+			session.update(obj);
+			session.getTransaction().commit();
+			session.close();
+		} catch (Exception e) {
+			session.getTransaction().rollback();
+			session.close();
+			e.printStackTrace();
+		}
+	}
+
+	/**
+	* Deletes an existing object in the database.
+	*
+	* @param obj An existing object to delete.
+	*/
+	public static void deleteObj(Object obj) {
+		Session session = SessionManager.getSession();
+		try {
+			session.beginTransaction();
+			session.delete(obj);
+			session.getTransaction().commit();
+			session.close();
+		} catch (Exception e) {
+			session.getTransaction().rollback();
+			session.close();
+			e.printStackTrace();
+		}
+	}
+
+	/**
+	* Get a specific entry in the database of a given Class type.
+	*
+	* @param id The ID of the entry in the database
+	* @param objType A class type in the DB, i.e. Location
+	* @return The entry in the database as an object of the given type.
+	*/
+	public static <T> T getObjByID(Integer id, Class<T> objType) {
+		Session session = SessionManager.getSession();
+		try {
+			session.beginTransaction();
+			return objType.cast(session.get(objType, id));
+		} catch (Exception e) {
+			session.getTransaction().rollback();
+			session.close();
+			e.printStackTrace();
+			return null;
+		}
+	}
+
+	
 }
