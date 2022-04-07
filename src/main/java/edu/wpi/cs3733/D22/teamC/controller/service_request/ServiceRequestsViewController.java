@@ -26,10 +26,11 @@ import static edu.wpi.cs3733.D22.teamC.entity.service_request.ServiceRequest.Sta
 public class ServiceRequestsViewController implements Initializable {
     // New Paths
     public static final String CREATE_FORM = "view/service_request/skeleton/create_form.fxml";
+    public static final String RESOLVE_FORM = "view/service_request/skeleton/resolve_form.fxml";
 
     // Old Paths
     public static final String BASE_PATH = "view/service_request/";
-    public static final String RESOLVE_FORM = "resolve_form.fxml";
+    //public static final String RESOLVE_FORM = "resolve_form.fxml";
 
     //Buttons
     @FXML private JFXButton selectButton;
@@ -140,13 +141,13 @@ public class ServiceRequestsViewController implements Initializable {
         }
 
         private void toEditPage(ServiceRequest serviceRequest) {
-            App.View<ServiceRequestResolveController> view = App.instance.loadView(generatePath(serviceRequest.getRequestType()));
+            App.View<BaseServiceRequestResolveController> view = App.instance.loadView(RESOLVE_FORM);
             view.getController().setup(serviceRequest, true);
             App.instance.setView(view.getNode());
         }
 
         private void toResolvePage(ServiceRequest serviceRequest) {
-            App.View<ServiceRequestResolveController> view = App.instance.loadView(generatePath(serviceRequest.getRequestType()));
+            App.View<BaseServiceRequestResolveController> view = App.instance.loadView(RESOLVE_FORM);
             view.getController().setup(serviceRequest, false);
             App.instance.setView(view.getNode());
         }

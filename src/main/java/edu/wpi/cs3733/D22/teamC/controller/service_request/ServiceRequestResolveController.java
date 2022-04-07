@@ -46,6 +46,7 @@ public class ServiceRequestResolveController {
         this.serviceRequest = serviceRequest;
         this.isEditMode = isEditMode;
         // Set initial values
+
         priority.setPromptText(serviceRequest.getPriority().toString());
         status.setPromptText(serviceRequest.getStatus().toString());
         hospitalLocation.setPromptText(serviceRequest.getLocation());
@@ -119,6 +120,7 @@ public class ServiceRequestResolveController {
                serviceRequest.setLocation(hospitalLocation.getValue());
             }
             //Status
+
         }
         else {
             //Set status to Done
