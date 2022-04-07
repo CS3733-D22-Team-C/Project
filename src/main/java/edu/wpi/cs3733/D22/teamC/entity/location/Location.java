@@ -1,13 +1,26 @@
 package edu.wpi.cs3733.D22.teamC.entity.location;
 
+import org.hibernate.annotations.GenericGenerator;
+
+import javax.persistence.*;
+
+@Entity
+@Table(name = "LOCATION")
 public class Location {
+    @Id 
+    @Column(name = "ID", nullable = false)
+    @GeneratedValue(generator = "increment")
+    @GenericGenerator(name = "increment", strategy = "increment")
     private int nodeID;
     private int floor; // TODO: Floors should be objects
     private String building = "";
     private NodeType nodeType;
     private String longName = "";
     private String shortName = "";
-    private int x = 0, y = 0;
+    @Column(name = "XCoord")
+    private int x = 0;
+    @Column(name = "YCoord")
+    private int y = 0;
 
     public enum NodeType {
         PATI,
@@ -42,8 +55,7 @@ public class Location {
         this.x = x;
         this.y = y;
     }
-
-
+    
     @Deprecated
     public Location(int nodeID, int floor, String building, NodeType nodeType, String longName, String shortName, int x, int y) {
         this.nodeID = nodeID;

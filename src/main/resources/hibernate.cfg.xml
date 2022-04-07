@@ -1,0 +1,30 @@
+<?xml version='1.0' encoding='utf-8'?>
+<!DOCTYPE hibernate-configuration PUBLIC
+        "-//Hibernate/Hibernate Configuration DTD//EN"
+        "http://www.hibernate.org/dtd/hibernate-configuration-3.0.dtd">
+
+<hibernate-configuration>
+
+    <session-factory>
+
+        <property name="connection.url">jdbc:derby:TESTDB</property>
+        <property name="connection.driver_class">org.apache.derby.jdbc.EmbeddedDriver</property>
+
+
+        <!-- <property name="dialect">org.hibernate.dialect.DerbyTenSevenDialect</property>-->
+        <!-- <property name="connection.username"/> -->
+        <!-- <property name="connection.password"/> -->
+        
+        <!-- <property name="hibernate.hbm2ddl.auto">update</property>-->
+        
+        <!--THIS DELETES EVERYTHING ON STARTUP-->
+        <property name="hibernate.hbm2ddl.auto">create-drop</property>  
+
+
+        <mapping class="edu.wpi.cs3733.D22.teamC.entity.location.Location" />
+<!--        <mapping class="edu.wpi.cs3733.D22.teamC.entity.service_request.ServiceRequest" />-->
+<!--        <mapping class="edu.wpi.cs3733.D22.teamC.entity.service_request.lab_system.LabSystemSR" />-->
+<!--        <mapping class="edu.wpi.cs3733.D22.teamC.entity.service_request.medicine_delivery.MedicineDeliverySR" />-->
+
+    </session-factory>
+</hibernate-configuration>

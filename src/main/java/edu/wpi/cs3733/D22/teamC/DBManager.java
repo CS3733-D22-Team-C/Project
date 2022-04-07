@@ -20,7 +20,7 @@ public class DBManager {
     public Connection connection;
 
     /**
-     * Privatized Constructor.
+     * Privatized Constructor
      * @param dbName Name of Database to connect to.
      */
     private DBManager(String dbName) {
