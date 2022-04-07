@@ -1,6 +1,7 @@
 package edu.wpi.cs3733.D22.teamC.entity.service_request;
 
 import edu.wpi.cs3733.D22.teamC.DBManager;
+import edu.wpi.cs3733.D22.teamC.entity.IDAOImplTest;
 import edu.wpi.cs3733.D22.teamC.entity.service_request.lab_system.LabSystemSR;
 import edu.wpi.cs3733.D22.teamC.entity.service_request.lab_system.LabSystemSRDAOImpl;
 import org.junit.jupiter.api.AfterEach;
@@ -12,7 +13,7 @@ import java.sql.Timestamp;
 import static org.junit.jupiter.api.Assertions.*;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-public class LabSystemSRDAOImplTest {
+public class LabSystemSRDAOImplTest implements IDAOImplTest {
     private DBManager testDBManager;
     private LabSystemSRDAOImpl labSystemDAO;
     
@@ -32,6 +33,16 @@ public class LabSystemSRDAOImplTest {
         // Shutdown testing database
         DBManager.shutdown();
     }
+
+    @Test
+    public void getAll() {
+        //TODO
+    }
+
+    @Test
+    public void testGetByID() {
+        //TODO
+    }
     
     /**
      * Test that an empty Service Request Table DB returns nothing for queries.
@@ -46,7 +57,7 @@ public class LabSystemSRDAOImplTest {
      * Test that insertLocation works.
      */
     @Test
-    void testInsertSR() {
+    public void testInsert() {
         // Check DB is empty
         assertEquals(0, labSystemDAO.getAllServiceRequests().size());
         assertEquals(null, labSystemDAO.getServiceRequest(1234));
@@ -103,7 +114,7 @@ public class LabSystemSRDAOImplTest {
      * Test that deleteServiceRequest works.
      */
     @Test
-    void testDeleteServiceRequest() {
+    public void testDelete() {
         // Check DB is empty
         assertEquals(0, labSystemDAO.getAllServiceRequests().size());
         assertEquals(null, labSystemDAO.getServiceRequest(1234));
@@ -152,7 +163,7 @@ public class LabSystemSRDAOImplTest {
      * Test that updateServiceRequest works.
      */
     @Test
-    void testUpdateServiceRequest() {
+    public void testUpdate() {
         // Check DB is empty
         assertEquals(0, labSystemDAO.getAllServiceRequests().size());
         assertEquals(null, labSystemDAO.getServiceRequest(1234));

@@ -1,6 +1,7 @@
 package edu.wpi.cs3733.D22.teamC.entity.service_request;
 
 import edu.wpi.cs3733.D22.teamC.DBManager;
+import edu.wpi.cs3733.D22.teamC.entity.IDAOImplTest;
 import edu.wpi.cs3733.D22.teamC.entity.service_request.sanitation.SanitationSR;
 import edu.wpi.cs3733.D22.teamC.entity.service_request.sanitation.SanitationSRDAOImpl;
 import org.junit.jupiter.api.AfterEach;
@@ -11,7 +12,7 @@ import java.sql.Timestamp;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-public class SanitationSRDAOImplTest {
+public class SanitationSRDAOImplTest implements IDAOImplTest {
     private DBManager testDBManager;
     private SanitationSRDAOImpl sanitationSRDAO;
 
@@ -41,11 +42,21 @@ public class SanitationSRDAOImplTest {
         assertEquals(null, sanitationSRDAO.getServiceRequest(1234));
     }
 
+    @Test
+    public void getAll() {
+        //TODO
+    }
+
+    @Test
+    public void testGetByID() {
+        //TODO
+    }
+
     /**
      * Test that insert Sanitation SR works.
      */
     @Test
-    void testInsertSR() {
+    public void testInsert() {
         // Check DB is empty
         assertEquals(0, sanitationSRDAO.getAllServiceRequests().size());
         assertEquals(null, sanitationSRDAO.getServiceRequest(1234));
@@ -99,7 +110,7 @@ public class SanitationSRDAOImplTest {
      * Test that deleteServiceRequest works.
      */
     @Test
-    void testDeleteServiceRequest() {
+    public void testDelete() {
         // Check DB is empty
         assertEquals(0, sanitationSRDAO.getAllServiceRequests().size());
         assertEquals(null, sanitationSRDAO.getServiceRequest(1234));
@@ -146,7 +157,7 @@ public class SanitationSRDAOImplTest {
      * Test that updateServiceRequest works.
      */
     @Test
-    void testUpdateServiceRequest() {
+    public void testUpdate() {
         // Check DB is empty
         assertEquals(0, sanitationSRDAO.getAllServiceRequests().size());
         assertEquals(null, sanitationSRDAO.getServiceRequest(1234));

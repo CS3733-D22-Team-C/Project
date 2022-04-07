@@ -2,7 +2,7 @@ package edu.wpi.cs3733.D22.teamC.entity.service_request;
 
 import edu.wpi.cs3733.D22.teamC.entity.service_request.lab_system.LabSystemSR;
 
-public class LabSystemSRTestFactory extends ServiceRequestTestFactory<LabSystemSR> {
+public class LabSystemSRFactory extends ServiceRequestFactory<LabSystemSR> {
     public LabSystemSR create() {
 
         LabSystemSR serviceRequest = new LabSystemSR();

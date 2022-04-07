@@ -3,7 +3,7 @@ package edu.wpi.cs3733.D22.teamC.entity.service_request;
 import java.sql.Timestamp;
 import java.util.Random;
 
-public class ServiceRequestTestFactory<T extends ServiceRequest> {
+public class ServiceRequestFactory<T extends ServiceRequest> {
     private Random generator = new Random();
     public T create() {
         T serviceRequest = (T) new ServiceRequest();

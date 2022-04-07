@@ -1,6 +1,7 @@
 package edu.wpi.cs3733.D22.teamC.entity.service_request;
 
 import edu.wpi.cs3733.D22.teamC.DBManager;
+import edu.wpi.cs3733.D22.teamC.entity.IDAOImplTest;
 import edu.wpi.cs3733.D22.teamC.entity.service_request.security.SecuritySR;
 import edu.wpi.cs3733.D22.teamC.entity.service_request.security.SecuritySRDAO;
 import edu.wpi.cs3733.D22.teamC.entity.service_request.security.SecuritySRDAOImpl;
@@ -12,7 +13,7 @@ import java.sql.Timestamp;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-public class SecuritySRDAOImplTest {
+public class SecuritySRDAOImplTest implements IDAOImplTest {
     private DBManager testDBManager;
     private SecuritySRDAO securityDAO;
     
@@ -32,6 +33,16 @@ public class SecuritySRDAOImplTest {
         // Shutdown testing database
         DBManager.shutdown();
     }
+
+    @Test
+    public void getAll() {
+        //TODO
+    }
+
+    @Test
+    public void testGetByID() {
+        //TODO
+    }
     
     /**
      * Test that an empty Service Request Table DB returns nothing for queries.
@@ -46,7 +57,7 @@ public class SecuritySRDAOImplTest {
      * Test that insertLocation works.
      */
     @Test
-    void testInsertSR() {
+    public void testInsert() {
         // Check DB is empty
         assertEquals(0, securityDAO.getAllServiceRequests().size());
         assertEquals(null, securityDAO.getServiceRequest(1234));
@@ -100,7 +111,7 @@ public class SecuritySRDAOImplTest {
      * Test that deleteServiceRequest works.
      */
     @Test
-    void testDeleteServiceRequest() {
+    public void testDelete() {
         // Check DB is empty
         assertEquals(0, securityDAO.getAllServiceRequests().size());
         assertEquals(null, securityDAO.getServiceRequest(1234));
@@ -147,7 +158,7 @@ public class SecuritySRDAOImplTest {
      * Test that updateServiceRequest works.
      */
     @Test
-    void testUpdateServiceRequest() {
+    public void testUpdate() {
         // Check DB is empty
         assertEquals(0, securityDAO.getAllServiceRequests().size());
         assertEquals(null, securityDAO.getServiceRequest(1234));

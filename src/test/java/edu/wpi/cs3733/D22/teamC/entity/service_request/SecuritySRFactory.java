@@ -2,7 +2,7 @@ package edu.wpi.cs3733.D22.teamC.entity.service_request;
 
 import edu.wpi.cs3733.D22.teamC.entity.service_request.security.SecuritySR;
 
-public class SecuritySRTestFactory extends ServiceRequestTestFactory<SecuritySR> {
+public class SecuritySRFactory extends ServiceRequestFactory<SecuritySR> {
     public SecuritySR create() {
 
         SecuritySR serviceRequest = new SecuritySR();

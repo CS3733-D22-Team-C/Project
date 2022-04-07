@@ -1,6 +1,7 @@
 package edu.wpi.cs3733.D22.teamC.entity.service_request;
 
 import edu.wpi.cs3733.D22.teamC.DBManager;
+import edu.wpi.cs3733.D22.teamC.entity.IDAOImplTest;
 import edu.wpi.cs3733.D22.teamC.entity.service_request.lab_system.LabSystemSR;
 import edu.wpi.cs3733.D22.teamC.entity.service_request.medicine_delivery.MedicineDeliverySR;
 import edu.wpi.cs3733.D22.teamC.entity.service_request.medicine_delivery.MedicineDeliverySRDAO;
@@ -13,7 +14,7 @@ import java.sql.Timestamp;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-public class MedicineDeliverySRDAOImplTest {
+public class MedicineDeliverySRDAOImplTest implements IDAOImplTest {
     private DBManager testDBManager;
     private MedicineDeliverySRDAO medicineDeliveryDAO;
     
@@ -42,12 +43,22 @@ public class MedicineDeliverySRDAOImplTest {
         assertEquals(0, medicineDeliveryDAO.getAllServiceRequests().size());
         assertEquals(null, medicineDeliveryDAO.getServiceRequest(1234));
     }
+
+    @Test
+    public void getAll() {
+        //TODO
+    }
+
+    @Test
+    public void testGetByID() {
+        //TODO
+    }
     
     /**
      * Test that insertSR works.
      */
     @Test
-    void testInsertSR() {
+    public void testInsert() {
         // Check DB is empty
         assertEquals(0, medicineDeliveryDAO.getAllServiceRequests().size());
         assertEquals(null, medicineDeliveryDAO.getServiceRequest(1234));
@@ -107,7 +118,7 @@ public class MedicineDeliverySRDAOImplTest {
      * Test that deleteServiceRequest works.
      */
     @Test
-    void testDeleteServiceRequest() {
+    public void testDelete() {
         // Check DB is empty
         assertEquals(0, medicineDeliveryDAO.getAllServiceRequests().size());
         assertEquals(null, medicineDeliveryDAO.getServiceRequest(1234));
@@ -158,7 +169,7 @@ public class MedicineDeliverySRDAOImplTest {
      * Test that updateServiceRequest works.
      */
     @Test
-    void testUpdateServiceRequest() {
+    public void testUpdate() {
         // Check DB is empty
         assertEquals(0, medicineDeliveryDAO.getAllServiceRequests().size());
         assertEquals(null, medicineDeliveryDAO.getServiceRequest(1234));

@@ -2,7 +2,7 @@ package edu.wpi.cs3733.D22.teamC.entity.service_request;
 
 import edu.wpi.cs3733.D22.teamC.entity.service_request.medicine_delivery.MedicineDeliverySR;
 
-public class MedicineDeliverySRTestFactory extends ServiceRequestTestFactory<MedicineDeliverySR> {
+public class MedicineDeliverySRFactory extends ServiceRequestFactory<MedicineDeliverySR> {
     public MedicineDeliverySR create() {
 
         MedicineDeliverySR serviceRequest = new MedicineDeliverySR();

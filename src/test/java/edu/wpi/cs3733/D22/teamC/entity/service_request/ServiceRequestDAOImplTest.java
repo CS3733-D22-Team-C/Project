@@ -1,6 +1,7 @@
 package edu.wpi.cs3733.D22.teamC.entity.service_request;
 
 import edu.wpi.cs3733.D22.teamC.DBManager;
+import edu.wpi.cs3733.D22.teamC.entity.IDAOImplTest;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -9,25 +10,37 @@ import java.sql.Timestamp;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-class ServiceRequestDAOImplTest {
+class ServiceRequestDAOImplTest implements IDAOImplTest {
     private DBManager testDBManager;
     private ServiceRequestDAOImpl serviceRequestDAO;
-
+    private ServiceRequestFactory<ServiceRequest> serviceRequestFactory;
     @BeforeEach
     void setUp() {
-        // Setup testing database and initialize LOCATION table
+        // Setup testing database and initialize Service_Request table
         testDBManager = DBManager.startup(DBManager.TESTING_DATABASE_NAME);
         testDBManager.initializeServiceRequestTable(true);
-        testDBManager.initializeMedicalEquipSRTable(true);
     
-        // Setup testing LocationDAOImpl
+        // Setup testing impl
         serviceRequestDAO = new ServiceRequestDAOImpl();
+
+        serviceRequestFactory = new ServiceRequestFactory<ServiceRequest>();
+
     }
 
     @AfterEach
     void tearDown() {
         // Shutdown testing database
         DBManager.shutdown();
+    }
+
+    @Test
+    public void getAll() {
+        //TODO
+    }
+
+    @Test
+    public void testGetByID() {
+        //TODO
     }
 
     /**
@@ -43,7 +56,7 @@ class ServiceRequestDAOImplTest {
      * Test that insertLocation works.
      */
     @Test
-    void testInsertLocation() {
+    public void testInsert() {
         // Check DB is empty
         assertEquals(0, serviceRequestDAO.getAllServiceRequests().size());
         assertEquals(null, serviceRequestDAO.getServiceRequest(1234));
@@ -94,7 +107,7 @@ class ServiceRequestDAOImplTest {
      * Test that deleteLocation works.
      */
     @Test
-    void testDeleteServiceRequest() {
+    public void testDelete() {
         // Check DB is empty
         assertEquals(0, serviceRequestDAO.getAllServiceRequests().size());
         assertEquals(null, serviceRequestDAO.getServiceRequest(1234));
@@ -139,7 +152,7 @@ class ServiceRequestDAOImplTest {
      * Test that updateLocation works.
      */
     @Test
-    void testUpdateServiceRequest() {
+    public void testUpdate() {
         // Check DB is empty
         assertEquals(0, serviceRequestDAO.getAllServiceRequests().size());
         assertEquals(null, serviceRequestDAO.getServiceRequest(1234));

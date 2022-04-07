@@ -1,6 +1,7 @@
 package edu.wpi.cs3733.D22.teamC.entity.service_request;
 
 import edu.wpi.cs3733.D22.teamC.DBManager;
+import edu.wpi.cs3733.D22.teamC.entity.IDAOImplTest;
 import edu.wpi.cs3733.D22.teamC.entity.service_request.medical_equipment.MedicalEquipmentSRDAOImpl;
 import edu.wpi.cs3733.D22.teamC.entity.service_request.medical_equipment.MedicalEquipmentSR;
 import org.junit.jupiter.api.AfterEach;
@@ -11,7 +12,7 @@ import java.sql.Timestamp;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-class MedEqSRDAOImplTest {
+class MedEqSRDAOImplTest implements IDAOImplTest {
     private DBManager testDBManager;
     private MedicalEquipmentSRDAOImpl medicalEqDAO;
     
@@ -40,12 +41,22 @@ class MedEqSRDAOImplTest {
         assertEquals(0, medicalEqDAO.getAllServiceRequests().size());
         assertEquals(null, medicalEqDAO.getServiceRequest(1234));
     }
+
+    @Test
+    public void getAll() {
+        //TODO
+    }
+
+    @Test
+    public void testGetByID() {
+        //TODO
+    }
     
     /**
      * Test that insertLocation works.
      */
     @Test
-    void testInsertSR() {
+    public void testInsert() {
         // Check DB is empty
         assertEquals(0, medicalEqDAO.getAllServiceRequests().size());
         assertEquals(null, medicalEqDAO.getServiceRequest(1234));
@@ -102,7 +113,7 @@ class MedEqSRDAOImplTest {
      * Test that deleteServiceRequest works.
      */
     @Test
-    void testDeleteServiceRequest() {
+    public void testDelete() {
         // Check DB is empty
         assertEquals(0, medicalEqDAO.getAllServiceRequests().size());
         assertEquals(null, medicalEqDAO.getServiceRequest(1234));
@@ -151,7 +162,7 @@ class MedEqSRDAOImplTest {
      * Test that updateServiceRequest works.
      */
     @Test
-    void testUpdateServiceRequest() {
+    public void testUpdate() {
         // Check DB is empty
         assertEquals(0, medicalEqDAO.getAllServiceRequests().size());
         assertEquals(null, medicalEqDAO.getServiceRequest(1234));
