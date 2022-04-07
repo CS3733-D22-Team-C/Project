@@ -127,9 +127,12 @@ class MedEqSRDAOImplTest implements IDAOImplTest {
         assertEquals(null, medicalEqDAO.getServiceRequest(1234));
     
         // Insert SR into DB
+
         MedicalEquipmentSR updateSR = medicalEquipmentSRFactory.create();
 
         int retrievedID = medicalEqDAO.insertServiceRequest(updateSR);
+
+
         updateSR.setRequestID(retrievedID);
         assertNotEquals(-1, retrievedID);
         assertEquals(1, medicalEqDAO.getAllServiceRequests().size());
@@ -137,6 +140,7 @@ class MedEqSRDAOImplTest implements IDAOImplTest {
         // Update Location in DB
         updateSR = medicalEquipmentSRFactory.create();
         updateSR.setRequestID(retrievedID);
+
         assertTrue(medicalEqDAO.updateServiceRequest(updateSR));
         assertEquals(1, medicalEqDAO.getAllServiceRequests().size());
         
