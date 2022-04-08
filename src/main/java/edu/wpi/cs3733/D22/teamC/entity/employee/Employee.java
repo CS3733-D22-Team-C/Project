@@ -13,22 +13,32 @@ public class Employee {
     @GeneratedValue(generator = "increment")
     @GenericGenerator(name = "increment", strategy = "increment")
     private int employeeID;
+
     @Column(name = "FirstName")
     private String firstName;
+
     @Column(name = "LastName")
     private String lastName;
+
     @Column(name = "EmailID")
     private String emailID;
+
     @Column(name = "Phone")
     private String phone;
+
     @Column(name = "Address")
     private String address;
+
+    @Enumerated(EnumType.STRING)
     @Column(name = "Role")
     private Role role;
+
     @Column(name = "IsAdmin")
     private Boolean isAdmin;
+
     @Column(name = "Username")
     private String username;
+
     @Column(name = "Password")
     private String password;
 
