@@ -38,8 +38,8 @@ public class MedicineDeliverySRInsertCreateController implements InsertServiceRe
         MedicineDeliverySR medicineDeliverySR = new MedicineDeliverySR();
 
         medicineDeliverySR.setMedicine(medicine.getText());
-        medicineDeliverySR.setMedicine(dosage.getText());
-        medicineDeliverySR.setMedicine(patientID.getText());
+        medicineDeliverySR.setDosage(dosage.getText());
+        medicineDeliverySR.setPatientID(patientID.getText());
 
         return medicineDeliverySR;
     }

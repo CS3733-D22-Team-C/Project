@@ -63,8 +63,8 @@ public class MedicineDeliverySRResolveController extends ServiceRequestResolveCo
 
         super.clickConfirm(event);
         //Accessing Service Request in Database
-        MedicineDeliverySRDAOImpl medicalEquipmentSRDAOImpl = new MedicineDeliverySRDAOImpl();
-        MedicineDeliverySR medicineDeliverySR = medicalEquipmentSRDAOImpl.getServiceRequest(serviceRequest.getRequestID());
+        MedicineDeliverySRDAOImpl medicineDeliverySRDAO = new MedicineDeliverySRDAOImpl();
+        MedicineDeliverySR medicineDeliverySR = medicineDeliverySRDAO.getServiceRequest(serviceRequest.getRequestID());
         if(isEditMode){
 
             medicineDeliverySR.setMedicine(medicine.getText());
@@ -76,7 +76,7 @@ public class MedicineDeliverySRResolveController extends ServiceRequestResolveCo
                 medicineDeliverySR.setStatus(ServiceRequest.Status.Processing);
             else
                 medicineDeliverySR.setStatus(ServiceRequest.Status.Blank);
-            medicalEquipmentSRDAOImpl.updateServiceRequest(medicineDeliverySR);
+            medicineDeliverySRDAO.updateServiceRequest(medicineDeliverySR);
 
         }
 
