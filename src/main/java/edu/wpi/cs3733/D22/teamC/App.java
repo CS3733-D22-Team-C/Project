@@ -26,7 +26,7 @@ public class App extends Application {
 
         public View(Node node, T controller) {
             this.node = node;
-            this.controller = controller;
+            this.controller = (T) controller;
         }
 
         public Node getNode() {
