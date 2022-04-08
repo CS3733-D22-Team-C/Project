@@ -42,41 +42,45 @@ public class HibernateManager {
 	}
 
 	/**
-	* Updates an existing object in the database.
-	*
-	* @param obj An existing object to update.
+	 * Updates an existing object in the database.
+	 * @param obj An existing object to update.
+     * @return True if successful, false if not.
 	*/
-	public static void updateObj(Object obj) {
+	public static boolean updateObj(Object obj) {
 		Session session = SessionManager.getSession();
 		try {
 			session.beginTransaction();
 			session.update(obj);
 			session.getTransaction().commit();
 			session.close();
+            return true;
 		} catch (Exception e) {
 			session.getTransaction().rollback();
 			session.close();
 			e.printStackTrace();
 		}
+        return false;
 	}
 
 	/**
-	* Deletes an existing object in the database.
-	*
-	* @param obj An existing object to delete.
+	 * Deletes an existing object in the database.
+	 * @param obj An existing object to delete.
+     * @return True if successful, false if not.   
 	*/
-	public static void deleteObj(Object obj) {
+	public static boolean deleteObj(Object obj) {
 		Session session = SessionManager.getSession();
 		try {
 			session.beginTransaction();
 			session.delete(obj);
 			session.getTransaction().commit();
 			session.close();
+            return true;
 		} catch (Exception e) {
 			session.getTransaction().rollback();
 			session.close();
 			e.printStackTrace();
 		}
+        return false;
 	}
 
 	/**

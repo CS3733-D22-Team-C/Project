@@ -2,8 +2,8 @@ package edu.wpi.cs3733.D22.teamC.user_input_validation.service_request;
 
 //Note: If user input validation expands beyond service requests forms as development continues, then user validation can be further abstracted when refactoring.
 
+import edu.wpi.cs3733.D22.teamC.entity.location.LocationDAO;
 import edu.wpi.cs3733.D22.teamC.entity.service_request.ServiceRequestDAOImpl;
-import edu.wpi.cs3733.D22.teamC.entity.location.LocationDAOImpl;
 import edu.wpi.cs3733.D22.teamC.error.error_item.service_request_user_input_validation.ServiceRequestUserInputValidationErrorItem;
 import edu.wpi.cs3733.D22.teamC.error.error_record.service_request_user_input_validation.ServiceRequestUserInputValidationErrorRecord;
 import javafx.scene.control.SingleSelectionModel;
@@ -63,7 +63,7 @@ public class ServiceRequestFormEvaluator {
      */
     public ServiceRequestUserInputValidationErrorItem getValidateLocationIDResult(String locationID)
     {
-        LocationDAOImpl locationDaoVar = new LocationDAOImpl();
+        LocationDAO locationDaoVar = new LocationDAO();
 
         if(locationID.isEmpty())
         {
@@ -73,7 +73,7 @@ public class ServiceRequestFormEvaluator {
         {
             int locationConv = Integer.parseInt(locationID);
 
-            if(locationDaoVar.getLocation(locationConv) == null) //assumes the user inputs a location ID in the service request location field.
+            if(locationDaoVar.getByID(locationConv) == null) //assumes the user inputs a location ID in the service request location field.
             {
                 return ServiceRequestUserInputValidationErrorRecord.serviceRequestUserInputValidationErrorList[4];
             }

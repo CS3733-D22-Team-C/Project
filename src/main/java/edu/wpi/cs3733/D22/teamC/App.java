@@ -2,24 +2,16 @@ package edu.wpi.cs3733.D22.teamC;
 
 import edu.wpi.cs3733.D22.teamC.entity.floor.Floor;
 import edu.wpi.cs3733.D22.teamC.entity.floor.FloorDAO;
-import edu.wpi.cs3733.D22.teamC.entity.floor.FloorDAOImpl;
-import edu.wpi.cs3733.D22.teamC.controller.service_request.ServiceRequestResolveController;
 import edu.wpi.cs3733.D22.teamC.entity.location.Location;
 import edu.wpi.cs3733.D22.teamC.entity.location.LocationDAO;
-import edu.wpi.cs3733.D22.teamC.entity.location.LocationDAOImpl;
 import edu.wpi.cs3733.D22.teamC.entity.service_request.medical_equipment.MedicalEquipmentSR;
 import edu.wpi.cs3733.D22.teamC.entity.service_request.medical_equipment.MedicalEquipmentSRDAOImpl;
 import edu.wpi.cs3733.D22.teamC.fileio.csv.*;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
-import javafx.scene.Group;
 import javafx.scene.Node;
-import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
-import javafx.scene.layout.Pane;
-import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 import lombok.extern.slf4j.Slf4j;
 
@@ -72,7 +64,7 @@ public class App extends Application {
             FloorCSVReader csvReader = new FloorCSVReader();
             List<Floor> floors = csvReader.readFile("TowerFloors.csv");
             if (floors != null) {
-                FloorDAO floorDAO = new FloorDAOImpl();
+                FloorDAO floorDAO = new FloorDAO();
                 for (Floor floor : floors) {
                     floorDAO.insertFloor(floor);
                 }
@@ -84,9 +76,9 @@ public class App extends Application {
             LocationCSVReader csvReader = new LocationCSVReader();
             List<Location> locations = csvReader.readFile("TowerLocations.csv");
             if (locations != null) {
-                LocationDAO locationDAO = new LocationDAOImpl();
+                LocationDAO locationDAO = new LocationDAO();
                 for (Location location : locations) {
-                    locationDAO.insertLocation(location);
+                    locationDAO.insert(location);
                 }
             }
         }
@@ -124,7 +116,7 @@ public class App extends Application {
         // Export CSV Data - Floor
         {
             FloorCSVWriter csvWriter = new FloorCSVWriter();
-            FloorDAO floorDAO = new FloorDAOImpl();
+            FloorDAO floorDAO = new FloorDAO();
             List<Floor> floors = floorDAO.getAllFloors();
             if (floors != null) {
                 csvWriter.writeFile("TowerFloors.csv", floors);
@@ -134,8 +126,8 @@ public class App extends Application {
         // Export CSV Data - Location
         {
             LocationCSVWriter csvWriter = new LocationCSVWriter();
-            LocationDAO locationDAO = new LocationDAOImpl();
-            List<Location> locations = locationDAO.getAllLocations();
+            LocationDAO locationDAO = new LocationDAO();
+            List<Location> locations = locationDAO.getAll();
             if (locations != null) {
                 csvWriter.writeFile("TowerLocations.csv", locations);
             }
