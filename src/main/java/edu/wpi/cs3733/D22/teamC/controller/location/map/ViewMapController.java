@@ -2,10 +2,7 @@ package edu.wpi.cs3733.D22.teamC.controller.location.map;
 
 import edu.wpi.cs3733.D22.teamC.entity.floor.Floor;
 import edu.wpi.cs3733.D22.teamC.entity.floor.FloorDAO;
-import edu.wpi.cs3733.D22.teamC.entity.floor.FloorDAOImpl;
 import edu.wpi.cs3733.D22.teamC.entity.location.Location;
-import edu.wpi.cs3733.D22.teamC.entity.location.LocationDAO;
-import edu.wpi.cs3733.D22.teamC.entity.location.LocationDAOImpl;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.ScrollPane;
@@ -23,7 +20,6 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
 import java.util.ResourceBundle;
 
 public class ViewMapController implements Initializable {
@@ -149,8 +145,7 @@ public class ViewMapController implements Initializable {
             mapPane.setPrefWidth(image.getWidth());
             mapPane.setPrefHeight(image.getHeight());
 
-            // Draw MapLocations
-            FloorDAO floorDAO = new FloorDAOImpl();
+            FloorDAO floorDAO = new FloorDAO();
             List<Location> locations = floorDAO.getAllLocations(floor.getFloorID());
             mapLocations = renderLocations(locations);
             for (MapLocation mapLocation : mapLocations) {

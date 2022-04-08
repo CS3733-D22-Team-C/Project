@@ -2,7 +2,6 @@ package edu.wpi.cs3733.D22.teamC.controller.location.map;
 
 import edu.wpi.cs3733.D22.teamC.entity.location.Location;
 import edu.wpi.cs3733.D22.teamC.entity.location.LocationDAO;
-import edu.wpi.cs3733.D22.teamC.entity.location.LocationDAOImpl;
 import javafx.scene.input.MouseButton;
 import javafx.scene.input.MouseEvent;
 
@@ -93,25 +92,25 @@ public class EditMapController extends ViewMapController {
      * Save the currently edited map by pushing all changes, additions, and deletions to the DB.
      */
     public void saveMap() {
-        LocationDAO locationDAO = new LocationDAOImpl();
+        LocationDAO locationDAO = new LocationDAO();
 
         // Update non-addition and non-deletions locations
         for (MapLocation mapLocation : mapLocations) {
             if (!additions.contains(mapLocation) && !deletions.contains(mapLocation)) {
                 mapLocation.updateLocationPosition();
-                locationDAO.updateLocation(mapLocation.location);
+                locationDAO.update(mapLocation.location);
             }
         }
 
         // Insert addition locations
         for (MapLocation mapLocation : additions) {
-            locationDAO.insertLocation(mapLocation.location);
+            locationDAO.insert(mapLocation.location);
         }
         additions = new ArrayList<>();
 
         // Delete deletion locations
         for (MapLocation mapLocation : deletions) {
-            locationDAO.deleteLocation(mapLocation.location);
+            locationDAO.delete(mapLocation.location);
         }
         deletions = new ArrayList<>();
     }

@@ -2,9 +2,6 @@ package edu.wpi.cs3733.D22.teamC.controller.location.map;
 
 import edu.wpi.cs3733.D22.teamC.App;
 import edu.wpi.cs3733.D22.teamC.entity.floor.Floor;
-import edu.wpi.cs3733.D22.teamC.entity.floor.FloorDAO;
-import edu.wpi.cs3733.D22.teamC.entity.location.Location;
-import edu.wpi.cs3733.D22.teamC.entity.location.LocationDAOImpl;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.layout.GridPane;
@@ -13,7 +10,6 @@ import javafx.scene.paint.Color;
 import javafx.scene.shape.SVGPath;
 
 import java.net.URL;
-import java.util.List;
 import java.util.ResourceBundle;
 
 public class BaseMapViewController implements Initializable {

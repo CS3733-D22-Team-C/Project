@@ -3,20 +3,21 @@ package edu.wpi.cs3733.D22.teamC.controller.service_request.medical_equipment;
 import com.jfoenix.controls.*;
 import edu.wpi.cs3733.D22.teamC.controller.service_request.ServiceRequestCreateController;
 import edu.wpi.cs3733.D22.teamC.entity.service_request.ServiceRequest;
-import edu.wpi.cs3733.D22.teamC.entity.service_request.ServiceRequestDAO;
-import edu.wpi.cs3733.D22.teamC.entity.service_request.medical_equipment.MedicalEquipmentSRDAO;
-import edu.wpi.cs3733.D22.teamC.entity.service_request.medical_equipment.MedicalEquipmentSRDAOImpl;
 import edu.wpi.cs3733.D22.teamC.entity.service_request.medical_equipment.MedicalEquipmentSR;
+import edu.wpi.cs3733.D22.teamC.entity.service_request.medical_equipment.MedicalEquipmentSRDAO;
+import edu.wpi.cs3733.D22.teamC.error.error_item.service_request_user_input_validation.ServiceRequestUserInputValidationErrorItem;
 import edu.wpi.cs3733.D22.teamC.models.service_request.medical_equipment.MedicalEquipmentSRTableDisplay;
+import edu.wpi.cs3733.D22.teamC.user_input_validation.service_request.medical_equipment.MedicalEquipmentSRFormEvaluator;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.scene.control.*;
 import javafx.scene.input.MouseEvent;
 
 import java.net.URL;
 import java.sql.Timestamp;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.ResourceBundle;
+import java.util.stream.Collectors;
 
 public class MedicalEquipmentSRCreateController extends ServiceRequestCreateController<MedicalEquipmentSR> {
     // Fields
@@ -39,9 +40,15 @@ public class MedicalEquipmentSRCreateController extends ServiceRequestCreateCont
 
         tableDisplay = new MedicalEquipmentSRTableDisplay(table);
 
+        //For TextFields:
+        //EquipID is being changed to a dropdown, so holding off on this.
+
         // Query Database
-        MedicalEquipmentSRDAO medicalEquipmentSRDAO = new MedicalEquipmentSRDAOImpl();
-        List<MedicalEquipmentSR> medicalEquipmentSRs = medicalEquipmentSRDAO.getAllServiceRequests();
+        MedicalEquipmentSRDAO serviceRequestDAO = new MedicalEquipmentSRDAO();
+        List<MedicalEquipmentSR> serviceRequests = serviceRequestDAO.getAll();
+        List<MedicalEquipmentSR> medicalEquipmentSRs = serviceRequests.stream().map(SR -> {
+            return (MedicalEquipmentSR) SR;
+        }).collect(Collectors.toList());
         for (MedicalEquipmentSR medicalEquipmentSR : medicalEquipmentSRs) {
             tableDisplay.addObject(medicalEquipmentSR);
         }
@@ -57,46 +64,64 @@ public class MedicalEquipmentSRCreateController extends ServiceRequestCreateCont
 
     @FXML
     protected MedicalEquipmentSR clickSubmit(ActionEvent event) {
-        MedicalEquipmentSR medEquip = new MedicalEquipmentSR();
+        resetErrorMessages();
+        MedicalEquipmentSRFormEvaluator mESRFE = new MedicalEquipmentSRFormEvaluator();
+        ArrayList<ServiceRequestUserInputValidationErrorItem> errors = mESRFE.getMedicalEquipmentSRValidationTestResult(location.getText(), assigneeID.getText(), priority.getSelectionModel(), status.getSelectionModel(), equipType.getSelectionModel(), equipID.getSelectionModel());
 
-        medEquip.setCreationTimestamp(new Timestamp(System.currentTimeMillis()));
+        if(mESRFE.noServiceRequestFormUserInputErrors(errors))
+        {
+            MedicalEquipmentSR medEquip = new MedicalEquipmentSR();
 
-        //Sets from textFields
-        medEquip.setAssigneeID(assigneeID.getText());
-        medEquip.setDescription(description.getText());
-        medEquip.setLocation(location.getText());
+            medEquip.setCreationTimestamp(new Timestamp(System.currentTimeMillis()));
 
-        //Sets from combo boxes
-        medEquip.setStatus(ServiceRequest.Status.valueOf(status.getValue()));
-        medEquip.setPriority(ServiceRequest.Priority.valueOf(priority.getValue()));
-        medEquip.setEquipmentType(MedicalEquipmentSR.EquipmentType.valueOf(equipType.getValue()));
+            medEquip.setAssigneeID(assigneeID.getText());
+            medEquip.setLocation(location.getText());
+            medEquip.setPriority(ServiceRequest.Priority.valueOf(priority.getValue()));
+            medEquip.setStatus(ServiceRequest.Status.valueOf(status.getValue()));
+            medEquip.setDescription(description.getText());
 
-        //Dealing with the equipment type and the enumerator
-        int type = medEquip.getEquipmentType().ordinal();
-        String num = equipID.getValue();
-        medEquip.setEquipmentID(num);
-        clickReset(event);
+            //Set values from combo boxes:
+            medEquip.setEquipmentType(MedicalEquipmentSR.EquipmentType.valueOf(equipType.getValue()));
 
-        medEquip.setRequestType(ServiceRequest.RequestType.Medical_Equipment);
+            //Request ID generator
+            int requestID = (int)(Math.random() * (10000000 + 1)) + 0;
+            String requestIDString = Integer.toString(requestID);
+            medEquip.setRequestID(Integer.parseInt(requestIDString));
+            System.out.println(requestIDString);
 
-        // Table Entry
-        tableDisplay.addObject(medEquip);
+            //Dealing with the equipment type and the enumerator
+            int type =  medEquip.getEquipmentType().ordinal();
+            String num = equipID.getValue();
+            medEquip.setEquipmentID(type + num);
 
-        // Database entry
-        ServiceRequestDAO serviceRequestDAO = new MedicalEquipmentSRDAOImpl();
-        serviceRequestDAO.insertServiceRequest(medEquip);
+            medEquip.setRequestType(ServiceRequest.RequestType.Medical_Equipment);
 
-        return medEquip;
+            // Table Entry
+            tableDisplay.addObject(medEquip);
+
+            clickReset(event);
+
+            // Database entry
+            MedicalEquipmentSRDAO serviceRequestDAO = new MedicalEquipmentSRDAO();
+            serviceRequestDAO.insert(medEquip);
+
+            return medEquip;
+        }
+        else
+        {
+            prepareErrorMessages(errors);
+            errors.clear();
+            return null;
+        }
+
     }
 
     @FXML
     void equipTypeChanged(MouseEvent event) {
         //If on the same equipment type
-        if(equipType.getValue().equals(lastType))
-        {
+        if (equipType.getValue().equals(lastType)) {
             return;
-        }
-        else {
+        } else {
             lastType = equipType.getValue();
 
             //Resetting the values
@@ -114,16 +139,13 @@ public class MedicalEquipmentSRCreateController extends ServiceRequestCreateCont
             if (equipType.getValue().equals(MedicalEquipmentSR.EquipmentType.Bed.toString())) {
                 type = "BED";
                 nums = numBeds;
-            }
-            else if (equipType.getValue().equals(MedicalEquipmentSR.EquipmentType.Recliner.toString())) {
+            } else if (equipType.getValue().equals(MedicalEquipmentSR.EquipmentType.Recliner.toString())) {
                 type = "REC";
                 nums = numRecliners;
-            }
-            else if (equipType.getValue().equals(MedicalEquipmentSR.EquipmentType.Infusion_Pump.toString())) {
+            } else if (equipType.getValue().equals(MedicalEquipmentSR.EquipmentType.Infusion_Pump.toString())) {
                 type = "INF";
                 nums = numInfusion;
-            }
-            else if (equipType.getValue().equals(MedicalEquipmentSR.EquipmentType.Portable_X_Ray.toString())) {
+            } else if (equipType.getValue().equals(MedicalEquipmentSR.EquipmentType.Portable_X_Ray.toString())) {
                 type = "XRA";
                 nums = numXRay;
             }
@@ -131,10 +153,19 @@ public class MedicalEquipmentSRCreateController extends ServiceRequestCreateCont
             //Adds all possible values to dropdown
             for (int i = 1; i <= nums; i++) {
                 String ID = type;
-                ID += String.format("%07d" , i);
+                ID += String.format("%07d", i);
                 equipID.getItems().add(ID);
             }
         }
+    }
 
+    @Override
+    public void prepareErrorMessages(ArrayList<ServiceRequestUserInputValidationErrorItem> l) {
+        super.prepareErrorMessages(l);
+    }
+
+    @Override
+    public void resetErrorMessages() {
+        super.resetErrorMessages();
     }
 }
