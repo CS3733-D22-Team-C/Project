@@ -175,8 +175,7 @@ public class BaseServiceRequestCreateController<T extends ServiceRequest> {
     //#region FXML Buttons
     @FXML
     void clickGoBack(ActionEvent event) {
-        App.instance.setView(App.VIEW_SERVICE_REQUESTS_PATH);
-    }
+        App.instance.setView(App.VIEW_SERVICE_REQUESTS_PATH);}
 
     @FXML
     void clickReset(ActionEvent event) {

@@ -1,0 +1,48 @@
+@import "colors.css";
+@import "fonts.css";
+
+.base_view_table_add {
+    -fx-background-color: -color-table-add;
+    -fx-text-fill: -color-menu-text;
+    -fx-border-radius: 10px
+}
+
+.base_view_table_header {
+    -fx-background-color: -color-table-color;
+    -fx-text-fill: -color-menu-text;
+    -fx-border-radius: 10px;
+    -fx-font-size: 20px;
+}
+
+.base_view_table_sub {
+    -fx-background-color: -color-table-sub;
+    -fx-text-fill: -color-black;
+    -fx-border-radius: 10px;
+}
+.base_view_table_grid {
+    -fx-background-color: -color-menu-text;
+}
+
+.base_view_table_back {
+    -fx-background-color: -color-table-back;
+    -fx-border-radius: 10px;
+    -fx-border-style: solid;
+}
+
+.base_view_table_confirm {
+    -fx-background-color: -color-table-confirm;
+    -fx-border-radius: 50px;
+}
+
+.base_view_table_text {
+    -fx-background-color: white;
+    -fx-border-radius: 12px;
+}
+
+.base_view_table_insert {
+    -fx-background-color: -color-table-insert;
+    -fx-border-radius: 10px;
+    -fx-border-style: solid;
+    -fx-border-color: gray;
+
+}
