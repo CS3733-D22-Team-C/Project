@@ -5,7 +5,7 @@ import edu.wpi.cs3733.D22.teamC.App;
 import edu.wpi.cs3733.D22.teamC.controller.service_request.ServiceRequestResolveController;
 import edu.wpi.cs3733.D22.teamC.entity.service_request.ServiceRequest;
 import edu.wpi.cs3733.D22.teamC.entity.service_request.medical_equipment.MedicalEquipmentSR;
-import edu.wpi.cs3733.D22.teamC.entity.service_request.medical_equipment.MedicalEquipmentSRDAOImpl;
+import edu.wpi.cs3733.D22.teamC.entity.service_request.medical_equipment.MedicalEquipmentSRDAO;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.input.KeyEvent;
@@ -31,8 +31,8 @@ public class MedicalEquipmentSRResolveController extends ServiceRequestResolveCo
         title.setText("Resolve Medical Equipment Service Request");
 
         // Querying for full Medical Equipment Service Request
-        MedicalEquipmentSRDAOImpl medicalEquipmentSRDAOImpl = new MedicalEquipmentSRDAOImpl();
-        MedicalEquipmentSR medicalEquipmentSR = medicalEquipmentSRDAOImpl.getServiceRequest(serviceRequest.getRequestID());
+        MedicalEquipmentSRDAO medicalEquipmentSRDAOImpl = new MedicalEquipmentSRDAO();
+        MedicalEquipmentSR medicalEquipmentSR = medicalEquipmentSRDAOImpl.getByID(serviceRequest.getRequestID());
 
         // Setting fields from Querying Database
         equipmentType.setPromptText(medicalEquipmentSR.getEquipmentType().toString());
@@ -73,8 +73,8 @@ public class MedicalEquipmentSRResolveController extends ServiceRequestResolveCo
 
         super.clickConfirm(event);
         //Accessing Service Request in Database
-        MedicalEquipmentSRDAOImpl medicalEquipmentSRDAOImpl = new MedicalEquipmentSRDAOImpl();
-        MedicalEquipmentSR medicalEquipmentSR = medicalEquipmentSRDAOImpl.getServiceRequest(serviceRequest.getRequestID());
+        MedicalEquipmentSRDAO medicalEquipmentSRDAOImpl = new MedicalEquipmentSRDAO();
+        MedicalEquipmentSR medicalEquipmentSR = medicalEquipmentSRDAOImpl.getByID(serviceRequest.getRequestID());
         if(isEditMode){
             //check if value has changed
             if(equipmentID.getValue() != null)
@@ -91,7 +91,7 @@ public class MedicalEquipmentSRResolveController extends ServiceRequestResolveCo
                 medicalEquipmentSR.setStatus(ServiceRequest.Status.Processing);
             else
                 medicalEquipmentSR.setStatus(ServiceRequest.Status.Blank);
-            medicalEquipmentSRDAOImpl.updateServiceRequest(medicalEquipmentSR);
+            medicalEquipmentSRDAOImpl.update(medicalEquipmentSR);
 
         }
 

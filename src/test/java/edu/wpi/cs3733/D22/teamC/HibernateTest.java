@@ -6,6 +6,7 @@ import edu.wpi.cs3733.D22.teamC.entity.location.Location;
 import edu.wpi.cs3733.D22.teamC.entity.location.LocationDAO;
 import edu.wpi.cs3733.D22.teamC.entity.service_request.ServiceRequest;
 import edu.wpi.cs3733.D22.teamC.entity.service_request.security.SecuritySR;
+import edu.wpi.cs3733.D22.teamC.entity.service_request.security.SecuritySRDAO;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -16,17 +17,19 @@ import java.util.List;
 public class HibernateTest {
     
     private LocationDAO locationDAO;
+    private SecuritySRDAO securitySRDAO;
 
 	@BeforeEach
 	void setUp() {
         SessionManager.getSession();
         locationDAO = new LocationDAO();
+        securitySRDAO = new SecuritySRDAO();
     }
 
 	@AfterEach
 	void tearDown() {
         // Kill Session Factory after every test. Note: this will drop the tables!
-        SessionManager.killSessionFactory();
+        //SessionManager.killSessionFactory();
     }
 
     //region Location Tests
@@ -137,7 +140,7 @@ public class HibernateTest {
     //endregion
     
     @Test
-    void testInsertSR() {
+    void testSR() {
         // Insert a new object into the database
         String creatorID = "bshin100";
         String assigneeID = "nick1234";
@@ -147,6 +150,7 @@ public class HibernateTest {
         ServiceRequest.Priority priority = ServiceRequest.Priority.High;
         ServiceRequest.RequestType requestType = ServiceRequest.RequestType.Security;
         String description = "soft eng is spain without the s";
+        SecuritySR.SecurityType securityType = SecuritySR.SecurityType.Intruder;
         
         SecuritySR insertSR = new SecuritySR();
         //ServiceRequest insertSR = new ServiceRequest();
@@ -158,9 +162,26 @@ public class HibernateTest {
         insertSR.setPriority(priority);
         insertSR.setRequestType(requestType);
         insertSR.setDescription(description);
-        insertSR.setSecurityType(SecuritySR.SecurityType.Intruder);
+        insertSR.setSecurityType(securityType);
         
-        int insertedID = HibernateManager.insertObj(insertSR);
+        int insertedID = securitySRDAO.insert(insertSR);
         assertNotEquals(-1, insertedID);
+        
+        SecuritySR retrievedSR = securitySRDAO.getByID(insertedID);
+        assertNotNull(retrievedSR);
+        
+        // Update attributes
+        status = ServiceRequest.Status.Processing;
+        securityType = SecuritySR.SecurityType.LOCKDOWN;
+        retrievedSR.setStatus(status);
+        retrievedSR.setSecurityType(securityType);
+        
+        boolean success = securitySRDAO.update(retrievedSR);
+        assertTrue(success);
+        
+        // Verify attributes
+        assertEquals(status, retrievedSR.getStatus());
+        assertEquals(securityType, retrievedSR.getSecurityType());
+        
     }
 }
