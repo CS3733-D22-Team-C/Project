@@ -12,13 +12,17 @@ public class Location {
 	@GenericGenerator(name = "increment", strategy = "increment")
 	private int nodeID;
 
+    @Column(name = "FloorID")
 	private int floor; // TODO: Floors should be objects
+    
+    @Column(name = "Building")
 	private String building = "";
 
 	@Enumerated(EnumType.STRING)
 	private NodeType nodeType;
 
 	private String longName = "";
+    
 	private String shortName = "";
 
 	@Column(name = "XCoord")

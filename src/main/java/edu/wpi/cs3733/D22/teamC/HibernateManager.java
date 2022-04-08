@@ -35,7 +35,7 @@ public class HibernateManager {
 	*
 	* @param objectList A list of objects to save.
 	*/
-	public static <T> void insertObjectList(List<T> objectList) {
+	public static <T> void insertObjs(List<T> objectList) {
 		for (Object obj : objectList) {
 			insertObj(obj);
 		}
@@ -98,6 +98,30 @@ public class HibernateManager {
 			return null;
 		}
 	}
+    
+    /**
+     * Run a filtered query on the database.
+     * @param sqlQuery SQL query
+     *                 
+     * @return A list of objects from the database.
+     */
+    @SuppressWarnings("unchecked")
+    public static <T> List<T> filterQuery(String sqlQuery) {
+        Session session = SessionManager.getSession();
+        try {
+            session.beginTransaction();
+            Query<T> query = session.createQuery(sqlQuery);
+            List<T> objs = query.list();
+            session.getTransaction().commit();
+            session.close();
+            return objs;
+        } catch (Exception e) {
+            session.getTransaction().rollback();
+            session.close();
+            e.printStackTrace();
+            return null;
+        }
+    }
 
 	
 }

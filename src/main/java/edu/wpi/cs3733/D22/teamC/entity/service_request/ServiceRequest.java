@@ -1,18 +1,45 @@
 package edu.wpi.cs3733.D22.teamC.entity.service_request;
 
+import org.hibernate.annotations.CreationTimestamp;
+import org.hibernate.annotations.GenericGenerator;
+import org.hibernate.annotations.UpdateTimestamp;
+
+import javax.persistence.*;
 import java.sql.Timestamp;
 
+@Entity
+@Inheritance(strategy = InheritanceType.JOINED)
+@Table(name = "SERVICE_REQUEST")
 public class ServiceRequest {
+    @Id
+    @Column(name = "ID", nullable = false)
+    @GeneratedValue(generator = "increment")
+    @GenericGenerator(name = "increment", strategy = "increment")
     protected int requestID;
+    
     protected String creatorID;     // TODO: Link to Employee
+    
     protected String assigneeID;    // TODO: Link to Employee
-    protected String location;      // TODO: Link to Location
+    
+    protected String locationID;      // TODO: Link to Location
+    
+    @CreationTimestamp
     protected Timestamp creationTimestamp;
+    
+    @Enumerated(EnumType.STRING)
     protected Status status;
+    
+    @Enumerated(EnumType.STRING)
     protected Priority priority;
+    
+    @Enumerated(EnumType.STRING)
     protected RequestType requestType;
+    
     protected String description;
+    
     protected String modifierID;
+    
+    @UpdateTimestamp
     protected Timestamp modifiedTimestamp;
 
     public enum Status {
@@ -42,7 +69,7 @@ public class ServiceRequest {
         this.requestID = serviceRequest.getRequestID();
         this.creatorID = serviceRequest.getCreatorID();
         this.assigneeID = serviceRequest.getAssigneeID();
-        this.location = serviceRequest.getLocation();
+        this.locationID = serviceRequest.getLocation();
         this.creationTimestamp = serviceRequest.getCreationTimestamp();
         this.status = serviceRequest.getStatus();
         this.priority = serviceRequest.getPriority();
@@ -81,11 +108,11 @@ public class ServiceRequest {
     }
 
     public String getLocation() {
-        return location;
+        return locationID;
     }
 
     public void setLocation(String location) {
-        this.location = location;
+        this.locationID = location;
     }
 
     public Timestamp getCreationTimestamp() {

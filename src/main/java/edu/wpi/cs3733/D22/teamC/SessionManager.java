@@ -6,8 +6,7 @@ import org.hibernate.cfg.Configuration;
 
 /** Manage Hibernation session. */
 public class SessionManager {
-	private static final SessionFactory sf =
-			new Configuration().configure("hibernate.cfg.xml").buildSessionFactory();
+	private static SessionFactory sf = createSessionFactory();
 
 	private SessionManager() {}
 
@@ -17,8 +16,27 @@ public class SessionManager {
 	* @return Hibernate Session object.
 	*/
 	public static Session getSession() {
+        if (sf == null) {
+            sf = createSessionFactory(); 
+        }
 		return sf.openSession();
 	}
+    
+    private static SessionFactory createSessionFactory() {
+        return new Configuration().configure("hibernate.cfg.xml").buildSessionFactory();
+    }
+    
+    /**
+     * If you're thinking of using this, don't.
+     */
+    public static void killSessionFactory() {
+        try {
+            sf.close();
+            sf = null;
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
 
 	// TODO: add switch for embedded and server databases
 }
