@@ -1,0 +1,38 @@
+@import "../../../colors/colors.css";
+@import "../../../fonts/fonts.css";
+
+.dropdown-service-request {
+    /* Dropdown Menu */
+
+    position: absolute;
+    width: 181.52px;
+    height: 29px;
+    left: 368px;
+    top: 390px;
+}
+
+.dropdown-map-editor-floor {
+    /* Box */
+
+    position: absolute;
+    left: 1102px;
+    right: 96px;
+    top: 344px;
+    bottom: 632px;
+
+    /* Primary Text */
+
+    background: #FFFFFF;
+    border-radius: 4px;
+
+    /* Login Button */
+
+    font-family: 'Roboto';
+    font-style: normal;
+    font-weight: 500;
+    font-size: 16px;
+    line-height: 21px;
+
+    color: #000000;
+}
+

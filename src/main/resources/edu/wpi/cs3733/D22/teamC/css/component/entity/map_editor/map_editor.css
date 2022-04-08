@@ -1,0 +1,75 @@
+.map-editor-image {
+    background: url(../../../../images/03_thethirdfloor.png);
+}
+
+.map-editor-options-base {
+    /* Rectangle 1 */
+
+    position: absolute;
+    width: 315px;
+    height: 456px;
+    left: 1381px;
+    top: 594px;
+
+    background: rgba(222, 246, 249, 0.2);
+    border: 1px solid rgba(0, 0, 0, 0.25);
+    box-sizing: border-box;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    transform: rotate(180deg);
+}
+
+.map-editor-options-card-header {
+    /* Card Header */
+    position: absolute;
+    width: 315px;
+    height: 101px;
+    left: 1066px;
+    top: 137px;
+}
+
+.map-editor-title {
+    /* Options */
+    position: absolute;
+    width: 315px;
+    height: 100px;
+    left: 1066px;
+    top: 138px;
+
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 23px;
+    line-height: 28px;
+    display: flex;
+    align-items: center;
+    text-align: center;
+
+    /* Primary Text */
+
+    color: #FFFFFF;
+}
+
+.map-editor-locations-base {
+    position: absolute;
+    width: 316px;
+    height: 370px;
+    left: 1065px;
+    top: 617px;
+
+    filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
+}
+
+.map-editor-locations-card-header {
+    /* Rectangle 31 */
+
+    position: absolute;
+    width: 315px;
+    height: 92px;
+    left: 1066px;
+    top: 617px;
+
+    /* Primary Dark */
+
+    background: #00316C;
+}
+

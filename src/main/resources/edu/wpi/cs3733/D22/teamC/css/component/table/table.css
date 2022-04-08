@@ -1,0 +1,39 @@
+.table-frame {
+    /* Table of Service Requests */
+
+    position: absolute;
+    width: 694px;
+    height: 625px;
+    left: 746px;
+    top: 195px;
+
+    filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
+}
+
+.table-scrollbar {
+    /* ScrollBar */
+
+    position: absolute;
+    width: 13px;
+    height: 581px;
+    left: 1353px;
+    top: 222px;
+
+    opacity: 0.5;
+}
+
+.table-column-line {
+    /* Line 1 */
+
+    position: absolute;
+    width: 620.5px;
+    height: 0px;
+    left: 854.9px;
+    top: 817.75px;
+
+    border: 1px solid rgba(0, 0, 0, 0.25);
+    transform: rotate(-90deg);
+}
+
+
+

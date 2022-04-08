@@ -1,0 +1,285 @@
+.label-login-username {
+    position: absolute;
+    width: 161.16px;
+    height: 39.62px;
+    left: 959.02px;
+    top: 574px;
+
+    font-family: 'Roboto';
+    font-style: normal;
+    font-weight: 500;
+    font-size: 14px;
+    line-height: 21px;
+    /* or 150% */
+
+    letter-spacing: 0.1px;
+
+    /* Secondary Text */
+
+    color: #000000;
+}
+
+.label-login-password {
+    /* Password */
+
+    position: absolute;
+    width: 161.16px;
+    height: 39.62px;
+    left: 958.56px;
+    top: 691px;
+
+    font-family: 'Roboto';
+    font-style: normal;
+    font-weight: 500;
+    font-size: 14px;
+    line-height: 21px;
+    /* or 150% */
+
+    letter-spacing: 0.1px;
+
+    color: #000000;
+}
+
+.label-login-title {
+    position: absolute;
+    width: 347.25px;
+    height: 74px;
+    left: 1060.69px;
+    top: 198px;
+
+    font-family: 'Cambo';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 32px;
+    line-height: 21px;
+    /* or 66% */
+
+    text-align: center;
+    letter-spacing: 0.1px;
+
+    color: #FFFFFF;
+}
+
+.label-table-column {
+
+}
+
+.label-login-error {
+    position: absolute;
+    width: 454px;
+    height: 82px;
+    left: 921px;
+    top: 468px;
+
+    background: rgba(255, 174, 174, 0.5);
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    border-radius: 11px;
+
+    /* Invalid Username or Password. */
+
+    position: absolute;
+    width: 289px;
+    height: 26px;
+    left: 1009px;
+    top: 499px;
+
+    font-family: 'Kantumruy';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 19px;
+    line-height: 21px;
+    /* or 111% */
+
+    letter-spacing: 0.1px;
+
+    color: #000000;
+}
+
+.label-page-title {
+    /* Table */
+
+    /* Rectangle 25 */
+
+    position: absolute;
+    width: 1388px;
+    height: 107px;
+    left: 52px;
+    top: 0px;
+
+    /* Primary */
+
+    background: #005A9B;
+
+    position: absolute;
+    width: 1388px;
+    height: 41px;
+    left: 52px;
+    top: 33px;
+
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 34px;
+    line-height: 41px;
+    display: flex;
+    align-items: center;
+    text-align: center;
+
+    color: #FFFFFF;
+}
+
+.label-table-node-ID {
+    /* NODE ID */
+
+    position: absolute;
+    width: 108.9px;
+    height: 24.02px;
+    left: 746px;
+    top: 199.5px;
+
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 17px;
+    line-height: 21px;
+    display: flex;
+    align-items: center;
+    text-align: center;
+
+    color: #000000;
+}
+
+.label-service-request-landing-page
+{
+    /* Medicine Delivery */
+
+
+    position: absolute;
+    width: 141px;
+    height: 63px;
+    left: 686px;
+    top: 212px;
+
+    font-family: 'Cambo';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 32px;
+    line-height: 36px;
+    display: flex;
+    align-items: center;
+    text-align: center;
+
+    /* Primary Light */
+
+    color: #4E86CC;
+}
+
+.label-creator-service-request-landing-page
+{
+    /* Matthew McAlarney */
+
+    position: absolute;
+    width: 110px;
+    height: 8px;
+    left: 958px;
+    top: 483px;
+
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 13px;
+    line-height: 16px;
+    display: flex;
+    align-items: center;
+    text-align: center;
+
+    /* Primary Dark */
+
+    color: #00316C;
+}
+
+.label-service-request-page {
+    /* Assign To */
+
+
+    position: absolute;
+    width: 194px;
+    height: 19px;
+    left: 368px;
+    top: 362px;
+
+    /* Subtitle 2 - med 14 (21px, 0.1px) */
+
+    font-family: 'Roboto';
+    font-style: normal;
+    font-weight: 500;
+    font-size: 14px;
+    line-height: 21px;
+    /* or 150% */
+
+    letter-spacing: 0.1px;
+
+    color: #000000;
+}
+
+.label-map-editor-location-long-name {
+    /* Long Name: */
+    position: absolute;
+    width: 106.52px;
+    height: 41.11px;
+    left: 1097px;
+    top: 737px;
+
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 12px;
+    line-height: 15px;
+    display: flex;
+    align-items: center;
+
+    color: #000000;
+}
+
+.label-map-editor-location-short-name {
+    /* Short Name: */
+    position: absolute;
+    width: 106.52px;
+    height: 39.83px;
+    left: 1097px;
+    top: 788.39px;
+
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 12px;
+    line-height: 15px;
+    display: flex;
+    align-items: center;
+
+    color: #000000;
+}
+
+.label-map-editor-location-type {
+    /* Type: */
+
+    position: absolute;
+    width: 102.97px;
+    height: 39.83px;
+    left: 1097px;
+    top: 838.49px;
+
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 12px;
+    line-height: 15px;
+    display: flex;
+    align-items: center;
+
+    color: #000000;
+}
+
+
+
+

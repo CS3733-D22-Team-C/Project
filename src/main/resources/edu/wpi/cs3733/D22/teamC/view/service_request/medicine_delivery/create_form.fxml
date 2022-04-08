@@ -53,7 +53,7 @@
             <VBox alignment="CENTER_LEFT" prefHeight="200.0" prefWidth="100.0" styleClass="box-margin" GridPane.columnIndex="1" GridPane.hgrow="ALWAYS" GridPane.vgrow="ALWAYS">
                <children>
                   <Label styleClass="service-field-label" text="Status:" />
-                  <JFXComboBox fx:id="status" maxWidth="1.7976931348623157E308" styleClass="dropdown" stylesheets="@../../../css/component/functional_component/dropdown/dropdown.css" />
+                  <JFXComboBox fx:id="status" maxWidth="1.7976931348623157E308" styleClass="dropdown" stylesheets="@../../../css/component/functional/dropdown/dropdown.css" />
                </children>
             </VBox>
             <VBox alignment="CENTER_LEFT" prefHeight="200.0" prefWidth="100.0" styleClass="box-margin" GridPane.columnIndex="2" GridPane.hgrow="ALWAYS" GridPane.vgrow="ALWAYS">
@@ -77,7 +77,7 @@
             <VBox alignment="CENTER_LEFT" prefHeight="200.0" prefWidth="100.0" styleClass="box-margin" GridPane.rowIndex="2">
                <children>
                   <Label styleClass="service-field-label" text="Priority:" />
-                  <JFXComboBox fx:id="priority" maxWidth="1.7976931348623157E308" styleClass="dropdown" stylesheets="@../../../css/component/functional_component/dropdown/dropdown.css" />
+                  <JFXComboBox fx:id="priority" maxWidth="1.7976931348623157E308" styleClass="dropdown" stylesheets="@../../../css/component/functional/dropdown/dropdown.css" />
                </children>
             </VBox>
             <VBox alignment="CENTER_LEFT" prefHeight="200.0" prefWidth="100.0" styleClass="box-margin" GridPane.columnIndex="2" GridPane.rowIndex="1">
@@ -132,6 +132,6 @@
    </children>
    <stylesheets>
       <URL value="@../../../css/request_page.css" />
-      <URL value="@../../../css/component/functional_component/dropdown/dropdown.css" />
+      <URL value="@../../../css/component/functional/dropdown/dropdown.css" />
    </stylesheets>
 </GridPane>

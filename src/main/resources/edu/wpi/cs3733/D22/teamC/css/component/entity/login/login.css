@@ -1,0 +1,20 @@
+.login-base {
+    /* Rectangle 7 */
+
+    position: absolute;
+    width: 593px;
+    height: 1024px;
+    left: 847px;
+    top: -8px;
+
+    /* Primary Text */
+
+    background: #FFFFFF;
+}
+
+.login-image {
+    background: url(../../../../images/BrighamandWomens.png);
+}
+
+
+

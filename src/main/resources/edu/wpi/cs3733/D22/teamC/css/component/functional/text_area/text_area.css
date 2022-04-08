@@ -1,0 +1,12 @@
+.text-area-service-request {
+    /* Rectangle 14 */
+
+    position: absolute;
+    width: 785px;
+    height: 175px;
+    left: 366px;
+    top: 489px;
+
+    background: #C4C4C4;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+}

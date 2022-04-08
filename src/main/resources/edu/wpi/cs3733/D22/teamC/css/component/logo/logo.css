@@ -1,0 +1,21 @@
+.logo-base {
+    position: absolute;
+    width: 593px;
+    height: 448px;
+    left: 847px;
+    top: -5px;
+
+    background: #00316C;
+}
+
+.logo-design
+{
+    position: absolute;
+    width: 193px;
+    height: 189px;
+    left: 868px;
+    top: 141px;
+
+    background: url(../../../images/mgb-icon-color@2x.png);
+}
+
