@@ -133,7 +133,7 @@ public class BaseServiceRequestCreateController<T extends ServiceRequest> {
         // Clearing Fields
         assigneeID.clear();
         locationField.clear();
-        description.clear();
+        description.setText("");
 
         // Clearing Dropdowns
         priority.valueProperty().set(null);

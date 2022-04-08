@@ -24,7 +24,7 @@ public class MedicalEquipmentSRInsertCreateController implements InsertServiceRe
     private JFXComboBox<String> equipmentType;
     @FXML
     private JFXComboBox<String> equipmentID;
-    private String lastType;
+    private String lastType = "";
 
 
 
@@ -47,7 +47,7 @@ public class MedicalEquipmentSRInsertCreateController implements InsertServiceRe
         MedicalEquipmentSR MESR = new MedicalEquipmentSR();
 
         MESR.setEquipmentType(MedicalEquipmentSR.EquipmentType.valueOf(equipmentType.getValue()));
-
+        MESR.setEquipmentID(equipmentID.getValue());
         return MESR;
     }
 

@@ -41,8 +41,8 @@ public class MedicalEquipmentSRInsertResolveController extends InsertServiceRequ
         equipmentType.setDisable(!isEditMode);
         equipmentID.setDisable(!isEditMode);
         equipmentType.setPromptText(serviceRequest.getEquipmentType().toString());
-        equipmentID.setPromptText(serviceRequest.getEquipmentID());
         createEquipIDs(true);
+        equipmentID.setPromptText(serviceRequest.getEquipmentID());
     }
 
     public boolean requiredFieldsPresent(){

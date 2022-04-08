@@ -69,6 +69,7 @@ public class BaseServiceRequestResolveController<T extends ServiceRequest> {
         locationField.setText(serviceRequest.getLocation());
         assigneeID.setText(serviceRequest.getAssigneeID());
         creationTime.setText(serviceRequest.getCreationTimestamp().toString());
+        description.setText(serviceRequest.getDescription());
 
         // Set labels
         requestID.setText(String.format("%07d" , serviceRequest.getRequestID()));
@@ -132,6 +133,7 @@ public class BaseServiceRequestResolveController<T extends ServiceRequest> {
             //Set status to Done
             serviceRequest.setStatus(ServiceRequest.Status.Done);
         }
+
         serviceRequest.setDescription(description.getText());
         serviceRequestDAO.updateServiceRequest(serviceRequest);
         insertController.updateServiceRequest(serviceRequest);
