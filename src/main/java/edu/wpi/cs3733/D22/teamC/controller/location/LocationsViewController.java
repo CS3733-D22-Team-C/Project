@@ -3,7 +3,6 @@ package edu.wpi.cs3733.D22.teamC.controller.location;
 import com.jfoenix.controls.JFXTreeTableView;
 import edu.wpi.cs3733.D22.teamC.entity.location.Location;
 import edu.wpi.cs3733.D22.teamC.entity.location.LocationDAO;
-import edu.wpi.cs3733.D22.teamC.entity.location.LocationDAOImpl;
 import edu.wpi.cs3733.D22.teamC.models.location.LocationTableDisplay;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -27,8 +26,8 @@ public class LocationsViewController implements Initializable {
         tableDisplay = new LocationTableDisplay(table);
 
         // Query Database
-        LocationDAO locationsDAO = new LocationDAOImpl();
-        List<Location> locations = locationsDAO.getAllLocations();
+        LocationDAO locationsDAO = new LocationDAO();
+        List<Location> locations = locationsDAO.getAll();
 
         for(Location location : locations){
             tableDisplay.addObject(location);

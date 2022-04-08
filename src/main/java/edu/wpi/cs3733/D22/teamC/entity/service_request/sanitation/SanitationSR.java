@@ -2,7 +2,14 @@ package edu.wpi.cs3733.D22.teamC.entity.service_request.sanitation;
 
 import edu.wpi.cs3733.D22.teamC.entity.service_request.ServiceRequest;
 
+import javax.persistence.*;
+
+@Entity
+@Table(name = "SANITATION_SR")
 public class SanitationSR extends ServiceRequest {
+
+    @Enumerated(EnumType.STRING)
+    @Column(name = "SanitationType")
     protected SanitationType sanitationType;
 
     public enum SanitationType {
