@@ -9,12 +9,12 @@ public class MedicalEquipmentSRFactory extends ServiceRequestFactory<MedicalEqui
         MedicalEquipmentSR serviceRequest = new MedicalEquipmentSR();
 
         ServiceRequest.RequestType requestType = ServiceRequest.RequestType.Medical_Equipment;
-        String equipID = String.valueOf(getGenerator().nextInt(200000));
+        String equipID = String.valueOf(generator.nextInt(200000));
 
         serviceRequest.setRequestType(requestType);
         serviceRequest.setEquipmentID(equipID);
         //this code is here to prevent medical equipment SR tests from breaking, we'll be removing this code once medical equipment is fully finished
-        serviceRequest.setEquipmentType(MedicalEquipmentSR.EquipmentType.values()[getGenerator().nextInt(MedicalEquipmentSR.EquipmentType.values().length)]);
+        serviceRequest.setEquipmentType(MedicalEquipmentSR.EquipmentType.values()[generator.nextInt(MedicalEquipmentSR.EquipmentType.values().length)]);
         return super.create(serviceRequest);
     }
 }

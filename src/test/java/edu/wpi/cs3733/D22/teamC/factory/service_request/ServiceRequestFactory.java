@@ -6,15 +6,13 @@ import java.sql.Timestamp;
 import java.util.Random;
 
 public class ServiceRequestFactory<T extends ServiceRequest> {
-    private Random generator = new Random();
+    protected Random generator = new Random();
+
     public T create() {
         T serviceRequest = (T) new ServiceRequest();
         return create(serviceRequest);
     }
 
-    public Random getGenerator() {
-        return generator;
-    }
     public T create(T serviceRequest) {
         String creatorID = String.valueOf(generator.nextInt(200000));
         String assigneeID = String.valueOf(generator.nextInt(200000));
