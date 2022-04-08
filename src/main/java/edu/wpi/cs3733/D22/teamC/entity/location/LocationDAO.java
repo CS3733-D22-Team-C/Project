@@ -14,12 +14,4 @@ public class LocationDAO extends DAO<Location> {
         return Location.class;
     }
     
-    /**
-     * Get all entries in LOCATION Table of DB, converting them to Location objects.
-     * @return List of all Location objects converted from queries.
-     */
-    public List<Location> getAll() {
-        return HibernateManager.filterQuery("from Location");
-    }
-    
 }

@@ -3,6 +3,7 @@ package edu.wpi.cs3733.D22.teamC;
 import static org.junit.jupiter.api.Assertions.*;
 
 import edu.wpi.cs3733.D22.teamC.entity.location.Location;
+import edu.wpi.cs3733.D22.teamC.entity.location.LocationDAO;
 import edu.wpi.cs3733.D22.teamC.entity.service_request.ServiceRequest;
 import edu.wpi.cs3733.D22.teamC.entity.service_request.security.SecuritySR;
 import org.junit.jupiter.api.AfterEach;
@@ -13,10 +14,13 @@ import java.sql.Timestamp;
 import java.util.List;
 
 public class HibernateTest {
+    
+    private LocationDAO locationDAO;
 
 	@BeforeEach
 	void setUp() {
         SessionManager.getSession();
+        locationDAO = new LocationDAO();
     }
 
 	@AfterEach
@@ -30,7 +34,7 @@ public class HibernateTest {
 	void testInsertLocation() {
         // Insert a new object into the database
 		Location newLoc = new Location();
-        int insertedID = HibernateManager.insertObj(newLoc);
+        int insertedID = locationDAO.insert(newLoc);
         assertNotEquals(-1, insertedID);
 	}
 
@@ -43,11 +47,11 @@ public class HibernateTest {
 		newLoc.setLongName("YourMom69");
 		newLoc.setX(1000);
 		newLoc.setY(1000);
-		int insertedID = HibernateManager.insertObj(newLoc);
+		int insertedID = locationDAO.insert(newLoc);
         assertNotEquals(-1, insertedID);
 
 		// Retrieve the object
-		Location retrievedLoc = HibernateManager.getObjByID(insertedID, Location.class);
+        Location retrievedLoc = locationDAO.getByID(insertedID);
 		assertNotNull(retrievedLoc);
 
 		// Verify attributes
@@ -68,14 +72,14 @@ public class HibernateTest {
         newLoc.setLongName("YourMom69");
         newLoc.setX(1000);
         newLoc.setY(1000);
-        int insertedID = HibernateManager.insertObj(newLoc);
+        int insertedID = locationDAO.insert(newLoc);
         assertNotEquals(-1, insertedID);
     
-        HibernateManager.insertObj(new Location());
-        HibernateManager.insertObj(new Location());
+        locationDAO.insert(new Location());
+        locationDAO.insert(new Location());
         
         // Get All
-        List<Location> getList = HibernateManager.filterQuery("from Location");
+        List<Location> getList = locationDAO.getAll();
         System.out.println(getList.size());
     }
     
@@ -88,10 +92,10 @@ public class HibernateTest {
 		newLoc.setLongName("YourMom69");
 		newLoc.setX(1000);
 		newLoc.setY(1000);
-		int insertedID = HibernateManager.insertObj(newLoc);
+		int insertedID = locationDAO.insert(newLoc);
 
 		// Retrieve the object
-		Location retrievedLoc = HibernateManager.getObjByID(insertedID, Location.class);
+		Location retrievedLoc = locationDAO.getByID(insertedID);
 		assertNotNull(retrievedLoc);
 
 		// Update attributes
@@ -107,7 +111,8 @@ public class HibernateTest {
 		retrievedLoc.setShortName(newShortName);
 		retrievedLoc.setX(newX);
 		retrievedLoc.setY(newY);
-		HibernateManager.updateObj(retrievedLoc);
+		boolean success = locationDAO.update(retrievedLoc);
+        assertTrue(success);
 
 		// Verify attributes
 		assertEquals(newNodeType, retrievedLoc.getNodeType());
@@ -123,10 +128,11 @@ public class HibernateTest {
 		newLoc.setBuilding("TOWER");
 		newLoc.setLongName("deleteMe");
 
-		int insertedID = HibernateManager.insertObj(newLoc);
+		int insertedID = locationDAO.insert(newLoc);
         assertNotEquals(-1, insertedID);
 
-		HibernateManager.deleteObj(newLoc);
+		boolean success = HibernateManager.deleteObj(newLoc);
+        assertTrue(success);
 	}
     //endregion
     

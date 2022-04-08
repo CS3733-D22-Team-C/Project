@@ -31,5 +31,7 @@ public abstract class DAO <T> {
         return HibernateManager.getObjByID(id, classType());
     }
     
-    public abstract List<T> getAll();
+    public List<T> getAll() {
+        return HibernateManager.filterQuery("from " + classType().getName());
+    };
 }
