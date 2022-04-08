@@ -270,6 +270,7 @@ public class HibernateTest {
 		retrievedEmp.setPhone(newPhone);
 		retrievedEmp.setAddress(newAddress);
 		retrievedEmp.setRole(newRole);
+		retrievedEmp.setAdmin(newAdmin);
 		retrievedEmp.setUsername(newUsername);
 		retrievedEmp.setPassword(newPassword);
 
