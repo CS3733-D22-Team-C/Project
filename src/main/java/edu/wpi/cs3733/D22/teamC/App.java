@@ -57,7 +57,7 @@ public class App extends Application {
     @Override
     public void init() {
         // Initialize Database Manager
-        DBManager.startup(DBManager.DEVELOPMENT_DATABASE_NAME).initializeTables(true);
+        //DBManager.startup(DBManager.DEVELOPMENT_DATABASE_NAME).initializeTables(true);
 
         // Load CSV Data - Floor
         {
@@ -144,7 +144,7 @@ public class App extends Application {
         }
 
         // Shutdown Database Manager
-        DBManager.shutdown();
+        //DBManager.shutdown();
 
         log.info("Shutting Down");
     }
