@@ -1,12 +1,19 @@
 package edu.wpi.cs3733.D22.teamC.entity.service_request.lab_system;
 
-import edu.wpi.cs3733.D22.teamC.entity.service_request.ServiceRequest;
+import javax.persistence.*;
 
+import edu.wpi.cs3733.D22.teamC.entity.service_request.ServiceRequest;
+import org.hibernate.annotations.GenericGenerator;
+@Entity
+@Table (name = "LAB SYSTEM")
 public class LabSystemSR extends ServiceRequest {
+
+    @Enumerated(EnumType.STRING)
     protected LabType labType;
+
     protected String patientID; // TODO: Link to Patient
 
-   public enum LabType {
+    public enum LabType {
         Blood_Sample,
         Urine_Sample,
         X_Ray,

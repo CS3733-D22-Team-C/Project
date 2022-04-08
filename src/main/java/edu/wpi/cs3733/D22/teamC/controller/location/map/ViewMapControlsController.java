@@ -29,7 +29,7 @@ public class ViewMapControlsController {
         setParentController(baseMapViewController);
 
         FloorDAO floorDAO = new FloorDAO();
-        floors = floorDAO.getAllFloors();
+        floors = floorDAO.getAll();
 
         if (floors != null) {
             for (Floor i : floors) {
