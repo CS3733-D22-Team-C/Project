@@ -24,7 +24,7 @@ public class LocationTableDisplay extends TableDisplay<Location> {
             super(location);
 
             id          = new SimpleIntegerProperty(location.getNodeID());
-            floor       = new SimpleStringProperty((new FloorDAO()).getFloor(location.getFloor()).getShortName());
+            floor       = new SimpleStringProperty((new FloorDAO()).getByID(location.getFloor()).getShortName());
             building    = new SimpleStringProperty(location.getBuilding());
             nodeType    = new SimpleStringProperty(location.getNodeType().toString());
             longName    = new SimpleStringProperty(location.getLongName());

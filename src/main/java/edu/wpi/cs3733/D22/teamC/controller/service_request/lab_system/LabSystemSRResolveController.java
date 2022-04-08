@@ -5,7 +5,7 @@ import edu.wpi.cs3733.D22.teamC.App;
 import edu.wpi.cs3733.D22.teamC.controller.service_request.ServiceRequestResolveController;
 import edu.wpi.cs3733.D22.teamC.entity.service_request.ServiceRequest;
 import edu.wpi.cs3733.D22.teamC.entity.service_request.lab_system.LabSystemSR;
-import edu.wpi.cs3733.D22.teamC.entity.service_request.lab_system.LabSystemSRDAOImpl;
+import edu.wpi.cs3733.D22.teamC.entity.service_request.lab_system.LabSystemSRDAO;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.TextField;
@@ -27,8 +27,8 @@ public class LabSystemSRResolveController extends ServiceRequestResolveControlle
         super.setup(serviceRequest, isEditMode);
 
         // Querying for full Medical Equipment Service Request
-        LabSystemSRDAOImpl labSystemSRDAOImpl = new LabSystemSRDAOImpl();
-        LabSystemSR labSystemSR = labSystemSRDAOImpl.getServiceRequest(serviceRequest.getRequestID());
+        LabSystemSRDAO labSystemSRDAO = new LabSystemSRDAO();
+        LabSystemSR labSystemSR = labSystemSRDAO.getByID(serviceRequest.getRequestID());
 
         // Setting fields from Querying Database
         labType.setPromptText(labSystemSR.getLabType().toString());
@@ -59,8 +59,8 @@ public class LabSystemSRResolveController extends ServiceRequestResolveControlle
 
         super.clickConfirm(event);
         //Accessing Service Request in Database
-        LabSystemSRDAOImpl labSystemSRDAOImpl = new LabSystemSRDAOImpl();
-        LabSystemSR labSystemSR = labSystemSRDAOImpl.getServiceRequest(serviceRequest.getRequestID());
+        LabSystemSRDAO labSystemSRDAOImpl = new LabSystemSRDAO();
+        LabSystemSR labSystemSR = labSystemSRDAOImpl.getByID(serviceRequest.getRequestID());
         if(isEditMode){
             //check if value has changed
             labSystemSR.setPatientID(patientID.getText());
@@ -74,7 +74,7 @@ public class LabSystemSRResolveController extends ServiceRequestResolveControlle
                 labSystemSR.setStatus(ServiceRequest.Status.Processing);
             else
                 labSystemSR.setStatus(ServiceRequest.Status.Blank);
-            labSystemSRDAOImpl.updateServiceRequest(labSystemSR);
+            labSystemSRDAOImpl.update(labSystemSR);
 
         }
 
