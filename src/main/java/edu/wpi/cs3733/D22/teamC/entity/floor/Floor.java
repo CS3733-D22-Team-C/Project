@@ -21,6 +21,7 @@ public class Floor {
     
     @Column(name = "ShortName")
     private String shortName;
+    private String imageSrc;
 
     public Floor(){}
 
@@ -65,6 +66,11 @@ public class Floor {
         this.shortName = shortName;
     }
 
+    public String getImageSrc() {
+        return imageSrc;
+    }
 
+    public void setImageSrc(String imageSrc) {
+        this.imageSrc = imageSrc;
+    }
 }
-

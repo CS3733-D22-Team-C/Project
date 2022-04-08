@@ -26,6 +26,9 @@ public class FloorCSVReader extends CSVReader<Floor> {
             case "shortName":
                 object.setShortName(value);
                 break;
+            case "imageSrc":
+                object.setImageSrc(value);
+                break;
             default:
                 break;
         }

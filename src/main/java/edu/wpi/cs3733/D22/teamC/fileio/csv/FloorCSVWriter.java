@@ -13,7 +13,8 @@ public class FloorCSVWriter extends CSVWriter<Floor> {
                 "id",
                 "order",
                 "longName",
-                "shortName"
+                "shortName",
+                "imageSrc"
         };
     }
 
@@ -38,6 +39,9 @@ public class FloorCSVWriter extends CSVWriter<Floor> {
                 break;
             case "shortName":
                 output = object.getShortName();
+                break;
+            case "imageSrc":
+                output = object.getImageSrc();
                 break;
             default:
                 break;
