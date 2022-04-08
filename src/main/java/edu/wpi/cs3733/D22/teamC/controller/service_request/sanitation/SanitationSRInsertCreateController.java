@@ -3,9 +3,10 @@ package edu.wpi.cs3733.D22.teamC.controller.service_request.sanitation;
 import com.jfoenix.controls.JFXComboBox;
 import com.jfoenix.controls.JFXTreeTableView;
 import edu.wpi.cs3733.D22.teamC.controller.service_request.InsertServiceRequestCreateController;
+import edu.wpi.cs3733.D22.teamC.entity.generic.DAO;
 import edu.wpi.cs3733.D22.teamC.entity.service_request.ServiceRequestDAO;
 import edu.wpi.cs3733.D22.teamC.entity.service_request.sanitation.SanitationSR;
-import edu.wpi.cs3733.D22.teamC.entity.service_request.sanitation.SanitationSRDAOImpl;
+import edu.wpi.cs3733.D22.teamC.entity.service_request.sanitation.SanitationSRDAO;
 import edu.wpi.cs3733.D22.teamC.models.service_request.ServiceRequestTableDisplay;
 import edu.wpi.cs3733.D22.teamC.models.service_request.sanitation.SanitationSRTableDisplay;
 import javafx.fxml.FXML;
@@ -41,8 +42,8 @@ public class SanitationSRInsertCreateController implements InsertServiceRequestC
     }
 
     @Override
-    public ServiceRequestDAO<SanitationSR> createServiceRequestDAO() {
-        return new SanitationSRDAOImpl();
+    public DAO<SanitationSR> createServiceRequestDAO() {
+        return new SanitationSRDAO();
     }
 
     @Override

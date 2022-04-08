@@ -3,12 +3,12 @@ package edu.wpi.cs3733.D22.teamC.controller.service_request.sanitation;
 import com.jfoenix.controls.JFXComboBox;
 import edu.wpi.cs3733.D22.teamC.controller.service_request.BaseServiceRequestResolveController;
 import edu.wpi.cs3733.D22.teamC.controller.service_request.InsertServiceRequestResolveController;
+import edu.wpi.cs3733.D22.teamC.entity.generic.DAO;
 import edu.wpi.cs3733.D22.teamC.entity.service_request.ServiceRequestDAO;
 import edu.wpi.cs3733.D22.teamC.entity.service_request.sanitation.SanitationSR;
-import edu.wpi.cs3733.D22.teamC.entity.service_request.sanitation.SanitationSRDAOImpl;
+import edu.wpi.cs3733.D22.teamC.entity.service_request.sanitation.SanitationSRDAO;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.input.MouseEvent;
 
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -53,7 +53,7 @@ public class SanitationSRInsertResolveController extends InsertServiceRequestRes
         super.onFieldUpdated();
     }
 
-    public ServiceRequestDAO<SanitationSR> createServiceRequestDAO() {
-        return new SanitationSRDAOImpl();
+    public DAO<SanitationSR> createServiceRequestDAO() {
+        return new SanitationSRDAO();
     }
 }

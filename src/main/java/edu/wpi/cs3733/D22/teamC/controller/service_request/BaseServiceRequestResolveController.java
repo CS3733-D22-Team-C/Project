@@ -4,11 +4,8 @@ import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXComboBox;
 import com.jfoenix.controls.JFXTextArea;
 import edu.wpi.cs3733.D22.teamC.App;
+import edu.wpi.cs3733.D22.teamC.entity.generic.DAO;
 import edu.wpi.cs3733.D22.teamC.entity.service_request.ServiceRequest;
-import edu.wpi.cs3733.D22.teamC.entity.service_request.ServiceRequestDAO;
-import edu.wpi.cs3733.D22.teamC.entity.service_request.ServiceRequestDAOImpl;
-import edu.wpi.cs3733.D22.teamC.entity.service_request.sanitation.SanitationSR;
-import edu.wpi.cs3733.D22.teamC.models.service_request.ServiceRequestTableDisplay;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
@@ -59,8 +56,8 @@ public class BaseServiceRequestResolveController<T extends ServiceRequest> {
         // Setup Insert
         setInsert(requestType);
 
-        ServiceRequestDAO<T> serviceRequestDAO = insertController.createServiceRequestDAO();
-        this.serviceRequest = serviceRequestDAO.getServiceRequest(serviceRequest.getRequestID());
+        DAO<T> serviceRequestDAO = insertController.createServiceRequestDAO();
+        this.serviceRequest = serviceRequestDAO.getByID(serviceRequest.getRequestID());
 
         insertController.setup(this, this.serviceRequest, isEditMode);
 
@@ -110,8 +107,8 @@ public class BaseServiceRequestResolveController<T extends ServiceRequest> {
     @FXML
     void clickConfirm(ActionEvent event) {
         //Accessing Service Request in Database
-        ServiceRequestDAO<T> serviceRequestDAO = insertController.createServiceRequestDAO();
-        T serviceRequest = serviceRequestDAO.getServiceRequest(Integer.parseInt(requestID.getText()));
+        DAO<T> serviceRequestDAO = insertController.createServiceRequestDAO();
+        T serviceRequest = serviceRequestDAO.getByID(Integer.parseInt(requestID.getText()));
 
         if(isEditMode)
         {
@@ -135,7 +132,7 @@ public class BaseServiceRequestResolveController<T extends ServiceRequest> {
         }
 
         serviceRequest.setDescription(description.getText());
-        serviceRequestDAO.updateServiceRequest(serviceRequest);
+        serviceRequestDAO.update(serviceRequest);
         insertController.updateServiceRequest(serviceRequest);
 
         clickGoBack(null);

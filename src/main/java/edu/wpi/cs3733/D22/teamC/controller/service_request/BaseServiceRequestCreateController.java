@@ -4,6 +4,7 @@ import com.jfoenix.controls.JFXComboBox;
 import com.jfoenix.controls.JFXTextArea;
 import com.jfoenix.controls.JFXTreeTableView;
 import edu.wpi.cs3733.D22.teamC.App;
+import edu.wpi.cs3733.D22.teamC.entity.generic.DAO;
 import edu.wpi.cs3733.D22.teamC.entity.service_request.ServiceRequest;
 import edu.wpi.cs3733.D22.teamC.entity.service_request.ServiceRequestDAO;
 import edu.wpi.cs3733.D22.teamC.models.service_request.ServiceRequestTableDisplay;
@@ -163,8 +164,8 @@ public class BaseServiceRequestCreateController<T extends ServiceRequest> {
         serviceRequest.setRequestType(requestType);
 
         // Insert to DB
-        ServiceRequestDAO<T> serviceRequestDAO = insertController.createServiceRequestDAO();
-        serviceRequest.setRequestID(serviceRequestDAO.insertServiceRequest(serviceRequest));
+        DAO<T> serviceRequestDAO = insertController.createServiceRequestDAO();
+        serviceRequest.setRequestID(serviceRequestDAO.insert(serviceRequest));
 
         // Add to TableDisplay
         tableDisplay.addObject(serviceRequest);

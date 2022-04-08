@@ -1,6 +1,7 @@
 package edu.wpi.cs3733.D22.teamC.controller.service_request;
 
 import com.jfoenix.controls.JFXTreeTableView;
+import edu.wpi.cs3733.D22.teamC.entity.generic.DAO;
 import edu.wpi.cs3733.D22.teamC.entity.service_request.ServiceRequest;
 import edu.wpi.cs3733.D22.teamC.entity.service_request.ServiceRequestDAO;
 import edu.wpi.cs3733.D22.teamC.models.service_request.ServiceRequestTableDisplay;
@@ -21,7 +22,7 @@ public interface InsertServiceRequestCreateController<T extends ServiceRequest> 
      * Create Service Request DAO for insert form.
      * @return Service Request DAO of type T.
      */
-    ServiceRequestDAO<T> createServiceRequestDAO();
+    DAO<T> createServiceRequestDAO();
 
     /**
      * Setup Service Request Table Display of insert form.
