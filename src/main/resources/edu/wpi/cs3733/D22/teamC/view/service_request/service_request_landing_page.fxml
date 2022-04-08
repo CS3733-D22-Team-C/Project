@@ -1,0 +1,242 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.effect.DropShadow?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<GridPane prefHeight="600.0" prefWidth="960.0" style="-fx-background-color: FFFFFF;" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.wpi.cs3733.D22.teamC.controller.service_request.ServiceRequestLandingPage">
+  <columnConstraints>
+    <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+      <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+      <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+      <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+    <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+  </columnConstraints>
+  <rowConstraints>
+    <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+    <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+  </rowConstraints>
+   <children>
+      <VBox alignment="BOTTOM_CENTER" prefHeight="312.0" prefWidth="192.0">
+         <children>
+            <Label styleClass="text-field-service-names" stylesheets="@../../css/service_request_landing_page.css" text="Label" />
+            <JFXButton opacity="0.5" prefHeight="134.0" prefWidth="131.0" styleClass="button-requests" stylesheets="@../../css/service_request_landing_page.css">
+               <effect>
+                  <DropShadow height="3.51" offsetY="10.0" radius="0.37749999999999995" width="0.0" />
+               </effect>
+            </JFXButton>
+            <Label fx:id="vagmi" styleClass="text-field-our-names" stylesheets="@../../css/service_request_landing_page.css" text="Vagmi Bhagavathula" />
+         </children>
+         <GridPane.margin>
+            <Insets />
+         </GridPane.margin>
+         <padding>
+            <Insets bottom="15.0" />
+         </padding>
+      </VBox>
+      <VBox alignment="BOTTOM_CENTER" GridPane.columnIndex="1">
+         <children>
+            <Label styleClass="text-field-service-names" stylesheets="@../../css/service_request_landing_page.css" text="Label" />
+            <JFXButton opacity="0.5" prefHeight="134.0" prefWidth="131.0" styleClass="button-requests" stylesheets="@../../css/service_request_landing_page.css">
+               <effect>
+                  <DropShadow height="3.51" offsetY="10.0" radius="0.37749999999999995" width="0.0" />
+               </effect>
+            </JFXButton>
+            <Label fx:id="vishu" styleClass="text-field-our-names" stylesheets="@../../css/service_request_landing_page.css" text="Vishnu Dendukuri" />
+         </children>
+         <padding>
+            <Insets bottom="15.0" />
+         </padding>
+      </VBox>
+      <VBox alignment="BOTTOM_CENTER" GridPane.columnIndex="2">
+         <children>
+            <Label prefHeight="69.0" prefWidth="110.0" styleClass="text-field-service-names" stylesheets="@../../css/service_request_landing_page.css" text="Medicine Delivery">
+               <padding>
+                  <Insets bottom="3.0" />
+               </padding></Label>
+            <JFXButton onAction="#clickMedicineDelivery" opacity="0.5" prefHeight="134.0" prefWidth="131.0" styleClass="button-requests" stylesheets="@../../css/service_request_landing_page.css">
+               <effect>
+                  <DropShadow height="3.51" offsetY="10.0" radius="0.37749999999999995" width="0.0" />
+               </effect>
+               <graphic>
+                  <ImageView fitHeight="55.38" fitWidth="71.0">
+                     <image>
+                        <Image url="@../../static/images/Medicine_Delivery(pills).png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+            </JFXButton>
+            <Label fx:id="nick" styleClass="text-field-our-names" stylesheets="@../../css/service_request_landing_page.css" text="Nick Frangie" />
+         </children>
+         <GridPane.margin>
+            <Insets />
+         </GridPane.margin>
+         <padding>
+            <Insets bottom="15.0" />
+         </padding>
+      </VBox>
+      <VBox alignment="BOTTOM_CENTER" GridPane.columnIndex="3">
+         <children>
+            <Label prefHeight="70.0" prefWidth="134.0" styleClass="text-field-service-names" stylesheets="@../../css/service_request_landing_page.css" text="Facility Maintenance" wrapText="true" />
+            <JFXButton opacity="0.5" prefHeight="134.0" prefWidth="131.0" styleClass="button-requests" stylesheets="@../../css/service_request_landing_page.css" text=" ">
+               <effect>
+                  <DropShadow height="3.51" offsetY="10.0" radius="0.37749999999999995" width="0.0" />
+               </effect>
+               <graphic>
+                  <ImageView fitHeight="53.35" fitWidth="71.0">
+                     <image>
+                        <Image url="@../../static/images/Facilities_Maintenance(faucet).png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+            </JFXButton>
+            <Label fx:id="matthew" styleClass="text-field-our-names" stylesheets="@../../css/service_request_landing_page.css" text="Matthew McAlarney" />
+         </children>
+         <padding>
+            <Insets bottom="15.0" />
+         </padding>
+      </VBox>
+      <VBox alignment="BOTTOM_CENTER" GridPane.columnIndex="4">
+         <children>
+            <HBox alignment="TOP_RIGHT" prefHeight="62.0" prefWidth="192.0">
+               <children>
+                  <ImageView fx:id="eye" fitHeight="27.0" fitWidth="34.0">
+                     <image>
+                        <Image url="@../../static/images/Eye.png" />
+                     </image>
+                  </ImageView>
+               </children>
+               <VBox.margin>
+                  <Insets />
+               </VBox.margin>
+               <padding>
+                  <Insets right="10.0" top="10.0" />
+               </padding>
+            </HBox>
+            <Label alignment="CENTER" prefHeight="71.0" prefWidth="120.0" styleClass="text-field-service-names" stylesheets="@../../css/service_request_landing_page.css" text="Medical Equipment" wrapText="true" />
+            <JFXButton onAction="#clickMedicalEquipment" opacity="0.5" prefHeight="134.0" prefWidth="131.0" styleClass="button-requests" stylesheets="@../../css/service_request_landing_page.css">
+               <effect>
+                  <DropShadow height="3.51" offsetY="10.0" radius="0.37749999999999995" width="0.0" />
+               </effect>
+               <graphic>
+                  <ImageView fitHeight="68.37" fitWidth="71.0">
+                     <image>
+                        <Image url="@../../static/images/Medical_Equipment(stethiscope).png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+            </JFXButton>
+            <Label fx:id="mia" styleClass="text-field-our-names" stylesheets="@../../css/service_request_landing_page.css" text="Mia Mueting" />
+         </children>
+         <opaqueInsets>
+            <Insets bottom="20.0" />
+         </opaqueInsets>
+         <padding>
+            <Insets bottom="15.0" />
+         </padding>
+      </VBox>
+      <VBox alignment="BOTTOM_CENTER" GridPane.rowIndex="1">
+         <children>
+            <Label styleClass="text-field-service-names" stylesheets="@../../css/service_request_landing_page.css" text="Security" />
+            <JFXButton onAction="#clickSecurity" opacity="0.5" prefHeight="134.0" prefWidth="131.0" styleClass="button-requests" stylesheets="@../../css/service_request_landing_page.css">
+               <effect>
+                  <DropShadow height="3.51" offsetY="10.0" radius="0.37749999999999995" width="0.0" />
+               </effect>
+               <graphic>
+                  <ImageView fitHeight="75.13" fitWidth="71.0">
+                     <image>
+                        <Image url="@../../static/images/Sercurity(shield).png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+            </JFXButton>
+            <Label fx:id="jack" styleClass="text-field-our-names" stylesheets="@../../css/service_request_landing_page.css" text="Jack Muirhead" />
+         </children>
+         <padding>
+            <Insets bottom="50.0" />
+         </padding>
+      </VBox>
+      <VBox alignment="BOTTOM_CENTER" GridPane.columnIndex="1" GridPane.rowIndex="1">
+         <children>
+            <Label styleClass="text-field-service-names" stylesheets="@../../css/service_request_landing_page.css" text="Label" />
+            <JFXButton opacity="0.5" prefHeight="134.0" prefWidth="131.0" styleClass="button-requests" stylesheets="@../../css/service_request_landing_page.css">
+               <effect>
+                  <DropShadow height="3.51" offsetY="10.0" radius="0.37749999999999995" width="0.0" />
+               </effect>
+            </JFXButton>
+            <Label fx:id="grace" styleClass="text-field-our-names" stylesheets="@../../css/service_request_landing_page.css" text="Grace O'Reilly" />
+         </children>
+         <padding>
+            <Insets bottom="50.0" />
+         </padding>
+      </VBox>
+      <VBox alignment="BOTTOM_CENTER" GridPane.columnIndex="2" GridPane.rowIndex="1">
+         <children>
+            <Label prefHeight="70.0" prefWidth="84.0" styleClass="text-field-service-names" stylesheets="@../../css/service_request_landing_page.css" text="Lab System" />
+            <JFXButton onAction="#clickLabSystem" opacity="0.5" prefHeight="134.0" prefWidth="131.0" styleClass="button-requests" stylesheets="@../../css/service_request_landing_page.css" text=" ">
+               <effect>
+                  <DropShadow height="3.51" offsetY="10.0" radius="0.37749999999999995" width="0.0" />
+               </effect>
+               <graphic>
+                  <ImageView fitHeight="71.0" fitWidth="71.0">
+                     <image>
+                        <Image url="@../../static/images/Lab_Systems(vial).png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+            </JFXButton>
+            <Label fx:id="nelson" styleClass="text-field-our-names" stylesheets="@../../css/service_request_landing_page.css" text="Nelson Pires" />
+         </children>
+         <padding>
+            <Insets bottom="50.0" />
+         </padding>
+      </VBox>
+      <VBox alignment="BOTTOM_CENTER" GridPane.columnIndex="3" GridPane.rowIndex="1">
+         <children>
+            <Label prefHeight="38.0" prefWidth="60.0" styleClass="text-field-service-names" stylesheets="@../../css/service_request_landing_page.css" text="Label" />
+            <JFXButton prefHeight="134.0" prefWidth="131.0" styleClass="button-requests" stylesheets="@../../css/service_request_landing_page.css" text=" ">
+               <effect>
+                  <DropShadow height="3.51" offsetY="10.0" radius="0.37749999999999995" width="0.0" />
+               </effect>
+               <font>
+                  <Font name="Arial" size="12.0" />
+               </font>
+            </JFXButton>
+            <Label fx:id="brian" styleClass="text-field-our-names" stylesheets="@../../css/service_request_landing_page.css" text="Brian Shin" />
+         </children>
+         <padding>
+            <Insets bottom="50.0" />
+         </padding>
+      </VBox>
+      <VBox alignment="BOTTOM_CENTER" prefHeight="174.0" prefWidth="192.0" GridPane.columnIndex="4" GridPane.rowIndex="1">
+         <children>
+            <Label styleClass="text-field-service-names" stylesheets="@../../css/service_request_landing_page.css" text="Sanitation" />
+            <JFXButton onAction="#clickSanitation" opacity="0.5" prefHeight="134.0" prefWidth="131.0" styleClass="button-requests" stylesheets="@../../css/service_request_landing_page.css" text=" ">
+               <effect>
+                  <DropShadow height="3.51" offsetY="10.0" radius="0.37749999999999995" width="0.0" />
+               </effect>
+               <graphic>
+                  <ImageView fitHeight="63.45" fitWidth="71.0">
+                     <image>
+                        <Image url="@../../static/images/Sanitations(hand).png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+            </JFXButton>
+            <Label fx:id="brandon" styleClass="text-field-our-names" stylesheets="@../../css/service_request_landing_page.css" text="Brandon Vuong" />
+         </children>
+         <padding>
+            <Insets bottom="50.0" />
+         </padding>
+      </VBox>
+   </children>
+</GridPane>
