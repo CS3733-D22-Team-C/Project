@@ -3,6 +3,7 @@ package edu.wpi.cs3733.D22.teamC.entity.service_request.medicine_delivery;
 import edu.wpi.cs3733.D22.teamC.entity.service_request.ServiceRequest;
 
 public class MedicineDeliverySR extends ServiceRequest {
+
     protected String medicine;
     protected String dosage;
     protected String patientID;     // TODO: Link to Patient
