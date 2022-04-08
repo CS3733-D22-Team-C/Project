@@ -20,9 +20,8 @@ public class ServiceRequestFactory<T extends ServiceRequest> {
         String assigneeID = String.valueOf(generator.nextInt(200000));
         String locationID = String.valueOf(generator.nextInt(200000));
         Timestamp creationTimestamp = new Timestamp(System.currentTimeMillis());
-        int ordinal = generator.nextInt(3);
-        ServiceRequest.Status status = ServiceRequest.Status.values()[ordinal];
-        ServiceRequest.Priority priority = ServiceRequest.Priority.values()[ordinal];
+        ServiceRequest.Status status = ServiceRequest.Status.values()[generator.nextInt(ServiceRequest.Status.values().length)];
+        ServiceRequest.Priority priority = ServiceRequest.Priority.values()[generator.nextInt(ServiceRequest.Priority.values().length)];
         String description = "jsjsjsjsjskssksksksksprrrr";
 
         serviceRequest.setCreatorID(creatorID);

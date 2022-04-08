@@ -1,6 +1,7 @@
 package edu.wpi.cs3733.D22.teamC.entity.floor;
 
 import edu.wpi.cs3733.D22.teamC.DBManager;
+import edu.wpi.cs3733.D22.teamC.entity.IDAOImplTest;
 import edu.wpi.cs3733.D22.teamC.entity.location.Location;
 import edu.wpi.cs3733.D22.teamC.entity.location.LocationDAOImpl;
 import org.junit.jupiter.api.AfterEach;
@@ -9,7 +10,7 @@ import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-class FloorDAOImplTest {
+class FloorDAOImplTest implements IDAOImplTest {
      private DBManager testDBManager;
      private FloorDAOImpl floorDAO;
      LocationDAOImpl locationDAO = new LocationDAOImpl();
@@ -33,6 +34,15 @@ class FloorDAOImplTest {
          DBManager.shutdown();
      }
 
+     @Test
+     public void testGetAll() {
+         //TODO
+     }
+
+     @Test
+     public void testGetByID() {
+         //TODO
+     }
      /**
       * to test that an empty floor table TB returns nothing for queries
       */
@@ -43,7 +53,7 @@ class FloorDAOImplTest {
      }
 
      @Test
-     void testInsertFloor() {
+     public void testInsert() {
          //check if the DB is empty
          assertEquals(0, floorDAO.getAllFloors().size());
          assertNull(floorDAO.getFloor(1001));
@@ -78,7 +88,7 @@ class FloorDAOImplTest {
      }
 
      @Test
-     void testDeleteFloor() {
+     public void testDelete() {
          //check if the DB is empty
          assertEquals(0, floorDAO.getAllFloors().size());
          assertNull(floorDAO.getFloor(1001));
@@ -110,7 +120,7 @@ class FloorDAOImplTest {
      }
 
      @Test
-     void testUpdateFloor() {
+     public void testUpdate() {
          //check if the DB is empty
          assertEquals(0, floorDAO.getAllFloors().size());
          assertNull(floorDAO.getFloor(1001));
@@ -159,7 +169,7 @@ class FloorDAOImplTest {
      }
 
      @Test
-     void testGetAllLocations() {
+     public void testGetAllLocations() {
          // Setup testing LocationDAOImpl
          locationDAO = new LocationDAOImpl();
 

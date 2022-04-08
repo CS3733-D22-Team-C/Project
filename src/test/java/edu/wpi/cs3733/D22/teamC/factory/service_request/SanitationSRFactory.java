@@ -7,7 +7,7 @@ public class SanitationSRFactory extends ServiceRequestFactory<SanitationSR> {
     public SanitationSR create() {
         SanitationSR sanitationSR = new SanitationSR();
 
-        SanitationSR.SanitationType sanitationType = SanitationSR.SanitationType.values()[getGenerator().nextInt(4)];
+        SanitationSR.SanitationType sanitationType = SanitationSR.SanitationType.values()[getGenerator().nextInt(SanitationSR.SanitationType.values().length)];
         ServiceRequest.RequestType requestType = ServiceRequest.RequestType.Sanitation;
 
         sanitationSR.setRequestType(requestType);

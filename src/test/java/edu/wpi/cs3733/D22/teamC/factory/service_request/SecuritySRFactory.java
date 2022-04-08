@@ -8,7 +8,7 @@ public class SecuritySRFactory extends ServiceRequestFactory<SecuritySR> {
 
         SecuritySR serviceRequest = new SecuritySR();
 
-        SecuritySR.SecurityType securityType = SecuritySR.SecurityType.Intruder;
+        SecuritySR.SecurityType securityType = SecuritySR.SecurityType.values()[getGenerator().nextInt(SecuritySR.SecurityType.values().length)];
         ServiceRequest.RequestType requestType = ServiceRequest.RequestType.Security;
 
         serviceRequest.setRequestType(requestType);

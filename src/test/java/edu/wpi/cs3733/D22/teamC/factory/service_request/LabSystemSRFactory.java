@@ -9,7 +9,7 @@ public class LabSystemSRFactory extends ServiceRequestFactory<LabSystemSR> {
         LabSystemSR serviceRequest = new LabSystemSR();
 
         ServiceRequest.RequestType requestType = ServiceRequest.RequestType.Lab_System;
-        LabSystemSR.LabType labType = LabSystemSR.LabType.values()[getGenerator().nextInt(5)];
+        LabSystemSR.LabType labType = LabSystemSR.LabType.values()[getGenerator().nextInt(LabSystemSR.LabType.values().length)];
         String patientID = "JohnCena";
 
         serviceRequest.setRequestType(requestType);

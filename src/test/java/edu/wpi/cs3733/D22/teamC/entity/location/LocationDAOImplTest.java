@@ -1,6 +1,7 @@
 package edu.wpi.cs3733.D22.teamC.entity.location;
 
 import edu.wpi.cs3733.D22.teamC.DBManager;
+import edu.wpi.cs3733.D22.teamC.entity.IDAOImplTest;
 import edu.wpi.cs3733.D22.teamC.entity.floor.Floor;
 import edu.wpi.cs3733.D22.teamC.entity.floor.FloorDAO;
 import edu.wpi.cs3733.D22.teamC.entity.floor.FloorDAOImpl;
@@ -10,7 +11,7 @@ import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-class LocationDAOImplTest {
+public class LocationDAOImplTest implements IDAOImplTest {
     private DBManager testDBManager;
     private LocationDAOImpl locationDAO;
     private Floor floor;
@@ -38,6 +39,16 @@ class LocationDAOImplTest {
         DBManager.shutdown();
     }
 
+    @Test
+    public void testGetByID() {
+
+    }
+
+    @Test
+    public void testGetAll() {
+
+    }
+
     /**
      * Test that an empty Location Table DB returns nothing for queries.
      */
@@ -51,7 +62,7 @@ class LocationDAOImplTest {
      * Test that insertLocation works.
      */
     @Test
-    void testInsertLocation() {
+    public void testInsert() {
         // Check DB is empty
         assertEquals(0, locationDAO.getAllLocations().size());
         assertEquals(null, locationDAO.getLocation(1234));
@@ -94,7 +105,7 @@ class LocationDAOImplTest {
      * Test that deleteLocation works.
      */
     @Test
-    void testDeleteLocation() {
+    public void testDelete() {
         // Check DB is empty
         assertEquals(0, locationDAO.getAllLocations().size());
         assertEquals(null, locationDAO.getLocation(1234));
@@ -128,7 +139,7 @@ class LocationDAOImplTest {
      * Test that updateLocation works.
      */
     @Test
-    void testUpdateLocation() {
+    public void testUpdate() {
         // Check DB is empty
         assertEquals(0, locationDAO.getAllLocations().size());
         assertEquals(null, locationDAO.getLocation(1234));
