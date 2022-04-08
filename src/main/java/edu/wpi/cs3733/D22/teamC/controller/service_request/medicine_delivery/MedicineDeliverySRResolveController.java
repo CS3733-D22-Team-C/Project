@@ -1,18 +1,14 @@
 package edu.wpi.cs3733.D22.teamC.controller.service_request.medicine_delivery;
 
-import com.jfoenix.controls.JFXComboBox;
 import edu.wpi.cs3733.D22.teamC.App;
 import edu.wpi.cs3733.D22.teamC.controller.service_request.ServiceRequestResolveController;
 import edu.wpi.cs3733.D22.teamC.entity.service_request.ServiceRequest;
-import edu.wpi.cs3733.D22.teamC.entity.service_request.medical_equipment.MedicalEquipmentSR;
-import edu.wpi.cs3733.D22.teamC.entity.service_request.medical_equipment.MedicalEquipmentSRDAOImpl;
 import edu.wpi.cs3733.D22.teamC.entity.service_request.medicine_delivery.MedicineDeliverySR;
-import edu.wpi.cs3733.D22.teamC.entity.service_request.medicine_delivery.MedicineDeliverySRDAOImpl;
+import edu.wpi.cs3733.D22.teamC.entity.service_request.medicine_delivery.MedicineDeliverySRDAO;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.TextField;
 import javafx.scene.input.KeyEvent;
-import javafx.scene.input.MouseEvent;
 
 public class MedicineDeliverySRResolveController extends ServiceRequestResolveController {
     // Fields
@@ -25,8 +21,8 @@ public class MedicineDeliverySRResolveController extends ServiceRequestResolveCo
         super.setup(serviceRequest, isEditMode);
 
         // Querying for full Medical Equipment Service Request
-        MedicineDeliverySRDAOImpl medicineDeliverySRDAOImpl = new MedicineDeliverySRDAOImpl();
-        MedicineDeliverySR medicineDeliverySR = medicineDeliverySRDAOImpl.getServiceRequest(serviceRequest.getRequestID());
+        MedicineDeliverySRDAO medicineDeliverySRDAO = new MedicineDeliverySRDAO();
+        MedicineDeliverySR medicineDeliverySR = medicineDeliverySRDAO.getByID(serviceRequest.getRequestID());
 
         //title
         title.setText("Resolve Medicine Delivery Service Request");
@@ -63,8 +59,8 @@ public class MedicineDeliverySRResolveController extends ServiceRequestResolveCo
 
         super.clickConfirm(event);
         //Accessing Service Request in Database
-        MedicineDeliverySRDAOImpl medicineDeliverySRDAO = new MedicineDeliverySRDAOImpl();
-        MedicineDeliverySR medicineDeliverySR = medicineDeliverySRDAO.getServiceRequest(serviceRequest.getRequestID());
+        MedicineDeliverySRDAO medicalEquipmentSRDAO = new MedicineDeliverySRDAO();
+        MedicineDeliverySR medicineDeliverySR = medicalEquipmentSRDAO.getByID(serviceRequest.getRequestID());
         if(isEditMode){
 
             medicineDeliverySR.setMedicine(medicine.getText());
@@ -76,8 +72,7 @@ public class MedicineDeliverySRResolveController extends ServiceRequestResolveCo
                 medicineDeliverySR.setStatus(ServiceRequest.Status.Processing);
             else
                 medicineDeliverySR.setStatus(ServiceRequest.Status.Blank);
-            medicineDeliverySRDAO.updateServiceRequest(medicineDeliverySR);
-
+            medicalEquipmentSRDAO.update(medicineDeliverySR);
         }
 
         //Back to service request view

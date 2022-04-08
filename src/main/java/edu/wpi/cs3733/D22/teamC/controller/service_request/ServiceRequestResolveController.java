@@ -5,7 +5,7 @@ import com.jfoenix.controls.JFXComboBox;
 import com.jfoenix.controls.JFXTextArea;
 import edu.wpi.cs3733.D22.teamC.App;
 import edu.wpi.cs3733.D22.teamC.entity.service_request.ServiceRequest;
-import edu.wpi.cs3733.D22.teamC.entity.service_request.ServiceRequestDAOImpl;
+import edu.wpi.cs3733.D22.teamC.entity.service_request.ServiceRequestDAO;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
@@ -104,8 +104,8 @@ public class ServiceRequestResolveController {
     @FXML
     public void clickConfirm(ActionEvent event) {
         //Accessing Service Request in Database
-        ServiceRequestDAOImpl serviceRequestDAOImpl = new ServiceRequestDAOImpl();
-        ServiceRequest serviceRequest = serviceRequestDAOImpl.getServiceRequest(Integer.parseInt(requestID.getText()));
+        ServiceRequestDAO serviceRequestDAOImpl = new ServiceRequestDAO();
+        ServiceRequest serviceRequest = serviceRequestDAOImpl.getByID(Integer.parseInt(requestID.getText()));
 
         if(isEditMode)
         {
@@ -127,7 +127,7 @@ public class ServiceRequestResolveController {
             serviceRequest.setStatus(ServiceRequest.Status.Done);
         }
         serviceRequest.setDescription(description.getText());
-        serviceRequestDAOImpl.updateServiceRequest(serviceRequest);
+        serviceRequestDAOImpl.update(serviceRequest);
 
     }
 

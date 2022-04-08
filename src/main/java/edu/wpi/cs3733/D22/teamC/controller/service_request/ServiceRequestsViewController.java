@@ -3,18 +3,15 @@ package edu.wpi.cs3733.D22.teamC.controller.service_request;
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXComboBox;
 import com.jfoenix.controls.JFXTreeTableView;
-import com.sun.tools.jconsole.JConsoleContext;
 import edu.wpi.cs3733.D22.teamC.App;
 import edu.wpi.cs3733.D22.teamC.entity.service_request.ServiceRequest;
 import edu.wpi.cs3733.D22.teamC.entity.service_request.ServiceRequestDAO;
-import edu.wpi.cs3733.D22.teamC.entity.service_request.ServiceRequestDAOImpl;
 import edu.wpi.cs3733.D22.teamC.models.service_request.ServiceRequestTableDisplay;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.TreeTableRow;
 import javafx.scene.input.MouseButton;
-import javafx.scene.input.MouseEvent;
 
 import java.net.URL;
 import java.util.List;
@@ -53,8 +50,8 @@ public class ServiceRequestsViewController implements Initializable {
         }
 
         // Populate Table Display
-        ServiceRequestDAO serviceRequestDAO  = new ServiceRequestDAOImpl();
-        List<ServiceRequest> serviceRequests = serviceRequestDAO.getAllServiceRequests();
+        ServiceRequestDAO serviceRequestDAO  = new ServiceRequestDAO();
+        List<ServiceRequest> serviceRequests = serviceRequestDAO.getAll();
         tableDisplay = new ServiceRequestTableDisplay<ServiceRequest>(table);
         serviceRequests.forEach(tableDisplay::addObject);
 

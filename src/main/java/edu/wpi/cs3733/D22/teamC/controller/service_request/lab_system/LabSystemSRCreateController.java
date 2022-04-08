@@ -1,23 +1,16 @@
 package edu.wpi.cs3733.D22.teamC.controller.service_request.lab_system;
 
 import com.jfoenix.controls.*;
-import com.jfoenix.controls.datamodels.treetable.RecursiveTreeObject;
 import edu.wpi.cs3733.D22.teamC.controller.service_request.ServiceRequestCreateController;
 import edu.wpi.cs3733.D22.teamC.entity.service_request.ServiceRequest;
 import edu.wpi.cs3733.D22.teamC.error.error_item.service_request_user_input_validation.ServiceRequestUserInputValidationErrorItem;
 import edu.wpi.cs3733.D22.teamC.entity.service_request.lab_system.LabSystemSR;
 import edu.wpi.cs3733.D22.teamC.entity.service_request.lab_system.LabSystemSRDAO;
-import edu.wpi.cs3733.D22.teamC.entity.service_request.lab_system.LabSystemSRDAOImpl;
 import edu.wpi.cs3733.D22.teamC.models.service_request.lab_system.LabSystemSRTableDisplay;
 import edu.wpi.cs3733.D22.teamC.user_input_validation.service_request.lab_system.LabSystemSRFormEvaluator;
-import javafx.beans.value.ChangeListener;
-import javafx.beans.value.ObservableValue;
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.TextField;
-import javafx.scene.control.TreeItem;
 
 import java.net.URL;
 import java.util.ArrayList;
@@ -65,8 +58,8 @@ public class LabSystemSRCreateController extends ServiceRequestCreateController<
         tableDisplay = new LabSystemSRTableDisplay(table);
 
        // Query Database
-        LabSystemSRDAO labSystemSRDAO = new LabSystemSRDAOImpl();
-        List<LabSystemSR> labSystemSRs = labSystemSRDAO.getAllServiceRequests();
+        LabSystemSRDAO labSystemSRDAO = new LabSystemSRDAO();
+        List<LabSystemSR> labSystemSRs = labSystemSRDAO.getAll();
         for (LabSystemSR labSystemSR : labSystemSRs){
             tableDisplay.addObject(labSystemSR);
         }
@@ -111,8 +104,8 @@ public class LabSystemSRCreateController extends ServiceRequestCreateController<
             clickReset(event);
 
             // Database entry
-            LabSystemSRDAO labSystemSRDAO = new LabSystemSRDAOImpl();
-            labSystemSRDAO.insertServiceRequest(labSystem);
+            LabSystemSRDAO labSystemSRDAO = new LabSystemSRDAO();
+            labSystemSRDAO.insert(labSystem);
 
             return labSystem;
         }
