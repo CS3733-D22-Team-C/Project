@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import io.github.palexdev.materialfx.controls.MFXButton?>
+<?import java.net.URL?>
+<?import javafx.scene.Group?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.shape.Rectangle?>
+<?import javafx.scene.text.Text?>
+
+
+<VBox maxHeight="1.7976931348623157E308" maxWidth="-Infinity" prefWidth="52.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <VBox alignment="TOP_CENTER" prefHeight="200.0" prefWidth="100.0" VBox.vgrow="ALWAYS">
+         <children>
+            <StackPane alignment="TOP_CENTER" prefHeight="256.0" prefWidth="52.0" VBox.vgrow="NEVER">
+               <children>
+                  <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#00316c" height="256.0" stroke="BLACK" strokeType="INSIDE" width="52.0" />
+                  <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0">
+                     <children>
+                        <ImageView fitHeight="38.0" fitWidth="38.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../../static/images/logo.png" />
+                           </image>
+                        </ImageView>
+                        <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0">
+                           <children>
+                              <Group>
+                                 <children>
+                                    <Text boundsType="VISUAL" fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="top-label" text="Mass General Brigham" textAlignment="CENTER" />
+                                 </children>
+                              </Group>
+                           </children>
+                           <stylesheets>
+                              <URL value="@../../css/sidebar_icons.css" />
+                              <URL value="@../../css/sidebar.css" />
+                           </stylesheets>
+                        </VBox>
+                     </children>
+                  </VBox>
+               </children>
+            </StackPane>
+            <MFXButton text="Button" />
+            <MFXButton />
+            <MFXButton />
+            <MFXButton />
+         </children>
+      </VBox>
+      <VBox alignment="BOTTOM_CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="200.0" prefWidth="100.0" VBox.vgrow="ALWAYS" />
+      <MFXButton />
+      <MFXButton />
+      <MFXButton />
+   </children>
+</VBox>
