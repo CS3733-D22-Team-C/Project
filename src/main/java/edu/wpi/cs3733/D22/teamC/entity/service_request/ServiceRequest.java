@@ -8,7 +8,6 @@ import javax.persistence.*;
 import java.sql.Timestamp;
 
 @Entity
-@Inheritance(strategy = InheritanceType.JOINED)
 @Table(name = "SERVICE_REQUEST")
 public class ServiceRequest {
     @Id
