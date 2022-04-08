@@ -22,6 +22,7 @@
         <mapping class="edu.wpi.cs3733.D22.teamC.entity.floor.Floor" />
         <mapping class="edu.wpi.cs3733.D22.teamC.entity.service_request.ServiceRequest" />
         <mapping class="edu.wpi.cs3733.D22.teamC.entity.service_request.security.SecuritySR" />
+        <mapping class="edu.wpi.cs3733.D22.teamC.entity.service_request.facility_maintenance.FacilityMaintenanceSR" />
         <mapping class="edu.wpi.cs3733.D22.teamC.entity.service_request.lab_system.LabSystemSR" />
         <mapping class="edu.wpi.cs3733.D22.teamC.entity.service_request.medical_equipment.MedicalEquipmentSR" />
 
