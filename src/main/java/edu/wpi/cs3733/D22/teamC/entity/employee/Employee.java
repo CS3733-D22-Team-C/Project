@@ -21,6 +21,8 @@ public class Employee {
     private String emailID;
     @Column(name = "Phone")
     private String phone;
+    @Column(name = "Address")
+    private String address;
     @Column(name = "Role")
     private Role role;
     @Column(name = "IsAdmin")
@@ -79,6 +81,14 @@ public class Employee {
 
     public void setPhone(String phone) {
         this.phone = phone;
+    }
+
+    public String getAddress() {
+        return address;
+    }
+
+    public void setAddress(String address) {
+        this.address = address;
     }
 
     public Role getRole() {
