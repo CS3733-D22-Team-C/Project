@@ -56,9 +56,6 @@ public class App extends Application {
 
     @Override
     public void init() {
-        // Initialize Database Manager
-        //DBManager.startup(DBManager.DEVELOPMENT_DATABASE_NAME).initializeTables(true);
-
         // Load CSV Data - Floor
         {
             FloorCSVReader csvReader = new FloorCSVReader();
@@ -142,9 +139,6 @@ public class App extends Application {
                 csvWriter.writeFile("MedEquipReq.csv", serviceRequests);
             }
         }
-
-        // Shutdown Database Manager
-        //DBManager.shutdown();
 
         log.info("Shutting Down");
     }

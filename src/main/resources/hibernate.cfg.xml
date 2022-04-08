@@ -6,10 +6,10 @@
 <hibernate-configuration>
 
     <session-factory>
-
-        <property name="connection.url">jdbc:derby:TESTDB;create=true</property>
+        <property name="connection.url">jdbc:derby:DB;create=true</property>
         <property name="connection.driver_class">org.apache.derby.jdbc.EmbeddedDriver</property>
-        
+        <property name="connection.pool_size">100</property>
+
         <!-- <property name="dialect">org.hibernate.dialect.DerbyTenSevenDialect</property>-->
         <!-- <property name="connection.username"/> -->
         <!-- <property name="connection.password"/> -->

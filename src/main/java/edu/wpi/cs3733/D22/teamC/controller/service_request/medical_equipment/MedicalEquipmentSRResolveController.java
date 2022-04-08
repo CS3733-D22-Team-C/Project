@@ -11,9 +11,6 @@ import javafx.fxml.FXML;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 
-import java.net.URL;
-import java.util.ResourceBundle;
-
 public class MedicalEquipmentSRResolveController extends ServiceRequestResolveController {
 
     // Dropdowns

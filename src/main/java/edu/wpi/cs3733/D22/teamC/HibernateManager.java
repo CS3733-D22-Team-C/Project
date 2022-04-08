@@ -94,7 +94,9 @@ public class HibernateManager {
 		Session session = SessionManager.getSession();
 		try {
 			session.beginTransaction();
-			return objType.cast(session.get(objType, id));
+			T obj = objType.cast(session.get(objType, id));
+            session.close();
+            return obj;
 		} catch (Exception e) {
 			session.getTransaction().rollback();
 			session.close();
