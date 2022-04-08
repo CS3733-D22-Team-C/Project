@@ -10,6 +10,7 @@ import javax.persistence.Table;
 @Table(name = "MEDICINE_DELIVERY_SR")
 public class MedicineDeliverySR extends ServiceRequest {
 
+
     @Column (name = "Medicine")
     protected String medicine;
 

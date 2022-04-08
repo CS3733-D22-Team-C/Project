@@ -7,7 +7,6 @@ import edu.wpi.cs3733.D22.teamC.entity.service_request.ServiceRequest;
 import edu.wpi.cs3733.D22.teamC.error.error_item.service_request_user_input_validation.ServiceRequestUserInputValidationErrorItem;
 import edu.wpi.cs3733.D22.teamC.entity.service_request.lab_system.LabSystemSR;
 import edu.wpi.cs3733.D22.teamC.entity.service_request.lab_system.LabSystemSRDAO;
-import edu.wpi.cs3733.D22.teamC.entity.service_request.lab_system.LabSystemSRDAOImpl;
 import edu.wpi.cs3733.D22.teamC.models.service_request.lab_system.LabSystemSRTableDisplay;
 import edu.wpi.cs3733.D22.teamC.user_input_validation.service_request.lab_system.LabSystemSRFormEvaluator;
 import javafx.beans.value.ChangeListener;
@@ -65,8 +64,8 @@ public class LabSystemSRCreateController extends ServiceRequestCreateController<
         tableDisplay = new LabSystemSRTableDisplay(table);
 
        // Query Database
-        LabSystemSRDAO labSystemSRDAO = new LabSystemSRDAOImpl();
-        List<LabSystemSR> labSystemSRs = labSystemSRDAO.getAllServiceRequests();
+        LabSystemSRDAO labSystemSRDAO = new LabSystemSRDAO();
+        List<LabSystemSR> labSystemSRs = labSystemSRDAO.getAll();
         for (LabSystemSR labSystemSR : labSystemSRs){
             tableDisplay.addObject(labSystemSR);
         }
@@ -111,8 +110,8 @@ public class LabSystemSRCreateController extends ServiceRequestCreateController<
             clickReset(event);
 
             // Database entry
-            LabSystemSRDAO labSystemSRDAO = new LabSystemSRDAOImpl();
-            labSystemSRDAO.insertServiceRequest(labSystem);
+            LabSystemSRDAO labSystemSRDAO = new LabSystemSRDAO();
+            labSystemSRDAO.insert(labSystem);
 
             return labSystem;
         }

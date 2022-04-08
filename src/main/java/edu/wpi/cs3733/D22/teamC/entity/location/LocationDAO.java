@@ -3,8 +3,6 @@ package edu.wpi.cs3733.D22.teamC.entity.location;
 import edu.wpi.cs3733.D22.teamC.HibernateManager;
 import edu.wpi.cs3733.D22.teamC.entity.generic.DAO;
 
-import java.util.List;
-
 /**
  * Wrapper for Location handling.
  */
