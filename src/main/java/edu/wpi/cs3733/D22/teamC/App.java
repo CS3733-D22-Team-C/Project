@@ -41,6 +41,9 @@ public class App extends Application {
     // Constants
     public static final String BASE_COMPONENT_PATH = "view/component/base.fxml";
     public static final String MENU_BAR_COMPONENT_PATH = "view/component/menu_bar.fxml";
+    public static final String SIDEBAR_PATH = "view/component/sidebar_menu.fxml";
+    public static final String MINI_DRAWER_CONTENT_PATH = "view/component/mini_drawer_content.fxml";
+    public static final String DRAWER_CONTENT_PATH = "view/component/drawer_content.fxml";
 
     public static final String HOME_PATH = "view/general/home.fxml";
     public static final String VIEW_LOCATIONS_PATH = "view/location/view_locations.fxml";
@@ -163,9 +166,12 @@ public class App extends Application {
         // Load Menu Bar
         Node menuBarNode = loadView(MENU_BAR_COMPONENT_PATH).getNode();
 
+        // Load Sidebar Menu
+        Node sidebarNode = loadView(SIDEBAR_PATH).getNode();
         // Embed views and components
-        baseNode.setTop(menuBarNode);
+        //baseNode.setTop(menuBarNode);
         baseNode.setCenter(viewNode);
+        baseNode.setLeft(sidebarNode);
         baseNode.autosize();
 
         if (scene != null) scene.setRoot(baseNode);
