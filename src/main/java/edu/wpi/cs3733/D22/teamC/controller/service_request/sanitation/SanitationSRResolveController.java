@@ -5,11 +5,10 @@ import edu.wpi.cs3733.D22.teamC.App;
 import edu.wpi.cs3733.D22.teamC.controller.service_request.ServiceRequestResolveController;
 import edu.wpi.cs3733.D22.teamC.entity.service_request.ServiceRequest;
 import edu.wpi.cs3733.D22.teamC.entity.service_request.sanitation.SanitationSR;
-import edu.wpi.cs3733.D22.teamC.entity.service_request.sanitation.SanitationSRDAOImpl;
+import edu.wpi.cs3733.D22.teamC.entity.service_request.sanitation.SanitationSRDAO;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.input.KeyEvent;
-import javafx.scene.input.MouseEvent;
 
 public class SanitationSRResolveController extends ServiceRequestResolveController {
 
@@ -22,8 +21,8 @@ public class SanitationSRResolveController extends ServiceRequestResolveControll
         super.setup(serviceRequest, isEditMode);
 
         // Querying for full Medical Equipment Service Request
-        SanitationSRDAOImpl sanitationSRDAOImpl = new SanitationSRDAOImpl();
-        SanitationSR sanitationSR = sanitationSRDAOImpl.getServiceRequest(serviceRequest.getRequestID());
+        SanitationSRDAO sanitationSRDAOImpl = new SanitationSRDAO();
+        SanitationSR sanitationSR = sanitationSRDAOImpl.getByID(serviceRequest.getRequestID());
 
         // Setting fields from Querying Database
         sanitationType.setPromptText(sanitationSR.getSanitationType().toString());
@@ -59,8 +58,8 @@ public class SanitationSRResolveController extends ServiceRequestResolveControll
 
         super.clickConfirm(event);
         //Accessing Service Request in Database
-        SanitationSRDAOImpl sanitationSRDAOImpl = new SanitationSRDAOImpl();
-        SanitationSR sanitationSR = sanitationSRDAOImpl.getServiceRequest(serviceRequest.getRequestID());
+        SanitationSRDAO sanitationSRDAOImpl = new SanitationSRDAO();
+        SanitationSR sanitationSR = sanitationSRDAOImpl.getByID(serviceRequest.getRequestID());
         if(isEditMode){
             //check if value has changed
             if(sanitationType.getValue() != null)
@@ -73,7 +72,7 @@ public class SanitationSRResolveController extends ServiceRequestResolveControll
                 sanitationSR.setStatus(ServiceRequest.Status.Processing);
             else
                 sanitationSR.setStatus(ServiceRequest.Status.Blank);
-            sanitationSRDAOImpl.updateServiceRequest(sanitationSR);
+            sanitationSRDAOImpl.update(sanitationSR);
 
         }
 
