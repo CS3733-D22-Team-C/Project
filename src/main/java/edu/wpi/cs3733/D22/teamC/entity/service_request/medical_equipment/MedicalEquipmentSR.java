@@ -3,6 +3,7 @@ package edu.wpi.cs3733.D22.teamC.entity.service_request.medical_equipment;
 import edu.wpi.cs3733.D22.teamC.entity.service_request.ServiceRequest;
 
 import javax.persistence.*;
+
 @Entity
 @Table(name = "MEDICAL_EQUIPMENT_SR")
 public class MedicalEquipmentSR extends ServiceRequest {

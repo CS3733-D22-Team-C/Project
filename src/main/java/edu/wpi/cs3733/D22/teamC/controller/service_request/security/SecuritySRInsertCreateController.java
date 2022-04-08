@@ -4,7 +4,6 @@ import com.jfoenix.controls.JFXComboBox;
 import com.jfoenix.controls.JFXTreeTableView;
 import edu.wpi.cs3733.D22.teamC.controller.service_request.InsertServiceRequestCreateController;
 import edu.wpi.cs3733.D22.teamC.entity.generic.DAO;
-import edu.wpi.cs3733.D22.teamC.entity.service_request.ServiceRequestDAO;
 import edu.wpi.cs3733.D22.teamC.entity.service_request.security.SecuritySR;
 import edu.wpi.cs3733.D22.teamC.entity.service_request.security.SecuritySRDAO;
 import edu.wpi.cs3733.D22.teamC.models.service_request.ServiceRequestTableDisplay;
