@@ -6,11 +6,9 @@ import edu.wpi.cs3733.D22.teamC.controller.service_request.ServiceRequestResolve
 import edu.wpi.cs3733.D22.teamC.entity.service_request.ServiceRequest;
 import edu.wpi.cs3733.D22.teamC.entity.service_request.security.SecuritySR;
 import edu.wpi.cs3733.D22.teamC.entity.service_request.security.SecuritySRDAO;
-import edu.wpi.cs3733.D22.teamC.entity.service_request.security.SecuritySRDAOImpl;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.input.KeyEvent;
-import javafx.scene.input.MouseEvent;
 
 public class SecuritySRResolveController extends ServiceRequestResolveController {
 
@@ -27,8 +25,8 @@ public class SecuritySRResolveController extends ServiceRequestResolveController
         // Querying for full Medical Equipment Service Request
 //        MedicalEquipmentSRDAOImpl medicalEquipmentSRDAOImpl = new MedicalEquipmentSRDAOImpl();
 //        MedicalEquipmentSR medicalEquipmentSR = medicalEquipmentSRDAOImpl.getServiceRequest(serviceRequest.getRequestID());
-        SecuritySRDAOImpl securitySRDAOImpl = new SecuritySRDAOImpl();
-        SecuritySR securitySR = securitySRDAOImpl.getServiceRequest(serviceRequest.getRequestID());
+        SecuritySRDAO securitySRDAOImpl = new SecuritySRDAO();
+        SecuritySR securitySR = securitySRDAOImpl.getByID(serviceRequest.getRequestID());
         title.setText("Resolve Security Service Request");
 
 
@@ -60,8 +58,8 @@ public class SecuritySRResolveController extends ServiceRequestResolveController
         super.clickConfirm(event);
         //Accessing Service Request in Database
 
-        SecuritySRDAOImpl securitySRDAOImpl = new SecuritySRDAOImpl();
-        SecuritySR securitySR = securitySRDAOImpl.getServiceRequest(serviceRequest.getRequestID());
+        SecuritySRDAO securitySRDAOImpl = new SecuritySRDAO();
+        SecuritySR securitySR = securitySRDAOImpl.getByID(serviceRequest.getRequestID());
         if(isEditMode){
             //check if value has changed
             if(securityType.getValue() != null) {
@@ -74,7 +72,7 @@ public class SecuritySRResolveController extends ServiceRequestResolveController
                 securitySR.setStatus(ServiceRequest.Status.Processing);
             else
                 securitySR.setStatus(ServiceRequest.Status.Blank);
-            securitySRDAOImpl.updateServiceRequest(securitySR);
+            securitySRDAOImpl.update(securitySR);
 
         }
 

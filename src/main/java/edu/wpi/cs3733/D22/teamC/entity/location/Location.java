@@ -19,10 +19,13 @@ public class Location {
 	private String building = "";
 
 	@Enumerated(EnumType.STRING)
+    @Column(name = "NodeType")
 	private NodeType nodeType;
-
+    
+    @Column(name = "LongName")
 	private String longName = "";
     
+    @Column(name = "ShortName")
 	private String shortName = "";
 
 	@Column(name = "XCoord")

@@ -66,7 +66,7 @@ public class App extends Application {
             if (floors != null) {
                 FloorDAO floorDAO = new FloorDAO();
                 for (Floor floor : floors) {
-                    floorDAO.insertFloor(floor);
+                    floorDAO.insert(floor);
                 }
             }
         }
@@ -117,7 +117,7 @@ public class App extends Application {
         {
             FloorCSVWriter csvWriter = new FloorCSVWriter();
             FloorDAO floorDAO = new FloorDAO();
-            List<Floor> floors = floorDAO.getAllFloors();
+            List<Floor> floors = floorDAO.getAll();
             if (floors != null) {
                 csvWriter.writeFile("TowerFloors.csv", floors);
             }
