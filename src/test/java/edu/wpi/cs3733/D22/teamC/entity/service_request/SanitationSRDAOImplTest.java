@@ -4,6 +4,7 @@ import edu.wpi.cs3733.D22.teamC.DBManager;
 import edu.wpi.cs3733.D22.teamC.entity.IDAOImplTest;
 import edu.wpi.cs3733.D22.teamC.entity.service_request.sanitation.SanitationSR;
 import edu.wpi.cs3733.D22.teamC.entity.service_request.sanitation.SanitationSRDAOImpl;
+import edu.wpi.cs3733.D22.teamC.factory.service_request.SanitationSRFactory;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -46,7 +47,7 @@ public class SanitationSRDAOImplTest implements IDAOImplTest {
     }
 
     @Test
-    public void getAll() {
+    public void testGetAll() {
         //TODO
     }
 

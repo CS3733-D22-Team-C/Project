@@ -1,4 +1,6 @@
-package edu.wpi.cs3733.D22.teamC.entity.service_request;
+package edu.wpi.cs3733.D22.teamC.factory.service_request;
+
+import edu.wpi.cs3733.D22.teamC.entity.service_request.ServiceRequest;
 
 import java.sql.Timestamp;
 import java.util.Random;

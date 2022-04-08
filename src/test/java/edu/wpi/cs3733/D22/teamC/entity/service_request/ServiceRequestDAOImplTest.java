@@ -2,6 +2,7 @@ package edu.wpi.cs3733.D22.teamC.entity.service_request;
 
 import edu.wpi.cs3733.D22.teamC.DBManager;
 import edu.wpi.cs3733.D22.teamC.entity.IDAOImplTest;
+import edu.wpi.cs3733.D22.teamC.factory.service_request.ServiceRequestFactory;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -34,7 +35,7 @@ class ServiceRequestDAOImplTest implements IDAOImplTest {
     }
 
     @Test
-    public void getAll() {
+    public void testGetAll() {
         //TODO
     }
 

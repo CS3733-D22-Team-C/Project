@@ -5,11 +5,11 @@ import edu.wpi.cs3733.D22.teamC.entity.IDAOImplTest;
 import edu.wpi.cs3733.D22.teamC.entity.service_request.security.SecuritySR;
 import edu.wpi.cs3733.D22.teamC.entity.service_request.security.SecuritySRDAO;
 import edu.wpi.cs3733.D22.teamC.entity.service_request.security.SecuritySRDAOImpl;
+import edu.wpi.cs3733.D22.teamC.factory.service_request.SecuritySRFactory;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import java.sql.Time;
 import java.sql.Timestamp;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -38,7 +38,7 @@ public class SecuritySRDAOImplTest implements IDAOImplTest {
     }
 
     @Test
-    public void getAll() {
+    public void testGetAll() {
         //TODO
     }
 
