@@ -4,14 +4,18 @@ import edu.wpi.cs3733.D22.teamC.entity.service_request.ServiceRequest;
 
 import javax.persistence.*;
 @Entity
-@Table(name = " Medical_Equipment_SR")
+@Table(name = "MEDICAL_EQUIPMENT_SR")
 public class MedicalEquipmentSR extends ServiceRequest {
+    
     @Enumerated(EnumType.STRING)
+    @Column(name = "EquipType")
     protected EquipmentType equipmentType;
 
+    @Column(name = "EquipID")
     protected String equipmentID;       // TODO: Link to Medical Equipment
 
     @Enumerated(EnumType.STRING)
+    @Column(name = "EquipStatus")
     protected EquipmentStatus equipmentStatus;
 
 
