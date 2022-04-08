@@ -5,7 +5,7 @@ import javax.persistence.*;
 import edu.wpi.cs3733.D22.teamC.entity.service_request.ServiceRequest;
 
 @Entity
-@Table(name = "LAB SYSTEM_SR")
+@Table(name = "LAB_SYSTEM_SR")
 public class LabSystemSR extends ServiceRequest {
 
     @Enumerated(EnumType.STRING)
