@@ -1,10 +1,10 @@
 requestID,creatorID,assigneeID,location,creationTimestamp,status,priority,requestType,description,equipType,equipID
-1,ECR0000001,EAS0000001,DEPT000001,2022-04-08 05:31:20.861,Processing,Low,Medical_Equipment,urgent care,Bed,BED0000001
-2,ECR0000002,EAS0000002,DEPT000002,2022-04-08 05:31:20.884,Blank,Medium,Medical_Equipment,fat guy,Recliner,REC0000001
-3,ECR0000003,EAS0000003,DEPT000003,2022-04-08 05:31:20.887,Processing,High,Medical_Equipment,scanning,Portable_X_Ray,XRA0000001
-4,ECR0000004,EAS0000004,DEPT000004,2022-04-08 05:31:20.89,Blank,Low,Medical_Equipment,blood test,Infusion_Pump,INF0000001
-5,ECR0000005,EAS0000005,DEPT000005,2022-04-08 05:31:20.892,Processing,Medium,Medical_Equipment,emergency,Bed,BED0000002
-6,ECR0000006,EAS0000006,DEPT000006,2022-04-08 05:31:20.896,Done,High,Medical_Equipment,lazy disorder,Recliner,REC0000002
-7,ECR0000007,EAS0000007,DEPT000007,2022-04-08 05:31:20.898,Blank,Low,Medical_Equipment,liquid test,Infusion_Pump,INF0000002
-8,ECR0000008,EAS0000008,DEPT000008,2022-04-08 05:31:20.901,Processing,Medium,Medical_Equipment,fluidity,Infusion_Pump,INF0000003
-9,ECR0000009,EAS0000009,DEPT000009,2022-04-08 05:31:20.904,Done,High,Medical_Equipment,physical,Bed,BED0000003
+1,ECR0000001,EAS0000001,DEPT000001,2022-04-08 14:45:14.633,Processing,Low,Medical_Equipment,urgent care,Bed,BED0000001
+2,ECR0000002,EAS0000002,DEPT000002,2022-04-08 14:45:14.643,Blank,Medium,Medical_Equipment,fat guy,Recliner,REC0000001
+3,ECR0000003,EAS0000003,DEPT000003,2022-04-08 14:45:14.644,Processing,High,Medical_Equipment,scanning,Portable_X_Ray,XRA0000001
+4,ECR0000004,EAS0000004,DEPT000004,2022-04-08 14:45:14.645,Blank,Low,Medical_Equipment,blood test,Infusion_Pump,INF0000001
+5,ECR0000005,EAS0000005,DEPT000005,2022-04-08 14:45:14.647,Processing,Medium,Medical_Equipment,emergency,Bed,BED0000002
+6,ECR0000006,EAS0000006,DEPT000006,2022-04-08 14:45:14.648,Done,High,Medical_Equipment,lazy disorder,Recliner,REC0000002
+7,ECR0000007,EAS0000007,DEPT000007,2022-04-08 14:45:14.65,Blank,Low,Medical_Equipment,liquid test,Infusion_Pump,INF0000002
+8,ECR0000008,EAS0000008,DEPT000008,2022-04-08 14:45:14.65,Processing,Medium,Medical_Equipment,fluidity,Infusion_Pump,INF0000003
+9,ECR0000009,EAS0000009,DEPT000009,2022-04-08 14:45:14.651,Done,High,Medical_Equipment,physical,Bed,BED0000003

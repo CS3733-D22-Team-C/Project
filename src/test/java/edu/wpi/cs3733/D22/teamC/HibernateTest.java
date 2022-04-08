@@ -5,6 +5,8 @@ import static org.junit.jupiter.api.Assertions.*;
 import edu.wpi.cs3733.D22.teamC.entity.location.Location;
 import edu.wpi.cs3733.D22.teamC.entity.location.LocationDAO;
 import edu.wpi.cs3733.D22.teamC.entity.service_request.ServiceRequest;
+import edu.wpi.cs3733.D22.teamC.entity.service_request.ServiceRequestDAO;
+import edu.wpi.cs3733.D22.teamC.entity.service_request.medical_equipment.MedicalEquipmentSR;
 import edu.wpi.cs3733.D22.teamC.entity.service_request.security.SecuritySR;
 import edu.wpi.cs3733.D22.teamC.entity.service_request.security.SecuritySRDAO;
 import org.junit.jupiter.api.AfterEach;
@@ -182,6 +184,9 @@ public class HibernateTest {
         // Verify attributes
         assertEquals(status, retrievedSR.getStatus());
         assertEquals(securityType, retrievedSR.getSecurityType());
+        
+        ServiceRequestDAO srDAO = new ServiceRequestDAO();
+        System.out.println(srDAO.getAll());
         
     }
 }
