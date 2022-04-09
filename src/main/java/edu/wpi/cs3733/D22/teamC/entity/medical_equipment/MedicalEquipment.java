@@ -93,4 +93,12 @@ public class MedicalEquipment {
     public void setLocationID(int locationID) {
         this.locationID = locationID;
     }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        MedicalEquipment equipment = (MedicalEquipment) o;
+        return equipID == equipment.equipID && locationID == equipment.locationID && typeNumber == equipment.typeNumber && equipmentType == equipment.equipmentType && status == equipment.status;
+    }
 }
