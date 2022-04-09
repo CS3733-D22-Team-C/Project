@@ -33,6 +33,7 @@ public class ServiceRequestLandingPage implements Initializable {
     @FXML private ImageView eye;
     @FXML private Image eyecon;
 
+
     private boolean canSee = false;
     private ServiceRequestsViewController serviceRequestsViewController;
 
@@ -50,7 +51,15 @@ public class ServiceRequestLandingPage implements Initializable {
     void canViewNames() {
         canSee = !canSee;
         changeNameVisibility(canSee);
-//        try {
+
+        if (canSee){
+            Image img1 = new Image("edu/wpi/cs3733/D22/teamC/static/images/Eye.png");
+            eye.setImage(img1);
+        } else {
+            Image img1 = new Image("edu/wpi/cs3733/D22/teamC/static/images/Lab_Systems(vial).png");
+            eye.setImage(img1);
+        }
+        //        try {
 //            changeNameVisibility(canSee);
 //        } catch (FileNotFoundException e) {
 //            e.printStackTrace();
@@ -112,6 +121,15 @@ public class ServiceRequestLandingPage implements Initializable {
             App.View<BaseServiceRequestCreateController> view = App.instance.loadView(CREATE_FORM);
             view.getController().setup(type);
             App.instance.setView(view.getNode());
+    }
+
+    private void replaceEye(){
+        if (eye.isVisible()){
+            eye.setVisible(false);
+            //logic to add new image
+        } else {
+
+        }
     }
 
 }
