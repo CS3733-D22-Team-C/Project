@@ -12,7 +12,7 @@ public class MedicalEquipment {
     @GenericGenerator(name = "increment", strategy = "increment")
     private int equipID;
 
-    @Column (name = "locationID")
+    @Column (name = "LocationID")
     private int locationID;
 
     @Column(name = "Type Number")

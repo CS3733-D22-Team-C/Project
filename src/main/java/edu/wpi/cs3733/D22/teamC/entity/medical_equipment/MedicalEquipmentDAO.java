@@ -11,7 +11,13 @@ public class MedicalEquipmentDAO extends DAO<MedicalEquipment> {
     protected Class<MedicalEquipment> classType() {
         return MedicalEquipment.class;
     }
+
+    /**
+     * finds the list of equipment at designated location
+     * @param locationID the idenitifer of the location
+     * @return the list of equipments at this location
+     */
     public List<MedicalEquipment> getAllEquipment(int locationID) {
-        return HibernateManager.filterQuery("from Medical_Equipment where locationID = " + locationID);
+        return HibernateManager.filterQuery("from Medical_Equipment where LOCATIONID = " + locationID);
     }
 }
