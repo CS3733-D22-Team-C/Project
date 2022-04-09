@@ -1,6 +1,7 @@
 package edu.wpi.cs3733.D22.teamC.controller.table;
 
 import com.jfoenix.controls.JFXButton;
+import edu.wpi.cs3733.D22.teamC.App;
 import edu.wpi.cs3733.D22.teamC.controller.service_request.BaseServiceRequestResolveController;
 import edu.wpi.cs3733.D22.teamC.entity.location.Location;
 import edu.wpi.cs3733.D22.teamC.entity.location.LocationDAO;
@@ -110,6 +111,10 @@ public class InserTableViewController implements Initializable {
 
         LocationDAO locationDAO = new LocationDAOImpl();
         locationDAO.updateLocation(currentLocation);
+
+        App.instance.setView("view/Table/base_view2.fxml");
+
+
 
     }
 
