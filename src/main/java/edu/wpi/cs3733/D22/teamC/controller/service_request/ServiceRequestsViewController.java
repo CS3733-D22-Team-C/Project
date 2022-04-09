@@ -3,18 +3,15 @@ package edu.wpi.cs3733.D22.teamC.controller.service_request;
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXComboBox;
 import com.jfoenix.controls.JFXTreeTableView;
-import com.sun.tools.jconsole.JConsoleContext;
 import edu.wpi.cs3733.D22.teamC.App;
 import edu.wpi.cs3733.D22.teamC.entity.service_request.ServiceRequest;
 import edu.wpi.cs3733.D22.teamC.entity.service_request.ServiceRequestDAO;
-import edu.wpi.cs3733.D22.teamC.entity.service_request.ServiceRequestDAOImpl;
 import edu.wpi.cs3733.D22.teamC.models.service_request.ServiceRequestTableDisplay;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.TreeTableRow;
 import javafx.scene.input.MouseButton;
-import javafx.scene.input.MouseEvent;
 
 import java.net.URL;
 import java.util.List;
@@ -24,11 +21,13 @@ import static edu.wpi.cs3733.D22.teamC.entity.service_request.ServiceRequest.Sta
 
 
 public class ServiceRequestsViewController implements Initializable {
+    // New Paths
+    public static final String CREATE_FORM = "view/service_request/skeleton/create_form.fxml";
+    public static final String RESOLVE_FORM = "view/service_request/skeleton/resolve_form.fxml";
+
+    // Old Paths
     public static final String BASE_PATH = "view/service_request/";
-
-
-    public static final String CREATE_FORM = "create_form.fxml";
-    public static final String RESOLVE_FORM = "resolve_form.fxml";
+    //public static final String RESOLVE_FORM = "resolve_form.fxml";
 
     //Buttons
     @FXML private JFXButton selectButton;
@@ -51,8 +50,8 @@ public class ServiceRequestsViewController implements Initializable {
         }
 
         // Populate Table Display
-        ServiceRequestDAO serviceRequestDAO  = new ServiceRequestDAOImpl();
-        List<ServiceRequest> serviceRequests = serviceRequestDAO.getAllServiceRequests();
+        ServiceRequestDAO serviceRequestDAO  = new ServiceRequestDAO();
+        List<ServiceRequest> serviceRequests = serviceRequestDAO.getAll();
         tableDisplay = new ServiceRequestTableDisplay<ServiceRequest>(table);
         serviceRequests.forEach(tableDisplay::addObject);
 
@@ -64,7 +63,9 @@ public class ServiceRequestsViewController implements Initializable {
         @FXML
         void onSelectButton(ActionEvent event) {
             if (serviceType.getValue() != null) {
-                App.instance.setView(generatePath(ServiceRequest.RequestType.valueOf(serviceType.getValue()), true));
+                App.View<BaseServiceRequestCreateController> view = App.instance.loadView(CREATE_FORM);
+                view.getController().setup(ServiceRequest.RequestType.valueOf(serviceType.getValue()));
+                App.instance.setView(view.getNode());
             }
         }
 
@@ -137,28 +138,26 @@ public class ServiceRequestsViewController implements Initializable {
         }
 
         private void toEditPage(ServiceRequest serviceRequest) {
-            App.View<ServiceRequestResolveController> view = App.instance.loadView(generatePath(serviceRequest.getRequestType(), false));
+            App.View<BaseServiceRequestResolveController> view = App.instance.loadView(RESOLVE_FORM);
             view.getController().setup(serviceRequest, true);
             App.instance.setView(view.getNode());
         }
 
         private void toResolvePage(ServiceRequest serviceRequest) {
-            App.View<ServiceRequestResolveController> view = App.instance.loadView(generatePath(serviceRequest.getRequestType(), false));
+            App.View<BaseServiceRequestResolveController> view = App.instance.loadView(RESOLVE_FORM);
             view.getController().setup(serviceRequest, false);
             App.instance.setView(view.getNode());
         }
 
         /**
-         * Generate view for given service request and context.
+         * Generate view for given service request resolve page and context.
          * @param requestType The service request type for which view we are creating.
-         * @param create Boolean for generating the create form path (true), or resolve form (false).
          * @return The generated path name.
          */
-        private String generatePath(ServiceRequest.RequestType requestType, boolean create) {
+        private String generatePath(ServiceRequest.RequestType requestType) {
             String pathName = BASE_PATH;
             pathName += (requestType.toString()).toLowerCase();
-            pathName += "/";
-            pathName += (create) ? CREATE_FORM : RESOLVE_FORM;
+            pathName += "/" + RESOLVE_FORM;
             return pathName;
         }
     //#endregion

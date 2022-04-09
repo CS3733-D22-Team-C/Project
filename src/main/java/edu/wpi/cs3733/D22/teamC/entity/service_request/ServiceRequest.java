@@ -16,30 +16,41 @@ public class ServiceRequest {
     @GeneratedValue(generator = "increment")
     @GenericGenerator(name = "increment", strategy = "increment")
     protected int requestID;
-    
+
+    @Column(name = "CreatorID")
     protected String creatorID;     // TODO: Link to Employee
     
+    @Column(name = "AssigneeID")
     protected String assigneeID;    // TODO: Link to Employee
     
+    @Column(name = "LocationID")
     protected String locationID;      // TODO: Link to Location
     
     @CreationTimestamp
+    @Column(name = "CreationTimestamp")
     protected Timestamp creationTimestamp;
     
     @Enumerated(EnumType.STRING)
+    @Column(name = "Status")
     protected Status status;
     
     @Enumerated(EnumType.STRING)
+    @Column(name = "Priority")
     protected Priority priority;
     
     @Enumerated(EnumType.STRING)
+    @Column(name = "RequestType")
     protected RequestType requestType;
     
+    @Column(name = "Description")
     protected String description;
     
+    @Column(name = "ModifierID")
     protected String modifierID;
     
     @UpdateTimestamp
+    @Column(name = "ModifiedTimestamp")
+
     protected Timestamp modifiedTimestamp;
 
     public enum Status {

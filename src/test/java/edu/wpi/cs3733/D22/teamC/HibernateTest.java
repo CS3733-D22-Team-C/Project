@@ -2,37 +2,53 @@ package edu.wpi.cs3733.D22.teamC;
 
 import static org.junit.jupiter.api.Assertions.*;
 
+
 import edu.wpi.cs3733.D22.teamC.entity.employee.Employee;
 import edu.wpi.cs3733.D22.teamC.entity.employee.EmployeeDAO;
 import edu.wpi.cs3733.D22.teamC.entity.location.Location;
 import edu.wpi.cs3733.D22.teamC.entity.location.LocationDAO;
 import edu.wpi.cs3733.D22.teamC.entity.service_request.ServiceRequest;
 import edu.wpi.cs3733.D22.teamC.entity.service_request.security.SecuritySR;
+import edu.wpi.cs3733.D22.teamC.entity.service_request.ServiceRequestDAO;
+import edu.wpi.cs3733.D22.teamC.entity.service_request.medical_equipment.MedicalEquipmentSR;
+import edu.wpi.cs3733.D22.teamC.entity.service_request.security.SecuritySRDAO;
+
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
+
 import java.sql.SQLOutput;
 import java.sql.Timestamp;
-import java.util.ArrayList;
 import java.util.List;
 
 public class HibernateTest {
     
     private LocationDAO locationDAO;
+
 	private EmployeeDAO employeeDAO;
+
+    private SecuritySRDAO securitySRDAO;
+
 
 	@BeforeEach
 	void setUp() {
         SessionManager.getSession();
         locationDAO = new LocationDAO();
+
 		employeeDAO = new EmployeeDAO();
+
+        securitySRDAO = new SecuritySRDAO();
+
     }
 
 	@AfterEach
 	void tearDown() {
         // Kill Session Factory after every test. Note: this will drop the tables!
+
         SessionManager.killSessionFactory();
+
+        //SessionManager.killSessionFactory();
     }
 
     //region Location Tests
@@ -69,6 +85,8 @@ public class HibernateTest {
 		assertEquals(newLoc.getY(), retrievedLoc.getY());
 	}
 
+    
+
     @Test
     void testGetLocations() {
         // Insert a new object into the database
@@ -80,14 +98,15 @@ public class HibernateTest {
         newLoc.setY(1000);
         int insertedID = locationDAO.insert(newLoc);
         assertNotEquals(-1, insertedID);
-
+    
         locationDAO.insert(new Location());
         locationDAO.insert(new Location());
-
+        
         // Get All
         List<Location> getList = locationDAO.getAll();
         System.out.println(getList.size());
     }
+
 
 	@Test
 	void testUpdateLocation() {
@@ -143,7 +162,7 @@ public class HibernateTest {
     //endregion
 
     @Test
-    void testInsertSR() {
+    void testSR() {
         // Insert a new object into the database
         String creatorID = "bshin100";
         String assigneeID = "nick1234";
@@ -153,7 +172,8 @@ public class HibernateTest {
         ServiceRequest.Priority priority = ServiceRequest.Priority.High;
         ServiceRequest.RequestType requestType = ServiceRequest.RequestType.Security;
         String description = "soft eng is spain without the s";
-
+        SecuritySR.SecurityType securityType = SecuritySR.SecurityType.Intruder;
+        
         SecuritySR insertSR = new SecuritySR();
         //ServiceRequest insertSR = new ServiceRequest();
         insertSR.setCreatorID(creatorID);
@@ -164,11 +184,32 @@ public class HibernateTest {
         insertSR.setPriority(priority);
         insertSR.setRequestType(requestType);
         insertSR.setDescription(description);
-        insertSR.setSecurityType(SecuritySR.SecurityType.Intruder);
-
-        int insertedID = HibernateManager.insertObj(insertSR);
+        insertSR.setSecurityType(securityType);
+        
+        int insertedID = securitySRDAO.insert(insertSR);
         assertNotEquals(-1, insertedID);
+        
+        SecuritySR retrievedSR = securitySRDAO.getByID(insertedID);
+        assertNotNull(retrievedSR);
+        
+        // Update attributes
+        status = ServiceRequest.Status.Processing;
+        securityType = SecuritySR.SecurityType.LOCKDOWN;
+        retrievedSR.setStatus(status);
+        retrievedSR.setSecurityType(securityType);
+        
+        boolean success = securitySRDAO.update(retrievedSR);
+        assertTrue(success);
+        
+        // Verify attributes
+        assertEquals(status, retrievedSR.getStatus());
+        assertEquals(securityType, retrievedSR.getSecurityType());
+        
+        ServiceRequestDAO srDAO = new ServiceRequestDAO();
+        System.out.println(srDAO.getAll());
+        
     }
+    
 
 	//region Employee Tests
 

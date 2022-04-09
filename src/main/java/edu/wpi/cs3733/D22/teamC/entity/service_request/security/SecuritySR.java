@@ -7,7 +7,9 @@ import javax.persistence.*;
 @Entity
 @Table(name = "SECURITY_SR")
 public class SecuritySR extends ServiceRequest {
+
     @Enumerated(EnumType.STRING)
+    @Column(name = "SecurityType")
     protected SecurityType securityType;
 
     public enum SecurityType {

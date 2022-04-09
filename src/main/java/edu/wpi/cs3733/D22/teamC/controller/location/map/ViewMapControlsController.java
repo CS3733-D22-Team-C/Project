@@ -2,7 +2,6 @@ package edu.wpi.cs3733.D22.teamC.controller.location.map;
 
 import com.jfoenix.controls.JFXComboBox;
 import edu.wpi.cs3733.D22.teamC.App;
-import edu.wpi.cs3733.D22.teamC.DBManager;
 import edu.wpi.cs3733.D22.teamC.entity.floor.Floor;
 import edu.wpi.cs3733.D22.teamC.entity.floor.FloorDAO;
 import edu.wpi.cs3733.D22.teamC.entity.location.Location;
@@ -29,7 +28,7 @@ public class ViewMapControlsController {
         setParentController(baseMapViewController);
 
         FloorDAO floorDAO = new FloorDAO();
-        floors = floorDAO.getAllFloors();
+        floors = floorDAO.getAll();
 
         if (floors != null) {
             for (Floor i : floors) {
@@ -90,13 +89,13 @@ public class ViewMapControlsController {
         File file = fileChooser.showOpenDialog(App.instance.getStage());
 
         if (file != null) {
-            DBManager.getInstance().initializeLocationTable(true);
+            LocationDAO locationDAO = new LocationDAO();
+            locationDAO.deleteAllFromTable();
 
             // Load CSV Data - Location
             LocationCSVReader csvReader = new LocationCSVReader();
             List<Location> locations = csvReader.readFile(file);
             if (locations != null) {
-                LocationDAO locationDAO = new LocationDAO();
                 for (Location location : locations) {
                     locationDAO.insert(location);
                 }

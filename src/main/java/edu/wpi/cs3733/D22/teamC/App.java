@@ -5,7 +5,7 @@ import edu.wpi.cs3733.D22.teamC.entity.floor.FloorDAO;
 import edu.wpi.cs3733.D22.teamC.entity.location.Location;
 import edu.wpi.cs3733.D22.teamC.entity.location.LocationDAO;
 import edu.wpi.cs3733.D22.teamC.entity.service_request.medical_equipment.MedicalEquipmentSR;
-import edu.wpi.cs3733.D22.teamC.entity.service_request.medical_equipment.MedicalEquipmentSRDAOImpl;
+import edu.wpi.cs3733.D22.teamC.entity.service_request.medical_equipment.MedicalEquipmentSRDAO;
 import edu.wpi.cs3733.D22.teamC.fileio.csv.*;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
@@ -26,7 +26,7 @@ public class App extends Application {
 
         public View(Node node, T controller) {
             this.node = node;
-            this.controller = controller;
+            this.controller = (T) controller;
         }
 
         public Node getNode() {
@@ -56,9 +56,6 @@ public class App extends Application {
 
     @Override
     public void init() {
-        // Initialize Database Manager
-        DBManager.startup(DBManager.DEVELOPMENT_DATABASE_NAME).initializeTables(true);
-
         // Load CSV Data - Floor
         {
             FloorCSVReader csvReader = new FloorCSVReader();
@@ -66,7 +63,7 @@ public class App extends Application {
             if (floors != null) {
                 FloorDAO floorDAO = new FloorDAO();
                 for (Floor floor : floors) {
-                    floorDAO.insertFloor(floor);
+                    floorDAO.insert(floor);
                 }
             }
         }
@@ -88,9 +85,9 @@ public class App extends Application {
             MedicalEquipmentSRCSVReader csvReader = new MedicalEquipmentSRCSVReader();
             List<MedicalEquipmentSR> MedicalEquipmentSRs = csvReader.readFile("MedEquipReq.csv");
             if(MedicalEquipmentSRs != null){
-                MedicalEquipmentSRDAOImpl serviceRequestDAO = new MedicalEquipmentSRDAOImpl();
+                MedicalEquipmentSRDAO serviceRequestDAO = new MedicalEquipmentSRDAO();
                 for(MedicalEquipmentSR medEquipSR : MedicalEquipmentSRs){
-                    serviceRequestDAO.insertServiceRequest(medEquipSR);
+                    serviceRequestDAO.insert(medEquipSR);
                 }
             }
         }
@@ -117,7 +114,7 @@ public class App extends Application {
         {
             FloorCSVWriter csvWriter = new FloorCSVWriter();
             FloorDAO floorDAO = new FloorDAO();
-            List<Floor> floors = floorDAO.getAllFloors();
+            List<Floor> floors = floorDAO.getAll();
             if (floors != null) {
                 csvWriter.writeFile("TowerFloors.csv", floors);
             }
@@ -136,15 +133,12 @@ public class App extends Application {
         // Export CSV Data - Medical Equipment Service Requests
         {
             MedicalEquipmentSRCSVWriter csvWriter = new MedicalEquipmentSRCSVWriter();
-            MedicalEquipmentSRDAOImpl serviceRequestDAO = new MedicalEquipmentSRDAOImpl();
-            List<MedicalEquipmentSR> serviceRequests = serviceRequestDAO.getAllServiceRequests();
+            MedicalEquipmentSRDAO serviceRequestDAO = new MedicalEquipmentSRDAO();
+            List<MedicalEquipmentSR> serviceRequests = serviceRequestDAO.getAll();
             if (serviceRequests != null){
                 csvWriter.writeFile("MedEquipReq.csv", serviceRequests);
             }
         }
-
-        // Shutdown Database Manager
-        DBManager.shutdown();
 
         log.info("Shutting Down");
     }
