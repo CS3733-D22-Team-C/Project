@@ -4,15 +4,14 @@ import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.*;
 import java.util.Objects;
+import java.util.UUID;
 
 @Entity
 @Table(name = "FLOOR")
 public class Floor {
     @Id
-    @Column(name = "ID", nullable = false)
-    @GeneratedValue(generator = "increment")
-    @GenericGenerator(name = "increment", strategy = "increment")
-    private int floorID;
+    @Column(name = "ID")
+    private String floorID;
     
     @Column(name = "FloorOrder")
     private int order;
@@ -22,24 +21,29 @@ public class Floor {
     
     @Column(name = "ShortName")
     private String shortName;
+    
+    @Column(name = "ImageSrc")
     private String imageSrc;
 
-    public Floor(){}
+    public Floor(){
+        this.floorID = UUID.randomUUID().toString();
+    }
 
     public Floor(int order, String longName, String shortName) {
+        this.floorID = UUID.randomUUID().toString();
         this.order = order;
         this.longName = longName;
         this.shortName = shortName;
     }
-    public Floor(int floorID){
+    public Floor(String floorID){
         this.floorID = floorID;
     }
 
-    public int getFloorID() {
+    public String getFloorID() {
         return floorID;
     }
 
-    public void setFloorID(int floorID) {
+    public void setFloorID(String floorID) {
         this.floorID = floorID;
     }
 
