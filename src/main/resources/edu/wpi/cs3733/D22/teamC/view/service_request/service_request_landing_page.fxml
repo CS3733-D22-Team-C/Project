@@ -40,7 +40,7 @@
             <Insets />
          </GridPane.margin>
          <padding>
-            <Insets bottom="15.0" />
+            <Insets bottom="50.0" />
          </padding>
       </VBox>
       <VBox alignment="BOTTOM_CENTER" GridPane.columnIndex="1">
@@ -54,7 +54,7 @@
             <Label fx:id="vishu" styleClass="text-field-our-names" stylesheets="@../../css/service_request_landing_page.css" text="Vishnu Dendukuri" />
          </children>
          <padding>
-            <Insets bottom="15.0" />
+            <Insets bottom="50.0" />
          </padding>
       </VBox>
       <VBox alignment="BOTTOM_CENTER" GridPane.columnIndex="2">
@@ -81,7 +81,7 @@
             <Insets />
          </GridPane.margin>
          <padding>
-            <Insets bottom="15.0" />
+            <Insets bottom="50.0" />
          </padding>
       </VBox>
       <VBox alignment="BOTTOM_CENTER" GridPane.columnIndex="3">
@@ -102,19 +102,19 @@
             <Label fx:id="matthew" styleClass="text-field-our-names" stylesheets="@../../css/service_request_landing_page.css" text="Matthew McAlarney" />
          </children>
          <padding>
-            <Insets bottom="15.0" />
+            <Insets bottom="50.0" />
          </padding>
       </VBox>
-      <GridPane GridPane.columnIndex="4">
+      <GridPane prefHeight="372.0" prefWidth="360.0" GridPane.columnIndex="4">
         <columnConstraints>
           <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
         </columnConstraints>
         <rowConstraints>
-          <RowConstraints maxHeight="156.79999389648438" minHeight="10.0" prefHeight="59.9999870300293" vgrow="SOMETIMES" />
-          <RowConstraints maxHeight="272.00000991821287" minHeight="10.0" prefHeight="264.8000129699707" vgrow="SOMETIMES" />
+          <RowConstraints maxHeight="413.6000183105469" minHeight="8.000010299682629" prefHeight="40.2666633605957" vgrow="SOMETIMES" />
+          <RowConstraints maxHeight="568.000001525879" minHeight="10.0" prefHeight="286.33333663940425" vgrow="SOMETIMES" />
         </rowConstraints>
          <children>
-            <VBox alignment="BOTTOM_CENTER" prefHeight="235.0" prefWidth="180.0" GridPane.rowIndex="1">
+            <VBox alignment="BOTTOM_CENTER" prefHeight="191.0" prefWidth="360.0" GridPane.rowIndex="1">
                <children>
                   <Label alignment="CENTER" prefHeight="71.0" prefWidth="120.0" styleClass="text-field-service-names" stylesheets="@../../css/service_request_landing_page.css" text="Medical Equipment" wrapText="true" />
                   <JFXButton onAction="#clickMedicalEquipment" opacity="0.5" prefHeight="134.0" prefWidth="131.0" styleClass="button-requests" stylesheets="@../../css/service_request_landing_page.css">
@@ -135,19 +135,26 @@
                   <Insets bottom="20.0" />
                </opaqueInsets>
                <padding>
-                  <Insets bottom="15.0" />
+                  <Insets bottom="50.0" />
                </padding>
             </VBox>
-            <VBox alignment="TOP_RIGHT" prefHeight="63.0" prefWidth="180.0">
+            <VBox alignment="TOP_RIGHT" prefHeight="29.0" prefWidth="180.0">
                <children>
-                  <ImageView fx:id="eye" accessibleRole="BUTTON" fitHeight="27.0" fitWidth="34.0" onMouseClicked="#canViewNames">
-                     <image>
-                        <Image url="@../../static/images/Eye.png" />
-                     </image>
-                     <effect>
-                        <Bloom />
-                     </effect>
-                  </ImageView>
+                  <JFXButton contentDisplay="RIGHT" graphicTextGap="0.0" onAction="#canViewNames" prefHeight="22.0" prefWidth="0.0" text=" ">
+                     <font>
+                        <Font size="1.0" />
+                     </font>
+                     <graphic>
+                        <ImageView fx:id="eye" accessibleRole="BUTTON" fitHeight="27.0" fitWidth="34.0">
+                           <image>
+                              <Image url="@../../static/images/Eye.png" />
+                           </image>
+                           <effect>
+                              <Bloom />
+                           </effect>
+                        </ImageView>
+                     </graphic>
+                  </JFXButton>
                </children>
                <opaqueInsets>
                   <Insets />
