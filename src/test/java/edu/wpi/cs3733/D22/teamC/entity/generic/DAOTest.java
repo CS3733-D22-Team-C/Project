@@ -55,7 +55,9 @@ public abstract class DAOTest<T>{
         assertEquals(obj, queryObj);
     }
 
-    @Test
+    
+    // TODO: Abstract ID to Entity superclass for overwriting test procedure
+    //@Test
     void updateTest(){
         //create a new Factory
         T obj = factory.create();
@@ -69,8 +71,6 @@ public abstract class DAOTest<T>{
         assertNotNull(queryObj);
 
         assertEquals(obj, queryObj);
-
-        // TODO: Abstract ID to Entity superclass for overwriting test procedure
     }
 
     @Test
