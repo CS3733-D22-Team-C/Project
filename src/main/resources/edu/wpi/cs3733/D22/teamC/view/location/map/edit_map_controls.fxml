@@ -10,7 +10,7 @@
       <JFXButton onAction="#onExitEditModeButtonPress" text="Exit">
          <stylesheets>
             <URL value="@../../../css/base.css" />
-            <URL value="@../../../css/map.css" />
+            <URL value="@../../../css/map/map.css" />
          </stylesheets>
          <styleClass>
             <String fx:value="button-failure" />
@@ -20,7 +20,7 @@
       <JFXButton onAction="#onSaveAndExitButtonPress" text="Save and Exit">
          <stylesheets>
             <URL value="@../../../css/base.css" />
-            <URL value="@../../../css/map.css" />
+            <URL value="@../../../css/map/map.css" />
          </stylesheets>
          <styleClass>
             <String fx:value="button-success" />
@@ -30,7 +30,7 @@
    </children>
    <stylesheets>
       <URL value="@../../../css/base.css" />
-      <URL value="@../../../css/map.css" />
+      <URL value="@../../../css/map/map.css" />
    </stylesheets>
    <styleClass>
       <String fx:value="vbox" />

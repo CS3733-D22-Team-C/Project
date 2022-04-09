@@ -1,0 +1,15 @@
+@import "edu/wpi/cs3733/D22/teamC/css/base.css";
+
+.map {
+    -fx-background-color: rgba(255, 253, 253, 0.79);
+}
+
+/* Locations button styling */
+.button {
+    -fx-max-width: 115px;
+    -fx-pref-height: 30px;
+}
+
+.vbox {
+    -fx-spacing: 5px;
+}
