@@ -2,6 +2,7 @@
 
 <?import com.jfoenix.controls.JFXButton?>
 <?import javafx.geometry.Insets?>
+<?import javafx.scene.Cursor?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.effect.Bloom?>
 <?import javafx.scene.effect.DropShadow?>
@@ -28,13 +29,16 @@
    <children>
       <VBox alignment="BOTTOM_CENTER" prefHeight="312.0" prefWidth="192.0">
          <children>
-            <Label styleClass="text-field-service-names" stylesheets="@../../css/service_request_landing_page.css" text="Label" />
+            <Label prefHeight="92.0" prefWidth="242.0" styleClass="label-service-names" stylesheets="@../../css/service_request_landing_page.css" text="Label" />
             <JFXButton opacity="0.5" prefHeight="134.0" prefWidth="131.0" styleClass="button-requests" stylesheets="@../../css/service_request_landing_page.css">
                <effect>
                   <DropShadow height="3.51" offsetY="10.0" radius="0.37749999999999995" width="0.0" />
                </effect>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
             </JFXButton>
-            <Label fx:id="vagmi" styleClass="text-field-our-names" stylesheets="@../../css/service_request_landing_page.css" text="Vagmi Bhagavathula" />
+            <Label fx:id="vagmi" styleClass="label-our-names" stylesheets="@../../css/service_request_landing_page.css" text="Vagmi Bhagavathula" />
          </children>
          <GridPane.margin>
             <Insets />
@@ -45,13 +49,16 @@
       </VBox>
       <VBox alignment="BOTTOM_CENTER" GridPane.columnIndex="1">
          <children>
-            <Label styleClass="text-field-service-names" stylesheets="@../../css/service_request_landing_page.css" text="Label" />
+            <Label prefHeight="92.0" prefWidth="218.0" styleClass="label-service-names" stylesheets="@../../css/service_request_landing_page.css" text="Label" />
             <JFXButton opacity="0.5" prefHeight="134.0" prefWidth="131.0" styleClass="button-requests" stylesheets="@../../css/service_request_landing_page.css">
                <effect>
                   <DropShadow height="3.51" offsetY="10.0" radius="0.37749999999999995" width="0.0" />
                </effect>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
             </JFXButton>
-            <Label fx:id="vishu" styleClass="text-field-our-names" stylesheets="@../../css/service_request_landing_page.css" text="Vishnu Dendukuri" />
+            <Label fx:id="vishu" styleClass="label-our-names" stylesheets="@../../css/service_request_landing_page.css" text="Vishnu Dendukuri" />
          </children>
          <padding>
             <Insets bottom="50.0" />
@@ -59,7 +66,7 @@
       </VBox>
       <VBox alignment="BOTTOM_CENTER" GridPane.columnIndex="2">
          <children>
-            <Label prefHeight="69.0" prefWidth="110.0" styleClass="text-field-service-names" stylesheets="@../../css/service_request_landing_page.css" text="Medicine Delivery">
+            <Label prefHeight="57.0" prefWidth="99.0" styleClass="label-service-names" stylesheets="@../../css/service_request_landing_page.css" text="Medicine Delivery" textAlignment="CENTER">
                <padding>
                   <Insets bottom="3.0" />
                </padding></Label>
@@ -74,8 +81,11 @@
                      </image>
                   </ImageView>
                </graphic>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
             </JFXButton>
-            <Label fx:id="nick" styleClass="text-field-our-names" stylesheets="@../../css/service_request_landing_page.css" text="Nick Frangie" />
+            <Label fx:id="nick" styleClass="label-our-names" stylesheets="@../../css/service_request_landing_page.css" text="Nick Frangie" />
          </children>
          <GridPane.margin>
             <Insets />
@@ -86,7 +96,7 @@
       </VBox>
       <VBox alignment="BOTTOM_CENTER" GridPane.columnIndex="3">
          <children>
-            <Label prefHeight="70.0" prefWidth="134.0" styleClass="text-field-service-names" stylesheets="@../../css/service_request_landing_page.css" text="Facility Maintenance" wrapText="true" />
+            <Label alignment="BOTTOM_CENTER" prefHeight="58.0" prefWidth="133.0" styleClass="label-service-names" stylesheets="@../../css/service_request_landing_page.css" text="Facility Maintenance" textAlignment="CENTER" wrapText="true" />
             <JFXButton opacity="0.5" prefHeight="134.0" prefWidth="131.0" styleClass="button-requests" stylesheets="@../../css/service_request_landing_page.css" text=" ">
                <effect>
                   <DropShadow height="3.51" offsetY="10.0" radius="0.37749999999999995" width="0.0" />
@@ -98,8 +108,11 @@
                      </image>
                   </ImageView>
                </graphic>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
             </JFXButton>
-            <Label fx:id="matthew" styleClass="text-field-our-names" stylesheets="@../../css/service_request_landing_page.css" text="Matthew McAlarney" />
+            <Label fx:id="matthew" styleClass="label-our-names" stylesheets="@../../css/service_request_landing_page.css" text="Matthew McAlarney" />
          </children>
          <padding>
             <Insets bottom="50.0" />
@@ -116,7 +129,7 @@
          <children>
             <VBox alignment="BOTTOM_CENTER" prefHeight="191.0" prefWidth="360.0" GridPane.rowIndex="1">
                <children>
-                  <Label alignment="CENTER" prefHeight="71.0" prefWidth="120.0" styleClass="text-field-service-names" stylesheets="@../../css/service_request_landing_page.css" text="Medical Equipment" wrapText="true" />
+                  <Label alignment="CENTER" prefHeight="84.0" prefWidth="130.0" styleClass="label-service-names" stylesheets="@../../css/service_request_landing_page.css" text="Medical Equipment" textAlignment="CENTER" wrapText="true" />
                   <JFXButton onAction="#clickMedicalEquipment" opacity="0.5" prefHeight="134.0" prefWidth="131.0" styleClass="button-requests" stylesheets="@../../css/service_request_landing_page.css">
                      <effect>
                         <DropShadow height="3.51" offsetY="10.0" radius="0.37749999999999995" width="0.0" />
@@ -128,8 +141,11 @@
                            </image>
                         </ImageView>
                      </graphic>
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
                   </JFXButton>
-                  <Label fx:id="mia" styleClass="text-field-our-names" stylesheets="@../../css/service_request_landing_page.css" text="Mia Mueting" />
+                  <Label fx:id="mia" styleClass="label-our-names" stylesheets="@../../css/service_request_landing_page.css" text="Mia Mueting" />
                </children>
                <opaqueInsets>
                   <Insets bottom="20.0" />
@@ -167,7 +183,7 @@
       </GridPane>
       <VBox alignment="BOTTOM_CENTER" GridPane.rowIndex="1">
          <children>
-            <Label styleClass="text-field-service-names" stylesheets="@../../css/service_request_landing_page.css" text="Security" />
+            <Label styleClass="label-service-names" stylesheets="@../../css/service_request_landing_page.css" text="Security" />
             <JFXButton onAction="#clickSecurity" opacity="0.5" prefHeight="134.0" prefWidth="131.0" styleClass="button-requests" stylesheets="@../../css/service_request_landing_page.css">
                <effect>
                   <DropShadow height="3.51" offsetY="10.0" radius="0.37749999999999995" width="0.0" />
@@ -179,8 +195,11 @@
                      </image>
                   </ImageView>
                </graphic>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
             </JFXButton>
-            <Label fx:id="jack" styleClass="text-field-our-names" stylesheets="@../../css/service_request_landing_page.css" text="Jack Muirhead" />
+            <Label fx:id="jack" styleClass="label-our-names" stylesheets="@../../css/service_request_landing_page.css" text="Jack Muirhead" />
          </children>
          <padding>
             <Insets bottom="90.0" />
@@ -188,13 +207,16 @@
       </VBox>
       <VBox alignment="BOTTOM_CENTER" GridPane.columnIndex="1" GridPane.rowIndex="1">
          <children>
-            <Label styleClass="text-field-service-names" stylesheets="@../../css/service_request_landing_page.css" text="Label" />
+            <Label styleClass="label-service-names" stylesheets="@../../css/service_request_landing_page.css" text="Label" />
             <JFXButton opacity="0.5" prefHeight="134.0" prefWidth="131.0" styleClass="button-requests" stylesheets="@../../css/service_request_landing_page.css">
                <effect>
                   <DropShadow height="3.51" offsetY="10.0" radius="0.37749999999999995" width="0.0" />
                </effect>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
             </JFXButton>
-            <Label fx:id="grace" styleClass="text-field-our-names" stylesheets="@../../css/service_request_landing_page.css" text="Grace O'Reilly" />
+            <Label fx:id="grace" styleClass="label-our-names" stylesheets="@../../css/service_request_landing_page.css" text="Grace O'Reilly" />
          </children>
          <padding>
             <Insets bottom="90.0" />
@@ -202,7 +224,7 @@
       </VBox>
       <VBox alignment="BOTTOM_CENTER" GridPane.columnIndex="2" GridPane.rowIndex="1">
          <children>
-            <Label prefHeight="70.0" prefWidth="84.0" styleClass="text-field-service-names" stylesheets="@../../css/service_request_landing_page.css" text="Lab System" />
+            <Label prefHeight="58.0" prefWidth="99.0" styleClass="label-service-names" stylesheets="@../../css/service_request_landing_page.css" text="Lab System" textAlignment="CENTER" />
             <JFXButton onAction="#clickLabSystem" opacity="0.5" prefHeight="134.0" prefWidth="131.0" styleClass="button-requests" stylesheets="@../../css/service_request_landing_page.css" text=" ">
                <effect>
                   <DropShadow height="3.51" offsetY="10.0" radius="0.37749999999999995" width="0.0" />
@@ -214,8 +236,11 @@
                      </image>
                   </ImageView>
                </graphic>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
             </JFXButton>
-            <Label fx:id="nelson" styleClass="text-field-our-names" stylesheets="@../../css/service_request_landing_page.css" text="Nelson Pires" />
+            <Label fx:id="nelson" styleClass="label-our-names" stylesheets="@../../css/service_request_landing_page.css" text="Nelson Pires" />
          </children>
          <padding>
             <Insets bottom="90.0" />
@@ -223,7 +248,7 @@
       </VBox>
       <VBox alignment="BOTTOM_CENTER" GridPane.columnIndex="3" GridPane.rowIndex="1">
          <children>
-            <Label prefHeight="38.0" prefWidth="60.0" styleClass="text-field-service-names" stylesheets="@../../css/service_request_landing_page.css" text="Label" />
+            <Label prefHeight="37.0" prefWidth="170.0" styleClass="label-service-names" stylesheets="@../../css/service_request_landing_page.css" text="Label" />
             <JFXButton prefHeight="134.0" prefWidth="131.0" styleClass="button-requests" stylesheets="@../../css/service_request_landing_page.css" text=" ">
                <effect>
                   <DropShadow height="3.51" offsetY="10.0" radius="0.37749999999999995" width="0.0" />
@@ -231,8 +256,11 @@
                <font>
                   <Font name="Arial" size="12.0" />
                </font>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
             </JFXButton>
-            <Label fx:id="brian" styleClass="text-field-our-names" stylesheets="@../../css/service_request_landing_page.css" text="Brian Shin" />
+            <Label fx:id="brian" styleClass="label-our-names" stylesheets="@../../css/service_request_landing_page.css" text="Brian Shin" />
          </children>
          <padding>
             <Insets bottom="90.0" />
@@ -240,7 +268,7 @@
       </VBox>
       <VBox alignment="BOTTOM_CENTER" prefHeight="174.0" prefWidth="192.0" GridPane.columnIndex="4" GridPane.rowIndex="1">
          <children>
-            <Label styleClass="text-field-service-names" stylesheets="@../../css/service_request_landing_page.css" text="Sanitation" />
+            <Label styleClass="label-service-names" stylesheets="@../../css/service_request_landing_page.css" text="Sanitation" />
             <JFXButton onAction="#clickSanitation" opacity="0.5" prefHeight="134.0" prefWidth="131.0" styleClass="button-requests" stylesheets="@../../css/service_request_landing_page.css" text=" ">
                <effect>
                   <DropShadow height="3.51" offsetY="10.0" radius="0.37749999999999995" width="0.0" />
@@ -252,8 +280,11 @@
                      </image>
                   </ImageView>
                </graphic>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
             </JFXButton>
-            <Label fx:id="brandon" styleClass="text-field-our-names" stylesheets="@../../css/service_request_landing_page.css" text="Brandon Vuong" />
+            <Label fx:id="brandon" styleClass="label-our-names" stylesheets="@../../css/service_request_landing_page.css" text="Brandon Vuong" />
          </children>
          <padding>
             <Insets bottom="90.0" />
