@@ -1,7 +1,7 @@
 package edu.wpi.cs3733.D22.teamC.factory.employee;
 
 import edu.wpi.cs3733.D22.teamC.entity.employee.Employee;
-import edu.wpi.cs3733.D22.teamC.entity.location.Location;
+
 
 import java.util.Random;
 
