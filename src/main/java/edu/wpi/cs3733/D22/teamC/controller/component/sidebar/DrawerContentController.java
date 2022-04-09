@@ -1,6 +1,8 @@
 package edu.wpi.cs3733.D22.teamC.controller.component.sidebar;
 
+import edu.wpi.cs3733.D22.teamC.App;
 import io.github.palexdev.materialfx.controls.MFXButton;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.geometry.Pos;
@@ -45,9 +47,14 @@ public class DrawerContentController implements Initializable {
 
     // use a list to store all buttons
     MFXButton[] allButtons;
+
+    protected void setParentController(SidebarMenuController parentController) {
+        this.sidebarMenuController = parentController;
+    }
+
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-       allButtons = new MFXButton[]{dashboardButton, exitButton, logOutButton, myTasksButton, viewProfileButton, mapsButton, serviceRequestsButton};
+        allButtons = new MFXButton[]{dashboardButton, exitButton, logOutButton, myTasksButton, viewProfileButton, mapsButton, serviceRequestsButton};
         initializeSVG();
     }
 
@@ -87,7 +94,43 @@ public class DrawerContentController implements Initializable {
         }
     }
 
-    protected void setParentController(SidebarMenuController parentController) {
-        this.sidebarMenuController = parentController;
+    @FXML
+    void dashboardButtonPress(ActionEvent event) {
+        // TODO: Add path to dashboard
+        App.instance.setView("");
+    }
+
+    @FXML
+    void exitButtonPress(ActionEvent event) {
+        App.instance.getStage().close();
+    }
+
+    @FXML
+    void logOutButtonPress(ActionEvent event) {
+        // TODO: Logout functionality, path to login page
+        App.instance.setView("");
+    }
+
+    @FXML
+    void mapButtonPress(ActionEvent event) {
+        App.instance.setView(App.MAP_PATH);
+    }
+
+    @FXML
+    void serviceRequestButtonPress(ActionEvent event) {
+        App.instance.setView(App.VIEW_SERVICE_REQUESTS_PATH);
+    }
+
+    @FXML
+    void taskButtonPress(ActionEvent event) {
+        // TODO: Path to view tasks related to user
+        App.instance.setView("");
+    }
+
+    @FXML
+    void userProfileButtonPress(ActionEvent event) {
+        // TODO: Path to user profile page
+        App.instance.setView("");
     }
 }
+
