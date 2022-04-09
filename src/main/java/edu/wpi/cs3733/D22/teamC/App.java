@@ -105,7 +105,7 @@ public class App extends Application {
         
         stage.setFullScreen(true);
         
-        setView(HOME_PATH);
+        setView("view/location/map/info_pane.fxml");
     }
 
     @Override
