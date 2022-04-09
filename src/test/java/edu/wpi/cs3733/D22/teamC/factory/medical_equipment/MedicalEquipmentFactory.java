@@ -2,10 +2,11 @@ package edu.wpi.cs3733.D22.teamC.factory.medical_equipment;
 
 import edu.wpi.cs3733.D22.teamC.entity.location.Location;
 import edu.wpi.cs3733.D22.teamC.entity.medical_equipment.MedicalEquipment;
+import edu.wpi.cs3733.D22.teamC.factory.Factory;
 
 import java.util.Random;
 
-public class MedicalEquipmentFactory {
+public class MedicalEquipmentFactory implements Factory<MedicalEquipment> {
     private Random generator = new Random();
 
     public MedicalEquipment create() {
