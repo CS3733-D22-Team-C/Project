@@ -92,7 +92,7 @@
                                                 <Insets left="20.0" right="20.0" />
                                              </GridPane.margin>
                                           </TextField>
-                                          <ComboBox fx:id="floorDropdown" maxWidth="1.7976931348623157E308" GridPane.columnIndex="1" GridPane.rowIndex="3">
+                                          <ComboBox fx:id="floorComboBox" maxWidth="1.7976931348623157E308" GridPane.columnIndex="1" GridPane.rowIndex="3">
                                              <cursor>
                                                 <Cursor fx:constant="HAND" />
                                              </cursor>
@@ -100,7 +100,7 @@
                                                 <Insets left="20.0" right="20.0" />
                                              </GridPane.margin>
                                           </ComboBox>
-                                          <ComboBox fx:id="nodeTypeDropdown" maxWidth="1.7976931348623157E308" GridPane.columnIndex="1" GridPane.rowIndex="4">
+                                          <ComboBox fx:id="nodeComboBox" maxWidth="1.7976931348623157E308" GridPane.columnIndex="1" GridPane.rowIndex="4">
                                              <cursor>
                                                 <Cursor fx:constant="HAND" />
                                              </cursor>
@@ -130,7 +130,7 @@
                                     <Cursor fx:constant="HAND" />
                                  </cursor>
                               </Button>
-                              <Button mnemonicParsing="false" onAction="#onDeleteButtonPressed" text="Delete" textAlignment="CENTER">
+                              <Button fx:id="deleteButton" mnemonicParsing="false" onAction="#onDeleteButtonPressed" text="Delete" textAlignment="CENTER">
                                  <cursor>
                                     <Cursor fx:constant="HAND" />
                                  </cursor>
