@@ -3,6 +3,7 @@ package edu.wpi.cs3733.D22.teamC.entity.employee;
 import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.*;
+import java.util.Objects;
 
 @Entity
 @Table(name = "EMPLOYEE")
@@ -133,5 +134,21 @@ public class Employee {
         this.password = password;
     }
 
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Employee employee = (Employee) o;
+        return employeeID == employee.employeeID
+                && firstName.equals(employee.firstName)
+                && lastName.equals(employee.lastName)
+                && emailID.equals(employee.emailID)
+                && phone.equals(employee.phone)
+                && address.equals(employee.address)
+                && role == employee.role
+                && isAdmin.equals(employee.isAdmin)
+                && username.equals(employee.username)
+                && password.equals(employee.password);
+    }
 
 }

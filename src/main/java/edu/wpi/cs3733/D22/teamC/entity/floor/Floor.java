@@ -3,6 +3,7 @@ package edu.wpi.cs3733.D22.teamC.entity.floor;
 import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.*;
+import java.util.Objects;
 
 @Entity
 @Table(name = "FLOOR")
@@ -73,4 +74,17 @@ public class Floor {
     public void setImageSrc(String imageSrc) {
         this.imageSrc = imageSrc;
     }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Floor floor = (Floor) o;
+        return floorID == floor.floorID
+                && order == floor.order
+                && longName.equals(floor.longName)
+                && shortName.equals(floor.shortName)
+                && imageSrc.equals(floor.imageSrc);
+    }
+
 }

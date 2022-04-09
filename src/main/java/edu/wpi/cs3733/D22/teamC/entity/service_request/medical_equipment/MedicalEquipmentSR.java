@@ -3,6 +3,7 @@ package edu.wpi.cs3733.D22.teamC.entity.service_request.medical_equipment;
 import edu.wpi.cs3733.D22.teamC.entity.service_request.ServiceRequest;
 
 import javax.persistence.*;
+import java.util.Objects;
 
 @Entity
 @Table(name = "MEDICAL_EQUIPMENT_SR")
@@ -51,5 +52,16 @@ public class MedicalEquipmentSR extends ServiceRequest {
 
     public void setEquipmentStatus(EquipmentStatus equipmentStatus) {
         this.equipmentStatus = equipmentStatus;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        if (!super.equals(o)) return false;
+        MedicalEquipmentSR that = (MedicalEquipmentSR) o;
+        return equipmentType == that.equipmentType
+                && equipmentID.equals(that.equipmentID)
+                && equipmentStatus == that.equipmentStatus;
     }
 }
