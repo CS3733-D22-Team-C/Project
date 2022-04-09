@@ -16,8 +16,10 @@ public class BaseTableViewController {
     @FXML private JFXButton add;
     @FXML private JFXButton remove;
     @FXML private JFXButton back;
-    @FXML private JFXTreeTableView table;
+    @FXML private JFXTreeTableView<?> table;
     @FXML private HBox insertBox;
+
+    String PATH = "view/Table/Locations/table_insert.fxml";
 
     InserTableViewController insertController; //TODO what object type is this?
 
@@ -27,23 +29,26 @@ public class BaseTableViewController {
     public void initialize(URL url, ResourceBundle rb) {
 
         setRowInteraction();
+        //setup(PATH);
     }
 
-//    public void setup(String insertPath)
-//    {
-//        //code to set table
-//        setInsert(insertPath);
-//        //TODO error because table display is just an Object
-//        tableDisplay  = insertController.setupTable(table);
-//
-//    }
-//
-//    public void setInsert(String insertPath) {
-//
-//        App.View view = App.instance.loadView(insertPath);
-//        insertBox.getChildren().add(view.getNode());
-//        insertController = view.getController();
-//    }
+    public void setup(String insertPath)
+    {
+        //code to set table
+
+        setInsert(insertPath);
+        //TODO error because table display is just an Object
+        //tableDisplay  = insertController.setupTable(table);
+
+    }
+
+    public void setInsert(String path) {
+
+        App.View<InserTableViewController> view = App.instance.loadView(path);
+        insertController = view.getController();
+        insertBox.getChildren().add(view.getNode());
+
+    }
 
     //funciton for dealing with the row
     protected void setRowInteraction()
