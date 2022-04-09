@@ -16,4 +16,17 @@
     -color-dropdown-menu: #C4C4C4;
     -color-button-text: #FFFFFF;
     -color-button-confirm: #4CA336;
+
+    /*New UI Colors*/
+
+    -color-primary: #005A9B;
+    -color-primary-text: #FFFFFF;
+    -color-primary-dark: #00316C;
+    -color-primary-light: #4E86CC;
+    -color-secondary: #B3EDF0;
+    -color-secondary-dark: #82BBBE;
+    -color-secondary-text: #000000;
+    -color-secondary-light: #E6FFFF;
+    -color-red-constrast: #F44336;
+
 }
