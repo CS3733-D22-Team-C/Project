@@ -1,35 +1,89 @@
 * {
-    -color-menu: #0077CC;
-    -color-menu-dark: #00497C;
-    -color-menu-light: #5199CD;
-    -color-menu-text: #FFFFFF;
-
-    -color-button-success: #00497C;
-    -color-button-success-hover: #00327c;
-    -color-button-failure: #951c1c;
-    -color-button-failure-hover: #791717;
-    -color-button-back: #898989;
-    -color-button-back-hover: #696969;
-    -color-button-edit: #197C00;
-    -color-button-edit-hover: #155b00;
-    -color-textarea: #F0F0F0;
-    -color-dropdown-menu: #C4C4C4;
-    -color-button-text: #FFFFFF;
-    -color-button-confirm: #4CA336;
-
     /* UI Redesign Colors */
-    /* Primary color */
-    -color-primary: #005a9b;
-    -color-primary-light: #4e86cc;
-    -color-primary-dark: #00316c;
-    -text-on-primary: #ffffff;
 
-    /* Secondary color */
-    -color-secondary: #b3edf0;
-    -color-secondary-light: #e6ffff;
-    -color-secondary-dark: #82bbbe;
-    -text-on-secondary: #000000;
+    /* */
+    -color-base: #FFFFFF;
 
-    -color-sidebar-button: #4e86cc;
+    /*Page Titles*/
+    -color-page-title-background: #005A9B;
+    -color-page-title-text: #FFFFFF;
 
+    /*Menu bars*/
+
+    -color-expanded-menu-bar-logo-background: #00316C;
+    -color-expanded-menu-bar-background: #FFFFFF;
+    -color-expanded-menu-bar-button: #D7E5EF;
+    -color-expanded-menu-bar-button-text: #000000;
+
+    -color-compressed-menu-bar-logo-base: #00316C;
+    -color-compressed-menu-bar-background: #FFFFFF;
+    -color-compressed-menu-bar-button: #D7E5EF;
+    -color-compressed-menu-bar-button-text: #FFFFFF;
+    -color-menu-pull-out-arrow-background: #C4C4C4;
+
+    /*Login page*/
+    -color-login-logo-title-upper-background: #00316C;
+    -color-login-logo-title-lower-background: #FFFFFF;
+    -color-login-username-button: #D7E5EF;
+    -color-login-password-button: #D7E5EF;
+    -color-login-button: #4E86CC;
+    -color-exit-button: #F44336;
+    -color-invalid-button: #FFAEAE;
+    -color-login-username-label: #000000;
+    -color-login-password-label: #000000;
+    -color-login-button-text: #000000;
+    -color-exit-button-text: #000000;
+
+    /*Table*/
+    -color-table-title: #FFFFFF;
+    -color-table-back-button: #F0F0F0;
+    -color-table-back-button-text: #000000;
+    -color-table-confirm-button: #C4C4C4;
+    -color-table-confirm-button-text: #C4C4C4;
+    -color-table-form-background: #F0F0F0;
+    -color-table-form-textfield: #FFFFFF;
+    -color-table-column-label: #000000;
+    -color-table-background: #F0F0F0;
+    -color-table-plus-button: #4E86CC;
+    -color-table-minus-button: #F44336;
+    -color-table-plus-button-text: #000000;
+    -color-table-minus-button-text: #000000;
+
+    /*Service Request Landing Page*/
+    -color-srlp-button: #B3EDF040;
+    -color-srlp-button-label: #4E86CC;
+    -color-srlp-icon: #00316C;
+
+    /*Map*/
+
+    -color-options-box-field-text: #000000;
+    -color-locations-info-box-label-text: #000000;
+
+    -color-options-box-title-background: #00316C;
+    -color-locations-info-box-title-background: #00316C;
+    -color-options-box-title-text: #FFFFFF;
+    -color-locations-info-box-title-text: #FFFFFF;
+
+    -color-options-box-background: #DEF6F933;
+    -color-locations-info-box-background: #DEF6F933;
+
+    -color-options-box-edit-mode: #4E86CC;
+    -color-options-box-floor-dropdown: #FFFFFF;
+    -color-options-box-import-csv-button: #82BBBE;
+    -color-options-box-export-csv-button: #82BBBE;
+
+    -color-locations-info-box-locations-info-tab-background: #B3EDF04D;
+    -color-locations-info-box-service-request-tab-background: #B3EDF04D;
+    -color-locations-info-box-medical-equipment-tab-background: #B3EDF04D;
+
+    -color-locations-info-box--tab-icon: #4E86CCBF;
+
+    /*Generic Service Request*/
+    -color-service-request-form-background: #FFFFFF;
+    -color-service-request-dropdown: #C4C4C4;
+    -color-service-request-notes-text-area: #C4C4C4;
+    -color-service-request-reset-button: #B3EDF0;
+    -color-service-request-submit-button: #B3EDF0;
+    -color-service-request-submit-button-text: #000000;
+    -color-service-request-reset-button-text: #000000;
 }
