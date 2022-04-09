@@ -11,32 +11,7 @@ public class MedicalEquipmentDAO extends DAO<MedicalEquipment> {
     protected Class<MedicalEquipment> classType() {
         return MedicalEquipment.class;
     }
-
-    public int insert(MedicalEquipment equipment) {
-        return HibernateManager.insertObj(equipment);
-    }
-
-    public boolean update(MedicalEquipment equipment) {
-        return HibernateManager.updateObj(equipment);
-    }
-
-    public boolean delete(MedicalEquipment equipment) {
-        return HibernateManager.deleteObj(equipment);
-    }
-
-    public MedicalEquipment getByID(Integer id) {
-        return HibernateManager.getObjByID(id, classType());
-    }
-
-    public List<MedicalEquipment> getAll() {
-        return HibernateManager.filterQuery("from " + classType().getName());
-    }
-
-    public List<MedicalEquipment> getAllFromLocation(int locationID) {
+    public List<MedicalEquipment> getAllEquipment(int locationID) {
         return HibernateManager.filterQuery("from Medical_Equipment where locationID = " + locationID);
-    }
-
-    public boolean deleteAllFromTable() {
-        return HibernateManager.deleteAllFromTable(classType());
     }
 }
