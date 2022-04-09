@@ -6,6 +6,7 @@
     text-indent: -9999px;
     -fx-opacity: 0.9;
     -fx-font-size: 1;
+    -fx-effect: dropshadow(three-pass-box  , rgba(0, 0, 0, 0.84), 1 , 0.1 , 0 , 3);
 }
 
 .text-field-service-names {
@@ -19,9 +20,10 @@
 
 .text-field-our-names {
     -fx-font-family: -font-field-label;
-    -fx-font-weight: regular;
+    -fx-font-weight: normal;
     -fx-font-size: 12;
     -fx-text-alignment: center;
     -fx-wrap-text: true;
+    -fx-padding: 4;
 }
 
