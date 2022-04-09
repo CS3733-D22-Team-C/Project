@@ -31,20 +31,12 @@ public class ServiceRequestLandingPage implements Initializable {
     @FXML private Label vagmi;
     @FXML private Label vishu;
     @FXML private ImageView eye;
-    @FXML private Image eyecon;
-
 
     private boolean canSee = false;
-    private ServiceRequestsViewController serviceRequestsViewController;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         changeNameVisibility(canSee);
-        //        try {
-//            changeNameVisibility(canSee);
-//        } catch (FileNotFoundException e) {
-//            e.printStackTrace();
-//        }
     }
 
     @FXML
@@ -53,17 +45,14 @@ public class ServiceRequestLandingPage implements Initializable {
         changeNameVisibility(canSee);
 
         if (canSee){
-            Image img1 = new Image("edu/wpi/cs3733/D22/teamC/static/images/Eye.png");
+            //Closed Eye
+            Image img1 = new Image("edu/wpi/cs3733/D22/teamC/static/images/Closed_Eye.png");
             eye.setImage(img1);
         } else {
-            Image img1 = new Image("edu/wpi/cs3733/D22/teamC/static/images/Lab_Systems(vial).png");
+            //Open Eye
+            Image img1 = new Image("edu/wpi/cs3733/D22/teamC/static/images/Eye.png");
             eye.setImage(img1);
         }
-        //        try {
-//            changeNameVisibility(canSee);
-//        } catch (FileNotFoundException e) {
-//            e.printStackTrace();
-//        }
     }
 
     @FXML
@@ -98,13 +87,6 @@ public class ServiceRequestLandingPage implements Initializable {
     }
 
     private void changeNameVisibility(boolean canSee) {//throws FileNotFoundException {
-//        if (canSee){
-//            eyecon = new Image(new FileInputStream("@../../../../../../../../../../../Icons/Sanitations(hand).png"));
-//        }
-//        else{
-//            eyecon = new Image(new FileInputStream("@../../../../../../../../../../../Icons/Eye.png"));
-//        }
-//        eye.setImage(eyecon);
         brandon.setVisible(canSee);
         brian.setVisible(canSee);
         grace.setVisible(canSee);
@@ -121,15 +103,6 @@ public class ServiceRequestLandingPage implements Initializable {
             App.View<BaseServiceRequestCreateController> view = App.instance.loadView(CREATE_FORM);
             view.getController().setup(type);
             App.instance.setView(view.getNode());
-    }
-
-    private void replaceEye(){
-        if (eye.isVisible()){
-            eye.setVisible(false);
-            //logic to add new image
-        } else {
-
-        }
     }
 
 }
