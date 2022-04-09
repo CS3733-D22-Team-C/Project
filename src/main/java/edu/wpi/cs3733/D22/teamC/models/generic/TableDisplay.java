@@ -43,7 +43,20 @@ public abstract class TableDisplay<T extends Object> {
         setColumns(table);
     }
 
-    //region Abstraction
+    //region Table Interaction
+        /**
+         * Remnove object row entry.
+         * @param object The object of type T to be removed.
+         */
+        public void removeObject(T object) {
+            for (TableDisplayEntry entry : entries) {
+                if (entry.object == object) {
+                    entries.remove(entry);
+                    return;
+                }
+            }
+        }
+
         /**
          * Add object as a row entry. Essentially, call the constructor for the corresponding TableEntry object.
          * @param object The object of type T to be added.
