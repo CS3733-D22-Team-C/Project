@@ -1,11 +1,12 @@
 package edu.wpi.cs3733.D22.teamC.factory.employee;
 
 import edu.wpi.cs3733.D22.teamC.entity.employee.Employee;
+import edu.wpi.cs3733.D22.teamC.factory.Factory;
 
 
 import java.util.Random;
 
-public class EmployeeFactory {
+public class EmployeeFactory implements Factory<Employee> {
     private Random generator = new Random();
 
     public Employee create(){
