@@ -32,8 +32,8 @@ public class MedicalEquipmentDAO extends DAO<MedicalEquipment> {
         return HibernateManager.filterQuery("from " + classType().getName());
     }
 
-    public List<MedicalEquipment> getAllFromLocation() {
-        return HibernateManager.filterQuery("from ")
+    public List<MedicalEquipment> getAllFromLocation(int locationID) {
+        return HibernateManager.filterQuery("from Medical_Equipment where locationID = " + locationID);
     }
 
     public boolean deleteAllFromTable() {
