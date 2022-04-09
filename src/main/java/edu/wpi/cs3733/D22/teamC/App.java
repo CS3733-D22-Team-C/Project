@@ -116,7 +116,7 @@ public class App extends Application {
         
         stage.setFullScreen(true);
         
-        setView(HOME_PATH);
+        ///setView(HOME_PATH);
     }
 
     @Override
