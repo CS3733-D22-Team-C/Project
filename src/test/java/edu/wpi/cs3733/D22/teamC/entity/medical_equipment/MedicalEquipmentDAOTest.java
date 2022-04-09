@@ -7,14 +7,13 @@ import edu.wpi.cs3733.D22.teamC.factory.medical_equipment.MedicalEquipmentFactor
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class MedicalEquipmentDAOTest extends DAOTest<MedicalEquipment> {
     public MedicalEquipmentDAOTest() {
         super(new MedicalEquipmentFactory(), new MedicalEquipmentDAO());
     }
-
+    
     @Test
     void testGetByLocation() {
         MedicalEquipment me1 = factory.create();
