@@ -21,7 +21,7 @@ import java.util.stream.Collectors;
 public class BaseMapViewController implements Initializable {
     // Constants
     public static final String MAP_PATH = "view/location/map/map.fxml";
-    public static final String VIEW_MAP_CONTROLS_PATH = "view/location/map/view_map_controls.fxml";
+    public static final String VIEW_MAP_CONTROLS_PATH = "view/location/map/view_controls.fxml";
     public static final String EDIT_MAP_CONTROLS_PATH = "view/location/map/edit_map_controls.fxml";
     public static final String INFO_PANE_PATH = "view/location/map/info_pane.fxml";
 
@@ -88,7 +88,7 @@ public class BaseMapViewController implements Initializable {
 
         public void setCurrentLocation(Location location) {
             // Base
-            touchLocation(location);
+            if (currentLocation != null) touchLocation(location);
             this.currentLocation = location;
 
             // Info
@@ -115,16 +115,13 @@ public class BaseMapViewController implements Initializable {
                 // Location addition reflected in LocationNode
                 mapController.addLocationNode(location);
 
-                // Location addition reflected in Info
-                infoPaneController.setLocation(location);
-
                 setCurrentLocation(location);
             }
         }
 
         public void touchLocation(Location location) {
-            if (isEditMode && !additionLocations.contains(location)
-                    && !deletionLocations.contains(location) && !touchedLocations.contains(location)) {
+            if (isEditMode && !additionLocations.contains(location) && !deletionLocations.contains(location)) {
+                if (touchedLocations.contains(location)) touchedLocations.remove(location);
                 touchedLocations.add(location);
             }
         }
@@ -160,7 +157,7 @@ public class BaseMapViewController implements Initializable {
         public void saveLocationChanges() {
             LocationDAO locationDAO = new LocationDAO();
 
-            // Update non-addition and non-deletions locations
+            // Update touched locations
             for (Location location : touchedLocations) {
                 locationDAO.update(location);
             }
@@ -177,6 +174,23 @@ public class BaseMapViewController implements Initializable {
                 locationDAO.delete(location);
             }
             deletionLocations = new ArrayList<>();
+        }
+
+        public void renderLocationChanges() {
+            // Update touched location nodes
+            for (Location location : touchedLocations.stream().filter(location -> location.getFloor() == currentFloor.getFloorID()).collect(Collectors.toList())) {
+                mapController.updateLocationNode(location);
+            }
+
+            // Insert additional location nodes
+            for (Location location : additionLocations.stream().filter(location -> location.getFloor() == currentFloor.getFloorID()).collect(Collectors.toList())) {
+                mapController.addLocationNode(location);
+            }
+
+            // Delete deletion location nodes
+            for (Location location : deletionLocations.stream().filter(location -> location.getFloor() == currentFloor.getFloorID()).collect(Collectors.toList())) {
+                mapController.removeLocationNode(location);
+            }
         }
 
         /**
@@ -206,6 +220,7 @@ public class BaseMapViewController implements Initializable {
             mapController.setParentController(this);
 
             mapController.renderFloor(currentFloor);
+            renderLocationChanges();
         }
 
         /**

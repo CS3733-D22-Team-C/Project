@@ -1,6 +1,5 @@
 /* Map - Info Pane Styling */
-@import "../colors.css";
-@import "../base.css";
+@import "base.css";
 
 /* Custom */
 
@@ -14,12 +13,6 @@
     -fx-background-color: -color-primary-text;
     -fx-border-color: #b5b5b5;
     -fx-border-radius: 2px;
-}
-
-.tab-content-header {
-    -fx-background-color: -color-primary;
-    -fx-text-fill: -color-primary-text;
-    -fx-background-radius: 1px;
 }
 
 .icon {

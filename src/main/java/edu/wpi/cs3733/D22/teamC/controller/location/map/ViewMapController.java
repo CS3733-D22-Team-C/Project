@@ -33,6 +33,12 @@ public class ViewMapController implements Initializable {
             this.node = createNode(location.getX(), location.getY());
         }
 
+        public void updateNode(Location location) {
+            this.location = location;
+            this.node.setCenterX(location.getX());
+            this.node.setCenterY(location.getY());
+        }
+
         /**
          * Create this LocationNode node.
          * @param x x-coordinate for node location.
@@ -124,6 +130,15 @@ public class ViewMapController implements Initializable {
             ViewMapController.LocationNode newMapLoc = new ViewMapController.LocationNode(location);
             locationNodes.add(newMapLoc);
             mapPane.getChildren().add(newMapLoc.node);
+        }
+
+        /**
+         * Update a Location Node for the given Location.
+         * @param location The Location to update the Location Node for.
+         */
+        public void updateLocationNode(Location location) {
+            LocationNode locationNode = getLocationNode(location);
+            locationNode.updateNode(location);
         }
 
         /**

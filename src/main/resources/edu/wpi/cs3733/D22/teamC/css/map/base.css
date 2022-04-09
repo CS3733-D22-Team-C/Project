@@ -1,0 +1,9 @@
+/* */
+@import "../colors.css";
+@import "../base.css";
+
+.card-content-header {
+    -fx-background-color: -color-primary;
+    -fx-text-fill: -color-primary-text;
+    -fx-background-radius: 1px;
+}
