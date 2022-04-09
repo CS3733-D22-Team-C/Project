@@ -98,8 +98,6 @@ public class BaseTableViewController2<T extends Object> implements Initializable
                         LocationDAO locationDAO = new LocationDAOImpl();
                         locationDAO.updateLocation(currentLocation);
 
-                        resetTableView();
-
                         //fills the insert with info relevant to selected ROW
                         insertController.getRowInfo(currentLocation);
                     }
@@ -114,6 +112,7 @@ public class BaseTableViewController2<T extends Object> implements Initializable
     public void removeButton(){
         if (tableDisplay != null)
         {
+            tableDisplay.removeObject(currentLocation);
             LocationDAO locationDAO = new LocationDAOImpl();
             locationDAO.deleteLocation(currentLocation);
             insertController.resetValues();
