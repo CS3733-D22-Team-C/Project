@@ -18,9 +18,11 @@ public class MedicalEquipment {
     @Column(name = "Type Number")
     private int typeNumber;
 
+    @Enumerated(EnumType.STRING)
     @Column (name = "equipType")
     private EquipmentType equipmentType;
 
+    @Enumerated(EnumType.STRING)
     @Column (name = "status")
     private EquipmentStatus status;
 
