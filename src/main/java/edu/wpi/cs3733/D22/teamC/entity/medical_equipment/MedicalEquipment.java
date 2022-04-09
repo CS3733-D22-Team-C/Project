@@ -99,6 +99,10 @@ public class MedicalEquipment {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         MedicalEquipment equipment = (MedicalEquipment) o;
-        return equipID == equipment.equipID && locationID == equipment.locationID && typeNumber == equipment.typeNumber && equipmentType == equipment.equipmentType && status == equipment.status;
+        return equipID == equipment.equipID 
+            && locationID == equipment.locationID 
+            && typeNumber == equipment.typeNumber 
+            && equipmentType == equipment.equipmentType 
+            && status == equipment.status;
     }
 }
