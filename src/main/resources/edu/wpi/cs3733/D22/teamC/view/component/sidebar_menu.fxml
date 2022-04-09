@@ -3,4 +3,4 @@
 <?import com.jfoenix.controls.JFXDrawer?>
 
 
-<JFXDrawer fx:id="sidebarDrawer" defaultDrawerSize="256.0" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" miniDrawerSize="52.0" onMouseEntered="#drawerOnMouseEnter" onMouseExited="#drawerOnMouseExit" overLayVisible="false" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.wpi.cs3733.D22.teamC.controller.component.SidebarMenuController" />
+<JFXDrawer fx:id="sidebarDrawer" alignment="CENTER_LEFT" defaultDrawerSize="256.0" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" miniDrawerSize="52.0" onDrawerClosed="#drawerClosed" onMouseEntered="#drawerOnMouseEnter" onMouseExited="#drawerOnMouseExit" overLayVisible="false" resizeContent="true" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.wpi.cs3733.D22.teamC.controller.component.sidebar.SidebarMenuController" />
