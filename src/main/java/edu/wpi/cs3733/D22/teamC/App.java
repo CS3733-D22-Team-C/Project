@@ -116,7 +116,7 @@ public class App extends Application {
         
         stage.setFullScreen(true);
         
-        setView("view/Table/base_view.fxml");
+        setView("view/Table/base_view2.fxml");
     }
 
     @Override

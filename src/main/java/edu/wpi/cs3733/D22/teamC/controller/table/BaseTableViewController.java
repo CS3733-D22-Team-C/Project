@@ -6,12 +6,13 @@ import edu.wpi.cs3733.D22.teamC.App;
 import edu.wpi.cs3733.D22.teamC.models.generic.TableDisplay;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.Initializable;
 import javafx.scene.layout.HBox;
 
 import java.net.URL;
 import java.util.ResourceBundle;
 
-public class BaseTableViewController {
+public class BaseTableViewController implements Initializable {
 
     @FXML private JFXButton add;
     @FXML private JFXButton remove;
@@ -25,17 +26,16 @@ public class BaseTableViewController {
 
     TableDisplay tableDisplay; //TODO what object type is this?
 
-    @FXML
+    @Override
     public void initialize(URL url, ResourceBundle rb) {
 
-        setRowInteraction();
-        //setup(PATH);
+        //setRowInteraction();
+        setup(PATH);
     }
 
     public void setup(String insertPath)
     {
         //code to set table
-
         setInsert(insertPath);
         //TODO error because table display is just an Object
         //tableDisplay  = insertController.setupTable(table);
