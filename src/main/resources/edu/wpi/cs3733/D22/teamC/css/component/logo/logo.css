@@ -1,4 +1,4 @@
-.logo-base {
+.logo-base-login {
     position: absolute;
     width: 593px;
     height: 448px;
@@ -8,7 +8,7 @@
     background: #00316C;
 }
 
-.logo-design
+.logo-design-login
 {
     position: absolute;
     width: 193px;
@@ -17,5 +17,56 @@
     top: 141px;
 
     background: url(../../../images/mgb-icon-color@2x.png);
+}
+
+.logo-design-compressed-menu-bar {
+    /* image 3 */
+    position: absolute;
+    width: 38px;
+    height: 38px;
+    left: 7px;
+    top: 4px;
+
+    background: url(../../../images/mgb-icon-color@2x.png);
+}
+
+.logo-base-compressed-menu-bar {
+    position: absolute;
+    width: 52px;
+    height: 256px;
+    left: 0px;
+    top: 0px;
+
+    background: #00316C;
+}
+
+.logo-design-expanded-menu-bar {
+    /* image 4 */
+    position: static;
+    width: 236px;
+    height: 236px;
+    left: 10px;
+    top: 10px;
+
+    background: url(../../../images/mgb-icon-color@2x.png);
+}
+
+.logo-base-expanded-menu-bar {
+    /* Logo */
+    /* Auto layout */
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 10px;
+
+    position: static;
+    width: 256px;
+    height: 256px;
+    left: 0px;
+    top: 0px;
+
+    background: #00316C;
 }
 

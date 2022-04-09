@@ -1,0 +1,10 @@
+.compressed-menu-bar-base {
+    /* Minimized Sidebar */
+
+    position: static;
+    width: 76px;
+    height: 1024px;
+    left: 0px;
+    top: 0px;
+}
+

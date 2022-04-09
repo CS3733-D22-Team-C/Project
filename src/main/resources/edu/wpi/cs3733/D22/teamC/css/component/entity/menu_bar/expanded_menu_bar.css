@@ -1,0 +1,45 @@
+.menu-bar-base
+{
+
+/* Sidebar Container */
+
+
+/* Auto layout */
+
+display: flex;
+flex-direction: column;
+align-items: flex-start;
+padding: 0px;
+
+position: static;
+width: 256px;
+height: 1024px;
+left: 1px;
+top: 0px;
+
+background: #FFFFFF;
+border-radius: 4px;
+
+}
+
+.menu-bar-expansion-arrow
+{
+    /* Expand Sidebar */
+
+    /* Auto layout */
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+    padding: 0px;
+
+    position: static;
+    width: 24px;
+    height: 24px;
+    left: 281px;
+    top: 524px;
+
+    background: #C4C4C4;
+    transform: rotate(-180deg);
+}
