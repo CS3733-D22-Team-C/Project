@@ -1,26 +1,18 @@
 package edu.wpi.cs3733.D22.teamC.controller.location.map;
 
-import com.jfoenix.svg.SVGGlyph;
 import edu.wpi.cs3733.D22.teamC.entity.floor.Floor;
 import edu.wpi.cs3733.D22.teamC.entity.floor.FloorDAO;
 import edu.wpi.cs3733.D22.teamC.entity.location.Location;
-import javafx.css.Styleable;
+import edu.wpi.cs3733.D22.teamC.models.utils.ComponentWrapper;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.Group;
-import javafx.scene.Node;
-import javafx.scene.control.*;
-import javafx.scene.image.ImageView;
-import javafx.scene.layout.Region;
-import javafx.scene.paint.Color;
-import javafx.scene.shape.Circle;
+import javafx.scene.control.Button;
+import javafx.scene.control.ComboBox;
+import javafx.scene.control.Tab;
+import javafx.scene.control.TextField;
 import javafx.scene.shape.SVGPath;
-import javafx.util.Callback;
 
-import java.awt.image.BufferedImageFilter;
-import java.io.IOException;
-import java.io.InputStream;
 import java.net.URL;
 import java.util.ResourceBundle;
 
@@ -55,15 +47,7 @@ public class InfoPaneController implements Initializable {
         setTabIcon(serviceRequestTab, SERVICE_REQUEST_ICON);
 
         // Initialize Location Info
-        Callback<ListView<Floor>, ListCell<Floor>> factory = lv -> new ListCell<Floor>() {
-            @Override
-            protected void updateItem(Floor item, boolean empty) {
-                super.updateItem(item, empty);
-                setText(empty ? "" : item.getShortName());
-            }
-        };
-        floorComboBox.setCellFactory(factory);
-        floorComboBox.setButtonCell(factory.call(null));
+        ComponentWrapper.InitializeComboBox(floorComboBox, Floor::getShortName);
         floorComboBox.getItems().setAll(new FloorDAO().getAll());
 
         nodeComboBox.getItems().setAll(Location.NodeType.values());
