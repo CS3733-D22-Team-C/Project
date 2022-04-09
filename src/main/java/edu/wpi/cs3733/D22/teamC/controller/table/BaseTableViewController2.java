@@ -57,7 +57,7 @@ public class BaseTableViewController2<T extends Object> implements Initializable
         setInsert(insertPath);
         //step 1 get path of the specified insert, put it into place
         //this.viewController  =  LocationsViewController();
-
+        insertController.setup(this);
 
         //TODO add setUP function to viewController
         //this.viewController.setUp(table);
@@ -84,23 +84,11 @@ public class BaseTableViewController2<T extends Object> implements Initializable
             TreeTableRow<LocationTableDisplay.LocationTableEntry> row = new TreeTableRow<LocationTableDisplay.LocationTableEntry>();
             row.setOnMouseClicked(event -> {
                 if (!row.isEmpty() && event.getButton() == MouseButton.PRIMARY) {
-
-                    if (event.getClickCount() == 2) {
-                        System.out.println(row.getText());
-
-                        //TODO insert controllr is not updating
-                        //insertController.setRows("test1", "test 2", "test3", "test 4");
-
-                        currentLocation = row.getItem().object;
-                        //currentLocation = location;
-
-                        currentLocation.setLongName("TESTSTS");
-                        LocationDAO locationDAO = new LocationDAOImpl();
-                        locationDAO.updateLocation(currentLocation);
-
-                        //fills the insert with info relevant to selected ROW
-                        insertController.getRowInfo(currentLocation);
-                    }
+                    currentLocation = row.getItem().object;
+                    insertController.getRowInfo(currentLocation);
+//                    if (event.getClickCount() == 2) {
+//                        System.out.println(row.getText());
+//                    }
                 }
             });
             return row ;
@@ -130,6 +118,10 @@ public class BaseTableViewController2<T extends Object> implements Initializable
         for(Location location2 : locations){
             tableDisplay.addObject(location2);
         }
+    }
+
+    public void updateEntry(Location location){
+
     }
 
 

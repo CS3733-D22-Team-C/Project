@@ -30,8 +30,9 @@
 }
 
 .base_view_table_confirm {
-    -fx-background-color: -color-table-confirm;
+    -fx-background-color:  -color-menu-light;
     -fx-border-radius: 50px;
+    -fx-text-fill: black;
 }
 
 .base_view_table_text {
