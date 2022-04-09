@@ -7,7 +7,7 @@ import java.util.List;
 
 public class MedicalEquipmentDAO extends DAO<MedicalEquipment> {
 
-    @Override
+    
     protected Class<MedicalEquipment> classType() {
         return MedicalEquipment.class;
     }
@@ -18,6 +18,6 @@ public class MedicalEquipmentDAO extends DAO<MedicalEquipment> {
      * @return the list of equipments at this location
      */
     public List<MedicalEquipment> getEquipmentByLocation(int locationID) {
-        return HibernateManager.filterQuery("from " + MedicalEquipment.class.getName() + " where LOCATIONID = " + locationID);
+        return HibernateManager.filterQuery("from " + classType().getName() + " where LOCATIONID = " + locationID);
     }
 }
