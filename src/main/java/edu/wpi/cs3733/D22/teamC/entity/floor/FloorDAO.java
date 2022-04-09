@@ -1,10 +1,10 @@
 package edu.wpi.cs3733.D22.teamC.entity.floor;
-
 import edu.wpi.cs3733.D22.teamC.HibernateManager;
 import edu.wpi.cs3733.D22.teamC.entity.generic.DAO;
 import edu.wpi.cs3733.D22.teamC.entity.location.Location;
 
 import java.util.List;
+
 
 public class FloorDAO extends DAO<Floor> {
     
@@ -21,4 +21,5 @@ public class FloorDAO extends DAO<Floor> {
         return HibernateManager.filterQuery("from Location where FLOORID = " + floorID);    
     }
     
+
 }

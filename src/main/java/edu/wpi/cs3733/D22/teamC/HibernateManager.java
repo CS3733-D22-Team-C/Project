@@ -98,6 +98,7 @@ public class HibernateManager {
 			T obj = objType.cast(session.get(objType, id));
             session.close();
             return obj;
+
 		} catch (Exception e) {
 			session.getTransaction().rollback();
 			session.close();
@@ -129,6 +130,7 @@ public class HibernateManager {
             return null;
         }
     }
+
     
     /**
      * Delete all entries in a specific database table.
@@ -152,6 +154,7 @@ public class HibernateManager {
             return false;
         }
     }
+
 
 	
 }

@@ -3,6 +3,8 @@ package edu.wpi.cs3733.D22.teamC.entity.location;
 import javax.persistence.*;
 import org.hibernate.annotations.GenericGenerator;
 
+import java.util.Objects;
+
 @Entity
 @Table(name = "LOCATION")
 public class Location {
@@ -19,6 +21,7 @@ public class Location {
 	private String building = "";
 
 	@Enumerated(EnumType.STRING)
+
     @Column(name = "NodeType")
 	private NodeType nodeType;
     
@@ -158,4 +161,20 @@ public class Location {
 	public void setY(int y) {
 		this.y = y;
 	}
+
+	@Override
+	public boolean equals(Object o) {
+		if (this == o) return true;
+		if (o == null || getClass() != o.getClass()) return false;
+		Location location = (Location) o;
+		return nodeID == location.nodeID
+				&& floor == location.floor
+				&& x == location.x
+				&& y == location.y
+				&& building.equals(location.building)
+				&& nodeType == location.nodeType
+				&& longName.equals(location.longName)
+				&& shortName.equals(location.shortName);
+	}
+
 }

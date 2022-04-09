@@ -1,10 +1,11 @@
 package edu.wpi.cs3733.D22.teamC.factory.location;
 
 import edu.wpi.cs3733.D22.teamC.entity.location.Location;
+import edu.wpi.cs3733.D22.teamC.factory.Factory;
 
 import java.util.Random;
 
-public class LocationFactory {
+public class LocationFactory implements Factory<Location> {
     private Random generator = new Random();
 
     public Location create() {

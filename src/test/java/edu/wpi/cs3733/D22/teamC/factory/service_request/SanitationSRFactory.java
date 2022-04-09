@@ -2,8 +2,9 @@ package edu.wpi.cs3733.D22.teamC.factory.service_request;
 
 import edu.wpi.cs3733.D22.teamC.entity.service_request.ServiceRequest;
 import edu.wpi.cs3733.D22.teamC.entity.service_request.sanitation.SanitationSR;
+import edu.wpi.cs3733.D22.teamC.factory.Factory;
 
-public class SanitationSRFactory extends ServiceRequestFactory<SanitationSR> {
+public class SanitationSRFactory extends ServiceRequestFactory<SanitationSR>  {
     public SanitationSR create() {
         SanitationSR sanitationSR = new SanitationSR();
 
