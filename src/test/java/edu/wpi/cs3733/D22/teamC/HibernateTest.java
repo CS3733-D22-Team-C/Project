@@ -2,35 +2,52 @@ package edu.wpi.cs3733.D22.teamC;
 
 import static org.junit.jupiter.api.Assertions.*;
 
+
+import edu.wpi.cs3733.D22.teamC.entity.employee.Employee;
+import edu.wpi.cs3733.D22.teamC.entity.employee.EmployeeDAO;
 import edu.wpi.cs3733.D22.teamC.entity.location.Location;
 import edu.wpi.cs3733.D22.teamC.entity.location.LocationDAO;
 import edu.wpi.cs3733.D22.teamC.entity.service_request.ServiceRequest;
+import edu.wpi.cs3733.D22.teamC.entity.service_request.security.SecuritySR;
 import edu.wpi.cs3733.D22.teamC.entity.service_request.ServiceRequestDAO;
 import edu.wpi.cs3733.D22.teamC.entity.service_request.medical_equipment.MedicalEquipmentSR;
-import edu.wpi.cs3733.D22.teamC.entity.service_request.security.SecuritySR;
 import edu.wpi.cs3733.D22.teamC.entity.service_request.security.SecuritySRDAO;
+
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
+
+import java.sql.SQLOutput;
 import java.sql.Timestamp;
 import java.util.List;
 
 public class HibernateTest {
     
     private LocationDAO locationDAO;
+
+	private EmployeeDAO employeeDAO;
+
     private SecuritySRDAO securitySRDAO;
+
 
 	@BeforeEach
 	void setUp() {
         SessionManager.getSession();
         locationDAO = new LocationDAO();
+
+		employeeDAO = new EmployeeDAO();
+
         securitySRDAO = new SecuritySRDAO();
+
     }
 
 	@AfterEach
 	void tearDown() {
         // Kill Session Factory after every test. Note: this will drop the tables!
+
+        SessionManager.killSessionFactory();
+
         //SessionManager.killSessionFactory();
     }
 
@@ -67,7 +84,9 @@ public class HibernateTest {
 		assertEquals(newLoc.getX(), retrievedLoc.getX());
 		assertEquals(newLoc.getY(), retrievedLoc.getY());
 	}
+
     
+
     @Test
     void testGetLocations() {
         // Insert a new object into the database
@@ -87,7 +106,8 @@ public class HibernateTest {
         List<Location> getList = locationDAO.getAll();
         System.out.println(getList.size());
     }
-    
+
+
 	@Test
 	void testUpdateLocation() {
 		// Insert a new object into the database
@@ -140,7 +160,7 @@ public class HibernateTest {
         assertTrue(success);
 	}
     //endregion
-    
+
     @Test
     void testSR() {
         // Insert a new object into the database
@@ -189,4 +209,143 @@ public class HibernateTest {
         System.out.println(srDAO.getAll());
         
     }
+    
+
+	//region Employee Tests
+
+	@Test
+	void testInsertEmployee(){
+		// Insert a new object into the database
+		Employee newEmp = new Employee();
+		int insertEmpID = employeeDAO.insert(newEmp);
+		assertNotEquals(-1,insertEmpID);
+	}
+
+	@Test
+	void testGetEmployees(){
+		Employee emp = new Employee();
+		emp.setFirstName("Vishnu Priya");
+		emp.setLastName("Dendukuri");
+		emp.setEmailID("vdendu****@wpi.edu");
+		emp.setPhone("1321231312"); // TODO: we have to try to lmit phone but if international (how to handle?)
+		emp.setAddress("100 institute");
+		emp.setRole(Employee.Role.Doctor);
+		emp.setAdmin(true);
+		emp.setUsername("vdendu");
+		emp.setPassword("vdendu"); // TODO: set password requirements
+		int insertedEmpID = employeeDAO.insert(emp);
+		assertNotEquals(-1, insertedEmpID);
+
+		Employee retrievedEmp = employeeDAO.getByID(insertedEmpID);
+		assertNotNull(retrievedEmp);
+
+		assertEquals(insertedEmpID, retrievedEmp.getEmployeeID());
+		assertEquals(emp.getFirstName(), retrievedEmp.getFirstName());
+		assertEquals(emp.getLastName(), retrievedEmp.getLastName());
+		assertEquals(emp.getEmailID(), retrievedEmp.getEmailID());
+		assertEquals(emp.getPhone(), retrievedEmp.getPhone());
+		assertEquals(emp.getAddress(), retrievedEmp.getAddress());
+		assertEquals(emp.getRole(), retrievedEmp.getRole());
+		assertEquals(emp.getAdmin(), retrievedEmp.getAdmin());
+		assertEquals(emp.getUsername(), retrievedEmp.getUsername());
+		assertEquals(emp.getPassword(), retrievedEmp.getPassword());
+	}
+
+	@Test
+	void GetEmployees(){
+		Employee emp = new Employee();
+		emp.setFirstName("Vishnu Priya");
+		emp.setLastName("Dendukuri");
+		emp.setEmailID("vdendu****@wpi.edu");
+		emp.setPhone("1321231312"); // TODO: we have to try to lmit phone but if international (how to handle?)
+		emp.setAddress("100 institute");
+		emp.setRole(Employee.Role.Doctor);
+		emp.setAdmin(true);
+		emp.setUsername("vdendu");
+		emp.setPassword("vdendu"); // TODO: set password requirements
+		int insertedEmpID = employeeDAO.insert(emp);
+		assertNotEquals(-1, insertedEmpID);
+
+		employeeDAO.insert(new Employee());
+		employeeDAO.insert(new Employee());
+
+		List<Employee> employeesList = employeeDAO.getAll();
+		System.out.println(employeesList.size());
+		assertEquals(3, employeesList.size());
+
+	}
+
+	@Test
+	void testUpdateEmployee(){
+		// Insert a new object into the database
+		Employee emp = new Employee();
+
+		emp.setFirstName("Vishnu Priya");
+		emp.setLastName("Dendukuri");
+		emp.setEmailID("vdendu****@wpi.edu");
+		emp.setPhone("1321231312"); // TODO: we have to try to lmit phone but if international (how to handle?)
+		emp.setAddress("100 institute");
+		emp.setRole(Employee.Role.Doctor);
+		emp.setAdmin(true);
+		emp.setUsername("vdendu");
+		emp.setPassword("vdendu"); // TODO: set password requirements
+		int insertedEmpID = employeeDAO.insert(emp);
+		assertNotEquals(-1, insertedEmpID);
+
+		Employee retrievedEmp = employeeDAO.getByID(insertedEmpID);
+		assertNotNull(retrievedEmp);
+		String newFN = "Vishnu";
+		String newLN = "SRK";
+		String newEmail = "dasdsa@dasd.com"; // TODO: verifying email?
+		Employee.Role newRole = Employee.Role.Nurse;
+		String newPhone = "23131819332";
+		String newAddress = "212 Institute";
+		String newUsername = "vpd";
+		String newPassword = "vpd@201002";
+		Boolean newAdmin = false;
+
+		retrievedEmp.setEmployeeID(insertedEmpID);
+		retrievedEmp.setFirstName(newFN);
+		retrievedEmp.setLastName(newLN);
+		retrievedEmp.setEmailID(newEmail);
+		retrievedEmp.setPhone(newPhone);
+		retrievedEmp.setAddress(newAddress);
+		retrievedEmp.setRole(newRole);
+		retrievedEmp.setAdmin(newAdmin);
+		retrievedEmp.setUsername(newUsername);
+		retrievedEmp.setPassword(newPassword);
+
+
+		boolean success = employeeDAO.update(retrievedEmp);
+		assertTrue(success);
+
+		// Verify attributes
+
+		assertEquals(newFN, retrievedEmp.getFirstName());
+		assertEquals(newLN, retrievedEmp.getLastName());
+		assertEquals(newEmail, retrievedEmp.getEmailID());
+		assertEquals(newPhone, retrievedEmp.getPhone());
+		assertEquals(newAddress, retrievedEmp.getAddress());
+		assertEquals(newRole, retrievedEmp.getRole());
+		assertEquals(newAdmin, retrievedEmp.getAdmin());
+		assertEquals(newUsername, retrievedEmp.getUsername());
+		assertEquals(newPassword, retrievedEmp.getPassword());
+
+	}
+
+	@Test
+	void testDeleteEmployee() {
+		Employee newEmp = new Employee();
+		newEmp.setFirstName("Grace");
+		newEmp.setRole(Employee.Role.Doctor);
+		newEmp.setAdmin(true);
+
+		int insertedEmpID = employeeDAO.insert(newEmp);
+		assertNotEquals(-1, insertedEmpID);
+
+		boolean success = HibernateManager.deleteObj(newEmp);
+		assertTrue(success);
+	}
+
+
 }
