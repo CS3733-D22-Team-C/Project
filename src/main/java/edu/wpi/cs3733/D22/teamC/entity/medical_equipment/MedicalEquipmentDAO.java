@@ -17,7 +17,7 @@ public class MedicalEquipmentDAO extends DAO<MedicalEquipment> {
      * @param locationID the idenitifer of the location
      * @return the list of equipments at this location
      */
-    public List<MedicalEquipment> getAllEquipment(int locationID) {
+    public List<MedicalEquipment> getEquipmentByLocation(int locationID) {
         return HibernateManager.filterQuery("from Medical_Equipment where LOCATIONID = " + locationID);
     }
 }
