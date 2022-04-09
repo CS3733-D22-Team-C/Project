@@ -30,6 +30,9 @@ public class InfoPaneController implements Initializable {
     @FXML private Tab medicalEquipmentTab;
     @FXML private Tab serviceRequestTab;
 
+    // Variables
+
+
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         setTabIcon(locationTab, LOCATION_ICON);
