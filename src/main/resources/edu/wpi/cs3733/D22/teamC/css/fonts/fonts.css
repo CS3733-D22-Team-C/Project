@@ -1,3 +1,36 @@
 * {
-    -font-field-label: sans-serif;
+    -font-page-title: Inter;
+    -font-dropdown: Roboto;
+
+    -font-menu-option: Roboto;
+
+    -font-compressed-menu-title: Roboto;
+
+    -font-table-confirm: Inter;
+    -font-table-back: Inter;
+    -font-table-column-label: Inter;
+
+    -font-invalid-error: Kantumruy;
+    -font-username-label: Roboto;
+    -font-password-label: Roboto;
+    -font-login-button: Roboto;
+    -font-exit-button: Roboto;
+    -font-login-page-title: Cambo;
+
+    -font-service-request-landing-page-service-label: Cambo;
+    -font-service-request-landing-page-creator-name: Inter;
+
+    -font-service-request-dropdown-label: Roboto;
+    -font-service-request-submit: Roboto;
+    -font-service-request-reset: Roboto;
+
+    -font-map-options-box-title: Inter;
+    -font-map-options-edit-mode: Roboto;
+    -font-map-options-csv: Roboto;
+    -font-map-options-floor-dropdown: Roboto;
+
+    -font-map-locations-box-title: Inter;
+    -font-map-locations-box-field-label: Inter;
+
+
 }
