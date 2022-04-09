@@ -178,4 +178,22 @@ public class ServiceRequest {
     public void setModifiedTimestamp(Timestamp modifiedTimestamp) {
         this.modifiedTimestamp = modifiedTimestamp;
     }
+    
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        ServiceRequest that = (ServiceRequest) o;
+        return requestID.equals(that.requestID)
+                && creatorID.equals(that.creatorID)
+                && assigneeID.equals(that.assigneeID)
+                && locationID.equals(that.locationID)
+                && creationTimestamp.equals(that.creationTimestamp)
+                && status == that.status
+                && priority == that.priority
+                && requestType == that.requestType
+                && description.equals(that.description)
+                && modifierID.equals(that.modifierID)
+                && modifiedTimestamp.equals(that.modifiedTimestamp);
+    }
 }

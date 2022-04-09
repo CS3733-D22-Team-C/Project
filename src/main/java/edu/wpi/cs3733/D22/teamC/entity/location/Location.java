@@ -135,4 +135,20 @@ public class Location {
     public void setY(int y) {
         this.y = y;
     }
+    
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Location location = (Location) o;
+        return nodeID.equals(location.nodeID)
+                && floor.equals(location.floor)
+                && x == location.x
+                && y == location.y
+                && building.equals(location.building)
+                && nodeType == location.nodeType
+                && longName.equals(location.longName)
+                && shortName.equals(location.shortName);
+    }
+    
 }

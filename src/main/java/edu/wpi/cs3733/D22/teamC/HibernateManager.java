@@ -20,7 +20,7 @@ public class HibernateManager {
         Session session = SessionManager.getSession();
         try {
             session.beginTransaction();
-            String generatedID = (String) session.save(obj);
+            String generatedID = session.save(obj).toString();
             session.getTransaction().commit();
             session.close();
             return generatedID;

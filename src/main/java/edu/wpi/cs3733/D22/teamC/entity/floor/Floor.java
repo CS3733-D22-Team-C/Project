@@ -84,7 +84,7 @@ public class Floor {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Floor floor = (Floor) o;
-        return floorID == floor.floorID
+        return floorID.equals(floor.floorID)
                 && order == floor.order
                 && longName.equals(floor.longName)
                 && shortName.equals(floor.shortName)
