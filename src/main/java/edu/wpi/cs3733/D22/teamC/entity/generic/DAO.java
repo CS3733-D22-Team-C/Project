@@ -38,4 +38,5 @@ public abstract class DAO <T> {
     public boolean deleteAllFromTable() {
         return HibernateManager.deleteAllFromTable(classType());
     }
+
 }

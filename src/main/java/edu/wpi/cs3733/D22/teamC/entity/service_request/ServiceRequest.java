@@ -16,7 +16,7 @@ public class ServiceRequest {
     @GeneratedValue(generator = "increment")
     @GenericGenerator(name = "increment", strategy = "increment")
     protected int requestID;
-    
+
     @Column(name = "CreatorID")
     protected String creatorID;     // TODO: Link to Employee
     
@@ -50,6 +50,7 @@ public class ServiceRequest {
     
     @UpdateTimestamp
     @Column(name = "ModifiedTimestamp")
+
     protected Timestamp modifiedTimestamp;
 
     public enum Status {
