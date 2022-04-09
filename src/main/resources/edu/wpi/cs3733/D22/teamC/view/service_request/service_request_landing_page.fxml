@@ -9,7 +9,6 @@
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.ColumnConstraints?>
 <?import javafx.scene.layout.GridPane?>
-<?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
@@ -106,9 +105,40 @@
             <Insets bottom="15.0" />
          </padding>
       </VBox>
-      <VBox alignment="BOTTOM_CENTER" GridPane.columnIndex="4">
+      <GridPane GridPane.columnIndex="4">
+        <columnConstraints>
+          <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+        </columnConstraints>
+        <rowConstraints>
+          <RowConstraints maxHeight="156.79999389648438" minHeight="10.0" prefHeight="59.9999870300293" vgrow="SOMETIMES" />
+          <RowConstraints maxHeight="272.00000991821287" minHeight="10.0" prefHeight="264.8000129699707" vgrow="SOMETIMES" />
+        </rowConstraints>
          <children>
-            <HBox alignment="TOP_RIGHT" prefHeight="79.0" prefWidth="192.0">
+            <VBox alignment="BOTTOM_CENTER" prefHeight="235.0" prefWidth="180.0" GridPane.rowIndex="1">
+               <children>
+                  <Label alignment="CENTER" prefHeight="71.0" prefWidth="120.0" styleClass="text-field-service-names" stylesheets="@../../css/service_request_landing_page.css" text="Medical Equipment" wrapText="true" />
+                  <JFXButton onAction="#clickMedicalEquipment" opacity="0.5" prefHeight="134.0" prefWidth="131.0" styleClass="button-requests" stylesheets="@../../css/service_request_landing_page.css">
+                     <effect>
+                        <DropShadow height="3.51" offsetY="10.0" radius="0.37749999999999995" width="0.0" />
+                     </effect>
+                     <graphic>
+                        <ImageView fitHeight="68.37" fitWidth="71.0">
+                           <image>
+                              <Image url="@../../static/images/Medical_Equipment(stethiscope).png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                  </JFXButton>
+                  <Label fx:id="mia" styleClass="text-field-our-names" stylesheets="@../../css/service_request_landing_page.css" text="Mia Mueting" />
+               </children>
+               <opaqueInsets>
+                  <Insets bottom="20.0" />
+               </opaqueInsets>
+               <padding>
+                  <Insets bottom="15.0" />
+               </padding>
+            </VBox>
+            <VBox alignment="TOP_RIGHT" prefHeight="63.0" prefWidth="180.0">
                <children>
                   <ImageView fx:id="eye" accessibleRole="BUTTON" fitHeight="27.0" fitWidth="34.0" onMouseClicked="#canViewNames">
                      <image>
@@ -117,37 +147,17 @@
                      <effect>
                         <Bloom />
                      </effect>
-                     <HBox.margin>
-                        <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
-                     </HBox.margin>
                   </ImageView>
                </children>
-               <VBox.margin>
+               <opaqueInsets>
                   <Insets />
-               </VBox.margin>
-            </HBox>
-            <Label alignment="CENTER" prefHeight="71.0" prefWidth="120.0" styleClass="text-field-service-names" stylesheets="@../../css/service_request_landing_page.css" text="Medical Equipment" wrapText="true" />
-            <JFXButton onAction="#clickMedicalEquipment" opacity="0.5" prefHeight="134.0" prefWidth="131.0" styleClass="button-requests" stylesheets="@../../css/service_request_landing_page.css">
-               <effect>
-                  <DropShadow height="3.51" offsetY="10.0" radius="0.37749999999999995" width="0.0" />
-               </effect>
-               <graphic>
-                  <ImageView fitHeight="68.37" fitWidth="71.0">
-                     <image>
-                        <Image url="@../../static/images/Medical_Equipment(stethiscope).png" />
-                     </image>
-                  </ImageView>
-               </graphic>
-            </JFXButton>
-            <Label fx:id="mia" styleClass="text-field-our-names" stylesheets="@../../css/service_request_landing_page.css" text="Mia Mueting" />
+               </opaqueInsets>
+               <padding>
+                  <Insets bottom="15.0" left="15.0" right="15.0" top="15.0" />
+               </padding>
+            </VBox>
          </children>
-         <opaqueInsets>
-            <Insets bottom="20.0" />
-         </opaqueInsets>
-         <padding>
-            <Insets bottom="15.0" />
-         </padding>
-      </VBox>
+      </GridPane>
       <VBox alignment="BOTTOM_CENTER" GridPane.rowIndex="1">
          <children>
             <Label styleClass="text-field-service-names" stylesheets="@../../css/service_request_landing_page.css" text="Security" />
@@ -166,7 +176,7 @@
             <Label fx:id="jack" styleClass="text-field-our-names" stylesheets="@../../css/service_request_landing_page.css" text="Jack Muirhead" />
          </children>
          <padding>
-            <Insets bottom="70.0" />
+            <Insets bottom="90.0" />
          </padding>
       </VBox>
       <VBox alignment="BOTTOM_CENTER" GridPane.columnIndex="1" GridPane.rowIndex="1">
@@ -180,7 +190,7 @@
             <Label fx:id="grace" styleClass="text-field-our-names" stylesheets="@../../css/service_request_landing_page.css" text="Grace O'Reilly" />
          </children>
          <padding>
-            <Insets bottom="70.0" />
+            <Insets bottom="90.0" />
          </padding>
       </VBox>
       <VBox alignment="BOTTOM_CENTER" GridPane.columnIndex="2" GridPane.rowIndex="1">
@@ -201,7 +211,7 @@
             <Label fx:id="nelson" styleClass="text-field-our-names" stylesheets="@../../css/service_request_landing_page.css" text="Nelson Pires" />
          </children>
          <padding>
-            <Insets bottom="70.0" />
+            <Insets bottom="90.0" />
          </padding>
       </VBox>
       <VBox alignment="BOTTOM_CENTER" GridPane.columnIndex="3" GridPane.rowIndex="1">
@@ -218,7 +228,7 @@
             <Label fx:id="brian" styleClass="text-field-our-names" stylesheets="@../../css/service_request_landing_page.css" text="Brian Shin" />
          </children>
          <padding>
-            <Insets bottom="70.0" />
+            <Insets bottom="90.0" />
          </padding>
       </VBox>
       <VBox alignment="BOTTOM_CENTER" prefHeight="174.0" prefWidth="192.0" GridPane.columnIndex="4" GridPane.rowIndex="1">
@@ -239,7 +249,7 @@
             <Label fx:id="brandon" styleClass="text-field-our-names" stylesheets="@../../css/service_request_landing_page.css" text="Brandon Vuong" />
          </children>
          <padding>
-            <Insets bottom="70.0" />
+            <Insets bottom="90.0" />
          </padding>
       </VBox>
    </children>
