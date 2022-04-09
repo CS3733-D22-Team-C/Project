@@ -37,7 +37,7 @@ public abstract class DAOTest<T>{
         T obj = factory.create();
 
         // insert
-        String id = DAO.insert(obj);
+        String id = dao.insert(obj);
 
         //get the ID and check if it doesn't equal to -1
         assertNotNull(id);
@@ -59,7 +59,7 @@ public abstract class DAOTest<T>{
         //create a new Factory
         T obj = factory.create();
         // insert
-        String id = DAO.insert(obj);
+        String id = dao.insert(obj);
         //get the ID and check if it doesn't equal to -1
         assertNotNull(id);
         // Retrieve object by using the getByID
@@ -73,7 +73,7 @@ public abstract class DAOTest<T>{
     @Test
     void deleteTest(){
         T obj = factory.create();
-        String id = DAO.insert(obj);
+        String id = dao.insert(obj);
         assertNotNull(id);
 
         boolean success = dao.delete(obj);
@@ -83,7 +83,7 @@ public abstract class DAOTest<T>{
     @Test
     void getByIDTest(){
         T obj = factory.create();
-        String id = DAO.insert(obj);
+        String id = dao.insert(obj);
         assertNotNull(id);
 
         T retrievedObj = dao.getByID(id);
@@ -98,7 +98,7 @@ public abstract class DAOTest<T>{
         for (int i=0; i<size; i++) {
             T obj = factory.create();
           
-            String id = DAO.insert(obj);
+            String id = dao.insert(obj);
             assertNotNull(id);
 
         }

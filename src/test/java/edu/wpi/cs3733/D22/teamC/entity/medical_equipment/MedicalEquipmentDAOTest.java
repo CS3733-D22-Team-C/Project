@@ -22,11 +22,11 @@ public class MedicalEquipmentDAOTest extends DAOTest<MedicalEquipment> {
         me2.setLocationID(me1.getLocationID());
         int locationID = me2.getLocationID();
 
-        int id1 = dao.insert(me1);
-        int id2 = dao.insert(me2);
+        String id1 = dao.insert(me1);
+        String id2 = dao.insert(me2);
 
-        assertNotEquals(-1, id1);
-        assertNotEquals(-1,id2);
+        assertNotNull(id1);
+        assertNotNull(id2);
 
         List<MedicalEquipment> meList = ((MedicalEquipmentDAO) dao).getEquipmentByLocation(locationID);
 
