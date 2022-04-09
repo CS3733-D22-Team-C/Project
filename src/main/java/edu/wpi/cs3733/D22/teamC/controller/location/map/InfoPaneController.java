@@ -3,14 +3,12 @@ package edu.wpi.cs3733.D22.teamC.controller.location.map;
 import edu.wpi.cs3733.D22.teamC.entity.floor.Floor;
 import edu.wpi.cs3733.D22.teamC.entity.floor.FloorDAO;
 import edu.wpi.cs3733.D22.teamC.entity.location.Location;
+import edu.wpi.cs3733.D22.teamC.entity.location.LocationDAO;
 import edu.wpi.cs3733.D22.teamC.models.utils.ComponentWrapper;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.control.Button;
-import javafx.scene.control.ComboBox;
-import javafx.scene.control.Tab;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.scene.shape.SVGPath;
 
 import java.net.URL;
@@ -23,6 +21,7 @@ public class InfoPaneController implements Initializable {
     private final String SERVICE_REQUEST_ICON =  "M336 64h-53.88C268.9 26.8 233.7 0 192 0S115.1 26.8 101.9 64H48C21.5 64 0 85.48 0 112v352C0 490.5 21.5 512 48 512h288c26.5 0 48-21.48 48-48v-352C384 85.48 362.5 64 336 64zM96 392c-13.25 0-24-10.75-24-24S82.75 344 96 344s24 10.75 24 24S109.3 392 96 392zM96 296c-13.25 0-24-10.75-24-24S82.75 248 96 248S120 258.8 120 272S109.3 296 96 296zM192 64c17.67 0 32 14.33 32 32c0 17.67-14.33 32-32 32S160 113.7 160 96C160 78.33 174.3 64 192 64zM304 384h-128C167.2 384 160 376.8 160 368C160 359.2 167.2 352 176 352h128c8.801 0 16 7.199 16 16C320 376.8 312.8 384 304 384zM304 288h-128C167.2 288 160 280.8 160 272C160 263.2 167.2 256 176 256h128C312.8 256 320 263.2 320 272C320 280.8 312.8 288 304 288z";
 
     // Tabs
+    @FXML private TabPane tabPane;
     @FXML private Tab locationTab;
     @FXML private Tab medicalEquipmentTab;
     @FXML private Tab serviceRequestTab;
@@ -39,6 +38,9 @@ public class InfoPaneController implements Initializable {
     @FXML private Button revertButton;
     @FXML private Button deleteButton;
 
+    // References
+    private BaseMapViewController parentController;
+
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         // Initialize Tabs
@@ -48,15 +50,32 @@ public class InfoPaneController implements Initializable {
 
         // Initialize Location Info
         ComponentWrapper.InitializeComboBox(floorComboBox, Floor::getShortName);
-        floorComboBox.getItems().setAll(new FloorDAO().getAll());
 
         nodeComboBox.getItems().setAll(Location.NodeType.values());
     }
 
-    public void setup() {
+    /**
+     * Setup the InfoPaneController and view with external data and references.
+     * @param baseMapViewController The parent controller to communicate with.
+     */
+    public void setup(BaseMapViewController baseMapViewController) {
+        this.parentController = baseMapViewController;
 
+        // Reset to Location Info Pane
+        tabPane.getSelectionModel().select(0);
+
+        // Set Floor Values
+        floorComboBox.getItems().setAll(parentController.getFloors());
+
+        // Hide Pane
+        setVisible(false);
     }
 
+    /**
+     * Sets an SVG icon to a tab.
+     * @param tab The tab to have an icon set for.
+     * @param svgContent The SVG content which defines the icon.
+     */
     public void setTabIcon(Tab tab, String svgContent) {
         SVGPath svg = new SVGPath();
         svg.setContent(svgContent);
@@ -65,20 +84,94 @@ public class InfoPaneController implements Initializable {
         tab.setText(null);
     }
 
-    //#region Location Info - Button Events
-        @FXML
-        void onDeleteButtonPressed(ActionEvent event) {
+    //#region Pane Interaction
+        /**
+         * Sets edit mode for Location Info Pane, changing editable and displayed fields and buttons.
+         * @param editable Mode which the Location Info Pane is setting to.
+         */
+        public void setEditable(boolean editable) {
+            shortNameField.setEditable(editable);
+            longNameField.setEditable(editable);
+            buildingField.setEditable(editable);
+            floorComboBox.setEditable(editable);
+            nodeComboBox.setEditable(editable);
 
+            revertButton.setVisible(editable);
+            deleteButton.setVisible(editable);
         }
 
+        /**
+         * Sets the visibility of the InfoPane.
+         * @param visible The visibility to set to.
+         */
+        public void setVisible(boolean visible) {
+            tabPane.setVisible(visible);
+        }
+    //#endregion
+
+    //#region Location Interaction
+        /**
+         * Set Location and initialize data fields for the given Location object.
+         * @param location The Location object which this info pane will display info of.
+         */
+        public void setLocation(Location location) {
+            // Location Info
+            shortNameField.setText(location.getShortName());
+            longNameField.setText(location.getLongName());
+            buildingField.setText(location.getBuilding());
+            floorComboBox.setValue(parentController.getFloorByID(location.getFloor()));
+            nodeComboBox.setValue(location.getNodeType());
+
+            // Medical Equipment
+            // TODO: Populate table with Medical Equipment at Location
+
+            // Service Requests
+            // TODO: Populate table with Service Requests at Location
+        }
+
+        /**
+         * Revert Location to Pre-Edit mode changes.
+         */
+        private void revertLocation() {
+            Location original = new LocationDAO().getByID(parentController.getCurrentLocation().getNodeID());
+            parentController.updateCurrentLocation(original);
+        }
+
+        /**
+         * Mark location for deletion.
+         */
+        private void deleteLocation() {
+            parentController.deleteCurrentLocation();
+        }
+
+        /**
+         * Save updates to temporary Location.
+         */
+        private void updateLocation() {
+            Location location = parentController.getCurrentLocation();
+            location.setShortName(shortNameField.getText());
+            location.setLongName(longNameField.getText());
+            location.setBuilding(buildingField.getText());
+            location.setFloor(floorComboBox.getValue().getFloorID());
+            location.setNodeType(nodeComboBox.getValue());
+            parentController.updateCurrentLocation(location);
+        }
+    //#endregion
+
+    //#region Location Info Pane
         @FXML
         void onDeselectButtonPressed(ActionEvent event) {
-
+            parentController.changeCurrentLocation(null);
         }
 
         @FXML
         void onRevertButtonPressed(ActionEvent event) {
+            revertLocation();
+        }
 
+        @FXML
+        void onDeleteButtonPressed(ActionEvent event) {
+            deleteLocation();
         }
     //#endregion
 }
