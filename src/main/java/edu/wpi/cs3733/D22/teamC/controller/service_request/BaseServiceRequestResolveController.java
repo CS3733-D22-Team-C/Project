@@ -108,7 +108,7 @@ public class BaseServiceRequestResolveController<T extends ServiceRequest> {
     void clickConfirm(ActionEvent event) {
         //Accessing Service Request in Database
         DAO<T> serviceRequestDAO = insertController.createServiceRequestDAO();
-        T serviceRequest = serviceRequestDAO.getByID(Integer.parseInt(requestID.getText()));
+        T serviceRequest = serviceRequestDAO.getByID(requestID.getText());
 
         if(isEditMode)
         {
