@@ -3,6 +3,8 @@ package edu.wpi.cs3733.D22.teamC.entity.medical_equipment;
 import javax.persistence.*;
 import org.hibernate.annotations.GenericGenerator;
 
+import java.util.Objects;
+
 @Entity
 @Table(name = "MEDICAL_EQUIPMENT")
 public class MedicalEquipment {
@@ -15,7 +17,7 @@ public class MedicalEquipment {
     @Column (name = "LocationID")
     private int locationID;
 
-    @Column(name = "Type Number")
+    @Column(name = "TypeNumber")
     private int typeNumber;
 
     @Enumerated(EnumType.STRING)
@@ -24,7 +26,7 @@ public class MedicalEquipment {
 
     @Enumerated(EnumType.STRING)
     @Column (name = "status")
-    private EquipmentStatus status;
+    private EquipmentStatus equipmentStatus;
 
     public enum EquipmentType {
         Bed,
@@ -41,19 +43,20 @@ public class MedicalEquipment {
 
     public MedicalEquipment() {}
 
-    public MedicalEquipment(int locationID, int typeNumber, EquipmentType equipmentType, EquipmentStatus status) {
+    public MedicalEquipment(int locationID, EquipmentType equipmentType, EquipmentStatus status) {
         this.locationID = locationID;
-        this.typeNumber = typeNumber;
+//        this.typeNumber = typeNumber;
         this.equipmentType = equipmentType;
-        this.status = status;
+        this.equipmentStatus = status;
     }
 
-    public MedicalEquipment(int equipID, int typeNumber, EquipmentType equipmentType, EquipmentStatus status, int locationID) {
+    @Deprecated
+    public MedicalEquipment(int equipID, int locationID, int typeNumber, EquipmentType equipmentType, EquipmentStatus status) {
         this.equipID = equipID;
+        this.locationID = locationID;
         this.typeNumber = typeNumber;
         this.equipmentType = equipmentType;
-        this.status = status;
-        this.locationID = locationID;
+        this.equipmentStatus = status;
     }
 
     public int getEquipID() {
@@ -81,11 +84,11 @@ public class MedicalEquipment {
     }
 
     public EquipmentStatus getStatus() {
-        return status;
+        return equipmentStatus;
     }
 
     public void setStatus(EquipmentStatus status) {
-        this.status = status;
+        this.equipmentStatus = status;
     }
 
     public int getLocationID() {
@@ -101,10 +104,8 @@ public class MedicalEquipment {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         MedicalEquipment equipment = (MedicalEquipment) o;
-        return equipID == equipment.equipID 
-            && locationID == equipment.locationID 
-            && typeNumber == equipment.typeNumber 
-            && equipmentType == equipment.equipmentType 
-            && status == equipment.status;
+        return equipID == equipment.equipID && locationID == equipment.locationID && equipmentType == equipment.equipmentType && equipmentStatus == equipment.equipmentStatus && typeNumber == equipment.typeNumber;
     }
 }
+
+
