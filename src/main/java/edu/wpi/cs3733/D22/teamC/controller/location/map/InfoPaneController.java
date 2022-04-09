@@ -1,9 +1,7 @@
 package edu.wpi.cs3733.D22.teamC.controller.location.map;
 
 import edu.wpi.cs3733.D22.teamC.entity.floor.Floor;
-import edu.wpi.cs3733.D22.teamC.entity.floor.FloorDAO;
 import edu.wpi.cs3733.D22.teamC.entity.location.Location;
-import edu.wpi.cs3733.D22.teamC.entity.location.LocationDAO;
 import edu.wpi.cs3733.D22.teamC.models.utils.ComponentWrapper;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -65,7 +63,7 @@ public class InfoPaneController implements Initializable {
         tabPane.getSelectionModel().select(0);
 
         // Set Floor Values
-        floorComboBox.getItems().setAll(parentController.getFloors());
+        floorComboBox.getItems().setAll(parentController.getAllFloors());
 
         // Hide Pane
         setVisible(false);
@@ -90,11 +88,11 @@ public class InfoPaneController implements Initializable {
          * @param editable Mode which the Location Info Pane is setting to.
          */
         public void setEditable(boolean editable) {
-            shortNameField.setEditable(editable);
-            longNameField.setEditable(editable);
-            buildingField.setEditable(editable);
-            floorComboBox.setEditable(editable);
-            nodeComboBox.setEditable(editable);
+            shortNameField.setDisable(!editable);
+            longNameField.setDisable(!editable);
+            buildingField.setDisable(!editable);
+            floorComboBox.setDisable(true);
+            nodeComboBox.setDisable(!editable);
 
             revertButton.setVisible(editable);
             deleteButton.setVisible(editable);
@@ -115,6 +113,8 @@ public class InfoPaneController implements Initializable {
          * @param location The Location object which this info pane will display info of.
          */
         public void setLocation(Location location) {
+            if (location == null) return;
+
             // Location Info
             shortNameField.setText(location.getShortName());
             longNameField.setText(location.getLongName());
@@ -127,26 +127,14 @@ public class InfoPaneController implements Initializable {
 
             // Service Requests
             // TODO: Populate table with Service Requests at Location
-        }
 
-        /**
-         * Revert Location to Pre-Edit mode changes.
-         */
-        private void revertLocation() {
-            Location original = new LocationDAO().getByID(parentController.getCurrentLocation().getNodeID());
-            parentController.updateCurrentLocation(original);
-        }
-
-        /**
-         * Mark location for deletion.
-         */
-        private void deleteLocation() {
-            parentController.deleteCurrentLocation();
+            revertButton.setDisable(!parentController.touchedLocations.contains(location));
         }
 
         /**
          * Save updates to temporary Location.
          */
+        @FXML
         private void updateLocation() {
             Location location = parentController.getCurrentLocation();
             location.setShortName(shortNameField.getText());
@@ -154,24 +142,24 @@ public class InfoPaneController implements Initializable {
             location.setBuilding(buildingField.getText());
             location.setFloor(floorComboBox.getValue().getFloorID());
             location.setNodeType(nodeComboBox.getValue());
-            parentController.updateCurrentLocation(location);
+            revertButton.setDisable(false);
         }
     //#endregion
 
     //#region Location Info Pane
         @FXML
         void onDeselectButtonPressed(ActionEvent event) {
-            parentController.changeCurrentLocation(null);
+            parentController.setCurrentLocation(null);
         }
 
         @FXML
         void onRevertButtonPressed(ActionEvent event) {
-            revertLocation();
+            parentController.resetLocation(parentController.getCurrentLocation());
         }
 
         @FXML
         void onDeleteButtonPressed(ActionEvent event) {
-            deleteLocation();
+            parentController.deleteLocation(parentController.getCurrentLocation());
         }
     //#endregion
 }

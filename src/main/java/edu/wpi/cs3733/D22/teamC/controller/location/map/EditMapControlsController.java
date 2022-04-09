@@ -12,7 +12,7 @@ public class EditMapControlsController {
 
     @FXML
     public void onSaveAndExitButtonPress() {
-        ((EditMapController) parentController.getMapController()).saveMap();
+        parentController.saveLocationChanges();
         parentController.swapToViewMode();
     }
 

@@ -2,6 +2,9 @@ package edu.wpi.cs3733.D22.teamC.controller.location.map;
 
 import edu.wpi.cs3733.D22.teamC.App;
 import edu.wpi.cs3733.D22.teamC.entity.floor.Floor;
+import edu.wpi.cs3733.D22.teamC.entity.floor.FloorDAO;
+import edu.wpi.cs3733.D22.teamC.entity.location.Location;
+import edu.wpi.cs3733.D22.teamC.entity.location.LocationDAO;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.layout.GridPane;
@@ -10,44 +13,245 @@ import javafx.scene.paint.Color;
 import javafx.scene.shape.SVGPath;
 
 import java.net.URL;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.ResourceBundle;
+import java.util.stream.Collectors;
 
 public class BaseMapViewController implements Initializable {
-    // Containers
-    @FXML GridPane gridPane;
-    @FXML VBox mapBox;
-    @FXML VBox mapControlsBox;
-    @FXML VBox locationInfoBox;
-
-    // Controllers
-    ViewMapController mapController;
-    LocationInfoController locationInfoController;
-
     // Constants
     public static final String MAP_PATH = "view/location/map/map.fxml";
     public static final String VIEW_MAP_CONTROLS_PATH = "view/location/map/view_map_controls.fxml";
     public static final String EDIT_MAP_CONTROLS_PATH = "view/location/map/edit_map_controls.fxml";
-    public static final String LOCATION_INFO_PATH = "view/location/map/location_info.fxml";
+    public static final String INFO_PANE_PATH = "view/location/map/info_pane.fxml";
 
-    // SVGs
-    public SVGPath medicalBedIcon = new SVGPath();
-    public SVGPath medicalPumpIcon = new SVGPath();
-    public SVGPath reclinerIcon = new SVGPath();
-    public SVGPath xRayIcon = new SVGPath();
+    // Containers
+    @FXML GridPane gridPane;
+    @FXML VBox mapBox;
+    @FXML VBox mapControlsBox;
+    @FXML VBox infoPaneBox;
+
+    // Controllers
+    ViewMapController mapController;
+    InfoPaneController infoPaneController;
     
     // Variables
-    private Floor floor;
+    private boolean isEditMode = false;
+
+    List<Floor> floors;
+    Floor currentFloor;
+
+    List<Location> touchedLocations = new ArrayList<>();
+    List<Location> additionLocations = new ArrayList<>();
+    List<Location> deletionLocations = new ArrayList<>();
+    Location currentLocation;
 
     @Override
     public final void initialize(URL location, ResourceBundle resource) {
-        gridPane.setMaxHeight(Double.MAX_VALUE);
-        gridPane.setMaxWidth(Double.MAX_VALUE);
+        // Get Floors
+        floors = new FloorDAO().getAll();
 
+        // Setup Info Pane
+        App.View infoPane = App.instance.loadView(INFO_PANE_PATH);
+        infoPaneBox.getChildren().add(infoPane.getNode());
+        infoPaneController = (InfoPaneController) infoPane.getController();
+        infoPaneController.setup(this);
+        infoPaneController.setVisible(false);
+
+        // Set View Mode
         setViewMode();
-//        loadSVGs();
     }
 
+    //#region Floor Interaction
+        public List<Floor> getAllFloors() {
+            return floors;
+        }
+
+        public Floor getFloorByID(int id) {
+            return floors.stream().filter(floor -> floor.getFloorID() == id).collect(Collectors.toList()).get(0);
+        }
+
+        public Floor getCurrentFloor() {
+            return currentFloor;
+        }
+
+        public void setCurrentFloor(Floor floor) {
+            this.currentFloor = floor;
+            mapController.renderFloor(currentFloor);
+        }
+    //#endregion
+
+    //#region Location Interaction
+        public Location getCurrentLocation() {
+            return currentLocation;
+        }
+
+        public void setCurrentLocation(Location location) {
+            // Base
+            touchLocation(location);
+            this.currentLocation = location;
+
+            // Info
+            infoPaneController.setVisible((currentLocation != null));
+            infoPaneController.setLocation(currentLocation);
+
+            // Map
+            if (location == null && mapController.clickedLocationNode != null) mapController.clickedLocationNode.deactivateNode();
+        }
+
+        public void addLocation(int x, int y) {
+            if (isEditMode) {
+                // Create Location
+                Location location = new Location();
+
+                location.setX((int) x);
+                location.setY((int) y);
+                location.setFloor(currentFloor.getFloorID());
+                location.setNodeType(Location.NodeType.PATI);
+
+                // Location addition reflected in Lists
+                additionLocations.add(location);
+
+                // Location addition reflected in LocationNode
+                mapController.addLocationNode(location);
+
+                // Location addition reflected in Info
+                infoPaneController.setLocation(location);
+
+                setCurrentLocation(location);
+            }
+        }
+
+        public void touchLocation(Location location) {
+            if (isEditMode && !additionLocations.contains(location)
+                    && !deletionLocations.contains(location) && !touchedLocations.contains(location)) {
+                touchedLocations.add(location);
+            }
+        }
+
+        public void resetLocation(Location location) {
+            // Location reset reflected in Lists
+            Location original = new LocationDAO().getByID(currentLocation.getNodeID());
+            currentLocation.Copy(original);
+
+            // Location reset reflected in LocationNode
+            mapController.resetLocationNode(currentLocation);
+
+            // Location reset reflected in Info
+            infoPaneController.setLocation(currentLocation);
+        }
+
+        public void deleteLocation(Location location) {
+            if (location != null && isEditMode) {
+                // Location Deletion reflected in Lists
+                if (additionLocations.contains(location)) {
+                    additionLocations.remove(location);
+                } else {
+                    deletionLocations.add(location);
+                }
+
+                // Location Deletion reflected in Maps
+                mapController.removeLocationNode(location);
+            }
+        }
+    //#endregion
+
+    //#region Mode Switching
+        public void saveLocationChanges() {
+            LocationDAO locationDAO = new LocationDAO();
+
+            // Update non-addition and non-deletions locations
+            for (Location location : touchedLocations) {
+                locationDAO.update(location);
+            }
+            touchedLocations = new ArrayList<>();
+
+            // Insert addition locations
+            for (Location location : additionLocations) {
+                locationDAO.insert(location);
+            }
+            additionLocations = new ArrayList<>();
+
+            // Delete deletion locations
+            for (Location location : deletionLocations) {
+                locationDAO.delete(location);
+            }
+            deletionLocations = new ArrayList<>();
+        }
+
+        /**
+         * Swap to Edit Mode, clearing first.
+         */
+        public void swapToEditMode() {
+            clearLastMode();
+            setEditMode();
+            isEditMode = true;
+        }
+
+        /**
+         * Set to Edit Mode by replacing Nodes & Controllers.
+         */
+        private void setEditMode() {
+            App.View swapPane = App.instance.loadView(EDIT_MAP_CONTROLS_PATH);
+            mapControlsBox.getChildren().add(swapPane.getNode());
+            EditMapControlsController editMapControlsController = (EditMapControlsController) swapPane.getController();
+            editMapControlsController.setParentController(this);
+
+            infoPaneController.setEditable(true);
+            infoPaneController.setVisible(false);
+
+            App.View mapPane = App.instance.loadView(MAP_PATH, new EditMapController());
+            gridPane.add(mapPane.getNode(), 0,0);
+            mapController = (EditMapController) mapPane.getController();
+            mapController.setParentController(this);
+
+            mapController.renderFloor(currentFloor);
+        }
+
+        /**
+         * Swap to View Mode, clearing first.
+         */
+        public void swapToViewMode() {
+            clearLastMode();
+            setViewMode();
+            isEditMode = false;
+        }
+
+        /**
+         * Swap to View Mode by replacing Nodes & Controllers.
+         */
+        private void setViewMode() {
+            App.View swapPane = App.instance.loadView(VIEW_MAP_CONTROLS_PATH);
+            mapControlsBox.getChildren().add(swapPane.getNode());
+            ViewMapControlsController viewMapControlsController = (ViewMapControlsController) swapPane.getController();
+            viewMapControlsController.setParentController(this);
+
+            infoPaneController.setEditable(false);
+            infoPaneController.setVisible(false);
+
+            App.View mapPane = App.instance.loadView(MAP_PATH, new ViewMapController());
+            gridPane.add(mapPane.getNode(), 0,0);
+            mapController = (ViewMapController) mapPane.getController();
+            mapController.setParentController(this);
+
+            ((ViewMapControlsController) swapPane.getController()).setup(this, currentFloor);
+            mapController.renderFloor(currentFloor);
+        }
+
+        public void clearLastMode() {
+            gridPane.getChildren().remove(0, 0);
+            mapControlsBox.getChildren().remove(0, 1);
+        }
+    //#endregion
+
+    // TODO: Partially Implemented Tooltips
     //#region SVG stuff
+        // SVGs
+        public SVGPath medicalBedIcon = new SVGPath();
+        public SVGPath medicalPumpIcon = new SVGPath();
+        public SVGPath reclinerIcon = new SVGPath();
+        public SVGPath xRayIcon = new SVGPath();
+
         protected void loadSVGs() {
             // Load SVGs
             medicalBedIcon.setContent("M176 288C220.1 288 256 252.1 256 208S220.1 128 176 128S96 163.9 96 208S131.9 288 176 288zM544 128H304C295.2 128 288 135.2 288 144V320H64V48C64 39.16 56.84 32 48 32h-32C7.163 32 0 39.16 0 48v416C0 472.8 7.163 480 16 480h32C56.84 480 64 472.8 64 464V416h512v48c0 8.837 7.163 16 16 16h32c8.837 0 16-7.163 16-16V224C640 170.1 597 128 544 128z");
@@ -76,101 +280,6 @@ public class BaseMapViewController implements Initializable {
             medicalPumpIcon.setScaleX(.03);
             medicalPumpIcon.setScaleY(.03);
             gridPane.getChildren().add(medicalPumpIcon);
-
-        }
-
-    //TODO: create instance of a medical equipment icon
-    //#endregion
-
-    public void setFloor(Floor floor) {
-        this.floor = floor;
-        mapController.setFloor(floor);
-    }
-
-    public Floor getFloor() {
-        return floor;
-    }
-
-    //#region Mode Switching
-        /**
-         * Swap to Edit Mode, clearing first.
-         */
-        public void swapToEditMode() {
-            clearLastMode();
-            setEditMode();
-        }
-
-        /**
-         * Set to Edit Mode by replacing Nodes & Controllers.
-         */
-        private void setEditMode() {
-            App.View swapPane = App.instance.loadView(EDIT_MAP_CONTROLS_PATH);
-            mapControlsBox.getChildren().add(swapPane.getNode());
-            EditMapControlsController editMapControlsController = (EditMapControlsController) swapPane.getController();
-            editMapControlsController.setParentController(this);
-
-            App.View locationPane = App.instance.loadView(LOCATION_INFO_PATH);
-            locationInfoBox.getChildren().add(locationPane.getNode());
-            locationInfoController = (LocationInfoController) locationPane.getController();
-            locationInfoController.setParentController(this);
-            locationInfoController.setEditable(true);
-            locationInfoController.setVisible(false);
-
-            App.View mapPane = App.instance.loadView(MAP_PATH, new EditMapController());
-            gridPane.add(mapPane.getNode(), 0,0);
-            mapController = (EditMapController) mapPane.getController();
-            mapController.setParentController(this);
-
-            mapController.setFloor(floor);
-        }
-
-        /**
-         * Swap to View Mode, clearing first.
-         */
-        public void swapToViewMode() {
-            clearLastMode();
-            setViewMode();
-        }
-
-        /**
-         * Swap to View Mode by replacing Nodes & Controllers.
-         */
-        private void setViewMode() {
-            App.View swapPane = App.instance.loadView(VIEW_MAP_CONTROLS_PATH);
-            mapControlsBox.getChildren().add(swapPane.getNode());
-            ViewMapControlsController viewMapControlsController = (ViewMapControlsController) swapPane.getController();
-            viewMapControlsController.setParentController(this);
-
-            App.View locationPane = App.instance.loadView(LOCATION_INFO_PATH);
-            locationInfoBox.getChildren().add(locationPane.getNode());
-            locationInfoController = (LocationInfoController) locationPane.getController();
-            locationInfoController.setParentController(this);
-            locationInfoController.setEditable(false);
-            locationInfoController.setVisible(false);
-
-            App.View mapPane = App.instance.loadView(MAP_PATH, new ViewMapController());
-            gridPane.add(mapPane.getNode(), 0,0);
-            mapController = (ViewMapController) mapPane.getController();
-            mapController.setParentController(this);
-
-            ((ViewMapControlsController) swapPane.getController()).setup(this, floor);
-            mapController.setFloor(floor);
-        }
-
-        public void clearLastMode() {
-            gridPane.getChildren().remove(0, 0);
-            mapControlsBox.getChildren().remove(0, 1);
-            locationInfoBox.getChildren().remove(0, 1);
-        }
-    //#endregion
-
-    //#region External Referencing
-        public ViewMapController getMapController() {
-            return (ViewMapController) mapController;
-        }
-
-        public LocationInfoController getLocationInfoController() {
-            return (LocationInfoController) locationInfoController;
         }
     //#endregion
 }

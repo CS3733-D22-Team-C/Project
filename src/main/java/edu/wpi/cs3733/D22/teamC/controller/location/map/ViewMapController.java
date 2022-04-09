@@ -21,29 +21,23 @@ import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.ResourceBundle;
+import java.util.stream.Collectors;
 
 public class ViewMapController implements Initializable {
-    protected class MapLocation {
+    protected class LocationNode {
         public Circle node;
         public Location location;
 
-        public MapLocation(Location location) {
+        public LocationNode(Location location) {
             this.location = location;
             this.node = createNode(location.getX(), location.getY());
         }
 
-        public MapLocation(double x, double y) {
-            this.location = new Location();
-            this.location.setNodeType(Location.NodeType.values()[0]);
-
-            this.node = createNode(x, y);
-        }
-
         /**
-         * Create this MapLocation node.
+         * Create this LocationNode node.
          * @param x x-coordinate for node location.
          * @param y y-coordinate for node location.
-         * @return The circle drawn as the MapLocation's node.
+         * @return The circle drawn as the LocationNode's node.
          */
         public Circle createNode(double x, double y) {
             Circle circle = drawCircle(x, y);
@@ -54,12 +48,12 @@ public class ViewMapController implements Initializable {
             return circle;
         }
 
-        /**
-         * Update Location Position from MapLocation Node attributes.
-         */
-        public void updateLocationPosition() {
-            this.location.setX((int) this.node.getCenterX());
-            this.location.setY((int) this.node.getCenterY());
+        public void deactivateNode() {
+            this.node.setFill(Color.DARKCYAN);
+        }
+
+        public void activateNode() {
+            this.node.setFill(Color.BLACK);
         }
     }
 
@@ -73,8 +67,8 @@ public class ViewMapController implements Initializable {
     @FXML Pane mapPane;
 
     // Variables
-    protected MapLocation clickedMapLocation, hoveredMapLocation;
-    protected List<MapLocation> mapLocations;
+    protected LocationNode clickedLocationNode, hoveredLocationNode;
+    protected List<LocationNode> locationNodes = new ArrayList<>();
 
     // References
     protected BaseMapViewController parentController;
@@ -88,43 +82,77 @@ public class ViewMapController implements Initializable {
         mapPane.setOnScroll(this::onMouseScrollMap);
     }
 
-    private final void resetLocations() {
-        if (mapLocations != null) {
-            for (MapLocation mapLocation : mapLocations) {
-                mapPane.getChildren().remove(mapLocation.node);
-            }
-        }
-    }
-
-    private final List<MapLocation> renderLocations(List<Location> locations) {
-        if (locations != null) {
-            List<MapLocation> mapLocs = new ArrayList<>();
-
-            for (Location location : locations) {
-                MapLocation mapLocation = new MapLocation(location);
-                mapLocs.add(mapLocation);
-            }
-
-            // Initialize Map Size and Position
-            mapPane.setTranslateX(0);
-            mapPane.setTranslateY(0);
-
-            return mapLocs;
+    //#region LocationNode Interaction
+        private final LocationNode getLocationNode(Location location) {
+            return locationNodes.stream().filter(node -> node.location.equals(location)).collect(Collectors.toList()).get(0);
         }
 
-        return null;
-    }
+        /**
+         * Remove all Location Nodes from the Map View.
+         */
+        public final void removeAllLocationNodes() {
+            for (LocationNode locationNode : locationNodes) {
+                mapPane.getChildren().remove(locationNode.node);
+            }
+            locationNodes = new ArrayList<>();
+        }
+
+        /**
+         * Render a list of Locations to Location Nodes for the map View.
+         * @param locations List of Locations to render.
+         * @return List of rendered Location Nodes.
+         */
+        public final List<LocationNode> renderLocationsNodes(List<Location> locations) {
+            List<LocationNode> locationNodes = new ArrayList<>();
+
+            if (locations != null) {
+                for (Location location : locations) {
+                    LocationNode locationNode = new LocationNode(location);
+                    locationNodes.add(locationNode);
+                    mapPane.getChildren().add(locationNode.node);
+                }
+            }
+
+            return locationNodes;
+        }
+
+        /**
+         * Create a Location Node for the given Location.
+         * @param location The Location to create the Location Node for.
+         */
+        public void addLocationNode(Location location) {
+            ViewMapController.LocationNode newMapLoc = new ViewMapController.LocationNode(location);
+            locationNodes.add(newMapLoc);
+            mapPane.getChildren().add(newMapLoc.node);
+        }
+
+        /**
+         * Delete the Location Node.
+         * @param location The Location whose Node is to be deleted.
+         */
+        public void removeLocationNode(Location location) {
+            LocationNode locationNode = getLocationNode(location);
+            mapPane.getChildren().remove(locationNode.node);
+            locationNodes.remove(locationNode);
+        }
+
+        public void resetLocationNode(Location location) {
+            LocationNode locationNode = getLocationNode(location);
+            locationNode.node.setCenterX(location.getX());
+            locationNode.node.setCenterY(location.getY());
+        }
+    //#endregion
 
     //#region Update State
-        private void setClickMapLocation(MapLocation mapLocation) {
-            clickedMapLocation = mapLocation;
-            parentController.getLocationInfoController().onMapLocationFocus(mapLocation);
+        private void setClickMapLocation(LocationNode locationNode) {
+            clickedLocationNode = locationNode;
+            parentController.setCurrentLocation((locationNode == null) ? null : locationNode.location);
         }
 
-        private void setHoveredMapLocation(MapLocation mapLocation) {
-            hoveredMapLocation = mapLocation;
-            if (clickedMapLocation == null) {
-                parentController.getLocationInfoController().onMapLocationFocus(mapLocation);
+        private void setHoveredMapLocation(LocationNode locationNode) {
+            hoveredLocationNode = locationNode;
+            if (clickedLocationNode == null) {
+                parentController.setCurrentLocation((hoveredLocationNode == null) ? null : hoveredLocationNode.location);
             }
         }
     //#endregion
@@ -134,49 +162,48 @@ public class ViewMapController implements Initializable {
             this.parentController = baseMapViewController;
         }
 
-        public void setFloor(Floor floor) {
-            resetLocations();
+        public void renderFloor(Floor floor) {
+            // Reset LocationNodes
+            removeAllLocationNodes();
 
             // Set Image
+            // TODO: Pull Image from DB
             Path filePath = Paths.get("maps/" + floor.getImageSrc());
-            System.out.println(filePath);
             Image image = new Image("file:" + filePath);
             mapImage.setImage(image);
             mapPane.setPrefWidth(image.getWidth());
             mapPane.setPrefHeight(image.getHeight());
 
+            // Load Locations
+            List<Location> locations = new FloorDAO().getAllLocations(floor.getFloorID());
 
-            FloorDAO floorDAO = new FloorDAO();
-            List<Location> locations = floorDAO.getAllLocations(floor.getFloorID());
-            mapLocations = renderLocations(locations);
-            for (MapLocation mapLocation : mapLocations) {
-                mapPane.getChildren().add(mapLocation.node);
-            }
+            // Load LocationNodes
+            locationNodes = renderLocationsNodes(locations);
         }
     //#endregion
 
     //#region Mouse Events
-        protected void onMouseEnterNode(MouseEvent event, MapLocation mapLocation) {
-            setHoveredMapLocation(mapLocation);
-            onHoverNode(mapLocation);
+        protected void onMouseEnterNode(MouseEvent event, LocationNode locationNode) {
+            setHoveredMapLocation(locationNode);
+            onHoverNode(locationNode);
         }
 
-        protected void onMouseExitNode(MouseEvent event, MapLocation mapLocation) {
+        protected void onMouseExitNode(MouseEvent event, LocationNode locationNode) {
             setHoveredMapLocation(null);
-            offHoverNode(mapLocation);
+            offHoverNode(locationNode);
         }
 
-        protected void onMouseClickedNode(MouseEvent event, MapLocation mapLocation) {
+        protected void onMouseClickedNode(MouseEvent event, LocationNode locationNode) {
             if (event.getButton().equals(MouseButton.PRIMARY)) {
                 // Single-Click select toggle
                 {
-                    if (clickedMapLocation != null) offActiveNode(clickedMapLocation);
+                    if (clickedLocationNode != null) offActiveNode(clickedLocationNode);
 
-                    if (clickedMapLocation == mapLocation) {
+                    if (clickedLocationNode == locationNode) {
                         setClickMapLocation(null);
                     } else {
-                        onActiveNode(mapLocation);
-                        setClickMapLocation(mapLocation);
+                        onActiveNode(locationNode);
+                        setClickMapLocation(locationNode);
                     }
                 }
 
@@ -184,13 +211,13 @@ public class ViewMapController implements Initializable {
             }
         }
 
-        protected void onMouseDraggedNode(MouseEvent event, MapLocation mapLocation) {}
+        protected void onMouseDraggedNode(MouseEvent event, LocationNode locationNode) {}
 
         protected void onMouseClickedMap(MouseEvent event) {
             if (event.getButton().equals(MouseButton.PRIMARY)) {
-                // Single-Click reset active MapLocation
-                if (clickedMapLocation != null && clickedMapLocation != hoveredMapLocation) {
-                    offActiveNode(clickedMapLocation);
+                // Single-Click reset active LocationNode
+                if (clickedLocationNode != null && clickedLocationNode != hoveredLocationNode) {
+                    offActiveNode(clickedLocationNode);
                     setClickMapLocation(null);
                 }
             }
@@ -226,22 +253,22 @@ public class ViewMapController implements Initializable {
     //#endregion
 
     //#region Node Interaction Feedback
-        protected final void onHoverNode(MapLocation mapLocation) {
-            mapLocation.node.setStroke(Color.GRAY);
-            mapLocation.node.setStrokeWidth(5f);
+        protected final void onHoverNode(LocationNode locationNode) {
+            locationNode.node.setStroke(Color.GRAY);
+            locationNode.node.setStrokeWidth(5f);
         }
 
-        protected final void offHoverNode(MapLocation mapLocation) {
-            mapLocation.node.setStroke(Color.DARKSLATEGREY);
-            mapLocation.node.setStrokeWidth(1f);
+        protected final void offHoverNode(LocationNode locationNode) {
+            locationNode.node.setStroke(Color.DARKSLATEGREY);
+            locationNode.node.setStrokeWidth(1f);
         }
 
-        protected final void onActiveNode(MapLocation mapLocation) {
-            mapLocation.node.setFill(Color.BLACK);
+        protected final void onActiveNode(LocationNode locationNode) {
+            locationNode.activateNode();
         }
 
-        protected final void offActiveNode(MapLocation mapLocation) {
-            mapLocation.node.setFill(Color.DARKCYAN);
+        protected final void offActiveNode(LocationNode locationNode) {
+            locationNode.deactivateNode();
         }
     //#endregion
 

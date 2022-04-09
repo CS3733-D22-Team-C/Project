@@ -22,6 +22,8 @@ public class Floor {
     
     @Column(name = "ShortName")
     private String shortName;
+
+    @Column(name = "ImageSrc")
     private String imageSrc;
 
     public Floor(){}

@@ -78,6 +78,22 @@ public class Location {
 		this.y = y;
 	}
 
+
+    /**
+     * Deep copy.
+     * @param copy Copy of Location to deep copy from.
+     */
+    public void Copy(Location copy) {
+        this.nodeID = copy.getNodeID();
+        this.floor = copy.getFloor();
+        this.building = copy.getBuilding();
+        this.nodeType = copy.getNodeType();
+        this.longName = copy.getLongName();
+        this.shortName = copy.getShortName();
+        this.x = copy.getX();
+        this.y = copy.getY();
+    }
+
 	@Deprecated
 	public Location(
 			int nodeID,

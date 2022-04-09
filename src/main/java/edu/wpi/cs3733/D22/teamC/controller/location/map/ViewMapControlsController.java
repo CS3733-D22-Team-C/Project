@@ -76,7 +76,7 @@ public class ViewMapControlsController {
 
     @FXML
     public void onFloorChanged() {
-        parentController.setFloor((getFloorByShortName(floorField.getValue())));
+        parentController.setCurrentFloor((getFloorByShortName(floorField.getValue())));
     }
 
     @FXML
@@ -101,7 +101,7 @@ public class ViewMapControlsController {
                 }
             }
 
-            parentController.setFloor(parentController.getFloor());
+            parentController.setCurrentFloor(parentController.getCurrentFloor());
         }
     }
 

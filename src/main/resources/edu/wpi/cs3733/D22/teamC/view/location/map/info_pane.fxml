@@ -120,7 +120,7 @@
                         <HBox prefHeight="0.0" prefWidth="200.0" VBox.vgrow="SOMETIMES" />
                         <ButtonBar prefWidth="342.0" VBox.vgrow="NEVER">
                           <buttons>
-                              <Button fx:id="deselectButton" cancelButton="true" mnemonicParsing="false" onAction="#onDeselectButtonPressed" text="Deselect">
+                              <Button fx:id="deselectButton" mnemonicParsing="false" onAction="#onDeselectButtonPressed" text="Deselect">
                                  <cursor>
                                     <Cursor fx:constant="HAND" />
                                  </cursor>
