@@ -74,5 +74,13 @@ public class InserTableViewController implements Initializable {
         setRows(location.getLongName(), Integer.toString(location.getX()), Integer.toString(location.getY()), location.getBuilding());
     }
 
+    public void resetValues()
+    {
+        row1.setText("");
+        row2.setText("");
+        row3.setText("");
+        row4.setText("");
+    }
+
 
 }

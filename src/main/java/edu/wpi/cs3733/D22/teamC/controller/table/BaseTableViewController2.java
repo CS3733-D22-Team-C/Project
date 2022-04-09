@@ -109,8 +109,16 @@ public class BaseTableViewController2<T extends Object> implements Initializable
         });
     }
 
-    public void backButton(){
+    public void backButton(){ App.instance.setView(App.HOME_PATH);}
 
+    public void removeButton(){
+        if (tableDisplay != null)
+        {
+            LocationDAO locationDAO = new LocationDAOImpl();
+            locationDAO.deleteLocation(currentLocation);
+            insertController.resetValues();
+            tableDisplay = null;
+        }
     }
 
     private void resetTableView(){
