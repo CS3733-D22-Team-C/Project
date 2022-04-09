@@ -6,8 +6,10 @@ import org.hibernate.annotations.UpdateTimestamp;
 
 import javax.persistence.*;
 import java.sql.Timestamp;
+import java.util.Objects;
 
 @Entity
+@Inheritance(strategy = InheritanceType.JOINED)
 @Table(name = "SERVICE_REQUEST")
 public class ServiceRequest {
     @Id
@@ -15,7 +17,7 @@ public class ServiceRequest {
     @GeneratedValue(generator = "increment")
     @GenericGenerator(name = "increment", strategy = "increment")
     protected int requestID;
-    
+
     @Column(name = "CreatorID")
     protected String creatorID;     // TODO: Link to Employee
     
@@ -49,6 +51,7 @@ public class ServiceRequest {
     
     @UpdateTimestamp
     @Column(name = "ModifiedTimestamp")
+
     protected Timestamp modifiedTimestamp;
 
     public enum Status {
@@ -177,4 +180,23 @@ public class ServiceRequest {
     public void setModifiedTimestamp(Timestamp modifiedTimestamp) {
         this.modifiedTimestamp = modifiedTimestamp;
     }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        ServiceRequest that = (ServiceRequest) o;
+        return requestID == that.requestID
+                && creatorID.equals(that.creatorID)
+                && assigneeID.equals(that.assigneeID)
+                && locationID.equals(that.locationID)
+                && creationTimestamp.equals(that.creationTimestamp)
+                && status == that.status
+                && priority == that.priority
+                && requestType == that.requestType
+                && description.equals(that.description)
+                && modifierID.equals(that.modifierID)
+                && modifiedTimestamp.equals(that.modifiedTimestamp);
+    }
+
 }

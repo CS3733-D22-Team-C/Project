@@ -145,6 +145,7 @@ public class ViewMapController implements Initializable {
             mapPane.setPrefWidth(image.getWidth());
             mapPane.setPrefHeight(image.getHeight());
 
+
             FloorDAO floorDAO = new FloorDAO();
             List<Location> locations = floorDAO.getAllLocations(floor.getFloorID());
             mapLocations = renderLocations(locations);

@@ -89,13 +89,13 @@ public class ViewMapControlsController {
         File file = fileChooser.showOpenDialog(App.instance.getStage());
 
         if (file != null) {
-            // TODO: Clear Location Table
+            LocationDAO locationDAO = new LocationDAO();
+            locationDAO.deleteAllFromTable();
 
             // Load CSV Data - Location
             LocationCSVReader csvReader = new LocationCSVReader();
             List<Location> locations = csvReader.readFile(file);
             if (locations != null) {
-                LocationDAO locationDAO = new LocationDAO();
                 for (Location location : locations) {
                     locationDAO.insert(location);
                 }

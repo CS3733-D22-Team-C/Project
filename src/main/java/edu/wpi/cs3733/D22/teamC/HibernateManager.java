@@ -7,6 +7,7 @@ import org.hibernate.query.Query;
 /** Run Hibernate ORM Framework */
 public class HibernateManager {
 
+    // Singleton instance
 	private HibernateManager() {}
 
 	/**
@@ -97,6 +98,7 @@ public class HibernateManager {
 			T obj = objType.cast(session.get(objType, id));
             session.close();
             return obj;
+
 		} catch (Exception e) {
 			session.getTransaction().rollback();
 			session.close();
@@ -128,6 +130,31 @@ public class HibernateManager {
             return null;
         }
     }
+
+    
+    /**
+     * Delete all entries in a specific database table.
+     * @param objType A class type associated with the table to delete, i.e. Location
+     * @return True if table is cleared successfully.
+     */
+    @SuppressWarnings("unchecked")
+    public static <T> boolean deleteAllFromTable(Class<T> objType) {
+        Session session = SessionManager.getSession();
+        try {
+            session.beginTransaction();
+            Query<T> query = session.createQuery("delete from " + objType.getName());
+            query.executeUpdate();
+            session.getTransaction().commit();
+            session.close();
+            return true;
+        } catch (Exception e) {
+            session.getTransaction().rollback();
+            session.close();
+            e.printStackTrace();
+            return false;
+        }
+    }
+
 
 	
 }

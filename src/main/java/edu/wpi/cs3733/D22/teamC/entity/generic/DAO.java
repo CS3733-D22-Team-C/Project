@@ -9,7 +9,6 @@ import java.util.List;
  * @param <T>
  */
 public abstract class DAO <T> {
-    
     /**
      * When implementing a generic DAO, override this method to return the Object.class of the type T object.
      */
@@ -33,5 +32,10 @@ public abstract class DAO <T> {
     
     public List<T> getAll() {
         return HibernateManager.filterQuery("from " + classType().getName());
-    };
+    }
+    
+    public boolean deleteAllFromTable() {
+        return HibernateManager.deleteAllFromTable(classType());
+    }
+
 }
