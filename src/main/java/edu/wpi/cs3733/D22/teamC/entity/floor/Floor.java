@@ -1,11 +1,27 @@
 package edu.wpi.cs3733.D22.teamC.entity.floor;
 
-public class Floor {
+import org.hibernate.annotations.GenericGenerator;
 
+import javax.persistence.*;
+
+@Entity
+@Table(name = "FLOOR")
+public class Floor {
+    @Id
+    @Column(name = "ID", nullable = false)
+    @GeneratedValue(generator = "increment")
+    @GenericGenerator(name = "increment", strategy = "increment")
     private int floorID;
+    
+    @Column(name = "FloorOrder")
     private int order;
+    
+    @Column(name = "LongName")
     private String longName;
+    
+    @Column(name = "ShortName")
     private String shortName;
+    private String imageSrc;
 
     public Floor(){}
 
@@ -50,6 +66,11 @@ public class Floor {
         this.shortName = shortName;
     }
 
+    public String getImageSrc() {
+        return imageSrc;
+    }
 
+    public void setImageSrc(String imageSrc) {
+        this.imageSrc = imageSrc;
+    }
 }
-

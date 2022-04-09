@@ -1,122 +1,162 @@
 package edu.wpi.cs3733.D22.teamC.entity.location;
 
+import javax.persistence.*;
+import org.hibernate.annotations.GenericGenerator;
+
+@Entity
+@Table(name = "LOCATION")
 public class Location {
-    private int nodeID;
-    private int floor; // TODO: Floors should be objects
-    private String building = "";
-    private NodeType nodeType;
-    private String longName = "";
-    private String shortName = "";
-    private int x = 0, y = 0;
+	@Id
+	@Column(name = "ID", nullable = false)
+	@GeneratedValue(generator = "increment")
+	@GenericGenerator(name = "increment", strategy = "increment")
+	private int nodeID;
 
-    public enum NodeType {
-        PATI,
-        STOR,
-        DIRT,
-        HALL,
-        ELEV,
-        REST,
-        STAI,
-        DEPT,
-        LABS,
-        INFO,
-        CONF,
-        EXIT,
-        RETL,
-        SERV,
-        BATH
-    }
+    @Column(name = "FloorID")
+	private int floor; // TODO: Floors should be objects
+    
+    @Column(name = "Building")
+	private String building = "";
 
-    public Location() {}
+	@Enumerated(EnumType.STRING)
 
-    public Location(int nodeID) {
-        this.nodeID = nodeID;
-    }
+    @Column(name = "NodeType")
+	private NodeType nodeType;
+    
+    @Column(name = "LongName")
+	private String longName = "";
+    
+    @Column(name = "ShortName")
+	private String shortName = "";
 
-    public Location(int floor, String building, NodeType nodeType, String longName, String shortName, int x, int y) {
-        this.floor = floor;
-        this.building = building;
-        this.nodeType = nodeType;
-        this.longName = longName;
-        this.shortName = shortName;
-        this.x = x;
-        this.y = y;
-    }
+	@Column(name = "XCoord")
+	private int x = 0;
 
+	@Column(name = "YCoord")
+	private int y = 0;
 
-    @Deprecated
-    public Location(int nodeID, int floor, String building, NodeType nodeType, String longName, String shortName, int x, int y) {
-        this.nodeID = nodeID;
-        this.floor = floor;
-        this.building = building;
-        this.nodeType = nodeType;
-        this.longName = longName;
-        this.shortName = shortName;
-        this.x = x;
-        this.y = y;
-    }
+	public enum NodeType {
+		PATI,
+		STOR,
+		DIRT,
+		HALL,
+		ELEV,
+		REST,
+		STAI,
+		DEPT,
+		LABS,
+		INFO,
+		CONF,
+		EXIT,
+		RETL,
+		SERV,
+		BATH
+	}
 
-    public int getNodeID() {
-        return nodeID;
-    }
+	public Location() {}
 
-    public void setNodeID(int nodeID) {
-        this.nodeID = nodeID;
-    }
+	public Location(int nodeID) {
+		this.nodeID = nodeID;
+	}
 
-    public int getFloor() {
-        return floor;
-    }
+	public Location(
+			int floor,
+			String building,
+			NodeType nodeType,
+			String longName,
+			String shortName,
+			int x,
+			int y) {
+		this.floor = floor;
+		this.building = building;
+		this.nodeType = nodeType;
+		this.longName = longName;
+		this.shortName = shortName;
+		this.x = x;
+		this.y = y;
+	}
 
-    public void setFloor(int floor) {
-        this.floor = floor;
-    }
+	@Deprecated
+	public Location(
+			int nodeID,
+			int floor,
+			String building,
+			NodeType nodeType,
+			String longName,
+			String shortName,
+			int x,
+			int y) {
+		this.nodeID = nodeID;
+		this.floor = floor;
+		this.building = building;
+		this.nodeType = nodeType;
+		this.longName = longName;
+		this.shortName = shortName;
+		this.x = x;
+		this.y = y;
+	}
 
-    public String getBuilding() {
-        return building;
-    }
+	public int getNodeID() {
+		return nodeID;
+	}
 
-    public void setBuilding(String building) {
-        this.building = building;
-    }
+	public void setNodeID(int nodeID) {
+		this.nodeID = nodeID;
+	}
 
-    public NodeType getNodeType() {
-        return nodeType;
-    }
+	public int getFloor() {
+		return floor;
+	}
 
-    public void setNodeType(NodeType nodeType) {
-        this.nodeType = nodeType;
-    }
+	public void setFloor(int floor) {
+		this.floor = floor;
+	}
 
-    public String getLongName() {
-        return longName;
-    }
+	public String getBuilding() {
+		return building;
+	}
 
-    public void setLongName(String longName) {
-        this.longName = longName;
-    }
+	public void setBuilding(String building) {
+		this.building = building;
+	}
 
-    public String getShortName() {
-        return shortName;
-    }
+	public NodeType getNodeType() {
+		return nodeType;
+	}
 
-    public void setShortName(String shortName) {
-        this.shortName = shortName;
-    }
+	public void setNodeType(NodeType nodeType) {
+		this.nodeType = nodeType;
+	}
 
-    public int getX() {
-        return x;
-    }
+	public String getLongName() {
+		return longName;
+	}
 
-    public void setX(int x) {
-        this.x = x;
-    }
+	public void setLongName(String longName) {
+		this.longName = longName;
+	}
 
-    public int getY() {
-        return y;
-    }
+	public String getShortName() {
+		return shortName;
+	}
 
-    public void setY(int y) {
-        this.y = y;
-    }
+	public void setShortName(String shortName) {
+		this.shortName = shortName;
+	}
+
+	public int getX() {
+		return x;
+	}
+
+	public void setX(int x) {
+		this.x = x;
+	}
+
+	public int getY() {
+		return y;
+	}
+
+	public void setY(int y) {
+		this.y = y;
+	}
 }

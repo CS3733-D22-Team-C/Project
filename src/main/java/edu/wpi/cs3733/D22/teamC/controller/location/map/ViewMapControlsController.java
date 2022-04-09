@@ -2,22 +2,16 @@ package edu.wpi.cs3733.D22.teamC.controller.location.map;
 
 import com.jfoenix.controls.JFXComboBox;
 import edu.wpi.cs3733.D22.teamC.App;
-import edu.wpi.cs3733.D22.teamC.DBManager;
 import edu.wpi.cs3733.D22.teamC.entity.floor.Floor;
 import edu.wpi.cs3733.D22.teamC.entity.floor.FloorDAO;
-import edu.wpi.cs3733.D22.teamC.entity.floor.FloorDAOImpl;
 import edu.wpi.cs3733.D22.teamC.entity.location.Location;
 import edu.wpi.cs3733.D22.teamC.entity.location.LocationDAO;
-import edu.wpi.cs3733.D22.teamC.entity.location.LocationDAOImpl;
 import edu.wpi.cs3733.D22.teamC.fileio.csv.LocationCSVReader;
 import edu.wpi.cs3733.D22.teamC.fileio.csv.LocationCSVWriter;
 import javafx.fxml.FXML;
 import javafx.stage.FileChooser;
 
-import javax.swing.*;
-import java.awt.*;
 import java.io.File;
-import java.io.IOException;
 import java.util.List;
 
 public class ViewMapControlsController {
@@ -33,8 +27,8 @@ public class ViewMapControlsController {
     public void setup(BaseMapViewController baseMapViewController, Floor floor) {
         setParentController(baseMapViewController);
 
-        FloorDAO floorDAO = new FloorDAOImpl();
-        floors = floorDAO.getAllFloors();
+        FloorDAO floorDAO = new FloorDAO();
+        floors = floorDAO.getAll();
 
         if (floors != null) {
             for (Floor i : floors) {
@@ -95,15 +89,15 @@ public class ViewMapControlsController {
         File file = fileChooser.showOpenDialog(App.instance.getStage());
 
         if (file != null) {
-            DBManager.getInstance().initializeLocationTable(true);
+            LocationDAO locationDAO = new LocationDAO();
+            locationDAO.deleteAllFromTable();
 
             // Load CSV Data - Location
             LocationCSVReader csvReader = new LocationCSVReader();
             List<Location> locations = csvReader.readFile(file);
             if (locations != null) {
-                LocationDAO locationDAO = new LocationDAOImpl();
                 for (Location location : locations) {
-                    locationDAO.insertLocation(location);
+                    locationDAO.insert(location);
                 }
             }
 
@@ -123,8 +117,8 @@ public class ViewMapControlsController {
         if (file != null) {
             // Export CSV Data - Location
             LocationCSVWriter csvWriter = new LocationCSVWriter();
-            LocationDAO locationDAO = new LocationDAOImpl();
-            List<Location> locations = locationDAO.getAllLocations();
+            LocationDAO locationDAO = new LocationDAO();
+            List<Location> locations = locationDAO.getAll();
             if (locations != null) {
                 System.out.println(csvWriter.writeFile(file, locations));
             }

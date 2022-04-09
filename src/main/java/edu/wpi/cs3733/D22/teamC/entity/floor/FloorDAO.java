@@ -1,18 +1,25 @@
 package edu.wpi.cs3733.D22.teamC.entity.floor;
-
-import edu.wpi.cs3733.D22.teamC.entity.floor.Floor;
+import edu.wpi.cs3733.D22.teamC.HibernateManager;
+import edu.wpi.cs3733.D22.teamC.entity.generic.DAO;
 import edu.wpi.cs3733.D22.teamC.entity.location.Location;
 
 import java.util.List;
 
-public interface FloorDAO {
-    public List<Location> getAllLocations(int floorID);
-    public List<Floor> getAllFloors();
-    public Floor getFloor(int floorID);
 
-    public int insertFloor(Floor floor);
-    public boolean deleteFloor(Floor floor);
-    public boolean updateFloor(Floor floor);
-
+public class FloorDAO extends DAO<Floor> {
+    
+    protected Class<Floor> classType() {
+        return Floor.class;
+    }
+    
+    /**
+     * Return a list of locations associated with the given floorID.
+     * @param floorID Floor ID used for querying locations of the given floor.
+     * @return Return a list of locations associated with the given floorID.
+     */
+    public List<Location> getAllLocations(int floorID) {
+        return HibernateManager.filterQuery("from Location where FLOORID = " + floorID);    
+    }
+    
 
 }

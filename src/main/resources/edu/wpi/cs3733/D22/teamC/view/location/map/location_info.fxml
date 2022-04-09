@@ -24,13 +24,13 @@
       <VBox prefHeight="200.0" prefWidth="100.0">
          <children>
             <Label text="Long Name:" />
-            <TextField fx:id="longNameField" onInputMethodTextChanged="#onUpdateLocation" />
+            <TextField fx:id="longNameField" onKeyTyped="#onUpdateLocation" />
          </children>
       </VBox>
       <VBox prefHeight="200.0" prefWidth="100.0">
          <children>
             <Label text="Short Name" />
-            <TextField fx:id="shortNameField" onInputMethodTextChanged="#onUpdateLocation" />
+            <TextField fx:id="shortNameField" onKeyTyped="#onUpdateLocation" />
          </children>
       </VBox>
       <VBox prefHeight="200.0" prefWidth="100.0">

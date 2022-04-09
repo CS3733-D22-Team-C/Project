@@ -1,29 +1,19 @@
 package edu.wpi.cs3733.D22.teamC.controller.service_request.security;
 
 import com.jfoenix.controls.JFXComboBox;
-import com.jfoenix.controls.JFXTreeTableView;
-import com.jfoenix.controls.RecursiveTreeItem;
-import com.jfoenix.controls.datamodels.treetable.RecursiveTreeObject;
 import edu.wpi.cs3733.D22.teamC.controller.service_request.ServiceRequestCreateController;
 import edu.wpi.cs3733.D22.teamC.entity.service_request.ServiceRequest;
-import edu.wpi.cs3733.D22.teamC.entity.service_request.ServiceRequestDAO;
-import edu.wpi.cs3733.D22.teamC.entity.service_request.ServiceRequestDAOImpl;
 import edu.wpi.cs3733.D22.teamC.entity.service_request.security.SecuritySR;
+import edu.wpi.cs3733.D22.teamC.entity.service_request.security.SecuritySRDAO;
 import edu.wpi.cs3733.D22.teamC.error.error_item.service_request_user_input_validation.ServiceRequestUserInputValidationErrorItem;
-import edu.wpi.cs3733.D22.teamC.entity.service_request.security.SecuritySRDAOImpl;
 import edu.wpi.cs3733.D22.teamC.models.service_request.security.SecuritySRTableDisplay;
-import edu.wpi.cs3733.D22.teamC.user_input_validation.service_request.sanitation.SanitationSRFormEvaluator;
 import edu.wpi.cs3733.D22.teamC.user_input_validation.service_request.security.SecuritySRFormEvaluator;
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.scene.control.SingleSelectionModel;
-import javafx.scene.control.TreeItem;
 
 import java.net.URL;
-import java.util.ArrayList;
 import java.sql.Timestamp;
+import java.util.ArrayList;
 import java.util.ResourceBundle;
 
 public class SecuritySRCreateController extends ServiceRequestCreateController <SecuritySR> {
@@ -91,8 +81,8 @@ public class SecuritySRCreateController extends ServiceRequestCreateController <
         clickReset(event);
 
         //Database entry:
-            ServiceRequestDAO serviceRequestDAO = new SecuritySRDAOImpl();
-            serviceRequestDAO.insertServiceRequest(securitySR);
+            SecuritySRDAO serviceRequestDAO = new SecuritySRDAO();
+            serviceRequestDAO.insert(securitySR);
 
             return securitySR;
         }
