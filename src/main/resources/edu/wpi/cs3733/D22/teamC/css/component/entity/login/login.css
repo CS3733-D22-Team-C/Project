@@ -1,0 +1,96 @@
+@import "../../../colors.css";
+@import "../../../fonts.css";
+
+.login-interface-background-upper {
+    -fx-background-color: #00316C;
+}
+
+.login-interface-background-lower {
+    -fx-background-color: #FFFFFF;
+}
+
+.login-interface-title {
+    -fx-font-family: 'Cambo';
+    -fx-font-style: normal;
+    -fx-font-weight: 400;
+    -fx-font-size: 12px;
+    -fx-line-weight: 21px;
+
+    -fx-text-alignment: center;
+
+    -fx-text-fill: #FFFFFF;
+}
+
+.login-username-field {
+    -fx-background-color: #D7E5EF;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    border-radius: 4px;
+}
+
+.login-username-label {
+
+}
+
+.login-password-label {
+
+}
+
+.login-username-label {
+    -fx-font-family: 'Roboto';
+    -fx-font-style: normal;
+    -fx-font-weight: 500;
+    -fx-font-size: 10px;
+    -fx-line-height: 21px;
+    /* or 150% */
+
+    letter-spacing: 0.1px;
+
+    /* Secondary Text */
+
+    -fx-text-fill:  #000000;
+}
+
+.login-username-textfield {
+    -fx-background-color: #D7E5EF;
+    -box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    -fx-border-radius: 4px;
+}
+
+.login-button {
+    /* Box */
+    -fx-background-color: #4E86CC;
+    -fx-border-radius: 4px;
+}
+
+.exit-button {
+    /* Box */
+    /* Red Contrast */
+
+    -fx-background-color: #F44336;
+    -fx-border-radius: 4px;
+}
+
+.login-invalid-label {
+    -fx-font-family: 'Kantumruy';
+    -fx-font-style: normal;
+    -fx-font-weight: 400;
+    -fx-font-size: 19px;
+    -fx-line-height: 21px;
+    /* or 111% */
+
+    -fx-letter-spacing: 0.1px;
+
+    -fx-text-fill: #000000;
+
+   -fx-background-color: rgba(255, 174, 174, 0.5);
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    -fx-border-radius: 11px;
+}
+
+.login-exit-button {
+
+    /* Red Contrast */
+
+    background: #F44336;
+    border-radius: 4px;
+}

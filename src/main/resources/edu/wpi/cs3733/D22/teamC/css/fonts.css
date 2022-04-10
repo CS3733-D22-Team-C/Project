@@ -1,3 +1,4 @@
-* {
-    -font-field-label: sans-serif;
+*. {
+    -font-field-serif: 'sans-serif';
+    -font-cambo: 'cambo';
 }

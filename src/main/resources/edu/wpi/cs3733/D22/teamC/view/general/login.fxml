@@ -1,0 +1,127 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import io.github.palexdev.materialfx.controls.MFXButton?>
+<?import io.github.palexdev.materialfx.controls.MFXTextField?>
+<?import java.lang.String?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.effect.DropShadow?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="625.0" prefWidth="705.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <ImageView fitHeight="625.0" fitWidth="567.0" pickOnBounds="true" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="138.0" AnchorPane.topAnchor="0.0">
+         <image>
+            <Image url="../../static/images/BrighamAndWomensHospital.png" />
+         </image>
+      </ImageView>
+      <VBox layoutX="362.0" layoutY="-1.0" prefHeight="626.0" prefWidth="342.0">
+         <children>
+            <StackPane prefHeight="150.0" prefWidth="357.0">
+               <children>
+                  <Label prefHeight="150.0" prefWidth="357.0" stylesheets="@../../css/component/entity/login/login.css" text="                                     Brigham and Women’s Internal Tools" wrapText="true">
+                     <styleClass>
+                        <String fx:value="login-interface-background-upper" />
+                        <String fx:value="login-interface-title" />
+                     </styleClass>
+                  </Label>
+                  <ImageView fitHeight="120.0" fitWidth="86.0" pickOnBounds="true" preserveRatio="true" translateX="-100.0">
+                     <image>
+                        <Image url="../../static/images/logo.png" />
+                     </image>
+                  </ImageView>
+               </children>
+            </StackPane>
+            <StackPane prefHeight="445.0" prefWidth="340.0">
+               <children>
+                  <HBox prefHeight="445.0" prefWidth="354.0">
+                     <children>
+                        <Label prefHeight="446.0" prefWidth="354.0" styleClass="login-interface-background-lower" stylesheets="@../../css/component/entity/login/login.css" />
+                     </children>
+                  </HBox>
+                  <GridPane>
+                    <columnConstraints>
+                      <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                    </columnConstraints>
+                    <rowConstraints>
+                      <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                      <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                      <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                    </rowConstraints>
+                     <children>
+                        <Label fx:id="invalidLogin" styleClass="login-invalid-label" stylesheets="@../../css/component/entity/login/login.css" text="Invalid username or password" translateX="50.0" />
+                        <VBox prefHeight="200.0" prefWidth="100.0" GridPane.rowIndex="1">
+                           <children>
+                              <Label styleClass="login-username-label" stylesheets="@../../css/component/entity/login/login.css" text="Username" translateX="75.0" translateY="20.0" />
+                              <MFXTextField fx:id="username" prefHeight="50.0" prefWidth="180.0" styleClass="login-username-field" stylesheets="@../../css/component/entity/login/login.css" translateX="75.0" translateY="30.0">
+                                 <effect>
+                                    <DropShadow />
+                                 </effect>
+                              </MFXTextField>
+                           </children>
+                        </VBox>
+                        <VBox prefHeight="200.0" prefWidth="100.0" GridPane.rowIndex="2">
+                           <children>
+                              <Label styleClass="login-username-label" stylesheets="@../../css/component/entity/login/login.css" text="Password" translateX="75.0" translateY="20.0" />
+                              <MFXTextField fx:id="password" prefHeight="50.0" prefWidth="180.0" styleClass="login-username-field" stylesheets="@../../css/component/entity/login/login.css" translateX="75.0" translateY="30.0">
+                                 <effect>
+                                    <DropShadow />
+                                 </effect>
+                              </MFXTextField>
+                           </children>
+                        </VBox>
+                        <VBox prefHeight="200.0" prefWidth="100.0" GridPane.rowIndex="3">
+                           <children>
+                              <StackPane prefHeight="150.0" prefWidth="200.0">
+                                 <children>
+                                    <MFXButton onAction="#loginButtonClicked" prefHeight="39.0" prefWidth="114.0" styleClass="login-button" stylesheets="@../../css/component/entity/login/login.css" text="Login" translateX="-7.0" translateY="30.0">
+                                       <font>
+                                          <Font name="Roboto Light" size="12.0" />
+                                       </font>
+                                    </MFXButton>
+                                    <ImageView fitHeight="16.0" fitWidth="150.0" pickOnBounds="true" preserveRatio="true" translateX="-40.0" translateY="30.0">
+                                       <image>
+                                          <Image url="../../images/icon/arrow_icon.png" />
+                                       </image>
+                                    </ImageView>
+                                 </children>
+                              </StackPane>
+                           </children>
+                        </VBox>
+                        <VBox prefHeight="200.0" prefWidth="100.0" GridPane.rowIndex="4">
+                           <children>
+                              <StackPane prefHeight="150.0" prefWidth="200.0">
+                                 <children>
+                                    <MFXButton onAction="#exitButtonClicked" prefHeight="39.0" prefWidth="114.0" styleClass="exit-button" stylesheets="@../../css/component/entity/login/login.css" text="Exit" translateX="-7.0">
+                                       <font>
+                                          <Font name="Roboto Light" size="12.0" />
+                                       </font>
+                                    </MFXButton>
+                                    <ImageView fitHeight="16.0" fitWidth="150.0" pickOnBounds="true" preserveRatio="true" translateX="-40.0">
+                                       <image>
+                                          <Image url="../../images/icon/powerbutton.png" />
+                                       </image>
+                                    </ImageView>
+                                 </children>
+                              </StackPane>
+                           </children>
+                        </VBox>
+                     </children>
+                  </GridPane>
+               </children>
+            </StackPane>
+         </children>
+      </VBox>
+   </children>
+</AnchorPane>

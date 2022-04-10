@@ -42,7 +42,7 @@ public class App extends Application {
     public static final String BASE_COMPONENT_PATH = "view/component/base.fxml";
     public static final String MENU_BAR_COMPONENT_PATH = "view/component/menu_bar.fxml";
 
-    public static final String HOME_PATH = "view/general/home.fxml";
+    public static final String LOGIN_PATH = "view/general/login.fxml";
     public static final String VIEW_LOCATIONS_PATH = "view/location/view_locations.fxml";
     public static final String VIEW_SERVICE_REQUESTS_PATH = "view/service_request/view_service_requests.fxml";
     public static final String MAP_PATH = "view/location/map/base_map_view.fxml";
@@ -105,7 +105,7 @@ public class App extends Application {
         
         stage.setFullScreen(true);
         
-        setView(HOME_PATH);
+        setView(LOGIN_PATH);
     }
 
     @Override
