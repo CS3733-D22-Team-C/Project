@@ -26,6 +26,8 @@ import java.util.ResourceBundle;
 public class DrawerContentController implements Initializable {
 
     SidebarMenuController sidebarMenuController;
+    private FadeTransition fadeOut;
+    private FadeTransition fadeIn;
 
     //#region FXML
     @FXML
@@ -91,6 +93,8 @@ public class DrawerContentController implements Initializable {
             button.setContentDisplay(ContentDisplay.LEFT);
             button.setAlignment(Pos.CENTER_LEFT);
         }
+        expandedView.setOpacity(1);
+        miniView.setOpacity(0);
     }
 
     /**
@@ -108,6 +112,8 @@ public class DrawerContentController implements Initializable {
             // Make it so the button only displays the graphic
             button.setAlignment(Pos.CENTER);
             }
+        expandedView.setOpacity(0);
+        miniView.setOpacity(1);
         }
 
     @FXML
@@ -150,6 +156,7 @@ public class DrawerContentController implements Initializable {
     }
 
     // TODO: Bug when entering and exiting the drawer too fast, will overlay both mini and expanded onto the scene
+    // Use semaphores/mutexes? 
     /**
      * Function to control the animation to fade in and fade out a node
      * @param fadeInNode The node you want to fade in
@@ -158,10 +165,10 @@ public class DrawerContentController implements Initializable {
      * @param fadeOutTime The amount of time the node takes to fade out in seconds
      */
     private void fadeTransition(Node fadeInNode, double fadeInTime, Node fadeOutNode, double fadeOutTime) {
-        FadeTransition fadeOut = new FadeTransition(Duration.seconds(fadeOutTime), fadeOutNode);
+        fadeOut = new FadeTransition(Duration.seconds(fadeOutTime), fadeOutNode);
         fadeOut.setFromValue(1.0);
         fadeOut.setToValue(0.0);
-        FadeTransition fadeIn = new FadeTransition(Duration.seconds(fadeInTime), fadeInNode);
+        fadeIn = new FadeTransition(Duration.seconds(fadeInTime), fadeInNode);
         fadeIn.setFromValue(0.0);
         fadeIn.setToValue(1.0);
         fadeIn.play();
