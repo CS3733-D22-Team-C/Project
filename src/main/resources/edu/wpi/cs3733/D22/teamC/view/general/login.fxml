@@ -35,7 +35,7 @@
                   </Label>
                   <ImageView fitHeight="120.0" fitWidth="86.0" pickOnBounds="true" preserveRatio="true" translateX="-100.0">
                      <image>
-                        <Image url="@../../../../../../../../../../../../../Desktop/logo.png" />
+                        <Image url="@../../static/images/logo.png" />
                      </image>
                   </ImageView>
                </children>
@@ -91,7 +91,7 @@
                                     </MFXButton>
                                     <ImageView fitHeight="21.0" fitWidth="21.0" pickOnBounds="true" preserveRatio="true" translateX="-40.0" translateY="30.0">
                                        <image>
-                                          <Image url="@../../images/icon/arrow.png" />
+                                          <Image url="@../../static/images/arrow.png" />
                                        </image>
                                     </ImageView>
                                  </children>
@@ -109,7 +109,7 @@
                                     </MFXButton>
                                     <ImageView fitHeight="16.0" fitWidth="150.0" pickOnBounds="true" preserveRatio="true" translateX="-40.0">
                                        <image>
-                                          <Image url="@../../images/icon/powerbutton.png" />
+                                          <Image url="@../../static/images/powerbutton.png" />
                                        </image>
                                     </ImageView>
                                  </children>
