@@ -2,50 +2,60 @@
 
 <?import com.jfoenix.controls.JFXButton?>
 <?import com.jfoenix.controls.JFXTreeTableView?>
-<?import java.net.URL?>
 <?import javafx.geometry.Insets?>
+<?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.ColumnConstraints?>
 <?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.layout.VBox?>
 
-<GridPane alignment="CENTER" styleClass="base_view_table_grid" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.wpi.cs3733.D22.teamC.controller.table.LocationInsertTableViewController.java">
-   <columnConstraints>
-      <ColumnConstraints hgrow="SOMETIMES" maxWidth="316.0" minWidth="10.0" prefWidth="300.0" />
-      <ColumnConstraints hgrow="SOMETIMES" maxWidth="301.0" minWidth="10.0" prefWidth="300.0" />
-   </columnConstraints>
-   <rowConstraints>
-      <RowConstraints maxHeight="281.0" minHeight="10.0" prefHeight="255.0" vgrow="SOMETIMES" />
-      <RowConstraints maxHeight="84.0" minHeight="9.0" prefHeight="81.0" vgrow="SOMETIMES" />
-   </rowConstraints>
+<GridPane alignment="CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="698.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.wpi.cs3733.D22.teamC.controller.table.BaseTableViewController2">
+  <columnConstraints>
+    <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+    <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+  </columnConstraints>
+  <rowConstraints>
+    <RowConstraints maxHeight="575.0" minHeight="10.0" prefHeight="548.0" vgrow="SOMETIMES" />
+    <RowConstraints maxHeight="196.0" minHeight="10.0" prefHeight="117.0" vgrow="SOMETIMES" />
+  </rowConstraints>
    <children>
-      <JFXTreeTableView fx:id="table" prefHeight="255.0" prefWidth="222.0" GridPane.columnIndex="1">
-         <GridPane.margin>
-            <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
-         </GridPane.margin>
-      </JFXTreeTableView>
+      <VBox fx:id="insertBox" prefHeight="200.0" prefWidth="100.0" GridPane.vgrow="ALWAYS">
+         <padding>
+            <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+         </padding></VBox>
       <HBox alignment="CENTER_RIGHT" prefHeight="64.0" prefWidth="259.0" GridPane.columnIndex="1" GridPane.rowIndex="1">
          <children>
-            <JFXButton fx:id="remove" prefHeight="36.0" prefWidth="36.0" styleClass="base_view_table_add" stylesheets="@../../css/table_skeleton.css" text="+">
+            <TextField fx:id="row5" />
+            <JFXButton fx:id="remove" onAction="#addClicked" prefHeight="36.0" prefWidth="36.0" styleClass="base_view_table_add" stylesheets="@../../css/table_skeleton.css" text="+">
                <HBox.margin>
-                  <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                  <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
                </HBox.margin>
+               <padding>
+                  <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+               </padding>
             </JFXButton>
-            <JFXButton fx:id="add" prefHeight="36.0" prefWidth="36.0" styleClass="base_view_table_sub" stylesheets="@../../css/table_skeleton.css" text="-">
+            <JFXButton fx:id="add" onAction="#removeButton" prefHeight="36.0" prefWidth="36.0" styleClass="base_view_table_sub" stylesheets="@../../css/table_skeleton.css" text="-">
                <HBox.margin>
-                  <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                  <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
                </HBox.margin>
+               <padding>
+                  <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+               </padding>
             </JFXButton>
          </children>
       </HBox>
-      <HBox fx:id="insertBox" />
-      <JFXButton fx:id="back" prefHeight="36.0" prefWidth="123.0" styleClass="base_view_table_back" stylesheets="@../../css/table_skeleton.css" GridPane.rowIndex="1" />
+      <JFXButton fx:id="back" onAction="#backButton" prefHeight="36.0" prefWidth="113.0" styleClass="base_view_table_back" stylesheets="@../../css/table_skeleton.css" text="Back" GridPane.rowIndex="1">
+         <GridPane.margin>
+            <Insets left="15.0" />
+         </GridPane.margin></JFXButton>
+      <VBox prefHeight="200.0" prefWidth="100.0" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.valignment="CENTER" GridPane.vgrow="ALWAYS">
+         <children>
+            <JFXTreeTableView fx:id="table" prefHeight="400.0" prefWidth="300.0" VBox.vgrow="ALWAYS">
+               <padding>
+                  <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+               </padding></JFXTreeTableView>
+         </children>
+      </VBox>
    </children>
-   <padding>
-      <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
-   </padding>
-   <stylesheets>
-      <URL value="@../../css/base.css" />
-      <URL value="@../../css/table_skeleton.css" />
-   </stylesheets>
 </GridPane>
