@@ -5,7 +5,11 @@
 .card {
     -fx-border-width: 2px;
     -fx-border-radius: 5px;
-    -fx-background-color: #00000000;
+}
+
+.inner-card {
+    -fx-border-color: #b5b5b5;
+    -fx-border-radius: 2px;
 }
 
 .card-content-header {

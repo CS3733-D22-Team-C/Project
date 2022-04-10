@@ -22,9 +22,9 @@
   <tabs>
       <Tab fx:id="locationTab" text="Location">
          <content>
-            <StackPane prefHeight="150.0" prefWidth="200.0" styleClass="inner-pane">
+            <StackPane prefHeight="150.0" prefWidth="200.0" styleClass="inner-card">
                <children>
-                  <VBox maxWidth="1.7976931348623157E308" StackPane.alignment="CENTER">
+                  <VBox maxWidth="1.7976931348623157E308" prefHeight="394.0" prefWidth="314.0">
                      <children>
                         <Label alignment="CENTER" maxHeight="75.0" maxWidth="1.7976931348623157E308" minHeight="50.0" prefHeight="75.0" styleClass="card-content-header" text="Location Info" VBox.vgrow="ALWAYS">
                            <padding>
@@ -151,7 +151,7 @@
       </Tab>
     <Tab fx:id="medicalEquipmentTab" text="Medical Equipment">
          <content>
-            <StackPane prefHeight="150.0" prefWidth="200.0" styleClass="inner-pane">
+            <StackPane prefHeight="150.0" prefWidth="200.0" styleClass="inner-card">
                <children>
                   <VBox prefHeight="200.0" prefWidth="100.0">
                      <children>
@@ -176,7 +176,7 @@
     </Tab>
       <Tab fx:id="serviceRequestTab" text="Service Requests">
          <content>
-            <StackPane prefHeight="150.0" prefWidth="200.0" styleClass="inner-pane">
+            <StackPane prefHeight="150.0" prefWidth="200.0" styleClass="inner-card">
                <children>
                   <VBox prefHeight="200.0" prefWidth="100.0">
                      <children>

@@ -128,7 +128,7 @@ public class ViewMapController implements Initializable {
          * @param location The Location to create the Location Node for.
          */
         public void addLocationNode(Location location) {
-            ViewMapController.LocationNode newMapLoc = new ViewMapController.LocationNode(location);
+            ViewMapController.LocationNode newMapLoc = new LocationNode(location);
             locationNodes.add(newMapLoc);
             mapPane.getChildren().add(newMapLoc.node);
         }

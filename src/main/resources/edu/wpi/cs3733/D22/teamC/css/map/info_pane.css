@@ -3,18 +3,6 @@
 
 /* Custom */
 
-#info-pane {
-    -fx-border-width: 2px;
-    -fx-border-radius: 5px;
-    -fx-background-color: #00000000;
-}
-
-.inner-pane {
-    -fx-background-color: -color-primary-text;
-    -fx-border-color: #b5b5b5;
-    -fx-border-radius: 2px;
-}
-
 .icon {
     -fx-scale-x: 0.075;
     -fx-scale-y: 0.075;
@@ -30,4 +18,5 @@
 
 .tab-header-background {
     -fx-background-color: #00000000;
+    -fx-opacity: 0;
 }

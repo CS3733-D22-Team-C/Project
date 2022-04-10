@@ -7,7 +7,7 @@
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.layout.VBox?>
 
-<SplitPane fx:id="splitPane" dividerPositions="0.65" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.wpi.cs3733.D22.teamC.controller.location.map.BaseMapViewController">
+<SplitPane fx:id="splitPane" dividerPositions="0.75" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.wpi.cs3733.D22.teamC.controller.location.map.BaseMapViewController">
   <items>
       <GridPane fx:id="mapViewPane" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308">
         <columnConstraints>
@@ -19,18 +19,18 @@
       </GridPane>
       <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0">
          <children>
-            <HBox prefHeight="100.0" prefWidth="200.0" VBox.vgrow="ALWAYS">
+            <HBox VBox.vgrow="ALWAYS">
                <children>
-                  <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" HBox.hgrow="SOMETIMES" />
-                  <VBox fx:id="controlsBox" alignment="CENTER" prefHeight="200.0" prefWidth="250.0" HBox.hgrow="NEVER" />
-                  <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" HBox.hgrow="SOMETIMES" />
+                  <VBox alignment="TOP_RIGHT" prefHeight="200.0" prefWidth="0.0" HBox.hgrow="ALWAYS" />
+                  <VBox fx:id="controlsBox" alignment="TOP_RIGHT" prefHeight="200.0" prefWidth="250.0" HBox.hgrow="NEVER" />
+                  <VBox alignment="TOP_RIGHT" layoutX="10.0" layoutY="10.0" prefHeight="200.0" prefWidth="0.0" HBox.hgrow="ALWAYS" />
                </children>
             </HBox>
-            <HBox prefHeight="100.0" prefWidth="200.0" VBox.vgrow="ALWAYS">
+            <HBox VBox.vgrow="ALWAYS">
                <children>
-                  <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" HBox.hgrow="SOMETIMES" />
-                  <VBox fx:id="infoPaneBox" alignment="CENTER" prefHeight="200.0" prefWidth="250.0" />
-                  <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" HBox.hgrow="SOMETIMES" />
+                  <VBox alignment="TOP_RIGHT" prefHeight="200.0" prefWidth="0.0" HBox.hgrow="ALWAYS" />
+                  <VBox fx:id="infoPaneBox" alignment="TOP_RIGHT" prefHeight="200.0" prefWidth="250.0" HBox.hgrow="NEVER" />
+                  <VBox alignment="TOP_RIGHT" prefHeight="200.0" prefWidth="0.0" HBox.hgrow="ALWAYS" />
                </children>
             </HBox>
          </children>
