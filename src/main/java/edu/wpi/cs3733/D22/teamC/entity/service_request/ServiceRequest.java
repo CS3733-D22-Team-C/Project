@@ -1,5 +1,6 @@
 package edu.wpi.cs3733.D22.teamC.entity.service_request;
 
+import edu.wpi.cs3733.D22.teamC.entity.employee.Employee;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
 
@@ -14,10 +15,16 @@ public class ServiceRequest {
     @Id
     @Column(name = "ID")
     protected String requestID;
-    
-    @Column(name = "CreatorID")
-    protected String creatorID;     // TODO: Link to Employee
-    
+
+
+    //@Column(name = "CreatorID")
+    @ManyToOne
+    @JoinColumn(name = "CreatorID", referencedColumnName = "ID")
+    protected Employee creator;     // TODO: Link to Employee
+
+
+    //@ManyToOne
+    //@JoinColumn(name = "AssigneeID", referencedColumnName = "ID")
     @Column(name = "AssigneeID")
     protected String assigneeID;    // TODO: Link to Employee
     
@@ -77,7 +84,7 @@ public class ServiceRequest {
     
     public ServiceRequest(ServiceRequest serviceRequest) {
         this.requestID = serviceRequest.getRequestID();
-        this.creatorID = serviceRequest.getCreatorID();
+        this.creator = serviceRequest.getCreator();
         this.assigneeID = serviceRequest.getAssigneeID();
         this.locationID = serviceRequest.getLocation();
         this.creationTimestamp = serviceRequest.getCreationTimestamp();
@@ -101,12 +108,12 @@ public class ServiceRequest {
         this.requestID = requestID;
     }
     
-    public String getCreatorID() {
-        return creatorID;
+    public Employee getCreator() {
+        return creator;
     }
     
     public void setCreatorID(String creatorID) {
-        this.creatorID = creatorID;
+        this.creator = creator;
     }
     
     public String getAssigneeID() {
@@ -185,7 +192,7 @@ public class ServiceRequest {
         if (o == null || getClass() != o.getClass()) return false;
         ServiceRequest that = (ServiceRequest) o;
         return requestID.equals(that.requestID)
-                && creatorID.equals(that.creatorID)
+                && creator.equals(that.creator)
                 && assigneeID.equals(that.assigneeID)
                 && locationID.equals(that.locationID)
                 && creationTimestamp.equals(that.creationTimestamp)
