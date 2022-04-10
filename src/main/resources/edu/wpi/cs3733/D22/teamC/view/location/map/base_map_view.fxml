@@ -26,7 +26,7 @@
                   <VBox alignment="TOP_RIGHT" layoutX="10.0" layoutY="10.0" prefHeight="200.0" prefWidth="0.0" HBox.hgrow="ALWAYS" />
                </children>
             </HBox>
-            <HBox VBox.vgrow="ALWAYS">
+            <HBox prefHeight="322.0" prefWidth="146.0" VBox.vgrow="ALWAYS">
                <children>
                   <VBox alignment="TOP_RIGHT" prefHeight="200.0" prefWidth="0.0" HBox.hgrow="ALWAYS" />
                   <VBox fx:id="infoPaneBox" alignment="TOP_RIGHT" prefHeight="200.0" prefWidth="250.0" HBox.hgrow="NEVER" />

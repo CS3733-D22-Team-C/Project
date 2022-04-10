@@ -6,7 +6,6 @@ import edu.wpi.cs3733.D22.teamC.entity.location.Location;
 import io.github.palexdev.materialfx.controls.MFXScrollPane;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.control.ScrollPane;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseButton;
@@ -24,7 +23,7 @@ import java.util.List;
 import java.util.ResourceBundle;
 import java.util.stream.Collectors;
 
-public class ViewMapController implements Initializable {
+public class MapController implements Initializable {
     protected class LocationNode {
         public Circle node;
         public Location location;
@@ -55,18 +54,28 @@ public class ViewMapController implements Initializable {
             return circle;
         }
 
-        public void deactivateNode() {
+        public void deactivate() {
             this.node.setFill(Color.DARKCYAN);
         }
 
-        public void activateNode() {
+        public void activate() {
             this.node.setFill(Color.BLACK);
+        }
+
+        public void unfocus() {
+            this.node.setStroke(Color.DARKSLATEGREY);
+            this.node.setStrokeWidth(1f);
+        }
+
+        public void focus() {
+            this.node.setStroke(Color.GRAY);
+            this.node.setStrokeWidth(5f);
         }
     }
 
     // Constants
-    protected final static double MAX_SCALE = 1.1f;
-    protected final static double MIN_SCALE = 0.8f;
+    protected final static double MAX_SCALE = 1.25f;
+    protected final static double MIN_SCALE = 0.75f;
 
     // FXML
     @FXML MFXScrollPane scrollPane;
@@ -74,11 +83,12 @@ public class ViewMapController implements Initializable {
     @FXML Pane mapPane;
 
     // Variables
-    protected LocationNode clickedLocationNode, hoveredLocationNode;
     protected List<LocationNode> locationNodes = new ArrayList<>();
+    protected LocationNode clickedLocation;
 
     // References
     protected BaseMapViewController parentController;
+
 
     @Override
     public final void initialize(URL location, ResourceBundle resources) {
@@ -89,7 +99,7 @@ public class ViewMapController implements Initializable {
         mapPane.setOnScroll(this::onMouseScrollMap);
     }
 
-    //#region LocationNode Interaction
+    //#region Location Node Interaction
         private final LocationNode getLocationNode(Location location) {
             return locationNodes.stream().filter(node -> node.location.getNodeID() == location.getNodeID()).collect(Collectors.toList()).get(0);
         }
@@ -128,7 +138,7 @@ public class ViewMapController implements Initializable {
          * @param location The Location to create the Location Node for.
          */
         public void addLocationNode(Location location) {
-            ViewMapController.LocationNode newMapLoc = new LocationNode(location);
+            LocationNode newMapLoc = new LocationNode(location);
             locationNodes.add(newMapLoc);
             mapPane.getChildren().add(newMapLoc.node);
         }
@@ -151,76 +161,32 @@ public class ViewMapController implements Initializable {
             mapPane.getChildren().remove(locationNode.node);
             locationNodes.remove(locationNode);
         }
-
-        public void resetLocationNode(Location location) {
-            LocationNode locationNode = getLocationNode(location);
-            locationNode.node.setCenterX(location.getX());
-            locationNode.node.setCenterY(location.getY());
-        }
-    //#endregion
-
-    //#region Update State
-        private void setClickMapLocation(LocationNode locationNode) {
-            clickedLocationNode = locationNode;
-            parentController.setCurrentLocation((locationNode == null) ? null : locationNode.location);
-        }
-
-        private void setHoveredMapLocation(LocationNode locationNode) {
-            hoveredLocationNode = locationNode;
-            if (clickedLocationNode == null) {
-                parentController.setCurrentLocation((hoveredLocationNode == null) ? null : hoveredLocationNode.location);
-            }
-        }
-    //#endregion
-
-    //#region External Setup
-        public void setParentController(BaseMapViewController baseMapViewController) {
-            this.parentController = baseMapViewController;
-        }
-
-        public void renderFloor(Floor floor) {
-            // Reset LocationNodes
-            removeAllLocationNodes();
-
-            // Set Image
-            // TODO: Pull Image from DB
-            Path filePath = Paths.get("maps/" + floor.getImageSrc());
-            Image image = new Image("file:" + filePath);
-            mapImage.setImage(image);
-            mapPane.setPrefWidth(image.getWidth());
-            mapPane.setPrefHeight(image.getHeight());
-
-            // Load Locations
-            List<Location> locations = new FloorDAO().getAllLocations(floor.getFloorID());
-
-            // Load LocationNodes
-            locationNodes = renderLocationsNodes(locations);
-        }
     //#endregion
 
     //#region Mouse Events
         protected void onMouseEnterNode(MouseEvent event, LocationNode locationNode) {
-            setHoveredMapLocation(locationNode);
-            onHoverNode(locationNode);
+            locationNode.focus();
+            if (clickedLocation == null) {
+                parentController.setCurrentLocation(locationNode.location, false);
+            }
         }
 
         protected void onMouseExitNode(MouseEvent event, LocationNode locationNode) {
-            setHoveredMapLocation(null);
-            offHoverNode(locationNode);
+            locationNode.unfocus();
+            if (clickedLocation == null) {
+                parentController.setCurrentLocation(null, false);
+            }
         }
 
         protected void onMouseClickedNode(MouseEvent event, LocationNode locationNode) {
             if (event.getButton().equals(MouseButton.PRIMARY)) {
                 // Single-Click select toggle
                 {
-                    if (clickedLocationNode != null) offActiveNode(clickedLocationNode);
+                    // Update clicked Location Node
+                    setClickedLocation(locationNode.location);
 
-                    if (clickedLocationNode == locationNode) {
-                        setClickMapLocation(null);
-                    } else {
-                        onActiveNode(locationNode);
-                        setClickMapLocation(locationNode);
-                    }
+                    // Update current Location
+                    parentController.setCurrentLocation((clickedLocation != null) ? clickedLocation.location : null);
                 }
 
                 event.consume();
@@ -232,9 +198,10 @@ public class ViewMapController implements Initializable {
         protected void onMouseClickedMap(MouseEvent event) {
             if (event.getButton().equals(MouseButton.PRIMARY)) {
                 // Single-Click reset active LocationNode
-                if (clickedLocationNode != null && clickedLocationNode != hoveredLocationNode) {
-                    offActiveNode(clickedLocationNode);
-                    setClickMapLocation(null);
+                {
+                    if (clickedLocation != null) {
+                        parentController.setCurrentLocation(null);
+                    }
                 }
             }
         }
@@ -256,8 +223,8 @@ public class ViewMapController implements Initializable {
         protected void onMouseScrollMap(ScrollEvent event) {
             if (event.getDeltaY() != 0) {
                 double scale = (event.getDeltaY() < 0)
-                    ? Math.max(mapPane.getScaleX() - 0.1, MIN_SCALE)
-                    : Math.min(mapPane.getScaleX() + 0.1, MAX_SCALE);
+                        ? Math.max(mapPane.getScaleX() - 0.1, MIN_SCALE)
+                        : Math.min(mapPane.getScaleX() + 0.1, MAX_SCALE);
                 mapPane.setScaleX(scale);
                 mapImage.setScaleX(scale);
                 mapPane.setScaleY(scale);
@@ -268,23 +235,42 @@ public class ViewMapController implements Initializable {
         }
     //#endregion
 
-    //#region Node Interaction Feedback
-        protected final void onHoverNode(LocationNode locationNode) {
-            locationNode.node.setStroke(Color.GRAY);
-            locationNode.node.setStrokeWidth(5f);
+    //#region External Interaction
+        public void setParentController(BaseMapViewController baseMapViewController) {
+            this.parentController = baseMapViewController;
         }
 
-        protected final void offHoverNode(LocationNode locationNode) {
-            locationNode.node.setStroke(Color.DARKSLATEGREY);
-            locationNode.node.setStrokeWidth(1f);
+        public void setClickedLocation(Location location) {
+            if (clickedLocation != null) {
+                clickedLocation.deactivate();
+                clickedLocation = null;
+            }
+            if (location != null) {
+                clickedLocation = getLocationNode(location);
+                clickedLocation.activate();
+            }
         }
 
-        protected final void onActiveNode(LocationNode locationNode) {
-            locationNode.activateNode();
-        }
+        public void renderFloor(Floor floor) {
+            // Reset State
+            clickedLocation = null;
 
-        protected final void offActiveNode(LocationNode locationNode) {
-            locationNode.deactivateNode();
+            // Reset LocationNodes
+            removeAllLocationNodes();
+
+            // Set Image
+            // TODO: Pull Image from DB
+            Path filePath = Paths.get("maps/" + floor.getImageSrc());
+            Image image = new Image("file:" + filePath);
+            mapImage.setImage(image);
+            mapPane.setPrefWidth(image.getWidth());
+            mapPane.setPrefHeight(image.getHeight());
+
+            // Load Locations
+            List<Location> locations = new FloorDAO().getAllLocations(floor.getFloorID());
+
+            // Load LocationNodes
+            locationNodes = renderLocationsNodes(locations);
         }
     //#endregion
 

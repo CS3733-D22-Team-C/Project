@@ -128,7 +128,8 @@ public class InfoPaneController implements Initializable {
             // Service Requests
             // TODO: Populate table with Service Requests at Location
 
-            revertButton.setDisable(!parentController.touchedLocations.contains(location));
+            revertButton.setDisable(!(parentController.touchedLocations.contains(location)
+                    || parentController.additionLocations.contains(location) || parentController.deletionLocations.contains(location)));
         }
 
         /**
@@ -148,7 +149,7 @@ public class InfoPaneController implements Initializable {
             location.setFloor(floorComboBox.getValue().getFloorID());
             location.setNodeType(nodeComboBox.getValue());
 
-            if (original != location) {
+            if (!original.equals(location)) {
                 revertButton.setDisable(false);
                 parentController.touchLocation(location);
             }
@@ -164,6 +165,7 @@ public class InfoPaneController implements Initializable {
         @FXML
         void onRevertButtonPressed(ActionEvent event) {
             parentController.resetLocation(parentController.getCurrentLocation());
+            revertButton.setDisable(true);
         }
 
         @FXML

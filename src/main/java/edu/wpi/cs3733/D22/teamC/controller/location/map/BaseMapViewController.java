@@ -32,7 +32,7 @@ public class BaseMapViewController implements Initializable {
     @FXML Pane infoPaneBox;
 
     // Controllers
-    ViewMapController mapController;
+    MapController mapController;
     InfoPaneController infoPaneController;
     MapControlsController mapControlsController;
     
@@ -89,7 +89,8 @@ public class BaseMapViewController implements Initializable {
             return currentLocation;
         }
 
-        public void setCurrentLocation(Location location) {
+        public void setCurrentLocation(Location location) { setCurrentLocation(location, true); }
+        public void setCurrentLocation(Location location, boolean updateClick) {
             // Base
             this.currentLocation = location;
 
@@ -98,10 +99,10 @@ public class BaseMapViewController implements Initializable {
             infoPaneController.setLocation(currentLocation);
 
             // Map
-            if (location == null && mapController.clickedLocationNode != null) mapController.clickedLocationNode.deactivateNode();
+            if (updateClick) mapController.setClickedLocation(location);
         }
 
-        public void addLocation(int x, int y) {
+        public void createLocation(int x, int y) {
             if (isEditMode) {
                 // Create Location
                 Location location = new Location();
@@ -112,6 +113,7 @@ public class BaseMapViewController implements Initializable {
                 location.setNodeType(Location.NodeType.PATI);
 
                 addLocation(location);
+                setCurrentLocation(location);
             }
         }
 
@@ -142,31 +144,47 @@ public class BaseMapViewController implements Initializable {
 
         public void resetLocation(Location location) {
             // Location reset reflected in Lists
-            Location original = new LocationDAO().getByID(currentLocation.getNodeID());
-            currentLocation.Copy(original);
+            if (additionLocations.contains(location)) {
+                additionLocations.remove(location);
+                mapController.removeLocationNode(location);
 
-            // Location reset reflected in LocationNode
-            mapController.resetLocationNode(currentLocation);
+                // Location reset reflected in Info
+                if (currentLocation == location) infoPaneController.setLocation(null);
+            } else {
+                Location original = new LocationDAO().getByID(location.getNodeID());
+                location.Copy(original);
 
-            // Location reset reflected in Info
-            infoPaneController.setLocation(currentLocation);
+                if (deletionLocations.contains(location)) {
+                    deletionLocations.remove(location);
+                    mapController.addLocationNode(location);
+                } else if (touchedLocations.contains(location)) {
+                    touchedLocations.remove(location);
+                    mapController.updateLocationNode(location);
+                }
+
+                // Location reset reflected in Info
+                if (currentLocation == location) infoPaneController.setLocation(currentLocation);
+            }
         }
 
         public void deleteLocation(Location location) {
             if (location != null && isEditMode) {
+                // Location deletion reflected in Controls
                 ((EditMapControlsController) mapControlsController).setSaveStatus(true);
 
-                // Location Deletion reflected in Lists
+                // Location deletion reflected in Lists
                 if (additionLocations.contains(location)) {
                     additionLocations.remove(location);
                 } else {
+                    if (touchedLocations.contains(location)) touchedLocations.remove(location);
                     deletionLocations.add(location);
                 }
 
-                if (touchedLocations.contains(location)) touchedLocations.remove(location);
-
-                // Location Deletion reflected in Maps
+                // Location deletion reflected in Maps
                 mapController.removeLocationNode(location);
+
+                // Location deletion reflected in Info
+                if (currentLocation == location) setCurrentLocation(null);
             }
         }
     //#endregion
@@ -273,9 +291,9 @@ public class BaseMapViewController implements Initializable {
             mapControlsController.setup(this);
 
             // (View) Map Pane
-            App.View mapPane = App.instance.loadView(MAP_PATH, new ViewMapController());
+            App.View mapPane = App.instance.loadView(MAP_PATH, new MapController());
             mapViewPane.getChildren().add(mapPane.getNode());
-            mapController = (ViewMapController) mapPane.getController();
+            mapController = (MapController) mapPane.getController();
             mapController.setParentController(this);
 
             mapController.renderFloor(currentFloor);

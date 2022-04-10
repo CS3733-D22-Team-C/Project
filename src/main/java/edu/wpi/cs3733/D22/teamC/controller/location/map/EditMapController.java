@@ -1,14 +1,9 @@
 package edu.wpi.cs3733.D22.teamC.controller.location.map;
 
-import edu.wpi.cs3733.D22.teamC.entity.location.Location;
-import edu.wpi.cs3733.D22.teamC.entity.location.LocationDAO;
 import javafx.scene.input.MouseButton;
 import javafx.scene.input.MouseEvent;
 
-import java.util.ArrayList;
-import java.util.stream.Collectors;
-
-public class EditMapController extends ViewMapController {
+public class EditMapController extends MapController {
     //#region Mouse Events
         @Override
         protected void onMouseClickedNode(MouseEvent event, LocationNode locationNode) {
@@ -27,7 +22,7 @@ public class EditMapController extends ViewMapController {
             if (event.getButton().equals(MouseButton.PRIMARY)) {
                 // Double-Click create new LocationNode
                 if (event.getClickCount() == 2) {
-                    parentController.addLocation((int) event.getX(), (int) event.getY());
+                    parentController.createLocation((int) event.getX(), (int) event.getY());
                 }
             }
         }
