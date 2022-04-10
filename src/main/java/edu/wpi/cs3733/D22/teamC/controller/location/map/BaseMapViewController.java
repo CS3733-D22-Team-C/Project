@@ -21,7 +21,7 @@ import java.util.stream.Collectors;
 public class BaseMapViewController implements Initializable {
     // Constants
     public static final String MAP_PATH = "view/location/map/map.fxml";
-    public static final String VIEW_MAP_CONTROLS_PATH = "view/location/map/view_controls.fxml";
+    public static final String VIEW_MAP_CONTROLS_PATH = "view/location/map/edit_controls.fxml";
     public static final String EDIT_MAP_CONTROLS_PATH = "view/location/map/edit_map_controls.fxml";
     public static final String INFO_PANE_PATH = "view/location/map/info_pane.fxml";
 

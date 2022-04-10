@@ -2,6 +2,12 @@
 @import "../colors.css";
 @import "../base.css";
 
+.card {
+    -fx-border-width: 2px;
+    -fx-border-radius: 5px;
+    -fx-background-color: #00000000;
+}
+
 .card-content-header {
     -fx-background-color: -color-primary;
     -fx-text-fill: -color-primary-text;

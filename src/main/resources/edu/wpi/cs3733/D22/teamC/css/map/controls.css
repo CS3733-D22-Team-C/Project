@@ -1,3 +1,37 @@
 /* Map - Control Pane Styling */
 @import "base.css";
 
+/* General */
+.button {
+    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.3), 10, 0.5, 0.0, 0.0);
+}
+
+.button:hover {
+    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.5), 10, 0.5, 0.0, 0.0);
+}
+
+.combo-box {
+    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.3), 10, 0.5, 0.0, 0.0);
+}
+
+.combo-box:hover {
+    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.5), 10, 0.5, 0.0, 0.0);
+}
+
+/* MaterialFX */
+.mfx-ripple-generator {
+    -mfx-ripple-color: #FFFFFF40;
+}
+
+/* Custom */
+.cancel-button {
+    -fx-background-color: -color-red-contrast;
+}
+
+.alt-button {
+    -fx-background-color: -color-secondary-dark;
+}
+
+.primary-button {
+    -fx-background-color: -color-primary-light;
+}

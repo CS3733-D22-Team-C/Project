@@ -1,4 +1,4 @@
-@import "../base.css";
+@import "base.css";
 
 .map {
     -fx-background-color: rgba(255, 253, 253, 0.79);
