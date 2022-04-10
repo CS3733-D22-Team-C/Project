@@ -61,7 +61,7 @@ public class LocationInfoController implements Initializable {
         public void setLocation(Location location) {
             this.focusedLocation = location;
 
-            idField.setText(Integer.toString(location.getNodeID()));
+            idField.setText(location.getNodeID());
             longNameField.setText(location.getLongName());
             shortNameField.setText(location.getShortName());
             typeField.setValue(location.getNodeType().toString());

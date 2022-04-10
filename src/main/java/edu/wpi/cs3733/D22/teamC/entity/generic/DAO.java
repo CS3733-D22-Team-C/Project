@@ -9,13 +9,12 @@ import java.util.List;
  * @param <T>
  */
 public abstract class DAO <T> {
-    
     /**
      * When implementing a generic DAO, override this method to return the Object.class of the type T object.
      */
     protected abstract Class<T> classType();
     
-    public int insert(Object obj) {
+    public String insert(Object obj) {
         return HibernateManager.insertObj(obj);
     }
     
@@ -27,7 +26,7 @@ public abstract class DAO <T> {
         return HibernateManager.deleteObj(obj);
     }
     
-    public T getByID(Integer id) {
+    public T getByID(String id) {
         return HibernateManager.getObjByID(id, classType());
     }
     
