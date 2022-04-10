@@ -2,9 +2,7 @@ package edu.wpi.cs3733.D22.teamC.controller.component.sidebar;
 
 import edu.wpi.cs3733.D22.teamC.App;
 import io.github.palexdev.materialfx.controls.MFXButton;
-import javafx.animation.FadeTransition;
-import javafx.animation.KeyValue;
-import javafx.animation.Timeline;
+import javafx.animation.*;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -87,7 +85,7 @@ public class DrawerContentController implements Initializable {
      * When the mouse enters the drawer, start an animation then align the content within the button
      */
     @FXML
-    protected void contentPaneOnMouseEntered() throws InterruptedException {
+    protected void contentPaneOnMouseEntered() {
         fadeTransition(expandedView, 1, miniView, .5);
         for (MFXButton button : allButtons) {
             button.setContentDisplay(ContentDisplay.LEFT);
@@ -102,7 +100,7 @@ public class DrawerContentController implements Initializable {
      */
     @FXML
     protected void contentPaneOnMouseExited() throws InterruptedException {
-        fadeTransition(miniView, 1, expandedView, .25);
+        fadeTransition(miniView, .8, expandedView, .25);
         for (MFXButton button : allButtons) {
             // Make it so the button only displays the graphic
             button.setContentDisplay(ContentDisplay.GRAPHIC_ONLY);
@@ -171,10 +169,10 @@ public class DrawerContentController implements Initializable {
         fadeIn = new FadeTransition(Duration.seconds(fadeInTime), fadeInNode);
         fadeIn.setFromValue(0.0);
         fadeIn.setToValue(1.0);
-        fadeIn.play();
         fadeOut.play();
-        fadeInNode.setOpacity(1.0);
-        fadeOutNode.setOpacity(0.0);
+        fadeIn.play();
+        fadeInNode.setVisible(true);
+        fadeOutNode.setVisible(false);
     }
 }
 
