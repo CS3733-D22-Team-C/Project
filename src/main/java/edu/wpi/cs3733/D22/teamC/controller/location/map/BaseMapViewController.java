@@ -80,6 +80,7 @@ public class BaseMapViewController implements Initializable {
         public void setCurrentFloor(Floor floor) {
             this.currentFloor = floor;
             mapController.renderFloor(currentFloor);
+            renderLocationChanges();
         }
     //#endregion
 
@@ -90,7 +91,6 @@ public class BaseMapViewController implements Initializable {
 
         public void setCurrentLocation(Location location) {
             // Base
-            if (currentLocation != null) touchLocation(location);
             this.currentLocation = location;
 
             // Info
@@ -117,6 +117,8 @@ public class BaseMapViewController implements Initializable {
 
     public void addLocation(Location location) {
         if (isEditMode) {
+            ((EditMapControlsController) mapControlsController).setSaveStatus(true);
+
             // Location addition reflected in Lists
             additionLocations.add(location);
 
@@ -128,7 +130,7 @@ public class BaseMapViewController implements Initializable {
     }
 
         public void touchLocation(Location location) {
-            if (isEditMode) {
+            if (isEditMode && location != null) {
                 ((EditMapControlsController) mapControlsController).setSaveStatus(true);
 
                 if (!additionLocations.contains(location) && !deletionLocations.contains(location)) {
@@ -152,12 +154,16 @@ public class BaseMapViewController implements Initializable {
 
         public void deleteLocation(Location location) {
             if (location != null && isEditMode) {
+                ((EditMapControlsController) mapControlsController).setSaveStatus(true);
+
                 // Location Deletion reflected in Lists
                 if (additionLocations.contains(location)) {
                     additionLocations.remove(location);
                 } else {
                     deletionLocations.add(location);
                 }
+
+                if (touchedLocations.contains(location)) touchedLocations.remove(location);
 
                 // Location Deletion reflected in Maps
                 mapController.removeLocationNode(location);
@@ -241,7 +247,6 @@ public class BaseMapViewController implements Initializable {
             mapController.setParentController(this);
 
             mapController.renderFloor(currentFloor);
-            renderLocationChanges();
         }
 
         /**

@@ -137,12 +137,21 @@ public class InfoPaneController implements Initializable {
         @FXML
         private void updateLocation() {
             Location location = parentController.getCurrentLocation();
+
+            // Copy original for comparison
+            Location original = new Location();
+            original.Copy(location);
+
             location.setShortName(shortNameField.getText());
             location.setLongName(longNameField.getText());
             location.setBuilding(buildingField.getText());
             location.setFloor(floorComboBox.getValue().getFloorID());
             location.setNodeType(nodeComboBox.getValue());
-            revertButton.setDisable(false);
+
+            if (original != location) {
+                revertButton.setDisable(false);
+                parentController.touchLocation(location);
+            }
         }
     //#endregion
 

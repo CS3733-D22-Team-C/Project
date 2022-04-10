@@ -91,7 +91,7 @@ public class ViewMapController implements Initializable {
 
     //#region LocationNode Interaction
         private final LocationNode getLocationNode(Location location) {
-            return locationNodes.stream().filter(node -> node.location.equals(location)).collect(Collectors.toList()).get(0);
+            return locationNodes.stream().filter(node -> node.location.getNodeID() == location.getNodeID()).collect(Collectors.toList()).get(0);
         }
 
         /**
