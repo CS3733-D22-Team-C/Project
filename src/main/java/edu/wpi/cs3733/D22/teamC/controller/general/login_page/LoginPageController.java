@@ -2,6 +2,7 @@ package edu.wpi.cs3733.D22.teamC.controller.general.login_page;
 
 import edu.wpi.cs3733.D22.teamC.App;
 import edu.wpi.cs3733.D22.teamC.entity.login_page.Login;
+import io.github.palexdev.materialfx.controls.MFXTextField;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.event.ActionEvent;
@@ -15,10 +16,10 @@ import java.util.ResourceBundle;
 
 public class LoginPageController implements Initializable {
     @FXML
-    private TextField username;
+    private MFXTextField username;
 
     @FXML
-    private TextField password;
+    private MFXTextField password;
 
     @FXML
     Label invalidLogin;
@@ -53,7 +54,7 @@ public class LoginPageController implements Initializable {
         invalidLogin.setVisible(true);
     }
 
-    public void setTextLengthLimiter(final TextField textF, final int maxLength) {
+    private void setTextLengthLimiter(final MFXTextField textF, final int maxLength) {
         textF.textProperty().addListener(new ChangeListener<String>() {
             @Override
             public void changed(final ObservableValue<? extends String> ov, final String oldValue, final String newValue) {
