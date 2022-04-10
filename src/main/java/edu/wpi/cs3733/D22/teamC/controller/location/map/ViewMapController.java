@@ -3,6 +3,7 @@ package edu.wpi.cs3733.D22.teamC.controller.location.map;
 import edu.wpi.cs3733.D22.teamC.entity.floor.Floor;
 import edu.wpi.cs3733.D22.teamC.entity.floor.FloorDAO;
 import edu.wpi.cs3733.D22.teamC.entity.location.Location;
+import io.github.palexdev.materialfx.controls.MFXScrollPane;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.ScrollPane;
@@ -68,7 +69,7 @@ public class ViewMapController implements Initializable {
     protected final static double MIN_SCALE = 0.8f;
 
     // FXML
-    @FXML ScrollPane scrollPane;
+    @FXML MFXScrollPane scrollPane;
     @FXML ImageView mapImage;
     @FXML Pane mapPane;
 

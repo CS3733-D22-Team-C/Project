@@ -10,6 +10,14 @@
     -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.5), 10, 0.5, 0.0, 0.0);
 }
 
+.button:disabled {
+    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.2), 10, 0.5, 0.0, 0.0);
+}
+
+.button:disabled:hover {
+    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.2), 10, 0.5, 0.0, 0.0);
+}
+
 .combo-box {
     -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.3), 10, 0.5, 0.0, 0.0);
 }

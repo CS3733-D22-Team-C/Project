@@ -13,7 +13,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<VBox alignment="CENTER" maxWidth="1.7976931348623157E308" prefWidth="316.8" styleClass="card" stylesheets="@../../../css/map/controls.css" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1">
+<VBox alignment="CENTER" maxWidth="1.7976931348623157E308" prefWidth="316.8" styleClass="card" stylesheets="@../../../../css/map/controls.css" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.wpi.cs3733.D22.teamC.controller.location.map.controls.ViewMapControlsController">
    <children>
       <Label alignment="CENTER" maxHeight="100.0" maxWidth="1.7976931348623157E308" minHeight="50.0" prefHeight="75.0" prefWidth="200.0" styleClass="card-content-header" text="View Controls" VBox.vgrow="ALWAYS">
          <padding>
@@ -43,12 +43,12 @@
                      <children>
                         <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
                            <children>
-                              <MFXButton buttonType="RAISED" minHeight="30.0" minWidth="150.0" rippleColor="#ffffff40" styleClass="primary-button" text="Edit" />
+                              <MFXButton fx:id="editButton" buttonType="RAISED" minHeight="30.0" minWidth="150.0" onAction="#onEditButtonPressed" rippleColor="#ffffff40" styleClass="primary-button" text="Edit" />
                            </children>
                         </HBox>
                         <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" GridPane.hgrow="ALWAYS" GridPane.rowIndex="1" GridPane.vgrow="ALWAYS">
                            <children>
-                              <JFXComboBox fx:id="floorField" maxWidth="1.7976931348623157E308" minHeight="30.0" minWidth="150.0" styleClass="combo-box" />
+                              <JFXComboBox fx:id="floorComboBox" maxWidth="1.7976931348623157E308" minHeight="30.0" minWidth="150.0" onAction="#onFloorChanged" styleClass="combo-box" />
                            </children>
                         </HBox>
                         <VBox prefHeight="136.0" prefWidth="308.0" GridPane.rowIndex="2">

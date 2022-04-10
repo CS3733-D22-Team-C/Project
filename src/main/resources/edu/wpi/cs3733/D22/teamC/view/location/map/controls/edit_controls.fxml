@@ -12,7 +12,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<VBox maxWidth="1.7976931348623157E308" prefWidth="316.8" styleClass="card" stylesheets="@../../../css/map/controls.css" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1">
+<VBox maxWidth="1.7976931348623157E308" prefWidth="316.8" styleClass="card" stylesheets="@../../../../css/map/controls.css" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.wpi.cs3733.D22.teamC.controller.location.map.controls.EditMapControlsController">
    <children>
       <Label alignment="CENTER" maxHeight="100.0" maxWidth="1.7976931348623157E308" minHeight="50.0" prefHeight="75.0" prefWidth="200.0" styleClass="card-content-header" text="Edit Controls" VBox.vgrow="ALWAYS">
          <padding>
@@ -44,27 +44,27 @@
                      <children>
                         <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" GridPane.hgrow="ALWAYS" GridPane.vgrow="ALWAYS">
                            <children>
-                              <MFXButton buttonType="RAISED" minHeight="30.0" minWidth="150.0" rippleColor="#ffffff99" styleClass="primary-button" text="Save" />
+                              <MFXButton fx:id="saveButton" buttonType="RAISED" disable="true" minHeight="30.0" minWidth="150.0" onAction="#onSaveButtonPressed" rippleColor="#ffffff99" styleClass="primary-button" text="Save" />
                            </children>
                         </HBox>
                         <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" GridPane.hgrow="ALWAYS" GridPane.rowIndex="1" GridPane.vgrow="ALWAYS">
                            <children>
-                              <JFXComboBox fx:id="floorField" maxWidth="1.7976931348623157E308" minHeight="30.0" minWidth="150.0" onAction="#onFloorChanged" styleClass="combo-box" />
+                              <JFXComboBox fx:id="floorComboBox" maxWidth="1.7976931348623157E308" minHeight="30.0" minWidth="150.0" onAction="#onFloorChanged" styleClass="combo-box" />
                            </children>
                         </HBox>
                         <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" GridPane.hgrow="ALWAYS" GridPane.rowIndex="2" GridPane.vgrow="ALWAYS">
                            <children>
-                              <MFXButton buttonType="RAISED" minHeight="30.0" minWidth="150.0" rippleColor="BLACK" styleClass="alt-button" text="Import CSV" />
+                              <MFXButton fx:id="importButton" buttonType="RAISED" minHeight="30.0" minWidth="150.0" onAction="#onImportButtonPressed" rippleColor="BLACK" styleClass="alt-button" text="Import CSV" />
                            </children>
                         </HBox>
                         <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" GridPane.hgrow="ALWAYS" GridPane.rowIndex="3" GridPane.vgrow="ALWAYS">
                            <children>
-                              <MFXButton buttonType="RAISED" minHeight="30.0" minWidth="150.0" styleClass="alt-button" text="Export CSV" />
+                              <MFXButton fx:id="exportButton" buttonType="RAISED" minHeight="30.0" minWidth="150.0" onAction="#onExportButtonPressed" styleClass="alt-button" text="Export CSV" />
                            </children>
                         </HBox>
                         <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" GridPane.rowIndex="4">
                            <children>
-                              <MFXButton buttonType="RAISED" minHeight="30.0" minWidth="150.0" rippleColor="#ffffff40" styleClass="cancel-button" text="Exit" />
+                              <MFXButton fx:id="exitButton" buttonType="RAISED" minHeight="30.0" minWidth="150.0" onAction="#onExitButtonPressed" rippleColor="#ffffff40" styleClass="cancel-button" text="Exit" />
                            </children>
                         </HBox>
                      </children>

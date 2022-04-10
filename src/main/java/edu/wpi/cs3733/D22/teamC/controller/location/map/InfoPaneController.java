@@ -110,7 +110,7 @@ public class InfoPaneController implements Initializable {
     //#region Location Interaction
         /**
          * Set Location and initialize data fields for the given Location object.
-         * @param location The Location object which this info pane will display info of.
+         * @param location The Location object which this info splitPane will display info of.
          */
         public void setLocation(Location location) {
             if (location == null) return;
@@ -146,7 +146,7 @@ public class InfoPaneController implements Initializable {
         }
     //#endregion
 
-    //#region Location Info Pane
+    //#region FXML Events
         @FXML
         void onDeselectButtonPressed(ActionEvent event) {
             parentController.setCurrentLocation(null);
