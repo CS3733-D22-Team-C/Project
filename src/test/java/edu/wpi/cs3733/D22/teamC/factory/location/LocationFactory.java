@@ -11,7 +11,7 @@ public class LocationFactory implements Factory<Location> {
     public Location create() {
         Location location = new Location();
 
-        int floor = generator.nextInt(200000);
+        String floor = generateRandomString(16);
         String building = "Wong Labs";
         Location.NodeType nodeType = Location.NodeType.values()[generator.nextInt(Location.NodeType.values().length)];
         String longName = "Cunning Chimera";
@@ -27,5 +27,14 @@ public class LocationFactory implements Factory<Location> {
         location.setY(y);
 
         return location;
+    }
+    
+    public static String generateRandomString(int len) {
+        String chars = "0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz!@#$%&";
+        Random rnd = new Random();
+        StringBuilder sb = new StringBuilder(len);
+        for (int i = 0; i < len; i++)
+            sb.append(chars.charAt(rnd.nextInt(chars.length())));
+        return sb.toString();
     }
 }
