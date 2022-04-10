@@ -1,152 +1,152 @@
 nodeID,xcoord,ycoord,floor,building,nodeType,longName,shortName
-1,644,300,1,Tower,DEPT,Center for International Medicine,CIM
-2,637,595,1,Tower,DEPT,Bretholtz Center for Patients and Families,Bretholtz WR
-3,748,406,1,Tower,DEPT,Multifaith Chapel,Chapel
-4,821,621,1,Tower,DEPT,Sharf Admitting Center,Sharf Center
-5,1155,775,1,Tower,DEPT,Emergency Department,Emergency
-6,807,504,1,Tower,DEPT,International Patient Center,IPC
-7,1044,274,1,Tower,EXIT,Shattuck Street Lobby Exit,Shattuck St. Exit
-8,775,796,1,Tower,EXIT,75 Francis Valet Drop-off,75 Francis Exit
-9,1126,832,1,Tower,EXIT,Emergency Department Entrance,Emergency Entrance
-10,1082,385,1,Tower,HALL,Lower Pike Hallway Exit Lobby,Hallway F00101
-11,1053,385,1,Tower,HALL,Lobby Shattuck Street,Hallway F00201
-12,1044,385,1,Tower,HALL,Shattuck Street Lobby 1,Hallway F00301
-13,1000,385,1,Tower,HALL,Shattuck Street Lobby 2,Hallway F00401
-14,977,385,1,Tower,HALL,Shattuck Street Lobby 3,Hallway F00501
-15,896,405,1,Tower,HALL,Tower Lobby Entrance 1,Tower Entrance
-16,785,405,1,Tower,HALL,Tower Elevator Entrance,Hallway F00701
-17,785,325,1,Tower,HALL,Tower Hallway 1,Hallway F00801
-18,654,325,1,Tower,HALL,Tower Hallway 2,Hallway F00901
-19,654,277,1,Tower,HALL,Tower Hallway 3,Hallway F01001
-20,654,405,1,Tower,HALL,Tower Hallway 4,Hallway F01101
-21,575,405,1,Tower,HALL,Tower Staff Entrance,Hallway F01201
-22,654,300,1,Tower,HALL,Tower Hallway 5,Hallway F01301
-23,654,504,1,Tower,HALL,Tower Hallway 6,Hallway F01401
-24,654,535,1,Tower,HALL,Tower Hallway 7,Hallway F01501
-25,785,535,1,Tower,HALL,Tower Hallway 8,Hallway F01601
-26,748,431,1,Tower,HALL,Tower Hallway 9,Hallway F01701
-27,785,431,1,Tower,HALL,Tower Hallway 10,Hallway F01801
-28,785,595,1,Tower,HALL,Tower Hallway 11,Hallway F01901
-29,727,595,1,Tower,HALL,Tower Hallway 12,Hallway F02001
-30,796,621,1,Tower,HALL,Tower Hallway Entrance,Tower Entrance 2
-31,796,755,1,Tower,HALL,Hallway Lobby Entrance,Entrance Hallway
-32,872,755,1,Tower,HALL,Lobby Hallway 1,Hallway F02301
-33,992,755,1,Tower,HALL,Lobby Hallway 2,Hallway F02401
-34,992,714,1,Tower,HALL,Lobby Hallway 3,Hallway F02501
-35,1053,714,1,Tower,HALL,Lobby Hallway 4,Hallway F02601
-36,1093,714,1,Tower,HALL,Lobby Hallway 7,Hallway F02701
-37,775,755,1,Tower,HALL,Lobby Entrance Hallway,HallwayF02801
-38,727,755,1,Tower,HALL,75 Lobby,75 Lobby
-39,672,721,1,Tower,HALL,Lobby Hallway 5,Hallway F02701
-40,1053,451,1,Tower,HALL,Lobby Hallway 6,Hallway F02801
-41,785,504,1,Tower,HALL,Tower Hallway 13,Hallway F03201
-42,1093,757,1,Tower,HALL,Emergency Hallway,Hallway F03301
-43,727,701,1,Tower,INFO,75 Lobby Information Desk,Lobby Info Desk
-44,872,725,1,Tower,LABS,Obstetrics Admitting,Obs Admitting
-45,1118,451,1,Tower,REST,Bathroom 75 Lobby,Bathroom Lobby
-46,1000,319,1,Tower,RETL,Lobby Vending Machine,VM Lobby
-47,636,721,1,Tower,RETL,Au Bon Pain,ABP
-48,977,346,1,Tower,SERV,Shattuck Street Lobby ATM,Lobby ATM
-49,632,504,1,Tower,SERV,Tower Medical Cashier,Tower Cashier
-50,727,633,1,Tower,SERV,Kessler Library,Kessler Library
-51,748,445,1,Tower,DEPT,Spiritual Care Office,SCO
-52,672,755,1,Tower,SERV,75 Lobby Valet Cashier,Valet Cashier
-53,1053,367,1,Tower,STAI,Lobby Shattuck Street Stairs,Stairway F00101
-54,700,277,1,Tower,STAI,Tower Stairway 1,Tower Stairs 1
-55,974,714,1,Tower,STAI,Lobby Escalator,Lobby Escalator
-56,837,405,1,Tower,ELEV,Elevator L Floor 1,Elevator L1
-57,837,755,1,Tower,ELEV,Elevator M Floor 1,Elevator M1
-58,632,483,2,Tower,BATH,Bathroom 1 Tower Floor 2,Bathroom 0102
-59,1082,805,2,Tower,DEPT,Endoscopy,Endoscopy
-60,902,400,2,Tower,HALL,Hallway Connector 1 Floor 2,Hallway H00102
-61,982,375,2,Tower,HALL,Hallway Connector 2 Floor 2,Hallway H00202
-62,1062,375,2,Tower,HALL,Hallway Connector 3 Floor 2,Hallway H00302
-63,902,500,2,Tower,HALL,Hallway Connector 4 Floor 2,Hallway H00402
-64,852,500,2,Tower,HALL,Hallway Connector 5 Floor 2,Hallway H00502
-65,802,555,2,Tower,HALL,Hallway Connector 6 Floor 2,Hallway H00602
-66,767,640,2,Tower,HALL,Hallway Connector 7 Floor 2,Hallway H00702
-67,767,705,2,Tower,HALL,Hallway Connector 8 Floor 2,Hallway H00802
-68,767,755,2,Tower,HALL,Hallway Connector 9 Floor 2,Hallway H00902
-69,1082,755,2,Tower,HALL,Hallway Connector 10 Floor 2,Hallway H01002
-70,962,335,2,Tower,RETL,Garden Cafe,Garden Cafe
-71,642,500,2,Tower,RETL,Vending Machine Floor 2?,Vending Machine
-72,852,555,2,Tower,RETL,Gift Shop Tower Floor 2,Gift Shop
-73,1087,355,2,Tower,STAI,Stairwell 1 Floor 2,Stairwell 0102
-74,722,640,2,Tower,STAI,Stairwell 2 Tower Floor 2,Stairwell 0202
-75,817,705,2,Tower,STAI,Escalator 1 Floor 2,Escalator 1 Floor 2
-76,832,400,2,Tower,ELEV,Elevator L Floor 2,Elevator L2
-77,852,755,2,Tower,ELEV,Elevator M Floor 2,Elevator M2
-78,767,975,2,Tower,HALL,Hallway Connector 7 Floor 2,Hallway W0702
-79,812,305,3,Tower,BATH,Bathroom 1 Tower Floor 3,Bathroom 0103
-80,777,460,3,Tower,BATH,Bathroom 2 Tower Floor 3,Bathroom 0203
-81,752,375,3,Tower,DEPT,Dialysis Waiting Room,Dialysis WR
-82,717,305,3,Tower,DEPT,MICU 3BC Waiting Room,MICU 3BC WR
-83,352,130,3,Tower,HALL,Hallway Connector 1 Floor 3,Hallway H00103
-84,262,460,3,Tower,HALL,Hallway Connector 2 Floor 3,Hallway H00203
-85,352,460,3,Tower,HALL,Hallway Connector 3 Floor 3,Hallway H00303
-86,352,765,3,Tower,HALL,Hallway Connector 4 Floor 3,Hallway H00403
-87,707,765,3,Tower,HALL,Hallway Connector 5 Floor 3,Hallway H00502
-88,762,400,3,Tower,HALL,Hallway Connector 6 Floor 3,Hallway H00603
-89,762,375,3,Tower,HALL,Hallway Connector 7 Floor 3,Hallway H00703
-90,762,340,3,Tower,HALL,Hallway Connector 8 Floor 3,Hallway H00803
-91,762,295,3,Tower,HALL,Hallway Connector 9 Floor 3,Hallway H00903
-92,812,295,3,Tower,HALL,Hallway Connector 10 Floor 3,Hallway H01003
-93,717,295,3,Tower,HALL,Hallway Connector 11 Floor 3,Hallway H01103
-94,627,295,3,Tower,HALL,Hallway Connector 12 Floor 3,Hallway H01203
-95,627,505,3,Tower,HALL,Hallway Connector 13 Floor 3,Hallway H01303
-96,762,505,3,Tower,HALL,Hallway Connector 14 Floor 3,Hallway H01403
-97,762,460,3,Tower,HALL,Hallway Connector 15 Floor 3,Hallway H01503
-98,262,340,3,Tower,LABS,Reproductive Endocrine Labs,Reproductive Endocrine Labs
-99,777,340,3,Tower,SERV,Nursing Room,Nursing Room
-100,707,750,3,Tower,STAI,Stairwell 1 Floor 3,Stairwell
-101,817,400,3,Tower,ELEV,Elevator L Floor 3,Elevator L3
-102,842,765,3,Tower,ELEV,Elevator M Floor 3,Elevator M3
-103,1007,319,4,Tower,DEPT,Day Surgery Family Waiting Floor L1,Department C002L1
-104,872,319,4,Tower,DEPT,Day Surgery Family Waiting Exit Floor L1,Department C003L1
-105,759,399,4,Tower,HALL,Hallway 1 Floor L1,Hallway C001L1
-106,777,759,4,Tower,HALL,Hallway 5 Floor L1,Hallway C005L1
-107,1157,759,4,Tower,HALL,Hallway 6 Floor L1,Hallway C006L1
-108,1157,520,4,Tower,HALL,Hallway 7 Floor L1,Hallway C007L1
-109,872,399,4,Tower,HALL,Hallway 14 Floor L1,Hallway C014L1
-110,992,759,4,Tower,LABS,Outpatient Fluoroscopy Floor L1,Lab C001L1
-111,777,565,4,Tower,LABS,Pre-Op PACU Floor L1,Lab C002L1
-112,759,494,4,Tower,REST,Restroom L Elevator Floor L1,Restroom C001L1
-113,1092,759,4,Tower,REST,Restroom M Elevator Floor L1,Restroom C002L1
-114,812,399,4,Tower,ELEV,Elevator L Floor L1,Elevator LL1
-115,847,759,4,Tower,ELEV,Elevator M Floor L1,Elevator ML1
-116,772,755,5,Tower,HALL,Hallway 5 Floor L2,Hallway C005L2
-117,772,484,5,Tower,HALL,Hallway 6 Floor L2,Hallway C006L2
-118,757,484,5,Tower,HALL,Hallway 7 Floor L2,Hallway C007L2
-119,757,399,5,Tower,HALL,Hallway 8 Floor L2,Hallway C008L2
-120,757,324,5,Tower,HALL,Hallway 9 Floor L2,Hallway C009L2
-121,1157,324,5,Tower,HALL,Hallway 10 Floor L2,Hallway C010L2
-122,812,399,5,Tower,ELEV,Elevator L Floor L2,Elevator LL2
-123,847,755,5,Tower,ELEV,Elevator M Floor L2,Elevator ML2
-124,772,999,5,Tower,HALL,Hallway Connector 1 Floor L2,Hallway W01L2
-125,577,310,4,Tower,STOR,OR Bed Park Floor L1,OR BP L1
-126,537,400,1,Tower,STOR,West Plaza,Wplaza
-127,557,235,3,Tower,STOR,Pod B Clean Equipment Storage (Floor 3),Pod B3 CES
-128,547,565,3,Tower,STOR,Pod C Clean Equipment Storage (Floor 3),Pod C3 CES
-129,517,400,3,Tower,DIRT,Dirty Equipment Storage (Floor 3),DES3
-130,537,345,3,Tower,PATI,Pod B Patient Room 1,Pod B PR1
-131,492,325,3,Tower,PATI,Pod B Patient Room 2,Pod B PR2
-132,467,285,3,Tower,PATI,Pod B Patient Room 3,Pod B PR3
-133,457,240,3,Tower,PATI,Pod B Patient Room 4,Pod B PR4
-134,472,195,3,Tower,PATI,Pod B Patient Room 5,Pod B PR5
-135,497,170,3,Tower,PATI,Pod B Patient Room 6,Pod B PR6
-136,542,155,3,Tower,PATI,Pod B Patient Room 7,Pod B PR7
-137,587,155,3,Tower,PATI,Pod B Patient Room 8,Pod B PR8
-138,622,175,3,Tower,PATI,Pod B Patient Room 9,Pod B PR9
-139,647,235,3,Tower,PATI,Pod B Patient Room 10,Pod B PR10
-140,537,465,3,Tower,PATI,Pod C Patient Room 1,Pod C PR1
-141,487,490,3,Tower,PATI,Pod C Patient Room 2,Pod C PR2
-142,457,525,3,Tower,PATI,Pod C Patient Room 3,Pod C PR3
-143,457,575,3,Tower,PATI,Pod C Patient Room 4,Pod C PR4
-144,477,615,3,Tower,PATI,Pod C Patient Room 5,Pod C PR5
-145,507,635,3,Tower,PATI,Pod C Patient Room 6,Pod C PR6
-146,547,655,3,Tower,PATI,Pod C Patient Room 7,Pod C PR7
-147,597,645,3,Tower,PATI,Pod C Patient Room 8,Pod C PR8
-148,627,625,3,Tower,PATI,Pod C Patient Room 9,Pod C PR9
-149,647,580,3,Tower,PATI,Pod C Patient Room 10,Pod C PR10
-150,717,215,3,Tower,STOR,Pods AB Bed and Recliner Parking,PodsAB BRP
-151,717,595,3,Tower,STOR,Pods CD Bed and Recliner Parking,PodsCD BRP
+186f1ae6-d12f-4994-a0a5-875f02e9072c,644,300,4c995e14-cb6b-49eb-bbe8-95fea57b5374,Tower,DEPT,Center for International Medicine,CIM
+948a0a64-86c9-4c76-ab24-f200580bd96a,637,595,4c995e14-cb6b-49eb-bbe8-95fea57b5375,Tower,DEPT,Bretholtz Center for Patients and Families,Bretholtz WR
+12eea339-69f3-47eb-ac0b-d2b7cd34341e,748,406,4c995e14-cb6b-49eb-bbe8-95fea57b5376,Tower,DEPT,Multifaith Chapel,Chapel
+8204f7bc-404c-4010-a72e-104c09f0dfda,821,621,4c995e14-cb6b-49eb-bbe8-95fea57b5377,Tower,DEPT,Sharf Admitting Center,Sharf Center
+57857b80-1fed-4f2c-9e41-cff00ff47b69,1155,775,4c995e14-cb6b-49eb-bbe8-95fea57b5378,Tower,DEPT,Emergency Department,Emergency
+d0885116-ebd4-4791-a77f-4b4b28f7175f,807,504,4c995e14-cb6b-49eb-bbe8-95fea57b5379,Tower,DEPT,International Patient Center,IPC
+a40d836c-1876-4736-b88c-cae2fe2d25a9,1044,274,4c995e14-cb6b-49eb-bbe8-95fea57b5380,Tower,EXIT,Shattuck Street Lobby Exit,Shattuck St. Exit
+1b35b1fc-9407-4008-a494-3f829f34469d,775,796,4c995e14-cb6b-49eb-bbe8-95fea57b5381,Tower,EXIT,75 Francis Valet Drop-off,75 Francis Exit
+214b0d96-507f-4ace-be62-631243ca7727,1126,832,4c995e14-cb6b-49eb-bbe8-95fea57b5382,Tower,EXIT,Emergency Department Entrance,Emergency Entrance
+8650f955-a150-4397-bdf4-a3e3e995b999,1082,385,4c995e14-cb6b-49eb-bbe8-95fea57b5383,Tower,HALL,Lower Pike Hallway Exit Lobby,Hallway F00101
+38571e90-7c43-44a1-bfff-8b63251fcb80,1053,385,4c995e14-cb6b-49eb-bbe8-95fea57b5384,Tower,HALL,Lobby Shattuck Street,Hallway F00201
+ef0fd9d2-bc95-4c94-82e2-603402c713d8,1044,385,4c995e14-cb6b-49eb-bbe8-95fea57b5385,Tower,HALL,Shattuck Street Lobby 1,Hallway F00301
+5c0cbf9c-413b-49d7-96ca-7fc7229b7393,1000,385,4c995e14-cb6b-49eb-bbe8-95fea57b5386,Tower,HALL,Shattuck Street Lobby 2,Hallway F00401
+ea04ddc3-ddc5-4c8d-8632-745f6ffcc254,977,385,4c995e14-cb6b-49eb-bbe8-95fea57b5387,Tower,HALL,Shattuck Street Lobby 3,Hallway F00501
+d3bb2de2-2d70-4f13-a163-a2065d751477,896,405,4c995e14-cb6b-49eb-bbe8-95fea57b5388,Tower,HALL,Tower Lobby Entrance 1,Tower Entrance
+45ece7ff-4a4f-4489-a819-c077f778021a,785,405,4c995e14-cb6b-49eb-bbe8-95fea57b5389,Tower,HALL,Tower Elevator Entrance,Hallway F00701
+f84833cf-52de-4745-97aa-34093681f2ee,785,325,4c995e14-cb6b-49eb-bbe8-95fea57b5390,Tower,HALL,Tower Hallway 1,Hallway F00801
+5f0d3c79-ef61-4026-a3b7-6135bc3f0ecd,654,325,4c995e14-cb6b-49eb-bbe8-95fea57b5391,Tower,HALL,Tower Hallway 2,Hallway F00901
+9668b376-85e1-4c7f-96de-4aa7f2612507,654,277,4c995e14-cb6b-49eb-bbe8-95fea57b5392,Tower,HALL,Tower Hallway 3,Hallway F01001
+2963959f-80a8-46cd-bda1-1ee0127af84b,654,405,4c995e14-cb6b-49eb-bbe8-95fea57b5393,Tower,HALL,Tower Hallway 4,Hallway F01101
+c416ddba-5c5e-47b5-a7a6-2da7c78bdd79,575,405,4c995e14-cb6b-49eb-bbe8-95fea57b5394,Tower,HALL,Tower Staff Entrance,Hallway F01201
+ff07da35-3a27-43f5-a93b-2b93c3f58cf7,654,300,4c995e14-cb6b-49eb-bbe8-95fea57b5395,Tower,HALL,Tower Hallway 5,Hallway F01301
+5511301d-3c4b-4323-9704-bffd9e1aecf2,654,504,4c995e14-cb6b-49eb-bbe8-95fea57b5396,Tower,HALL,Tower Hallway 6,Hallway F01401
+f739bc14-f9b5-4921-8292-c414e0a7b9f1,654,535,4c995e14-cb6b-49eb-bbe8-95fea57b5397,Tower,HALL,Tower Hallway 7,Hallway F01501
+725f0c0c-d11c-4394-aadc-bcd7c0c790fa,785,535,4c995e14-cb6b-49eb-bbe8-95fea57b5398,Tower,HALL,Tower Hallway 8,Hallway F01601
+5411d312-407b-44bd-a3c5-5f30adda3800,748,431,4c995e14-cb6b-49eb-bbe8-95fea57b5399,Tower,HALL,Tower Hallway 9,Hallway F01701
+66eec6d9-0cd6-412b-89fa-4bf24016af38,785,431,4c995e14-cb6b-49eb-bbe8-95fea57b5400,Tower,HALL,Tower Hallway 10,Hallway F01801
+51cd5e9d-4286-4583-a0bb-0e68a646c532,785,595,4c995e14-cb6b-49eb-bbe8-95fea57b5401,Tower,HALL,Tower Hallway 11,Hallway F01901
+bff68a88-e3e7-4f36-aaeb-34466a3f62a4,727,595,4c995e14-cb6b-49eb-bbe8-95fea57b5402,Tower,HALL,Tower Hallway 12,Hallway F02001
+30c33362-9d32-451f-8db4-3a04819efaca,796,621,4c995e14-cb6b-49eb-bbe8-95fea57b5403,Tower,HALL,Tower Hallway Entrance,Tower Entrance 2
+81535172-29c4-426c-b876-47d89140ecc0,796,755,4c995e14-cb6b-49eb-bbe8-95fea57b5404,Tower,HALL,Hallway Lobby Entrance,Entrance Hallway
+dbeb4a5d-b7c2-4c31-9e17-579c8cdf7b38,872,755,4c995e14-cb6b-49eb-bbe8-95fea57b5405,Tower,HALL,Lobby Hallway 1,Hallway F02301
+7258a193-a2a1-463c-9046-a8d0d3158c99,992,755,4c995e14-cb6b-49eb-bbe8-95fea57b5406,Tower,HALL,Lobby Hallway 2,Hallway F02401
+ffc44ca7-bac2-44e8-89c9-462d6ce97e23,992,714,4c995e14-cb6b-49eb-bbe8-95fea57b5407,Tower,HALL,Lobby Hallway 3,Hallway F02501
+b1a340ce-d242-47c4-bd85-b02fe0e057a4,1053,714,4c995e14-cb6b-49eb-bbe8-95fea57b5408,Tower,HALL,Lobby Hallway 4,Hallway F02601
+ea9772f4-88d3-40c7-95fb-dbff545ad9ae,1093,714,4c995e14-cb6b-49eb-bbe8-95fea57b5409,Tower,HALL,Lobby Hallway 7,Hallway F02701
+b56f9930-59b5-45c3-8552-1b5fbc902b8a,775,755,4c995e14-cb6b-49eb-bbe8-95fea57b5410,Tower,HALL,Lobby Entrance Hallway,HallwayF02801
+03ec2f03-0f64-47af-9f34-c96f5be7d63d,727,755,4c995e14-cb6b-49eb-bbe8-95fea57b5411,Tower,HALL,75 Lobby,75 Lobby
+a253e184-fa78-48c6-a6b7-06f4f80a6ba7,672,721,4c995e14-cb6b-49eb-bbe8-95fea57b5412,Tower,HALL,Lobby Hallway 5,Hallway F02701
+16cc3587-e815-46e0-9192-ce6470228adc,1053,451,4c995e14-cb6b-49eb-bbe8-95fea57b5413,Tower,HALL,Lobby Hallway 6,Hallway F02801
+f887d2d7-77fc-41fb-a942-e6c9ea65084f,785,504,4c995e14-cb6b-49eb-bbe8-95fea57b5414,Tower,HALL,Tower Hallway 13,Hallway F03201
+b21f7f1c-b070-4f7f-bfee-b3125f5bac19,1093,757,4c995e14-cb6b-49eb-bbe8-95fea57b5415,Tower,HALL,Emergency Hallway,Hallway F03301
+d807ee5c-a944-4b45-abeb-3827344210a0,727,701,4c995e14-cb6b-49eb-bbe8-95fea57b5416,Tower,INFO,75 Lobby Information Desk,Lobby Info Desk
+7da92aad-b0f2-46c1-aa32-37cebf7502e5,872,725,4c995e14-cb6b-49eb-bbe8-95fea57b5417,Tower,LABS,Obstetrics Admitting,Obs Admitting
+34cd37f2-3342-4509-bb0b-b706b12a4c28,1118,451,4c995e14-cb6b-49eb-bbe8-95fea57b5418,Tower,REST,Bathroom 75 Lobby,Bathroom Lobby
+34328346-c7bb-419b-a21e-4eb7f308f8ee,1000,319,4c995e14-cb6b-49eb-bbe8-95fea57b5419,Tower,RETL,Lobby Vending Machine,VM Lobby
+245532e5-97a5-4468-ae66-d23c762c93b4,636,721,4c995e14-cb6b-49eb-bbe8-95fea57b5420,Tower,RETL,Au Bon Pain,ABP
+cd0f0b22-c26f-4945-bd92-c57c1ffe8c79,977,346,4c995e14-cb6b-49eb-bbe8-95fea57b5421,Tower,SERV,Shattuck Street Lobby ATM,Lobby ATM
+3d6ca289-bdf4-4a43-aace-c8cee067e72b,632,504,4c995e14-cb6b-49eb-bbe8-95fea57b5422,Tower,SERV,Tower Medical Cashier,Tower Cashier
+b90beba3-e7aa-48eb-88a8-0a1b66c03006,727,633,4c995e14-cb6b-49eb-bbe8-95fea57b5423,Tower,SERV,Kessler Library,Kessler Library
+58c52e23-1480-4b22-ad08-e7e054b4f639,748,445,4c995e14-cb6b-49eb-bbe8-95fea57b5424,Tower,DEPT,Spiritual Care Office,SCO
+9e5126ca-7a0e-4a58-955d-2fb9b4220b43,672,755,4c995e14-cb6b-49eb-bbe8-95fea57b5425,Tower,SERV,75 Lobby Valet Cashier,Valet Cashier
+ff955399-a7ac-48bb-8598-aa78c0e6ade4,1053,367,4c995e14-cb6b-49eb-bbe8-95fea57b5426,Tower,STAI,Lobby Shattuck Street Stairs,Stairway F00101
+3e2bc607-37c5-4212-bf2f-6dd448252d75,700,277,4c995e14-cb6b-49eb-bbe8-95fea57b5427,Tower,STAI,Tower Stairway 1,Tower Stairs 1
+1285efe1-0722-4670-b009-1324805fbe50,974,714,4c995e14-cb6b-49eb-bbe8-95fea57b5428,Tower,STAI,Lobby Escalator,Lobby Escalator
+94c63f1a-f14c-4c28-90d4-90881e962638,837,405,4c995e14-cb6b-49eb-bbe8-95fea57b5429,Tower,ELEV,Elevator L Floor 1,Elevator L1
+cd0fd831-c5b2-4f1c-86b4-89770741ac19,837,755,4c995e14-cb6b-49eb-bbe8-95fea57b5430,Tower,ELEV,Elevator M Floor 1,Elevator M1
+522af2c8-7281-4570-81a2-122f1d73ea97,632,483,805166d9-6117-4752-9780-28216d61fc26,Tower,BATH,Bathroom 1 Tower Floor 2,Bathroom 0102
+1acb7943-bd88-4224-a847-2908cf0adea6,1082,805,805166d9-6117-4752-9780-28216d61fc27,Tower,DEPT,Endoscopy,Endoscopy
+c2ef6ddd-6702-4ba9-bbcb-bc8aa3146563,902,400,805166d9-6117-4752-9780-28216d61fc28,Tower,HALL,Hallway Connector 1 Floor 2,Hallway H00102
+63d0fb57-088d-48db-ab58-2a320fd73368,982,375,805166d9-6117-4752-9780-28216d61fc29,Tower,HALL,Hallway Connector 2 Floor 2,Hallway H00202
+02e75686-45a2-4a93-9bb8-c609d3fa7e75,1062,375,805166d9-6117-4752-9780-28216d61fc30,Tower,HALL,Hallway Connector 3 Floor 2,Hallway H00302
+813595ac-f329-4fa5-9c2c-fabd537f9b88,902,500,805166d9-6117-4752-9780-28216d61fc31,Tower,HALL,Hallway Connector 4 Floor 2,Hallway H00402
+754195d8-b214-489f-bd3f-4b674a1ec81b,852,500,805166d9-6117-4752-9780-28216d61fc32,Tower,HALL,Hallway Connector 5 Floor 2,Hallway H00502
+84857bf8-52d2-456d-b1c9-2192c14265f0,802,555,805166d9-6117-4752-9780-28216d61fc33,Tower,HALL,Hallway Connector 6 Floor 2,Hallway H00602
+4173e177-7194-48a3-8e32-dfa01bd0e12f,767,640,805166d9-6117-4752-9780-28216d61fc34,Tower,HALL,Hallway Connector 7 Floor 2,Hallway H00702
+4dc41723-9f65-4ba5-8dc3-2a880ed173ec,767,705,805166d9-6117-4752-9780-28216d61fc35,Tower,HALL,Hallway Connector 8 Floor 2,Hallway H00802
+f0bcd46f-b435-4fc9-a47b-ac56c5c1d214,767,755,805166d9-6117-4752-9780-28216d61fc36,Tower,HALL,Hallway Connector 9 Floor 2,Hallway H00902
+7f3c8c3e-67b9-4e21-86b9-94949632f562,1082,755,805166d9-6117-4752-9780-28216d61fc37,Tower,HALL,Hallway Connector 10 Floor 2,Hallway H01002
+855a3654-5ecb-4566-960f-c7fe24065cc8,962,335,805166d9-6117-4752-9780-28216d61fc38,Tower,RETL,Garden Cafe,Garden Cafe
+82ad4d8f-7579-4a59-98d0-ddfea03ee180,642,500,805166d9-6117-4752-9780-28216d61fc39,Tower,RETL,Vending Machine Floor 2?,Vending Machine
+fcc7f03d-3a7c-4651-bc54-848d6834a66f,852,555,805166d9-6117-4752-9780-28216d61fc40,Tower,RETL,Gift Shop Tower Floor 2,Gift Shop
+5f67d01c-4dd9-4060-a4d7-d1254c891423,1087,355,805166d9-6117-4752-9780-28216d61fc41,Tower,STAI,Stairwell 1 Floor 2,Stairwell 0102
+7c8724e7-6008-4beb-815c-8002a3882f2d,722,640,805166d9-6117-4752-9780-28216d61fc42,Tower,STAI,Stairwell 2 Tower Floor 2,Stairwell 0202
+c4315731-672a-447a-8133-b22bc73847c0,817,705,805166d9-6117-4752-9780-28216d61fc43,Tower,STAI,Escalator 1 Floor 2,Escalator 1 Floor 2
+6a758302-b5cc-49e7-a8bf-297a78f129d5,832,400,805166d9-6117-4752-9780-28216d61fc44,Tower,ELEV,Elevator L Floor 2,Elevator L2
+b5ca1c72-1055-4584-8df7-d12078324c9f,852,755,805166d9-6117-4752-9780-28216d61fc45,Tower,ELEV,Elevator M Floor 2,Elevator M2
+010e5b83-f64c-45f8-92e0-337caf145f66,767,975,805166d9-6117-4752-9780-28216d61fc46,Tower,HALL,Hallway Connector 7 Floor 2,Hallway W0702
+9782c31f-6bc1-495f-bcca-63298bea9c5e,812,305,c2b73a98-db9b-495a-a031-8f9f163ab8ce,Tower,BATH,Bathroom 1 Tower Floor 3,Bathroom 0103
+481da706-50ae-4cf1-8f16-9c62b5840681,777,460,c2b73a98-db9b-495a-a031-8f9f163ab8ce,Tower,BATH,Bathroom 2 Tower Floor 3,Bathroom 0203
+479dfd6d-1914-4e66-8d91-8b58d23d16a9,752,375,c2b73a98-db9b-495a-a031-8f9f163ab8ce,Tower,DEPT,Dialysis Waiting Room,Dialysis WR
+1821c368-b289-42ef-ab87-5714c82c4d8f,717,305,c2b73a98-db9b-495a-a031-8f9f163ab8ce,Tower,DEPT,MICU 3BC Waiting Room,MICU 3BC WR
+2c5b373b-3120-4970-a43a-89143af67bfe,352,130,c2b73a98-db9b-495a-a031-8f9f163ab8ce,Tower,HALL,Hallway Connector 1 Floor 3,Hallway H00103
+da59406a-5cf6-4524-b5e1-9f6838ae02fc,262,460,c2b73a98-db9b-495a-a031-8f9f163ab8ce,Tower,HALL,Hallway Connector 2 Floor 3,Hallway H00203
+077f1c3b-4b44-43a6-8bff-7d7e3d984480,352,460,c2b73a98-db9b-495a-a031-8f9f163ab8ce,Tower,HALL,Hallway Connector 3 Floor 3,Hallway H00303
+178b6824-d252-4270-b633-23686d56e780,352,765,c2b73a98-db9b-495a-a031-8f9f163ab8ce,Tower,HALL,Hallway Connector 4 Floor 3,Hallway H00403
+33666134-7ffc-456f-92de-cc50cc0c1d0f,707,765,c2b73a98-db9b-495a-a031-8f9f163ab8ce,Tower,HALL,Hallway Connector 5 Floor 3,Hallway H00502
+8cf7956b-38c3-47d7-8d13-85bc5230fc01,762,400,c2b73a98-db9b-495a-a031-8f9f163ab8ce,Tower,HALL,Hallway Connector 6 Floor 3,Hallway H00603
+c51d19ef-99c4-4665-b456-33a225cab65b,762,375,c2b73a98-db9b-495a-a031-8f9f163ab8ce,Tower,HALL,Hallway Connector 7 Floor 3,Hallway H00703
+0f9e3bc1-0b2c-425d-9570-a7654c84ebce,762,340,c2b73a98-db9b-495a-a031-8f9f163ab8ce,Tower,HALL,Hallway Connector 8 Floor 3,Hallway H00803
+91500900-d316-4d10-9777-8ebd56d9bd32,762,295,c2b73a98-db9b-495a-a031-8f9f163ab8ce,Tower,HALL,Hallway Connector 9 Floor 3,Hallway H00903
+1aeeb746-48af-46e7-b234-ef226685c70a,812,295,c2b73a98-db9b-495a-a031-8f9f163ab8ce,Tower,HALL,Hallway Connector 10 Floor 3,Hallway H01003
+af12319c-7867-4418-852c-958297a2289f,717,295,c2b73a98-db9b-495a-a031-8f9f163ab8ce,Tower,HALL,Hallway Connector 11 Floor 3,Hallway H01103
+3fc9044a-241d-40e9-8ef9-9c1429faeca6,627,295,c2b73a98-db9b-495a-a031-8f9f163ab8ce,Tower,HALL,Hallway Connector 12 Floor 3,Hallway H01203
+58e76dc3-8dae-4b2e-b4de-3e7571655943,627,505,c2b73a98-db9b-495a-a031-8f9f163ab8ce,Tower,HALL,Hallway Connector 13 Floor 3,Hallway H01303
+0dbb0656-ec34-46ae-8036-08d1eb88a848,762,505,c2b73a98-db9b-495a-a031-8f9f163ab8ce,Tower,HALL,Hallway Connector 14 Floor 3,Hallway H01403
+22123994-f73a-48e5-8071-8c8096fa0fc1,762,460,c2b73a98-db9b-495a-a031-8f9f163ab8ce,Tower,HALL,Hallway Connector 15 Floor 3,Hallway H01503
+637d0b65-a731-4c76-9815-e51d9d53e9ab,262,340,c2b73a98-db9b-495a-a031-8f9f163ab8ce,Tower,LABS,Reproductive Endocrine Labs,Reproductive Endocrine Labs
+1da67518-a831-4db3-b4ed-68b70278e89f,777,340,c2b73a98-db9b-495a-a031-8f9f163ab8ce,Tower,SERV,Nursing Room,Nursing Room
+75bb4d40-b195-4c55-ae0a-7235a9445442,707,750,c2b73a98-db9b-495a-a031-8f9f163ab8ce,Tower,STAI,Stairwell 1 Floor 3,Stairwell
+89f5ca3b-8ceb-487c-810a-bdde6783b269,817,400,c2b73a98-db9b-495a-a031-8f9f163ab8ce,Tower,ELEV,Elevator L Floor 3,Elevator L3
+8c1fef2a-1f95-4062-a08f-be37f7b8897c,842,765,c2b73a98-db9b-495a-a031-8f9f163ab8ce,Tower,ELEV,Elevator M Floor 3,Elevator M3
+ad982e39-f67b-4156-b16f-d3876113b3c3,1007,319,b34d0c16-0523-4dce-9d71-f6f3bf2749aa,Tower,DEPT,Day Surgery Family Waiting Floor L1,Department C002L1
+aa5d41b0-f454-41a8-bf07-f8cc1ffda57c,872,319,b34d0c16-0523-4dce-9d71-f6f3bf2749aa,Tower,DEPT,Day Surgery Family Waiting Exit Floor L1,Department C003L1
+9ee13dcb-8300-4d61-99f7-bf5b11aa1f55,759,399,b34d0c16-0523-4dce-9d71-f6f3bf2749aa,Tower,HALL,Hallway 1 Floor L1,Hallway C001L1
+3cd7a16f-e018-4fb6-8b66-2e89759a46e5,777,759,b34d0c16-0523-4dce-9d71-f6f3bf2749aa,Tower,HALL,Hallway 5 Floor L1,Hallway C005L1
+aa68eb2a-a77f-4866-b9b5-f35b0d2426a4,1157,759,b34d0c16-0523-4dce-9d71-f6f3bf2749aa,Tower,HALL,Hallway 6 Floor L1,Hallway C006L1
+0a0da6ca-6f11-4d07-b020-bd56766cf2d6,1157,520,b34d0c16-0523-4dce-9d71-f6f3bf2749aa,Tower,HALL,Hallway 7 Floor L1,Hallway C007L1
+d37281fb-7b2a-49f5-ac9a-0aa199fd90fe,872,399,b34d0c16-0523-4dce-9d71-f6f3bf2749aa,Tower,HALL,Hallway 14 Floor L1,Hallway C014L1
+c953d741-7314-4739-994d-4aa10bf3e126,992,759,b34d0c16-0523-4dce-9d71-f6f3bf2749aa,Tower,LABS,Outpatient Fluoroscopy Floor L1,Lab C001L1
+028e08c3-2197-4fc4-a9c2-c578bf7b228e,777,565,b34d0c16-0523-4dce-9d71-f6f3bf2749aa,Tower,LABS,Pre-Op PACU Floor L1,Lab C002L1
+aaf03db8-0bc8-402a-a904-930df70203cf,759,494,b34d0c16-0523-4dce-9d71-f6f3bf2749aa,Tower,REST,Restroom L Elevator Floor L1,Restroom C001L1
+22e47520-1ad3-4843-947d-ff4a958e27e3,1092,759,b34d0c16-0523-4dce-9d71-f6f3bf2749aa,Tower,REST,Restroom M Elevator Floor L1,Restroom C002L1
+a17950c5-b55d-4bdb-9e14-614340106934,812,399,b34d0c16-0523-4dce-9d71-f6f3bf2749aa,Tower,ELEV,Elevator L Floor L1,Elevator LL1
+dbf788e5-fb52-47a1-ad8c-df06f4410137,847,759,b34d0c16-0523-4dce-9d71-f6f3bf2749aa,Tower,ELEV,Elevator M Floor L1,Elevator ML1
+a1bd7b50-343c-4d7f-b8bb-70cc296fceb2,772,755,fd5e0a98-c7b7-44ea-a07f-8cb3d99dbfe1,Tower,HALL,Hallway 5 Floor L2,Hallway C005L2
+d5489247-ba3f-425c-ba4d-93721f10eae9,772,484,fd5e0a98-c7b7-44ea-a07f-8cb3d99dbfe2,Tower,HALL,Hallway 6 Floor L2,Hallway C006L2
+86c86b04-7735-4022-8bef-d534af7084d0,757,484,fd5e0a98-c7b7-44ea-a07f-8cb3d99dbfe3,Tower,HALL,Hallway 7 Floor L2,Hallway C007L2
+5cd32b89-5843-4793-b7c2-3345d6955ff6,757,399,fd5e0a98-c7b7-44ea-a07f-8cb3d99dbfe4,Tower,HALL,Hallway 8 Floor L2,Hallway C008L2
+81bb6c1f-4720-4169-82c8-581feb8ef5c8,757,324,fd5e0a98-c7b7-44ea-a07f-8cb3d99dbfe5,Tower,HALL,Hallway 9 Floor L2,Hallway C009L2
+91a5e7ac-7373-4179-b1bf-c0704c6df34e,1157,324,fd5e0a98-c7b7-44ea-a07f-8cb3d99dbfe6,Tower,HALL,Hallway 10 Floor L2,Hallway C010L2
+1e4923bf-1bc2-45f9-b9d9-c17c506c42fa,812,399,fd5e0a98-c7b7-44ea-a07f-8cb3d99dbfe7,Tower,ELEV,Elevator L Floor L2,Elevator LL2
+c1fff6ea-7735-442d-969a-67d4e48747be,847,755,fd5e0a98-c7b7-44ea-a07f-8cb3d99dbfe8,Tower,ELEV,Elevator M Floor L2,Elevator ML2
+ea1875bf-f932-43f0-a0a9-454d29758b02,772,999,fd5e0a98-c7b7-44ea-a07f-8cb3d99dbfe9,Tower,HALL,Hallway Connector 1 Floor L2,Hallway W01L2
+160d51c8-e11a-499a-ad1b-4bf325251fdd,577,310,b34d0c16-0523-4dce-9d71-f6f3bf2749aa,Tower,STOR,OR Bed Park Floor L1,OR BP L1
+72569374-516a-44eb-b9d4-c05d6e68200b,537,400,4c995e14-cb6b-49eb-bbe8-95fea57b5374,Tower,STOR,West Plaza,Wplaza
+6f98061e-edc5-4438-a0ec-de236eca6f4f,557,235,c2b73a98-db9b-495a-a031-8f9f163ab8ce,Tower,STOR,Pod B Clean Equipment Storage (Floor 3),Pod B3 CES
+d3ce0571-925a-42ff-909d-04b9bee5e006,547,565,c2b73a98-db9b-495a-a031-8f9f163ab8ce,Tower,STOR,Pod C Clean Equipment Storage (Floor 3),Pod C3 CES
+ec4b70f6-08a9-4a70-ac70-e2a9f8e6c405,517,400,c2b73a98-db9b-495a-a031-8f9f163ab8ce,Tower,DIRT,Dirty Equipment Storage (Floor 3),DES3
+b5a5f2a9-15ef-4f6f-bd8b-05c70ba834db,537,345,c2b73a98-db9b-495a-a031-8f9f163ab8ce,Tower,PATI,Pod B Patient Room 1,Pod B PR1
+2f2da90a-bcbf-4052-8e67-df37b5d19744,492,325,c2b73a98-db9b-495a-a031-8f9f163ab8ce,Tower,PATI,Pod B Patient Room 2,Pod B PR2
+59062c35-a49d-4b4c-b331-001a4841dee8,467,285,c2b73a98-db9b-495a-a031-8f9f163ab8ce,Tower,PATI,Pod B Patient Room 3,Pod B PR3
+0e3b6fdf-15ac-4387-b0be-b5e33aa4c18d,457,240,c2b73a98-db9b-495a-a031-8f9f163ab8ce,Tower,PATI,Pod B Patient Room 4,Pod B PR4
+18f32029-c3e1-4967-86a0-948d4bc7b5ff,472,195,c2b73a98-db9b-495a-a031-8f9f163ab8ce,Tower,PATI,Pod B Patient Room 5,Pod B PR5
+bf4715ed-12a2-43f9-b884-0a669170fed9,497,170,c2b73a98-db9b-495a-a031-8f9f163ab8ce,Tower,PATI,Pod B Patient Room 6,Pod B PR6
+ae3dc757-ece4-4873-be2d-6b1e193276e5,542,155,c2b73a98-db9b-495a-a031-8f9f163ab8ce,Tower,PATI,Pod B Patient Room 7,Pod B PR7
+e3882d5b-9bbe-4feb-acba-b3ba7332bd19,587,155,c2b73a98-db9b-495a-a031-8f9f163ab8ce,Tower,PATI,Pod B Patient Room 8,Pod B PR8
+03fdc671-8f0b-480f-a374-1773b312fb3f,622,175,c2b73a98-db9b-495a-a031-8f9f163ab8ce,Tower,PATI,Pod B Patient Room 9,Pod B PR9
+074a3683-703f-41ec-a10e-31c199126bdd,647,235,c2b73a98-db9b-495a-a031-8f9f163ab8ce,Tower,PATI,Pod B Patient Room 10,Pod B PR10
+86cf4d0d-d761-4118-af1a-052e58a724c3,537,465,c2b73a98-db9b-495a-a031-8f9f163ab8ce,Tower,PATI,Pod C Patient Room 1,Pod C PR1
+2d8c88ad-ff45-447f-976a-b16029af106d,487,490,c2b73a98-db9b-495a-a031-8f9f163ab8ce,Tower,PATI,Pod C Patient Room 2,Pod C PR2
+11104503-ad91-4f85-8aff-9c1ea67cc6ae,457,525,c2b73a98-db9b-495a-a031-8f9f163ab8ce,Tower,PATI,Pod C Patient Room 3,Pod C PR3
+0b272af0-01f0-4412-afd9-bbf43eb3dd78,457,575,c2b73a98-db9b-495a-a031-8f9f163ab8ce,Tower,PATI,Pod C Patient Room 4,Pod C PR4
+b35bef70-f2f0-4616-82d2-08d66eb5c7d9,477,615,c2b73a98-db9b-495a-a031-8f9f163ab8ce,Tower,PATI,Pod C Patient Room 5,Pod C PR5
+f6febfb8-330d-43ae-80bd-8578e8e5f1b0,507,635,c2b73a98-db9b-495a-a031-8f9f163ab8ce,Tower,PATI,Pod C Patient Room 6,Pod C PR6
+92d01b8a-156c-4e94-83f3-b19b3379516b,547,655,c2b73a98-db9b-495a-a031-8f9f163ab8ce,Tower,PATI,Pod C Patient Room 7,Pod C PR7
+e8650a13-8550-4bd7-8a7c-064d7650d1c1,597,645,c2b73a98-db9b-495a-a031-8f9f163ab8ce,Tower,PATI,Pod C Patient Room 8,Pod C PR8
+765ecea7-c8a9-43d1-b264-fabf29d8950d,627,625,c2b73a98-db9b-495a-a031-8f9f163ab8ce,Tower,PATI,Pod C Patient Room 9,Pod C PR9
+fe76c2b5-fa0e-4a77-862f-4fef70150af1,647,580,c2b73a98-db9b-495a-a031-8f9f163ab8ce,Tower,PATI,Pod C Patient Room 10,Pod C PR10
+32e145e9-3c2d-4bdc-9bc6-620ee6ebc671,717,215,c2b73a98-db9b-495a-a031-8f9f163ab8ce,Tower,STOR,Pods AB Bed and Recliner Parking,PodsAB BRP
+9cb6daca-13d9-4170-8908-1c76274a23d3,717,595,c2b73a98-db9b-495a-a031-8f9f163ab8ce,Tower,STOR,Pods CD Bed and Recliner Parking,PodsCD BRP

@@ -69,7 +69,7 @@ public class BaseMapViewController implements Initializable {
             return floors;
         }
 
-        public Floor getFloorByID(int id) {
+        public Floor getFloorByID(String id) {
             return floors.stream().filter(floor -> floor.getFloorID() == id).collect(Collectors.toList()).get(0);
         }
 
