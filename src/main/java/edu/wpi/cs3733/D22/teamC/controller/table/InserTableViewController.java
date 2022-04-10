@@ -115,10 +115,7 @@ public class InserTableViewController implements Initializable {
         LocationDAO locationDAO = new LocationDAOImpl();
         locationDAO.updateLocation(currentLocation);
 
-        App.instance.setView("view/Table/base_view2.fxml");
-
-
-
+        parentController.tableDisplay.updateObject(currentLocation);
     }
 
     private boolean fieldsFilled(){

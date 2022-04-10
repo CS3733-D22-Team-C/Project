@@ -33,7 +33,7 @@ public class BaseTableViewController2<T extends Object> implements Initializable
 
 
     @FXML private JFXTreeTableView table;
-    private LocationTableDisplay tableDisplay;
+    LocationTableDisplay tableDisplay;
 
     //TODO abstract that this (same as above setUp)
     private LocationsViewController viewController;
