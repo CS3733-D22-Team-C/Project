@@ -1,4 +1,4 @@
-package edu.wpi.cs3733.D22.teamC.entity.Login;
+package edu.wpi.cs3733.D22.teamC.entity.login_page;
 
 public class Login {
     private String username;
