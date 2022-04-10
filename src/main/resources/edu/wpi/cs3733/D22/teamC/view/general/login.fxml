@@ -16,12 +16,11 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="625.0" prefWidth="705.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1">
    <children>
       <ImageView fitHeight="625.0" fitWidth="567.0" pickOnBounds="true" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="138.0" AnchorPane.topAnchor="0.0">
          <image>
-            <Image url="../../static/images/BrighamAndWomensHospital.png" />
+            <Image url="@../../static/images/BrighamAndWomensHospital.png" />
          </image>
       </ImageView>
       <VBox layoutX="362.0" layoutY="-1.0" prefHeight="626.0" prefWidth="342.0">
@@ -36,16 +35,16 @@
                   </Label>
                   <ImageView fitHeight="120.0" fitWidth="86.0" pickOnBounds="true" preserveRatio="true" translateX="-100.0">
                      <image>
-                        <Image url="../../static/images/logo.png" />
+                        <Image url="@../../../../../../../../../../../../../Desktop/logo.png" />
                      </image>
                   </ImageView>
                </children>
             </StackPane>
-            <StackPane prefHeight="445.0" prefWidth="340.0">
+            <StackPane prefHeight="477.0" prefWidth="342.0">
                <children>
                   <HBox prefHeight="445.0" prefWidth="354.0">
                      <children>
-                        <Label prefHeight="446.0" prefWidth="354.0" styleClass="login-interface-background-lower" stylesheets="@../../css/component/entity/login/login.css" />
+                        <Label prefHeight="478.0" prefWidth="342.0" styleClass="login-interface-background-lower" stylesheets="@../../css/component/entity/login/login.css" />
                      </children>
                   </HBox>
                   <GridPane>
@@ -90,9 +89,9 @@
                                           <Font name="Roboto Light" size="12.0" />
                                        </font>
                                     </MFXButton>
-                                    <ImageView fitHeight="16.0" fitWidth="150.0" pickOnBounds="true" preserveRatio="true" translateX="-40.0" translateY="30.0">
+                                    <ImageView fitHeight="21.0" fitWidth="21.0" pickOnBounds="true" preserveRatio="true" translateX="-40.0" translateY="30.0">
                                        <image>
-                                          <Image url="../../images/icon/arrow_icon.png" />
+                                          <Image url="@../../images/icon/arrow.png" />
                                        </image>
                                     </ImageView>
                                  </children>
@@ -101,7 +100,7 @@
                         </VBox>
                         <VBox prefHeight="200.0" prefWidth="100.0" GridPane.rowIndex="4">
                            <children>
-                              <StackPane prefHeight="150.0" prefWidth="200.0">
+                              <StackPane prefHeight="100.0" prefWidth="342.0">
                                  <children>
                                     <MFXButton onAction="#exitButtonClicked" prefHeight="39.0" prefWidth="114.0" styleClass="exit-button" stylesheets="@../../css/component/entity/login/login.css" text="Exit" translateX="-7.0">
                                        <font>
@@ -110,7 +109,7 @@
                                     </MFXButton>
                                     <ImageView fitHeight="16.0" fitWidth="150.0" pickOnBounds="true" preserveRatio="true" translateX="-40.0">
                                        <image>
-                                          <Image url="../../images/icon/powerbutton.png" />
+                                          <Image url="@../../images/icon/powerbutton.png" />
                                        </image>
                                     </ImageView>
                                  </children>
