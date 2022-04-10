@@ -1,12 +1,12 @@
 package edu.wpi.cs3733.D22.teamC.controller.table;
 
 import com.jfoenix.controls.JFXButton;
-import edu.wpi.cs3733.D22.teamC.App;
-import edu.wpi.cs3733.D22.teamC.controller.service_request.BaseServiceRequestResolveController;
+import com.jfoenix.controls.JFXTreeTableView;
 import edu.wpi.cs3733.D22.teamC.entity.location.Location;
 import edu.wpi.cs3733.D22.teamC.entity.location.LocationDAO;
 import edu.wpi.cs3733.D22.teamC.entity.location.LocationDAOImpl;
-import edu.wpi.cs3733.D22.teamC.entity.service_request.medicine_delivery.MedicineDeliverySR;
+import edu.wpi.cs3733.D22.teamC.models.generic.TableDisplay;
+import edu.wpi.cs3733.D22.teamC.models.location.LocationTableDisplay;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -14,11 +14,12 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 
 import java.net.URL;
+import java.util.List;
 import java.util.ResourceBundle;
 
-public class InserTableViewController implements Initializable {
+public class LocationInsertTableViewController extends  InsertTableViewController<Location> implements Initializable {
 
-    @FXML private JFXButton confirm;
+    @FXML protected JFXButton confirm;
 
     @FXML private TextField field1;
     @FXML private TextField field2;
@@ -40,12 +41,6 @@ public class InserTableViewController implements Initializable {
     @FXML Label title;
 
 
-    private boolean addMode;
-    BaseTableViewController2 parentController;
-    Location currentLocation;
-
-
-
     public void initialize(URL location, ResourceBundle resources) {
         label1.setText("Long Name:");
         label2.setText("Short Name:");
@@ -65,8 +60,21 @@ public class InserTableViewController implements Initializable {
     public String getPath(){
 
         //TODO write funciton to grab path of insert
-         return "view/Table/Locations/table_insert.fxml";
+        return "view/Table/Locations/table_insert.fxml";
 
+    }
+
+    public void setup(BaseTableViewController2 parentController)
+    {
+        super.setup(parentController);
+    }
+
+
+    public void getRowInfo(Location location)
+    {
+        super.getRowInfo(location);
+        title.setText("Edit Location");
+        setFields(location.getLongName(), location.getShortName(), Integer.toString(location.getNodeID()), location.getNodeType().toString(), location.getBuilding(), Integer.toString(location.getFloor()), Integer.toString(location.getX()), Integer.toString(location.getY()));
     }
 
     public void setFields(String r1,String r2, String r3, String r4, String r5,String r6, String r7, String r8) {
@@ -81,22 +89,7 @@ public class InserTableViewController implements Initializable {
         field8.setText(r8);
     }
 
-
-    public void setup(BaseTableViewController2 parentController)
-    {
-        this.parentController = parentController;
-        addMode = false;
-    }
-
-    public void getRowInfo(Location location)
-    {
-        addMode = false;
-        fieldsEditable(true);
-        title.setText("Edit Location");
-        this.currentLocation = location;
-        setFields(location.getLongName(), location.getShortName(), Integer.toString(location.getNodeID()), location.getNodeType().toString(), location.getBuilding(), Integer.toString(location.getFloor()), Integer.toString(location.getX()), Integer.toString(location.getY()));
-    }
-
+    @Override
     public void resetValues()
     {
         field1.setText("");
@@ -114,19 +107,19 @@ public class InserTableViewController implements Initializable {
     void clickConfirm(ActionEvent event) {
 
         if (!addMode){
-            currentLocation.setLongName(field1.getText());
-            currentLocation.setShortName(field2.getText());
-            currentLocation.setNodeID(Integer.valueOf(field3.getText()));
-            currentLocation.setNodeType(Location.NodeType.valueOf(field4.getText()));
-            currentLocation.setBuilding(field5.getText());
-            currentLocation.setFloor(Integer.valueOf(field6.getText()));
-            currentLocation.setX(Integer.valueOf(field7.getText()));
-            currentLocation.setY(Integer.valueOf(field8.getText()));
+            currentRow.setLongName(field1.getText());
+            currentRow.setShortName(field2.getText());
+            currentRow.setNodeID(Integer.valueOf(field3.getText()));
+            currentRow.setNodeType(Location.NodeType.valueOf(field4.getText()));
+            currentRow.setBuilding(field5.getText());
+            currentRow.setFloor(Integer.valueOf(field6.getText()));
+            currentRow.setX(Integer.valueOf(field7.getText()));
+            currentRow.setY(Integer.valueOf(field8.getText()));
 
             LocationDAO locationDAO = new LocationDAOImpl();
-            locationDAO.updateLocation(currentLocation);
+            locationDAO.updateLocation(currentRow);
 
-            parentController.tableDisplay.updateObject(currentLocation);
+            parentController.tableDisplay.updateObject(currentRow);
             addMode = false;
 
         } else {
@@ -144,7 +137,8 @@ public class InserTableViewController implements Initializable {
 
             LocationDAO locationDAO = new LocationDAOImpl();
             locationDAO.insertLocation(newLocal);
-            parentController.tableDisplay.updateObject(newLocal);
+
+            parentController.tableDisplay.addObject(newLocal);
             resetValues();
             addMode = false;
             fieldsEditable(false);
@@ -153,28 +147,27 @@ public class InserTableViewController implements Initializable {
         }
     }
 
-    private boolean fieldsFilled(){
-        return !(field1.equals("") || field2.equals("") || field3.equals("") ||
-                field4.equals("") || field5.equals("") || field6.equals("") ||
-                field7.equals("") || field8.equals(""));
-    }
     @FXML
     void keyPressed() {
-        if(fieldsFilled())
-            confirm.setDisable(false);
-        else
+        if(fieldsNotFilled())
             confirm.setDisable(true);
+        else
+            confirm.setDisable(false);
+    }
+
+    public boolean fieldsNotFilled(){
+        return field1.getText().equals("") || field2.getText().equals("") || field3.getText().equals("") ||
+                field4.getText().equals("") || field5.getText().equals("") || field6.getText().equals("") ||
+                field7.getText().equals("") || field8.getText().equals("");
     }
 
     void addClicked(){
-        fieldsEditable(true);
-        addMode = true;
-        System.out.println("right here");
-        resetValues();
+        super.addClicked();
         title.setText("Add Location");
     }
 
-    void fieldsEditable(boolean edit){
+    @Override
+    public void fieldsEditable(boolean edit){
         field1.setEditable(edit);
         field2.setEditable(edit);
         field3.setEditable(edit);
@@ -183,6 +176,23 @@ public class InserTableViewController implements Initializable {
         field6.setEditable(edit);
         field7.setEditable(edit);
         field8.setEditable(edit);
+        System.out.println(field8.isEditable());
     }
 
+    public TableDisplay<Location> createTableDisplay(JFXTreeTableView table){
+
+        TableDisplay<Location> tempTableDisplay = new LocationTableDisplay(table);
+        // Query Database
+        LocationDAO locationsDAO = new LocationDAOImpl();
+        List<Location> locations = locationsDAO.getAllLocations();
+
+        for(Location location2 : locations){
+            tempTableDisplay.addObject(location2);
+        }
+        return tempTableDisplay;
+    }
+    public void deleteValue(Location currentRow) {
+        LocationDAO locationDAO = new LocationDAOImpl();
+        locationDAO.deleteLocation(currentRow);
+    }
 }

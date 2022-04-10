@@ -7,12 +7,20 @@
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
 
-<ScrollPane fitToHeight="true" fitToWidth="true" prefHeight="607.0" prefWidth="304.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.wpi.cs3733.D22.teamC.controller.table.InserTableViewController">
+<ScrollPane fitToHeight="true" fitToWidth="true" prefHeight="681.0" prefWidth="304.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.wpi.cs3733.D22.teamC.controller.table.LocationInsertTableViewController">
    <content>
-      <VBox alignment="CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="622.0" prefWidth="289.0" spacing="10.0" styleClass="base_view_table_insert" stylesheets="@../../../css/table_skeleton.css">
+      <VBox alignment="CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="646.0" prefWidth="302.0" spacing="10.0" styleClass="base_view_table_insert" stylesheets="@../../../css/table_skeleton.css">
          <children>
-            <Label fx:id="title" prefHeight="17.0" prefWidth="290.0" VBox.vgrow="ALWAYS" />
+            <VBox alignment="CENTER_LEFT" VBox.vgrow="ALWAYS">
+               <children>
+                  <Label fx:id="title" prefHeight="25.0" prefWidth="270.0" text="dfgdfgdg">
+                     <font>
+                        <Font size="24.0" />
+                     </font></Label>
+               </children>
+            </VBox>
             <VBox>
                <children>
                   <Label fx:id="label1" prefHeight="17.0" prefWidth="272.0" text="Label 1" />

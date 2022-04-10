@@ -10,14 +10,14 @@
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.layout.VBox?>
 
-<GridPane alignment="CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.wpi.cs3733.D22.teamC.controller.table.BaseTableViewController2">
+<GridPane alignment="CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="698.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.wpi.cs3733.D22.teamC.controller.table.BaseTableViewController2">
   <columnConstraints>
     <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
     <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
   </columnConstraints>
   <rowConstraints>
-    <RowConstraints maxHeight="316.0" minHeight="10.0" prefHeight="316.0" vgrow="SOMETIMES" />
-    <RowConstraints maxHeight="196.0" minHeight="10.0" prefHeight="84.0" vgrow="SOMETIMES" />
+    <RowConstraints maxHeight="575.0" minHeight="10.0" prefHeight="548.0" vgrow="SOMETIMES" />
+    <RowConstraints maxHeight="196.0" minHeight="10.0" prefHeight="117.0" vgrow="SOMETIMES" />
   </rowConstraints>
    <children>
       <VBox fx:id="insertBox" prefHeight="200.0" prefWidth="100.0" GridPane.vgrow="ALWAYS">
@@ -51,7 +51,7 @@
          </GridPane.margin></JFXButton>
       <VBox prefHeight="200.0" prefWidth="100.0" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.valignment="CENTER" GridPane.vgrow="ALWAYS">
          <children>
-            <JFXTreeTableView fx:id="table" prefHeight="320.0" prefWidth="300.0">
+            <JFXTreeTableView fx:id="table" prefHeight="400.0" prefWidth="300.0" VBox.vgrow="ALWAYS">
                <padding>
                   <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
                </padding></JFXTreeTableView>

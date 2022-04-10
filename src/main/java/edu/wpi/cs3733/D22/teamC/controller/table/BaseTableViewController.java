@@ -22,7 +22,7 @@ public class BaseTableViewController implements Initializable {
 
     String PATH = "view/Table/Locations/table_insert.fxml";
 
-    InserTableViewController insertController; //TODO what object type is this?
+    LocationInsertTableViewController insertController; //TODO what object type is this?
 
     TableDisplay tableDisplay; //TODO what object type is this?
 
@@ -44,7 +44,7 @@ public class BaseTableViewController implements Initializable {
 
     public void setInsert(String path) {
 
-        App.View<InserTableViewController> view = App.instance.loadView(path);
+        App.View<LocationInsertTableViewController> view = App.instance.loadView(path);
         insertController = view.getController();
         insertBox.getChildren().add(view.getNode());
 
