@@ -1,82 +1,82 @@
 nodeID,xcoord,ycoord,floor,building,nodeType,longName,shortName
 186f1ae6-d12f-4994-a0a5-875f02e9072c,644,300,4c995e14-cb6b-49eb-bbe8-95fea57b5374,Tower,DEPT,Center for International Medicine,CIM
-948a0a64-86c9-4c76-ab24-f200580bd96a,637,595,4c995e14-cb6b-49eb-bbe8-95fea57b5375,Tower,DEPT,Bretholtz Center for Patients and Families,Bretholtz WR
-12eea339-69f3-47eb-ac0b-d2b7cd34341e,748,406,4c995e14-cb6b-49eb-bbe8-95fea57b5376,Tower,DEPT,Multifaith Chapel,Chapel
-8204f7bc-404c-4010-a72e-104c09f0dfda,821,621,4c995e14-cb6b-49eb-bbe8-95fea57b5377,Tower,DEPT,Sharf Admitting Center,Sharf Center
-57857b80-1fed-4f2c-9e41-cff00ff47b69,1155,775,4c995e14-cb6b-49eb-bbe8-95fea57b5378,Tower,DEPT,Emergency Department,Emergency
-d0885116-ebd4-4791-a77f-4b4b28f7175f,807,504,4c995e14-cb6b-49eb-bbe8-95fea57b5379,Tower,DEPT,International Patient Center,IPC
-a40d836c-1876-4736-b88c-cae2fe2d25a9,1044,274,4c995e14-cb6b-49eb-bbe8-95fea57b5380,Tower,EXIT,Shattuck Street Lobby Exit,Shattuck St. Exit
-1b35b1fc-9407-4008-a494-3f829f34469d,775,796,4c995e14-cb6b-49eb-bbe8-95fea57b5381,Tower,EXIT,75 Francis Valet Drop-off,75 Francis Exit
-214b0d96-507f-4ace-be62-631243ca7727,1126,832,4c995e14-cb6b-49eb-bbe8-95fea57b5382,Tower,EXIT,Emergency Department Entrance,Emergency Entrance
-8650f955-a150-4397-bdf4-a3e3e995b999,1082,385,4c995e14-cb6b-49eb-bbe8-95fea57b5383,Tower,HALL,Lower Pike Hallway Exit Lobby,Hallway F00101
-38571e90-7c43-44a1-bfff-8b63251fcb80,1053,385,4c995e14-cb6b-49eb-bbe8-95fea57b5384,Tower,HALL,Lobby Shattuck Street,Hallway F00201
-ef0fd9d2-bc95-4c94-82e2-603402c713d8,1044,385,4c995e14-cb6b-49eb-bbe8-95fea57b5385,Tower,HALL,Shattuck Street Lobby 1,Hallway F00301
-5c0cbf9c-413b-49d7-96ca-7fc7229b7393,1000,385,4c995e14-cb6b-49eb-bbe8-95fea57b5386,Tower,HALL,Shattuck Street Lobby 2,Hallway F00401
-ea04ddc3-ddc5-4c8d-8632-745f6ffcc254,977,385,4c995e14-cb6b-49eb-bbe8-95fea57b5387,Tower,HALL,Shattuck Street Lobby 3,Hallway F00501
-d3bb2de2-2d70-4f13-a163-a2065d751477,896,405,4c995e14-cb6b-49eb-bbe8-95fea57b5388,Tower,HALL,Tower Lobby Entrance 1,Tower Entrance
-45ece7ff-4a4f-4489-a819-c077f778021a,785,405,4c995e14-cb6b-49eb-bbe8-95fea57b5389,Tower,HALL,Tower Elevator Entrance,Hallway F00701
-f84833cf-52de-4745-97aa-34093681f2ee,785,325,4c995e14-cb6b-49eb-bbe8-95fea57b5390,Tower,HALL,Tower Hallway 1,Hallway F00801
-5f0d3c79-ef61-4026-a3b7-6135bc3f0ecd,654,325,4c995e14-cb6b-49eb-bbe8-95fea57b5391,Tower,HALL,Tower Hallway 2,Hallway F00901
-9668b376-85e1-4c7f-96de-4aa7f2612507,654,277,4c995e14-cb6b-49eb-bbe8-95fea57b5392,Tower,HALL,Tower Hallway 3,Hallway F01001
-2963959f-80a8-46cd-bda1-1ee0127af84b,654,405,4c995e14-cb6b-49eb-bbe8-95fea57b5393,Tower,HALL,Tower Hallway 4,Hallway F01101
-c416ddba-5c5e-47b5-a7a6-2da7c78bdd79,575,405,4c995e14-cb6b-49eb-bbe8-95fea57b5394,Tower,HALL,Tower Staff Entrance,Hallway F01201
-ff07da35-3a27-43f5-a93b-2b93c3f58cf7,654,300,4c995e14-cb6b-49eb-bbe8-95fea57b5395,Tower,HALL,Tower Hallway 5,Hallway F01301
-5511301d-3c4b-4323-9704-bffd9e1aecf2,654,504,4c995e14-cb6b-49eb-bbe8-95fea57b5396,Tower,HALL,Tower Hallway 6,Hallway F01401
-f739bc14-f9b5-4921-8292-c414e0a7b9f1,654,535,4c995e14-cb6b-49eb-bbe8-95fea57b5397,Tower,HALL,Tower Hallway 7,Hallway F01501
-725f0c0c-d11c-4394-aadc-bcd7c0c790fa,785,535,4c995e14-cb6b-49eb-bbe8-95fea57b5398,Tower,HALL,Tower Hallway 8,Hallway F01601
-5411d312-407b-44bd-a3c5-5f30adda3800,748,431,4c995e14-cb6b-49eb-bbe8-95fea57b5399,Tower,HALL,Tower Hallway 9,Hallway F01701
-66eec6d9-0cd6-412b-89fa-4bf24016af38,785,431,4c995e14-cb6b-49eb-bbe8-95fea57b5400,Tower,HALL,Tower Hallway 10,Hallway F01801
-51cd5e9d-4286-4583-a0bb-0e68a646c532,785,595,4c995e14-cb6b-49eb-bbe8-95fea57b5401,Tower,HALL,Tower Hallway 11,Hallway F01901
-bff68a88-e3e7-4f36-aaeb-34466a3f62a4,727,595,4c995e14-cb6b-49eb-bbe8-95fea57b5402,Tower,HALL,Tower Hallway 12,Hallway F02001
-30c33362-9d32-451f-8db4-3a04819efaca,796,621,4c995e14-cb6b-49eb-bbe8-95fea57b5403,Tower,HALL,Tower Hallway Entrance,Tower Entrance 2
-81535172-29c4-426c-b876-47d89140ecc0,796,755,4c995e14-cb6b-49eb-bbe8-95fea57b5404,Tower,HALL,Hallway Lobby Entrance,Entrance Hallway
-dbeb4a5d-b7c2-4c31-9e17-579c8cdf7b38,872,755,4c995e14-cb6b-49eb-bbe8-95fea57b5405,Tower,HALL,Lobby Hallway 1,Hallway F02301
-7258a193-a2a1-463c-9046-a8d0d3158c99,992,755,4c995e14-cb6b-49eb-bbe8-95fea57b5406,Tower,HALL,Lobby Hallway 2,Hallway F02401
-ffc44ca7-bac2-44e8-89c9-462d6ce97e23,992,714,4c995e14-cb6b-49eb-bbe8-95fea57b5407,Tower,HALL,Lobby Hallway 3,Hallway F02501
-b1a340ce-d242-47c4-bd85-b02fe0e057a4,1053,714,4c995e14-cb6b-49eb-bbe8-95fea57b5408,Tower,HALL,Lobby Hallway 4,Hallway F02601
-ea9772f4-88d3-40c7-95fb-dbff545ad9ae,1093,714,4c995e14-cb6b-49eb-bbe8-95fea57b5409,Tower,HALL,Lobby Hallway 7,Hallway F02701
-b56f9930-59b5-45c3-8552-1b5fbc902b8a,775,755,4c995e14-cb6b-49eb-bbe8-95fea57b5410,Tower,HALL,Lobby Entrance Hallway,HallwayF02801
-03ec2f03-0f64-47af-9f34-c96f5be7d63d,727,755,4c995e14-cb6b-49eb-bbe8-95fea57b5411,Tower,HALL,75 Lobby,75 Lobby
-a253e184-fa78-48c6-a6b7-06f4f80a6ba7,672,721,4c995e14-cb6b-49eb-bbe8-95fea57b5412,Tower,HALL,Lobby Hallway 5,Hallway F02701
-16cc3587-e815-46e0-9192-ce6470228adc,1053,451,4c995e14-cb6b-49eb-bbe8-95fea57b5413,Tower,HALL,Lobby Hallway 6,Hallway F02801
-f887d2d7-77fc-41fb-a942-e6c9ea65084f,785,504,4c995e14-cb6b-49eb-bbe8-95fea57b5414,Tower,HALL,Tower Hallway 13,Hallway F03201
-b21f7f1c-b070-4f7f-bfee-b3125f5bac19,1093,757,4c995e14-cb6b-49eb-bbe8-95fea57b5415,Tower,HALL,Emergency Hallway,Hallway F03301
-d807ee5c-a944-4b45-abeb-3827344210a0,727,701,4c995e14-cb6b-49eb-bbe8-95fea57b5416,Tower,INFO,75 Lobby Information Desk,Lobby Info Desk
-7da92aad-b0f2-46c1-aa32-37cebf7502e5,872,725,4c995e14-cb6b-49eb-bbe8-95fea57b5417,Tower,LABS,Obstetrics Admitting,Obs Admitting
-34cd37f2-3342-4509-bb0b-b706b12a4c28,1118,451,4c995e14-cb6b-49eb-bbe8-95fea57b5418,Tower,REST,Bathroom 75 Lobby,Bathroom Lobby
-34328346-c7bb-419b-a21e-4eb7f308f8ee,1000,319,4c995e14-cb6b-49eb-bbe8-95fea57b5419,Tower,RETL,Lobby Vending Machine,VM Lobby
-245532e5-97a5-4468-ae66-d23c762c93b4,636,721,4c995e14-cb6b-49eb-bbe8-95fea57b5420,Tower,RETL,Au Bon Pain,ABP
-cd0f0b22-c26f-4945-bd92-c57c1ffe8c79,977,346,4c995e14-cb6b-49eb-bbe8-95fea57b5421,Tower,SERV,Shattuck Street Lobby ATM,Lobby ATM
-3d6ca289-bdf4-4a43-aace-c8cee067e72b,632,504,4c995e14-cb6b-49eb-bbe8-95fea57b5422,Tower,SERV,Tower Medical Cashier,Tower Cashier
-b90beba3-e7aa-48eb-88a8-0a1b66c03006,727,633,4c995e14-cb6b-49eb-bbe8-95fea57b5423,Tower,SERV,Kessler Library,Kessler Library
-58c52e23-1480-4b22-ad08-e7e054b4f639,748,445,4c995e14-cb6b-49eb-bbe8-95fea57b5424,Tower,DEPT,Spiritual Care Office,SCO
-9e5126ca-7a0e-4a58-955d-2fb9b4220b43,672,755,4c995e14-cb6b-49eb-bbe8-95fea57b5425,Tower,SERV,75 Lobby Valet Cashier,Valet Cashier
-ff955399-a7ac-48bb-8598-aa78c0e6ade4,1053,367,4c995e14-cb6b-49eb-bbe8-95fea57b5426,Tower,STAI,Lobby Shattuck Street Stairs,Stairway F00101
-3e2bc607-37c5-4212-bf2f-6dd448252d75,700,277,4c995e14-cb6b-49eb-bbe8-95fea57b5427,Tower,STAI,Tower Stairway 1,Tower Stairs 1
-1285efe1-0722-4670-b009-1324805fbe50,974,714,4c995e14-cb6b-49eb-bbe8-95fea57b5428,Tower,STAI,Lobby Escalator,Lobby Escalator
-94c63f1a-f14c-4c28-90d4-90881e962638,837,405,4c995e14-cb6b-49eb-bbe8-95fea57b5429,Tower,ELEV,Elevator L Floor 1,Elevator L1
-cd0fd831-c5b2-4f1c-86b4-89770741ac19,837,755,4c995e14-cb6b-49eb-bbe8-95fea57b5430,Tower,ELEV,Elevator M Floor 1,Elevator M1
+948a0a64-86c9-4c76-ab24-f200580bd96a,637,595,4c995e14-cb6b-49eb-bbe8-95fea57b5374,Tower,DEPT,Bretholtz Center for Patients and Families,Bretholtz WR
+12eea339-69f3-47eb-ac0b-d2b7cd34341e,748,406,4c995e14-cb6b-49eb-bbe8-95fea57b5374,Tower,DEPT,Multifaith Chapel,Chapel
+8204f7bc-404c-4010-a72e-104c09f0dfda,821,621,4c995e14-cb6b-49eb-bbe8-95fea57b5374,Tower,DEPT,Sharf Admitting Center,Sharf Center
+57857b80-1fed-4f2c-9e41-cff00ff47b69,1155,775,4c995e14-cb6b-49eb-bbe8-95fea57b5374,Tower,DEPT,Emergency Department,Emergency
+d0885116-ebd4-4791-a77f-4b4b28f7175f,807,504,4c995e14-cb6b-49eb-bbe8-95fea57b5374,Tower,DEPT,International Patient Center,IPC
+a40d836c-1876-4736-b88c-cae2fe2d25a9,1044,274,4c995e14-cb6b-49eb-bbe8-95fea57b5374,Tower,EXIT,Shattuck Street Lobby Exit,Shattuck St. Exit
+1b35b1fc-9407-4008-a494-3f829f34469d,775,796,4c995e14-cb6b-49eb-bbe8-95fea57b5374,Tower,EXIT,75 Francis Valet Drop-off,75 Francis Exit
+214b0d96-507f-4ace-be62-631243ca7727,1126,832,4c995e14-cb6b-49eb-bbe8-95fea57b5374,Tower,EXIT,Emergency Department Entrance,Emergency Entrance
+8650f955-a150-4397-bdf4-a3e3e995b999,1082,385,4c995e14-cb6b-49eb-bbe8-95fea57b5374,Tower,HALL,Lower Pike Hallway Exit Lobby,Hallway F00101
+38571e90-7c43-44a1-bfff-8b63251fcb80,1053,385,4c995e14-cb6b-49eb-bbe8-95fea57b5374,Tower,HALL,Lobby Shattuck Street,Hallway F00201
+ef0fd9d2-bc95-4c94-82e2-603402c713d8,1044,385,4c995e14-cb6b-49eb-bbe8-95fea57b5374,Tower,HALL,Shattuck Street Lobby 1,Hallway F00301
+5c0cbf9c-413b-49d7-96ca-7fc7229b7393,1000,385,4c995e14-cb6b-49eb-bbe8-95fea57b5374,Tower,HALL,Shattuck Street Lobby 2,Hallway F00401
+ea04ddc3-ddc5-4c8d-8632-745f6ffcc254,977,385,4c995e14-cb6b-49eb-bbe8-95fea57b5374,Tower,HALL,Shattuck Street Lobby 3,Hallway F00501
+d3bb2de2-2d70-4f13-a163-a2065d751477,896,405,4c995e14-cb6b-49eb-bbe8-95fea57b5374,Tower,HALL,Tower Lobby Entrance 1,Tower Entrance
+45ece7ff-4a4f-4489-a819-c077f778021a,785,405,4c995e14-cb6b-49eb-bbe8-95fea57b5374,Tower,HALL,Tower Elevator Entrance,Hallway F00701
+f84833cf-52de-4745-97aa-34093681f2ee,785,325,4c995e14-cb6b-49eb-bbe8-95fea57b5374,Tower,HALL,Tower Hallway 1,Hallway F00801
+5f0d3c79-ef61-4026-a3b7-6135bc3f0ecd,654,325,4c995e14-cb6b-49eb-bbe8-95fea57b5374,Tower,HALL,Tower Hallway 2,Hallway F00901
+9668b376-85e1-4c7f-96de-4aa7f2612507,654,277,4c995e14-cb6b-49eb-bbe8-95fea57b5374,Tower,HALL,Tower Hallway 3,Hallway F01001
+2963959f-80a8-46cd-bda1-1ee0127af84b,654,405,4c995e14-cb6b-49eb-bbe8-95fea57b5374,Tower,HALL,Tower Hallway 4,Hallway F01101
+c416ddba-5c5e-47b5-a7a6-2da7c78bdd79,575,405,4c995e14-cb6b-49eb-bbe8-95fea57b5374,Tower,HALL,Tower Staff Entrance,Hallway F01201
+ff07da35-3a27-43f5-a93b-2b93c3f58cf7,654,300,4c995e14-cb6b-49eb-bbe8-95fea57b5374,Tower,HALL,Tower Hallway 5,Hallway F01301
+5511301d-3c4b-4323-9704-bffd9e1aecf2,654,504,4c995e14-cb6b-49eb-bbe8-95fea57b5374,Tower,HALL,Tower Hallway 6,Hallway F01401
+f739bc14-f9b5-4921-8292-c414e0a7b9f1,654,535,4c995e14-cb6b-49eb-bbe8-95fea57b5374,Tower,HALL,Tower Hallway 7,Hallway F01501
+725f0c0c-d11c-4394-aadc-bcd7c0c790fa,785,535,4c995e14-cb6b-49eb-bbe8-95fea57b5374,Tower,HALL,Tower Hallway 8,Hallway F01601
+5411d312-407b-44bd-a3c5-5f30adda3800,748,431,4c995e14-cb6b-49eb-bbe8-95fea57b5374,Tower,HALL,Tower Hallway 9,Hallway F01701
+66eec6d9-0cd6-412b-89fa-4bf24016af38,785,431,4c995e14-cb6b-49eb-bbe8-95fea57b5374,Tower,HALL,Tower Hallway 10,Hallway F01801
+51cd5e9d-4286-4583-a0bb-0e68a646c532,785,595,4c995e14-cb6b-49eb-bbe8-95fea57b5374,Tower,HALL,Tower Hallway 11,Hallway F01901
+bff68a88-e3e7-4f36-aaeb-34466a3f62a4,727,595,4c995e14-cb6b-49eb-bbe8-95fea57b5374,Tower,HALL,Tower Hallway 12,Hallway F02001
+30c33362-9d32-451f-8db4-3a04819efaca,796,621,4c995e14-cb6b-49eb-bbe8-95fea57b5374,Tower,HALL,Tower Hallway Entrance,Tower Entrance 2
+81535172-29c4-426c-b876-47d89140ecc0,796,755,4c995e14-cb6b-49eb-bbe8-95fea57b5374,Tower,HALL,Hallway Lobby Entrance,Entrance Hallway
+dbeb4a5d-b7c2-4c31-9e17-579c8cdf7b38,872,755,4c995e14-cb6b-49eb-bbe8-95fea57b5374,Tower,HALL,Lobby Hallway 1,Hallway F02301
+7258a193-a2a1-463c-9046-a8d0d3158c99,992,755,4c995e14-cb6b-49eb-bbe8-95fea57b5374,Tower,HALL,Lobby Hallway 2,Hallway F02401
+ffc44ca7-bac2-44e8-89c9-462d6ce97e23,992,714,4c995e14-cb6b-49eb-bbe8-95fea57b5374,Tower,HALL,Lobby Hallway 3,Hallway F02501
+b1a340ce-d242-47c4-bd85-b02fe0e057a4,1053,714,4c995e14-cb6b-49eb-bbe8-95fea57b5374,Tower,HALL,Lobby Hallway 4,Hallway F02601
+ea9772f4-88d3-40c7-95fb-dbff545ad9ae,1093,714,4c995e14-cb6b-49eb-bbe8-95fea57b5374,Tower,HALL,Lobby Hallway 7,Hallway F02701
+b56f9930-59b5-45c3-8552-1b5fbc902b8a,775,755,4c995e14-cb6b-49eb-bbe8-95fea57b5374,Tower,HALL,Lobby Entrance Hallway,HallwayF02801
+03ec2f03-0f64-47af-9f34-c96f5be7d63d,727,755,4c995e14-cb6b-49eb-bbe8-95fea57b5374,Tower,HALL,75 Lobby,75 Lobby
+a253e184-fa78-48c6-a6b7-06f4f80a6ba7,672,721,4c995e14-cb6b-49eb-bbe8-95fea57b5374,Tower,HALL,Lobby Hallway 5,Hallway F02701
+16cc3587-e815-46e0-9192-ce6470228adc,1053,451,4c995e14-cb6b-49eb-bbe8-95fea57b5374,Tower,HALL,Lobby Hallway 6,Hallway F02801
+f887d2d7-77fc-41fb-a942-e6c9ea65084f,785,504,4c995e14-cb6b-49eb-bbe8-95fea57b5374,Tower,HALL,Tower Hallway 13,Hallway F03201
+b21f7f1c-b070-4f7f-bfee-b3125f5bac19,1093,757,4c995e14-cb6b-49eb-bbe8-95fea57b5374,Tower,HALL,Emergency Hallway,Hallway F03301
+d807ee5c-a944-4b45-abeb-3827344210a0,727,701,4c995e14-cb6b-49eb-bbe8-95fea57b5374,Tower,INFO,75 Lobby Information Desk,Lobby Info Desk
+7da92aad-b0f2-46c1-aa32-37cebf7502e5,872,725,4c995e14-cb6b-49eb-bbe8-95fea57b5374,Tower,LABS,Obstetrics Admitting,Obs Admitting
+34cd37f2-3342-4509-bb0b-b706b12a4c28,1118,451,4c995e14-cb6b-49eb-bbe8-95fea57b5374,Tower,REST,Bathroom 75 Lobby,Bathroom Lobby
+34328346-c7bb-419b-a21e-4eb7f308f8ee,1000,319,4c995e14-cb6b-49eb-bbe8-95fea57b5374,Tower,RETL,Lobby Vending Machine,VM Lobby
+245532e5-97a5-4468-ae66-d23c762c93b4,636,721,4c995e14-cb6b-49eb-bbe8-95fea57b5374,Tower,RETL,Au Bon Pain,ABP
+cd0f0b22-c26f-4945-bd92-c57c1ffe8c79,977,346,4c995e14-cb6b-49eb-bbe8-95fea57b5374,Tower,SERV,Shattuck Street Lobby ATM,Lobby ATM
+3d6ca289-bdf4-4a43-aace-c8cee067e72b,632,504,4c995e14-cb6b-49eb-bbe8-95fea57b5374,Tower,SERV,Tower Medical Cashier,Tower Cashier
+b90beba3-e7aa-48eb-88a8-0a1b66c03006,727,633,4c995e14-cb6b-49eb-bbe8-95fea57b5374,Tower,SERV,Kessler Library,Kessler Library
+58c52e23-1480-4b22-ad08-e7e054b4f639,748,445,4c995e14-cb6b-49eb-bbe8-95fea57b5374,Tower,DEPT,Spiritual Care Office,SCO
+9e5126ca-7a0e-4a58-955d-2fb9b4220b43,672,755,4c995e14-cb6b-49eb-bbe8-95fea57b5374,Tower,SERV,75 Lobby Valet Cashier,Valet Cashier
+ff955399-a7ac-48bb-8598-aa78c0e6ade4,1053,367,4c995e14-cb6b-49eb-bbe8-95fea57b5374,Tower,STAI,Lobby Shattuck Street Stairs,Stairway F00101
+3e2bc607-37c5-4212-bf2f-6dd448252d75,700,277,4c995e14-cb6b-49eb-bbe8-95fea57b5374,Tower,STAI,Tower Stairway 1,Tower Stairs 1
+1285efe1-0722-4670-b009-1324805fbe50,974,714,4c995e14-cb6b-49eb-bbe8-95fea57b5374,Tower,STAI,Lobby Escalator,Lobby Escalator
+94c63f1a-f14c-4c28-90d4-90881e962638,837,405,4c995e14-cb6b-49eb-bbe8-95fea57b5374,Tower,ELEV,Elevator L Floor 1,Elevator L1
+cd0fd831-c5b2-4f1c-86b4-89770741ac19,837,755,4c995e14-cb6b-49eb-bbe8-95fea57b5374,Tower,ELEV,Elevator M Floor 1,Elevator M1
 522af2c8-7281-4570-81a2-122f1d73ea97,632,483,805166d9-6117-4752-9780-28216d61fc26,Tower,BATH,Bathroom 1 Tower Floor 2,Bathroom 0102
-1acb7943-bd88-4224-a847-2908cf0adea6,1082,805,805166d9-6117-4752-9780-28216d61fc27,Tower,DEPT,Endoscopy,Endoscopy
-c2ef6ddd-6702-4ba9-bbcb-bc8aa3146563,902,400,805166d9-6117-4752-9780-28216d61fc28,Tower,HALL,Hallway Connector 1 Floor 2,Hallway H00102
-63d0fb57-088d-48db-ab58-2a320fd73368,982,375,805166d9-6117-4752-9780-28216d61fc29,Tower,HALL,Hallway Connector 2 Floor 2,Hallway H00202
-02e75686-45a2-4a93-9bb8-c609d3fa7e75,1062,375,805166d9-6117-4752-9780-28216d61fc30,Tower,HALL,Hallway Connector 3 Floor 2,Hallway H00302
-813595ac-f329-4fa5-9c2c-fabd537f9b88,902,500,805166d9-6117-4752-9780-28216d61fc31,Tower,HALL,Hallway Connector 4 Floor 2,Hallway H00402
-754195d8-b214-489f-bd3f-4b674a1ec81b,852,500,805166d9-6117-4752-9780-28216d61fc32,Tower,HALL,Hallway Connector 5 Floor 2,Hallway H00502
-84857bf8-52d2-456d-b1c9-2192c14265f0,802,555,805166d9-6117-4752-9780-28216d61fc33,Tower,HALL,Hallway Connector 6 Floor 2,Hallway H00602
-4173e177-7194-48a3-8e32-dfa01bd0e12f,767,640,805166d9-6117-4752-9780-28216d61fc34,Tower,HALL,Hallway Connector 7 Floor 2,Hallway H00702
-4dc41723-9f65-4ba5-8dc3-2a880ed173ec,767,705,805166d9-6117-4752-9780-28216d61fc35,Tower,HALL,Hallway Connector 8 Floor 2,Hallway H00802
-f0bcd46f-b435-4fc9-a47b-ac56c5c1d214,767,755,805166d9-6117-4752-9780-28216d61fc36,Tower,HALL,Hallway Connector 9 Floor 2,Hallway H00902
-7f3c8c3e-67b9-4e21-86b9-94949632f562,1082,755,805166d9-6117-4752-9780-28216d61fc37,Tower,HALL,Hallway Connector 10 Floor 2,Hallway H01002
-855a3654-5ecb-4566-960f-c7fe24065cc8,962,335,805166d9-6117-4752-9780-28216d61fc38,Tower,RETL,Garden Cafe,Garden Cafe
-82ad4d8f-7579-4a59-98d0-ddfea03ee180,642,500,805166d9-6117-4752-9780-28216d61fc39,Tower,RETL,Vending Machine Floor 2?,Vending Machine
-fcc7f03d-3a7c-4651-bc54-848d6834a66f,852,555,805166d9-6117-4752-9780-28216d61fc40,Tower,RETL,Gift Shop Tower Floor 2,Gift Shop
-5f67d01c-4dd9-4060-a4d7-d1254c891423,1087,355,805166d9-6117-4752-9780-28216d61fc41,Tower,STAI,Stairwell 1 Floor 2,Stairwell 0102
-7c8724e7-6008-4beb-815c-8002a3882f2d,722,640,805166d9-6117-4752-9780-28216d61fc42,Tower,STAI,Stairwell 2 Tower Floor 2,Stairwell 0202
-c4315731-672a-447a-8133-b22bc73847c0,817,705,805166d9-6117-4752-9780-28216d61fc43,Tower,STAI,Escalator 1 Floor 2,Escalator 1 Floor 2
-6a758302-b5cc-49e7-a8bf-297a78f129d5,832,400,805166d9-6117-4752-9780-28216d61fc44,Tower,ELEV,Elevator L Floor 2,Elevator L2
-b5ca1c72-1055-4584-8df7-d12078324c9f,852,755,805166d9-6117-4752-9780-28216d61fc45,Tower,ELEV,Elevator M Floor 2,Elevator M2
-010e5b83-f64c-45f8-92e0-337caf145f66,767,975,805166d9-6117-4752-9780-28216d61fc46,Tower,HALL,Hallway Connector 7 Floor 2,Hallway W0702
+1acb7943-bd88-4224-a847-2908cf0adea6,1082,805,805166d9-6117-4752-9780-28216d61fc26,Tower,DEPT,Endoscopy,Endoscopy
+c2ef6ddd-6702-4ba9-bbcb-bc8aa3146563,902,400,805166d9-6117-4752-9780-28216d61fc26,Tower,HALL,Hallway Connector 1 Floor 2,Hallway H00102
+63d0fb57-088d-48db-ab58-2a320fd73368,982,375,805166d9-6117-4752-9780-28216d61fc26,Tower,HALL,Hallway Connector 2 Floor 2,Hallway H00202
+02e75686-45a2-4a93-9bb8-c609d3fa7e75,1062,375,805166d9-6117-4752-9780-28216d61fc26,Tower,HALL,Hallway Connector 3 Floor 2,Hallway H00302
+813595ac-f329-4fa5-9c2c-fabd537f9b88,902,500,805166d9-6117-4752-9780-28216d61fc26,Tower,HALL,Hallway Connector 4 Floor 2,Hallway H00402
+754195d8-b214-489f-bd3f-4b674a1ec81b,852,500,805166d9-6117-4752-9780-28216d61fc26,Tower,HALL,Hallway Connector 5 Floor 2,Hallway H00502
+84857bf8-52d2-456d-b1c9-2192c14265f0,802,555,805166d9-6117-4752-9780-28216d61fc26,Tower,HALL,Hallway Connector 6 Floor 2,Hallway H00602
+4173e177-7194-48a3-8e32-dfa01bd0e12f,767,640,805166d9-6117-4752-9780-28216d61fc26,Tower,HALL,Hallway Connector 7 Floor 2,Hallway H00702
+4dc41723-9f65-4ba5-8dc3-2a880ed173ec,767,705,805166d9-6117-4752-9780-28216d61fc26,Tower,HALL,Hallway Connector 8 Floor 2,Hallway H00802
+f0bcd46f-b435-4fc9-a47b-ac56c5c1d214,767,755,805166d9-6117-4752-9780-28216d61fc26,Tower,HALL,Hallway Connector 9 Floor 2,Hallway H00902
+7f3c8c3e-67b9-4e21-86b9-94949632f562,1082,755,805166d9-6117-4752-9780-28216d61fc26,Tower,HALL,Hallway Connector 10 Floor 2,Hallway H01002
+855a3654-5ecb-4566-960f-c7fe24065cc8,962,335,805166d9-6117-4752-9780-28216d61fc26,Tower,RETL,Garden Cafe,Garden Cafe
+82ad4d8f-7579-4a59-98d0-ddfea03ee180,642,500,805166d9-6117-4752-9780-28216d61fc26,Tower,RETL,Vending Machine Floor 2?,Vending Machine
+fcc7f03d-3a7c-4651-bc54-848d6834a66f,852,555,805166d9-6117-4752-9780-28216d61fc26,Tower,RETL,Gift Shop Tower Floor 2,Gift Shop
+5f67d01c-4dd9-4060-a4d7-d1254c891423,1087,355,805166d9-6117-4752-9780-28216d61fc26,Tower,STAI,Stairwell 1 Floor 2,Stairwell 0102
+7c8724e7-6008-4beb-815c-8002a3882f2d,722,640,805166d9-6117-4752-9780-28216d61fc26,Tower,STAI,Stairwell 2 Tower Floor 2,Stairwell 0202
+c4315731-672a-447a-8133-b22bc73847c0,817,705,805166d9-6117-4752-9780-28216d61fc26,Tower,STAI,Escalator 1 Floor 2,Escalator 1 Floor 2
+6a758302-b5cc-49e7-a8bf-297a78f129d5,832,400,805166d9-6117-4752-9780-28216d61fc26,Tower,ELEV,Elevator L Floor 2,Elevator L2
+b5ca1c72-1055-4584-8df7-d12078324c9f,852,755,805166d9-6117-4752-9780-28216d61fc26,Tower,ELEV,Elevator M Floor 2,Elevator M2
+010e5b83-f64c-45f8-92e0-337caf145f66,767,975,805166d9-6117-4752-9780-28216d61fc26,Tower,HALL,Hallway Connector 7 Floor 2,Hallway W0702
 9782c31f-6bc1-495f-bcca-63298bea9c5e,812,305,c2b73a98-db9b-495a-a031-8f9f163ab8ce,Tower,BATH,Bathroom 1 Tower Floor 3,Bathroom 0103
 481da706-50ae-4cf1-8f16-9c62b5840681,777,460,c2b73a98-db9b-495a-a031-8f9f163ab8ce,Tower,BATH,Bathroom 2 Tower Floor 3,Bathroom 0203
 479dfd6d-1914-4e66-8d91-8b58d23d16a9,752,375,c2b73a98-db9b-495a-a031-8f9f163ab8ce,Tower,DEPT,Dialysis Waiting Room,Dialysis WR
@@ -115,14 +115,14 @@ aaf03db8-0bc8-402a-a904-930df70203cf,759,494,b34d0c16-0523-4dce-9d71-f6f3bf2749a
 a17950c5-b55d-4bdb-9e14-614340106934,812,399,b34d0c16-0523-4dce-9d71-f6f3bf2749aa,Tower,ELEV,Elevator L Floor L1,Elevator LL1
 dbf788e5-fb52-47a1-ad8c-df06f4410137,847,759,b34d0c16-0523-4dce-9d71-f6f3bf2749aa,Tower,ELEV,Elevator M Floor L1,Elevator ML1
 a1bd7b50-343c-4d7f-b8bb-70cc296fceb2,772,755,fd5e0a98-c7b7-44ea-a07f-8cb3d99dbfe1,Tower,HALL,Hallway 5 Floor L2,Hallway C005L2
-d5489247-ba3f-425c-ba4d-93721f10eae9,772,484,fd5e0a98-c7b7-44ea-a07f-8cb3d99dbfe2,Tower,HALL,Hallway 6 Floor L2,Hallway C006L2
-86c86b04-7735-4022-8bef-d534af7084d0,757,484,fd5e0a98-c7b7-44ea-a07f-8cb3d99dbfe3,Tower,HALL,Hallway 7 Floor L2,Hallway C007L2
-5cd32b89-5843-4793-b7c2-3345d6955ff6,757,399,fd5e0a98-c7b7-44ea-a07f-8cb3d99dbfe4,Tower,HALL,Hallway 8 Floor L2,Hallway C008L2
-81bb6c1f-4720-4169-82c8-581feb8ef5c8,757,324,fd5e0a98-c7b7-44ea-a07f-8cb3d99dbfe5,Tower,HALL,Hallway 9 Floor L2,Hallway C009L2
-91a5e7ac-7373-4179-b1bf-c0704c6df34e,1157,324,fd5e0a98-c7b7-44ea-a07f-8cb3d99dbfe6,Tower,HALL,Hallway 10 Floor L2,Hallway C010L2
-1e4923bf-1bc2-45f9-b9d9-c17c506c42fa,812,399,fd5e0a98-c7b7-44ea-a07f-8cb3d99dbfe7,Tower,ELEV,Elevator L Floor L2,Elevator LL2
-c1fff6ea-7735-442d-969a-67d4e48747be,847,755,fd5e0a98-c7b7-44ea-a07f-8cb3d99dbfe8,Tower,ELEV,Elevator M Floor L2,Elevator ML2
-ea1875bf-f932-43f0-a0a9-454d29758b02,772,999,fd5e0a98-c7b7-44ea-a07f-8cb3d99dbfe9,Tower,HALL,Hallway Connector 1 Floor L2,Hallway W01L2
+d5489247-ba3f-425c-ba4d-93721f10eae9,772,484,fd5e0a98-c7b7-44ea-a07f-8cb3d99dbfe1,Tower,HALL,Hallway 6 Floor L2,Hallway C006L2
+86c86b04-7735-4022-8bef-d534af7084d0,757,484,fd5e0a98-c7b7-44ea-a07f-8cb3d99dbfe1,Tower,HALL,Hallway 7 Floor L2,Hallway C007L2
+5cd32b89-5843-4793-b7c2-3345d6955ff6,757,399,fd5e0a98-c7b7-44ea-a07f-8cb3d99dbfe1,Tower,HALL,Hallway 8 Floor L2,Hallway C008L2
+81bb6c1f-4720-4169-82c8-581feb8ef5c8,757,324,fd5e0a98-c7b7-44ea-a07f-8cb3d99dbfe1,Tower,HALL,Hallway 9 Floor L2,Hallway C009L2
+91a5e7ac-7373-4179-b1bf-c0704c6df34e,1157,324,fd5e0a98-c7b7-44ea-a07f-8cb3d99dbfe1,Tower,HALL,Hallway 10 Floor L2,Hallway C010L2
+1e4923bf-1bc2-45f9-b9d9-c17c506c42fa,812,399,fd5e0a98-c7b7-44ea-a07f-8cb3d99dbfe1,Tower,ELEV,Elevator L Floor L2,Elevator LL2
+c1fff6ea-7735-442d-969a-67d4e48747be,847,755,fd5e0a98-c7b7-44ea-a07f-8cb3d99dbfe1,Tower,ELEV,Elevator M Floor L2,Elevator ML2
+ea1875bf-f932-43f0-a0a9-454d29758b02,772,999,fd5e0a98-c7b7-44ea-a07f-8cb3d99dbfe1,Tower,HALL,Hallway Connector 1 Floor L2,Hallway W01L2
 160d51c8-e11a-499a-ad1b-4bf325251fdd,577,310,b34d0c16-0523-4dce-9d71-f6f3bf2749aa,Tower,STOR,OR Bed Park Floor L1,OR BP L1
 72569374-516a-44eb-b9d4-c05d6e68200b,537,400,4c995e14-cb6b-49eb-bbe8-95fea57b5374,Tower,STOR,West Plaza,Wplaza
 6f98061e-edc5-4438-a0ec-de236eca6f4f,557,235,c2b73a98-db9b-495a-a031-8f9f163ab8ce,Tower,STOR,Pod B Clean Equipment Storage (Floor 3),Pod B3 CES
