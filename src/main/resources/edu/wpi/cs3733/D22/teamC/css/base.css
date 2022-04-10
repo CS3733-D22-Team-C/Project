@@ -1,6 +1,16 @@
 @import "colors.css";
 @import "fonts.css";
 
+/* Default Button Style (applies to all button types) */
+.button {
+    -fx-background-color: -color-primary;
+    -mfx-button-type: RAISED;
+}
+
+.button:hover {
+    -fx-background-color: -color-secondary-dark;
+}
+
 .button-success {
     -fx-background-color: -color-button-success;
     -fx-text-fill: -color-button-text;
@@ -131,4 +141,94 @@ padding goes top, right, bottom, left
     -fx-background-color: -color-button-confirm;
     -fx-font-size: 15;
     -fx-spacing: 5px;
+}
+
+/* Table Styling */
+
+/* Styles the whole table*/
+.table-view {
+    -fx-background-color: transparent;
+    -fx-vertical-grid-lines-visible: true;
+    -fx-padding: 32px;
+    -fx-text-fill: -color-primary-text;
+    -fx-wrap-text: true;
+}
+
+.table-view .column-resize-line {
+    -fx-fill: black;
+}
+
+/* Header label */
+.table-view .column-header .label {
+    -fx-text-fill: -color-primary-text;
+}
+
+/* Styles the top right corner of the table */
+.table-view .column-header-background .filler {
+    -fx-background-color: transparent;
+}
+
+/* Styles the bottom right corner of the table b/w the scroll bars*/
+.table-view .corner {
+    -fx-background-color: transparent;
+}
+
+/* TODO: Find a way to create lines separating all of the headers in the table itself, not just the header */
+/* Styles the table header background */
+.table-view .column-header-background {
+    -fx-background-color: linear-gradient(to right, -color-primary, -color-primary-light);
+    -fx-background-radius: 7px 7px 0px 0px;
+    -fx-background-insets: 0 11px 0 0;
+    -fx-padding: 0 0 5px 0;
+}
+
+.table-view .table-cell{
+    -fx-border-color: black;
+    -fx-padding: 2 0 2 10px;
+}
+
+/* Styles the columns of the table*/
+.table-view .table-column {
+    -fx-alignment: center-left;
+    -fx-border-color: transparent;
+    -fx-wrap-text: true;
+    -fx-padding: 16px;
+}
+
+.table-row-cell:hover {
+    -fx-background-color: #93f9b911;
+    -fx-text-background-color: red;
+}
+.table-row-cell:odd {
+    -fx-background-color: #93f9b911;
+    -fx-background-insets: 0, 0 0 1 0;
+    -fx-padding: 0.0em;
+}
+.table-row-cell:even {
+    -fx-background-color: #1dbbdd11;
+    -fx-background-insets: 0, 0 0 1 0;
+    -fx-padding: 0.0em;
+}
+
+/* Table Scrollbar Styling */
+.table-view .virtual-flow .scroll-bar:vertical,
+.table-view .virtual-flow .scroll-bar:vertical .track,
+.table-view .virtual-flow .scroll-bar:vertical .track-background,
+.table-view .virtual-flow .scroll-bar:horizontal,
+.table-view .virtual-flow .scroll-bar:horizontal .track,
+.table-view .virtual-flow .scroll-bar:horizontal .track-background {
+    -fx-background-color: transparent;
+}
+
+.table-view .virtual-flow .scroll-bar .increment-button,
+.table-view .virtual-flow .scroll-bar .decrement-button {
+    -fx-opacity: 0;
+    -fx-padding: 2;
+}
+
+.table-view .virtual-flow .scroll-bar:vertical .thumb{
+    -fx-background-color:  linear-gradient(to bottom, -color-primary, -color-primary-light);
+}
+.table-view .virtual-flow .scroll-bar:horizontal .thumb {
+    -fx-background-color: transparent;
 }
