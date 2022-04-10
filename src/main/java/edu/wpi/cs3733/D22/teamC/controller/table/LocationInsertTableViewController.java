@@ -57,14 +57,7 @@ public class LocationInsertTableViewController extends  InsertTableViewControlle
 
     }
 
-    public String getPath(){
-
-        //TODO write funciton to grab path of insert
-        return "view/Table/Locations/table_insert.fxml";
-
-    }
-
-    public void setup(BaseTableViewController2 parentController)
+    public void setup(BaseTableViewController parentController)
     {
         super.setup(parentController);
     }
@@ -78,7 +71,6 @@ public class LocationInsertTableViewController extends  InsertTableViewControlle
     }
 
     public void setFields(String r1,String r2, String r3, String r4, String r5,String r6, String r7, String r8) {
-        System.out.println("HERE");
         field1.setText(r1);
         field2.setText(r2);
         field3.setText(r3);
@@ -176,7 +168,6 @@ public class LocationInsertTableViewController extends  InsertTableViewControlle
         field6.setEditable(edit);
         field7.setEditable(edit);
         field8.setEditable(edit);
-        System.out.println(field8.isEditable());
     }
 
     public TableDisplay<Location> createTableDisplay(JFXTreeTableView table){

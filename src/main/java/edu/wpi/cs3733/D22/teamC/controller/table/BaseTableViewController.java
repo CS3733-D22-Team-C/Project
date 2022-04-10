@@ -1,68 +1,94 @@
 package edu.wpi.cs3733.D22.teamC.controller.table;
 
-import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXTreeTableView;
 import edu.wpi.cs3733.D22.teamC.App;
 import edu.wpi.cs3733.D22.teamC.models.generic.TableDisplay;
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.layout.HBox;
+import javafx.scene.control.TextField;
+import javafx.scene.control.TreeTableRow;
+import javafx.scene.input.MouseButton;
+import javafx.scene.layout.VBox;
 
 import java.net.URL;
+import java.util.List;
 import java.util.ResourceBundle;
 
-public class BaseTableViewController implements Initializable {
+public class BaseTableViewController<T extends Object> implements Initializable {
 
-    @FXML private JFXButton add;
-    @FXML private JFXButton remove;
-    @FXML private JFXButton back;
-    @FXML private JFXTreeTableView<?> table;
-    @FXML private HBox insertBox;
+    @FXML private VBox insertBox;
+    InsertTableViewController insertController;
 
-    String PATH = "view/Table/Locations/table_insert.fxml";
+    @FXML private TextField row5;
 
-    LocationInsertTableViewController insertController; //TODO what object type is this?
+    private T currentRow;
 
-    TableDisplay tableDisplay; //TODO what object type is this?
+    @FXML private JFXTreeTableView table;
+    TableDisplay<T> tableDisplay;
 
     @Override
-    public void initialize(URL url, ResourceBundle rb) {
+    public void initialize(URL location, ResourceBundle resources) {
 
-        //setRowInteraction();
-        setup(PATH);
+
+        setUp("view/Table/Locations/table_insert.fxml");
+        rowInteraction();
     }
 
-    public void setup(String insertPath)
-    {
-        //code to set table
+    //TODO make the controller abstrsct (more than just location)
+    public void setUp(String insertPath){
+
         setInsert(insertPath);
-        //TODO error because table display is just an Object
-        //tableDisplay  = insertController.setupTable(table);
+        insertController.setup(this);
 
+        //TODO add setUP function to viewController
+        //this.viewController.setUp(table);
+
+        //TODO to be abstracted l8ter
+        resetTableView();
     }
 
-    public void setInsert(String path) {
-
-        App.View<LocationInsertTableViewController> view = App.instance.loadView(path);
+    public void setInsert(String path){
+        App.View<InsertTableViewController<T>> view = App.instance.loadView(path);
         insertController = view.getController();
         insertBox.getChildren().add(view.getNode());
-
     }
 
-    //funciton for dealing with the row
-    protected void setRowInteraction()
-    {
+    //TODO
+    public void rowInteraction(){
 
+        //TODO figure out how to interact with certina row
+        table.setRowFactory(tv -> {
+            TreeTableRow<TableDisplay<T>.TableDisplayEntry> row = new TreeTableRow<TableDisplay<T>.TableDisplayEntry>();
+            row.setOnMouseClicked(event -> {
+                if (!row.isEmpty() && event.getButton() == MouseButton.PRIMARY) {
+                    currentRow = row.getItem().object;
+                    insertController.getRowInfo(currentRow);
+                }
+            });
+            return row ;
+        });
     }
 
-    //function for when the add button is clicked
-    @FXML
-    void onAddButton(ActionEvent event){}
-    //function for when the remove button is clicked
-    @FXML
-    void onRemoveButton(ActionEvent event){}
+    public void backButton(){ App.instance.setView(App.HOME_PATH);}
 
     @FXML
-    void onBackButton(ActionEvent event){}
+    public void removeButton(){
+        if (tableDisplay != null)
+        {
+            tableDisplay.removeObject(currentRow);
+            insertController.deleteValue(currentRow);
+            insertController.resetValues();
+            //tableDisplay = null;
+        }
+    }
+
+    private void resetTableView() {
+        tableDisplay = insertController.createTableDisplay(table);
+    }
+
+    @FXML
+    public void addClicked(){
+        insertController.addClicked();
+    }
+
 }
