@@ -32,6 +32,18 @@ public class LocationTableDisplay extends TableDisplay<Location> {
             x           = new SimpleIntegerProperty(location.getX());
             y           = new SimpleIntegerProperty(location.getY());
         }
+
+        @Override
+        public void RefreshEntry() {
+            id.setValue(object.getNodeID());
+            floor.setValue((new FloorDAOImpl()).getFloor(object.getFloor()).getShortName());
+            building.setValue(object.getBuilding());
+            nodeType.setValue(object.getNodeType().toString());
+            longName.setValue(object.getLongName());
+            shortName.setValue(object.getShortName());
+            x.setValue(object.getX());
+            y.setValue(object.getY());
+        }
     }
 
     public LocationTableDisplay(JFXTreeTableView table) {
@@ -50,56 +62,56 @@ public class LocationTableDisplay extends TableDisplay<Location> {
                 table,
                 "Location ID",
                 1f * Integer.MAX_VALUE * 16.66,
-                (LocationTableEntry entry) -> {return entry.id.asObject();}
+                (LocationTableEntry entry) -> entry.id
         );
 
         addColumn(
                 table,
                 "Floor",
                 1f * Integer.MAX_VALUE * 16.66,
-                (LocationTableEntry entry) -> {return entry.floor;}
+                (LocationTableEntry entry) -> entry.floor
         );
 
         addColumn(
                 table,
                 "Building",
                 1f * Integer.MAX_VALUE * 16.66,
-                (LocationTableEntry entry) -> {return entry.building;}
+                (LocationTableEntry entry) -> entry.building
         );
 
         addColumn(
                 table,
                 "Node Type",
                 1f * Integer.MAX_VALUE * 16.66,
-                (LocationTableEntry entry) -> {return entry.nodeType;}
+                (LocationTableEntry entry) -> entry.nodeType
         );
 
         addColumn(
                 table,
                 "Long Name",
                 1f * Integer.MAX_VALUE * 16.66,
-                (LocationTableEntry entry) -> {return entry.longName;}
+                (LocationTableEntry entry) -> entry.longName
         );
 
         addColumn(
                 table,
                 "Short Name",
                 1f * Integer.MAX_VALUE * 16.66,
-                (LocationTableEntry entry) -> {return entry.shortName;}
+                (LocationTableEntry entry) -> entry.shortName
         );
 
         addColumn(
                 table,
                 "X",
                 1f * Integer.MAX_VALUE * 16.66,
-                (LocationTableEntry entry) -> {return entry.x;}
+                (LocationTableEntry entry) -> entry.x
         );
 
         addColumn(
                 table,
                 "Y",
                 1f * Integer.MAX_VALUE * 16.66,
-                (LocationTableEntry entry) -> {return entry.y;}
+                (LocationTableEntry entry) -> entry.y
         );
     }
 }

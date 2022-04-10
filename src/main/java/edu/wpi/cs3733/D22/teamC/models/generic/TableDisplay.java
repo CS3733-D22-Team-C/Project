@@ -26,6 +26,9 @@ public abstract class TableDisplay<T extends Object> {
         public TableDisplayEntry(T object) {
             this.object = object;
         };
+
+        // TODO: Make Abstract
+        public void RefreshEntry() {};
     }
 
     // Variables
@@ -52,6 +55,19 @@ public abstract class TableDisplay<T extends Object> {
             for (TableDisplayEntry entry : entries) {
                 if (entry.object == object) {
                     entries.remove(entry);
+                    return;
+                }
+            }
+        }
+
+        /**
+         * Update object corresponding row entry.
+         * @param object The object of type T to be removed.
+         */
+        public void updateObject(T object) {
+            for (TableDisplayEntry entry : entries) {
+                if (entry.object == object) {
+                    entry.RefreshEntry();
                     return;
                 }
             }
