@@ -129,6 +129,10 @@ public class BaseTableViewController2<T extends Object> implements Initializable
 
     }
 
+    public void addClicked(){
+        insertController.addClicked();
+    }
+
 
 
 

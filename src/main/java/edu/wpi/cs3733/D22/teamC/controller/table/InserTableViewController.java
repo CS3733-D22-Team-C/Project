@@ -37,6 +37,7 @@ public class InserTableViewController implements Initializable {
     @FXML Label label6;
     @FXML Label label7;
     @FXML Label label8;
+    @FXML Label title;
 
     BaseTableViewController2 parentController;
     Location currentLocation;
@@ -52,6 +53,7 @@ public class InserTableViewController implements Initializable {
         label6.setText("Floor");
         label7.setText("X Coordinate:");
         label8.setText("Y Coordinate:");
+        title.setText("");
 
     }
 
@@ -82,6 +84,7 @@ public class InserTableViewController implements Initializable {
 
     public void getRowInfo(Location location)
     {
+        title.setText("Edit Location");
         this.currentLocation = location;
         setFields(location.getLongName(), location.getShortName(), Integer.toString(location.getNodeID()), location.getNodeType().toString(), location.getBuilding(), Integer.toString(location.getFloor()), Integer.toString(location.getX()), Integer.toString(location.getY()));
     }
@@ -130,5 +133,11 @@ public class InserTableViewController implements Initializable {
         else
             confirm.setDisable(true);
     }
+
+    void addClicked(){
+        title.setText("Add Location");
+        resetValues();
+    }
+
 
 }
