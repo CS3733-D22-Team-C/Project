@@ -1,9 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import io.github.palexdev.materialfx.controls.MFXButton?>
-<?import io.github.palexdev.materialfx.controls.MFXTextField?>
 <?import java.lang.String?>
+<?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
 <?import javafx.scene.effect.DropShadow?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
@@ -63,21 +64,27 @@
                         <VBox prefHeight="200.0" prefWidth="100.0" GridPane.rowIndex="1">
                            <children>
                               <Label styleClass="login-username-label" stylesheets="@../../css/component/entity/login/login.css" text="Username" translateX="75.0" translateY="20.0" />
-                              <MFXTextField fx:id="username" prefHeight="50.0" prefWidth="180.0" styleClass="login-username-field" stylesheets="@../../css/component/entity/login/login.css" translateX="75.0" translateY="30.0">
+                              <TextField fx:id="username" prefHeight="26.0" prefWidth="240.0" styleClass="login-username-field" stylesheets="@../../css/component/entity/login/login.css" translateY="40.0">
                                  <effect>
                                     <DropShadow />
                                  </effect>
-                              </MFXTextField>
+                                 <VBox.margin>
+                                    <Insets left="75.0" right="75.0" />
+                                 </VBox.margin>
+                              </TextField>
                            </children>
                         </VBox>
                         <VBox prefHeight="200.0" prefWidth="100.0" GridPane.rowIndex="2">
                            <children>
                               <Label styleClass="login-username-label" stylesheets="@../../css/component/entity/login/login.css" text="Password" translateX="75.0" translateY="20.0" />
-                              <MFXTextField fx:id="password" prefHeight="50.0" prefWidth="180.0" styleClass="login-username-field" stylesheets="@../../css/component/entity/login/login.css" translateX="75.0" translateY="30.0">
+                              <TextField fx:id="password" prefHeight="26.0" prefWidth="240.0" styleClass="login-username-field" stylesheets="@../../css/component/entity/login/login.css" translateY="40.0">
                                  <effect>
                                     <DropShadow />
                                  </effect>
-                              </MFXTextField>
+                                 <VBox.margin>
+                                    <Insets left="75.0" right="75.0" />
+                                 </VBox.margin>
+                              </TextField>
                            </children>
                         </VBox>
                         <VBox prefHeight="200.0" prefWidth="100.0" GridPane.rowIndex="3">

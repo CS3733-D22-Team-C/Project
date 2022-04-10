@@ -16,10 +16,10 @@ import java.util.ResourceBundle;
 
 public class LoginPageController implements Initializable {
     @FXML
-    private MFXTextField username;
+    private TextField username;
 
     @FXML
-    private MFXTextField password;
+    private TextField password;
 
     @FXML
     Label invalidLogin;
@@ -54,7 +54,7 @@ public class LoginPageController implements Initializable {
         invalidLogin.setVisible(true);
     }
 
-    private void setTextLengthLimiter(final MFXTextField textF, final int maxLength) {
+    private void setTextLengthLimiter(final TextField textF, final int maxLength) {
         textF.textProperty().addListener(new ChangeListener<String>() {
             @Override
             public void changed(final ObservableValue<? extends String> ov, final String oldValue, final String newValue) {
