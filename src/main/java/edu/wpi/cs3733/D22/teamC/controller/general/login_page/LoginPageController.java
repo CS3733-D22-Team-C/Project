@@ -1,4 +1,4 @@
-package edu.wpi.cs3733.D22.teamC.controller.general;
+package edu.wpi.cs3733.D22.teamC.controller.general.login_page;
 
 import edu.wpi.cs3733.D22.teamC.App;
 import edu.wpi.cs3733.D22.teamC.entity.Login.Login;
