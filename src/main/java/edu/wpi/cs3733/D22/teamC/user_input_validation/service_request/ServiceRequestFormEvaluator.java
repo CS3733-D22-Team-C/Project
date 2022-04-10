@@ -71,7 +71,7 @@ public class ServiceRequestFormEvaluator {
         }
         else
         {
-            int locationConv = Integer.parseInt(locationID);
+            String locationConv = locationID;
 
             if(locationDaoVar.getByID(locationConv) == null) //assumes the user inputs a location ID in the service request location field.
             {

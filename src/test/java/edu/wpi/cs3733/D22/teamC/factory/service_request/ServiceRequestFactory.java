@@ -9,6 +9,7 @@ import java.util.Random;
 public class ServiceRequestFactory<T extends ServiceRequest> implements Factory<T> {
     protected Random generator = new Random();
 
+    @SuppressWarnings("unchecked")
     public T create() {
         T serviceRequest = (T) new ServiceRequest();
         return create(serviceRequest);

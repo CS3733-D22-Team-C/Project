@@ -4,16 +4,15 @@ import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.*;
 import java.util.Objects;
+import java.util.UUID;
 
 @Entity
 @Table(name = "EMPLOYEE")
 public class Employee {
 
     @Id
-    @Column(name = "ID", nullable = false)
-    @GeneratedValue(generator = "increment")
-    @GenericGenerator(name = "increment", strategy = "increment")
-    private int employeeID;
+    @Column(name = "ID")
+    private String employeeID;
 
     @Column(name = "FirstName")
     private String firstName;
@@ -48,17 +47,19 @@ public class Employee {
         Nurse
     }
 
-    public Employee(){}
+    public Employee(){
+        employeeID = UUID.randomUUID().toString();
+    }
 
-    public Employee(int employeeID) {
+    public Employee(String employeeID) {
         this.employeeID = employeeID;
     }
 
-    public int getEmployeeID() {
+    public String getEmployeeID() {
         return employeeID;
     }
 
-    public void setEmployeeID(int employeeID) {
+    public void setEmployeeID(String employeeID) {
         this.employeeID = employeeID;
     }
 
@@ -139,7 +140,7 @@ public class Employee {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Employee employee = (Employee) o;
-        return employeeID == employee.employeeID
+        return employeeID.equals(employee.employeeID)
                 && firstName.equals(employee.firstName)
                 && lastName.equals(employee.lastName)
                 && emailID.equals(employee.emailID)
