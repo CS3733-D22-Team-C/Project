@@ -32,6 +32,7 @@ public class BaseTableViewController2<T extends Object> implements Initializable
 
 
 
+
     @FXML private JFXTreeTableView table;
     LocationTableDisplay tableDisplay;
 
@@ -129,7 +130,9 @@ public class BaseTableViewController2<T extends Object> implements Initializable
 
     }
 
+    @FXML
     public void addClicked(){
+        System.out.println("all day");
         insertController.addClicked();
     }
 

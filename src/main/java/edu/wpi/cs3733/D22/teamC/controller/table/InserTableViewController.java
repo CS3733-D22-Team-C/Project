@@ -39,6 +39,8 @@ public class InserTableViewController implements Initializable {
     @FXML Label label8;
     @FXML Label title;
 
+
+    private boolean addMode;
     BaseTableViewController2 parentController;
     Location currentLocation;
 
@@ -54,6 +56,9 @@ public class InserTableViewController implements Initializable {
         label7.setText("X Coordinate:");
         label8.setText("Y Coordinate:");
         title.setText("");
+
+        fieldsEditable(false);
+
 
     }
 
@@ -80,10 +85,13 @@ public class InserTableViewController implements Initializable {
     public void setup(BaseTableViewController2 parentController)
     {
         this.parentController = parentController;
+        addMode = false;
     }
 
     public void getRowInfo(Location location)
     {
+        addMode = false;
+        fieldsEditable(true);
         title.setText("Edit Location");
         this.currentLocation = location;
         setFields(location.getLongName(), location.getShortName(), Integer.toString(location.getNodeID()), location.getNodeType().toString(), location.getBuilding(), Integer.toString(location.getFloor()), Integer.toString(location.getX()), Integer.toString(location.getY()));
@@ -99,23 +107,50 @@ public class InserTableViewController implements Initializable {
         field6.setText("");
         field7.setText("");
         field8.setText("");
+        title.setText("");
     }
 
     @FXML
     void clickConfirm(ActionEvent event) {
-        currentLocation.setLongName(field1.getText());
-        currentLocation.setShortName(field2.getText());
-        currentLocation.setNodeID(Integer.valueOf(field3.getText()));
-        currentLocation.setNodeType(Location.NodeType.valueOf(field4.getText()));
-        currentLocation.setBuilding(field5.getText());
-        currentLocation.setFloor(Integer.valueOf(field6.getText()));
-        currentLocation.setX(Integer.valueOf(field7.getText()));
-        currentLocation.setY(Integer.valueOf(field8.getText()));
 
-        LocationDAO locationDAO = new LocationDAOImpl();
-        locationDAO.updateLocation(currentLocation);
+        if (!addMode){
+            currentLocation.setLongName(field1.getText());
+            currentLocation.setShortName(field2.getText());
+            currentLocation.setNodeID(Integer.valueOf(field3.getText()));
+            currentLocation.setNodeType(Location.NodeType.valueOf(field4.getText()));
+            currentLocation.setBuilding(field5.getText());
+            currentLocation.setFloor(Integer.valueOf(field6.getText()));
+            currentLocation.setX(Integer.valueOf(field7.getText()));
+            currentLocation.setY(Integer.valueOf(field8.getText()));
 
-        parentController.tableDisplay.updateObject(currentLocation);
+            LocationDAO locationDAO = new LocationDAOImpl();
+            locationDAO.updateLocation(currentLocation);
+
+            parentController.tableDisplay.updateObject(currentLocation);
+            addMode = false;
+
+        } else {
+
+            Location newLocal = new Location();
+
+            newLocal.setLongName(field1.getText());
+            newLocal.setShortName(field2.getText());
+            newLocal.setNodeID(Integer.valueOf(field3.getText()));
+            newLocal.setNodeType(Location.NodeType.valueOf(field4.getText()));
+            newLocal.setBuilding(field5.getText());
+            newLocal.setFloor(Integer.valueOf(field6.getText()));
+            newLocal.setX(Integer.valueOf(field7.getText()));
+            newLocal.setY(Integer.valueOf(field8.getText()));
+
+            LocationDAO locationDAO = new LocationDAOImpl();
+            locationDAO.insertLocation(newLocal);
+            parentController.tableDisplay.updateObject(newLocal);
+            resetValues();
+            addMode = false;
+            fieldsEditable(false);
+
+
+        }
     }
 
     private boolean fieldsFilled(){
@@ -132,9 +167,22 @@ public class InserTableViewController implements Initializable {
     }
 
     void addClicked(){
-        title.setText("Add Location");
+        fieldsEditable(true);
+        addMode = true;
+        System.out.println("right here");
         resetValues();
+        title.setText("Add Location");
     }
 
+    void fieldsEditable(boolean edit){
+        field1.setEditable(edit);
+        field2.setEditable(edit);
+        field3.setEditable(edit);
+        field4.setEditable(edit);
+        field5.setEditable(edit);
+        field6.setEditable(edit);
+        field7.setEditable(edit);
+        field8.setEditable(edit);
+    }
 
 }

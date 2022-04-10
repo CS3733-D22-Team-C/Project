@@ -45,7 +45,7 @@
             </JFXButton>
          </children>
       </HBox>
-      <JFXButton fx:id="back" onAction="#backButton" prefHeight="36.0" prefWidth="113.0" styleClass="base_view_table_back" stylesheets="@../../css/table_skeleton.css" GridPane.rowIndex="1">
+      <JFXButton fx:id="back" onAction="#backButton" prefHeight="36.0" prefWidth="113.0" styleClass="base_view_table_back" stylesheets="@../../css/table_skeleton.css" text="Back" GridPane.rowIndex="1">
          <GridPane.margin>
             <Insets left="15.0" />
          </GridPane.margin></JFXButton>
