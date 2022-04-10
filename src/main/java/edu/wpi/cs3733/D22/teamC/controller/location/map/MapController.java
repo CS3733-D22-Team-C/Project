@@ -3,6 +3,7 @@ package edu.wpi.cs3733.D22.teamC.controller.location.map;
 import edu.wpi.cs3733.D22.teamC.entity.floor.Floor;
 import edu.wpi.cs3733.D22.teamC.entity.floor.FloorDAO;
 import edu.wpi.cs3733.D22.teamC.entity.location.Location;
+import edu.wpi.cs3733.D22.teamC.entity.location.LocationDAO;
 import io.github.palexdev.materialfx.controls.MFXScrollPane;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -267,7 +268,9 @@ public class MapController implements Initializable {
             mapPane.setPrefHeight(image.getHeight());
 
             // Load Locations
-            List<Location> locations = new FloorDAO().getAllLocations(floor.getFloorID());
+            // TODO: Fix Broken UUID Query
+//            List<Location> locations = new FloorDAO().getAllLocations(floor.getFloorID());
+            List<Location> locations = new LocationDAO().getAll().stream().filter(location -> location.getFloor().equals(floor.getFloorID())).collect(Collectors.toList());
 
             // Load LocationNodes
             locationNodes = renderLocationsNodes(locations);

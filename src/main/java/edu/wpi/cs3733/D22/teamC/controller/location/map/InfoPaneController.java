@@ -1,7 +1,12 @@
 package edu.wpi.cs3733.D22.teamC.controller.location.map;
 
+import com.jfoenix.controls.JFXTreeTableView;
 import edu.wpi.cs3733.D22.teamC.entity.floor.Floor;
 import edu.wpi.cs3733.D22.teamC.entity.location.Location;
+import edu.wpi.cs3733.D22.teamC.entity.medical_equipment.MedicalEquipment;
+import edu.wpi.cs3733.D22.teamC.entity.service_request.ServiceRequest;
+import edu.wpi.cs3733.D22.teamC.entity.service_request.ServiceRequestDAO;
+import edu.wpi.cs3733.D22.teamC.models.service_request.ServiceRequestTableDisplay;
 import edu.wpi.cs3733.D22.teamC.models.utils.ComponentWrapper;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -11,6 +16,7 @@ import javafx.scene.shape.SVGPath;
 
 import java.net.URL;
 import java.util.ResourceBundle;
+import java.util.stream.Collectors;
 
 public class InfoPaneController implements Initializable {
     // Constants
@@ -31,6 +37,14 @@ public class InfoPaneController implements Initializable {
     @FXML private ComboBox<Floor> floorComboBox;
     @FXML private ComboBox<Location.NodeType> nodeComboBox;
 
+    // Medical Equipment - Table
+//    JFXTreeTableView medicalEquipmentTable;
+//    MedicalEquipmentTableDisplay<MedicalEquipment> medicalEquipmentTableDisplay;
+
+    // Service Requests - Table
+    @FXML JFXTreeTableView serviceRequestTable;
+    ServiceRequestTableDisplay<ServiceRequest> serviceRequestTableDisplay;
+
     // Location Info - Form Buttons
     @FXML private Button deselectButton;
     @FXML private Button revertButton;
@@ -48,6 +62,9 @@ public class InfoPaneController implements Initializable {
 
         // Initialize Location Info
         ComponentWrapper.InitializeComboBox(floorComboBox, Floor::getShortName);
+
+        // Initialize Service Request Info
+        serviceRequestTableDisplay = new ServiceRequestTableDisplay<>(serviceRequestTable);
 
         nodeComboBox.getItems().setAll(Location.NodeType.values());
     }
@@ -126,7 +143,10 @@ public class InfoPaneController implements Initializable {
             // TODO: Populate table with Medical Equipment at Location
 
             // Service Requests
-            // TODO: Populate table with Service Requests at Location
+            serviceRequestTableDisplay.emptyTable();
+            // TODO: Back-end Write a more efficient getAllServiceRequests(Location) Query
+            new ServiceRequestDAO().getAll().stream().filter(sr -> sr.getLocation().equals(location.getNodeID())).forEach(serviceRequestTableDisplay::addObject);
+
 
             revertButton.setDisable(!(parentController.touchedLocations.contains(location)
                     || parentController.additionLocations.contains(location) || parentController.deletionLocations.contains(location)));

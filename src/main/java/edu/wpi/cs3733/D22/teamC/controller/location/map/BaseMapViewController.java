@@ -70,7 +70,7 @@ public class BaseMapViewController implements Initializable {
         }
 
         public Floor getFloorByID(String id) {
-            return floors.stream().filter(floor -> floor.getFloorID() == id).collect(Collectors.toList()).get(0);
+            return floors.stream().filter(floor -> floor.getFloorID().equals(id)).collect(Collectors.toList()).get(0);
         }
 
         public Floor getCurrentFloor() {
@@ -220,17 +220,17 @@ public class BaseMapViewController implements Initializable {
 
         public void renderLocationChanges() {
             // Update touched location nodes
-            for (Location location : touchedLocations.stream().filter(location -> location.getFloor() == currentFloor.getFloorID()).collect(Collectors.toList())) {
+            for (Location location : touchedLocations.stream().filter(location -> location.getFloor().equals(currentFloor.getFloorID())).collect(Collectors.toList())) {
                 mapController.updateLocationNode(location);
             }
 
             // Insert additional location nodes
-            for (Location location : additionLocations.stream().filter(location -> location.getFloor() == currentFloor.getFloorID()).collect(Collectors.toList())) {
+            for (Location location : additionLocations.stream().filter(location -> location.getFloor().equals(currentFloor.getFloorID())).collect(Collectors.toList())) {
                 mapController.addLocationNode(location);
             }
 
             // Delete deletion location nodes
-            for (Location location : deletionLocations.stream().filter(location -> location.getFloor() == currentFloor.getFloorID()).collect(Collectors.toList())) {
+            for (Location location : deletionLocations.stream().filter(location -> location.getFloor().equals(currentFloor.getFloorID())).collect(Collectors.toList())) {
                 mapController.removeLocationNode(location);
             }
         }

@@ -163,7 +163,7 @@
                               <Font size="20.0" />
                            </font>
                         </Label>
-                        <JFXTreeTableView VBox.vgrow="ALWAYS">
+                        <JFXTreeTableView fx:id="medicalEquipmentTable" VBox.vgrow="ALWAYS">
                            <VBox.margin>
                               <Insets bottom="25.0" left="25.0" right="25.0" top="25.0" />
                            </VBox.margin>
@@ -188,7 +188,7 @@
                               <Font size="20.0" />
                            </font>
                         </Label>
-                        <JFXTreeTableView VBox.vgrow="ALWAYS">
+                        <JFXTreeTableView fx:id="serviceRequestTable" VBox.vgrow="ALWAYS">
                            <VBox.margin>
                               <Insets bottom="25.0" left="25.0" right="25.0" top="25.0" />
                            </VBox.margin>
