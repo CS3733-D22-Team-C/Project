@@ -1,5 +1,6 @@
 package edu.wpi.cs3733.D22.teamC.factory.service_request;
 
+import edu.wpi.cs3733.D22.teamC.entity.employee.Employee;
 import edu.wpi.cs3733.D22.teamC.entity.service_request.ServiceRequest;
 import edu.wpi.cs3733.D22.teamC.factory.Factory;
 
@@ -16,7 +17,7 @@ public class ServiceRequestFactory<T extends ServiceRequest> implements Factory<
     }
 
     public T create(T serviceRequest) {
-        String creatorID = String.valueOf(generator.nextInt(200000));
+        Employee creator = new Employee();
         String assigneeID = String.valueOf(generator.nextInt(200000));
         String locationID = String.valueOf(generator.nextInt(200000));
         Timestamp creationTimestamp = new Timestamp(System.currentTimeMillis());
@@ -26,7 +27,7 @@ public class ServiceRequestFactory<T extends ServiceRequest> implements Factory<
         String modifierID = String.valueOf(generator.nextInt(200000));
         Timestamp modifiedTimeStamp = new Timestamp(System.currentTimeMillis());
 
-        serviceRequest.setCreatorID(creatorID);
+        serviceRequest.setCreator(creator);
         serviceRequest.setAssigneeID(assigneeID);
         serviceRequest.setLocation(locationID);
         serviceRequest.setCreationTimestamp(creationTimestamp);
