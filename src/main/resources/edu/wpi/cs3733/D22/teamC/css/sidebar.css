@@ -3,10 +3,9 @@
 
 .button {
     -fx-background-color: -color-secondary-dark;
-    -fx-font-family: "Roboto";
-    -fx-font-size: 14;
     -fx-pref-height: 40px;
     -fx-pref-width: 40px;
+    -fx-padding: 10px;
 }
 
 .mfx-button .mfx-ripple-generator {
@@ -35,5 +34,5 @@
 }
 
 .jfx-drawer {
-
+    -fx-background-color: -color-sidebar-white;
 }
