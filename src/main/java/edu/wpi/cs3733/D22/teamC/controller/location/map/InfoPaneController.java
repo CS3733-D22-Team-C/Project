@@ -4,6 +4,7 @@ import com.jfoenix.controls.JFXTreeTableView;
 import edu.wpi.cs3733.D22.teamC.entity.floor.Floor;
 import edu.wpi.cs3733.D22.teamC.entity.location.Location;
 import edu.wpi.cs3733.D22.teamC.entity.medical_equipment.MedicalEquipment;
+import edu.wpi.cs3733.D22.teamC.entity.medical_equipment.MedicalEquipmentDAO;
 import edu.wpi.cs3733.D22.teamC.entity.service_request.ServiceRequest;
 import edu.wpi.cs3733.D22.teamC.entity.service_request.ServiceRequestDAO;
 import edu.wpi.cs3733.D22.teamC.models.service_request.ServiceRequestTableDisplay;
@@ -141,12 +142,11 @@ public class InfoPaneController implements Initializable {
 
             // Medical Equipment
             // TODO: Populate table with Medical Equipment at Location
+            new MedicalEquipmentDAO().getEquipmentByLocation(location.getNodeID());
 
             // Service Requests
             serviceRequestTableDisplay.emptyTable();
-            // TODO: Back-end Write a more efficient getAllServiceRequests(Location) Query
-            new ServiceRequestDAO().getAll().stream().filter(sr -> sr.getLocation().equals(location.getNodeID())).forEach(serviceRequestTableDisplay::addObject);
-
+            new ServiceRequestDAO().getAllSRByLocation(location.getNodeID()).forEach(serviceRequestTableDisplay::addObject);
 
             revertButton.setDisable(!(parentController.touchedLocations.contains(location)
                     || parentController.additionLocations.contains(location) || parentController.deletionLocations.contains(location)));
