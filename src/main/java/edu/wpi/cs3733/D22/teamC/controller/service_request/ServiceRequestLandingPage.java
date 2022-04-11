@@ -2,6 +2,7 @@ package edu.wpi.cs3733.D22.teamC.controller.service_request;
 
 import edu.wpi.cs3733.D22.teamC.App;
 import edu.wpi.cs3733.D22.teamC.entity.service_request.ServiceRequest;
+import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -9,6 +10,7 @@ import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.GridPane;
 
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
@@ -32,11 +34,16 @@ public class ServiceRequestLandingPage implements Initializable {
     @FXML private Label vishu;
     @FXML private ImageView eye;
 
+    @FXML
+    private GridPane root;
+
     private boolean canSee = false;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
+        Platform.runLater( () -> root.requestFocus() );
         changeNameVisibility(canSee);
+
     }
 
     @FXML
