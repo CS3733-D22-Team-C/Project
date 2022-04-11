@@ -22,8 +22,7 @@ public class FloorDAOTest extends DAOTest<Floor> {
     public void getAllLocTest() {
         // Create a new floor and store it in the DB
         FloorDAO testDAO = new FloorDAO();
-        FloorFactory floorFactory = new FloorFactory();
-        Floor testFloor = floorFactory.create();
+        Floor testFloor = factory.create();
         String testFloorID = testDAO.insert(testFloor);
         assertNotNull(testFloorID);
         
@@ -34,6 +33,7 @@ public class FloorDAOTest extends DAOTest<Floor> {
         testLoc.setFloor(testFloorID);
         String testLocID = testLDAO.insert(testLoc);
         assertNotNull(testFloorID);
+        assertNotNull(testLocID);
         
         List<Location> returnList = testDAO.getAllLocations(testFloorID);
         assertEquals(1, returnList.size());
