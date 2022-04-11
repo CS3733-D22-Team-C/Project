@@ -80,9 +80,9 @@
 }
 
 .grid-pane {
-    -fx-background-image: url("../../../../static/images/BrighamandWomensResized.jpeg");
+    -fx-background-image: url("../../../../static/images/BrighamandWomensResized.png");
     -fx-background-repeat: stretch;
-    -fx-background-size: 1000 1000;
+    -fx-background-size: 1200 1000;
     -fx-background-position: left center;
 }
 
