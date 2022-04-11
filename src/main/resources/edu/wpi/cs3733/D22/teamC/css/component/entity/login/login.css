@@ -79,6 +79,7 @@
     -fx-border-radius: 4px;
 }
 
+/*Resizing background image in CSS*/
 .grid-pane {
     -fx-background-image: url("../../../../static/images/BrighamandWomensResized.png");
     -fx-background-repeat: stretch;
