@@ -2,15 +2,15 @@
 @import "../../../fonts.css";
 
 .login-interface-background-upper {
-    -fx-background-color: #00316C;
+    -fx-background-color: -color-primary-dark;
 }
 
 .login-interface-background-lower {
-    -fx-background-color: #FFFFFF;
+    -fx-background-color: -color-primary-text;
 }
 
 .login-interface-title {
-    -fx-font-family: 'Cambo';
+    -fx-font-family: -font-cambo;
     -fx-font-style: normal;
     -fx-font-weight: 400;
     -fx-font-size: 12px;
@@ -18,7 +18,7 @@
 
     -fx-text-alignment: center;
 
-    -fx-text-fill: #FFFFFF;
+    -fx-text-fill: -color-primary-text;
 }
 
 .login-username-field {
@@ -39,26 +39,18 @@
 
     /* Secondary Text */
 
-    -fx-text-fill:  #000000;
+    -fx-text-fill: -color-black;
 }
 
-.login-username-textfield {
-    -fx-background-color: #D7E5EF;
+.login-username-text-field {
+    -fx-background-color: -login-username-field;
     /*-box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);*/
     -fx-border-radius: 4px;
 }
 
 .login-button {
     /* Box */
-    -fx-background-color: #4E86CC;
-    -fx-border-radius: 4px;
-}
-
-.exit-button {
-    /* Box */
-    /* Red Contrast */
-
-    -fx-background-color: #F44336;
+    -fx-background-color: -color-primary-light;
     -fx-border-radius: 4px;
 }
 
@@ -72,7 +64,7 @@
 
     /*letter-spacing: 0.1px;*/
 
-    -fx-text-fill: #000000;
+    -fx-text-fill: -color-black;
 
    -fx-background-color: rgba(255, 174, 174, 0.5);
     /*box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);*/
@@ -83,6 +75,6 @@
 
     /* Red Contrast */
 
-    -fx-background-color: #F44336;
+    -fx-background-color: #F44336; /*-fx-background-color does not support colors.css attribute*/
     -fx-border-radius: 4px;
 }

@@ -1,4 +1,4 @@
-*. {
+* {
     -color-menu: #0077CC;
     -color-menu-dark: #00497C;
     -color-menu-light: #5199CD;
@@ -16,6 +16,7 @@
     -color-dropdown-menu: #C4C4C4;
     -color-button-text: #FFFFFF;
     -color-button-confirm: #4CA336;
+    -login-username-field: #D7E5EF;
 
     /*New UI Colors*/
 
@@ -28,5 +29,5 @@
     -color-secondary-text: #000000;
     -color-secondary-light: #E6FFFF;
     -color-red-constrast: #F44336;
-
+    -color-black: #000000;
 }
