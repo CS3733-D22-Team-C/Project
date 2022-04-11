@@ -7,8 +7,8 @@
     -fx-font-family: "Roboto";
     /*-fx-font-size: 14px;*/
 
-    -fx-min-height: 0px;
-    -fx-min-width: 0px;
+    /*-fx-min-height: 0px;*/
+    /*-fx-min-width: 0px;*/
     /* Default Background Color */
     /*-fx-background-color: -color-page-background;*/
 }
