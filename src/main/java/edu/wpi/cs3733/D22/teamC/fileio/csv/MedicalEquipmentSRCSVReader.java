@@ -1,11 +1,15 @@
 package edu.wpi.cs3733.D22.teamC.fileio.csv;
 
+import edu.wpi.cs3733.D22.teamC.entity.employee.Employee;
+import edu.wpi.cs3733.D22.teamC.entity.employee.EmployeeDAO;
 import edu.wpi.cs3733.D22.teamC.entity.service_request.ServiceRequest;
 import edu.wpi.cs3733.D22.teamC.entity.service_request.medical_equipment.MedicalEquipmentSR;
 
 import java.sql.Timestamp;
 
 public class MedicalEquipmentSRCSVReader extends CSVReader<MedicalEquipmentSR>{
+    private EmployeeDAO employeeDAO = new EmployeeDAO();
+
     /**
      * Maps ServiceRequest (header, value) pairs to a value to change for the object.
      * @param serviceRequest The object to be modified.
@@ -20,7 +24,8 @@ public class MedicalEquipmentSRCSVReader extends CSVReader<MedicalEquipmentSR>{
                 serviceRequest.setRequestID(value);
                 break;
             case "creatorID":
-                serviceRequest.setCreatorID(value);
+                Employee employee = employeeDAO.getByID(value);
+                serviceRequest.setCreator(employee);
                 break;
             case "assigneeID":
                 serviceRequest.setAssigneeID(value);

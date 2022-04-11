@@ -20,7 +20,7 @@ public class ServiceRequest {
     //@Column(name = "CreatorID")
     @ManyToOne
     @JoinColumn(name = "CreatorID", referencedColumnName = "ID")
-    protected Employee creator;     // TODO: Link to Employee
+    protected Employee creator;
 
 
     //@ManyToOne
@@ -111,9 +111,7 @@ public class ServiceRequest {
         return creator;
     }
     
-    public void setCreatorID(String creatorID) {
-        this.creator = creator;
-    }
+    public void setCreator(Employee creator) {this.creator = creator;}
     
     public String getAssigneeID() {
         return assigneeID;

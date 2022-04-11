@@ -1,5 +1,6 @@
 package edu.wpi.cs3733.D22.teamC.fileio.csv;
 
+import edu.wpi.cs3733.D22.teamC.entity.employee.Employee;
 import edu.wpi.cs3733.D22.teamC.entity.service_request.medical_equipment.MedicalEquipmentSR;
 
 public class MedicalEquipmentSRCSVWriter extends CSVWriter<MedicalEquipmentSR> {
@@ -36,8 +37,9 @@ public class MedicalEquipmentSRCSVWriter extends CSVWriter<MedicalEquipmentSR> {
             case "requestID":
                 output = serviceRequest.getRequestID();
                 break;
-            case "creator":
-                output = serviceRequest.getCreator().getEmployeeID();
+            case "creatorID":
+                Employee employee = serviceRequest.getCreator();
+                output = (employee != null) ? employee.getEmployeeID() : "";
                 break;
             case "assigneeID":
                 output = serviceRequest.getAssigneeID();
