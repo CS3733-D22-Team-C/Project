@@ -3,13 +3,19 @@
 
 .tab-pane {
     -fx-padding: 5px;
-    -fx-background-color: transparent;
+    -fx-background-color: -login-username-field;
+    -fx-max-width: 750;
+    -fx-alignment: right;
 }
+
 
 .tab-pane .tab {
     -fx-background-color: -color-unselected-tab;
     -fx-text-fill: black;
+
 }
+
+
 
 .tab-pane .tab:selected {
     -fx-background-color: -color-primary;
