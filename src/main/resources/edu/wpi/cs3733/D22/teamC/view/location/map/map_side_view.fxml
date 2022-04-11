@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import com.jfoenix.controls.JFXTreeTableRow?>
 <?import io.github.palexdev.materialfx.controls.MFXButton?>
 <?import io.github.palexdev.materialfx.controls.MFXScrollPane?>
+<?import io.github.palexdev.materialfx.controls.legacy.MFXLegacyTableRow?>
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.layout.ColumnConstraints?>
@@ -13,7 +13,7 @@
 <?import javafx.scene.shape.Line?>
 <?import javafx.scene.text.Text?>
 
-<GridPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" stylesheets="@../../../css/base.css" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/17">
+<GridPane minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" stylesheets="@../../../css/base.css" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.wpi.cs3733.D22.teamC.controller.location.map.MapSideViewController">
   <columnConstraints>
     <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
     <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
@@ -22,14 +22,14 @@
     <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
   </rowConstraints>
    <children>
-      <MFXScrollPane>
+      <MFXScrollPane hbarPolicy="NEVER" maxWidth="-Infinity" prefHeight="320.0" prefWidth="220.0" GridPane.halignment="CENTER" GridPane.valignment="TOP">
          <content>
-            <VBox alignment="CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="300.0" prefWidth="217.0">
+            <VBox alignment="CENTER">
                <children>
                   <MFXButton prefHeight="26.0" prefWidth="18.0" text="+" />
                   <HBox alignment="CENTER" layoutX="10.0" layoutY="292.0">
                      <children>
-                        <MFXButton prefHeight="26.0" prefWidth="200.0" text="Floor 5" />
+                        <MFXButton fx:id="floor5" onAction="#onFloor5Click" prefHeight="26.0" prefWidth="191.0" text="Floor 5" />
                      </children>
                   </HBox>
                   <HBox alignment="CENTER" layoutX="10.0" layoutY="112.0" prefHeight="21.0" prefWidth="218.0" spacing="62.0">
@@ -41,7 +41,7 @@
                   </HBox>
                   <HBox alignment="CENTER" layoutX="10.0" layoutY="43.0">
                      <children>
-                        <MFXButton prefHeight="26.0" prefWidth="200.0" text="Floor 4" />
+                        <MFXButton fx:id="floor4" onAction="#onFloor4Click" prefHeight="26.0" prefWidth="191.0" text="Floor 4" />
                      </children>
                   </HBox>
                   <HBox alignment="CENTER" layoutX="10.0" layoutY="344.0" prefHeight="21.0" prefWidth="218.0" spacing="62.0">
@@ -53,7 +53,7 @@
                   </HBox>
                   <HBox alignment="CENTER">
                      <children>
-                        <MFXButton prefHeight="26.0" prefWidth="200.0" text="Floor 3" />
+                        <MFXButton fx:id="floor3" onAction="#onFloor3Click" prefHeight="26.0" prefWidth="191.0" text="Floor 3" />
                      </children>
                   </HBox>
                   <HBox alignment="CENTER" prefHeight="21.0" prefWidth="218.0" spacing="62.0">
@@ -65,7 +65,7 @@
                   </HBox>
                   <HBox alignment="CENTER">
                      <children>
-                        <MFXButton prefHeight="26.0" prefWidth="200.0" text="Floor 2" />
+                        <MFXButton fx:id="floor2" onAction="#onFloor2Click" prefHeight="26.0" prefWidth="191.0" text="Floor 2" />
                      </children>
                   </HBox>
                   <HBox alignment="CENTER" prefHeight="21.0" prefWidth="0.0" spacing="62.0">
@@ -77,7 +77,7 @@
                   </HBox>
                   <HBox alignment="CENTER" layoutX="10.0" layoutY="243.0">
                      <children>
-                        <MFXButton prefHeight="26.0" prefWidth="200.0" text="Floor 1" />
+                        <MFXButton fx:id="floor1" onAction="#onFloor1Click" prefHeight="26.0" prefWidth="191.0" text="Floor 1" />
                      </children>
                   </HBox>
                   <HBox alignment="CENTER" prefHeight="21.0" prefWidth="218.0" spacing="62.0">
@@ -89,7 +89,7 @@
                   </HBox>
                   <HBox alignment="CENTER" layoutX="10.0" layoutY="256.0">
                      <children>
-                        <MFXButton prefHeight="26.0" prefWidth="200.0" text="Floor LL1" />
+                        <MFXButton fx:id="floorLL1" onAction="#onFloorLL1Click" prefHeight="26.0" prefWidth="191.0" text="Floor LL1" />
                      </children>
                   </HBox>
                   <HBox alignment="CENTER" prefHeight="21.0" prefWidth="218.0" spacing="62.0">
@@ -101,7 +101,7 @@
                   </HBox>
                   <HBox alignment="CENTER" layoutX="10.0" layoutY="268.0">
                      <children>
-                        <MFXButton prefHeight="26.0" prefWidth="200.0" text="Floor LL2" />
+                        <MFXButton fx:id="floorLL2" onAction="#onFloorLL2Click" prefHeight="26.0" prefWidth="191.0" text="Floor LL2" />
                      </children>
                   </HBox>
                   <MFXButton layoutX="10.0" layoutY="291.0" prefHeight="31.0" prefWidth="18.0" text="+" />
@@ -109,32 +109,32 @@
             </VBox>
          </content>
          <GridPane.margin>
-            <Insets bottom="40.0" left="40.0" right="40.0" top="40.0" />
+            <Insets bottom="40.0" left="40.0" right="20.0" top="40.0" />
          </GridPane.margin>
       </MFXScrollPane>
-      <GridPane prefWidth="220.0" GridPane.columnIndex="1">
+      <GridPane GridPane.columnIndex="1">
         <columnConstraints>
-          <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+          <ColumnConstraints hgrow="ALWAYS" maxWidth="1.7976931348623157E308" minWidth="10.0" prefWidth="100.0" />
         </columnConstraints>
         <rowConstraints>
-          <RowConstraints maxHeight="177.20001831054688" minHeight="10.0" prefHeight="140.4" vgrow="SOMETIMES" />
-          <RowConstraints maxHeight="212.80000000000004" minHeight="10.0" prefHeight="120.19999999999996" vgrow="SOMETIMES" />
-          <RowConstraints maxHeight="99.19997253417972" minHeight="0.0" prefHeight="34.39995422363285" vgrow="SOMETIMES" />
+          <RowConstraints maxHeight="1.7976931348623157E308" minHeight="10.0" prefHeight="140.4" vgrow="ALWAYS" />
+          <RowConstraints maxHeight="1.7976931348623157E308" minHeight="10.0" prefHeight="120.19999999999996" vgrow="ALWAYS" />
+          <RowConstraints maxHeight="1.7976931348623157E308" minHeight="0.0" prefHeight="34.39995422363285" vgrow="ALWAYS" />
         </rowConstraints>
          <children>
-            <MFXButton styleClass="button-success" GridPane.halignment="RIGHT" GridPane.rowIndex="2" GridPane.valignment="BOTTOM" />
-            <MFXButton styleClass="button-failure" GridPane.halignment="LEFT" GridPane.rowIndex="2" GridPane.valignment="BOTTOM" />
+            <MFXButton fx:id="goToButton" disable="true" onAction="#onGoToButtonClicked" styleClass="button-success" text="Go to" GridPane.halignment="RIGHT" GridPane.rowIndex="2" GridPane.valignment="BOTTOM" />
+            <MFXButton fx:id="deleteButton" disable="true" styleClass="button-failure" text="Delete" GridPane.halignment="LEFT" GridPane.rowIndex="2" GridPane.valignment="BOTTOM" />
             <VBox alignment="TOP_CENTER" GridPane.rowIndex="1">
                <children>
-                  <Label text="Floor X" />
+                  <Label fx:id="floorTitle" text="Floor X" />
                   <Line endX="100.0" startX="-100.0" />
-                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Floor Description" />
+                  <Text fx:id="floorDescription" strokeType="OUTSIDE" strokeWidth="0.0" text="Floor Description" textAlignment="CENTER" wrappingWidth="200.0" />
                </children>
             </VBox>
-            <JFXTreeTableRow />
+            <MFXLegacyTableRow fx:id="table" />
          </children>
          <GridPane.margin>
-            <Insets bottom="40.0" left="40.0" right="40.0" top="40.0" />
+            <Insets bottom="40.0" left="20.0" right="40.0" top="40.0" />
          </GridPane.margin>
       </GridPane>
    </children>
