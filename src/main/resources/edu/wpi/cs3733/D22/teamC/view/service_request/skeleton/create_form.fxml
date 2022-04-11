@@ -17,13 +17,13 @@
 
 <GridPane alignment="CENTER" maxWidth="1.7976931348623157E308" prefHeight="683.0" prefWidth="458.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.wpi.cs3733.D22.teamC.controller.service_request.BaseServiceRequestCreateController">
     <columnConstraints>
-      <ColumnConstraints hgrow="SOMETIMES" maxWidth="478.4000244140625" minWidth="10.0" prefWidth="272.79998779296875" />
+      <ColumnConstraints hgrow="ALWAYS" maxWidth="478.4000244140625" minWidth="10.0" prefWidth="272.79998779296875" />
     </columnConstraints>
     <rowConstraints>
-        <RowConstraints maxHeight="95.60001220703126" minHeight="0.0" prefHeight="39.20001220703125" vgrow="SOMETIMES" />
-        <RowConstraints maxHeight="377.6" minHeight="10.0" prefHeight="109.0" vgrow="SOMETIMES" />
-        <RowConstraints maxHeight="293.5" minHeight="10.0" prefHeight="244.5" vgrow="SOMETIMES" />
-        <RowConstraints maxHeight="273.5" minHeight="0.0" prefHeight="273.5" vgrow="SOMETIMES" />
+        <RowConstraints maxHeight="1.7976931348623157E308" vgrow="ALWAYS" />
+        <RowConstraints maxHeight="1.7976931348623157E308" vgrow="ALWAYS" />
+        <RowConstraints maxHeight="1.7976931348623157E308" vgrow="ALWAYS" />
+        <RowConstraints maxHeight="1.7976931348623157E308" vgrow="ALWAYS" />
     </rowConstraints>
     <children>
         <Label fx:id="title" styleClass="page-title" text="Generic Service Request " />
@@ -57,8 +57,8 @@
             <children>
             <VBox>
                <children>
-                      <Label styleClass="service-field-label" text="Additional Notes:" />
-                      <JFXTextArea fx:id="description" prefHeight="190.0" prefWidth="422.0" />
+                      <Label maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" styleClass="service-field-label" text="Additional Notes:" />
+                      <JFXTextArea fx:id="description" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="190.0" prefWidth="422.0" />
                </children>
             </VBox>
             <HBox prefHeight="100.0" prefWidth="200.0" styleClass="box-margin">
