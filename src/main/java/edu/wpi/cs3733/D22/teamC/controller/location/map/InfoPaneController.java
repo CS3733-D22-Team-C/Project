@@ -147,7 +147,8 @@ public class InfoPaneController implements Initializable {
             // Medical Equipment
             medicalEquipmentTableDisplay.emptyTable();
             // TODO: Back-end fix getEquipmentByLocation(Location) Query
-            new MedicalEquipmentDAO().getEquipmentByLocation(parentController.getCurrentLocation().getNodeID()).forEach(medicalEquipmentTableDisplay::addObject);
+//            new MedicalEquipmentDAO().getEquipmentByLocation(parentController.getCurrentLocation().getNodeID()).forEach(medicalEquipmentTableDisplay::addObject);
+            new MedicalEquipmentDAO().getAll().stream().filter(me -> me.getLocationID().equals(parentController.getCurrentLocation().getNodeID())).forEach(medicalEquipmentTableDisplay::addObject);
 
             // Service Requests
             serviceRequestTableDisplay.emptyTable();

@@ -24,7 +24,6 @@ public class ServiceRequest {
     @Column(name = "LocationID")
     protected String locationID;      // TODO: Link to Location
 
-    @CreationTimestamp
     @Column(name = "CreationTimestamp")
     protected Timestamp creationTimestamp;
     
