@@ -102,9 +102,7 @@ public class LocationInsertTableViewController extends  InsertTableViewControlle
 
             currentRow.setLongName(field1.getText());
             currentRow.setShortName(field2.getText());
-            System.out.println("HERE");
             currentRow.setNodeType(Location.NodeType.valueOf(field4.getValue()));
-            System.out.println("I LOVE SOFTWARE");
             currentRow.setBuilding(field5.getText());
             currentRow.setFloor(field6.getText());
             currentRow.setX(Integer.valueOf(field7.getText()));
