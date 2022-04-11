@@ -15,8 +15,17 @@ public class MedicalEquipmentFactory implements Factory<MedicalEquipment> {
         equipment.setEquipmentType(MedicalEquipment.EquipmentType.values()[generator.nextInt(MedicalEquipment.EquipmentType.values().length)]);
         equipment.setStatus(MedicalEquipment.EquipmentStatus.values()[generator.nextInt(MedicalEquipment.EquipmentStatus.values().length)]);
         equipment.setTypeNumber(generator.nextInt(30));
-        equipment.setLocationID(generator.nextInt(200000));
+        equipment.setLocationID(generateRandomString(16));
 
         return equipment;
+    }
+    
+    public static String generateRandomString(int len) {
+        String chars = "0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz!@#$%&";
+        Random rnd = new Random();
+        StringBuilder sb = new StringBuilder(len);
+        for (int i = 0; i < len; i++)
+            sb.append(chars.charAt(rnd.nextInt(chars.length())));
+        return sb.toString();
     }
 }

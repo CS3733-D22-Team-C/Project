@@ -18,7 +18,8 @@ public class FloorDAO extends DAO<Floor> {
      * @return Return a list of locations associated with the given floorID.
      */
     public List<Location> getAllLocations(String floorID) {
-        return HibernateManager.filterQuery("from Location where FLOORID = " + floorID);    
+        return HibernateManager.filterQuery("select q from " + Location.class.getName() + 
+                " q where q.floor = '" + floorID + "'");    
     }
     
 

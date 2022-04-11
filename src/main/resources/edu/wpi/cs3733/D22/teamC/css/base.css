@@ -15,8 +15,7 @@
 
 /* Default Button Style (applies to all button types) */
 .button {
-    -fx-background-color: -color-primary;
-    -mfx-button-type: RAISED;
+    
 }
 
 .button:hover {
@@ -243,4 +242,21 @@ padding goes top, right, bottom, left
 }
 .table-view .virtual-flow .scroll-bar:horizontal .thumb {
     -fx-background-color: transparent;
+
+/** Default Components **/
+.text-field {
+    -fx-background-color: -color-primary-text;
+    -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.8), 2, 0, 0, 0);
+}
+
+.combo-box {
+    -fx-background-color: -color-primary-text;
+    -fx-cursor: hand;
+}
+
+.button {
+    -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.5), 1, 0, 0, 0);
+    -fx-cursor: hand;
+    -fx-background-color: -color-primary;
+    -mfx-button-type: RAISED;
 }

@@ -20,7 +20,7 @@ public class MedicalEquipmentDAOTest extends DAOTest<MedicalEquipment> {
         MedicalEquipment me2 = factory.create();
 
         me2.setLocationID(me1.getLocationID());
-        int locationID = me2.getLocationID();
+        String locationID = me2.getLocationID();
 
         String id1 = dao.insert(me1);
         String id2 = dao.insert(me2);
