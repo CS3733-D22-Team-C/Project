@@ -53,8 +53,9 @@ public class App extends Application {
     public static final String VIEW_SERVICE_REQUESTS_PATH = "view/service_request/view_service_requests.fxml";
     public static final String MAP_PATH = "view/location/map/base_map_view.fxml";
 
+    public static final String BASE_CSS_PATH = "css/base.css";
     //public static final String IMAGE_PATH = "static/images/BrighamAndWomensHospital.png";
-
+    
     // Singleton Instance
     public static App instance;
 
@@ -110,7 +111,7 @@ public class App extends Application {
 
         // Store window as stage
         stage = primaryStage;
-        
+
         stage.setFullScreen(true);
 
         setView(LOGIN_PATH);
@@ -169,10 +170,12 @@ public class App extends Application {
         BorderPane baseNode = (BorderPane) loadView(BASE_COMPONENT_PATH).getNode();
 
         // Load Menu Bar
+        // TODO: Find a way to only change the center of the baseNode, nothing else
         Node menuBarNode = loadView(MENU_BAR_COMPONENT_PATH).getNode();
 
         // Load Sidebar Menu
         Node sidebarNode = loadView(SIDEBAR_PATH).getNode();
+
         // Embed views and components
         //baseNode.setTop(menuBarNode);
         baseNode.setCenter(viewNode);
