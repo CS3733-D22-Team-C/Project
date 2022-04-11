@@ -17,7 +17,7 @@
 <?import javafx.scene.text.Font?>
 
 
-<GridPane xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.wpi.cs3733.D22.teamC.controller.general.login_page.LoginPageController">
+<GridPane alignment="CENTER" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.wpi.cs3733.D22.teamC.controller.general.login_page.LoginPageController">
    <columnConstraints>
       <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" />
    </columnConstraints>
@@ -60,7 +60,7 @@
                               <Label prefHeight="478.0" prefWidth="342.0" styleClass="login-interface-background-lower" stylesheets="@../../css/component/entity/login/login.css" />
                            </children>
                         </HBox>
-                        <GridPane>
+                        <GridPane alignment="CENTER">
                            <columnConstraints>
                               <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
                            </columnConstraints>
@@ -103,7 +103,7 @@
                                  <children>
                                     <StackPane prefHeight="150.0" prefWidth="200.0">
                                        <children>
-                                          <MFXButton onAction="#loginButtonClicked" prefHeight="39.0" prefWidth="114.0" styleClass="login-button" stylesheets="@../../css/component/entity/login/login.css" text="Login" translateX="-7.0" translateY="30.0">
+                                          <MFXButton onAction="#loginButtonClicked" prefHeight="39.0" prefWidth="114.0" styleClass="login-button" stylesheets="@../../css/component/entity/login/login.css" text="Login" translateY="30.0" StackPane.alignment="CENTER">
                                              <font>
                                                 <Font name="Roboto Light" size="12.0" />
                                              </font>
@@ -121,7 +121,7 @@
                                  <children>
                                     <StackPane prefHeight="100.0" prefWidth="342.0">
                                        <children>
-                                          <MFXButton onAction="#exitButtonClicked" prefHeight="39.0" prefWidth="114.0" styleClass="login-exit-button" stylesheets="@../../css/component/entity/login/login.css" text="Exit" translateX="-7.0">
+                                          <MFXButton onAction="#exitButtonClicked" prefHeight="39.0" prefWidth="114.0" styleClass="login-exit-button" stylesheets="@../../css/component/entity/login/login.css" text="Exit" StackPane.alignment="CENTER">
                                              <font>
                                                 <Font name="Roboto Light" size="12.0" />
                                              </font>
