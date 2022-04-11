@@ -165,10 +165,12 @@ public class App extends Application {
         BorderPane baseNode = (BorderPane) loadView(BASE_COMPONENT_PATH).getNode();
 
         // Load Menu Bar
+        // TODO: Find a way to only change the center of the baseNode, nothing else
         Node menuBarNode = loadView(MENU_BAR_COMPONENT_PATH).getNode();
 
         // Load Sidebar Menu
         Node sidebarNode = loadView(SIDEBAR_PATH).getNode();
+
         // Embed views and components
         //baseNode.setTop(menuBarNode);
         baseNode.setCenter(viewNode);
