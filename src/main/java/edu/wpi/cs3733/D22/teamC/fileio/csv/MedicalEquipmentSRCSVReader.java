@@ -24,11 +24,12 @@ public class MedicalEquipmentSRCSVReader extends CSVReader<MedicalEquipmentSR>{
                 serviceRequest.setRequestID(value);
                 break;
             case "creatorID":
-                Employee employee = employeeDAO.getByID(value);
-                serviceRequest.setCreator(employee);
+                Employee creator = employeeDAO.getByID(value);
+                serviceRequest.setCreator(creator);
                 break;
             case "assigneeID":
-                serviceRequest.setAssigneeID(value);
+                Employee assignee = employeeDAO.getByID(value);
+                serviceRequest.setAssignee(assignee);
                 break;
             case "location":
                 serviceRequest.setLocation(value);

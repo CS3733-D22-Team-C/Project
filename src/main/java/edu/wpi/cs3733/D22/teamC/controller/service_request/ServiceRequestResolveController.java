@@ -50,7 +50,7 @@ public class ServiceRequestResolveController {
         priority.setPromptText(serviceRequest.getPriority().toString());
         status.setPromptText(serviceRequest.getStatus().toString());
         hospitalLocation.setPromptText(serviceRequest.getLocation());
-        assigneeID.setText(serviceRequest.getAssigneeID());
+        assigneeID.setText(serviceRequest.getAssignee().getLastName() + ", " + serviceRequest.getAssignee().getFirstName() );
 
         // Set labels
         requestID.setText(String.format("%07d" , serviceRequest.getRequestID()));
@@ -113,7 +113,7 @@ public class ServiceRequestResolveController {
                 serviceRequest.setPriority(priority.getValue());
             }
             //Assignee ID
-            serviceRequest.setAssigneeID(assigneeID.getText());
+            //serviceRequest.setAssigneeID(assigneeID.getText());
             //Location
             if(hospitalLocation.getValue() != null)
             {

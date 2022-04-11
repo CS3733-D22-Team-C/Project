@@ -42,7 +42,8 @@ public class MedicalEquipmentSRCSVWriter extends CSVWriter<MedicalEquipmentSR> {
                 output = (employee != null) ? employee.getEmployeeID() : "";
                 break;
             case "assigneeID":
-                output = serviceRequest.getAssigneeID();
+                Employee assignee = serviceRequest.getAssignee();
+                output = (assignee != null) ? assignee.getEmployeeID() : "";
                 break;
             case "location":
                 output = serviceRequest.getLocation();

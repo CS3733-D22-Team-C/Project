@@ -20,7 +20,8 @@ public class ServiceRequestFactory<T extends ServiceRequest> implements Factory<
 
     public T create(T serviceRequest) {
         Employee creator = null;
-        String assigneeID = String.valueOf(generator.nextInt(200000));
+        Employee assignee = null;
+        //String assigneeID = String.valueOf(generator.nextInt(200000));
         String locationID = String.valueOf(generator.nextInt(200000));
         Timestamp creationTimestamp = new Timestamp(System.currentTimeMillis());
         ServiceRequest.Status status = ServiceRequest.Status.values()[generator.nextInt(ServiceRequest.Status.values().length)];
@@ -30,7 +31,7 @@ public class ServiceRequestFactory<T extends ServiceRequest> implements Factory<
         Timestamp modifiedTimeStamp = new Timestamp(System.currentTimeMillis());
 
         serviceRequest.setCreator(creator);
-        serviceRequest.setAssigneeID(assigneeID);
+        serviceRequest.setAssignee(assignee);
         serviceRequest.setLocation(locationID);
         serviceRequest.setCreationTimestamp(creationTimestamp);
         serviceRequest.setStatus(status);

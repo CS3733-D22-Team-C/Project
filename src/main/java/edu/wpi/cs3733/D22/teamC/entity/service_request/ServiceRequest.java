@@ -24,10 +24,12 @@ public class ServiceRequest {
     protected Employee creator;
 
 
-    //@ManyToOne
-    //@JoinColumn(name = "AssigneeID", referencedColumnName = "ID")
-    @Column(name = "AssigneeID")
-    protected String assigneeID;    // TODO: Link to Employee
+
+    //@Column(name = "AssigneeID")
+    //protected String assigneeID;
+    @ManyToOne
+    @JoinColumn(name = "AssigneeID", referencedColumnName = "ID")
+    protected Employee assignee;
     
     @Column(name = "LocationID")
     protected String locationID;      // TODO: Link to Location
@@ -85,7 +87,7 @@ public class ServiceRequest {
     public ServiceRequest(ServiceRequest serviceRequest) {
         this.requestID = serviceRequest.getRequestID();
         this.creator = serviceRequest.getCreator();
-        this.assigneeID = serviceRequest.getAssigneeID();
+        this.assignee = serviceRequest.getAssignee();
         this.locationID = serviceRequest.getLocation();
         this.creationTimestamp = serviceRequest.getCreationTimestamp();
         this.status = serviceRequest.getStatus();
@@ -114,12 +116,12 @@ public class ServiceRequest {
     
     public void setCreator(Employee creator) {this.creator = creator;}
     
-    public String getAssigneeID() {
-        return assigneeID;
+    public Employee getAssignee() {
+        return assignee;
     }
     
-    public void setAssigneeID(String assigneeID) {
-        this.assigneeID = assigneeID;
+    public void setAssignee(Employee assignee) {
+        this.assignee = assignee;
     }
     
     public String getLocation() {
@@ -191,7 +193,7 @@ public class ServiceRequest {
         ServiceRequest that = (ServiceRequest) o;
         return requestID.equals(that.requestID)
                 && Objects.equals(creator, that.creator) //(creator == null ? that.creator == null : creator.equals(that.creator))
-                && assigneeID.equals(that.assigneeID)
+                && Objects.equals(assignee, that.assignee)
                 && locationID.equals(that.locationID)
                 && creationTimestamp.equals(that.creationTimestamp)
                 && status == that.status
