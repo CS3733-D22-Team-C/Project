@@ -7,4 +7,5 @@ public class LoginUserInputValidationErrorItem extends ErrorItem {
     public LoginUserInputValidationErrorItem(int errorNumber, String reasonForValidationError) {
         super("User Input Validation", errorNumber, reasonForValidationError);
     }
+
 }

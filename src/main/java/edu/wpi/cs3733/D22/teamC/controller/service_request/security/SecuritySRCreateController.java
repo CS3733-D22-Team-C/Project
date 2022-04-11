@@ -44,7 +44,7 @@ public class SecuritySRCreateController extends ServiceRequestCreateController <
     protected SecuritySR clickSubmit(ActionEvent event) {
         resetErrorMessages();
         SecuritySRFormEvaluator sSRFE = new SecuritySRFormEvaluator();
-        ArrayList<ServiceRequestUserInputValidationErrorItem> errors = sSRFE.getSecuritySRValidationTestResult(location.getText(), assigneeID.getText(), priority.getSelectionModel(), status.getSelectionModel(), secType.getSelectionModel());
+        ArrayList<ServiceRequestUserInputValidationErrorItem> errors = sSRFE.getSecuritySRFormValidationTestResult(location.getText(), assigneeID.getText(), priority.getSelectionModel(), status.getSelectionModel(), secType.getSelectionModel());
 
         if(sSRFE.noServiceRequestFormUserInputErrors(errors))
         {

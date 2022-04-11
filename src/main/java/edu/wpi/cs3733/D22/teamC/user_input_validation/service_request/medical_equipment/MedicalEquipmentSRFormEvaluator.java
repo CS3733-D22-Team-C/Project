@@ -2,16 +2,16 @@ package edu.wpi.cs3733.D22.teamC.user_input_validation.service_request.medical_e
 
 import edu.wpi.cs3733.D22.teamC.error.error_item.user_input_validation_error_item.service_request_user_input_validation_error_item.ServiceRequestUserInputValidationErrorItem;
 import edu.wpi.cs3733.D22.teamC.error.error_record.service_request_user_input_validation.ServiceRequestUserInputValidationErrorRecord;
-import edu.wpi.cs3733.D22.teamC.user_input_validation.service_request.ServiceRequestFormEvaluator;
+import edu.wpi.cs3733.D22.teamC.user_input_validation.service_request.SRFormEvaluator;
 import javafx.scene.control.SingleSelectionModel;
 
 import java.util.ArrayList;
 
-public class MedicalEquipmentSRFormEvaluator extends ServiceRequestFormEvaluator {
+public class MedicalEquipmentSRFormEvaluator extends SRFormEvaluator {
 
     public MedicalEquipmentSRFormEvaluator() {}
 
-    public ArrayList<ServiceRequestUserInputValidationErrorItem> getMedicalEquipmentSRValidationTestResult(String location, String assigneeID, SingleSelectionModel priority, SingleSelectionModel status, SingleSelectionModel equipType, SingleSelectionModel equipID)
+    public ArrayList<ServiceRequestUserInputValidationErrorItem> getMedicalEquipmentSRFormValidationTestResult(String location, String assigneeID, SingleSelectionModel priority, SingleSelectionModel status, SingleSelectionModel equipType, SingleSelectionModel equipID)
     {
         ArrayList <ServiceRequestUserInputValidationErrorItem> errorList = new ArrayList <ServiceRequestUserInputValidationErrorItem> ();
 
@@ -58,8 +58,4 @@ public class MedicalEquipmentSRFormEvaluator extends ServiceRequestFormEvaluator
        }
    }
 
-    @Override
-    public boolean noServiceRequestFormUserInputErrors(ArrayList<ServiceRequestUserInputValidationErrorItem> l) {
-        return super.noServiceRequestFormUserInputErrors(l);
-    }
 }

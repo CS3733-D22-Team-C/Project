@@ -10,9 +10,7 @@ import javafx.scene.control.SingleSelectionModel;
 
 import java.util.ArrayList;
 
-public class ServiceRequestFormEvaluator {
-
-    public ServiceRequestFormEvaluator() {}
+public class SRFormEvaluator {
 
     /**
      * Determine if all the basic fields of a Service Request (locationID, assigneeID, status, and priority) have been filled,

@@ -2,6 +2,7 @@ package edu.wpi.cs3733.D22.teamC.controller.general.login_page;
 
 import edu.wpi.cs3733.D22.teamC.App;
 import edu.wpi.cs3733.D22.teamC.entity.login_page.Login;
+import edu.wpi.cs3733.D22.teamC.user_input_validation.login.LoginEvaluator;
 import io.github.palexdev.materialfx.controls.MFXTextField;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
@@ -35,6 +36,8 @@ public class LoginPageController implements Initializable {
     public void loginButtonClicked(ActionEvent event)
     {
         //Login Validation eventually needed here
+
+        LoginEvaluator loginEV = new LoginEvaluator();
 
         Login login = new Login();
 

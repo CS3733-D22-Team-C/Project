@@ -2,16 +2,16 @@ package edu.wpi.cs3733.D22.teamC.user_input_validation.service_request.sanitatio
 
 import edu.wpi.cs3733.D22.teamC.error.error_item.user_input_validation_error_item.service_request_user_input_validation_error_item.ServiceRequestUserInputValidationErrorItem;
 import edu.wpi.cs3733.D22.teamC.error.error_record.service_request_user_input_validation.ServiceRequestUserInputValidationErrorRecord;
-import edu.wpi.cs3733.D22.teamC.user_input_validation.service_request.ServiceRequestFormEvaluator;
+import edu.wpi.cs3733.D22.teamC.user_input_validation.service_request.SRFormEvaluator;
 import javafx.scene.control.SingleSelectionModel;
 
 import java.util.ArrayList;
 
-public class SanitationSRFormEvaluator extends ServiceRequestFormEvaluator {
+public class SanitationSRFormEvaluator extends SRFormEvaluator {
 
     public SanitationSRFormEvaluator() {}
 
-    public ArrayList<ServiceRequestUserInputValidationErrorItem> getSanitationSRValidationTestResult(String location, String assigneeID, SingleSelectionModel priority, SingleSelectionModel status, SingleSelectionModel sanitationType)
+    public ArrayList<ServiceRequestUserInputValidationErrorItem> getSanitationSRFormValidationTestResult(String location, String assigneeID, SingleSelectionModel priority, SingleSelectionModel status, SingleSelectionModel sanitationType)
     {
         ArrayList <ServiceRequestUserInputValidationErrorItem> errorList = new ArrayList <ServiceRequestUserInputValidationErrorItem> ();
 
@@ -38,10 +38,5 @@ public class SanitationSRFormEvaluator extends ServiceRequestFormEvaluator {
         {
             return null;
         }
-    }
-
-    @Override
-    public boolean noServiceRequestFormUserInputErrors(ArrayList<ServiceRequestUserInputValidationErrorItem> l) {
-        return super.noServiceRequestFormUserInputErrors(l);
     }
 }

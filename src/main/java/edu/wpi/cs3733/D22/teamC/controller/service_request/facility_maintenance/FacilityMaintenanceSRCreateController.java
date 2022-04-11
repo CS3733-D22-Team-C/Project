@@ -39,7 +39,7 @@ public class FacilityMaintenanceSRCreateController extends ServiceRequestCreateC
     protected FacilityMaintenanceSR clickSubmit(ActionEvent event) {
         resetErrorMessages();
         FacilityMaintenanceSRFormEvaluator fMSRFE = new FacilityMaintenanceSRFormEvaluator();
-        ArrayList <ServiceRequestUserInputValidationErrorItem> errors = fMSRFE.getFacilityMaintenanceSRValidationTestResult(location.getText(), assigneeID.getText(), priority.getSelectionModel(), status.getSelectionModel(), maintType.getSelectionModel());
+        ArrayList <ServiceRequestUserInputValidationErrorItem> errors = fMSRFE.getFacilityMaintenanceSRFormValidationTestResult(location.getText(), assigneeID.getText(), priority.getSelectionModel(), status.getSelectionModel(), maintType.getSelectionModel());
 
         if(fMSRFE.noServiceRequestFormUserInputErrors(errors))
         {
