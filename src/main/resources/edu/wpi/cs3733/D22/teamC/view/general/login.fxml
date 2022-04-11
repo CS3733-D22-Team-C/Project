@@ -1,0 +1,149 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import io.github.palexdev.materialfx.controls.MFXButton?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.effect.DropShadow?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<GridPane prefHeight="626.0" prefWidth="1471.0" styleClass="grid-pane" stylesheets="@../../css/component/entity/login/login.css" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.wpi.cs3733.D22.teamC.controller.general.login_page.LoginPageController">
+   <columnConstraints>
+      <ColumnConstraints hgrow="SOMETIMES" maxWidth="1155.2000732421875" minWidth="10.0" prefWidth="1140.0" />
+      <ColumnConstraints hgrow="SOMETIMES" maxWidth="584.0000122070312" minWidth="10.0" prefWidth="331.20000000000005" />
+   </columnConstraints>
+   <rowConstraints>
+      <RowConstraints minHeight="10.0" vgrow="SOMETIMES" />
+   </rowConstraints>
+   <children>
+      <GridPane alignment="CENTER_RIGHT" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" GridPane.columnIndex="1">
+         <columnConstraints>
+            <ColumnConstraints hgrow="ALWAYS" maxWidth="1.7976931348623157E308" minWidth="10.0" />
+         </columnConstraints>
+         <rowConstraints>
+            <RowConstraints maxHeight="1.7976931348623157E308" minHeight="10.0" vgrow="ALWAYS" />
+         </rowConstraints>
+         <children>
+            <HBox prefHeight="626.0" prefWidth="574.0" GridPane.hgrow="ALWAYS" GridPane.vgrow="ALWAYS" VBox.vgrow="ALWAYS">
+               <children>
+                  <VBox prefHeight="626.0" prefWidth="342.0">
+                     <children>
+                        <StackPane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="150.0" prefWidth="357.0" styleClass="login-interface-background-upper" VBox.vgrow="ALWAYS">
+                           <children>
+                              <VBox prefHeight="150.0" prefWidth="349.0" VBox.vgrow="ALWAYS">
+                                 <children>
+                                    <Label prefHeight="20.0" prefWidth="232.0" styleClass="login-interface-title" stylesheets="@../../css/component/entity/login/login.css" text="Brigham and Womens Internal Tools" translateX="90.0" translateY="75.0">
+                                       <font>
+                                          <Font size="15.0" />
+                                       </font>
+                                    </Label>
+                                    <ImageView fitHeight="84.0" fitWidth="82.0" pickOnBounds="true" preserveRatio="true" translateX="10.0" translateY="25.0">
+                                       <image>
+                                          <Image url="@../../static/images/logo.png" />
+                                       </image>
+                                    </ImageView>
+                                 </children>
+                              </VBox>
+                           </children>
+                        </StackPane>
+                        <StackPane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="477.0" prefWidth="342.0" styleClass="login-interface-background-lower" stylesheets="@../../css/component/entity/login/login.css" VBox.vgrow="ALWAYS">
+                           <children>
+                              <GridPane alignment="CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308">
+                                 <columnConstraints>
+                                    <ColumnConstraints hgrow="ALWAYS" minWidth="10.0" prefWidth="100.0" />
+                                 </columnConstraints>
+                                 <rowConstraints>
+                                    <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="ALWAYS" />
+                                    <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                    <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                    <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                    <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                 </rowConstraints>
+                                 <children>
+                                    <Label fx:id="invalidLogin" prefHeight="40.0" prefWidth="197.0" styleClass="login-invalid-label" stylesheets="@../../css/component/entity/login/login.css" text="      Invalid username or password" translateX="67.0">
+                                       <font>
+                                          <Font size="10.0" />
+                                       </font>
+                                    </Label>
+                                    <VBox maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="200.0" prefWidth="100.0" GridPane.hgrow="ALWAYS" GridPane.rowIndex="1" GridPane.vgrow="ALWAYS">
+                                       <children>
+                                          <Label styleClass="login-username-label" stylesheets="@../../css/component/entity/login/login.css" text="Username" translateX="75.0" translateY="30.0" />
+                                          <TextField fx:id="username" prefHeight="26.0" prefWidth="240.0" styleClass="login-username-field" stylesheets="@../../css/component/entity/login/login.css" translateY="50.0">
+                                             <effect>
+                                                <DropShadow />
+                                             </effect>
+                                             <VBox.margin>
+                                                <Insets left="75.0" right="75.0" />
+                                             </VBox.margin>
+                                          </TextField>
+                                       </children>
+                                    </VBox>
+                                    <VBox maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="200.0" prefWidth="100.0" GridPane.hgrow="ALWAYS" GridPane.rowIndex="2" GridPane.vgrow="ALWAYS">
+                                       <children>
+                                          <Label styleClass="login-username-label" stylesheets="@../../css/component/entity/login/login.css" text="Password" translateX="75.0" translateY="20.0" />
+                                          <TextField fx:id="password" prefHeight="26.0" prefWidth="240.0" styleClass="login-username-field" stylesheets="@../../css/component/entity/login/login.css" translateY="40.0">
+                                             <effect>
+                                                <DropShadow />
+                                             </effect>
+                                             <VBox.margin>
+                                                <Insets left="75.0" right="75.0" />
+                                             </VBox.margin>
+                                          </TextField>
+                                       </children>
+                                    </VBox>
+                                    <VBox maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="200.0" prefWidth="100.0" GridPane.hgrow="ALWAYS" GridPane.rowIndex="3" GridPane.vgrow="ALWAYS">
+                                       <children>
+                                          <StackPane prefHeight="150.0" prefWidth="200.0">
+                                             <children>
+                                                <MFXButton onAction="#loginButtonClicked" prefHeight="39.0" prefWidth="114.0" styleClass="login-button" stylesheets="@../../css/component/entity/login/login.css" text="Login" translateY="30.0" StackPane.alignment="CENTER">
+                                                   <font>
+                                                      <Font name="Roboto Light" size="12.0" />
+                                                   </font>
+                                                </MFXButton>
+                                                <ImageView fitHeight="21.0" fitWidth="21.0" pickOnBounds="true" preserveRatio="true" translateX="-40.0" translateY="30.0">
+                                                   <image>
+                                                      <Image url="@../../static/images/arrow.png" />
+                                                   </image>
+                                                </ImageView>
+                                             </children>
+                                          </StackPane>
+                                       </children>
+                                    </VBox>
+                                    <VBox maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="200.0" prefWidth="100.0" GridPane.hgrow="ALWAYS" GridPane.rowIndex="4" GridPane.vgrow="ALWAYS">
+                                       <children>
+                                          <StackPane prefHeight="100.0" prefWidth="342.0">
+                                             <children>
+                                                <MFXButton onAction="#exitButtonClicked" prefHeight="39.0" prefWidth="114.0" styleClass="login-exit-button" stylesheets="@../../css/component/entity/login/login.css" text="Exit" StackPane.alignment="CENTER">
+                                                   <font>
+                                                      <Font name="Roboto Light" size="12.0" />
+                                                   </font>
+                                                </MFXButton>
+                                                <ImageView fitHeight="16.0" fitWidth="150.0" pickOnBounds="true" preserveRatio="true" translateX="-40.0">
+                                                   <image>
+                                                      <Image url="@../../static/images/powerbutton.png" />
+                                                   </image>
+                                                </ImageView>
+                                             </children>
+                                          </StackPane>
+                                       </children>
+                                    </VBox>
+                                 </children>
+                              </GridPane>
+                           </children>
+                        </StackPane>
+                     </children>
+                  </VBox>
+               </children>
+            </HBox>
+         </children>
+      </GridPane>
+   </children>
+</GridPane>
