@@ -107,7 +107,7 @@ public class App extends Application {
         
         stage.setFullScreen(true);
         
-        setView(HOME_PATH);
+        setView("view/service_request/service_request_landing_page.fxml");
     }
 
     @Override
