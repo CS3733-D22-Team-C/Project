@@ -91,7 +91,7 @@ public class MedicalEquipment {
         if (o == null || getClass() != o.getClass()) return false;
         MedicalEquipment equipment = (MedicalEquipment) o;
         return equipID.equals(equipment.equipID) 
-                && locationID == equipment.locationID 
+                && locationID.equals(equipment.locationID) 
                 && equipmentType == equipment.equipmentType 
                 && equipmentStatus == equipment.equipmentStatus 
                 && typeNumber == equipment.typeNumber;

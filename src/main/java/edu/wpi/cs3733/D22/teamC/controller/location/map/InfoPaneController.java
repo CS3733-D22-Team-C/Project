@@ -7,7 +7,6 @@ import edu.wpi.cs3733.D22.teamC.entity.medical_equipment.MedicalEquipment;
 import edu.wpi.cs3733.D22.teamC.entity.medical_equipment.MedicalEquipmentDAO;
 import edu.wpi.cs3733.D22.teamC.entity.service_request.ServiceRequest;
 import edu.wpi.cs3733.D22.teamC.entity.service_request.ServiceRequestDAO;
-import edu.wpi.cs3733.D22.teamC.models.medical_equipment.MedicalEquipmentTableDisplay;
 import edu.wpi.cs3733.D22.teamC.models.service_request.ServiceRequestTableDisplay;
 import edu.wpi.cs3733.D22.teamC.models.utils.ComponentWrapper;
 import javafx.event.ActionEvent;
@@ -40,8 +39,8 @@ public class InfoPaneController implements Initializable {
     @FXML private ComboBox<Location.NodeType> nodeComboBox;
 
     // Medical Equipment - Table
-    @FXML JFXTreeTableView medicalEquipmentTable;
-    MedicalEquipmentTableDisplay medicalEquipmentTableDisplay;
+//    JFXTreeTableView medicalEquipmentTable;
+//    MedicalEquipmentTableDisplay<MedicalEquipment> medicalEquipmentTableDisplay;
 
     // Service Requests - Table
     @FXML JFXTreeTableView serviceRequestTable;
@@ -66,10 +65,7 @@ public class InfoPaneController implements Initializable {
         ComponentWrapper.InitializeComboBox(floorComboBox, Floor::getShortName);
 
         // Initialize Service Request Info
-        serviceRequestTableDisplay = new ServiceRequestTableDisplay<ServiceRequest>(serviceRequestTable);
-
-        // Initialize Medical Equipment Info
-        medicalEquipmentTableDisplay = new MedicalEquipmentTableDisplay(medicalEquipmentTable);
+        serviceRequestTableDisplay = new ServiceRequestTableDisplay<>(serviceRequestTable);
 
         nodeComboBox.getItems().setAll(Location.NodeType.values());
     }
@@ -145,16 +141,12 @@ public class InfoPaneController implements Initializable {
             nodeComboBox.setValue(location.getNodeType());
 
             // Medical Equipment
-            medicalEquipmentTableDisplay.emptyTable();
-            // TODO: Back-end fix getEquipmentByLocation(Location) Query
-//            new MedicalEquipmentDAO().getEquipmentByLocation(parentController.getCurrentLocation().getNodeID()).forEach(medicalEquipmentTableDisplay::addObject);
-            new MedicalEquipmentDAO().getAll().stream().filter(me -> me.getLocationID().equals(parentController.getCurrentLocation().getNodeID())).forEach(medicalEquipmentTableDisplay::addObject);
+            // TODO: Populate table with Medical Equipment at Location
+            new MedicalEquipmentDAO().getEquipmentByLocation(location.getNodeID());
 
             // Service Requests
             serviceRequestTableDisplay.emptyTable();
-            // TODO: Back-end Write a more efficient getAllServiceRequests(Location) Query
-            new ServiceRequestDAO().getAll().stream().filter(sr -> sr.getLocation().equals(location.getNodeID())).forEach(serviceRequestTableDisplay::addObject);
-
+            new ServiceRequestDAO().getAllSRByLocation(location.getNodeID()).forEach(serviceRequestTableDisplay::addObject);
 
             revertButton.setDisable(!(parentController.touchedLocations.contains(location)
                     || parentController.additionLocations.contains(location) || parentController.deletionLocations.contains(location)));
