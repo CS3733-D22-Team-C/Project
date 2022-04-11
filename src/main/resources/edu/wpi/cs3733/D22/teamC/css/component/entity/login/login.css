@@ -80,6 +80,9 @@
 }
 
 .grid-pane {
-    -fx-background-image: url("../../../../static/images/BrighamAndWomensHospital.jpeg");
+    -fx-background-image: url("../../../../static/images/BrighamandWomensResized.jpeg");
+    -fx-background-repeat: stretch;
+    -fx-background-size: 1000 1000;
+    -fx-background-position: left center;
 }
 
