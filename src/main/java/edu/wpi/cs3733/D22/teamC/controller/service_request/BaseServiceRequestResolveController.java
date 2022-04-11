@@ -69,7 +69,7 @@ public class BaseServiceRequestResolveController<T extends ServiceRequest> {
         description.setText(serviceRequest.getDescription());
 
         // Set labels
-        requestID.setText(String.format("%07d" , serviceRequest.getRequestID()));
+        requestID.setText(serviceRequest.getRequestID().substring(0, 7)); //TODO print something else here or don't print maybe
 
         if (isEditMode) {
             // Set generic title (overridden in children)
