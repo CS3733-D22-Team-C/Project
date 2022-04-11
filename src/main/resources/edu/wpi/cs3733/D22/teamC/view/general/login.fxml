@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import io.github.palexdev.materialfx.controls.MFXButton?>
-<?import java.lang.String?>
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TextField?>
@@ -37,14 +36,8 @@
             </VBox>
             <VBox prefHeight="626.0" prefWidth="342.0">
                <children>
-                  <StackPane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="150.0" prefWidth="357.0" VBox.vgrow="ALWAYS">
+                  <StackPane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="150.0" prefWidth="357.0" styleClass="login-interface-background-upper" VBox.vgrow="ALWAYS">
                      <children>
-                        <Label prefHeight="150.0" prefWidth="357.0" stylesheets="@../../css/component/entity/login/login.css" text="                                  Brigham and Women’s Internal Tools" wrapText="true">
-                           <styleClass>
-                              <String fx:value="login-interface-background-upper" />
-                              <String fx:value="login-interface-title" />
-                           </styleClass>
-                        </Label>
                         <VBox prefWidth="318.0" VBox.vgrow="ALWAYS">
                            <children>
                               <ImageView fitHeight="84.0" fitWidth="82.0" pickOnBounds="true" preserveRatio="true" translateX="20.0" translateY="35.0">
@@ -56,13 +49,8 @@
                         </VBox>
                      </children>
                   </StackPane>
-                  <StackPane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="477.0" prefWidth="342.0" VBox.vgrow="ALWAYS">
+                  <StackPane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="477.0" prefWidth="342.0" styleClass="login-interface-background-lower" stylesheets="@../../css/component/entity/login/login.css" VBox.vgrow="ALWAYS">
                      <children>
-                        <HBox maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="445.0" prefWidth="354.0">
-                           <children>
-                              <Label prefHeight="478.0" prefWidth="342.0" styleClass="login-interface-background-lower" stylesheets="@../../css/component/entity/login/login.css" />
-                           </children>
-                        </HBox>
                         <GridPane alignment="CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308">
                            <columnConstraints>
                               <ColumnConstraints hgrow="ALWAYS" minWidth="10.0" prefWidth="100.0" />
