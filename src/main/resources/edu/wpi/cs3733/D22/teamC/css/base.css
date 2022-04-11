@@ -242,7 +242,7 @@ padding goes top, right, bottom, left
 }
 .table-view .virtual-flow .scroll-bar:horizontal .thumb {
     -fx-background-color: transparent;
-
+}
 /** Default Components **/
 .text-field {
     -fx-background-color: -color-primary-text;
