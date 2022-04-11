@@ -1,6 +1,16 @@
 @import "colors.css";
 @import "fonts.css";
 
+/* Defaults for EVERYTHING */
+.root * {
+    /* Default Font */
+    -fx-font-family: "Roboto";
+    /*-fx-font-size: 14px;*/
+
+    /* Default Background Color */
+    /*-fx-background-color: -color-page-background;*/
+}
+
 /* Default Button Style (applies to all button types) */
 .button {
     -fx-background-color: -color-primary;
@@ -98,7 +108,7 @@ padding goes top, right, bottom, left
 .page-title {
     -fx-font-family: -font-field-label;
     -fx-font-weight: bold;
-    -fx-font-size: 20;
+    -fx-font-size: 20 !important;
     -fx-padding: 10 0 0 8;
 
 }
