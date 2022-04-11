@@ -3,12 +3,10 @@ package edu.wpi.cs3733.D22.teamC.controller.service_request.medicine_delivery;
 import com.jfoenix.controls.JFXComboBox;
 import com.jfoenix.controls.JFXTreeTableView;
 import edu.wpi.cs3733.D22.teamC.controller.service_request.InsertServiceRequestCreateController;
+import edu.wpi.cs3733.D22.teamC.entity.generic.DAO;
 import edu.wpi.cs3733.D22.teamC.entity.service_request.ServiceRequestDAO;
 import edu.wpi.cs3733.D22.teamC.entity.service_request.medicine_delivery.MedicineDeliverySR;
 import edu.wpi.cs3733.D22.teamC.entity.service_request.medicine_delivery.MedicineDeliverySRDAO;
-import edu.wpi.cs3733.D22.teamC.entity.service_request.medicine_delivery.MedicineDeliverySRDAOImpl;
-import edu.wpi.cs3733.D22.teamC.entity.service_request.security.SecuritySR;
-import edu.wpi.cs3733.D22.teamC.entity.service_request.security.SecuritySRDAOImpl;
 import edu.wpi.cs3733.D22.teamC.models.service_request.ServiceRequestTableDisplay;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -45,8 +43,8 @@ public class MedicineDeliverySRInsertCreateController implements InsertServiceRe
     }
 
     @Override
-    public ServiceRequestDAO<MedicineDeliverySR> createServiceRequestDAO() {
-        return new MedicineDeliverySRDAOImpl();
+    public DAO<MedicineDeliverySR> createServiceRequestDAO() {
+        return new MedicineDeliverySRDAO();
     }
 
     @Override

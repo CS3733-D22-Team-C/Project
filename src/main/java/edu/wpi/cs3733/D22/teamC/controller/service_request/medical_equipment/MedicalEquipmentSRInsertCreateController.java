@@ -3,17 +3,14 @@ package edu.wpi.cs3733.D22.teamC.controller.service_request.medical_equipment;
 import com.jfoenix.controls.JFXComboBox;
 import com.jfoenix.controls.JFXTreeTableView;
 import edu.wpi.cs3733.D22.teamC.controller.service_request.InsertServiceRequestCreateController;
+import edu.wpi.cs3733.D22.teamC.entity.generic.DAO;
 import edu.wpi.cs3733.D22.teamC.entity.service_request.ServiceRequestDAO;
-import edu.wpi.cs3733.D22.teamC.entity.service_request.lab_system.LabSystemSR;
-import edu.wpi.cs3733.D22.teamC.entity.service_request.lab_system.LabSystemSRDAOImpl;
 import edu.wpi.cs3733.D22.teamC.entity.service_request.medical_equipment.MedicalEquipmentSR;
-import edu.wpi.cs3733.D22.teamC.entity.service_request.medical_equipment.MedicalEquipmentSRDAOImpl;
+import edu.wpi.cs3733.D22.teamC.entity.service_request.medical_equipment.MedicalEquipmentSRDAO;
 import edu.wpi.cs3733.D22.teamC.models.service_request.ServiceRequestTableDisplay;
-import edu.wpi.cs3733.D22.teamC.models.service_request.lab_system.LabSystemSRTableDisplay;
 import edu.wpi.cs3733.D22.teamC.models.service_request.medical_equipment.MedicalEquipmentSRTableDisplay;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
 
 import java.net.URL;
@@ -24,7 +21,7 @@ public class MedicalEquipmentSRInsertCreateController implements InsertServiceRe
     private JFXComboBox<String> equipmentType;
     @FXML
     private JFXComboBox<String> equipmentID;
-    private String lastType;
+    private String lastType = "";
 
 
 
@@ -47,13 +44,13 @@ public class MedicalEquipmentSRInsertCreateController implements InsertServiceRe
         MedicalEquipmentSR MESR = new MedicalEquipmentSR();
 
         MESR.setEquipmentType(MedicalEquipmentSR.EquipmentType.valueOf(equipmentType.getValue()));
-
+        MESR.setEquipmentID(equipmentID.getValue());
         return MESR;
     }
 
     @Override
-    public ServiceRequestDAO<MedicalEquipmentSR> createServiceRequestDAO() {
-        return new MedicalEquipmentSRDAOImpl();
+    public DAO<MedicalEquipmentSR> createServiceRequestDAO() {
+        return new MedicalEquipmentSRDAO();
     }
 
     @Override

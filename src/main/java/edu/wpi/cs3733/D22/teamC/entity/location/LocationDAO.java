@@ -1,12 +1,16 @@
 package edu.wpi.cs3733.D22.teamC.entity.location;
 
-import java.util.List;
+import edu.wpi.cs3733.D22.teamC.HibernateManager;
+import edu.wpi.cs3733.D22.teamC.entity.generic.DAO;
 
-public interface LocationDAO {
-    public List<Location> getAllLocations();
-    public Location getLocation(int nodeID);
+/**
+ * Wrapper for Location handling.
+ */
+public class LocationDAO extends DAO<Location> {
+    
+    protected Class<Location> classType() {
+        return Location.class;
+    }
 
-    public int insertLocation(Location location);
-    public boolean updateLocation(Location location);
-    public boolean deleteLocation(Location location);
+
 }

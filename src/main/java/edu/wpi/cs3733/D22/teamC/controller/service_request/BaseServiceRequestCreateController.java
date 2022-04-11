@@ -4,6 +4,7 @@ import com.jfoenix.controls.JFXComboBox;
 import com.jfoenix.controls.JFXTextArea;
 import com.jfoenix.controls.JFXTreeTableView;
 import edu.wpi.cs3733.D22.teamC.App;
+import edu.wpi.cs3733.D22.teamC.entity.generic.DAO;
 import edu.wpi.cs3733.D22.teamC.entity.service_request.ServiceRequest;
 import edu.wpi.cs3733.D22.teamC.entity.service_request.ServiceRequestDAO;
 import edu.wpi.cs3733.D22.teamC.models.service_request.ServiceRequestTableDisplay;
@@ -107,6 +108,12 @@ public class BaseServiceRequestCreateController<T extends ServiceRequest> {
 
         // Setup table
         tableDisplay = insertController.setupTable(table);
+
+        // Insert to DB
+        DAO<T> serviceRequestDAO = insertController.createServiceRequestDAO();
+        for (T serviceRequest : serviceRequestDAO.getAll()) {
+            tableDisplay.addObject(serviceRequest);
+        }
     }
 
 
@@ -133,7 +140,7 @@ public class BaseServiceRequestCreateController<T extends ServiceRequest> {
         // Clearing Fields
         assigneeID.clear();
         locationField.clear();
-        description.clear();
+        description.setText("");
 
         // Clearing Dropdowns
         priority.valueProperty().set(null);
@@ -150,21 +157,20 @@ public class BaseServiceRequestCreateController<T extends ServiceRequest> {
         serviceRequest.setDescription(description.getText());
         serviceRequest.setPriority(ServiceRequest.Priority.valueOf(priority.getValue()));
 
-        if(requiredFieldsPresent())
-            serviceRequest.setStatus(ServiceRequest.Status.Processing);
-        else
-            serviceRequest.setStatus(ServiceRequest.Status.Blank);
+        if (requiredFieldsPresent()) serviceRequest.setStatus(ServiceRequest.Status.Processing);
+        else serviceRequest.setStatus(ServiceRequest.Status.Blank);
 
-        serviceRequest.setCreationTimestamp(new Timestamp(System.currentTimeMillis()));
+        // TODO: Timestamps should be handled by Hibernation, investigate later !!!
+//        serviceRequest.setCreationTimestamp(new Timestamp(System.currentTimeMillis()));
 //        serviceRequest.setCreatorID();
-        serviceRequest.setModifiedTimestamp(new Timestamp(System.currentTimeMillis()));
+//        serviceRequest.setModifiedTimestamp(new Timestamp(System.currentTimeMillis()));
 //        serviceRequest.setModifierID()
 
         serviceRequest.setRequestType(requestType);
 
         // Insert to DB
-        ServiceRequestDAO<T> serviceRequestDAO = insertController.createServiceRequestDAO();
-        serviceRequest.setRequestID(serviceRequestDAO.insertServiceRequest(serviceRequest));
+        DAO<T> serviceRequestDAO = insertController.createServiceRequestDAO();
+        serviceRequest.setRequestID(serviceRequestDAO.insert(serviceRequest));
 
         // Add to TableDisplay
         tableDisplay.addObject(serviceRequest);
@@ -175,7 +181,8 @@ public class BaseServiceRequestCreateController<T extends ServiceRequest> {
     //#region FXML Buttons
     @FXML
     void clickGoBack(ActionEvent event) {
-        App.instance.setView(App.VIEW_SERVICE_REQUESTS_PATH);}
+        App.instance.setView(App.VIEW_SERVICE_REQUESTS_PATH);
+    }
 
     @FXML
     void clickReset(ActionEvent event) {
@@ -185,7 +192,7 @@ public class BaseServiceRequestCreateController<T extends ServiceRequest> {
     @FXML
     void clickSubmit(ActionEvent event) {
         createServiceRequest();
-        clickGoBack(null);
+        clearFields();
     }
     //#endregion
 

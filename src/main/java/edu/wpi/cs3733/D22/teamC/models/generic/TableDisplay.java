@@ -108,7 +108,13 @@ public abstract class TableDisplay<T extends Object> {
         table.getColumns().add(col);
     }
 
-    protected final <U extends TableDisplayEntry> void addEntry(U entry) {
-        entries.add(entry);
-    }
+    //#region Table Interaction
+        protected final <U extends TableDisplayEntry> void addEntry(U entry) {
+            entries.add(entry);
+        }
+
+        public final void emptyTable() {
+            entries.removeAll(entries);
+        }
+    //#endregion
 }

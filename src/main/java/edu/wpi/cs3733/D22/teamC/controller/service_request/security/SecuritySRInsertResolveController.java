@@ -3,17 +3,14 @@ package edu.wpi.cs3733.D22.teamC.controller.service_request.security;
 import com.jfoenix.controls.JFXComboBox;
 import edu.wpi.cs3733.D22.teamC.controller.service_request.BaseServiceRequestResolveController;
 import edu.wpi.cs3733.D22.teamC.controller.service_request.InsertServiceRequestResolveController;
+import edu.wpi.cs3733.D22.teamC.entity.generic.DAO;
 import edu.wpi.cs3733.D22.teamC.entity.service_request.ServiceRequestDAO;
-import edu.wpi.cs3733.D22.teamC.entity.service_request.lab_system.LabSystemSR;
-import edu.wpi.cs3733.D22.teamC.entity.service_request.sanitation.SanitationSR;
-import edu.wpi.cs3733.D22.teamC.entity.service_request.sanitation.SanitationSRDAOImpl;
 import edu.wpi.cs3733.D22.teamC.entity.service_request.security.SecuritySR;
-import edu.wpi.cs3733.D22.teamC.entity.service_request.security.SecuritySRDAOImpl;
+import edu.wpi.cs3733.D22.teamC.entity.service_request.security.SecuritySRDAO;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 
 import java.net.URL;
-import java.security.Security;
 import java.util.ResourceBundle;
 
 public class SecuritySRInsertResolveController extends InsertServiceRequestResolveController<SecuritySR> implements Initializable {
@@ -55,7 +52,7 @@ public class SecuritySRInsertResolveController extends InsertServiceRequestResol
         super.onFieldUpdated();
     }
 
-    public ServiceRequestDAO<SecuritySR> createServiceRequestDAO() {
-        return new SecuritySRDAOImpl();
+    public DAO<SecuritySR> createServiceRequestDAO() {
+        return new SecuritySRDAO();
     }
 }

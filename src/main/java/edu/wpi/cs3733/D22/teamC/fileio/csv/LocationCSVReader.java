@@ -15,7 +15,7 @@ public class LocationCSVReader extends CSVReader<Location> {
     protected Location parseAttribute(Location object, String header, String value) {
         switch (header) {
             case "nodeID":
-                object.setNodeID(Integer.parseInt(value));
+                object.setNodeID(value);
                 break;
             case "xcoord":
                 object.setX(Integer.parseInt(value));
@@ -24,7 +24,7 @@ public class LocationCSVReader extends CSVReader<Location> {
                 object.setY(Integer.parseInt(value));
                 break;
             case "floor":
-                object.setFloor(Integer.parseInt(value));
+                object.setFloor(value);
                 break;
             case "building":
                 object.setBuilding(value);

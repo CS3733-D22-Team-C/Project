@@ -3,16 +3,14 @@ package edu.wpi.cs3733.D22.teamC.controller.service_request.medical_equipment;
 import com.jfoenix.controls.JFXComboBox;
 import edu.wpi.cs3733.D22.teamC.controller.service_request.BaseServiceRequestResolveController;
 import edu.wpi.cs3733.D22.teamC.controller.service_request.InsertServiceRequestResolveController;
+import edu.wpi.cs3733.D22.teamC.entity.generic.DAO;
 import edu.wpi.cs3733.D22.teamC.entity.service_request.ServiceRequestDAO;
 import edu.wpi.cs3733.D22.teamC.entity.service_request.medical_equipment.MedicalEquipmentSR;
-import edu.wpi.cs3733.D22.teamC.entity.service_request.medical_equipment.MedicalEquipmentSRDAOImpl;
-import edu.wpi.cs3733.D22.teamC.entity.service_request.sanitation.SanitationSR;
-import edu.wpi.cs3733.D22.teamC.entity.service_request.sanitation.SanitationSRDAOImpl;
+import edu.wpi.cs3733.D22.teamC.entity.service_request.medical_equipment.MedicalEquipmentSRDAO;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.input.MouseEvent;
 
-import javax.sound.midi.Soundbank;
 import java.net.URL;
 import java.util.ResourceBundle;
 
@@ -41,8 +39,8 @@ public class MedicalEquipmentSRInsertResolveController extends InsertServiceRequ
         equipmentType.setDisable(!isEditMode);
         equipmentID.setDisable(!isEditMode);
         equipmentType.setPromptText(serviceRequest.getEquipmentType().toString());
-        equipmentID.setPromptText(serviceRequest.getEquipmentID());
         createEquipIDs(true);
+        equipmentID.setPromptText(serviceRequest.getEquipmentID());
     }
 
     public boolean requiredFieldsPresent(){
@@ -68,8 +66,8 @@ public class MedicalEquipmentSRInsertResolveController extends InsertServiceRequ
         super.onFieldUpdated();
     }
 
-    public ServiceRequestDAO<MedicalEquipmentSR> createServiceRequestDAO() {
-        return new MedicalEquipmentSRDAOImpl();
+    public DAO<MedicalEquipmentSR> createServiceRequestDAO() {
+        return new MedicalEquipmentSRDAO();
     }
 
     @FXML

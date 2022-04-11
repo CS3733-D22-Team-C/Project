@@ -2,12 +2,10 @@ package edu.wpi.cs3733.D22.teamC.controller.service_request.medicine_delivery;
 
 import edu.wpi.cs3733.D22.teamC.controller.service_request.BaseServiceRequestResolveController;
 import edu.wpi.cs3733.D22.teamC.controller.service_request.InsertServiceRequestResolveController;
+import edu.wpi.cs3733.D22.teamC.entity.generic.DAO;
 import edu.wpi.cs3733.D22.teamC.entity.service_request.ServiceRequestDAO;
 import edu.wpi.cs3733.D22.teamC.entity.service_request.medicine_delivery.MedicineDeliverySR;
-import edu.wpi.cs3733.D22.teamC.entity.service_request.medicine_delivery.MedicineDeliverySRDAOImpl;
-import edu.wpi.cs3733.D22.teamC.entity.service_request.sanitation.SanitationSR;
-import edu.wpi.cs3733.D22.teamC.entity.service_request.sanitation.SanitationSRDAOImpl;
-import javafx.event.ActionEvent;
+import edu.wpi.cs3733.D22.teamC.entity.service_request.medicine_delivery.MedicineDeliverySRDAO;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.TextField;
@@ -69,8 +67,8 @@ public class MedicineDeliverySRInsertResolveController extends InsertServiceRequ
         super.onFieldUpdated();
     }
 
-    public ServiceRequestDAO<MedicineDeliverySR> createServiceRequestDAO() {
-        return new MedicineDeliverySRDAOImpl();
+    public DAO<MedicineDeliverySR> createServiceRequestDAO() {
+        return new MedicineDeliverySRDAO();
     }
 
 

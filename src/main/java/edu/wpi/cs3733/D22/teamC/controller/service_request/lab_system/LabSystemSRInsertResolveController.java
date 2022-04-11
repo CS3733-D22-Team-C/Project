@@ -3,12 +3,10 @@ package edu.wpi.cs3733.D22.teamC.controller.service_request.lab_system;
 import com.jfoenix.controls.JFXComboBox;
 import edu.wpi.cs3733.D22.teamC.controller.service_request.BaseServiceRequestResolveController;
 import edu.wpi.cs3733.D22.teamC.controller.service_request.InsertServiceRequestResolveController;
+import edu.wpi.cs3733.D22.teamC.entity.generic.DAO;
 import edu.wpi.cs3733.D22.teamC.entity.service_request.ServiceRequestDAO;
 import edu.wpi.cs3733.D22.teamC.entity.service_request.lab_system.LabSystemSR;
-import edu.wpi.cs3733.D22.teamC.entity.service_request.lab_system.LabSystemSRDAOImpl;
-import edu.wpi.cs3733.D22.teamC.entity.service_request.medicine_delivery.MedicineDeliverySR;
-import edu.wpi.cs3733.D22.teamC.entity.service_request.medicine_delivery.MedicineDeliverySRDAOImpl;
-import edu.wpi.cs3733.D22.teamC.entity.service_request.sanitation.SanitationSR;
+import edu.wpi.cs3733.D22.teamC.entity.service_request.lab_system.LabSystemSRDAO;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.TextField;
@@ -64,8 +62,8 @@ public class LabSystemSRInsertResolveController extends InsertServiceRequestReso
         super.onFieldUpdated();
     }
 
-    public ServiceRequestDAO<LabSystemSR> createServiceRequestDAO() {
-        return new LabSystemSRDAOImpl();
+    public DAO<LabSystemSR> createServiceRequestDAO() {
+        return new LabSystemSRDAO();
     }
 
 

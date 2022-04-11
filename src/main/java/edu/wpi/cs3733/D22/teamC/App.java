@@ -2,24 +2,16 @@ package edu.wpi.cs3733.D22.teamC;
 
 import edu.wpi.cs3733.D22.teamC.entity.floor.Floor;
 import edu.wpi.cs3733.D22.teamC.entity.floor.FloorDAO;
-import edu.wpi.cs3733.D22.teamC.entity.floor.FloorDAOImpl;
-import edu.wpi.cs3733.D22.teamC.controller.service_request.ServiceRequestResolveController;
 import edu.wpi.cs3733.D22.teamC.entity.location.Location;
 import edu.wpi.cs3733.D22.teamC.entity.location.LocationDAO;
-import edu.wpi.cs3733.D22.teamC.entity.location.LocationDAOImpl;
 import edu.wpi.cs3733.D22.teamC.entity.service_request.medical_equipment.MedicalEquipmentSR;
-import edu.wpi.cs3733.D22.teamC.entity.service_request.medical_equipment.MedicalEquipmentSRDAOImpl;
+import edu.wpi.cs3733.D22.teamC.entity.service_request.medical_equipment.MedicalEquipmentSRDAO;
 import edu.wpi.cs3733.D22.teamC.fileio.csv.*;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
-import javafx.scene.Group;
 import javafx.scene.Node;
-import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
-import javafx.scene.layout.Pane;
-import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 import lombok.extern.slf4j.Slf4j;
 
@@ -49,6 +41,8 @@ public class App extends Application {
     // Constants
     public static final String BASE_COMPONENT_PATH = "view/component/base.fxml";
     public static final String MENU_BAR_COMPONENT_PATH = "view/component/menu_bar.fxml";
+    public static final String SIDEBAR_PATH = "view/component/sidebar_menu.fxml";
+    public static final String DRAWER_CONTENT_PATH = "view/component/drawer_content.fxml";
 
     public static final String HOME_PATH = "view/general/home.fxml";
     public static final String VIEW_LOCATIONS_PATH = "view/location/view_locations.fxml";
@@ -64,17 +58,14 @@ public class App extends Application {
 
     @Override
     public void init() {
-        // Initialize Database Manager
-        DBManager.startup(DBManager.DEVELOPMENT_DATABASE_NAME).initializeTables(true);
-
         // Load CSV Data - Floor
         {
             FloorCSVReader csvReader = new FloorCSVReader();
             List<Floor> floors = csvReader.readFile("TowerFloors.csv");
             if (floors != null) {
-                FloorDAO floorDAO = new FloorDAOImpl();
+                FloorDAO floorDAO = new FloorDAO();
                 for (Floor floor : floors) {
-                    floorDAO.insertFloor(floor);
+                    floorDAO.insert(floor);
                 }
             }
         }
@@ -84,9 +75,9 @@ public class App extends Application {
             LocationCSVReader csvReader = new LocationCSVReader();
             List<Location> locations = csvReader.readFile("TowerLocations.csv");
             if (locations != null) {
-                LocationDAO locationDAO = new LocationDAOImpl();
+                LocationDAO locationDAO = new LocationDAO();
                 for (Location location : locations) {
-                    locationDAO.insertLocation(location);
+                    locationDAO.insert(location);
                 }
             }
         }
@@ -96,9 +87,9 @@ public class App extends Application {
             MedicalEquipmentSRCSVReader csvReader = new MedicalEquipmentSRCSVReader();
             List<MedicalEquipmentSR> MedicalEquipmentSRs = csvReader.readFile("MedEquipReq.csv");
             if(MedicalEquipmentSRs != null){
-                MedicalEquipmentSRDAOImpl serviceRequestDAO = new MedicalEquipmentSRDAOImpl();
+                MedicalEquipmentSRDAO serviceRequestDAO = new MedicalEquipmentSRDAO();
                 for(MedicalEquipmentSR medEquipSR : MedicalEquipmentSRs){
-                    serviceRequestDAO.insertServiceRequest(medEquipSR);
+                    serviceRequestDAO.insert(medEquipSR);
                 }
             }
         }
@@ -124,8 +115,8 @@ public class App extends Application {
         // Export CSV Data - Floor
         {
             FloorCSVWriter csvWriter = new FloorCSVWriter();
-            FloorDAO floorDAO = new FloorDAOImpl();
-            List<Floor> floors = floorDAO.getAllFloors();
+            FloorDAO floorDAO = new FloorDAO();
+            List<Floor> floors = floorDAO.getAll();
             if (floors != null) {
                 csvWriter.writeFile("TowerFloors.csv", floors);
             }
@@ -134,8 +125,8 @@ public class App extends Application {
         // Export CSV Data - Location
         {
             LocationCSVWriter csvWriter = new LocationCSVWriter();
-            LocationDAO locationDAO = new LocationDAOImpl();
-            List<Location> locations = locationDAO.getAllLocations();
+            LocationDAO locationDAO = new LocationDAO();
+            List<Location> locations = locationDAO.getAll();
             if (locations != null) {
                 csvWriter.writeFile("TowerLocations.csv", locations);
             }
@@ -144,15 +135,12 @@ public class App extends Application {
         // Export CSV Data - Medical Equipment Service Requests
         {
             MedicalEquipmentSRCSVWriter csvWriter = new MedicalEquipmentSRCSVWriter();
-            MedicalEquipmentSRDAOImpl serviceRequestDAO = new MedicalEquipmentSRDAOImpl();
-            List<MedicalEquipmentSR> serviceRequests = serviceRequestDAO.getAllServiceRequests();
+            MedicalEquipmentSRDAO serviceRequestDAO = new MedicalEquipmentSRDAO();
+            List<MedicalEquipmentSR> serviceRequests = serviceRequestDAO.getAll();
             if (serviceRequests != null){
                 csvWriter.writeFile("MedEquipReq.csv", serviceRequests);
             }
         }
-
-        // Shutdown Database Manager
-        DBManager.shutdown();
 
         log.info("Shutting Down");
     }
@@ -177,9 +165,12 @@ public class App extends Application {
         // Load Menu Bar
         Node menuBarNode = loadView(MENU_BAR_COMPONENT_PATH).getNode();
 
+        // Load Sidebar Menu
+        Node sidebarNode = loadView(SIDEBAR_PATH).getNode();
         // Embed views and components
-        baseNode.setTop(menuBarNode);
+        //baseNode.setTop(menuBarNode);
         baseNode.setCenter(viewNode);
+        baseNode.setLeft(sidebarNode);
         baseNode.autosize();
 
         if (scene != null) scene.setRoot(baseNode);
