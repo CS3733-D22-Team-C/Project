@@ -107,7 +107,7 @@ public class App extends Application {
         
         stage.setFullScreen(true);
         
-        setView("view/Table/base_view.fxml");
+        setView("view/service_request/service_request_landing_page.fxml");
     }
 
     @Override
@@ -184,6 +184,7 @@ public class App extends Application {
      * @param viewFile Path to the FXML file to be loaded.
      * @return Loaded FXML file wrapped in a View as a Node and Controller.
      */
+    @SuppressWarnings("unchecked")
     public View loadView(String viewFile) {
         try {
             FXMLLoader loader = new FXMLLoader();
