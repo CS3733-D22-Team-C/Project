@@ -55,7 +55,7 @@ public class App extends Application {
 
     public static final String BASE_CSS_PATH = "css/base.css";
     //public static final String IMAGE_PATH = "static/images/BrighamAndWomensHospital.png";
-
+    
     // Singleton Instance
     public static App instance;
 
