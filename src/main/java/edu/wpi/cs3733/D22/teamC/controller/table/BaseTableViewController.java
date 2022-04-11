@@ -66,7 +66,7 @@ public class BaseTableViewController<T extends Object> implements Initializable 
         });
     }
 
-    public void backButton(){ App.instance.setView(App.HOME_PATH);}
+    public void backButton(){ App.instance.setView(App.LOGIN_PATH);}
 
     @FXML
     public void removeButton(){
