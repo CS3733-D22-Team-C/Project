@@ -32,7 +32,7 @@ public class LocationCSVWriter extends CSVWriter<Location> {
         String output = "";
         switch (header) {
             case "nodeID":
-                output = Integer.toString(object.getNodeID());
+                output = object.getNodeID();
                 break;
             case "xcoord":
                 output = Integer.toString(object.getX());
@@ -41,7 +41,7 @@ public class LocationCSVWriter extends CSVWriter<Location> {
                 output = Integer.toString(object.getY());
                 break;
             case "floor":
-                output = Integer.toString(object.getFloor());
+                output = object.getFloor();
                 break;
             case "building":
                 output = object.getBuilding();

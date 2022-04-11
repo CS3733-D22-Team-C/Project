@@ -1,9 +1,6 @@
 package edu.wpi.cs3733.D22.teamC.entity.generic;
 
 import edu.wpi.cs3733.D22.teamC.SessionManager;
-import edu.wpi.cs3733.D22.teamC.entity.employee.EmployeeDAO;
-import edu.wpi.cs3733.D22.teamC.entity.location.LocationDAO;
-import edu.wpi.cs3733.D22.teamC.entity.service_request.security.SecuritySRDAO;
 import edu.wpi.cs3733.D22.teamC.factory.Factory;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
@@ -15,11 +12,11 @@ import static org.junit.jupiter.api.Assertions.*;
 
 public abstract class DAOTest<T>{
     protected Factory<T> factory;
-    protected DAO<T> DAO;
+    protected DAO<T> dao;
 
-    public DAOTest(Factory<T> factory, DAO<T> DAO) {
+    public DAOTest(Factory<T> factory, DAO<T> dao) {
         this.factory = factory;
-        this.DAO = DAO;
+        this.dao = dao;
     }
 
 
@@ -40,13 +37,13 @@ public abstract class DAOTest<T>{
         T obj = factory.create();
 
         // insert
-        int id = DAO.insert(obj);
+        String id = dao.insert(obj);
 
         //get the ID and check if it doesn't equal to -1
-        assertNotEquals(-1, id);
+        assertNotNull(id);
 
         // Retrieve object by using the getByID
-        T queryObj = DAO.getByID(id);
+        T queryObj = dao.getByID(id);
 
         // check if not null
         assertNotNull(queryObj);
@@ -62,11 +59,11 @@ public abstract class DAOTest<T>{
         //create a new Factory
         T obj = factory.create();
         // insert
-        int id = DAO.insert(obj);
+        String id = dao.insert(obj);
         //get the ID and check if it doesn't equal to -1
-        assertNotEquals(-1, id);
+        assertNotNull(id);
         // Retrieve object by using the getByID
-        T queryObj = DAO.getByID(id);
+        T queryObj = dao.getByID(id);
         // check if not null
         assertNotNull(queryObj);
 
@@ -76,20 +73,20 @@ public abstract class DAOTest<T>{
     @Test
     void deleteTest(){
         T obj = factory.create();
-        int id = DAO.insert(obj);
-        assertNotEquals(-1, id);
+        String id = dao.insert(obj);
+        assertNotNull(id);
 
-        boolean success = DAO.delete(obj);
+        boolean success = dao.delete(obj);
         assertTrue(success);
     }
 
     @Test
     void getByIDTest(){
         T obj = factory.create();
-        int id= DAO.insert(obj);
-        assertNotEquals(-1, id);
+        String id = dao.insert(obj);
+        assertNotNull(id);
 
-        T retrievedObj = DAO.getByID(id);
+        T retrievedObj = dao.getByID(id);
         assertEquals(obj, retrievedObj);
 
     }
@@ -100,11 +97,14 @@ public abstract class DAOTest<T>{
 
         for (int i=0; i<size; i++) {
             T obj = factory.create();
-            int id = DAO.insert(obj);
+          
+            String id = dao.insert(obj);
+            assertNotNull(id);
+
         }
 
 
-        List<T> list = DAO.getAll();
+        List<T> list = dao.getAll();
         assertEquals(size, list.size());
 
     }

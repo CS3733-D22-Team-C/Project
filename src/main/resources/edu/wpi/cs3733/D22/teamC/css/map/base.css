@@ -1,0 +1,19 @@
+/* */
+@import "../colors.css";
+@import "../base.css";
+
+.card {
+    -fx-border-width: 2px;
+    -fx-border-radius: 5px;
+}
+
+.inner-card {
+    -fx-border-color: #b5b5b5;
+    -fx-border-radius: 2px;
+}
+
+.card-content-header {
+    -fx-background-color: -color-primary;
+    -fx-text-fill: -color-primary-text;
+    -fx-background-radius: 1px;
+}

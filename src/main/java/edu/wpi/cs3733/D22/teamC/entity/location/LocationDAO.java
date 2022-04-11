@@ -11,5 +11,6 @@ public class LocationDAO extends DAO<Location> {
     protected Class<Location> classType() {
         return Location.class;
     }
-    
+
+
 }

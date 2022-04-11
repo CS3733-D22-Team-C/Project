@@ -11,13 +11,14 @@ public class FloorDAO extends DAO<Floor> {
     protected Class<Floor> classType() {
         return Floor.class;
     }
-    
+
+    // TODO: Broken after UUID Migration
     /**
      * Return a list of locations associated with the given floorID.
      * @param floorID Floor ID used for querying locations of the given floor.
      * @return Return a list of locations associated with the given floorID.
      */
-    public List<Location> getAllLocations(int floorID) {
+    public List<Location> getAllLocations(String floorID) {
         return HibernateManager.filterQuery("from Location where FLOORID = " + floorID);    
     }
     

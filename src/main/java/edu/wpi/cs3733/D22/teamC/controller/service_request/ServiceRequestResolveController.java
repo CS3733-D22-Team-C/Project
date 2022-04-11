@@ -105,7 +105,7 @@ public class ServiceRequestResolveController {
     public void clickConfirm(ActionEvent event) {
         //Accessing Service Request in Database
         ServiceRequestDAO serviceRequestDAOImpl = new ServiceRequestDAO();
-        ServiceRequest serviceRequest = serviceRequestDAOImpl.getByID(Integer.parseInt(requestID.getText()));
+        ServiceRequest serviceRequest = serviceRequestDAOImpl.getByID(requestID.getText());
 
         if(isEditMode)
         {

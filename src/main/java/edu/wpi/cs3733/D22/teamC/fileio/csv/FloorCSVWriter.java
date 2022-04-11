@@ -29,7 +29,7 @@ public class FloorCSVWriter extends CSVWriter<Floor> {
         String output = "";
         switch (header) {
             case "id":
-                output = Integer.toString(object.getFloorID());
+                output = object.getFloorID();
                 break;
             case "order":
                 output = Integer.toString(object.getOrder());
