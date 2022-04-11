@@ -1,0 +1,22 @@
+/* Map - Info Pane Styling */
+@import "base.css";
+
+/* Custom */
+
+.icon {
+    -fx-scale-x: 0.075;
+    -fx-scale-y: 0.075;
+    -fx-scale-z: 0.075;
+    -fx-fill: -color-primary;
+}
+
+.tab:selected .icon {
+    -fx-fill: -color-primary-dark;
+}
+
+/* Default Overrides */
+
+.tab-header-background {
+    -fx-background-color: #00000000;
+    -fx-opacity: 0;
+}

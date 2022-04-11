@@ -27,6 +27,7 @@
         <mapping class="edu.wpi.cs3733.D22.teamC.entity.location.Location" />
         <mapping class="edu.wpi.cs3733.D22.teamC.entity.employee.Employee" />
         <mapping class="edu.wpi.cs3733.D22.teamC.entity.floor.Floor" />
+        <mapping class="edu.wpi.cs3733.D22.teamC.entity.medical_equipment.MedicalEquipment" />
         <mapping class="edu.wpi.cs3733.D22.teamC.entity.service_request.ServiceRequest" />
         <mapping class="edu.wpi.cs3733.D22.teamC.entity.service_request.security.SecuritySR" />
         <mapping class="edu.wpi.cs3733.D22.teamC.entity.service_request.medicine_delivery.MedicineDeliverySR" />

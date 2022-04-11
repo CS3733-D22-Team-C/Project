@@ -1,25 +1,17 @@
 package edu.wpi.cs3733.D22.teamC.controller.location.map;
 
-import edu.wpi.cs3733.D22.teamC.entity.location.Location;
-import edu.wpi.cs3733.D22.teamC.entity.location.LocationDAO;
 import javafx.scene.input.MouseButton;
 import javafx.scene.input.MouseEvent;
 
-import java.util.ArrayList;
-import java.util.List;
-
-public class EditMapController extends ViewMapController {
-    List<MapLocation> additions = new ArrayList<>();
-    List<MapLocation> deletions = new ArrayList<>();
-
+public class EditMapController extends MapController {
     //#region Mouse Events
         @Override
-        protected void onMouseClickedNode(MouseEvent event, MapLocation mapLocation) {
-            super.onMouseClickedNode(event, mapLocation);
+        protected void onMouseClickedNode(MouseEvent event, LocationNode locationNode) {
+            super.onMouseClickedNode(event, locationNode);
 
             if (event.getButton().equals(MouseButton.SECONDARY)) {
-                // Single-Click delete MapLocation
-                deleteMapLocation(mapLocation);
+                // Single-Click delete LocationNode
+                parentController.deleteLocation(locationNode.location);
             }
         }
 
@@ -28,90 +20,36 @@ public class EditMapController extends ViewMapController {
             super.onMouseClickedMap(event);
 
             if (event.getButton().equals(MouseButton.PRIMARY)) {
-                // Double-Click create new MapLocation
+                // Double-Click create new LocationNode
                 if (event.getClickCount() == 2) {
-                    addMapLocation(event.getX(), event.getY());
+                    parentController.createLocation((int) event.getX(), (int) event.getY());
                 }
             }
         }
 
         @Override
-        protected void onMouseDraggedNode(MouseEvent event, MapLocation mapLocation) {
-            super.onMouseDraggedNode(event, mapLocation);
+        protected void onMouseDraggedNode(MouseEvent event, LocationNode locationNode) {
+            super.onMouseDraggedNode(event, locationNode);
 
             if (event.getButton().equals(MouseButton.PRIMARY))  {
-                double offsetX = event.getX() - mapLocation.node.getCenterX();
-                double offsetY = event.getY() - mapLocation.node.getCenterY();
+                double offsetX = event.getX() - locationNode.node.getCenterX();
+                double offsetY = event.getY() - locationNode.node.getCenterY();
 
-                double newMapX = mapLocation.node.getCenterX() + offsetX;
+                int newMapX = (int) (locationNode.node.getCenterX() + offsetX);
                 newMapX = Math.max(0, newMapX);
-                newMapX = Math.min(mapPane.getPrefWidth(), newMapX);
-                double newMapY = mapLocation.node.getCenterY() + offsetY;
+                newMapX = Math.min((int) mapPane.getPrefWidth(), newMapX);
+                int newMapY = (int) (locationNode.node.getCenterY() + offsetY);
                 newMapY = Math.max(0, newMapY);
-                newMapY = Math.min(mapPane.getPrefHeight(), newMapY);
+                newMapY = Math.min((int) mapPane.getPrefHeight(), newMapY);
 
-                mapLocation.node.setCenterX(newMapX);
-                mapLocation.node.setCenterY(newMapY);
+                locationNode.node.setCenterX(newMapX);
+                locationNode.node.setCenterY(newMapY);
+
+                locationNode.location.setX(newMapX);
+                locationNode.location.setY(newMapY);
+
+                parentController.touchLocation(locationNode.location);
             }
         }
     //#endregion
-
-    /**
-     * Create a MapLocation Node. Prepare the associated Location as an addition.
-     * @param x X-coordinate of new MapLocation Node.
-     * @param y Y-coordinate of new MapLocation Node.
-     */
-    private void addMapLocation(double x, double y) {
-        MapLocation newMapLoc = new MapLocation(x, y);
-        mapLocations.add(newMapLoc);
-        mapPane.getChildren().add(newMapLoc.node);
-
-        Location location = newMapLoc.location;
-        location.setFloor(parentController.getFloor().getFloorID());
-        location.setX((int) x);
-        location.setY((int) y);
-
-        additions.add(newMapLoc);
-    }
-
-    /**
-     * Delete the MapLocation Node. Prepare the associated Location as a deletion.
-     * @param mapLocation The MapLocation to be deleted.
-     */
-    private void deleteMapLocation(MapLocation mapLocation) {
-        mapPane.getChildren().remove(mapLocation.node);
-
-        if (additions.contains(mapLocation)) {
-            additions.remove(mapLocation);
-        } else {
-            deletions.add(mapLocation);
-        }
-    }
-
-    /**
-     * Save the currently edited map by pushing all changes, additions, and deletions to the DB.
-     */
-    public void saveMap() {
-        LocationDAO locationDAO = new LocationDAO();
-
-        // Update non-addition and non-deletions locations
-        for (MapLocation mapLocation : mapLocations) {
-            if (!additions.contains(mapLocation) && !deletions.contains(mapLocation)) {
-                mapLocation.updateLocationPosition();
-                locationDAO.update(mapLocation.location);
-            }
-        }
-
-        // Insert addition locations
-        for (MapLocation mapLocation : additions) {
-            locationDAO.insert(mapLocation.location);
-        }
-        additions = new ArrayList<>();
-
-        // Delete deletion locations
-        for (MapLocation mapLocation : deletions) {
-            locationDAO.delete(mapLocation.location);
-        }
-        deletions = new ArrayList<>();
-    }
 }

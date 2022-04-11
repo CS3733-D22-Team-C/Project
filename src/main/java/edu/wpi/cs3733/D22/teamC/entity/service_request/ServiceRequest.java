@@ -30,7 +30,7 @@ public class ServiceRequest {
     
     @Column(name = "LocationID")
     protected String locationID;      // TODO: Link to Location
-    
+
     @CreationTimestamp
     @Column(name = "CreationTimestamp")
     protected Timestamp creationTimestamp;
@@ -52,8 +52,7 @@ public class ServiceRequest {
     
     @Column(name = "ModifierID")
     protected String modifierID;
-    
-    @UpdateTimestamp
+
     @Column(name = "ModifiedTimestamp")
     protected Timestamp modifiedTimestamp;
     
