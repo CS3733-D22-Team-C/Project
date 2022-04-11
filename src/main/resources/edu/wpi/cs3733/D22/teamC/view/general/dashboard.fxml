@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import io.github.palexdev.materialfx.controls.legacy.MFXLegacyTableView?>
+<?import java.net.URL?>
+<?import javafx.scene.control.Tab?>
+<?import javafx.scene.control.TabPane?>
+
+<TabPane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" styleClass="mfx-table-view" tabClosingPolicy="UNAVAILABLE" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/17">
+  <tabs>
+    <Tab closable="false" text="Assigned Service Requests">
+         <content>
+            <MFXLegacyTableView maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" />
+         </content>
+    </Tab>
+    <Tab closable="false" text="Created Service Requests">
+         <content>
+            <MFXLegacyTableView maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" />
+         </content>
+    </Tab>
+  </tabs>
+   <stylesheets>
+      <URL value="@../../css/base.css" />
+      <URL value="@../../css/dashboard.css" />
+   </stylesheets>
+</TabPane>
