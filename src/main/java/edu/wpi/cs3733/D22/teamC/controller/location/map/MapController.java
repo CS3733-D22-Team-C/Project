@@ -85,7 +85,7 @@ public class MapController implements Initializable {
 
     // Variables
     protected List<LocationNode> locationNodes = new ArrayList<>();
-    protected LocationNode clickedLocation;
+    protected LocationNode activeLocation;
 
     // References
     protected BaseMapViewController parentController;
@@ -102,7 +102,8 @@ public class MapController implements Initializable {
 
     //#region Location Node Interaction
         private final LocationNode getLocationNode(Location location) {
-            return locationNodes.stream().filter(node -> node.location.getNodeID() == location.getNodeID()).collect(Collectors.toList()).get(0);
+            List<LocationNode> locationNodeList = locationNodes.stream().filter(locationNode -> locationNode.location.getNodeID().equals(location.getNodeID())).collect(Collectors.toList());
+            return (locationNodeList.size() > 0) ? locationNodeList.get(0) : null;
         }
 
         /**
@@ -167,15 +168,15 @@ public class MapController implements Initializable {
     //#region Mouse Events
         protected void onMouseEnterNode(MouseEvent event, LocationNode locationNode) {
             locationNode.focus();
-            if (clickedLocation == null) {
-                parentController.setCurrentLocation(locationNode.location, false);
+            if (activeLocation == null) {
+                parentController.changeCurrentLocation(locationNode.location, false);
             }
         }
 
         protected void onMouseExitNode(MouseEvent event, LocationNode locationNode) {
             locationNode.unfocus();
-            if (clickedLocation == null) {
-                parentController.setCurrentLocation(null, false);
+            if (activeLocation == null) {
+                parentController.changeCurrentLocation(null, false);
             }
         }
 
@@ -183,11 +184,8 @@ public class MapController implements Initializable {
             if (event.getButton().equals(MouseButton.PRIMARY)) {
                 // Single-Click select toggle
                 {
-                    // Update clicked Location Node
-                    setClickedLocation(locationNode.location);
-
                     // Update current Location
-                    parentController.setCurrentLocation((clickedLocation != null) ? clickedLocation.location : null);
+                    parentController.changeCurrentLocation((locationNode != null) ? locationNode.location : null);
                 }
 
                 event.consume();
@@ -200,8 +198,8 @@ public class MapController implements Initializable {
             if (event.getButton().equals(MouseButton.PRIMARY)) {
                 // Single-Click reset active LocationNode
                 {
-                    if (clickedLocation != null) {
-                        parentController.setCurrentLocation(null);
+                    if (activeLocation != null) {
+                        parentController.changeCurrentLocation(null);
                     }
                 }
             }
@@ -241,20 +239,21 @@ public class MapController implements Initializable {
             this.parentController = baseMapViewController;
         }
 
-        public void setClickedLocation(Location location) {
-            if (clickedLocation != null) {
-                clickedLocation.deactivate();
-                clickedLocation = null;
+        public void setLocation(Location location) {
+            if (activeLocation != null) {
+                activeLocation.deactivate();
+                activeLocation = null;
             }
+
             if (location != null) {
-                clickedLocation = getLocationNode(location);
-                clickedLocation.activate();
+                activeLocation = getLocationNode(location);
+                activeLocation.activate();
             }
         }
 
-        public void renderFloor(Floor floor) {
+        public void renderFloor(Floor floor, List<Location> locations) {
             // Reset State
-            clickedLocation = null;
+            setLocation(null);
 
             // Reset LocationNodes
             removeAllLocationNodes();
@@ -268,12 +267,10 @@ public class MapController implements Initializable {
             mapPane.setPrefHeight(image.getHeight());
 
             // Load Locations
-            // TODO: Fix Broken UUID Query
-//            List<Location> locations = new FloorDAO().getAllLocations(floor.getFloorID());
-            List<Location> locations = new LocationDAO().getAll().stream().filter(location -> location.getFloor().equals(floor.getFloorID())).collect(Collectors.toList());
+            List<Location> floorLocations = locations.stream().filter(location -> location.getFloor().equals(floor.getFloorID())).collect(Collectors.toList());
 
             // Load LocationNodes
-            locationNodes = renderLocationsNodes(locations);
+            locationNodes = renderLocationsNodes(floorLocations);
         }
     //#endregion
 

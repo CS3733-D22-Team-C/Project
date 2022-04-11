@@ -37,8 +37,8 @@ public abstract class MapControlsController implements Initializable {
     //#region FXML Events
         @FXML
         void onFloorChanged(ActionEvent event) {
-            parentController.setCurrentFloor(floorComboBox.getValue());
-            parentController.setCurrentLocation(null);
+            parentController.changeCurrentFloor(floorComboBox.getValue());
+            parentController.changeCurrentLocation(null);
         }
     //#endregion
 }

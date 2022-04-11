@@ -39,19 +39,21 @@ public class BaseMapViewController implements Initializable {
     // Variables
     private boolean isEditMode = false;
 
-    List<Floor> floors;
-    Floor currentFloor;
+    private List<Floor> floors;
+    private Floor currentFloor;
 
-    List<Location> touchedLocations = new ArrayList<>();
-    List<Location> additionLocations = new ArrayList<>();
-    List<Location> deletionLocations = new ArrayList<>();
-    Location currentLocation;
+    private List<Location> locations;
+    private Location currentLocation;
 
     @Override
     public final void initialize(URL location, ResourceBundle resource) {
         // Get Floors
-        floors = new FloorDAO().getAll();
-        currentFloor = floors.get(0);
+        this.floors = new FloorDAO().getAll();
+        this.currentFloor = floors.get(0);
+
+        // Get Locations
+        this.locations = new LocationDAO().getAll();
+        this.currentLocation = null;
 
         // Setup Info Pane
         App.View infoPane = App.instance.loadView(INFO_PANE_PATH);
@@ -70,171 +72,141 @@ public class BaseMapViewController implements Initializable {
         }
 
         public Floor getFloorByID(String id) {
-            return floors.stream().filter(floor -> floor.getFloorID().equals(id)).collect(Collectors.toList()).get(0);
+            List<Floor> floorList = floors.stream().filter(floor -> floor.getFloorID().equals(id)).collect(Collectors.toList());
+            return (floorList.size() > 0) ? floorList.get(0) : null;
         }
 
         public Floor getCurrentFloor() {
             return currentFloor;
         }
 
-        public void setCurrentFloor(Floor floor) {
+        /**
+         * Change the current floor to the given Floor.
+         * @param floor The Floor to be changed to.
+         */
+        public void changeCurrentFloor(Floor floor) {
             this.currentFloor = floor;
-            mapController.renderFloor(currentFloor);
-            renderLocationChanges();
+            this.currentLocation = null;
+
+            renderCurrentFloor();
+        }
+
+        /**
+         * Render the current floor via the Map Controller
+         */
+        private void renderCurrentFloor() {
+            mapController.renderFloor(currentFloor, locations.stream().filter(location -> location.getFloor().equals(currentFloor.getFloorID())).collect(Collectors.toList()));
         }
     //#endregion
 
     //#region Location Interaction
+        /**
+         * Get a list of currently loaded locations.
+         * @return A list of currently loaded locations. In edit mode, all map edits will be applied to them.
+         */
+        public List<Location> getAllLocations() {
+            return locations;
+        }
+
+        /**
+         * Get Location by ID.
+         * @return Location of the given ID.
+         */
+        public Location getLocationByID(String id) {
+            List<Location> locationList = locations.stream().filter(location -> location.getNodeID().equals(id)).collect(Collectors.toList());
+            return (locationList.size() > 0) ? locationList.get(0) : null;
+        }
+
         public Location getCurrentLocation() {
             return currentLocation;
         }
 
-        public void setCurrentLocation(Location location) { setCurrentLocation(location, true); }
-        public void setCurrentLocation(Location location, boolean updateClick) {
-            // Base
+        /**
+         * Change the current location to the given Location.
+         * @param location The Location to be changed to.
+         * @param locked Whether the Current Location selection is locking.
+         */
+        public void changeCurrentLocation(Location location, boolean locked) {
             this.currentLocation = location;
 
-            // Info
-            infoPaneController.setVisible((currentLocation != null));
+            // Update Info Pane
             infoPaneController.setLocation(currentLocation);
+            infoPaneController.setVisible(currentLocation != null);
 
-            // Map
-            if (updateClick) mapController.setClickedLocation(location);
+            // Update Map View
+            if (locked) mapController.setLocation(currentLocation);
         }
+        public void changeCurrentLocation(Location location) { changeCurrentLocation(location, true); }
 
-        public void createLocation(int x, int y) {
-            if (isEditMode) {
-                // Create Location
-                Location location = new Location();
-
-                location.setX((int) x);
-                location.setY((int) y);
-                location.setFloor(currentFloor.getFloorID());
-                location.setNodeType(Location.NodeType.PATI);
-
-                addLocation(location);
-                setCurrentLocation(location);
-            }
-        }
-
-    public void addLocation(Location location) {
-        if (isEditMode) {
-            ((EditMapControlsController) mapControlsController).setSaveStatus(true);
-
+        /**
+         * Add a Location.
+         * @param location The Location to be added.
+         */
+        public Location addLocation(Location location) {
             // Location addition reflected in Lists
-            additionLocations.add(location);
+            locations.add(location);
 
-            // Location addition reflected in LocationNode
-            mapController.addLocationNode(location);
+            // Location addition reflected in Controls
+            setSaveStatus();
 
-            setCurrentLocation(location);
-        }
-    }
+            // Location addition reflected in Map View
+            if (location.getFloor().equals(currentFloor.getFloorID())) mapController.addLocationNode(location);
 
-        public void touchLocation(Location location) {
-            if (isEditMode && location != null) {
-                ((EditMapControlsController) mapControlsController).setSaveStatus(true);
-
-                if (!additionLocations.contains(location) && !deletionLocations.contains(location)) {
-                    if (touchedLocations.contains(location)) touchedLocations.remove(location);
-                    touchedLocations.add(location);
-                }
-            }
+            return location;
         }
 
+        /**
+         * Reset changes for the provided Location.
+         * @param location The Location to be reset.
+         */
         public void resetLocation(Location location) {
-            // Location reset reflected in Lists
-            if (additionLocations.contains(location)) {
-                additionLocations.remove(location);
-                mapController.removeLocationNode(location);
+            LocationDAO locationDAO = new LocationDAO();
+            Location original = locationDAO.getByID(location.getNodeID());
 
-                // Location reset reflected in Info
-                if (currentLocation == location) infoPaneController.setLocation(null);
-            } else {
-                Location original = new LocationDAO().getByID(location.getNodeID());
+            if (original != null) {
                 location.Copy(original);
-
-                if (deletionLocations.contains(location)) {
-                    deletionLocations.remove(location);
-                    mapController.addLocationNode(location);
-                } else if (touchedLocations.contains(location)) {
-                    touchedLocations.remove(location);
-                    mapController.updateLocationNode(location);
-                }
-
-                // Location reset reflected in Info
-                if (currentLocation == location) infoPaneController.setLocation(currentLocation);
+                mapController.updateLocationNode(location);
+            } else {
+                deleteLocation(location);
             }
         }
 
         public void deleteLocation(Location location) {
-            if (location != null && isEditMode) {
-                // Location deletion reflected in Controls
-                ((EditMapControlsController) mapControlsController).setSaveStatus(true);
+            // Location deletion reflected in Lists
+            if (locations.contains(location)) locations.remove(location);
 
-                // Location deletion reflected in Lists
-                if (additionLocations.contains(location)) {
-                    additionLocations.remove(location);
-                } else {
-                    if (touchedLocations.contains(location)) touchedLocations.remove(location);
-                    deletionLocations.add(location);
-                }
+            // Location deletion reflected in Controls
+            setSaveStatus();
 
-                // Location deletion reflected in Maps
-                mapController.removeLocationNode(location);
+            // Location deletion reflected in Map View
+            if (location.getFloor().equals(currentFloor.getFloorID())) mapController.removeLocationNode(location);
 
-                // Location deletion reflected in Info
-                if (currentLocation == location) setCurrentLocation(null);
-            }
+            if (currentLocation == location) changeCurrentLocation(null);
+        }
+    //#endregion
+
+    //#region Stashed Changes
+        /**
+         * Save locations with changes to DB.
+         */
+        public void saveChanges() {
+            LocationDAO locationDAO = new LocationDAO();
+            locationDAO.deleteAllFromTable();
+
+            locations.forEach(locationDAO::insert);
+        }
+
+        /**
+         * Clear locations of changes from DB.
+         */
+        public void clearChanges() {
+            LocationDAO locationDAO = new LocationDAO();
+
+            locations = locationDAO.getAll();
         }
     //#endregion
 
     //#region Mode Switching
-        public void saveLocationChanges() {
-            LocationDAO locationDAO = new LocationDAO();
-
-            // Update touched locations
-            for (Location location : touchedLocations) {
-                locationDAO.update(location);
-            }
-            touchedLocations = new ArrayList<>();
-
-            // Insert addition locations
-            for (Location location : additionLocations) {
-                locationDAO.insert(location);
-            }
-            additionLocations = new ArrayList<>();
-
-            // Delete deletion locations
-            for (Location location : deletionLocations) {
-                locationDAO.delete(location);
-            }
-            deletionLocations = new ArrayList<>();
-        }
-
-        public void resetLocationChanges() {
-            touchedLocations = new ArrayList<>();
-            additionLocations = new ArrayList<>();
-            deletionLocations = new ArrayList<>();
-        }
-
-        public void renderLocationChanges() {
-            // Update touched location nodes
-            for (Location location : touchedLocations.stream().filter(location -> location.getFloor().equals(currentFloor.getFloorID())).collect(Collectors.toList())) {
-                mapController.updateLocationNode(location);
-            }
-
-            // Insert additional location nodes
-            for (Location location : additionLocations.stream().filter(location -> location.getFloor().equals(currentFloor.getFloorID())).collect(Collectors.toList())) {
-                mapController.addLocationNode(location);
-            }
-
-            // Delete deletion location nodes
-            for (Location location : deletionLocations.stream().filter(location -> location.getFloor().equals(currentFloor.getFloorID())).collect(Collectors.toList())) {
-                mapController.removeLocationNode(location);
-            }
-        }
-
         /**
          * Swap to Edit Mode, clearing first.
          */
@@ -264,7 +236,7 @@ public class BaseMapViewController implements Initializable {
             mapController = (EditMapController) mapPane.getController();
             mapController.setParentController(this);
 
-            mapController.renderFloor(currentFloor);
+            renderCurrentFloor();
         }
 
         /**
@@ -296,7 +268,7 @@ public class BaseMapViewController implements Initializable {
             mapController = (MapController) mapPane.getController();
             mapController.setParentController(this);
 
-            mapController.renderFloor(currentFloor);
+            renderCurrentFloor();
         }
 
         public void clearLastMode() {
@@ -341,6 +313,10 @@ public class BaseMapViewController implements Initializable {
             medicalPumpIcon.setScaleX(.03);
             medicalPumpIcon.setScaleY(.03);
 //            splitPane.getChildren().add(medicalPumpIcon);
+        }
+
+        public void setSaveStatus() {
+            if (isEditMode) ((EditMapControlsController) mapControlsController).setSaveStatus(true);
         }
     //#endregion
 }
