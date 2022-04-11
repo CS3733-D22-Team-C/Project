@@ -79,3 +79,7 @@
     -fx-border-radius: 4px;
 }
 
+.grid-pane {
+    -fx-background-image: url("../../../../static/images/BrighamAndWomensHospital.jpeg");
+}
+

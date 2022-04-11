@@ -11,10 +11,14 @@ import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Scene;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.BorderPane;
 import javafx.stage.Stage;
 import lombok.extern.slf4j.Slf4j;
 
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.List;
 
@@ -48,6 +52,8 @@ public class App extends Application {
     public static final String VIEW_LOCATIONS_PATH = "view/location/view_locations.fxml";
     public static final String VIEW_SERVICE_REQUESTS_PATH = "view/service_request/view_service_requests.fxml";
     public static final String MAP_PATH = "view/location/map/base_map_view.fxml";
+
+    //public static final String IMAGE_PATH = "static/images/BrighamAndWomensHospital.png";
 
     // Singleton Instance
     public static App instance;
@@ -106,7 +112,7 @@ public class App extends Application {
         stage = primaryStage;
         
         stage.setFullScreen(true);
-        
+
         setView(LOGIN_PATH);
     }
 
@@ -178,7 +184,6 @@ public class App extends Application {
         stage.setScene(scene);
         stage.show();
     }
-
     /**
      * Load a view from a file.
      * @param viewFile Path to the FXML file to be loaded.

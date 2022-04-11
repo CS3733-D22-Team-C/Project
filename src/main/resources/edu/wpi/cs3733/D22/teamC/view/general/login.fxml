@@ -15,17 +15,16 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-
 <GridPane prefHeight="626.0" prefWidth="1471.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.wpi.cs3733.D22.teamC.controller.general.login_page.LoginPageController">
    <columnConstraints>
-      <ColumnConstraints hgrow="SOMETIMES" maxWidth="1155.2000732421875" minWidth="10.0" prefWidth="1133.6000244140625" />
-      <ColumnConstraints hgrow="SOMETIMES" maxWidth="351.20000000000005" minWidth="10.0" prefWidth="336.79997558593755" />
+      <ColumnConstraints hgrow="SOMETIMES" maxWidth="1155.2000732421875" minWidth="10.0" prefWidth="1140.0" />
+      <ColumnConstraints hgrow="SOMETIMES" maxWidth="584.0000122070312" minWidth="10.0" prefWidth="331.20000000000005" />
    </columnConstraints>
    <rowConstraints>
       <RowConstraints minHeight="10.0" vgrow="SOMETIMES" />
    </rowConstraints>
    <children>
-      <GridPane alignment="CENTER_RIGHT" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" stylesheets="@../../css/component/entity/login/login.css" GridPane.columnIndex="1">
+      <GridPane alignment="CENTER_RIGHT" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" styleClass="grid-pane" stylesheets="@../../css/component/entity/login/login.css" GridPane.columnIndex="1">
          <columnConstraints>
             <ColumnConstraints hgrow="ALWAYS" maxWidth="1.7976931348623157E308" minWidth="10.0" />
          </columnConstraints>
@@ -33,7 +32,7 @@
             <RowConstraints maxHeight="1.7976931348623157E308" minHeight="10.0" vgrow="ALWAYS" />
          </rowConstraints>
          <children>
-            <HBox GridPane.hgrow="ALWAYS" GridPane.vgrow="ALWAYS" VBox.vgrow="ALWAYS">
+            <HBox prefHeight="626.0" prefWidth="574.0" GridPane.hgrow="ALWAYS" GridPane.vgrow="ALWAYS" VBox.vgrow="ALWAYS">
                <children>
                   <VBox prefHeight="626.0" prefWidth="342.0">
                      <children>
@@ -69,7 +68,7 @@
                                     <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                                  </rowConstraints>
                                  <children>
-                                    <Label fx:id="invalidLogin" prefHeight="40.0" prefWidth="185.0" styleClass="login-invalid-label" stylesheets="@../../css/component/entity/login/login.css" text="    Invalid username or password" translateX="75.0">
+                                    <Label fx:id="invalidLogin" prefHeight="40.0" prefWidth="185.0" styleClass="login-invalid-label" stylesheets="@../../css/component/entity/login/login.css" text="    Invalid username or password" translateX="72.5">
                                        <font>
                                           <Font size="10.0" />
                                        </font>
