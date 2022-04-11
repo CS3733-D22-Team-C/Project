@@ -1,4 +1,4 @@
-ID,locationID,equipType,typeNumber,equipStatus
+ID,locationID,equipType,typeNumber,status
 71693114-294e-4a35-9844-36898ed8554b,186f1ae6-d12f-4994-a0a5-875f02e9072c,Bed,1,Dirty
 2cd09280-ae40-48e0-b403-f30dff3f08ec,186f1ae6-d12f-4994-a0a5-875f02e9072c,Bed,2,Unavailable
 4083bcc5-407c-4dbd-9b01-8da86b51233e,186f1ae6-d12f-4994-a0a5-875f02e9072c,Bed,3,Available

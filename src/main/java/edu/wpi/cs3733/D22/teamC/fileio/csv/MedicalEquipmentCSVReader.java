@@ -1,58 +1,43 @@
 package edu.wpi.cs3733.D22.teamC.fileio.csv;
 
+import edu.wpi.cs3733.D22.teamC.entity.medical_equipment.MedicalEquipment;
 import edu.wpi.cs3733.D22.teamC.entity.service_request.ServiceRequest;
 import edu.wpi.cs3733.D22.teamC.entity.service_request.medical_equipment.MedicalEquipmentSR;
 
 import java.sql.Timestamp;
 
-public class MedicalEquipmentCSVReader extends CSVReader<MedicalEquipmentSR>{
+public class MedicalEquipmentCSVReader extends CSVReader<MedicalEquipment>{
     /**
      * Maps ServiceRequest (header, value) pairs to a value to change for the object.
-     * @param serviceRequest The object to be modified.
+     * @param medicalEquipment The object to be modified.
      * @param header The header to be mapped to an attribute.
      * @param value The value for the current attribute.
      * @return The Location modified with the value at the corresponding attribute.
      */
     @Override
-    protected MedicalEquipmentSR parseAttribute(MedicalEquipmentSR serviceRequest, String header, String value){
+    protected MedicalEquipment parseAttribute(MedicalEquipment medicalEquipment, String header, String value){
         switch(header) {
-            case "requestID":
-                serviceRequest.setRequestID(value);
+            case "ID":
+                medicalEquipment.setEquipID(value);
                 break;
-            case "creatorID":
-                serviceRequest.setCreatorID(value);
-                break;
-            case "assigneeID":
-                serviceRequest.setAssigneeID(value);
-                break;
-            case "location":
-                serviceRequest.setLocation(value);
-                break;
-            case "creationTimestamp":
-                serviceRequest.setCreationTimestamp(Timestamp.valueOf(value));
-                break;
-            case "status":
-                serviceRequest.setStatus(ServiceRequest.Status.valueOf(value));
-                break;
-            case "priority":
-                serviceRequest.setPriority(ServiceRequest.Priority.valueOf(value));
-                break;
-            case "requestType":
-                serviceRequest.setRequestType(ServiceRequest.RequestType.valueOf(value));
-                break;
-            case "description":
-                serviceRequest.setDescription(value);
-                break;
-            case "equipID":
-                serviceRequest.setEquipmentID(value);
+            case "locationID":
+                medicalEquipment.setLocationID(value);
                 break;
             case "equipType":
-                serviceRequest.setEquipmentType(MedicalEquipmentSR.EquipmentType.valueOf(value));
+                medicalEquipment.setEquipmentType(MedicalEquipment.EquipmentType.valueOf(value));
+                break;
+            case "typeNumber":
+                medicalEquipment.setTypeNumber(Integer.parseInt(value));
+                break;
+            case "status":
+                medicalEquipment.setStatus(MedicalEquipment.EquipmentStatus.valueOf(value));
+                break;
+            default:
                 break;
         }
-        return serviceRequest;
+        return medicalEquipment;
     }
 
     @Override
-    protected MedicalEquipmentSR createObject(){ return new MedicalEquipmentSR();}
+    protected MedicalEquipment createObject(){ return new MedicalEquipment();}
 }
