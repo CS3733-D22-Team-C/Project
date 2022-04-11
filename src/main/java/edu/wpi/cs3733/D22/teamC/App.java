@@ -47,6 +47,7 @@ public class App extends Application {
     public static final String HOME_PATH = "view/general/home.fxml";
     public static final String VIEW_LOCATIONS_PATH = "view/location/view_locations.fxml";
     public static final String VIEW_SERVICE_REQUESTS_PATH = "view/service_request/view_service_requests.fxml";
+    public static final String SERVICE_REQUEST_LANDING_PAGE = "view/service_request/service_request_landing_page.fxml";
     public static final String MAP_PATH = "view/location/map/base_map_view.fxml";
 
     // Singleton Instance

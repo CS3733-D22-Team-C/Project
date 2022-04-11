@@ -1,13 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import com.jfoenix.controls.JFXButton?>
-<?import com.jfoenix.controls.JFXComboBox?>
 <?import com.jfoenix.controls.JFXTreeTableView?>
-
-
-<?import java.net.URL?>
 <?import javafx.geometry.Insets?>
-<?import javafx.scene.control.Label?>
 <?import javafx.scene.layout.ColumnConstraints?>
 <?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.HBox?>
@@ -39,22 +34,7 @@
             </HBox>
             <HBox>
                <children>
-                  <VBox prefHeight="5.0" prefWidth="162.0">
-                     <children>
-                        <JFXComboBox fx:id="serviceType" prefHeight="30.0" prefWidth="191.0" promptText="Create a Service Request:" styleClass="dropdown" stylesheets="@../../css/base.css" />
-                     </children>
-                     <opaqueInsets>
-                        <Insets />
-                     </opaqueInsets>
-                  </VBox>
                   <VBox prefHeight="38.0" prefWidth="53.0">
-                     <children>
-                        <JFXButton fx:id="selectButton" layoutX="10.0" layoutY="10.0" onAction="#onSelectButton" prefHeight="32.5" prefWidth="55.0" styleClass="button-success" stylesheets="@../../css/base.css" text="→">
-                           <font>
-                              <Font size="24.0" />
-                           </font>
-                        </JFXButton>
-                     </children>
                      <padding>
                         <Insets left="-5.0" />
                      </padding>
@@ -64,6 +44,11 @@
                   <Insets bottom="10.0" top="30.0" />
                </padding>
             </HBox>
+            <JFXButton fx:id="selectButton" onAction="#onCreateButton" prefHeight="31.0" prefWidth="72.0" styleClass="button-create" stylesheets="@../../css/base.css" text="Create">
+               <font>
+                  <Font size="24.0" />
+               </font>
+            </JFXButton>
          </children>
       </GridPane>
    </children>

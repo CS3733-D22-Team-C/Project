@@ -150,7 +150,7 @@ padding goes top, right, bottom, left
 }
 
 .button-create {
-    -fx-background-color: -color-secondary-dark;
+    -fx-background-color: -color-primary-light;
     -fx-text-fill: -color-button-text;
     -fx-font-size: 15;
     -fx-spacing: 5px;
