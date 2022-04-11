@@ -37,6 +37,7 @@ public class LoginPageController implements Initializable {
         //Login Validation eventually needed here
 
         Login login = new Login();
+
         login.setPassword(password.getText());
         login.setUsername(username.getText());
 

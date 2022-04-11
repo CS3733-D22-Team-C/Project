@@ -1,6 +1,6 @@
 package edu.wpi.cs3733.D22.teamC.error.error_record.service_request_user_input_validation;
 
-import edu.wpi.cs3733.D22.teamC.error.error_item.service_request_user_input_validation.ServiceRequestUserInputValidationErrorItem;
+import edu.wpi.cs3733.D22.teamC.error.error_item.user_input_validation_error_item.service_request_user_input_validation_error_item.ServiceRequestUserInputValidationErrorItem;
 
 public class ServiceRequestUserInputValidationErrorRecord {
     public static final ServiceRequestUserInputValidationErrorItem[] serviceRequestUserInputValidationErrorList = {
