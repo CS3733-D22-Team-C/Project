@@ -28,9 +28,6 @@ public class BaseTableViewController<T extends Object> implements Initializable 
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-
-
-        setUp("view/Table/Locations/table_insert.fxml");
         rowInteraction();
     }
 
