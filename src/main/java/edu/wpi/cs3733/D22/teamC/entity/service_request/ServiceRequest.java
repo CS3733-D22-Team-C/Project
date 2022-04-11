@@ -6,6 +6,7 @@ import org.hibernate.annotations.UpdateTimestamp;
 
 import javax.persistence.*;
 import java.sql.Timestamp;
+import java.util.Objects;
 import java.util.UUID;
 
 @Entity
@@ -189,7 +190,7 @@ public class ServiceRequest {
         if (o == null || getClass() != o.getClass()) return false;
         ServiceRequest that = (ServiceRequest) o;
         return requestID.equals(that.requestID)
-                && creator.equals(that.creator)
+                && Objects.equals(creator, that.creator) //(creator == null ? that.creator == null : creator.equals(that.creator))
                 && assigneeID.equals(that.assigneeID)
                 && locationID.equals(that.locationID)
                 && creationTimestamp.equals(that.creationTimestamp)

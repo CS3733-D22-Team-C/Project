@@ -3,12 +3,14 @@ package edu.wpi.cs3733.D22.teamC.factory.service_request;
 import edu.wpi.cs3733.D22.teamC.entity.employee.Employee;
 import edu.wpi.cs3733.D22.teamC.entity.service_request.ServiceRequest;
 import edu.wpi.cs3733.D22.teamC.factory.Factory;
+import edu.wpi.cs3733.D22.teamC.factory.employee.EmployeeFactory;
 
 import java.sql.Timestamp;
 import java.util.Random;
 
 public class ServiceRequestFactory<T extends ServiceRequest> implements Factory<T> {
     protected Random generator = new Random();
+    EmployeeFactory employeeFactory = new EmployeeFactory();
 
     @SuppressWarnings("unchecked")
     public T create() {
@@ -17,7 +19,7 @@ public class ServiceRequestFactory<T extends ServiceRequest> implements Factory<
     }
 
     public T create(T serviceRequest) {
-        Employee creator = new Employee();
+        Employee creator = null;
         String assigneeID = String.valueOf(generator.nextInt(200000));
         String locationID = String.valueOf(generator.nextInt(200000));
         Timestamp creationTimestamp = new Timestamp(System.currentTimeMillis());
