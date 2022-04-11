@@ -11,10 +11,14 @@ import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Scene;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.BorderPane;
 import javafx.stage.Stage;
 import lombok.extern.slf4j.Slf4j;
 
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.List;
 
@@ -44,11 +48,14 @@ public class App extends Application {
     public static final String SIDEBAR_PATH = "view/component/sidebar_menu.fxml";
     public static final String DRAWER_CONTENT_PATH = "view/component/drawer_content.fxml";
 
-    public static final String HOME_PATH = "view/general/home.fxml";
+    public static final String LOGIN_PATH = "view/general/login.fxml";
     public static final String VIEW_LOCATIONS_PATH = "view/location/view_locations.fxml";
     public static final String VIEW_SERVICE_REQUESTS_PATH = "view/service_request/view_service_requests.fxml";
     public static final String MAP_PATH = "view/location/map/base_map_view.fxml";
 
+    public static final String BASE_CSS_PATH = "css/base.css";
+    //public static final String IMAGE_PATH = "static/images/BrighamAndWomensHospital.png";
+    
     // Singleton Instance
     public static App instance;
 
@@ -106,10 +113,10 @@ public class App extends Application {
 
         // Store window as stage
         stage = primaryStage;
-        
+
         stage.setFullScreen(true);
-        
-        setView("view/service_request/service_request_landing_page.fxml");
+
+        setView(LOGIN_PATH);
     }
 
     @Override
@@ -165,10 +172,12 @@ public class App extends Application {
         BorderPane baseNode = (BorderPane) loadView(BASE_COMPONENT_PATH).getNode();
 
         // Load Menu Bar
+        // TODO: Find a way to only change the center of the baseNode, nothing else
         Node menuBarNode = loadView(MENU_BAR_COMPONENT_PATH).getNode();
 
         // Load Sidebar Menu
         Node sidebarNode = loadView(SIDEBAR_PATH).getNode();
+
         // Embed views and components
         //baseNode.setTop(menuBarNode);
         baseNode.setCenter(viewNode);
@@ -180,7 +189,6 @@ public class App extends Application {
         stage.setScene(scene);
         stage.show();
     }
-
     /**
      * Load a view from a file.
      * @param viewFile Path to the FXML file to be loaded.

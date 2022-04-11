@@ -6,7 +6,7 @@ import javafx.fxml.FXML;
 public class MenuBarController {
     @FXML
     protected void onMenuBarHomeButtonPress() {
-        App.instance.setView(App.HOME_PATH);
+        App.instance.setView(App.VIEW_SERVICE_REQUESTS_PATH);
     }
 
     @FXML
