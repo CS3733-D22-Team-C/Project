@@ -26,14 +26,22 @@ public class MapSideViewController {
     @FXML private MFXButton floorLL2;
     private String selectedFloor;
 
-    @Override
+    @Override // TODO: Get rid of initialize and move functionality into helper function or at beginning of each floor button
     public void initialize(URL location, ResourceBundle resources) {
+        // Sort medical equipment into floor in each
         MedicalEquipmentDAO MEL = new MedicalEquipmentDAO();
         List<MedicalEquipment> medicalEquipmentPerFloor =
                 MEL.getAll().stream().filter(medicalEquipment -> medicalEquipment.getFloor()); //TODO: Filter by floor (Thanks Brian!)
-
         MEL.getAll().stream().filter(medicalEquipment -> medicalEquipment.getStatus().equals(MedicalEquipment.EquipmentStatus.Dirty));
-        MEL
+
+        List<MedicalEquipment> floorXDirty;
+        List<MedicalEquipment> floorXClean;
+        List<MedicalEquipment> floorXPod;
+        for(MedicalEquipment medicalEquipmentFloorX : medicalEquipmentPerFloor){
+            if(medicalEquipmentFloorX.getStatus().equals(MedicalEquipment.EquipmentStatus.Dirty)) floorXDirty.add(medicalEquipmentFloorX);
+            if(medicalEquipmentFloorX.getStatus().equals(MedicalEquipment.EquipmentStatus.Available)) floorXClean.add(medicalEquipmentFloorX);
+            if(medicalEquipmentFloorX.getStatus().equals(MedicalEquipment.EquipmentStatus.Unavailable)) floorXPod.add(medicalEquipmentFloorX);
+        }
     }
 
     public class ready{
