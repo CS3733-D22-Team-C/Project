@@ -1,0 +1,89 @@
+@import "../../../colors.css";
+@import "../../../fonts.css";
+
+.login-interface-background-upper {
+    -fx-background-color: -color-primary-dark;
+}
+
+.login-interface-background-lower {
+    -fx-background-color: -color-primary-text;
+}
+
+.login-interface-title {
+    -fx-font-family: -font-cambo;
+    -fx-font-style: normal;
+    -fx-font-weight: 400;
+    -fx-font-size: 14px;
+    -fx-line-weight: 21px;
+
+    -fx-text-alignment: center;
+
+    -fx-text-fill: -color-primary-text;
+}
+
+.login-username-field {
+    -fx-background-color: #D7E5EF;
+    /*box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);*/
+    -fx-border-radius: 4px;
+}
+
+.login-username-label {
+    -fx-font-family: 'Roboto';
+    -fx-font-style: normal;
+    -fx-font-weight: 500;
+    -fx-font-size: 10px;
+    -fx-line-height: 21px;
+    /* or 150% */
+
+    /*letter-spacing: 0.1px;*/
+
+    /* Secondary Text */
+
+    -fx-text-fill: -color-black;
+}
+
+.login-username-text-field {
+    -fx-background-color: -login-username-field;
+    /*-box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);*/
+    -fx-border-radius: 4px;
+}
+
+.login-button {
+    /* Box */
+    -fx-background-color: -color-primary-light;
+    -fx-border-radius: 4px;
+}
+
+.login-invalid-label {
+    -fx-font-family: 'Kantumruy';
+    -fx-font-style: normal;
+    -fx-font-weight: 400;
+    -fx-font-size: 12px;
+    -fx-line-height: 21px;
+    /* or 111% */
+
+    /*letter-spacing: 0.1px;*/
+
+    -fx-text-fill: -color-black;
+
+   -fx-background-color: rgba(255, 174, 174, 0.5);
+    /*box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);*/
+    -fx-border-radius: 11px;
+}
+
+.login-exit-button {
+
+    /* Red Contrast */
+
+    -fx-background-color: #F44336; /*-fx-background-color does not support colors.css attribute*/
+    -fx-border-radius: 4px;
+}
+
+/*Resizing background image in CSS*/
+.grid-pane {
+    -fx-background-image: url("../../../../static/images/BrighamandWomensResized.png");
+    -fx-background-repeat: stretch;
+    -fx-background-size: 1200 1000;
+    -fx-background-position: left center;
+}
+
