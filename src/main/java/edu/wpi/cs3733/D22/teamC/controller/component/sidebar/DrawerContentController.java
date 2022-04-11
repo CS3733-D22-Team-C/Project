@@ -20,6 +20,7 @@ import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.ResourceBundle;
+import java.util.concurrent.TimeUnit;
 
 public class DrawerContentController implements Initializable {
 
@@ -105,7 +106,7 @@ public class DrawerContentController implements Initializable {
             // Make it so the button only displays the graphic
             button.setContentDisplay(ContentDisplay.GRAPHIC_ONLY);
         }
-        wait(90);
+        TimeUnit.SECONDS.sleep(1);
         for (MFXButton button : allButtons) {
             // Make it so the button only displays the graphic
             button.setAlignment(Pos.CENTER);
