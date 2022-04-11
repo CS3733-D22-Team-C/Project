@@ -40,12 +40,12 @@
                            <children>
                               <VBox prefHeight="150.0" prefWidth="349.0" VBox.vgrow="ALWAYS">
                                  <children>
-                                    <Label prefHeight="20.0" prefWidth="232.0" styleClass="login-interface-title" stylesheets="@../../css/component/entity/login/login.css" text="Brigham and Womens Internal Tools" translateX="100.0" translateY="75.0">
+                                    <Label prefHeight="20.0" prefWidth="232.0" styleClass="login-interface-title" stylesheets="@../../css/component/entity/login/login.css" text="Brigham and Womens Internal Tools" translateX="90.0" translateY="75.0">
                                        <font>
                                           <Font size="15.0" />
                                        </font>
                                     </Label>
-                                    <ImageView fitHeight="84.0" fitWidth="82.0" pickOnBounds="true" preserveRatio="true" translateX="20.0" translateY="25.0">
+                                    <ImageView fitHeight="84.0" fitWidth="82.0" pickOnBounds="true" preserveRatio="true" translateX="10.0" translateY="25.0">
                                        <image>
                                           <Image url="@../../static/images/logo.png" />
                                        </image>
@@ -68,15 +68,15 @@
                                     <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                                  </rowConstraints>
                                  <children>
-                                    <Label fx:id="invalidLogin" prefHeight="40.0" prefWidth="185.0" styleClass="login-invalid-label" stylesheets="@../../css/component/entity/login/login.css" text="    Invalid username or password" translateX="72.5">
+                                    <Label fx:id="invalidLogin" prefHeight="40.0" prefWidth="197.0" styleClass="login-invalid-label" stylesheets="@../../css/component/entity/login/login.css" text="      Invalid username or password" translateX="67.0">
                                        <font>
                                           <Font size="10.0" />
                                        </font>
                                     </Label>
                                     <VBox maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="200.0" prefWidth="100.0" GridPane.hgrow="ALWAYS" GridPane.rowIndex="1" GridPane.vgrow="ALWAYS">
                                        <children>
-                                          <Label styleClass="login-username-label" stylesheets="@../../css/component/entity/login/login.css" text="Username" translateX="75.0" translateY="20.0" />
-                                          <TextField fx:id="username" prefHeight="26.0" prefWidth="240.0" styleClass="login-username-field" stylesheets="@../../css/component/entity/login/login.css" translateY="40.0">
+                                          <Label styleClass="login-username-label" stylesheets="@../../css/component/entity/login/login.css" text="Username" translateX="75.0" translateY="30.0" />
+                                          <TextField fx:id="username" prefHeight="26.0" prefWidth="240.0" styleClass="login-username-field" stylesheets="@../../css/component/entity/login/login.css" translateY="50.0">
                                              <effect>
                                                 <DropShadow />
                                              </effect>
