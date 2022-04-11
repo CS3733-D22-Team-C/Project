@@ -4,8 +4,10 @@ import com.jfoenix.controls.JFXTreeTableView;
 import edu.wpi.cs3733.D22.teamC.entity.floor.Floor;
 import edu.wpi.cs3733.D22.teamC.entity.location.Location;
 import edu.wpi.cs3733.D22.teamC.entity.medical_equipment.MedicalEquipment;
+import edu.wpi.cs3733.D22.teamC.entity.medical_equipment.MedicalEquipmentDAO;
 import edu.wpi.cs3733.D22.teamC.entity.service_request.ServiceRequest;
 import edu.wpi.cs3733.D22.teamC.entity.service_request.ServiceRequestDAO;
+import edu.wpi.cs3733.D22.teamC.models.medical_equipment.MedicalEquipmentTableDisplay;
 import edu.wpi.cs3733.D22.teamC.models.service_request.ServiceRequestTableDisplay;
 import edu.wpi.cs3733.D22.teamC.models.utils.ComponentWrapper;
 import javafx.event.ActionEvent;
@@ -38,8 +40,8 @@ public class InfoPaneController implements Initializable {
     @FXML private ComboBox<Location.NodeType> nodeComboBox;
 
     // Medical Equipment - Table
-//    JFXTreeTableView medicalEquipmentTable;
-//    MedicalEquipmentTableDisplay<MedicalEquipment> medicalEquipmentTableDisplay;
+    @FXML JFXTreeTableView medicalEquipmentTable;
+    MedicalEquipmentTableDisplay medicalEquipmentTableDisplay;
 
     // Service Requests - Table
     @FXML JFXTreeTableView serviceRequestTable;
@@ -64,7 +66,10 @@ public class InfoPaneController implements Initializable {
         ComponentWrapper.InitializeComboBox(floorComboBox, Floor::getShortName);
 
         // Initialize Service Request Info
-        serviceRequestTableDisplay = new ServiceRequestTableDisplay<>(serviceRequestTable);
+        serviceRequestTableDisplay = new ServiceRequestTableDisplay<ServiceRequest>(serviceRequestTable);
+
+        // Initialize Medical Equipment Info
+        medicalEquipmentTableDisplay = new MedicalEquipmentTableDisplay(medicalEquipmentTable);
 
         nodeComboBox.getItems().setAll(Location.NodeType.values());
     }
@@ -140,7 +145,9 @@ public class InfoPaneController implements Initializable {
             nodeComboBox.setValue(location.getNodeType());
 
             // Medical Equipment
-            // TODO: Populate table with Medical Equipment at Location
+            medicalEquipmentTableDisplay.emptyTable();
+            // TODO: Back-end fix getEquipmentByLocation(Location) Query
+            new MedicalEquipmentDAO().getEquipmentByLocation(parentController.getCurrentLocation().getNodeID()).forEach(medicalEquipmentTableDisplay::addObject);
 
             // Service Requests
             serviceRequestTableDisplay.emptyTable();

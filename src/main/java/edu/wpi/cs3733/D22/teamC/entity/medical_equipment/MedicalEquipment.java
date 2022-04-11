@@ -15,7 +15,7 @@ public class MedicalEquipment {
     private String equipID;
     
     @Column(name = "LocationID")
-    private int locationID;
+    private String locationID;
     
     @Column(name = "TypeNumber")
     private int typeNumber;
@@ -77,11 +77,11 @@ public class MedicalEquipment {
         this.equipmentStatus = status;
     }
     
-    public int getLocationID() {
+    public String getLocationID() {
         return locationID;
     }
     
-    public void setLocationID(int locationID) {
+    public void setLocationID(String locationID) {
         this.locationID = locationID;
     }
     

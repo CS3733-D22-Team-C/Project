@@ -15,7 +15,7 @@ public class MedicalEquipmentFactory implements Factory<MedicalEquipment> {
         equipment.setEquipmentType(MedicalEquipment.EquipmentType.values()[generator.nextInt(MedicalEquipment.EquipmentType.values().length)]);
         equipment.setStatus(MedicalEquipment.EquipmentStatus.values()[generator.nextInt(MedicalEquipment.EquipmentStatus.values().length)]);
         equipment.setTypeNumber(generator.nextInt(30));
-        equipment.setLocationID(generator.nextInt(200000));
+        equipment.setLocationID("test");
 
         return equipment;
     }
