@@ -48,13 +48,6 @@ public class LocationTableDisplay extends TableDisplay<Location> {
         // Insert Columns for Table
         addColumn(
                 table,
-                "Location ID",
-                1f * Integer.MAX_VALUE * 16.66,
-                (LocationTableEntry entry) -> {return entry.id;}
-        );
-
-        addColumn(
-                table,
                 "Floor",
                 1f * Integer.MAX_VALUE * 16.66,
                 (LocationTableEntry entry) -> {return entry.floor;}

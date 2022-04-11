@@ -82,7 +82,7 @@ public class BaseTableViewController<T extends Object> implements Initializable 
         }
     }
 
-    private void resetTableView() {
+    void resetTableView() {
         tableDisplay = insertController.createTableDisplay(table);
     }
 

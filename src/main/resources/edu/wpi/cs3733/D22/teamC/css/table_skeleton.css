@@ -2,7 +2,7 @@
 @import "fonts.css";
 
 .base_view_table_add {
-    -fx-background-color: -color-table-add;
+    -fx-background-color: -color-red-contrast;
     -fx-text-fill: -color-menu-text;
     -fx-border-radius: 10px
 }
@@ -15,7 +15,7 @@
 }
 
 .base_view_table_sub {
-    -fx-background-color: -color-table-sub;
+    -fx-background-color: -color-primary-light;
     -fx-text-fill: -color-black;
     -fx-border-radius: 10px;
 }
