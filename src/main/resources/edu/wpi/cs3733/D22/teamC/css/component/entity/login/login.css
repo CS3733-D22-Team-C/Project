@@ -58,7 +58,7 @@
     -fx-font-family: 'Kantumruy';
     -fx-font-style: normal;
     -fx-font-weight: 400;
-    -fx-font-size: 19px;
+    -fx-font-size: 12px;
     -fx-line-height: 21px;
     /* or 111% */
 
@@ -78,3 +78,4 @@
     -fx-background-color: #F44336; /*-fx-background-color does not support colors.css attribute*/
     -fx-border-radius: 4px;
 }
+
