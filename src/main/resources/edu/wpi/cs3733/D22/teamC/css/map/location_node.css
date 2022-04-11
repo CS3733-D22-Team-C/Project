@@ -1,0 +1,24 @@
+@import "base.css";
+
+/* Node Type Icons */
+.location-node {
+    -fx-fill: -color-primary;
+    -fx-cursor: hand;
+}
+
+.location-node:hover {
+    -fx-fill: -color-primary-light;
+}
+
+.location-node.active {
+    -fx-fill: -color-primary-dark;
+}
+
+.medical-equipment-node {
+    -fx-fill: #444444;
+    -fx-cursor: hand;
+}
+
+.medical-equipment-node:hover {
+    -fx-fill: rgb(121, 121, 121);
+}

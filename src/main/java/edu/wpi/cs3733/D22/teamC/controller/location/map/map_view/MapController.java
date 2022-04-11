@@ -1,5 +1,6 @@
-package edu.wpi.cs3733.D22.teamC.controller.location.map;
+package edu.wpi.cs3733.D22.teamC.controller.location.map.map_view;
 
+import edu.wpi.cs3733.D22.teamC.controller.location.map.BaseMapViewController;
 import edu.wpi.cs3733.D22.teamC.entity.floor.Floor;
 import edu.wpi.cs3733.D22.teamC.entity.floor.FloorDAO;
 import edu.wpi.cs3733.D22.teamC.entity.location.Location;
@@ -271,23 +272,6 @@ public class MapController implements Initializable {
 
             // Load LocationNodes
             locationNodes = renderLocationsNodes(floorLocations);
-        }
-    //#endregion
-
-    //#region Utility
-        private Circle drawCircle(double x, double y) {
-            Circle circle = new Circle();
-
-            circle.setCenterX(x);
-            circle.setCenterY(y);
-
-            circle.setRadius(12.5f);
-            circle.setFill(Color.DARKCYAN);
-
-            circle.setStrokeWidth(1.0);
-            circle.setStroke(Color.DARKSLATEGREY);
-
-            return circle;
         }
     //#endregion
 }

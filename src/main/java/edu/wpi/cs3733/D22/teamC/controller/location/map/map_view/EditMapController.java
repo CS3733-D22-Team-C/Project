@@ -1,4 +1,4 @@
-package edu.wpi.cs3733.D22.teamC.controller.location.map;
+package edu.wpi.cs3733.D22.teamC.controller.location.map.map_view;
 
 import edu.wpi.cs3733.D22.teamC.entity.location.Location;
 import javafx.scene.input.MouseButton;

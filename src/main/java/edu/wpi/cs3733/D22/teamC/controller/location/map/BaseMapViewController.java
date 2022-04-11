@@ -3,6 +3,8 @@ package edu.wpi.cs3733.D22.teamC.controller.location.map;
 import edu.wpi.cs3733.D22.teamC.App;
 import edu.wpi.cs3733.D22.teamC.controller.location.map.controls.EditMapControlsController;
 import edu.wpi.cs3733.D22.teamC.controller.location.map.controls.MapControlsController;
+import edu.wpi.cs3733.D22.teamC.controller.location.map.map_view.EditMapController;
+import edu.wpi.cs3733.D22.teamC.controller.location.map.map_view.MapController;
 import edu.wpi.cs3733.D22.teamC.entity.floor.Floor;
 import edu.wpi.cs3733.D22.teamC.entity.floor.FloorDAO;
 import edu.wpi.cs3733.D22.teamC.entity.location.Location;
@@ -14,7 +16,6 @@ import javafx.scene.paint.Color;
 import javafx.scene.shape.SVGPath;
 
 import java.net.URL;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.ResourceBundle;
 import java.util.stream.Collectors;
