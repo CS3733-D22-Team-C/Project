@@ -24,13 +24,25 @@ public class LocationTableDisplay extends TableDisplay<Location> {
             super(location);
             
             id          = new SimpleStringProperty((location.getNodeID()));
-            floor       = new SimpleStringProperty(location.getFloor());
+            floor       = new SimpleStringProperty((new FloorDAO()).getByID(object.getFloor()).getShortName());
             building    = new SimpleStringProperty(location.getBuilding());
             nodeType    = new SimpleStringProperty(location.getNodeType().toString());
             longName    = new SimpleStringProperty(location.getLongName());
             shortName   = new SimpleStringProperty(location.getShortName());
             x           = new SimpleIntegerProperty(location.getX());
             y           = new SimpleIntegerProperty(location.getY());
+        }
+
+        @Override
+        public void RefreshEntry() {
+            id.setValue(object.getNodeID());
+            floor.setValue((new FloorDAO()).getByID(object.getFloor()).getShortName());
+            building.setValue(object.getBuilding());
+            nodeType.setValue(object.getNodeType().toString());
+            longName.setValue(object.getLongName());
+            shortName.setValue(object.getShortName());
+            x.setValue(object.getX());
+            y.setValue(object.getY());
         }
     }
 
@@ -48,16 +60,16 @@ public class LocationTableDisplay extends TableDisplay<Location> {
         // Insert Columns for Table
         addColumn(
                 table,
-                "Floor",
+                "Long Name",
                 1f * Integer.MAX_VALUE * 16.66,
-                (LocationTableEntry entry) -> {return entry.floor;}
+                (LocationTableEntry entry) -> {return entry.longName;}
         );
 
         addColumn(
                 table,
-                "Building",
+                "Short Name",
                 1f * Integer.MAX_VALUE * 16.66,
-                (LocationTableEntry entry) -> {return entry.building;}
+                (LocationTableEntry entry) -> {return entry.shortName;}
         );
 
         addColumn(
@@ -69,16 +81,16 @@ public class LocationTableDisplay extends TableDisplay<Location> {
 
         addColumn(
                 table,
-                "Long Name",
+                "Floor",
                 1f * Integer.MAX_VALUE * 16.66,
-                (LocationTableEntry entry) -> {return entry.longName;}
+                (LocationTableEntry entry) -> {return entry.floor;}
         );
 
         addColumn(
                 table,
-                "Short Name",
+                "Building",
                 1f * Integer.MAX_VALUE * 16.66,
-                (LocationTableEntry entry) -> {return entry.shortName;}
+                (LocationTableEntry entry) -> {return entry.building;}
         );
 
         addColumn(
