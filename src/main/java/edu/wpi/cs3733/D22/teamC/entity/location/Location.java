@@ -116,7 +116,10 @@ public class Location {
     }
     
     public void setNodeType(NodeType nodeType) {
+        System.out.println("I am here");
         this.nodeType = nodeType;
+        System.out.println("I am not here");
+
     }
     
     public String getLongName() {
