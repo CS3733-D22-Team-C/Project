@@ -6,7 +6,7 @@ import org.hibernate.cfg.Configuration;
 
 /** Manage Hibernation session. */
 public class SessionManager {
-    private static boolean serverDatabase = true;
+    private static boolean serverDatabase = false;
 	private static SessionFactory sf = createSessionFactory(serverDatabase);
 
 	private SessionManager() {}
@@ -51,6 +51,6 @@ public class SessionManager {
 	public static void switchDatabase(boolean serverDatabase) {
         SessionManager.serverDatabase = serverDatabase;
         killSessionFactory();
-        createSessionFactory(serverDatabase);
+        sf = createSessionFactory(serverDatabase);
     }
 }
