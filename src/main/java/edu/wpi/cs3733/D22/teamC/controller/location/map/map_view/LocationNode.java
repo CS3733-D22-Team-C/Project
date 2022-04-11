@@ -1,19 +1,24 @@
 package edu.wpi.cs3733.D22.teamC.controller.location.map.map_view;
 
+import edu.wpi.cs3733.D22.teamC.App;
 import edu.wpi.cs3733.D22.teamC.entity.location.Location;
 import edu.wpi.cs3733.D22.teamC.entity.medical_equipment.MedicalEquipment;
 import edu.wpi.cs3733.D22.teamC.entity.medical_equipment.MedicalEquipmentDAO;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.scene.Group;
 import javafx.scene.control.Label;
+import javafx.scene.layout.Pane;
 import javafx.scene.shape.Circle;
 
+import java.io.IOException;
 import java.util.List;
 import java.util.stream.Collectors;
 
 public class LocationNode {
     // FXML
     @FXML private Group group;
+    @FXML private Circle node;
 
     @FXML private Group medicalEquipmentGroup;
 
@@ -29,10 +34,8 @@ public class LocationNode {
     @FXML private Group xrayGroup;
     @FXML private Label xrayCounter;
 
-    @FXML private Circle node;
-
     // Variables
-    private Location location;
+    Location location;
 
     public void setLocation(Location location) {
         this.location = location;
@@ -50,9 +53,33 @@ public class LocationNode {
         updateMedicalEquipmentGroup(pumpGroup, pumpCounter, medicalEquipments, MedicalEquipment.EquipmentType.Infusion_Pump);
     }
 
+    //#region Location Node Interaction
+        public void render(Pane pane) {
+            pane.getChildren().add(group);
+        }
+
+        public void remove(Pane pane) {
+            group.getChildren().clear();
+            pane.getChildren().remove(group);
+        }
+
+        public void setPosition(int newMapX, int newMapY) {
+            group.setTranslateX(newMapX);
+            group.setTranslateY(newMapY);
+        }
+
+        public void activate() {
+            node.getStyleClass().add("active");
+        }
+
+        public void deactivate() {
+            node.getStyleClass().remove("active");
+        }
+    //#endregion
+
     //#region Medical Equipment Interaction
         private void setMedicalEquipmentVisible(boolean visible) {
-            medicalEquipmentGroup.setOpacity(visible ? 1 : 0);
+            medicalEquipmentGroup.setVisible(visible);
         }
 
         private List<MedicalEquipment> filterMedicalEquipment(List<MedicalEquipment> medicalEquipments, MedicalEquipment.EquipmentType equipmentType) {
@@ -62,7 +89,31 @@ public class LocationNode {
         private void updateMedicalEquipmentGroup(Group group, Label counter, List<MedicalEquipment> medicalEquipments, MedicalEquipment.EquipmentType equipmentType) {
             List<MedicalEquipment> filtered = filterMedicalEquipment(medicalEquipments, equipmentType);
             counter.setText(Integer.toString(filtered.size()));
-            group.setOpacity((filtered.size() == 0) ? 0 : 1);
+            group.setVisible((filtered.size() != 0));
         }
     //#region
+
+    //#region Load Component
+        public static LocationNode loadNewLocationNode() {
+            try {
+                FXMLLoader loader = new FXMLLoader();
+                loader.setLocation(App.class.getResource("view/location/map/location_node.fxml"));
+                loader.load();
+                return loader.getController();
+            } catch (IOException e) {
+                e.printStackTrace();
+                return null;
+            }
+        }
+    //#endregion
+
+    //#region External Interaction
+        public Circle getLocationNodeCircle() {
+            return node;
+        }
+
+        public Group getLocationNodeGroup() {
+            return group;
+        }
+    //#endregion
 }
