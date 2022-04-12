@@ -172,6 +172,7 @@ public class BaseServiceRequestCreateController<T extends ServiceRequest> {
 
     public void setEmployee(Employee employee){
         serviceRequest.setAssignee(employee);
+        System.out.println(serviceRequest.getAssignee().getFirstName());
     }
 
 

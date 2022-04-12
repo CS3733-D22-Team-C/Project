@@ -1,6 +1,7 @@
 package edu.wpi.cs3733.D22.teamC.controller.component;
 
 import com.jfoenix.controls.JFXTreeTableView;
+import edu.wpi.cs3733.D22.teamC.App;
 import edu.wpi.cs3733.D22.teamC.controller.service_request.BaseServiceRequestCreateController;
 import edu.wpi.cs3733.D22.teamC.entity.employee.Employee;
 import edu.wpi.cs3733.D22.teamC.entity.location.Location;
@@ -14,6 +15,8 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
 import edu.wpi.cs3733.D22.teamC.entity.employee.EmployeeDAO;
 import edu.wpi.cs3733.D22.teamC.models.employee.EmployeeTableDisplay;
+import javafx.scene.control.TreeTableRow;
+import javafx.scene.input.MouseButton;
 
 import java.net.URL;
 import java.util.List;
@@ -26,6 +29,7 @@ public class EmployeeViewController implements Initializable {
 
     private EmployeeTableDisplay tableDisplay;
     private BaseServiceRequestCreateController parentController;
+    private Employee activeEmployee;
 
     @FXML
     private Label title;
@@ -51,10 +55,33 @@ public class EmployeeViewController implements Initializable {
 
     public void setup(BaseServiceRequestCreateController parentController){
         this.parentController = parentController;
+        setRowInteraction();
     }
 
     @FXML
     void onSelect(ActionEvent event) {
 
     }
+
+    protected void setRowInteraction() {
+        table.setRowFactory(tv -> {
+            TreeTableRow<EmployeeTableDisplay.EmployeeTableEntry> row = new TreeTableRow<EmployeeTableDisplay.EmployeeTableEntry>();
+
+            row.setOnMouseClicked(event -> {
+                if (!row.isEmpty() && event.getButton() == MouseButton.PRIMARY) {
+                    activeEmployee = (Employee) row.getItem().object;
+                    System.out.println(activeEmployee.getFirstName());
+
+                    if (event.getClickCount() == 2) {
+                        // Double Click shortcut back to base page
+                        parentController.setEmployee(activeEmployee);
+                        App.instance.getStage().close();
+                    }
+                }
+            });
+
+            return row ;
+        });
+    }
+
 }
