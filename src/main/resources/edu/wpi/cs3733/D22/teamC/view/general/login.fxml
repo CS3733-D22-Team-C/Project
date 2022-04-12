@@ -154,7 +154,7 @@
             <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
          </rowConstraints>
          <children>
-            <MFXToggleButton fx:id="toggleButton" onMouseDragExited="#toggleDragged" prefHeight="46.0" prefWidth="200.0" translateY="5.0" />
+            <MFXToggleButton fx:id="toggleButton" prefHeight="46.0" prefWidth="200.0" translateY="5.0" />
          </children>
       </GridPane>
    </children>

@@ -42,6 +42,7 @@ public class LoginPageController implements Initializable {
         setTextLengthLimiter(password, 20);
         invalidLogin.setVisible(false);
         toggleButton.setText("Switch to server");
+        toggleButton.setOnAction(e -> switchLabelText(toggleButton.isSelected()));
     }
 
 
@@ -64,8 +65,6 @@ public class LoginPageController implements Initializable {
             App.instance.setUserAccount(eDAO.getEmployeeByUsername(username.getText()));
             App.instance.setView(App.VIEW_SERVICE_REQUESTS_PATH);
         }
-
-
     }
 
     @FXML
@@ -93,13 +92,13 @@ public class LoginPageController implements Initializable {
         });
     }
 
-    public void toggleDragged(MouseDragEvent mouseDragEvent) {
-       if(toggleButton.getText().equals("Switch to Server"))
+    public void switchLabelText(boolean isSelected) {
+       if(isSelected && (toggleButton.getText().equals("Switch to Server")))
        {
            SessionManager.switchDatabase(SessionManager.DBMode.EMBEDDED);
            toggleButton.setText("Switch to Embedded");
        }
-       else
+       else if(isSelected && (toggleButton.getText().equals("Switch to Embedded")))
        {
            SessionManager.switchDatabase(SessionManager.DBMode.SERVER);
            toggleButton.setText("Switch to Server");
