@@ -27,7 +27,34 @@ import java.util.List;
  */
 public class ServiceRequestWriter {
     
-    // TODO: write all in one file, write specifics with given parameter (or SR type)
+    // TODO: write all in one file
+    
+    /**
+     * Write a CSV of the data for one particular type of Service Request
+     * @param serviceRequest The type of service request.
+     */
+    public void writeOne(ServiceRequest serviceRequest) {
+        switch (serviceRequest.getRequestType()) {
+            case Facility_Maintenance:
+                writeFacilitySR();
+                break;
+            case Lab_System:
+                writeLabSystemSR();
+                break;
+            case Medical_Equipment:
+                writeMedicalEquipmentSR();
+                break;
+            case Medicine_Delivery:
+                writeMedicineDeliverySR();
+                break;
+            case Sanitation:
+                writeSanitationSR();
+                break;
+            case Security:
+                writeSecuritySR();
+                break;
+        }
+    }
     
     /**
      * Write all ServiceRequest database information into separate files.
