@@ -3,7 +3,7 @@ package edu.wpi.cs3733.D22.teamC.controller.general.login_page;
 import edu.wpi.cs3733.D22.teamC.App;
 import edu.wpi.cs3733.D22.teamC.entity.employee.EmployeeDAO;
 import edu.wpi.cs3733.D22.teamC.error.error_item.user_input.login.LoginErrorItem;
-import edu.wpi.cs3733.D22.teamC.user_input_validation.login.LoginEvaluator;
+import edu.wpi.cs3733.D22.teamC.validation.login.LoginEvaluator;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.event.ActionEvent;
