@@ -1,19 +1,19 @@
-package edu.wpi.cs3733.D22.teamC.user_input_validation.service_request.medicine_delivery;
+package edu.wpi.cs3733.D22.teamC.validation.service_request.medicine_delivery;
 
-import edu.wpi.cs3733.D22.teamC.error.error_item.service_request_user_input_validation.ServiceRequestUserInputValidationErrorItem;
-import edu.wpi.cs3733.D22.teamC.error.error_record.service_request_user_input_validation.ServiceRequestUserInputValidationErrorRecord;
-import edu.wpi.cs3733.D22.teamC.user_input_validation.service_request.ServiceRequestFormEvaluator;
+import edu.wpi.cs3733.D22.teamC.error.error_item.user_input.service_request.SRErrorItem;
+import edu.wpi.cs3733.D22.teamC.error.error_record.service_request.SRErrorRecord;
+import edu.wpi.cs3733.D22.teamC.validation.service_request.SRFormEvaluator;
 import javafx.scene.control.SingleSelectionModel;
 
 import java.util.ArrayList;
 
-public class MedicineDeliverySRFormEvaluator extends ServiceRequestFormEvaluator {
+public class MedicineDeliverySRFormEvaluator extends SRFormEvaluator {
 
     public MedicineDeliverySRFormEvaluator() {}
 
-    public ArrayList<ServiceRequestUserInputValidationErrorItem> getMedicineDeliverySRValidationTestResult(String location, String assigneeID, SingleSelectionModel priority, SingleSelectionModel status, String patientID, String medicine, String dosage)
+    public ArrayList<SRErrorItem> getMedicineDeliverySRValidationTestResult(String location, String assigneeID, SingleSelectionModel priority, SingleSelectionModel status, String patientID, String medicine, String dosage)
     {
-        ArrayList <ServiceRequestUserInputValidationErrorItem> errorList = new ArrayList <ServiceRequestUserInputValidationErrorItem> ();
+        ArrayList <SRErrorItem> errorList = new ArrayList <SRErrorItem> ();
 
         errorList.addAll(super.getBasicRequiredFieldsFilledValidationResult(location, assigneeID, priority, status));
         errorList.add(super.getValidateAssigneeIDResult(assigneeID));
@@ -30,11 +30,11 @@ public class MedicineDeliverySRFormEvaluator extends ServiceRequestFormEvaluator
      * @param patientID
      * @return ServiceRequestUserInputValidationErrorItem
      */
-    public ServiceRequestUserInputValidationErrorItem checkPatientIDFilled(String patientID)
+    public SRErrorItem checkPatientIDFilled(String patientID)
     {
         if(patientID.isEmpty())
         {
-            return ServiceRequestUserInputValidationErrorRecord.serviceRequestUserInputValidationErrorList[10];
+            return SRErrorRecord.serviceRequestUserInputValidationErrorList[10];
         }
         else
         {
@@ -43,7 +43,7 @@ public class MedicineDeliverySRFormEvaluator extends ServiceRequestFormEvaluator
 
             if(patientIDLength == 0)
             {
-                return ServiceRequestUserInputValidationErrorRecord.serviceRequestUserInputValidationErrorList[10];
+                return SRErrorRecord.serviceRequestUserInputValidationErrorList[10];
             }
             else
             {
@@ -57,11 +57,11 @@ public class MedicineDeliverySRFormEvaluator extends ServiceRequestFormEvaluator
      * @param medicine
      * @return ServiceRequestUserInputValidationErrorItem
      */
-    public ServiceRequestUserInputValidationErrorItem checkMedicineFilled(String medicine)
+    public SRErrorItem checkMedicineFilled(String medicine)
     {
         if(medicine.isEmpty())
         {
-            return ServiceRequestUserInputValidationErrorRecord.serviceRequestUserInputValidationErrorList[11];
+            return SRErrorRecord.serviceRequestUserInputValidationErrorList[11];
         }
         else
         {
@@ -74,11 +74,11 @@ public class MedicineDeliverySRFormEvaluator extends ServiceRequestFormEvaluator
      * @param dosage
      * @return ServiceRequestUserInputValidationErrorItem
      */
-    public ServiceRequestUserInputValidationErrorItem checkDosageFilled(String dosage)
+    public SRErrorItem checkDosageFilled(String dosage)
     {
         if(dosage.isEmpty())
         {
-            return ServiceRequestUserInputValidationErrorRecord.serviceRequestUserInputValidationErrorList[12];
+            return SRErrorRecord.serviceRequestUserInputValidationErrorList[12];
         }
         else
         {
@@ -87,7 +87,7 @@ public class MedicineDeliverySRFormEvaluator extends ServiceRequestFormEvaluator
     }
 
     @Override
-    public boolean noServiceRequestFormUserInputErrors(ArrayList<ServiceRequestUserInputValidationErrorItem> l) {
+    public boolean noServiceRequestFormUserInputErrors(ArrayList<SRErrorItem> l) {
         return super.noServiceRequestFormUserInputErrors(l);
     }
 }
