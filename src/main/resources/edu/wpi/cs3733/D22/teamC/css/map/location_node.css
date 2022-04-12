@@ -16,9 +16,18 @@
 
 .medical-equipment-node {
     -fx-fill: #444444;
+}
+
+.medical-equipment-arrow {
+    -fx-fill: white;
     -fx-cursor: hand;
 }
 
-.medical-equipment-node:hover {
-    -fx-fill: rgb(121, 121, 121);
+.medical-equipment-arrow:hover {
+    -fx-fill: #adadad;
+}
+
+.medical-equipment-arrow:disabled {
+    -fx-fill: rgba(255, 255, 255, 0.25);
+    -fx-stroke: rgba(0, 0, 0, 0.25);
 }

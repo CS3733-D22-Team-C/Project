@@ -38,7 +38,7 @@ public class MapController implements Initializable {
     @FXML StackPane stackPane;
 
     // Variables
-    protected List<LocationNode> locationNodes = new ArrayList<>();
+    public List<LocationNode> locationNodes = new ArrayList<>();
     protected LocationNode activeLocation;
 
     // References
@@ -85,7 +85,7 @@ public class MapController implements Initializable {
          */
         public void addLocationNode(Location location) {
             // Load Location Node
-            LocationNode locationNode = LocationNode.loadNewLocationNode();
+            LocationNode locationNode = LocationNode.loadNewLocationNode(this);
             locationNode.setLocation(location);
             locationNodes.add(locationNode);
 

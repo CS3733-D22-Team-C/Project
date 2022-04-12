@@ -18,6 +18,7 @@ import javafx.scene.control.*;
 import javafx.scene.shape.SVGPath;
 
 import java.net.URL;
+import java.util.List;
 import java.util.ResourceBundle;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
@@ -148,7 +149,8 @@ public class InfoPaneController implements Initializable {
 
             // Medical Equipment
             serviceRequestTableDisplay.emptyTable();
-            new MedicalEquipmentDAO().getEquipmentByLocation(location.getNodeID()).forEach(medicalEquipmentTableDisplay::addObject);
+            List<MedicalEquipment> medicalEquipments = parentController.medicalEquipmentManager.getPerLocation(location);
+            medicalEquipments.forEach(medicalEquipmentTableDisplay::addObject);
 
             // Service Requests
             serviceRequestTableDisplay.emptyTable();

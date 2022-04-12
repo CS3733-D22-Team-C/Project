@@ -10,29 +10,30 @@ import javafx.scene.Group;
 import javafx.scene.control.Label;
 import javafx.scene.layout.Pane;
 import javafx.scene.shape.Circle;
+import javafx.util.Pair;
 
 import java.io.IOException;
 import java.util.List;
+import java.util.Map;
 import java.util.stream.Collectors;
 
-public class LocationNode {
+public class LocationNode extends Group {
+    // Constants
+    private final static Pair<Integer, Integer>[] MEDICAL_EQUIPMENT_COUNTER_NODE_OFFSETS = new Pair[] {
+        new Pair<>(10, -55),
+        new Pair<>(30, -25),
+        new Pair<>(30, 5),
+        new Pair<>(10, 35)
+    };
+
     // FXML
     @FXML private Group group;
+    @FXML private Group contextGroup;
     @FXML private Circle node;
 
-    @FXML private Group medicalEquipmentGroup;
-
-    @FXML private Group bedGroup;
-    @FXML private Label bedCounter;
-
-    @FXML private Group pumpGroup;
-    @FXML private Label pumpCounter;
-
-    @FXML private Group reclinerGroup;
-    @FXML private Label reclinerCounter;
-
-    @FXML private Group xrayGroup;
-    @FXML private Label xrayCounter;
+    // References
+    MapController mapController;
+    public MedicalEquipmentCounterNode[] medicalEquipmentCounterNodes = new MedicalEquipmentCounterNode[MedicalEquipment.EquipmentType.values().length];
 
     // Variables
     Location location;
@@ -44,16 +45,31 @@ public class LocationNode {
         group.setTranslateX(location.getX());
         group.setTranslateY(location.getY());
 
-        // Initialize Medical Equipment
-        List<MedicalEquipment> medicalEquipments = new MedicalEquipmentDAO().getEquipmentByLocation(location.getNodeID());
-
-        updateMedicalEquipmentGroup(bedGroup, bedCounter, medicalEquipments, MedicalEquipment.EquipmentType.Bed);
-        updateMedicalEquipmentGroup(xrayGroup, xrayCounter, medicalEquipments, MedicalEquipment.EquipmentType.Portable_X_Ray);
-        updateMedicalEquipmentGroup(reclinerGroup, reclinerCounter, medicalEquipments, MedicalEquipment.EquipmentType.Recliner);
-        updateMedicalEquipmentGroup(pumpGroup, pumpCounter, medicalEquipments, MedicalEquipment.EquipmentType.Infusion_Pump);
+        addMedicalEquipmentCounters();
     }
 
-    //#region Location Node Interaction
+    //#region Medical Equipment Counter Node Interaction
+        public void addMedicalEquipmentCounters() {
+            for (MedicalEquipment.EquipmentType equipType : MedicalEquipment.EquipmentType.values()) {
+                addMedicalEquipmentCounter(equipType);
+            }
+        }
+
+        /**
+         * Create a Medical Equipment Counter Node for the given Location.
+         * @param equipmentType The Equipment Type to create the Location Node for.
+         */
+        public void addMedicalEquipmentCounter(MedicalEquipment.EquipmentType equipmentType) {
+            // Load Medical Equipment Counter
+            MedicalEquipmentCounterNode medicalEquipmentCounterNode = MedicalEquipmentCounterNode.loadNewMedicalEquipmentCounterNode(equipmentType);
+            medicalEquipmentCounterNode.setLocationNode(this);
+            medicalEquipmentCounterNodes[equipmentType.ordinal()] = medicalEquipmentCounterNode;
+
+            medicalEquipmentCounterNode.render(contextGroup, MEDICAL_EQUIPMENT_COUNTER_NODE_OFFSETS[equipmentType.ordinal()]);
+        }
+    //#endregion
+
+    //#region State Updates
         public void render(Pane pane) {
             pane.getChildren().add(group);
         }
@@ -93,36 +109,6 @@ public class LocationNode {
         }
     //#endregion
 
-    //#region Medical Equipment Interaction
-        private void setMedicalEquipmentVisible(boolean visible) {
-            medicalEquipmentGroup.setVisible(visible);
-        }
-
-        private List<MedicalEquipment> filterMedicalEquipment(List<MedicalEquipment> medicalEquipments, MedicalEquipment.EquipmentType equipmentType) {
-            return medicalEquipments.stream().filter(medicalEquipment -> medicalEquipment.getEquipmentType() == equipmentType).collect(Collectors.toList());
-        }
-
-        private void updateMedicalEquipmentGroup(Group group, Label counter, List<MedicalEquipment> medicalEquipments, MedicalEquipment.EquipmentType equipmentType) {
-            List<MedicalEquipment> filtered = filterMedicalEquipment(medicalEquipments, equipmentType);
-            counter.setText(Integer.toString(filtered.size()));
-            group.setVisible((filtered.size() != 0));
-        }
-    //#region
-
-    //#region Load Component
-        public static LocationNode loadNewLocationNode() {
-            try {
-                FXMLLoader loader = new FXMLLoader();
-                loader.setLocation(App.class.getResource("view/location/map/location_node.fxml"));
-                loader.load();
-                return loader.getController();
-            } catch (IOException e) {
-                e.printStackTrace();
-                return null;
-            }
-        }
-    //#endregion
-
     //#region External Interaction
         public Circle getLocationNodeCircle() {
             return node;
@@ -130,6 +116,15 @@ public class LocationNode {
 
         public Group getLocationNodeGroup() {
             return group;
+        }
+    //#endregion
+
+    //#region Load Component
+        public static LocationNode loadNewLocationNode(MapController mapController) {
+            App.View<LocationNode> view = App.instance.loadView("view/location/map/map_view/location_node.fxml");
+            LocationNode locationNode = view.getController();
+            locationNode.mapController = mapController;
+            return locationNode;
         }
     //#endregion
 }

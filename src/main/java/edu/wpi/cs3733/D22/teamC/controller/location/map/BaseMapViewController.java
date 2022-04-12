@@ -22,7 +22,7 @@ import java.util.stream.Collectors;
 
 public class BaseMapViewController implements Initializable {
     // Constants
-    public static final String MAP_PATH = "view/location/map/map.fxml";
+    public static final String MAP_PATH = "view/location/map/map_view/map.fxml";
     public static final String VIEW_CONTROLS_PATH = "view/location/map/controls/view_controls.fxml";
     public static final String EDIT_CONTROLS_PATH = "view/location/map/controls/edit_controls.fxml";
     public static final String INFO_PANE_PATH = "view/location/map/info_pane.fxml";
@@ -34,6 +34,7 @@ public class BaseMapViewController implements Initializable {
 
     // Controllers
     MapController mapController;
+    public MedicalEquipmentManager medicalEquipmentManager;
     InfoPaneController infoPaneController;
     MapControlsController mapControlsController;
     
@@ -55,6 +56,9 @@ public class BaseMapViewController implements Initializable {
         // Get Locations
         this.locations = new LocationDAO().getAll();
         this.currentLocation = null;
+
+        // Initialize Medical Equipment Manager
+        medicalEquipmentManager = new MedicalEquipmentManager(this);
 
         // Setup Info Pane
         App.View infoPane = App.instance.loadView(INFO_PANE_PATH);
