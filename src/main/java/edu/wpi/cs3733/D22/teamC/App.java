@@ -57,7 +57,6 @@ public class App extends Application {
     public static final String SERVICE_REQUEST_LANDING_PAGE = "view/service_request/service_request_landing_page.fxml";
 
     public static final String MAP_PATH = "view/location/map/base_map_view.fxml";
-    public static final String TOGGLE_BUTTON_PATH = "view/component/database_toggle.fxml";
 
     public static final String BASE_CSS_PATH = "css/base.css";
     //public static final String IMAGE_PATH = "static/images/BrighamAndWomensHospital.png";
@@ -219,14 +218,10 @@ public class App extends Application {
         // Load Sidebar Menu
         Node sidebarNode = loadView(SIDEBAR_PATH).getNode();
 
-        //Load toggle button
-        Node toggleButton = loadView(TOGGLE_BUTTON_PATH).getNode();
-
         // Embed views and components
         //baseNode.setTop(menuBarNode);
         baseNode.setCenter(viewNode);
         baseNode.setLeft(sidebarNode);
-        baseNode.setLeft(toggleButton);
         baseNode.autosize();
 
         if (scene != null) scene.setRoot(baseNode);
@@ -244,13 +239,9 @@ public class App extends Application {
         // TODO: Find a way to only change the center of the baseNode, nothing else
         Node menuBarNode = loadView(MENU_BAR_COMPONENT_PATH).getNode();
 
-        //Load toggle button
-        Node toggleButton = loadView(TOGGLE_BUTTON_PATH).getNode();
-
         // Embed views and components
         //baseNode.setTop(menuBarNode);
         baseNode.setCenter(viewNode);
-        baseNode.setLeft(toggleButton);
         baseNode.autosize();
 
         if (scene != null) scene.setRoot(baseNode);

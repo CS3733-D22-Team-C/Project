@@ -5,6 +5,7 @@ import edu.wpi.cs3733.D22.teamC.controller.component.sidebar.SidebarMenuControll
 import edu.wpi.cs3733.D22.teamC.entity.employee.EmployeeDAO;
 import edu.wpi.cs3733.D22.teamC.error.error_item.user_input_validation_error_item.login_user_input_validation_error_item.LoginUserInputValidationErrorItem;
 import edu.wpi.cs3733.D22.teamC.user_input_validation.login.LoginEvaluator;
+import io.github.palexdev.materialfx.controls.MFXButton;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.event.ActionEvent;
@@ -28,12 +29,17 @@ public class LoginPageController implements Initializable {
     @FXML
     Label invalidLogin;
 
+    @FXML
+    MFXButton toggleButton;
+
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         setTextLengthLimiter(username, 20);
         setTextLengthLimiter(password, 20);
         invalidLogin.setVisible(false);
     }
+
+
 
     @FXML
     public void loginButtonClicked(ActionEvent event) {

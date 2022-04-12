@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import io.github.palexdev.materialfx.controls.MFXButton?>
+<?import io.github.palexdev.materialfx.controls.MFXToggleButton?>
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TextField?>
@@ -143,6 +144,17 @@
                   </VBox>
                </children>
             </HBox>
+         </children>
+      </GridPane>
+      <GridPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="40.0" prefWidth="202.0" styleClass="toggle-button-background" stylesheets="@../../css/toggle_button.css" translateY="-300.0">
+         <columnConstraints>
+            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+         </columnConstraints>
+         <rowConstraints>
+            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+         </rowConstraints>
+         <children>
+            <MFXToggleButton fx:id="toggleButton" onSwipeLeft="#toggleDragged" onSwipeRight="#toggleDragged" prefHeight="34.0" prefWidth="200.0" translateY="5.0" />
          </children>
       </GridPane>
    </children>
