@@ -13,7 +13,7 @@ public class EmployeeDAO extends DAO<Employee> {
     }
 
     public Employee getEmployeeByUsername(String username) {
-        List<Employee> employee = HibernateManager.filterQuery("select u from " + classType().getName() + " u where a.username = '" + username + "'");
+        List<Employee> employee = HibernateManager.filterQuery("select u from " + classType().getName() + " u where u.username = '" + username + "'");
         if (employee.size() == 1) {
             return employee.get(0);
         }
