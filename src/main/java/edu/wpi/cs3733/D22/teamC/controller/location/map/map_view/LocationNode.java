@@ -75,6 +75,12 @@ public class LocationNode {
                 medicalEquipmentCounterNode.setEditable(editable);
             }
         }
+
+        public void releaseAllMedicalEquipment() {
+            for (MedicalEquipmentCounterNode medicalEquipmentCounterNode : medicalEquipmentCounterNodes) {
+                medicalEquipmentCounterNode.releaseAllMedicalEquipment();
+            }
+        }
     //#endregion
 
     //#region State Updates

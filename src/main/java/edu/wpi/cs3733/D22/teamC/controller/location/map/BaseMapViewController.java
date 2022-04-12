@@ -185,6 +185,9 @@ public class BaseMapViewController implements Initializable {
             // Location deletion reflected in Controls
             setSaveStatus();
 
+            // Location deletion reflected in Medical Equipment Manager
+            mapController.getLocationNode(location).releaseAllMedicalEquipment();
+
             // Location deletion reflected in Map View
             if (location.getFloor().equals(currentFloor.getFloorID())) mapController.removeLocationNode(location);
 

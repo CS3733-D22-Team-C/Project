@@ -96,6 +96,12 @@ public class MedicalEquipmentCounterNode {
     //#endregion
 
     //#region External Interaction
+        public void releaseAllMedicalEquipment() {
+            for (MedicalEquipment medicalEquipment : medicalEquipments) {
+                locationNode.mapController.parentController.medicalEquipmentManager.releaseMedicalEquipment(medicalEquipment);
+            }
+        }
+
         public Group getGroup() {
             return group;
         }

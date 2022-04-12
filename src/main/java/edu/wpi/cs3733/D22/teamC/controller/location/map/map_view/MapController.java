@@ -58,7 +58,7 @@ public class MapController implements Initializable {
     }
 
     //#region Location Node Interaction
-        private final LocationNode getLocationNode(Location location) {
+        public final LocationNode getLocationNode(Location location) {
             List<LocationNode> locationNodeList = locationNodes.stream().filter(locationNode -> locationNode.location.getNodeID().equals(location.getNodeID())).collect(Collectors.toList());
             return (locationNodeList.size() > 0) ? locationNodeList.get(0) : null;
         }

@@ -13,7 +13,6 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" styleClass="card" stylesheets="@../../../../css/map/controls.css" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.wpi.cs3733.D22.teamC.controller.location.map.controls.EditMapControlsController">
    <children>
       <VBox alignment="TOP_RIGHT" maxWidth="1.7976931348623157E308" prefWidth="316.8" styleClass="inner-card">
@@ -58,12 +57,12 @@
                               </HBox>
                               <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" GridPane.hgrow="ALWAYS" GridPane.rowIndex="2" GridPane.vgrow="ALWAYS">
                                  <children>
-                                    <MFXButton fx:id="importButton" buttonType="RAISED" minHeight="30.0" minWidth="150.0" onAction="#onImportButtonPressed" rippleColor="BLACK" styleClass="alt-button" text="Import CSV" />
+                                    <MFXButton fx:id="importButton" buttonType="RAISED" minHeight="30.0" minWidth="150.0" onAction="#onImportButtonPressed" rippleColor="BLACK" styleClass="alt-button" text="Import CSV" visible="false" />
                                  </children>
                               </HBox>
                               <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" GridPane.hgrow="ALWAYS" GridPane.rowIndex="3" GridPane.vgrow="ALWAYS">
                                  <children>
-                                    <MFXButton fx:id="exportButton" buttonType="RAISED" minHeight="30.0" minWidth="150.0" onAction="#onExportButtonPressed" styleClass="alt-button" text="Export CSV" />
+                                    <MFXButton fx:id="exportButton" buttonType="RAISED" minHeight="30.0" minWidth="150.0" onAction="#onExportButtonPressed" styleClass="alt-button" text="Export CSV" visible="false" />
                                  </children>
                               </HBox>
                               <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" GridPane.rowIndex="4">
