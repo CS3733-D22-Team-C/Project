@@ -15,10 +15,10 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<GridPane prefHeight="626.0" prefWidth="1471.0" styleClass="grid-pane" stylesheets="@../../css/component/entity/login/login.css" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.wpi.cs3733.D22.teamC.controller.general.login_page.LoginPageController">
+<GridPane prefHeight="626.0" prefWidth="1508.0" styleClass="grid-pane" stylesheets="@../../css/component/entity/login/login.css" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.wpi.cs3733.D22.teamC.controller.general.login_page.LoginPageController">
    <columnConstraints>
-      <ColumnConstraints hgrow="SOMETIMES" maxWidth="1155.2000732421875" minWidth="10.0" prefWidth="1140.0" />
-      <ColumnConstraints hgrow="SOMETIMES" maxWidth="584.0000122070312" minWidth="10.0" prefWidth="331.20000000000005" />
+      <ColumnConstraints hgrow="SOMETIMES" maxWidth="1202.4000244140625" minWidth="10.0" prefWidth="1184.8000244140626" />
+      <ColumnConstraints hgrow="SOMETIMES" maxWidth="584.0000122070312" minWidth="10.0" prefWidth="323.9999755859376" />
    </columnConstraints>
    <rowConstraints>
       <RowConstraints minHeight="10.0" vgrow="SOMETIMES" />
@@ -32,7 +32,7 @@
             <RowConstraints maxHeight="1.7976931348623157E308" minHeight="10.0" vgrow="ALWAYS" />
          </rowConstraints>
          <children>
-            <HBox prefHeight="626.0" prefWidth="574.0" GridPane.hgrow="ALWAYS" GridPane.vgrow="ALWAYS" VBox.vgrow="ALWAYS">
+            <HBox prefHeight="626.0" prefWidth="358.0" GridPane.hgrow="ALWAYS" GridPane.vgrow="ALWAYS" VBox.vgrow="ALWAYS">
                <children>
                   <VBox prefHeight="626.0" prefWidth="342.0">
                      <children>
@@ -73,7 +73,7 @@
                                           <Font size="10.0" />
                                        </font>
                                     </Label>
-                                    <VBox maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="200.0" prefWidth="100.0" GridPane.hgrow="ALWAYS" GridPane.rowIndex="1" GridPane.vgrow="ALWAYS">
+                                    <VBox maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="96.0" prefWidth="348.0" GridPane.hgrow="ALWAYS" GridPane.rowIndex="1" GridPane.vgrow="ALWAYS">
                                        <children>
                                           <Label styleClass="login-username-label" stylesheets="@../../css/component/entity/login/login.css" text="Username" translateX="75.0" translateY="30.0" />
                                           <TextField fx:id="username" prefHeight="26.0" prefWidth="240.0" styleClass="login-username-field" stylesheets="@../../css/component/entity/login/login.css" translateY="50.0">
