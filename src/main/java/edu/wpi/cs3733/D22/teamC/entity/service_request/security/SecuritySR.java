@@ -19,6 +19,12 @@ public class SecuritySR extends ServiceRequest {
         TORNADO
     }
 
+    public SecuritySR() {}
+    
+    public SecuritySR(ServiceRequest serviceRequest) {
+        super(serviceRequest);
+    }
+    
     public SecurityType getSecurityType() {
         return securityType;
     }

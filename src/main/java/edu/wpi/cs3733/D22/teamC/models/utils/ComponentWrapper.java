@@ -2,6 +2,8 @@ package edu.wpi.cs3733.D22.teamC.models.utils;
 
 import edu.wpi.cs3733.D22.teamC.entity.floor.Floor;
 import edu.wpi.cs3733.D22.teamC.entity.floor.FloorDAO;
+import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.ListCell;
 import javafx.scene.control.ListView;
@@ -18,5 +20,12 @@ public class ComponentWrapper {
         };
         comboBox.setCellFactory(factory);
         comboBox.setButtonCell(factory.call(null));
+    }
+
+    public static <T> void setValueSilently(ComboBox<T> comboBox, T value) {
+        EventHandler<ActionEvent> filter = e -> e.consume();
+        comboBox.addEventFilter(ActionEvent.ACTION, filter);
+        comboBox.setValue(value);
+        comboBox.removeEventFilter(ActionEvent.ACTION, filter);
     }
 }

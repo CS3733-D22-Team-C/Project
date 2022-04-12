@@ -19,7 +19,7 @@ public class EmployeeFactory implements Factory<Employee> {
         String address = "100 institute road";
         Employee.Role role = Employee.Role.values()[generator.nextInt(Employee.Role.values().length)];
         Boolean isAdmin = generator.nextBoolean();
-        String username = "wwong";
+        String username = generateRandomString(8);
         String password = generateRandomString(8);
 
         employee.setFirstName(firstName);

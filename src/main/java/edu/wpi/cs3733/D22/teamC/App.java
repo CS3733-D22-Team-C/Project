@@ -1,9 +1,13 @@
 package edu.wpi.cs3733.D22.teamC;
 
+import edu.wpi.cs3733.D22.teamC.entity.employee.Employee;
+import edu.wpi.cs3733.D22.teamC.entity.employee.EmployeeDAO;
 import edu.wpi.cs3733.D22.teamC.entity.floor.Floor;
 import edu.wpi.cs3733.D22.teamC.entity.floor.FloorDAO;
 import edu.wpi.cs3733.D22.teamC.entity.location.Location;
 import edu.wpi.cs3733.D22.teamC.entity.location.LocationDAO;
+import edu.wpi.cs3733.D22.teamC.entity.medical_equipment.MedicalEquipment;
+import edu.wpi.cs3733.D22.teamC.entity.medical_equipment.MedicalEquipmentDAO;
 import edu.wpi.cs3733.D22.teamC.entity.service_request.medical_equipment.MedicalEquipmentSR;
 import edu.wpi.cs3733.D22.teamC.entity.service_request.medical_equipment.MedicalEquipmentSRDAO;
 import edu.wpi.cs3733.D22.teamC.fileio.csv.*;
@@ -50,14 +54,20 @@ public class App extends Application {
 
     public static final String LOGIN_PATH = "view/general/login.fxml";
     public static final String VIEW_LOCATIONS_PATH = "view/location/view_locations.fxml";
+
     public static final String VIEW_SERVICE_REQUESTS_PATH = "view/service_request/view_service_requests.fxml";
+    public static final String SERVICE_REQUEST_LANDING_PAGE = "view/service_request/service_request_landing_page.fxml";
+
     public static final String MAP_PATH = "view/location/map/base_map_view.fxml";
 
     public static final String BASE_CSS_PATH = "css/base.css";
     //public static final String IMAGE_PATH = "static/images/BrighamAndWomensHospital.png";
-    
+
     // Singleton Instance
     public static App instance;
+
+    //Employee
+    private Employee userAccount;
 
     // Variables
     private Stage stage;
@@ -65,6 +75,8 @@ public class App extends Application {
 
     @Override
     public void init() {
+        SessionManager.switchDatabase(SessionManager.DBMode.EMBEDDED);
+
         // Load CSV Data - Floor
         {
             FloorCSVReader csvReader = new FloorCSVReader();
@@ -89,14 +101,38 @@ public class App extends Application {
             }
         }
 
+        // Load CSV Data = Employee
+        {
+            EmployeeCSVReader csvReader =  new EmployeeCSVReader();
+            List<Employee> employees = csvReader.readFile("Employees.csv");
+            if(employees !=null){
+                EmployeeDAO employeeDAO = new EmployeeDAO();
+                for(Employee employee : employees){
+                    employeeDAO.insert(employee);
+                }
+            }
+        }
+
         // Load CSV Data - Medical Equipment Service Request
         {
             MedicalEquipmentSRCSVReader csvReader = new MedicalEquipmentSRCSVReader();
-            List<MedicalEquipmentSR> MedicalEquipmentSRs = csvReader.readFile("MedEquipReq.csv");
-            if(MedicalEquipmentSRs != null){
+            List<MedicalEquipmentSR> medicalEquipmentSRs = csvReader.readFile("MedEquipReq.csv");
+            if(medicalEquipmentSRs != null){
                 MedicalEquipmentSRDAO serviceRequestDAO = new MedicalEquipmentSRDAO();
-                for(MedicalEquipmentSR medEquipSR : MedicalEquipmentSRs){
+                for(MedicalEquipmentSR medEquipSR : medicalEquipmentSRs){
                     serviceRequestDAO.insert(medEquipSR);
+                }
+            }
+        }
+
+        // Load CSV Data - Medical Equipment
+        {
+            MedicalEquipmentCSVReader csvReader = new MedicalEquipmentCSVReader();
+            List<MedicalEquipment> medicalEquipments = csvReader.readFile("MedicalEquip.csv");
+            if(medicalEquipments != null){
+                MedicalEquipmentDAO medicalEquipmentDAO = new MedicalEquipmentDAO();
+                for(MedicalEquipment medicalEquipment : medicalEquipments){
+                    medicalEquipmentDAO.insert(medicalEquipment);
                 }
             }
         }
@@ -138,6 +174,17 @@ public class App extends Application {
             }
         }
 
+        //Export CSV Data - Employee
+        {
+            EmployeeCSVWriter csvWriter = new EmployeeCSVWriter();
+            EmployeeDAO employeeDAO = new EmployeeDAO();
+            List<Employee> employees = employeeDAO.getAll();
+            if(employees!=null){
+                csvWriter.writeFile("Employees.csv", employees);
+            }
+        }
+
+
         // Export CSV Data - Medical Equipment Service Requests
         {
             MedicalEquipmentSRCSVWriter csvWriter = new MedicalEquipmentSRCSVWriter();
@@ -145,6 +192,16 @@ public class App extends Application {
             List<MedicalEquipmentSR> serviceRequests = serviceRequestDAO.getAll();
             if (serviceRequests != null){
                 csvWriter.writeFile("MedEquipReq.csv", serviceRequests);
+            }
+        }
+
+        // Export CSV Data - Medical Equipment
+        {
+            MedicalEquipmentCSVWriter csvWriter = new MedicalEquipmentCSVWriter();
+            MedicalEquipmentDAO medicalEquipmentDAO = new MedicalEquipmentDAO();
+            List<MedicalEquipment> medicalEquipments = medicalEquipmentDAO.getAll();
+            if (medicalEquipments != null){
+                csvWriter.writeFile("MedicalEquip.csv", medicalEquipments);
             }
         }
 
@@ -158,6 +215,12 @@ public class App extends Application {
     public void setView(String viewFile){
         Node node = loadView(viewFile).getNode();
         setView(node);
+    }
+
+    public void setViewStatic(String viewFile)
+    {
+        Node node = loadView(viewFile).getNode();
+        setViewStatic(node);
     }
 
     /**
@@ -186,6 +249,27 @@ public class App extends Application {
         stage.setScene(scene);
         stage.show();
     }
+
+    public void setViewStatic(Node viewNode)
+    {
+        // Load Base Node
+        BorderPane baseNode = (BorderPane) loadView(BASE_COMPONENT_PATH).getNode();
+
+        // Load Menu Bar
+        // TODO: Find a way to only change the center of the baseNode, nothing else
+        Node menuBarNode = loadView(MENU_BAR_COMPONENT_PATH).getNode();
+
+        // Embed views and components
+        //baseNode.setTop(menuBarNode);
+        baseNode.setCenter(viewNode);
+        baseNode.autosize();
+
+        if (scene != null) scene.setRoot(baseNode);
+        else scene = new Scene(baseNode);
+        stage.setScene(scene);
+        stage.show();
+    }
+
     /**
      * Load a view from a file.
      * @param viewFile Path to the FXML file to be loaded.
@@ -225,4 +309,14 @@ public class App extends Application {
     public Stage getStage() {
         return stage;
     }
+
+    public Employee getUserAccount() {
+        return userAccount;
+    }
+
+    public void setUserAccount(Employee userAccount) {
+        this.userAccount = userAccount;
+    }
+
+
 }

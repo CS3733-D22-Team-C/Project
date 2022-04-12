@@ -1,0 +1,6 @@
+ECHO OFF
+ECHO Starting Network Server...
+
+cd %DERBY_HOME%\lib\
+java -jar derbyrun.jar server start
+ECHO Started Network Server...

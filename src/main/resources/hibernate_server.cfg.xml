@@ -1,0 +1,41 @@
+<?xml version='1.0' encoding='utf-8'?>
+<!DOCTYPE hibernate-configuration PUBLIC
+        "-//Hibernate/Hibernate Configuration DTD//EN"
+        "http://www.hibernate.org/dtd/hibernate-configuration-3.0.dtd">
+
+<hibernate-configuration>
+
+    <session-factory>
+
+        <property name="connection.url">jdbc:derby://localhost:1527/DB;create=true</property>
+        <property name="connection.driver_class">org.apache.derby.jdbc.ClientDriver</property>
+        <property name="connection.pool_size">100</property>
+
+<!--        <property name="dialect">org.hibernate.dialect.DerbyTenSevenDialect</property>-->
+        <property name="connection.username">admin</property> 
+        <property name="connection.password">admin</property> 
+
+
+        <!-- DEBUGGING -->
+        <!--        <property name="show_sql">true</property>-->
+        <!--        <property name="format_sql">true</property>-->
+
+        <!--CREATE-DROP DELETES EVERYTHING ON STARTUP-->
+        <!--        <property name="hibernate.hbm2ddl.auto">create</property>-->
+        <property name="hibernate.hbm2ddl.auto">create-drop</property>
+
+        <mapping class="edu.wpi.cs3733.D22.teamC.entity.location.Location" />
+        <mapping class="edu.wpi.cs3733.D22.teamC.entity.employee.Employee" />
+        <mapping class="edu.wpi.cs3733.D22.teamC.entity.floor.Floor" />
+        <mapping class="edu.wpi.cs3733.D22.teamC.entity.medical_equipment.MedicalEquipment" />
+        <mapping class="edu.wpi.cs3733.D22.teamC.entity.service_request.ServiceRequest" />
+        <mapping class="edu.wpi.cs3733.D22.teamC.entity.service_request.security.SecuritySR" />
+        <mapping class="edu.wpi.cs3733.D22.teamC.entity.service_request.medicine_delivery.MedicineDeliverySR" />
+        <mapping class="edu.wpi.cs3733.D22.teamC.entity.service_request.sanitation.SanitationSR" />
+        <mapping class="edu.wpi.cs3733.D22.teamC.entity.service_request.facility_maintenance.FacilityMaintenanceSR" />
+        <mapping class="edu.wpi.cs3733.D22.teamC.entity.service_request.lab_system.LabSystemSR" />
+        <mapping class="edu.wpi.cs3733.D22.teamC.entity.service_request.medical_equipment.MedicalEquipmentSR" />
+
+
+    </session-factory>
+</hibernate-configuration>

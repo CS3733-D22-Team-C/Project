@@ -26,7 +26,7 @@ public class EditMapControlsController extends MapControlsController {
     //#region FXML Events
         @FXML
         void onSaveButtonPressed(ActionEvent event) {
-            parentController.saveLocationChanges();
+            parentController.saveChanges();
             setSaveStatus(false);
         }
 
@@ -43,9 +43,9 @@ public class EditMapControlsController extends MapControlsController {
                 // Export CSV Data - Location
                 LocationCSVWriter csvWriter = new LocationCSVWriter();
                 LocationDAO locationDAO = new LocationDAO();
-                List<Location> locations = locationDAO.getAll();
+                List<Location> locations = parentController.getAllLocations();
                 if (locations != null) {
-                    System.out.println(csvWriter.writeFile(file, locations));
+                    csvWriter.writeFile(file, locations);
                 }
             }
         }
@@ -60,7 +60,7 @@ public class EditMapControlsController extends MapControlsController {
             File file = fileChooser.showOpenDialog(App.instance.getStage());
 
             if (file != null) {
-                parentController.resetLocationChanges();
+                parentController.clearChanges();
 
                 LocationDAO locationDAO = new LocationDAO();
                 locationDAO.getAll().forEach(parentController::deleteLocation);
@@ -72,13 +72,13 @@ public class EditMapControlsController extends MapControlsController {
                     locations.forEach(parentController::addLocation);
                 }
 
-                parentController.setCurrentFloor(parentController.getCurrentFloor());
+                parentController.changeCurrentFloor(parentController.getCurrentFloor());
             }
         }
 
         @FXML
         void onExitButtonPressed(ActionEvent event) {
-            parentController.resetLocationChanges();
+            parentController.clearChanges();
             parentController.swapToViewMode();
         }
     //#endregion

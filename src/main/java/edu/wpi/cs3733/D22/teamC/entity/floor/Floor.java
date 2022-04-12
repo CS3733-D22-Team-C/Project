@@ -3,6 +3,7 @@ package edu.wpi.cs3733.D22.teamC.entity.floor;
 import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.*;
+import java.sql.Blob;
 import java.util.Objects;
 import java.util.UUID;
 
@@ -21,9 +22,14 @@ public class Floor {
     
     @Column(name = "ShortName")
     private String shortName;
-    
-    @Column(name = "ImageSrc")
+
+    @Column(name ="ImageSrc")
     private String imageSrc;
+
+    @Lob
+    @Column(name = "Image")
+    private byte[] image;
+
 
     public Floor(){
         this.floorID = UUID.randomUUID().toString();
@@ -79,6 +85,14 @@ public class Floor {
         this.imageSrc = imageSrc;
     }
 
+    public byte[] getImage() {
+        return image;
+    }
+
+    public void setImage(byte[] image) {
+        this.image = image;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -87,8 +101,6 @@ public class Floor {
         return floorID.equals(floor.floorID)
                 && order == floor.order
                 && longName.equals(floor.longName)
-                && shortName.equals(floor.shortName)
-                && imageSrc.equals(floor.imageSrc);
+                && shortName.equals(floor.shortName);
     }
-
 }
