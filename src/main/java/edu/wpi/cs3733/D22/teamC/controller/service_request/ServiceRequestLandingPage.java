@@ -112,4 +112,10 @@ public class ServiceRequestLandingPage implements Initializable {
             App.instance.setView(view.getNode());
     }
 
+
+    @FXML
+    void clickBackToTable(ActionEvent event) {
+        App.instance.setView(App.VIEW_SERVICE_REQUESTS_PATH);
+    }
+
 }

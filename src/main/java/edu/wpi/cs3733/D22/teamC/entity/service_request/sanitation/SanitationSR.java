@@ -21,7 +21,10 @@ public class SanitationSR extends ServiceRequest {
     }
 
     public SanitationSR() {}
-    public SanitationSR(ServiceRequest serviceRequest) {super(serviceRequest);}
+    
+    public SanitationSR(ServiceRequest serviceRequest) {
+        super(serviceRequest);
+    }
 
     public SanitationType getSanitationType() {
         return sanitationType;
