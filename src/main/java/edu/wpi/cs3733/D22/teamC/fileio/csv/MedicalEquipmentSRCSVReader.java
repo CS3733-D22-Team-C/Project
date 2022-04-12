@@ -4,6 +4,7 @@ import edu.wpi.cs3733.D22.teamC.entity.employee.Employee;
 import edu.wpi.cs3733.D22.teamC.entity.employee.EmployeeDAO;
 import edu.wpi.cs3733.D22.teamC.entity.service_request.ServiceRequest;
 import edu.wpi.cs3733.D22.teamC.entity.service_request.medical_equipment.MedicalEquipmentSR;
+import org.hibernate.exception.spi.TemplatedViolatedConstraintNameExtracter;
 
 import java.sql.Timestamp;
 
@@ -36,6 +37,7 @@ public class MedicalEquipmentSRCSVReader extends CSVReader<MedicalEquipmentSR>{
                 break;
             case "creationTimestamp":
                 serviceRequest.setCreationTimestamp(Timestamp.valueOf(value));
+                System.out.println(value);
                 break;
             case "status":
                 serviceRequest.setStatus(ServiceRequest.Status.valueOf(value));
@@ -54,6 +56,14 @@ public class MedicalEquipmentSRCSVReader extends CSVReader<MedicalEquipmentSR>{
                 break;
             case "equipType":
                 serviceRequest.setEquipmentType(MedicalEquipmentSR.EquipmentType.valueOf(value));
+                break;
+            case "modifierID":
+                Employee modifier = employeeDAO.getByID(value);
+                serviceRequest.setModifier(modifier);
+                break;
+            case "modifiedTimestamp":
+                serviceRequest.setModifiedTimestamp(Timestamp.valueOf(value)); //TODO: Handle the modified time
+                System.out.println(value);
                 break;
         }
         return serviceRequest;

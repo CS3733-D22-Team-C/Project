@@ -52,9 +52,11 @@ public class ServiceRequest {
     
     @Column(name = "Description")
     protected String description;
-    
-    @Column(name = "ModifierID")
-    protected String modifierID;
+
+    @ManyToOne
+    @JoinColumn(name = "ModifierID", referencedColumnName = "ID")
+    protected Employee modifier;
+
 
     @Column(name = "ModifiedTimestamp")
     protected Timestamp modifiedTimestamp;
@@ -94,7 +96,7 @@ public class ServiceRequest {
         this.priority = serviceRequest.getPriority();
         this.requestType = serviceRequest.getRequestType();
         this.description = serviceRequest.getDescription();
-        this.modifierID = serviceRequest.getModifierID();
+        this.modifier = serviceRequest.getModifier();
         this.modifiedTimestamp = serviceRequest.getModifiedTimestamp();
     }
     
@@ -170,12 +172,12 @@ public class ServiceRequest {
         this.description = description;
     }
     
-    public String getModifierID() {
-        return modifierID;
+    public Employee getModifier() {
+        return modifier;
     }
     
-    public void setModifierID(String modifierID) {
-        this.modifierID = modifierID;
+    public void setModifier(Employee modifier) {
+        this.modifier = modifier;
     }
     
     public Timestamp getModifiedTimestamp() {
@@ -200,7 +202,7 @@ public class ServiceRequest {
                 && priority == that.priority
                 && requestType == that.requestType
                 && description.equals(that.description)
-                && modifierID.equals(that.modifierID)
+                && Objects.equals(modifier, that.modifier)
                 && modifiedTimestamp.equals(that.modifiedTimestamp);
     }
 }

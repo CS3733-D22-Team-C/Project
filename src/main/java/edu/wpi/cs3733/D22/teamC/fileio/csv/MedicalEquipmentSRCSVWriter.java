@@ -21,7 +21,9 @@ public class MedicalEquipmentSRCSVWriter extends CSVWriter<MedicalEquipmentSR> {
                 "requestType",
                 "description",
                 "equipType",
-                "equipID"
+                "equipID",
+                "modifierID",
+                "modifiedTimestamp"
         };
     }
     /**
@@ -68,6 +70,13 @@ public class MedicalEquipmentSRCSVWriter extends CSVWriter<MedicalEquipmentSR> {
                 break;
             case "equipID":
                 output = serviceRequest.getEquipmentID();
+                break;
+            case "modifierID":
+                Employee modifier = serviceRequest.getModifier();
+                output = (modifier != null) ? modifier.getEmployeeID() : "";
+                break;
+            case "modifiedTimestamp":
+                output = (serviceRequest.getModifiedTimestamp() == null) ? "" : serviceRequest.getModifiedTimestamp().toString();
                 break;
             default:
                 break;
