@@ -6,7 +6,6 @@ import edu.wpi.cs3733.D22.teamC.entity.location.Location;
 import edu.wpi.cs3733.D22.teamC.models.generic.TableDisplay;
 import edu.wpi.cs3733.D22.teamC.models.location.LocationTableDisplay;
 import javafx.beans.property.*;
-
 import javax.persistence.Column;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
@@ -31,26 +30,26 @@ public class EmployeeTableDisplay extends TableDisplay<Employee> {
         public EmployeeTableEntry(Employee employee) {
             super(employee);
 
-            employeeID   = new SimpleStringProperty((employee.getNodeID()));
-            firstName   = new SimpleStringProperty(employee.getFloor());
-            lastName   = new SimpleStringProperty(employee.getBuilding());
-            emailID   = new SimpleStringProperty(employee.getNodeType().toString());
-            phone   = new SimpleStringProperty(employee.getLongName());
-            address   = new SimpleStringProperty(employee.getShortName());
-            role   = new SimpleIntegerProperty(employee.getX());
-            username   = new SimpleIntegerProperty(employee.getY());
-            address   = new SimpleStringProperty(employee.getShortName());
-            address   = new SimpleStringProperty(employee.getShortName());
+            employeeID   = new SimpleStringProperty((employee.getEmployeeID()));
+            firstName   = new SimpleStringProperty(employee.getFirstName());
+            lastName   = new SimpleStringProperty(employee.getLastName());
+            emailID   = new SimpleStringProperty(employee.getEmailID());
+            phone   = new SimpleStringProperty(employee.getPhone());
+            address   = new SimpleStringProperty(employee.getAddress());
+            role   = new SimpleStringProperty(employee.getRole().toString());
+            username   = new SimpleStringProperty(employee.getUsername());
+            address   = new SimpleStringProperty(employee.getAddress());
+            isAdmin   = new SimpleBooleanProperty(employee.getAdmin());
         }
     }
 
-    public LocationTableDisplay(JFXTreeTableView table) {
+    public EmployeeTableDisplay(JFXTreeTableView table) {
         super(table);
     }
 
     @Override
-    public void addObject(Location object) {
-        addEntry(new LocationTableDisplay.LocationTableEntry(object));
+    public void addObject(Employee object) {
+        addEntry(new EmployeeTableDisplay.EmployeeTableEntry(object));
     }
 
     @Override
@@ -58,58 +57,33 @@ public class EmployeeTableDisplay extends TableDisplay<Employee> {
         // Insert Columns for Table
         addColumn(
                 table,
-                "Location ID",
-                1f * Integer.MAX_VALUE * 16.66,
-                (LocationTableDisplay.LocationTableEntry entry) -> {return entry.id;}
+                "Last Name",
+                1f * Integer.MAX_VALUE * 25,
+                (EmployeeTableDisplay.EmployeeTableEntry entry) -> {return entry.lastName;}
         );
 
         addColumn(
                 table,
-                "Floor",
-                1f * Integer.MAX_VALUE * 16.66,
-                (LocationTableDisplay.LocationTableEntry entry) -> {return entry.floor;}
+                "First Name",
+                1f * Integer.MAX_VALUE * 25,
+                (EmployeeTableDisplay.EmployeeTableEntry entry) -> {return entry.firstName;}
         );
 
         addColumn(
                 table,
-                "Building",
-                1f * Integer.MAX_VALUE * 16.66,
-                (LocationTableDisplay.LocationTableEntry entry) -> {return entry.building;}
+                "Username",
+                1f * Integer.MAX_VALUE * 25,
+                (EmployeeTableDisplay.EmployeeTableEntry entry) -> {return entry.username;}
         );
 
         addColumn(
                 table,
-                "Node Type",
-                1f * Integer.MAX_VALUE * 16.66,
-                (LocationTableDisplay.LocationTableEntry entry) -> {return entry.nodeType;}
+                "Role",
+                1f * Integer.MAX_VALUE * 25,
+                (EmployeeTableDisplay.EmployeeTableEntry entry) -> {return entry.role;}
         );
 
-        addColumn(
-                table,
-                "Long Name",
-                1f * Integer.MAX_VALUE * 16.66,
-                (LocationTableDisplay.LocationTableEntry entry) -> {return entry.longName;}
-        );
 
-        addColumn(
-                table,
-                "Short Name",
-                1f * Integer.MAX_VALUE * 16.66,
-                (LocationTableDisplay.LocationTableEntry entry) -> {return entry.shortName;}
-        );
 
-        addColumn(
-                table,
-                "X",
-                1f * Integer.MAX_VALUE * 16.66,
-                (LocationTableDisplay.LocationTableEntry entry) -> {return entry.x;}
-        );
-
-        addColumn(
-                table,
-                "Y",
-                1f * Integer.MAX_VALUE * 16.66,
-                (LocationTableDisplay.LocationTableEntry entry) -> {return entry.y;}
-        );
     }
 }

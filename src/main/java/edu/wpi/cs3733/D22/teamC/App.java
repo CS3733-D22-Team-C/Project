@@ -114,7 +114,7 @@ public class App extends Application {
 
         stage.setFullScreen(true);
 
-        setView(LOGIN_PATH);
+        setView("view/general/employee_view.fxml");
     }
 
     @Override
