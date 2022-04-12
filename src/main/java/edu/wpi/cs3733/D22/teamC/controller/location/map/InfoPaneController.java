@@ -20,6 +20,7 @@ import javafx.scene.shape.SVGPath;
 import java.net.URL;
 import java.util.ResourceBundle;
 import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 public class InfoPaneController implements Initializable {
     // Constants
@@ -38,7 +39,7 @@ public class InfoPaneController implements Initializable {
     @FXML private TextField buildingField;
     @FXML private TextField longNameField;
     @FXML private ComboBox<Floor> floorComboBox;
-    @FXML private ComboBox<Location.NodeType> nodeComboBox;
+    @FXML private ComboBox<String> nodeComboBox;
 
     // Medical Equipment - Table
     @FXML JFXTreeTableView medicalEquipmentTable;
@@ -72,7 +73,7 @@ public class InfoPaneController implements Initializable {
         // Initialize Medical Equipment Info
         medicalEquipmentTableDisplay = new MedicalEquipmentTableDisplay(medicalEquipmentTable);
 
-        nodeComboBox.getItems().setAll(Location.NodeType.values());
+        nodeComboBox.getItems().setAll(Stream.of(Location.NodeType.values()).map(Enum::name).collect(Collectors.toList()));
     }
 
     /**
@@ -143,7 +144,7 @@ public class InfoPaneController implements Initializable {
             longNameField.setText(location.getLongName());
             buildingField.setText(location.getBuilding());
             floorComboBox.setValue(parentController.getFloorByID(location.getFloor()));
-            nodeComboBox.setValue(location.getNodeType());
+            nodeComboBox.setValue(location.getNodeType().toString());
 
             // Medical Equipment
             serviceRequestTableDisplay.emptyTable();
@@ -171,7 +172,7 @@ public class InfoPaneController implements Initializable {
             location.setLongName(longNameField.getText());
             location.setBuilding(buildingField.getText());
             location.setFloor(floorComboBox.getValue().getFloorID());
-            location.setNodeType(nodeComboBox.getValue());
+            location.setNodeType(Location.NodeType.valueOf(nodeComboBox.getValue()));
 
             if (!original.equals(location)) {
                 revertButton.setDisable(false);
