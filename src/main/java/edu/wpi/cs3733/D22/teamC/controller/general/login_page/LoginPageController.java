@@ -49,9 +49,7 @@ public class LoginPageController implements Initializable {
         }
         else
         {
-            Login login = new Login();
-            login.setPassword(password.getText());
-            login.setUsername(username.getText());
+            Login.initializeLogin(username.getText(), password.getText());
             App.instance.setView(App.VIEW_SERVICE_REQUESTS_PATH);
          }
 

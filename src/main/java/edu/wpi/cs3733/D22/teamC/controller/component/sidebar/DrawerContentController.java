@@ -1,6 +1,7 @@
 package edu.wpi.cs3733.D22.teamC.controller.component.sidebar;
 
 import edu.wpi.cs3733.D22.teamC.App;
+import edu.wpi.cs3733.D22.teamC.entity.login_page.Login;
 import io.github.palexdev.materialfx.controls.MFXButton;
 import javafx.animation.*;
 import javafx.event.ActionEvent;
@@ -127,7 +128,8 @@ public class DrawerContentController implements Initializable {
     @FXML
     void logOutButtonPress(ActionEvent event) {
         // TODO: Logout functionality, path to login page
-        App.instance.setView("");
+        Login.resetUserLogin();
+        App.instance.setView("LOGIN_PATH");
     }
 
     @FXML

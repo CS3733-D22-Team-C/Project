@@ -1,28 +1,18 @@
 package edu.wpi.cs3733.D22.teamC.entity.login_page;
 
 public class Login {
-    private String username;
-    private String password;
-    private static Login user;
+    private static String username;
+    private static String password;
 
-    public void initializeUserLogin()
+    public static void initializeLogin(String username, String password)
     {
-        
+        Login.username = username;
+        Login.password = password;
     }
 
-    public String getUsername() {
-        return username;
-    }
-
-    public void setUsername(String username) {
-        this.username = username;
-    }
-
-    public String getPassword() {
-        return password;
-    }
-
-    public void setPassword(String password) {
-        this.password = password;
+    public static void resetUserLogin()
+    {
+        Login.username = null;
+        Login.password = null;
     }
 }
