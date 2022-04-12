@@ -1,5 +1,6 @@
-package edu.wpi.cs3733.D22.teamC.controller.location.map;
+package edu.wpi.cs3733.D22.teamC.controller.location.map.map_view;
 
+import edu.wpi.cs3733.D22.teamC.entity.location.Location;
 import javafx.scene.input.MouseButton;
 import javafx.scene.input.MouseEvent;
 
@@ -22,7 +23,9 @@ public class EditMapController extends MapController {
             if (event.getButton().equals(MouseButton.PRIMARY)) {
                 // Double-Click create new LocationNode
                 if (event.getClickCount() == 2) {
-                    parentController.createLocation((int) event.getX(), (int) event.getY());
+                    Location location = createLocation((int) event.getX(), (int) event.getY());
+                    parentController.addLocation(location);
+                    parentController.changeCurrentLocation(location);
                 }
             }
         }
@@ -32,24 +35,27 @@ public class EditMapController extends MapController {
             super.onMouseDraggedNode(event, locationNode);
 
             if (event.getButton().equals(MouseButton.PRIMARY))  {
-                double offsetX = event.getX() - locationNode.node.getCenterX();
-                double offsetY = event.getY() - locationNode.node.getCenterY();
+                locationNode.getLocationNodeCircle().setCenterX(event.getX());
+                locationNode.getLocationNodeCircle().setCenterY(event.getY());
 
-                int newMapX = (int) (locationNode.node.getCenterX() + offsetX);
-                newMapX = Math.max(0, newMapX);
-                newMapX = Math.min((int) mapPane.getPrefWidth(), newMapX);
-                int newMapY = (int) (locationNode.node.getCenterY() + offsetY);
-                newMapY = Math.max(0, newMapY);
-                newMapY = Math.min((int) mapPane.getPrefHeight(), newMapY);
+                locationNode.updatePosition();
 
-                locationNode.node.setCenterX(newMapX);
-                locationNode.node.setCenterY(newMapY);
-
-                locationNode.location.setX(newMapX);
-                locationNode.location.setY(newMapY);
-
-                parentController.touchLocation(locationNode.location);
+                event.consume();
             }
+
+            event.consume();
+        }
+
+        public Location createLocation(int x, int y) {
+            // Create Location
+            Location location = new Location();
+
+            location.setX((int) x);
+            location.setY((int) y);
+            location.setFloor(parentController.getCurrentFloor().getFloorID());
+            location.setNodeType(Location.NodeType.PATI);
+
+            return location;
         }
     //#endregion
 }

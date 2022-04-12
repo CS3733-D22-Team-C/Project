@@ -14,7 +14,6 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" styleClass="card" stylesheets="@../../../../css/map/controls.css" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.wpi.cs3733.D22.teamC.controller.location.map.controls.ViewMapControlsController">
    <children>
       <VBox alignment="CENTER" maxWidth="1.7976931348623157E308" prefWidth="316.8" styleClass="inner-card">
@@ -58,9 +57,9 @@
                               <VBox prefHeight="136.0" prefWidth="308.0" GridPane.rowIndex="2">
                                  <children>
                                     <HBox prefHeight="100.0" prefWidth="200.0" />
-                                    <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" visible="false">
+                                    <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
                                        <children>
-                                          <MFXToggleButton alignment="CENTER" contentDisposition="RIGHT" prefWidth="250.0" selected="true" text="Medical Equipment">
+                                          <MFXToggleButton fx:id="medicalEquipmentToggle" alignment="CENTER" contentDisposition="RIGHT" prefWidth="250.0" selected="true" text="Medical Equipment">
                                              <padding>
                                                 <Insets right="35.0" />
                                              </padding>
