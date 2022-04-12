@@ -1,6 +1,8 @@
 @import "colors.css";
 @import "fonts.css";
 
+/* TODO: please god fix all of this */
+
 /* Defaults for EVERYTHING */
 .root * {
     /* Default Font */
@@ -11,6 +13,10 @@
     /*-fx-min-width: 0px;*/
     /* Default Background Color */
     /*-fx-background-color: -color-page-background;*/
+}
+
+.root {
+    -fx-background-color: -color-background;
 }
 
 /* Default Button Style (applies to all button types) */
@@ -34,7 +40,7 @@
 }
 
 .button-failure {
-    -fx-background-color: -color-button-failure;
+    -fx-background-color: -color-button-failure !important;
     -fx-text-fill: -color-button-text;
     -fx-font-size: 15;
     -fx-spacing: 5px;
@@ -45,8 +51,8 @@
 }
 
 .button-back {
-    -fx-text-fill: -color-button-text;
-    -fx-background-color: -color-button-back;
+    -fx-text-fill: -color-secondary-text !important;
+    -fx-background-color: -color-secondary !important;
     -fx-font-size: 15;
     -fx-spacing: 5px;
 }
@@ -155,11 +161,58 @@ padding goes top, right, bottom, left
 }
 
 /* Table Styling */
-.table-view {
+/**/
+.tree-table-view {
     -fx-background-color: transparent;
-
+    -fx-table-cell-border-color: transparent;
 }
-/** Default Components **/
+/* Top right part of the table */
+.table-view .column-header-background .filler {
+    -fx-background-color: transparent;
+}
+
+.table-view .label {
+    -fx-text-fill: -color-primary-text;
+}
+
+.tree-table-view .column-header-background{
+    -fx-background-color: linear-gradient(to bottom, -color-primary, -color-primary-light);
+    -fx-background-radius: 7px 7px 0px 0px;
+    /* Insets header to the width of the scrollbar */
+    -fx-background-insets: 0 11px 0 0;
+    -fx-padding: 0 0 5px 0;
+}
+.table-view .column-header {
+    -fx-background-color: transparent;
+    -fx-border-style: none;
+}
+
+.table-view .table-cell{
+    -fx-border-color: transparent;
+    -fx-padding: 2 0 2 10px;
+}
+.tree-table-row-cell:hover {
+    -fx-background-color: #93f9b911;
+    -fx-text-background-color: red;
+}
+.tree-table-row-cell:odd{
+    -fx-background-color: -color-background;
+    -fx-background-insets: 0, 0 0 1 0;
+    -fx-padding: 0.0em;
+}
+.tree-table-row-cell:even{
+    -fx-background-color: -color-surface;
+    -fx-background-insets: 0, 0 0 1 0;
+    -fx-padding: 0.0em;
+}
+.tree-table-row-cell:selected {
+    -fx-background-color: -color-primary-dark;
+}
+.tree-table-row-cell:selected .text {
+    -fx-fill: -color-primary-text;
+}
+
+    /** Default Components **/
 .text-field {
     -fx-background-color: -color-primary-text;
     -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.8), 2, 0, 0, 0);
@@ -168,6 +221,7 @@ padding goes top, right, bottom, left
 .combo-box {
     -fx-background-color: -color-primary-text;
     -fx-cursor: hand;
+    -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.5), 1, 0, 0, 0);
 }
 
 .button {
@@ -182,4 +236,18 @@ padding goes top, right, bottom, left
     -fx-text-fill: -color-button-text;
     -fx-font-size: 15;
     -fx-spacing: 5px;
+}
+
+.container {
+    -fx-background-color: -color-surface !important;
+    -fx-max-width: 800px !important;
+    -fx-max-height: 800px;
+    -fx-hgap: 20px;
+    -fx-padding: 40px;
+
+    -fx-background-radius: 50px;
+
+    -fx-border-radius: 5px;
+    -fx-border-width: 5px;
+    -fx-effect: dropshadow(three-pass-box, rgba(0, 0, 0, 0.8), 10, 0, 0, 0);
 }
