@@ -103,7 +103,7 @@
             </HBox>
             </children>
         </VBox>
-      <JFXTreeTableView fx:id="table" maxWidth="1.7976931348623157E308" prefHeight="262.0" prefWidth="442.0" GridPane.rowIndex="3" />
+      <JFXTreeTableView fx:id="table" maxWidth="1.7976931348623157E308" prefHeight="262.0" prefWidth="442.0" styleClass="table-view" GridPane.rowIndex="3" />
     </children>
     <stylesheets>
         <URL value="@../../../css/request_page.css" />
