@@ -2,24 +2,32 @@
 
 <?import com.jfoenix.controls.JFXTreeTableView?>
 <?import java.net.URL?>
+<?import javafx.scene.control.Label?>
 <?import javafx.scene.control.Tab?>
 <?import javafx.scene.control.TabPane?>
+<?import javafx.scene.layout.VBox?>
 
-<TabPane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" tabClosingPolicy="UNAVAILABLE" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.wpi.cs3733.D22.teamC.controller.dashboard.DashboardController">
-   <stylesheets>
-      <URL value="@../../css/base.css" />
-      <URL value="@../../css/dashboard.css" />
-   </stylesheets>
-   <tabs>
-      <Tab closable="false" text="Assigned Service Requests">
-         <content>
-            <JFXTreeTableView fx:id="assignedTable" />
-         </content>
-      </Tab>
-      <Tab closable="false" text="Created Service Requests">
-         <content>
-            <JFXTreeTableView fx:id="createdTable" />
-         </content>
-      </Tab>
-   </tabs>
-</TabPane>
+
+<VBox alignment="CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" styleClass="container" stylesheets="@../../css/dashboard.css" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.wpi.cs3733.D22.teamC.controller.dashboard.DashboardController">
+   <children>
+      <Label fx:id="greetingLabel" styleClass="page-title" text="Hello, ________!" VBox.vgrow="ALWAYS" />
+      <TabPane maxHeight="1.7976931348623157E308" maxWidth="750.0" minHeight="-Infinity" minWidth="-Infinity" tabClosingPolicy="UNAVAILABLE">
+         <stylesheets>
+            <URL value="@../../css/base.css" />
+            <URL value="@../../css/dashboard.css" />
+         </stylesheets>
+         <tabs>
+            <Tab closable="false" text="Assigned Service Requests">
+               <content>
+                  <JFXTreeTableView fx:id="assignedTable" />
+               </content>
+            </Tab>
+            <Tab closable="false" text="Created Service Requests">
+               <content>
+                  <JFXTreeTableView fx:id="createdTable" />
+               </content>
+            </Tab>
+         </tabs>
+      </TabPane>
+   </children>
+</VBox>

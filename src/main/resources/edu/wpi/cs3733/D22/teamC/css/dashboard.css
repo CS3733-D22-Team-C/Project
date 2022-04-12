@@ -1,10 +1,14 @@
 @import "base.css";
 @import "colors.css";
 
+.greeting-label {
+    -fx-font: 20px "Roboto";
+}
+
 .tab-pane {
     -fx-padding: 5px;
     -fx-background-color: #F6F6F6;
-    /*fx-max-width: 750;*/
+    fx-max-width: 750px;
     -fx-alignment: right;
     -fx-border-radius: 10px;
     -fx-border-width:5px;
@@ -19,6 +23,7 @@
 
 .tab-pane .tab {
     -fx-background-color: -color-unselected-tab;
+    -fx-font-size: 14px;
 }
 
 .tab-pane .tab:selected {
@@ -41,5 +46,7 @@
 .container {
     -fx-background-color: white;
     -fx-border-radius: 4px;
+    -fx-padding: 20px;
+    -fx-spacing: 20px;
 }
 
