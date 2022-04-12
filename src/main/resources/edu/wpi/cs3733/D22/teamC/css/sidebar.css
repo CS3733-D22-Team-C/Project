@@ -3,11 +3,17 @@
 
 .button {
     -fx-background-color: -color-secondary-dark;
-    /*-fx-alignment: center-left;*/
-    -fx-font-family: "Roboto";
-    -fx-font-size: 14;
     -fx-pref-height: 40px;
     -fx-pref-width: 40px;
+    -fx-padding: 10px;
+}
+
+.mfx-button .mfx-ripple-generator {
+    -fx-background-color: -color-secondary-light;
+}
+
+.button:hover {
+    -fx-background-color: -color-secondary;
 }
 
 .top-label {
@@ -25,4 +31,8 @@
 .vbox {
     -fx-spacing: 5px;
     -fx-padding: 5px;
+}
+
+.jfx-drawer {
+    -fx-background-color: -color-sidebar-white;
 }
