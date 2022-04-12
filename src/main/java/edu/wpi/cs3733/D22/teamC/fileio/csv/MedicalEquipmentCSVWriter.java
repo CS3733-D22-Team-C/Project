@@ -35,10 +35,10 @@ public class MedicalEquipmentCSVWriter extends CSVWriter<MedicalEquipment> {
                 output = object.getLocationID();
                 break;
             case "equipType":
-                output = String.valueOf(object.getEquipmentType());
+                output = object.getEquipmentType().toString();
                 break;
             case "equipStatus":
-                output = String.valueOf(object.getStatus());
+                output = object.getStatus().toString();
                 break;
         }
         return output;
