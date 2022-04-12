@@ -152,7 +152,7 @@ public class BaseServiceRequestCreateController<T extends ServiceRequest> {
         // Create Service Request
         T serviceRequest = insertController.createServiceRequest();
 
-        serviceRequest.setAssigneeID(assigneeID.getText());
+//        serviceRequest.setAssignee(assigneeID.getText()); //TODO: Replace with Employee Selector
         serviceRequest.setLocation(locationField.getText());
         serviceRequest.setDescription(description.getText());
         serviceRequest.setPriority(ServiceRequest.Priority.valueOf(priority.getValue()));

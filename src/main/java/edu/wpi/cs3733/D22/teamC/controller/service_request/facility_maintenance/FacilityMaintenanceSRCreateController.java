@@ -45,7 +45,7 @@ public class FacilityMaintenanceSRCreateController extends ServiceRequestCreateC
         {
             FacilityMaintenanceSR fmsr = new FacilityMaintenanceSR();
 
-            fmsr.setAssigneeID(assigneeID.getText());
+            //fmsr.setAssignee(assigneeID.getText());
             fmsr.setLocation(location.getText());
             fmsr.setPriority(ServiceRequest.Priority.valueOf(priority.getValue()));
             fmsr.setStatus(ServiceRequest.Status.valueOf(status.getValue()));
