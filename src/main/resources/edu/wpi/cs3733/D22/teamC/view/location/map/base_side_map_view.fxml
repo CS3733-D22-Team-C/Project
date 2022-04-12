@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXTreeTableView?>
+<?import io.github.palexdev.materialfx.controls.MFXButton?>
+<?import io.github.palexdev.materialfx.controls.MFXScrollPane?>
+<?import java.net.URL?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Region?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.shape.Line?>
+<?import javafx.scene.text.Text?>
+
+<GridPane minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.wpi.cs3733.D22.teamC.controller.location.map.BaseMapSideViewController">
+   <columnConstraints>
+      <ColumnConstraints hgrow="ALWAYS" minWidth="10.0" prefWidth="100.0" />
+      <ColumnConstraints hgrow="ALWAYS" minWidth="10.0" prefWidth="100.0" />
+   </columnConstraints>
+   <rowConstraints>
+      <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="ALWAYS" />
+   </rowConstraints>
+   <children>
+      <MFXScrollPane hbarPolicy="NEVER" maxHeight="1.7976931348623157E308" maxWidth="-Infinity" prefWidth="220.0" GridPane.halignment="CENTER" GridPane.valignment="CENTER">
+         <content>
+            <VBox fx:id="floorVBox" alignment="CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="28.0" prefWidth="220.0" spacing="5.0">
+               <padding>
+                  <Insets top="5.0" />
+               </padding>
+            </VBox>
+         </content>
+         <GridPane.margin>
+            <Insets bottom="40.0" left="40.0" right="20.0" top="40.0" />
+         </GridPane.margin>
+      </MFXScrollPane>
+      <GridPane GridPane.columnIndex="1">
+         <columnConstraints>
+            <ColumnConstraints hgrow="ALWAYS" maxWidth="1.7976931348623157E308" minWidth="10.0" prefWidth="100.0" />
+         </columnConstraints>
+         <rowConstraints>
+            <RowConstraints maxHeight="1.7976931348623157E308" minHeight="10.0" prefHeight="140.4" vgrow="ALWAYS" />
+            <RowConstraints maxHeight="1.7976931348623157E308" minHeight="10.0" prefHeight="120.19999999999996" vgrow="ALWAYS" />
+            <RowConstraints maxHeight="1.7976931348623157E308" minHeight="0.0" prefHeight="34.39995422363285" valignment="BASELINE" />
+         </rowConstraints>
+         <children>
+            <VBox alignment="CENTER" GridPane.rowIndex="1">
+               <children>
+                  <Label fx:id="floorTitle" text="Floor X" />
+                  <Line endX="100.0" startX="-100.0" />
+                  <Text fx:id="floorDescription" strokeType="OUTSIDE" strokeWidth="0.0" text="Floor Description" textAlignment="CENTER" wrappingWidth="200.0" />
+               </children>
+               <GridPane.margin>
+                  <Insets top="10.0" />
+               </GridPane.margin>
+            </VBox>
+            <JFXTreeTableView prefHeight="144.0" prefWidth="240.0" />
+            <HBox alignment="BOTTOM_CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" GridPane.hgrow="ALWAYS" GridPane.rowIndex="2" GridPane.vgrow="ALWAYS">
+               <children>
+                  <MFXButton fx:id="deleteButton" alignment="BOTTOM_LEFT" disable="true" onAction="#onDeleteClicked" styleClass="delete" stylesheets="@../../../css/map/floor_node.css" text="Delete" />
+                  <Region HBox.hgrow="ALWAYS" />
+                  <MFXButton fx:id="goToButton" alignment="BOTTOM_RIGHT" disable="true" onAction="#onGoToClicked" styleClass="button-confirm" text="Go To" />
+               </children></HBox>
+         </children>
+         <GridPane.margin>
+            <Insets bottom="40.0" left="20.0" right="40.0" top="40.0" />
+         </GridPane.margin>
+      </GridPane>
+   </children>
+   <stylesheets>
+      <URL value="@../../../css/base.css" />
+      <URL value="@../../../css/map/base.css" />
+   </stylesheets>
+</GridPane>

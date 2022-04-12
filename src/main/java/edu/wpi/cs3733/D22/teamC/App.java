@@ -113,8 +113,7 @@ public class App extends Application {
         stage = primaryStage;
 
         stage.setFullScreen(true);
-
-        setView(LOGIN_PATH);
+        setView("view/location/map/base_side_map_view.fxml");
     }
 
     @Override
