@@ -1,5 +1,7 @@
 package edu.wpi.cs3733.D22.teamC;
 
+import edu.wpi.cs3733.D22.teamC.entity.employee.Employee;
+import edu.wpi.cs3733.D22.teamC.entity.employee.EmployeeDAO;
 import edu.wpi.cs3733.D22.teamC.entity.floor.Floor;
 import edu.wpi.cs3733.D22.teamC.entity.floor.FloorDAO;
 import edu.wpi.cs3733.D22.teamC.entity.location.Location;
@@ -91,6 +93,18 @@ public class App extends Application {
             }
         }
 
+        // Load CSV Data = Employee
+        {
+            EmployeeCSVReader csvReader =  new EmployeeCSVReader();
+            List<Employee> employees = csvReader.readFile("Employees.csv");
+            if(employees !=null){
+                EmployeeDAO employeeDAO = new EmployeeDAO();
+                for(Employee employee : employees){
+                    employeeDAO.insert(employee);
+                }
+            }
+        }
+
         // Load CSV Data - Medical Equipment Service Request
         {
             MedicalEquipmentSRCSVReader csvReader = new MedicalEquipmentSRCSVReader();
@@ -102,6 +116,8 @@ public class App extends Application {
                 }
             }
         }
+
+
 
         log.info("Starting Up");
     }
@@ -141,6 +157,17 @@ public class App extends Application {
             }
         }
 
+        //Export CSV Data - Employee
+        {
+            EmployeeCSVWriter csvWriter = new EmployeeCSVWriter();
+            EmployeeDAO employeeDAO = new EmployeeDAO();
+            List<Employee> employees = employeeDAO.getAll();
+            if(employees!=null){
+                csvWriter.writeFile("Employees.csv", employees);
+            }
+        }
+
+
         // Export CSV Data - Medical Equipment Service Requests
         {
             MedicalEquipmentSRCSVWriter csvWriter = new MedicalEquipmentSRCSVWriter();
@@ -150,6 +177,7 @@ public class App extends Application {
                 csvWriter.writeFile("MedEquipReq.csv", serviceRequests);
             }
         }
+
 
         log.info("Shutting Down");
     }

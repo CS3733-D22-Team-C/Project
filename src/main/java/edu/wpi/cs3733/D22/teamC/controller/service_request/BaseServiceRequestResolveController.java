@@ -64,7 +64,7 @@ public class BaseServiceRequestResolveController<T extends ServiceRequest> {
         // Set initial values
         priority.setPromptText(serviceRequest.getPriority().toString());
         locationField.setText(serviceRequest.getLocation());
-        assigneeID.setText(serviceRequest.getAssigneeID());
+        assigneeID.setText(serviceRequest.getAssignee().getLastName() + ", "+ serviceRequest.getAssignee().getFirstName());
         creationTime.setText(serviceRequest.getCreationTimestamp().toString());
         description.setText(serviceRequest.getDescription());
 
@@ -116,7 +116,7 @@ public class BaseServiceRequestResolveController<T extends ServiceRequest> {
                 serviceRequest.setPriority(ServiceRequest.Priority.valueOf(priority.getValue()));
             }
             //Assignee ID
-            serviceRequest.setAssigneeID(assigneeID.getText());
+            //serviceRequest.setAssignee(assigneeID.getText());
             //Location
             serviceRequest.setLocation(locationField.getText());
             //Status
