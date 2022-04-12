@@ -6,43 +6,36 @@ import edu.wpi.cs3733.D22.teamC.controller.SkeletonController;
 import edu.wpi.cs3733.D22.teamC.models.generic.TableDisplay;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.control.TextField;
 import javafx.scene.control.TreeTableRow;
 import javafx.scene.input.MouseButton;
 import javafx.scene.layout.VBox;
 
 import java.net.URL;
-import java.util.List;
 import java.util.ResourceBundle;
 
 public class BaseTableViewController<T extends Object> implements Initializable, SkeletonController {
-
+    // FXML
     @FXML private VBox insertBox;
-    InsertTableViewController insertController;
-
-    @FXML private TextField row5;
-
-    private T currentRow;
-
     @FXML private JFXTreeTableView table;
+
+    // Variables
     TableDisplay<T> tableDisplay;
+    T currentObj;
+
+    // References
+    InsertTableViewController<T> insertController;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         rowInteraction();
     }
 
-    //TODO make the controller abstrsct (more than just location)
     public void setUp(String insertPath){
-
         setInsert(insertPath);
+
         insertController.setup(this);
 
-        //TODO add setUP function to viewController
-        //this.viewController.setUp(table);
-
-        //TODO to be abstracted l8ter
-        resetTableView();
+        tableDisplay = insertController.createTableDisplay(table);
     }
 
     public void setInsert(String path){
@@ -51,42 +44,54 @@ public class BaseTableViewController<T extends Object> implements Initializable,
         insertBox.getChildren().add(view.getNode());
     }
 
-    //TODO
-    public void rowInteraction(){
 
-        //TODO figure out how to interact with certina row
+    public void rowInteraction() {
         table.setRowFactory(tv -> {
             TreeTableRow<TableDisplay<T>.TableDisplayEntry> row = new TreeTableRow<TableDisplay<T>.TableDisplayEntry>();
             row.setOnMouseClicked(event -> {
                 if (!row.isEmpty() && event.getButton() == MouseButton.PRIMARY) {
-                    currentRow = row.getItem().object;
-                    insertController.getRowInfo(currentRow);
+                    if (row.getItem().object == currentObj) {
+                        setCurrentObj(null);
+                        table.getSelectionModel().clearSelection();
+                    } else {
+                        setCurrentObj(row.getItem().object);
+                    }
                 }
             });
-            return row ;
+            return row;
         });
     }
 
-    public void backButton(){ App.instance.setView(App.LOGIN_PATH);}
+    public void setCurrentObj(T object) {
+        currentObj = object;
+        insertController.setFields(object);
+    }
 
-    @FXML
-    public void removeButton(){
-        if (tableDisplay != null)
-        {
-            tableDisplay.removeObject(currentRow);
-            insertController.deleteValue(currentRow);
-            insertController.resetValues();
-            //tableDisplay = null;
+    //#region FXML Events
+        @FXML
+        public void onRemoveButtonClicked() {
+            if (currentObj != null) {
+                // Delete from DB
+                insertController.deleteObject();
+
+                // Delete from Table
+                tableDisplay.removeObject(currentObj);
+
+                // Delete from Insert
+                insertController.setFields(null);
+            }
         }
-    }
 
-    void resetTableView() {
-        tableDisplay = insertController.createTableDisplay(table);
-    }
+        @FXML
+        public void onAddButtonClicked(){
+            currentObj = null;
+            insertController.setFields(null);
+            table.getSelectionModel().clearSelection();
+        }
 
-    @FXML
-    public void addClicked(){
-        insertController.addClicked();
-    }
-
+        @FXML
+        public void onBackButtonClicked() {
+            App.instance.setView(App.LOGIN_PATH);
+        }
+    //#endregion
 }

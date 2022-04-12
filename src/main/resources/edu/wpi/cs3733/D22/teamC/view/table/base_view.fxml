@@ -45,7 +45,7 @@
             <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
          </GridPane.margin>
          <children>
-            <JFXButton fx:id="back" onAction="#backButton" prefHeight="36.0" prefWidth="113.0" styleClass="base_view_table_back" stylesheets="@../../css/table_skeleton.css" text="Back">
+            <JFXButton fx:id="back" onAction="#onBackButtonClicked" prefHeight="36.0" prefWidth="113.0" ripplerFill="BLACK" styleClass="base_view_table_back" stylesheets="@../../css/table_skeleton.css" text="Back">
                <HBox.margin>
                   <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
                </HBox.margin></JFXButton>
@@ -56,12 +56,12 @@
       </HBox>
       <HBox alignment="CENTER_RIGHT" minHeight="40.0" prefHeight="64.0" prefWidth="250.0" GridPane.columnIndex="1" GridPane.rowIndex="1">
          <children>
-            <JFXButton fx:id="remove" onAction="#addClicked" prefHeight="37.0" prefWidth="36.0" styleClass="base_view_table_add" stylesheets="@../../css/table_skeleton.css" text="+">
+            <JFXButton fx:id="remove" maxHeight="-Infinity" maxWidth="-Infinity" onAction="#onAddButtonClicked" prefHeight="37.0" prefWidth="36.0" styleClass="base_view_table_add" stylesheets="@../../css/table_skeleton.css" text="+">
                <HBox.margin>
                   <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
                </HBox.margin>
             </JFXButton>
-            <JFXButton fx:id="add" onAction="#removeButton" prefHeight="36.0" prefWidth="36.0" styleClass="base_view_table_sub" stylesheets="@../../css/table_skeleton.css" text="-">
+            <JFXButton fx:id="add" onAction="#onRemoveButtonClicked" prefHeight="36.0" prefWidth="36.0" styleClass="base_view_table_sub" stylesheets="@../../css/table_skeleton.css" text="-">
                <HBox.margin>
                   <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
                </HBox.margin>

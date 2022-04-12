@@ -10,7 +10,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<VBox xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.wpi.cs3733.D22.teamC.controller.table.LocationInsertTableViewController">
+<VBox xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.wpi.cs3733.D22.teamC.controller.table.LocationTableViewInsertController">
    <children>
       <ScrollPane fitToHeight="true" fitToWidth="true" prefHeight="524.0" prefWidth="421.0">
          <content>
@@ -37,7 +37,7 @@
                   <VBox>
                      <children>
                         <Label fx:id="label2" prefHeight="17.0" prefWidth="367.0" text="Label 1" />
-                        <TextField fx:id="field2" onKeyPressed="#keyPressed" prefHeight="47.0" prefWidth="373.0" styleClass="base_view_table_text" stylesheets="@../../../css/table_skeleton.css">
+                        <TextField fx:id="shortNameField" onKeyPressed="#keyPressed" prefHeight="47.0" prefWidth="373.0" styleClass="base_view_table_text" stylesheets="@../../../css/table_skeleton.css">
                            <padding>
                               <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
                            </padding>
