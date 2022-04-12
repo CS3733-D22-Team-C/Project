@@ -61,6 +61,9 @@ public class App extends Application {
     // Singleton Instance
     public static App instance;
 
+    //Employee
+    private Employee userAccount;
+
     // Variables
     private Stage stage;
     private Scene scene;
@@ -255,5 +258,13 @@ public class App extends Application {
 
     public Stage getStage() {
         return stage;
+    }
+
+    public Employee getUserAccount() {
+        return userAccount;
+    }
+
+    public void setUserAccount(Employee userAccount) {
+        this.userAccount = userAccount;
     }
 }

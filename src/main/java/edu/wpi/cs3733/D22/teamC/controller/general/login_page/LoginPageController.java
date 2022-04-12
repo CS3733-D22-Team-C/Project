@@ -1,6 +1,7 @@
 package edu.wpi.cs3733.D22.teamC.controller.general.login_page;
 
 import edu.wpi.cs3733.D22.teamC.App;
+import edu.wpi.cs3733.D22.teamC.entity.employee.EmployeeDAO;
 import edu.wpi.cs3733.D22.teamC.error.error_item.user_input_validation_error_item.login_user_input_validation_error_item.LoginUserInputValidationErrorItem;
 import edu.wpi.cs3733.D22.teamC.user_input_validation.login.LoginEvaluator;
 import javafx.beans.value.ChangeListener;
@@ -39,16 +40,18 @@ public class LoginPageController implements Initializable {
         invalidLogin.setVisible(false);
 
         LoginEvaluator loginEV = new LoginEvaluator();
-        ArrayList<LoginUserInputValidationErrorItem> errors = loginEV.getLoginValidationTestResult(username.getText(), password.getText());
+        EmployeeDAO eDAO = new EmployeeDAO();
+
+        ArrayList<LoginUserInputValidationErrorItem> errors = loginEV.getLoginValidationTestResult(username.getText(), password.getText(), eDAO);
 
         if(errors.get(0) != null ){
             prepareLoginErrorMessage(errors.get(0));
         }
         else
         {
-            //Need to get employee
+            App.instance.setUserAccount(eDAO.getEmployeeByUsername(username.getText()));
             App.instance.setView(App.VIEW_SERVICE_REQUESTS_PATH);
-         }
+        }
 
 
     }
