@@ -23,6 +23,7 @@ import javafx.stage.Modality;
 import javafx.stage.Stage;
 
 import java.io.IOException;
+import java.security.Timestamp;
 
 public class BaseServiceRequestCreateController<T extends ServiceRequest> implements ServiceRequestController {
     // FXML
@@ -227,6 +228,7 @@ public class BaseServiceRequestCreateController<T extends ServiceRequest> implem
     void clickSubmit(ActionEvent event) {
         createServiceRequest();
         clearFields();
+        clickGoBack(null);
     }
     //#endregion
 
