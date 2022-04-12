@@ -12,7 +12,7 @@
 
 <VBox xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.wpi.cs3733.D22.teamC.controller.service_request.ServiceRequestsViewController">
    <children>
-      <JFXTreeTableView fx:id="table" prefHeight="400.0" prefWidth="532.0" />
+      <JFXTreeTableView fx:id="table" prefHeight="400.0" prefWidth="532.0" stylesheets="@../../css/base.css" />
       <GridPane>
          <columnConstraints>
             <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" />
