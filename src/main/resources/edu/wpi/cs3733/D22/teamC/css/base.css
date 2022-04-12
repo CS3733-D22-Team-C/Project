@@ -157,8 +157,15 @@ padding goes top, right, bottom, left
 /* Table Styling */
 
 /* Styles the whole table*/
+/*.table-view {*/
+/*    -fx-background-color: -login-username-field;*/
+/*    -fx-vertical-grid-lines-visible: true;*/
+/*    -fx-padding: 32px;*/
+/*    -fx-text-fill: -color-primary-text;*/
+/*    -fx-wrap-text: true;*/
+/*}*/
 .table-view {
-    -fx-background-color: -login-username-field;
+    -fx-background-color: #F6F6F6;
     -fx-vertical-grid-lines-visible: true;
     -fx-padding: 32px;
     -fx-text-fill: -color-primary-text;
@@ -215,8 +222,14 @@ padding goes top, right, bottom, left
     -fx-background-insets: 0, 0 0 1 0;
     -fx-padding: 0.0em;
 }
+/*.tree-table-row-cell:even {*/
+/*    -fx-background-color: -login-username-field;*/
+/*    -fx-background-insets: 0, 0 0 1 0;*/
+/*    -fx-padding: 0.0em;*/
+/*}*/
+
 .tree-table-row-cell:even {
-    -fx-background-color: -login-username-field;
+    -fx-background-color: #F6F6F6;
     -fx-background-insets: 0, 0 0 1 0;
     -fx-padding: 0.0em;
 }

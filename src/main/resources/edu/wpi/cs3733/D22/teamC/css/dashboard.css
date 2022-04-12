@@ -3,8 +3,8 @@
 
 .tab-pane {
     -fx-padding: 5px;
-    -fx-background-color: -login-username-field;
-    -fx-max-width: 750;
+    -fx-background-color: #F6F6F6;
+    /*fx-max-width: 750;*/
     -fx-alignment: right;
 }
 
