@@ -56,7 +56,7 @@
                   <Insets top="10.0" />
                </GridPane.margin>
             </VBox>
-            <JFXTreeTableView prefHeight="144.0" prefWidth="240.0" />
+            <JFXTreeTableView fx:id="table" prefHeight="144.0" prefWidth="240.0" />
             <HBox alignment="BOTTOM_CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" GridPane.hgrow="ALWAYS" GridPane.rowIndex="2" GridPane.vgrow="ALWAYS">
                <children>
                   <MFXButton fx:id="deleteButton" alignment="BOTTOM_LEFT" disable="true" onAction="#onDeleteClicked" styleClass="delete" stylesheets="@../../../css/map/floor_node.css" text="Delete" />
