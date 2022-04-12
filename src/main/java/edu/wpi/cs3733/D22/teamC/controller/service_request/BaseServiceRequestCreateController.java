@@ -1,5 +1,6 @@
 package edu.wpi.cs3733.D22.teamC.controller.service_request;
 
+import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXComboBox;
 import com.jfoenix.controls.JFXTextArea;
 import com.jfoenix.controls.JFXTreeTableView;
@@ -12,17 +13,25 @@ import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.VBox;
+import javafx.stage.Modality;
+import javafx.stage.Stage;
 
+import java.io.IOException;
 import java.net.URL;
 import java.sql.Timestamp;
 import java.util.ResourceBundle;
+
+import static javafx.stage.Modality.WINDOW_MODAL;
 
 public class BaseServiceRequestCreateController<T extends ServiceRequest> {
     // FXML
@@ -55,6 +64,9 @@ public class BaseServiceRequestCreateController<T extends ServiceRequest> {
 
     @FXML
     private JFXTreeTableView<?> table;
+
+    @FXML
+    private JFXButton employeeTableButton;
 
     // References
     private InsertServiceRequestCreateController<T> insertController;
@@ -177,7 +189,19 @@ public class BaseServiceRequestCreateController<T extends ServiceRequest> {
 
         clearFields();
     }
+    @FXML
+    void goToEmployeeTable(ActionEvent event) throws IOException {
+        Parent root = FXMLLoader.load(getClass().getResource("view/general/employee_view.fxml"));
 
+        Scene scene = new Scene(root);
+        Stage primaryStage= new Stage();
+        primaryStage.setScene(scene);
+        primaryStage.initModality(Modality.WINDOW_MODAL);
+        primaryStage.initOwner(employeeTableButton.getScene().getWindow());
+        primaryStage.show();
+
+
+    }
     //#region FXML Buttons
     @FXML
     void clickGoBack(ActionEvent event) {
