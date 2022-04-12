@@ -135,7 +135,7 @@ public class App extends Application {
 
         stage.setFullScreen(true);
 
-        setView(LOGIN_PATH);
+        setViewStatic(LOGIN_PATH);
     }
 
     @Override
@@ -194,6 +194,12 @@ public class App extends Application {
         setView(node);
     }
 
+    public void setViewStatic(String viewFile)
+    {
+        Node node = loadView(viewFile).getNode();
+        setViewStatic(node);
+    }
+
     /**
      * Set view for window from a node.
      * @param viewNode Node to be displayed.
@@ -220,6 +226,27 @@ public class App extends Application {
         stage.setScene(scene);
         stage.show();
     }
+
+    public void setViewStatic(Node viewNode)
+    {
+        // Load Base Node
+        BorderPane baseNode = (BorderPane) loadView(BASE_COMPONENT_PATH).getNode();
+
+        // Load Menu Bar
+        // TODO: Find a way to only change the center of the baseNode, nothing else
+        Node menuBarNode = loadView(MENU_BAR_COMPONENT_PATH).getNode();
+
+        // Embed views and components
+        //baseNode.setTop(menuBarNode);
+        baseNode.setCenter(viewNode);
+        baseNode.autosize();
+
+        if (scene != null) scene.setRoot(baseNode);
+        else scene = new Scene(baseNode);
+        stage.setScene(scene);
+        stage.show();
+    }
+
     /**
      * Load a view from a file.
      * @param viewFile Path to the FXML file to be loaded.
@@ -267,4 +294,6 @@ public class App extends Application {
     public void setUserAccount(Employee userAccount) {
         this.userAccount = userAccount;
     }
+
+
 }
