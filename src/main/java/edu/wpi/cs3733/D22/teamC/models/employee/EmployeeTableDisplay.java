@@ -71,19 +71,15 @@ public class EmployeeTableDisplay extends TableDisplay<Employee> {
 
         addColumn(
                 table,
-                "Username",
-                1f * Integer.MAX_VALUE * 25,
-                (EmployeeTableDisplay.EmployeeTableEntry entry) -> {return entry.username;}
-        );
-
-        addColumn(
-                table,
                 "Role",
                 1f * Integer.MAX_VALUE * 25,
                 (EmployeeTableDisplay.EmployeeTableEntry entry) -> {return entry.role;}
         );
-
-
-
+        addColumn(
+                table,
+                "Phone",
+                1f * Integer.MAX_VALUE * 25,
+                (EmployeeTableDisplay.EmployeeTableEntry entry) -> {return entry.phone;}
+        );
     }
 }

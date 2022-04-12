@@ -27,8 +27,12 @@
                   </VBox>
                   <VBox>
                      <children>
-                        <Label fx:id="label1" prefHeight="17.0" prefWidth="272.0" text="ID" />
-                        <JFXComboBox fx:id="field41" maxWidth="1.7976931348623157E308" onAction="#keyPressed" prefHeight="47.0" prefWidth="419.0" styleClass="dropdown" stylesheets="@../../../css/base.css" />
+                        <Label fx:id="label1" prefHeight="17.0" prefWidth="272.0" text="First Name" />
+                        <TextField fx:id="shortNameField1" onKeyPressed="#keyPressed" prefHeight="47.0" prefWidth="373.0" styleClass="base_view_table_text" stylesheets="@../../../css/table_skeleton.css">
+                           <padding>
+                              <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                           </padding>
+                        </TextField>
                      </children>
                      <VBox.margin>
                         <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
@@ -36,7 +40,7 @@
                   </VBox>
                   <VBox>
                      <children>
-                        <Label fx:id="label2" prefHeight="17.0" prefWidth="367.0" text="Label 1" />
+                        <Label fx:id="label2" prefHeight="17.0" prefWidth="367.0" text="Last Name" />
                         <TextField fx:id="shortNameField" onKeyPressed="#keyPressed" prefHeight="47.0" prefWidth="373.0" styleClass="base_view_table_text" stylesheets="@../../../css/table_skeleton.css">
                            <padding>
                               <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
@@ -49,7 +53,7 @@
                   </VBox>
                   <VBox>
                      <children>
-                        <Label fx:id="label4" prefHeight="17.0" prefWidth="421.0" text="Label 2" />
+                        <Label fx:id="label4" prefHeight="17.0" prefWidth="421.0" text="Username" />
                         <TextField fx:id="field21" onKeyPressed="#keyPressed" prefHeight="47.0" prefWidth="373.0" styleClass="base_view_table_text" stylesheets="@../../../css/table_skeleton.css">
                            <padding>
                               <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
@@ -64,21 +68,15 @@
                      <VBox.margin>
                         <Insets top="10.0" />
                      </VBox.margin>
+                     <children>
+                        <Label fx:id="label41" prefHeight="17.0" prefWidth="421.0" text="Role">
+                           <padding>
+                              <Insets left="10.0" />
+                           </padding>
+                        </Label>
+                        <JFXComboBox fx:id="field411" maxWidth="1.7976931348623157E308" onAction="#keyPressed" prefHeight="47.0" prefWidth="419.0" styleClass="dropdown" stylesheets="@../../../css/base.css" />
+                     </children>
                   </VBox>
-                  <Label fx:id="label41" prefHeight="17.0" prefWidth="421.0" text="Label 3">
-                     <padding>
-                        <Insets left="10.0" />
-                     </padding>
-                  </Label>
-                  <TextField fx:id="field212" onKeyPressed="#keyPressed" prefHeight="47.0" prefWidth="373.0" styleClass="base_view_table_text" stylesheets="@../../../css/table_skeleton.css">
-                     <padding>
-                        <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
-                     </padding>
-                     <VBox.margin>
-                        <Insets bottom="10.0" left="10.0" right="10.0" />
-                     </VBox.margin>
-                  </TextField>
-                  <HBox spacing="20.0" />
                   <HBox alignment="CENTER_RIGHT" prefHeight="61.0" prefWidth="395.0">
                      <children>
                         <JFXButton fx:id="confirm" onAction="#clickConfirm" prefHeight="42.0" prefWidth="139.0" styleClass="base_view_table_confirm" stylesheets="@../../../css/table_skeleton.css" text="Confirm">
@@ -88,11 +86,6 @@
                         </JFXButton>
                      </children>
                   </HBox>
-                  <TextField fx:id="field211" onKeyPressed="#keyPressed" prefHeight="47.0" prefWidth="373.0" styleClass="base_view_table_text" stylesheets="@../../../css/table_skeleton.css">
-                     <padding>
-                        <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
-                     </padding>
-                  </TextField>
                </children>
             </VBox>
          </content></ScrollPane>
