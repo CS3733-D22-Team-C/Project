@@ -27,10 +27,10 @@ public class ServiceRequestReader {
     
     /**
      * Read a CSV of the data for one particular type of Service Request
-     * @param serviceRequest The type of service request.
+     * @param serviceRequestType The type of service request.
      */
-    public void readOne(ServiceRequest serviceRequest) {
-        switch (serviceRequest.getRequestType()) {
+    public void readOne(ServiceRequest.RequestType serviceRequestType) {
+        switch (serviceRequestType) {
             case Facility_Maintenance:
                 readFacilitySR();
                 break;

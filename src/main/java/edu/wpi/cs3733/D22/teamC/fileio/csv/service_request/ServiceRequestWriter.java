@@ -31,10 +31,10 @@ public class ServiceRequestWriter {
     
     /**
      * Write a CSV of the data for one particular type of Service Request
-     * @param serviceRequest The type of service request.
+     * @param serviceRequestType The type of service request.
      */
-    public void writeOne(ServiceRequest serviceRequest) {
-        switch (serviceRequest.getRequestType()) {
+    public void writeOne(ServiceRequest.RequestType serviceRequestType) {
+        switch (serviceRequestType) {
             case Facility_Maintenance:
                 writeFacilitySR();
                 break;

@@ -6,6 +6,7 @@ import edu.wpi.cs3733.D22.teamC.entity.floor.Floor;
 import edu.wpi.cs3733.D22.teamC.entity.floor.FloorDAO;
 import edu.wpi.cs3733.D22.teamC.entity.location.Location;
 import edu.wpi.cs3733.D22.teamC.entity.location.LocationDAO;
+import edu.wpi.cs3733.D22.teamC.entity.service_request.ServiceRequest;
 import edu.wpi.cs3733.D22.teamC.entity.service_request.medical_equipment.MedicalEquipmentSR;
 import edu.wpi.cs3733.D22.teamC.entity.service_request.medical_equipment.MedicalEquipmentSRDAO;
 import edu.wpi.cs3733.D22.teamC.fileio.csv.employee.EmployeeCSVReader;
@@ -14,6 +15,8 @@ import edu.wpi.cs3733.D22.teamC.fileio.csv.floor.FloorCSVReader;
 import edu.wpi.cs3733.D22.teamC.fileio.csv.floor.FloorCSVWriter;
 import edu.wpi.cs3733.D22.teamC.fileio.csv.location.LocationCSVReader;
 import edu.wpi.cs3733.D22.teamC.fileio.csv.location.LocationCSVWriter;
+import edu.wpi.cs3733.D22.teamC.fileio.csv.service_request.ServiceRequestReader;
+import edu.wpi.cs3733.D22.teamC.fileio.csv.service_request.ServiceRequestWriter;
 import edu.wpi.cs3733.D22.teamC.fileio.csv.service_request.medical_equipment.MedicalEquipmentSRCSVReader;
 import edu.wpi.cs3733.D22.teamC.fileio.csv.service_request.medical_equipment.MedicalEquipmentSRCSVWriter;
 import javafx.application.Application;
@@ -106,7 +109,7 @@ public class App extends Application {
         {
             EmployeeCSVReader csvReader =  new EmployeeCSVReader();
             List<Employee> employees = csvReader.readFile("Employees.csv");
-            if(employees !=null){
+            if(employees != null){
                 EmployeeDAO employeeDAO = new EmployeeDAO();
                 for(Employee employee : employees){
                     employeeDAO.insert(employee);
@@ -115,18 +118,8 @@ public class App extends Application {
         }
 
         // Load CSV Data - Medical Equipment Service Request
-        {
-            MedicalEquipmentSRCSVReader csvReader = new MedicalEquipmentSRCSVReader();
-            List<MedicalEquipmentSR> MedicalEquipmentSRs = csvReader.readFile("MedEquipReq.csv");
-            if(MedicalEquipmentSRs != null){
-                MedicalEquipmentSRDAO serviceRequestDAO = new MedicalEquipmentSRDAO();
-                for(MedicalEquipmentSR medEquipSR : MedicalEquipmentSRs){
-                    serviceRequestDAO.insert(medEquipSR);
-                }
-            }
-        }
-
-
+        ServiceRequestReader srReader= new ServiceRequestReader();
+        srReader.readOne(ServiceRequest.RequestType.Medical_Equipment);
 
         log.info("Starting Up");
     }
@@ -178,16 +171,9 @@ public class App extends Application {
 
 
         // Export CSV Data - Medical Equipment Service Requests
-        {
-            MedicalEquipmentSRCSVWriter csvWriter = new MedicalEquipmentSRCSVWriter();
-            MedicalEquipmentSRDAO serviceRequestDAO = new MedicalEquipmentSRDAO();
-            List<MedicalEquipmentSR> serviceRequests = serviceRequestDAO.getAll();
-            if (serviceRequests != null){
-                csvWriter.writeFile("MedEquipReq.csv", serviceRequests);
-            }
-        }
-
-
+        ServiceRequestWriter srWriter = new ServiceRequestWriter();
+        srWriter.writeOne(ServiceRequest.RequestType.Medical_Equipment);
+        
         log.info("Shutting Down");
     }
 
