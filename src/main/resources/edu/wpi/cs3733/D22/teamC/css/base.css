@@ -6,7 +6,8 @@
     /* Default Font */
     -fx-font-family: "Roboto";
     /*-fx-font-size: 14px;*/
-
+    -fx-focus-color: transparent;
+    -fx-faint-focus-color: transparent;
     /*-fx-min-height: 0px;*/
     /*-fx-min-width: 0px;*/
     /* Default Background Color */
@@ -217,16 +218,13 @@ padding goes top, right, bottom, left
     -fx-background-color: #93f9b911;
     -fx-text-background-color: red;
 }
+
 .tree-table-row-cell:odd {
     -fx-background-color: white;
     -fx-background-insets: 0, 0 0 1 0;
     -fx-padding: 0.0em;
 }
-/*.tree-table-row-cell:even {*/
-/*    -fx-background-color: -login-username-field;*/
-/*    -fx-background-insets: 0, 0 0 1 0;*/
-/*    -fx-padding: 0.0em;*/
-/*}*/
+
 
 .tree-table-row-cell:even {
     -fx-background-color: #F6F6F6;

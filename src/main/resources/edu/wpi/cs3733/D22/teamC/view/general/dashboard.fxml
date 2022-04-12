@@ -1,34 +1,25 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import io.github.palexdev.materialfx.controls.legacy.MFXLegacyTableView?>
+<?import com.jfoenix.controls.JFXTreeTableView?>
 <?import java.net.URL?>
-<?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Tab?>
 <?import javafx.scene.control.TabPane?>
-<?import javafx.scene.layout.HBox?>
 
-<HBox alignment="CENTER_RIGHT" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1">
-   <children>
-      <TabPane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" styleClass="mfx-table-view" tabClosingPolicy="UNAVAILABLE" HBox.hgrow="ALWAYS">
-        <tabs>
-          <Tab closable="false" text="Assigned Service Requests">
-               <content>
-                  <MFXLegacyTableView maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" />
-               </content>
-          </Tab>
-          <Tab closable="false" text="Created Service Requests">
-               <content>
-                  <MFXLegacyTableView maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" />
-               </content>
-          </Tab>
-        </tabs>
-         <stylesheets>
-            <URL value="@../../css/base.css" />
-            <URL value="@../../css/dashboard.css" />
-         </stylesheets>
-         <HBox.margin>
-            <Insets bottom="30.0" left="30.0" right="30.0" top="30.0" />
-         </HBox.margin>
-      </TabPane>
-   </children>
-</HBox>
+<TabPane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" tabClosingPolicy="UNAVAILABLE" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.wpi.cs3733.D22.teamC.controller.dashboard.DashboardController">
+   <stylesheets>
+      <URL value="@../../css/base.css" />
+      <URL value="@../../css/dashboard.css" />
+   </stylesheets>
+   <tabs>
+      <Tab closable="false" text="Assigned Service Requests">
+         <content>
+            <JFXTreeTableView fx:id="assignedTable" />
+         </content>
+      </Tab>
+      <Tab closable="false" text="Created Service Requests">
+         <content>
+            <JFXTreeTableView fx:id="createdTable" />
+         </content>
+      </Tab>
+   </tabs>
+</TabPane>
