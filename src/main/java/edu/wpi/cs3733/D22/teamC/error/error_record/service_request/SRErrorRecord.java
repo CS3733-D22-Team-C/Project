@@ -1,5 +1,7 @@
 package edu.wpi.cs3733.D22.teamC.error.error_record.service_request;
 
+import edu.wpi.cs3733.D22.teamC.error.error_item.user_input.service_request.SRErrorItem;
+
 public class SRErrorRecord {
     public static final SRErrorItem[] serviceRequestUserInputValidationErrorList = {
             new SRErrorItem(1, "Required field Location ID is missing"),

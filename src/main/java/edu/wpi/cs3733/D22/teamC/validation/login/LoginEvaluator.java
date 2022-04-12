@@ -1,8 +1,8 @@
-package edu.wpi.cs3733.D22.teamC.user_input_validation.login;
+package edu.wpi.cs3733.D22.teamC.validation.login;
 
 import edu.wpi.cs3733.D22.teamC.entity.employee.EmployeeDAO;
 import edu.wpi.cs3733.D22.teamC.error.error_item.user_input.login.LoginErrorItem;
-import edu.wpi.cs3733.D22.teamC.error.error_record.login_user_input_validation.LoginUserInputValidationErrorRecord;
+import edu.wpi.cs3733.D22.teamC.error.error_record.login.LoginErrorRecord;
 
 import java.util.ArrayList;
 
@@ -23,11 +23,11 @@ public class LoginEvaluator {
         //Need to get current employee and set it in the app
         if(eDAO.getEmployeeByUsername(username) == null)
         {
-            return LoginUserInputValidationErrorRecord.loginUserInputValidationErrorList[0];
+            return LoginErrorRecord.loginUserInputValidationErrorList[0];
         }
         else if(!(eDAO.getEmployeeByUsername(username).getPassword().equals(password)))
         {
-            return LoginUserInputValidationErrorRecord.loginUserInputValidationErrorList[0];
+            return LoginErrorRecord.loginUserInputValidationErrorList[0];
         }
         else
         {
