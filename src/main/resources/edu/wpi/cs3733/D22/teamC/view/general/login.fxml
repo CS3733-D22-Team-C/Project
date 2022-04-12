@@ -68,7 +68,7 @@
                                     <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                                  </rowConstraints>
                                  <children>
-                                    <Label fx:id="invalidLogin" prefHeight="40.0" prefWidth="197.0" styleClass="login-invalid-label" stylesheets="@../../css/component/entity/login/login.css" text="      Invalid username or password" translateX="67.0">
+                                    <Label fx:id="invalidLogin" alignment="CENTER" prefHeight="40.0" prefWidth="197.0" styleClass="login-invalid-label" stylesheets="@../../css/component/entity/login/login.css" translateX="67.0">
                                        <font>
                                           <Font size="10.0" />
                                        </font>

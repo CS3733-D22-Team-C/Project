@@ -23,7 +23,7 @@ public class LoginEvaluator {
         {
             return null;
         }
-        else if(username.equals("admin") && username.equals("admin"))
+        else if(username.equals("admin") && password.equals("admin"))
         {
             return null;
         }

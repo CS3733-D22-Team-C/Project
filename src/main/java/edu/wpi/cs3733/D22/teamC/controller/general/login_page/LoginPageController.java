@@ -2,6 +2,7 @@ package edu.wpi.cs3733.D22.teamC.controller.general.login_page;
 
 import edu.wpi.cs3733.D22.teamC.App;
 import edu.wpi.cs3733.D22.teamC.entity.login_page.Login;
+import edu.wpi.cs3733.D22.teamC.error.error_item.user_input_validation_error_item.login_user_input_validation_error_item.LoginUserInputValidationErrorItem;
 import edu.wpi.cs3733.D22.teamC.user_input_validation.login.LoginEvaluator;
 import io.github.palexdev.materialfx.controls.MFXTextField;
 import javafx.beans.value.ChangeListener;
@@ -9,11 +10,13 @@ import javafx.beans.value.ObservableValue;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.geometry.Pos;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.text.TextAlignment;
 
 import java.net.URL;
+import java.util.ArrayList;
 import java.util.ResourceBundle;
 
 public class LoginPageController implements Initializable {
@@ -36,10 +39,13 @@ public class LoginPageController implements Initializable {
     @FXML
     public void loginButtonClicked(ActionEvent event) {
         //Login Validation eventually needed here
-        LoginEvaluator loginEV = new LoginEvaluator();
+        invalidLogin.setVisible(false);
 
-        if(loginEV.getLoginValidationTestResult(username.getText(), password.getText()) != null) {
-            insertLoginErrorMessage();
+        LoginEvaluator loginEV = new LoginEvaluator();
+        ArrayList<LoginUserInputValidationErrorItem> errors = loginEV.getLoginValidationTestResult(username.getText(), password.getText());
+
+        if(errors != null) {
+            prepareLoginErrorMessage(errors.get(0));
         }
         else
         {
@@ -58,9 +64,10 @@ public class LoginPageController implements Initializable {
         App.instance.getStage().close();
     }
 
-    public void insertLoginErrorMessage()
+    public void prepareLoginErrorMessage(LoginUserInputValidationErrorItem i)
     {
-        invalidLogin.setText("Invalid username or password");
+        invalidLogin.setText(i.getReasonForValidationError());
+        invalidLogin.setAlignment(Pos.CENTER);
         invalidLogin.setVisible(true);
     }
 
