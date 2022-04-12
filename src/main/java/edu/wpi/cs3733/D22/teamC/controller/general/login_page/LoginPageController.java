@@ -1,10 +1,8 @@
 package edu.wpi.cs3733.D22.teamC.controller.general.login_page;
 
 import edu.wpi.cs3733.D22.teamC.App;
-import edu.wpi.cs3733.D22.teamC.entity.login_page.Login;
 import edu.wpi.cs3733.D22.teamC.error.error_item.user_input_validation_error_item.login_user_input_validation_error_item.LoginUserInputValidationErrorItem;
 import edu.wpi.cs3733.D22.teamC.user_input_validation.login.LoginEvaluator;
-import io.github.palexdev.materialfx.controls.MFXTextField;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.event.ActionEvent;
@@ -13,7 +11,6 @@ import javafx.fxml.Initializable;
 import javafx.geometry.Pos;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
-import javafx.scene.text.TextAlignment;
 
 import java.net.URL;
 import java.util.ArrayList;
@@ -49,7 +46,7 @@ public class LoginPageController implements Initializable {
         }
         else
         {
-            Login.initializeLogin(username.getText(), password.getText());
+            //Need to get employee
             App.instance.setView(App.VIEW_SERVICE_REQUESTS_PATH);
          }
 

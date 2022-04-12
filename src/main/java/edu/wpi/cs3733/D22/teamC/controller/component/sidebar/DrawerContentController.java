@@ -1,7 +1,6 @@
 package edu.wpi.cs3733.D22.teamC.controller.component.sidebar;
 
 import edu.wpi.cs3733.D22.teamC.App;
-import edu.wpi.cs3733.D22.teamC.entity.login_page.Login;
 import io.github.palexdev.materialfx.controls.MFXButton;
 import javafx.animation.*;
 import javafx.event.ActionEvent;
@@ -10,16 +9,11 @@ import javafx.fxml.Initializable;
 import javafx.geometry.Pos;
 import javafx.scene.Node;
 import javafx.scene.control.ContentDisplay;
-import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
-import javafx.scene.paint.Color;
 import javafx.scene.shape.SVGPath;
-import javafx.scene.shape.TriangleMesh;
 import javafx.util.Duration;
 
 import java.net.URL;
-import java.util.ArrayList;
-import java.util.List;
 import java.util.ResourceBundle;
 import java.util.concurrent.TimeUnit;
 
@@ -128,7 +122,6 @@ public class DrawerContentController implements Initializable {
     @FXML
     void logOutButtonPress(ActionEvent event) {
         // TODO: Logout functionality, path to login page
-        Login.resetUserLogin();
         App.instance.setView(App.LOGIN_PATH);
     }
 
