@@ -1,8 +1,8 @@
-package edu.wpi.cs3733.D22.teamC.user_input_validation.service_request.lab_system;
+package edu.wpi.cs3733.D22.teamC.validation.service_request.lab_system;
 
-import edu.wpi.cs3733.D22.teamC.error.error_item.user_input_validation_error_item.service_request_user_input_validation_error_item.ServiceRequestUserInputValidationErrorItem;
-import edu.wpi.cs3733.D22.teamC.error.error_record.service_request_user_input_validation.ServiceRequestUserInputValidationErrorRecord;
-import edu.wpi.cs3733.D22.teamC.user_input_validation.service_request.SRFormEvaluator;
+import edu.wpi.cs3733.D22.teamC.error.error_item.user_input.service_request.SRErrorItem;
+import edu.wpi.cs3733.D22.teamC.error.error_record.service_request.SRErrorRecord;
+import edu.wpi.cs3733.D22.teamC.validation.service_request.SRFormEvaluator;
 import javafx.scene.control.SingleSelectionModel;
 
 import java.util.ArrayList;
@@ -11,9 +11,9 @@ public class LabSystemSRFormEvaluator extends SRFormEvaluator {
 
     public LabSystemSRFormEvaluator() {}
 
-    public ArrayList<ServiceRequestUserInputValidationErrorItem> getLabSystemSRValidationFormTestResult(String location, String assigneeID, SingleSelectionModel priority, SingleSelectionModel status, SingleSelectionModel labType, String patientID)
+    public ArrayList<SRErrorItem> getLabSystemSRValidationTestResult(String location, String assigneeID, SingleSelectionModel priority, SingleSelectionModel status, SingleSelectionModel labType, String patientID)
     {
-        ArrayList <ServiceRequestUserInputValidationErrorItem> errorList = new ArrayList <ServiceRequestUserInputValidationErrorItem> ();
+        ArrayList <SRErrorItem> errorList = new ArrayList <SRErrorItem> ();
 
         errorList.addAll(super.getBasicRequiredFieldsFilledValidationResult(location, assigneeID, priority, status));
         errorList.add(super.getValidateAssigneeIDResult(assigneeID));
@@ -29,11 +29,11 @@ public class LabSystemSRFormEvaluator extends SRFormEvaluator {
      * @param labType
      * @return ServiceRequestUserInputValidationErrorItem
      */
-    public ServiceRequestUserInputValidationErrorItem checkLabTypeFilled(SingleSelectionModel labType)
+    public SRErrorItem checkLabTypeFilled(SingleSelectionModel labType)
     {
         if(labType.isEmpty())
         {
-            return ServiceRequestUserInputValidationErrorRecord.serviceRequestUserInputValidationErrorList[6];
+            return SRErrorRecord.serviceRequestUserInputValidationErrorList[6];
         }
         else
         {
@@ -46,12 +46,12 @@ public class LabSystemSRFormEvaluator extends SRFormEvaluator {
      * @param patientID
      * @return ServiceRequestUserInputValidationErrorItem
      */
-    public ServiceRequestUserInputValidationErrorItem checkPatientIDFilled(String patientID)
+    public SRErrorItem checkPatientIDFilled(String patientID)
     {
 
         if(patientID.isEmpty())
         {
-            return ServiceRequestUserInputValidationErrorRecord.serviceRequestUserInputValidationErrorList[10];
+            return SRErrorRecord.serviceRequestUserInputValidationErrorList[10];
         }
         else
         {
@@ -60,12 +60,17 @@ public class LabSystemSRFormEvaluator extends SRFormEvaluator {
 
             if(patientIDLength == 0)
             {
-                return ServiceRequestUserInputValidationErrorRecord.serviceRequestUserInputValidationErrorList[10];
+                return SRErrorRecord.serviceRequestUserInputValidationErrorList[10];
             }
             else
             {
                 return null;
             }
         }
+    }
+
+    @Override
+    public boolean noServiceRequestFormUserInputErrors(ArrayList<SRErrorItem> l) {
+        return super.noServiceRequestFormUserInputErrors(l);
     }
 }
