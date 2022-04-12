@@ -17,7 +17,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
 
-public class LocationNode extends Group {
+public class LocationNode {
     // Constants
     private final static Pair<Integer, Integer>[] MEDICAL_EQUIPMENT_COUNTER_NODE_OFFSETS = new Pair[] {
         new Pair<>(10, -55),
@@ -46,6 +46,7 @@ public class LocationNode extends Group {
         group.setTranslateY(location.getY());
 
         addMedicalEquipmentCounters();
+        showMedicalEquipmentCounters(false, false);
     }
 
     //#region Medical Equipment Counter Node Interaction
@@ -66,6 +67,13 @@ public class LocationNode extends Group {
             medicalEquipmentCounterNodes[equipmentType.ordinal()] = medicalEquipmentCounterNode;
 
             medicalEquipmentCounterNode.render(contextGroup, MEDICAL_EQUIPMENT_COUNTER_NODE_OFFSETS[equipmentType.ordinal()]);
+        }
+
+        public void showMedicalEquipmentCounters(boolean visibility, boolean editable) {
+            for (MedicalEquipmentCounterNode medicalEquipmentCounterNode : medicalEquipmentCounterNodes) {
+                medicalEquipmentCounterNode.setVisible(visibility);
+                medicalEquipmentCounterNode.setEditable(editable);
+            }
         }
     //#endregion
 
@@ -102,10 +110,12 @@ public class LocationNode extends Group {
 
         public void activate() {
             node.getStyleClass().add("active");
+            showMedicalEquipmentCounters(true, mapController.parentController.isEditMode);
         }
 
         public void deactivate() {
             node.getStyleClass().remove("active");
+            showMedicalEquipmentCounters(false, mapController.parentController.isEditMode);
         }
     //#endregion
 

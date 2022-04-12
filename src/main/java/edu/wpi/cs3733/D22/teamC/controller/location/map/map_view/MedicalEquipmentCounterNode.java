@@ -13,7 +13,7 @@ import javafx.util.Pair;
 import java.io.IOException;
 import java.util.List;
 
-public class MedicalEquipmentCounterNode extends Group {
+public class MedicalEquipmentCounterNode {
     // General Components
     @FXML private Group group;
     @FXML private SVGPath icon;
@@ -58,6 +58,8 @@ public class MedicalEquipmentCounterNode extends Group {
             resetCounter();
 
             setDecreaseDisabled(medicalEquipments.size() == 0);
+
+            event.consume();
         }
 
         @FXML
@@ -65,10 +67,16 @@ public class MedicalEquipmentCounterNode extends Group {
             MedicalEquipment medicalEquipment = locationNode.mapController.parentController.medicalEquipmentManager.reclaimMedicalEquipment(equipmentType);
             medicalEquipments.add(medicalEquipment);
             resetCounter();
+
+            event.consume();
         }
     //#endregion
 
     //#region External Interaction
+        public void setVisible(boolean visible) {
+            group.setVisible(visible);
+        }
+
         public void setEditable(boolean editable) {
             editGroup.setVisible(editable);
         }
