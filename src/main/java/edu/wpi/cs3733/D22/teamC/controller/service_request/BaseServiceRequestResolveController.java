@@ -7,6 +7,7 @@ import edu.wpi.cs3733.D22.teamC.App;
 import edu.wpi.cs3733.D22.teamC.entity.employee.Employee;
 import edu.wpi.cs3733.D22.teamC.entity.generic.DAO;
 import edu.wpi.cs3733.D22.teamC.entity.service_request.ServiceRequest;
+import edu.wpi.cs3733.D22.teamC.models.employee.EmployeeSelectorWindow;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.Scene;
@@ -53,7 +54,7 @@ public class BaseServiceRequestResolveController<T extends ServiceRequest> imple
 
     private T serviceRequest;
     private boolean isEditMode;
-    private EmployeeViewController employeeViewController;
+    private EmployeeSelectorWindow employeeSelectorWindow;
 
     @FXML
     public void setup(ServiceRequest serviceRequest, boolean isEditMode) {
@@ -189,8 +190,8 @@ public class BaseServiceRequestResolveController<T extends ServiceRequest> imple
     @FXML
     void goToEmployeeTable(ActionEvent event) {
         //Setting up pop up
-        App.View<EmployeeViewController> view = App.instance.loadView("view/general/employee_view.fxml");
-        employeeViewController = view.getController();
+        App.View<EmployeeSelectorWindow> view = App.instance.loadView("view/selector/employee_table.fxml");
+        employeeSelectorWindow = view.getController();
         VBox root = (VBox) view.getNode();
 
 
@@ -203,7 +204,7 @@ public class BaseServiceRequestResolveController<T extends ServiceRequest> imple
         primaryStage.initModality(Modality.WINDOW_MODAL);
         primaryStage.initOwner(employeeTableButton.getScene().getWindow());
         primaryStage.show();
-        employeeViewController.setup(this, primaryStage);
+        employeeSelectorWindow.setup(this, primaryStage);
     }
 
     @FXML

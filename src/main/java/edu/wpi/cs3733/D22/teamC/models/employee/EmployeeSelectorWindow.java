@@ -1,22 +1,13 @@
-package edu.wpi.cs3733.D22.teamC.controller.service_request;
+package edu.wpi.cs3733.D22.teamC.models.employee;
 
 import com.jfoenix.controls.JFXTreeTableView;
-import edu.wpi.cs3733.D22.teamC.App;
-import edu.wpi.cs3733.D22.teamC.controller.service_request.BaseServiceRequestCreateController;
-import edu.wpi.cs3733.D22.teamC.controller.service_request.BaseServiceRequestResolveController;
 import edu.wpi.cs3733.D22.teamC.controller.service_request.ServiceRequestController;
 import edu.wpi.cs3733.D22.teamC.entity.employee.Employee;
-import edu.wpi.cs3733.D22.teamC.entity.location.Location;
-import edu.wpi.cs3733.D22.teamC.entity.location.LocationDAO;
-import edu.wpi.cs3733.D22.teamC.entity.service_request.ServiceRequest;
-import edu.wpi.cs3733.D22.teamC.models.location.LocationTableDisplay;
-import edu.wpi.cs3733.D22.teamC.models.service_request.ServiceRequestTableDisplay;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
 import edu.wpi.cs3733.D22.teamC.entity.employee.EmployeeDAO;
-import edu.wpi.cs3733.D22.teamC.models.employee.EmployeeTableDisplay;
 import javafx.scene.control.TreeTableRow;
 import javafx.scene.input.MouseButton;
 import javafx.stage.Stage;
@@ -25,7 +16,7 @@ import java.net.URL;
 import java.util.List;
 import java.util.ResourceBundle;
 
-public class EmployeeViewController implements Initializable {
+public class EmployeeSelectorWindow implements Initializable {
 
     @FXML
     private JFXTreeTableView table;
@@ -64,7 +55,6 @@ public class EmployeeViewController implements Initializable {
     }
 
 
-
     @FXML
     void onSelect(ActionEvent event) {
         parentController.setEmployee(activeEmployee);
@@ -91,5 +81,4 @@ public class EmployeeViewController implements Initializable {
             return row ;
         });
     }
-
 }

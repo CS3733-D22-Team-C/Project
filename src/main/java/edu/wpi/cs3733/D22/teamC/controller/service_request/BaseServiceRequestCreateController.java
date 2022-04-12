@@ -8,6 +8,7 @@ import edu.wpi.cs3733.D22.teamC.App;
 import edu.wpi.cs3733.D22.teamC.entity.employee.Employee;
 import edu.wpi.cs3733.D22.teamC.entity.generic.DAO;
 import edu.wpi.cs3733.D22.teamC.entity.service_request.ServiceRequest;
+import edu.wpi.cs3733.D22.teamC.models.employee.EmployeeSelectorWindow;
 import edu.wpi.cs3733.D22.teamC.models.service_request.ServiceRequestTableDisplay;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
@@ -23,7 +24,6 @@ import javafx.stage.Modality;
 import javafx.stage.Stage;
 
 import java.io.IOException;
-import java.security.Timestamp;
 
 public class BaseServiceRequestCreateController<T extends ServiceRequest> implements ServiceRequestController {
     // FXML
@@ -67,7 +67,7 @@ public class BaseServiceRequestCreateController<T extends ServiceRequest> implem
     private ServiceRequestTableDisplay<T> tableDisplay;
     private ServiceRequest.RequestType requestType;
     private T serviceRequest;
-    private EmployeeViewController employeeViewController;
+    private EmployeeSelectorWindow employeeSelectorWindow;
 
     public void setup(ServiceRequest.RequestType requestType) {
         this.requestType = requestType;
@@ -196,8 +196,8 @@ public class BaseServiceRequestCreateController<T extends ServiceRequest> implem
     @FXML
     void goToEmployeeTable(ActionEvent event) throws IOException {
         //Setting up pop up
-        App.View<EmployeeViewController> view = App.instance.loadView("view/general/employee_view.fxml");
-        employeeViewController = view.getController();
+        App.View<EmployeeSelectorWindow> view = App.instance.loadView("view/selector/employee_table.fxml");
+        employeeSelectorWindow = view.getController();
         VBox root = (VBox) view.getNode();
 
 
@@ -210,7 +210,7 @@ public class BaseServiceRequestCreateController<T extends ServiceRequest> implem
         primaryStage.initModality(Modality.WINDOW_MODAL);
         primaryStage.initOwner(employeeTableButton.getScene().getWindow());
         primaryStage.show();
-        employeeViewController.setup(this, primaryStage);
+        employeeSelectorWindow.setup(this, primaryStage);
     }
 
     //#region FXML Buttons
