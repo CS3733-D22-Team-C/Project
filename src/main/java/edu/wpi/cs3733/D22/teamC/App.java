@@ -6,6 +6,8 @@ import edu.wpi.cs3733.D22.teamC.entity.floor.Floor;
 import edu.wpi.cs3733.D22.teamC.entity.floor.FloorDAO;
 import edu.wpi.cs3733.D22.teamC.entity.location.Location;
 import edu.wpi.cs3733.D22.teamC.entity.location.LocationDAO;
+import edu.wpi.cs3733.D22.teamC.entity.medical_equipment.MedicalEquipment;
+import edu.wpi.cs3733.D22.teamC.entity.medical_equipment.MedicalEquipmentDAO;
 import edu.wpi.cs3733.D22.teamC.entity.service_request.medical_equipment.MedicalEquipmentSR;
 import edu.wpi.cs3733.D22.teamC.entity.service_request.medical_equipment.MedicalEquipmentSRDAO;
 import edu.wpi.cs3733.D22.teamC.fileio.csv.*;
@@ -60,7 +62,7 @@ public class App extends Application {
 
     public static final String BASE_CSS_PATH = "css/base.css";
     //public static final String IMAGE_PATH = "static/images/BrighamAndWomensHospital.png";
-    
+
     // Singleton Instance
     public static App instance;
 
@@ -74,7 +76,7 @@ public class App extends Application {
     @Override
     public void init() {
         SessionManager.switchDatabase(SessionManager.DBMode.EMBEDDED);
-        
+
         // Load CSV Data - Floor
         {
             FloorCSVReader csvReader = new FloorCSVReader();
@@ -114,16 +116,26 @@ public class App extends Application {
         // Load CSV Data - Medical Equipment Service Request
         {
             MedicalEquipmentSRCSVReader csvReader = new MedicalEquipmentSRCSVReader();
-            List<MedicalEquipmentSR> MedicalEquipmentSRs = csvReader.readFile("MedEquipReq.csv");
-            if(MedicalEquipmentSRs != null){
+            List<MedicalEquipmentSR> medicalEquipmentSRs = csvReader.readFile("MedEquipReq.csv");
+            if(medicalEquipmentSRs != null){
                 MedicalEquipmentSRDAO serviceRequestDAO = new MedicalEquipmentSRDAO();
-                for(MedicalEquipmentSR medEquipSR : MedicalEquipmentSRs){
+                for(MedicalEquipmentSR medEquipSR : medicalEquipmentSRs){
                     serviceRequestDAO.insert(medEquipSR);
                 }
             }
         }
 
-
+        // Load CSV Data - Medical Equipment
+        {
+            MedicalEquipmentCSVReader csvReader = new MedicalEquipmentCSVReader();
+            List<MedicalEquipment> medicalEquipments = csvReader.readFile("MedicalEquip.csv");
+            if(medicalEquipments != null){
+                MedicalEquipmentDAO medicalEquipmentDAO = new MedicalEquipmentDAO();
+                for(MedicalEquipment medicalEquipment : medicalEquipments){
+                    medicalEquipmentDAO.insert(medicalEquipment);
+                }
+            }
+        }
 
         log.info("Starting Up");
     }
@@ -184,6 +196,15 @@ public class App extends Application {
             }
         }
 
+        // Export CSV Data - Medical Equipment
+        {
+            MedicalEquipmentCSVWriter csvWriter = new MedicalEquipmentCSVWriter();
+            MedicalEquipmentDAO medicalEquipmentDAO = new MedicalEquipmentDAO();
+            List<MedicalEquipment> medicalEquipments = medicalEquipmentDAO.getAll();
+            if (medicalEquipments != null){
+                csvWriter.writeFile("MedicalEquip.csv", medicalEquipments);
+            }
+        }
 
         log.info("Shutting Down");
     }

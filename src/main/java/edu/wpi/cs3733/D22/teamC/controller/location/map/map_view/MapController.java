@@ -1,5 +1,6 @@
-package edu.wpi.cs3733.D22.teamC.controller.location.map;
+package edu.wpi.cs3733.D22.teamC.controller.location.map.map_view;
 
+import edu.wpi.cs3733.D22.teamC.controller.location.map.BaseMapViewController;
 import edu.wpi.cs3733.D22.teamC.entity.floor.Floor;
 import edu.wpi.cs3733.D22.teamC.entity.floor.FloorDAO;
 import edu.wpi.cs3733.D22.teamC.entity.location.Location;
@@ -12,7 +13,9 @@ import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseButton;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.input.ScrollEvent;
+import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
+import javafx.scene.layout.StackPane;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Circle;
 
@@ -25,67 +28,21 @@ import java.util.ResourceBundle;
 import java.util.stream.Collectors;
 
 public class MapController implements Initializable {
-    protected class LocationNode {
-        public Circle node;
-        public Location location;
-
-        public LocationNode(Location location) {
-            this.location = location;
-            this.node = createNode(location.getX(), location.getY());
-        }
-
-        public void updateNode(Location location) {
-            this.location = location;
-            this.node.setCenterX(location.getX());
-            this.node.setCenterY(location.getY());
-        }
-
-        /**
-         * Create this LocationNode node.
-         * @param x x-coordinate for node location.
-         * @param y y-coordinate for node location.
-         * @return The circle drawn as the LocationNode's node.
-         */
-        public Circle createNode(double x, double y) {
-            Circle circle = drawCircle(x, y);
-            circle.setOnMouseEntered(e -> onMouseEnterNode(e, this));
-            circle.setOnMouseExited(e -> onMouseExitNode(e, this));
-            circle.setOnMouseClicked(e -> onMouseClickedNode(e, this));
-            circle.setOnMouseDragged(e -> onMouseDraggedNode(e, this));
-            return circle;
-        }
-
-        public void deactivate() {
-            this.node.setFill(Color.DARKCYAN);
-        }
-
-        public void activate() {
-            this.node.setFill(Color.BLACK);
-        }
-
-        public void unfocus() {
-            this.node.setStroke(Color.DARKSLATEGREY);
-            this.node.setStrokeWidth(1f);
-        }
-
-        public void focus() {
-            this.node.setStroke(Color.GRAY);
-            this.node.setStrokeWidth(5f);
-        }
-    }
-
     // Constants
-    protected final static double MAX_SCALE = 1.25f;
-    protected final static double MIN_SCALE = 0.75f;
+    protected final static double MAX_SCALE = 1.3f;
+    protected final static double MIN_SCALE = 0.7f;
 
     // FXML
     @FXML MFXScrollPane scrollPane;
     @FXML ImageView mapImage;
     @FXML Pane mapPane;
+    @FXML StackPane stackPane;
+    @FXML public HBox rightOverlay;
+    @FXML public HBox leftOverlay;
 
     // Variables
-    protected List<LocationNode> locationNodes = new ArrayList<>();
-    protected LocationNode clickedLocation;
+    public List<LocationNode> locationNodes = new ArrayList<>();
+    public LocationNode activeLocation;
 
     // References
     protected BaseMapViewController parentController;
@@ -101,17 +58,16 @@ public class MapController implements Initializable {
     }
 
     //#region Location Node Interaction
-        private final LocationNode getLocationNode(Location location) {
-            return locationNodes.stream().filter(node -> node.location.getNodeID() == location.getNodeID()).collect(Collectors.toList()).get(0);
+        public final LocationNode getLocationNode(Location location) {
+            List<LocationNode> locationNodeList = locationNodes.stream().filter(locationNode -> locationNode.location.getNodeID().equals(location.getNodeID())).collect(Collectors.toList());
+            return (locationNodeList.size() > 0) ? locationNodeList.get(0) : null;
         }
 
         /**
          * Remove all Location Nodes from the Map View.
          */
         public final void removeAllLocationNodes() {
-            for (LocationNode locationNode : locationNodes) {
-                mapPane.getChildren().remove(locationNode.node);
-            }
+            locationNodes.forEach(locationNode -> locationNode.remove(mapPane));
             locationNodes = new ArrayList<>();
         }
 
@@ -120,18 +76,10 @@ public class MapController implements Initializable {
          * @param locations List of Locations to render.
          * @return List of rendered Location Nodes.
          */
-        public final List<LocationNode> renderLocationsNodes(List<Location> locations) {
+        public final void renderLocationsNodes(List<Location> locations) {
             List<LocationNode> locationNodes = new ArrayList<>();
 
-            if (locations != null) {
-                for (Location location : locations) {
-                    LocationNode locationNode = new LocationNode(location);
-                    locationNodes.add(locationNode);
-                    mapPane.getChildren().add(locationNode.node);
-                }
-            }
-
-            return locationNodes;
+            if (locations != null) locations.forEach(this::addLocationNode);
         }
 
         /**
@@ -139,9 +87,19 @@ public class MapController implements Initializable {
          * @param location The Location to create the Location Node for.
          */
         public void addLocationNode(Location location) {
-            LocationNode newMapLoc = new LocationNode(location);
-            locationNodes.add(newMapLoc);
-            mapPane.getChildren().add(newMapLoc.node);
+            // Load Location Node
+            LocationNode locationNode = LocationNode.loadNewLocationNode(this);
+            locationNode.setLocation(location);
+            locationNodes.add(locationNode);
+
+            // Setup Location Node Events
+            Circle circle = locationNode.getLocationNodeCircle();
+            circle.setOnMouseEntered(e -> onMouseEnterNode(e, locationNode));
+            circle.setOnMouseExited(e -> onMouseExitNode(e, locationNode));
+            circle.setOnMouseClicked(e -> onMouseClickedNode(e, locationNode));
+            circle.setOnMouseDragged(e -> onMouseDraggedNode(e, locationNode));
+
+            locationNode.render(mapPane);
         }
 
         /**
@@ -150,7 +108,7 @@ public class MapController implements Initializable {
          */
         public void updateLocationNode(Location location) {
             LocationNode locationNode = getLocationNode(location);
-            locationNode.updateNode(location);
+            locationNode.setLocation(location);
         }
 
         /**
@@ -159,23 +117,30 @@ public class MapController implements Initializable {
          */
         public void removeLocationNode(Location location) {
             LocationNode locationNode = getLocationNode(location);
-            mapPane.getChildren().remove(locationNode.node);
             locationNodes.remove(locationNode);
+            locationNode.remove(mapPane);
         }
     //#endregion
 
     //#region Mouse Events
         protected void onMouseEnterNode(MouseEvent event, LocationNode locationNode) {
-            locationNode.focus();
-            if (clickedLocation == null) {
-                parentController.setCurrentLocation(locationNode.location, false);
+            if (activeLocation == null) {
+                parentController.changeCurrentLocation(locationNode.location, false);
+                locationNode.renderInFront();
+            }
+            if (locationNode != activeLocation) {
+                locationNode.showMedicalEquipmentCounters(true, parentController.isEditMode);
+                locationNode.renderInFront();
             }
         }
 
         protected void onMouseExitNode(MouseEvent event, LocationNode locationNode) {
-            locationNode.unfocus();
-            if (clickedLocation == null) {
-                parentController.setCurrentLocation(null, false);
+            if (activeLocation == null) {
+                parentController.changeCurrentLocation(null, false);
+            }
+            if (activeLocation != locationNode) {
+                locationNode.showMedicalEquipmentCounters(false, parentController.isEditMode);
+                locationNode.renderInBack();
             }
         }
 
@@ -183,11 +148,8 @@ public class MapController implements Initializable {
             if (event.getButton().equals(MouseButton.PRIMARY)) {
                 // Single-Click select toggle
                 {
-                    // Update clicked Location Node
-                    setClickedLocation(locationNode.location);
-
                     // Update current Location
-                    parentController.setCurrentLocation((clickedLocation != null) ? clickedLocation.location : null);
+                    parentController.changeCurrentLocation((locationNode != activeLocation) ? locationNode.location : null);
                 }
 
                 event.consume();
@@ -200,8 +162,8 @@ public class MapController implements Initializable {
             if (event.getButton().equals(MouseButton.PRIMARY)) {
                 // Single-Click reset active LocationNode
                 {
-                    if (clickedLocation != null) {
-                        parentController.setCurrentLocation(null);
+                    if (activeLocation != null) {
+                        parentController.changeCurrentLocation(null);
                     }
                 }
             }
@@ -224,12 +186,11 @@ public class MapController implements Initializable {
         protected void onMouseScrollMap(ScrollEvent event) {
             if (event.getDeltaY() != 0) {
                 double scale = (event.getDeltaY() < 0)
-                        ? Math.max(mapPane.getScaleX() - 0.1, MIN_SCALE)
-                        : Math.min(mapPane.getScaleX() + 0.1, MAX_SCALE);
-                mapPane.setScaleX(scale);
-                mapImage.setScaleX(scale);
-                mapPane.setScaleY(scale);
-                mapImage.setScaleY(scale);
+                        ? Math.max(stackPane.getScaleX() - 0.1, MIN_SCALE)
+                        : Math.min(stackPane.getScaleX() + 0.1, MAX_SCALE);
+                stackPane.setScaleX(scale);
+                stackPane.setScaleY(scale);
+                System.out.println(scale);
 
                 event.consume();
             }
@@ -241,20 +202,21 @@ public class MapController implements Initializable {
             this.parentController = baseMapViewController;
         }
 
-        public void setClickedLocation(Location location) {
-            if (clickedLocation != null) {
-                clickedLocation.deactivate();
-                clickedLocation = null;
+        public void setLocation(Location location) {
+            if (activeLocation != null) {
+                activeLocation.deactivate();
+                activeLocation = null;
             }
+
             if (location != null) {
-                clickedLocation = getLocationNode(location);
-                clickedLocation.activate();
+                activeLocation = getLocationNode(location);
+                activeLocation.activate();
             }
         }
 
-        public void renderFloor(Floor floor) {
+        public void renderFloor(Floor floor, List<Location> locations) {
             // Reset State
-            clickedLocation = null;
+            setLocation(null);
 
             // Reset LocationNodes
             removeAllLocationNodes();
@@ -268,29 +230,10 @@ public class MapController implements Initializable {
             mapPane.setPrefHeight(image.getHeight());
 
             // Load Locations
-            // TODO: Fix Broken UUID Query
-//            List<Location> locations = new FloorDAO().getAllLocations(floor.getFloorID());
-            List<Location> locations = new LocationDAO().getAll().stream().filter(location -> location.getFloor().equals(floor.getFloorID())).collect(Collectors.toList());
+            List<Location> floorLocations = locations.stream().filter(location -> location.getFloor().equals(floor.getFloorID())).collect(Collectors.toList());
 
             // Load LocationNodes
-            locationNodes = renderLocationsNodes(locations);
-        }
-    //#endregion
-
-    //#region Utility
-        private Circle drawCircle(double x, double y) {
-            Circle circle = new Circle();
-
-            circle.setCenterX(x);
-            circle.setCenterY(y);
-
-            circle.setRadius(12.5f);
-            circle.setFill(Color.DARKCYAN);
-
-            circle.setStrokeWidth(1.0);
-            circle.setStroke(Color.DARKSLATEGREY);
-
-            return circle;
+            renderLocationsNodes(floorLocations);
         }
     //#endregion
 }

@@ -65,6 +65,10 @@ public class LabSystemSRInsertCreateController implements InsertServiceRequestCr
         return true;
     }
 
+    public LabSystemSR createNewServiceRequest(){
+        return new LabSystemSR();
+    }
+
 
 
 }
