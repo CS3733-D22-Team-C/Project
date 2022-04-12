@@ -1,6 +1,7 @@
-package edu.wpi.cs3733.D22.teamC.fileio.csv;
+package edu.wpi.cs3733.D22.teamC.fileio.csv.medical_equipment;
 
 import edu.wpi.cs3733.D22.teamC.entity.medical_equipment.MedicalEquipment;
+import edu.wpi.cs3733.D22.teamC.fileio.csv.CSVReader;
 
 public class MedicalEquipmentCSVReader extends CSVReader<MedicalEquipment> {
     /**
