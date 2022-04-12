@@ -123,6 +123,7 @@ public class MapController implements Initializable {
         protected void onMouseEnterNode(MouseEvent event, LocationNode locationNode) {
             if (activeLocation == null) {
                 parentController.changeCurrentLocation(locationNode.location, false);
+                locationNode.renderInFront();
             }
         }
 

@@ -166,6 +166,8 @@ public class InfoPaneController implements Initializable {
         private void updateLocation() {
             Location location = parentController.getCurrentLocation();
 
+            if (location == null) return;
+
             // Copy original for comparison
             Location original = new Location();
             original.Copy(location);

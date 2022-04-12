@@ -82,6 +82,10 @@ public class LocationNode {
             pane.getChildren().add(group);
         }
 
+        public void renderInFront() {
+            group.toFront();
+        }
+
         public void remove(Pane pane) {
             group.getChildren().clear();
             pane.getChildren().remove(group);
@@ -111,6 +115,7 @@ public class LocationNode {
         public void activate() {
             node.getStyleClass().add("active");
             showMedicalEquipmentCounters(true, mapController.parentController.isEditMode);
+            renderInFront();
         }
 
         public void deactivate() {

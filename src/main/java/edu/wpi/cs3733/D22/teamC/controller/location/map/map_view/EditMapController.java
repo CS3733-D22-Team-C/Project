@@ -42,6 +42,8 @@ public class EditMapController extends MapController {
 
                 event.consume();
             }
+
+            event.consume();
         }
 
         public Location createLocation(int x, int y) {
