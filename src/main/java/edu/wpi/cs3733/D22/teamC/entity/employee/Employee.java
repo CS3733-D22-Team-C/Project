@@ -36,7 +36,7 @@ public class Employee {
     @Column(name = "IsAdmin")
     private Boolean isAdmin;
 
-    @Column(name = "Username")
+    @Column(name = "Username", unique = true)
     private String username;
 
     @Column(name = "Password")
