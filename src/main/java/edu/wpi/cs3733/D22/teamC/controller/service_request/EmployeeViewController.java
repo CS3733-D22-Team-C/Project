@@ -1,8 +1,10 @@
-package edu.wpi.cs3733.D22.teamC.controller.component;
+package edu.wpi.cs3733.D22.teamC.controller.service_request;
 
 import com.jfoenix.controls.JFXTreeTableView;
 import edu.wpi.cs3733.D22.teamC.App;
 import edu.wpi.cs3733.D22.teamC.controller.service_request.BaseServiceRequestCreateController;
+import edu.wpi.cs3733.D22.teamC.controller.service_request.BaseServiceRequestResolveController;
+import edu.wpi.cs3733.D22.teamC.controller.service_request.ServiceRequestController;
 import edu.wpi.cs3733.D22.teamC.entity.employee.Employee;
 import edu.wpi.cs3733.D22.teamC.entity.location.Location;
 import edu.wpi.cs3733.D22.teamC.entity.location.LocationDAO;
@@ -29,7 +31,7 @@ public class EmployeeViewController implements Initializable {
     private JFXTreeTableView table;
 
     private EmployeeTableDisplay tableDisplay;
-    private BaseServiceRequestCreateController parentController;
+    private ServiceRequestController parentController;
     private Employee activeEmployee;
     private Stage primaryStage;
 
@@ -55,11 +57,13 @@ public class EmployeeViewController implements Initializable {
 
     }
 
-    public void setup(BaseServiceRequestCreateController parentController, Stage primaryStage){
+    public void setup(ServiceRequestController parentController, Stage primaryStage){
         this.parentController = parentController;
         this.primaryStage = primaryStage;
         setRowInteraction();
     }
+
+
 
     @FXML
     void onSelect(ActionEvent event) {

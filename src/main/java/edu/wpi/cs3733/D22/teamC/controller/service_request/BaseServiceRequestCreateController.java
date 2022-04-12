@@ -5,39 +5,26 @@ import com.jfoenix.controls.JFXComboBox;
 import com.jfoenix.controls.JFXTextArea;
 import com.jfoenix.controls.JFXTreeTableView;
 import edu.wpi.cs3733.D22.teamC.App;
-import edu.wpi.cs3733.D22.teamC.controller.component.EmployeeViewController;
 import edu.wpi.cs3733.D22.teamC.entity.employee.Employee;
 import edu.wpi.cs3733.D22.teamC.entity.generic.DAO;
 import edu.wpi.cs3733.D22.teamC.entity.service_request.ServiceRequest;
-import edu.wpi.cs3733.D22.teamC.entity.service_request.ServiceRequestDAO;
 import edu.wpi.cs3733.D22.teamC.models.service_request.ServiceRequestTableDisplay;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
-import javafx.fxml.Initializable;
-import javafx.scene.Node;
-import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
-import javafx.scene.input.KeyEvent;
-import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.VBox;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 
 import java.io.IOException;
-import java.net.URL;
-import java.sql.Timestamp;
-import java.util.ResourceBundle;
 
-import static javafx.stage.Modality.WINDOW_MODAL;
-
-public class BaseServiceRequestCreateController<T extends ServiceRequest> {
+public class BaseServiceRequestCreateController<T extends ServiceRequest> implements ServiceRequestController {
     // FXML
     @FXML
     private TextField assigneeID;
@@ -83,7 +70,6 @@ public class BaseServiceRequestCreateController<T extends ServiceRequest> {
 
     public void setup(ServiceRequest.RequestType requestType) {
         this.requestType = requestType;
-        assigneeID.setText("hello");
         switch (requestType)
         {
             case Medical_Equipment:
@@ -174,7 +160,6 @@ public class BaseServiceRequestCreateController<T extends ServiceRequest> {
         serviceRequest.setAssignee(employee);
         String employeeName = employee.getLastName() + ", " + employee.getFirstName();
         assigneeID.setText(employeeName);
-        System.out.println(employeeName);
     }
 
 
@@ -182,7 +167,7 @@ public class BaseServiceRequestCreateController<T extends ServiceRequest> {
         // Create Service Request
         T serviceRequest = insertController.createServiceRequest();
 
-        serviceRequest.setAssignee(serviceRequest.getAssignee()); //TODO: Replace with Employee Selector
+        serviceRequest.setAssignee(this.serviceRequest.getAssignee()); //TODO: Replace with Employee Selector
         serviceRequest.setLocation(locationField.getText());
         serviceRequest.setDescription(description.getText());
         serviceRequest.setPriority(ServiceRequest.Priority.valueOf(priority.getValue()));
