@@ -22,30 +22,9 @@ public class DashboardTableDisplay extends ServiceRequestTableDisplay<ServiceReq
         // Insert Columns for Table
         addColumn(
                 table,
-                "ID",
-                1f * Integer.MAX_VALUE * 16.66,
-                (ServiceRequestTableEntry entry) -> {return entry.id;}
-        );
-
-        addColumn(
-                table,
                 "Type",
                 1f * Integer.MAX_VALUE * 16.66,
                 (ServiceRequestTableEntry entry) -> {return entry.type;}
-        );
-
-        addColumn(
-                table,
-                "Assignee",
-                1f * Integer.MAX_VALUE * 16.66,
-                (ServiceRequestTableEntry entry) -> {return entry.assigneeID;}
-        );
-
-        addColumn(
-                table,
-                "Location",
-                1f * Integer.MAX_VALUE * 16.66,
-                (ServiceRequestTableEntry entry) -> {return entry.location;}
         );
 
         addColumn(
@@ -57,9 +36,23 @@ public class DashboardTableDisplay extends ServiceRequestTableDisplay<ServiceReq
 
         addColumn(
                 table,
-                "Priority",
+                "Time Submitted",
                 1f * Integer.MAX_VALUE * 16.66,
-                (ServiceRequestTableEntry entry) -> {return entry.priority;}
+                (ServiceRequestTableEntry entry) -> {return entry.createTime;}
+        );
+
+        addColumn(
+                table,
+                "Modified Time",
+                1f * Integer.MAX_VALUE * 16.66,
+                (ServiceRequestTableEntry entry) -> {return entry.modifiedTime;}
+        );
+
+        addColumn(
+                table,
+                "Assignee ID",
+                1f * Integer.MAX_VALUE * 16.66,
+                (ServiceRequestTableEntry entry) -> {return entry.assigneeID;}
         );
     }
 

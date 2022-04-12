@@ -3,10 +3,9 @@ package edu.wpi.cs3733.D22.teamC.models.service_request;
 import com.jfoenix.controls.JFXTreeTableView;
 import edu.wpi.cs3733.D22.teamC.entity.service_request.ServiceRequest;
 import edu.wpi.cs3733.D22.teamC.models.generic.TableDisplay;
-import javafx.beans.property.IntegerProperty;
-import javafx.beans.property.SimpleIntegerProperty;
-import javafx.beans.property.SimpleStringProperty;
-import javafx.beans.property.StringProperty;
+import javafx.beans.property.*;
+
+import java.sql.Timestamp;
 
 public class ServiceRequestTableDisplay<T extends ServiceRequest> extends TableDisplay<T> {
     public class ServiceRequestTableEntry extends TableDisplayEntry {
@@ -17,16 +16,20 @@ public class ServiceRequestTableDisplay<T extends ServiceRequest> extends TableD
         public StringProperty location;
         public StringProperty status;
         public StringProperty priority;
+        public StringProperty createTime;
+        public StringProperty modifiedTime;
 
         public ServiceRequestTableEntry(T serviceRequest) {
             super(serviceRequest);
 
-            this.id         = new SimpleStringProperty(serviceRequest.getRequestID());
-            this.type       = new SimpleStringProperty(serviceRequest.getRequestType().toString());
+            this.id           = new SimpleStringProperty(serviceRequest.getRequestID());
+            this.type         = new SimpleStringProperty(serviceRequest.getRequestType().toString());
 //            this.assigneeID = new SimpleStringProperty(serviceRequest.getAssignee().getLastName() + ", " + serviceRequest.getAssignee().getFirstName());
-            this.location   = new SimpleStringProperty(serviceRequest.getLocation());
-            this.status     = new SimpleStringProperty(serviceRequest.getStatus().toString());
-            this.priority   = new SimpleStringProperty(serviceRequest.getPriority().toString());
+            this.location     = new SimpleStringProperty(serviceRequest.getLocation());
+            this.status       = new SimpleStringProperty(serviceRequest.getStatus().toString());
+            this.priority     = new SimpleStringProperty(serviceRequest.getPriority().toString());
+            this.createTime   = new SimpleStringProperty(serviceRequest.getCreationTimestamp().toString());
+            this.modifiedTime = new SimpleStringProperty(serviceRequest.getModifiedTimestamp().toString());
         }
     }
 
