@@ -5,6 +5,10 @@ import edu.wpi.cs3733.D22.teamC.entity.service_request.lab_system.LabSystemSR;
 
 public class LabSystemSRCSVWriter extends CSVWriter<LabSystemSR> {
 
+    /**
+     * Manually define headers of attributes output to CSV.
+     * @return The array of headers to be output to CSV.
+     */
     @Override
     protected String[] compileHeaders() {
         return new String[]{
@@ -24,6 +28,12 @@ public class LabSystemSRCSVWriter extends CSVWriter<LabSystemSR> {
         };
     }
 
+    /**
+     * Maps headers to a value to get from the object.
+     * @param serviceRequest The object to be read from.
+     * @param header The header to be mapped to an attribute.
+     * @return The retrieved value to be output to the CSV.
+     */
     @Override
     protected String compileAttribute(LabSystemSR serviceRequest, String header) {
         String output = "";

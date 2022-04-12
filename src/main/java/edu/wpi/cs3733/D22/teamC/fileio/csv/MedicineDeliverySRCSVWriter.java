@@ -4,6 +4,10 @@ import edu.wpi.cs3733.D22.teamC.entity.employee.Employee;
 import edu.wpi.cs3733.D22.teamC.entity.service_request.medicine_delivery.MedicineDeliverySR;
 
 public class MedicineDeliverySRCSVWriter extends CSVWriter<MedicineDeliverySR> {
+    /**
+     * Manually define headers of attributes output to CSV.
+     * @return The array of headers to be output to CSV.
+     */
     @Override
     protected String[] compileHeaders() {
         return new String[]{
@@ -24,6 +28,12 @@ public class MedicineDeliverySRCSVWriter extends CSVWriter<MedicineDeliverySR> {
         };
     }
 
+    /**
+     * Maps headers to a value to get from the object.
+     * @param serviceRequest The object to be read from.
+     * @param header The header to be mapped to an attribute.
+     * @return The retrieved value to be output to the CSV.
+     */
     @Override
     protected String compileAttribute(MedicineDeliverySR serviceRequest, String header) {
         String output = "";
