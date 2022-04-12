@@ -1,9 +1,11 @@
-package edu.wpi.cs3733.D22.teamC.fileio.csv;
+package edu.wpi.cs3733.D22.teamC.fileio.csv.service_request.lab_system;
 
 import edu.wpi.cs3733.D22.teamC.entity.employee.Employee;
-import edu.wpi.cs3733.D22.teamC.entity.service_request.medicine_delivery.MedicineDeliverySR;
+import edu.wpi.cs3733.D22.teamC.entity.service_request.lab_system.LabSystemSR;
+import edu.wpi.cs3733.D22.teamC.fileio.csv.CSVWriter;
 
-public class MedicineDeliverySRCSVWriter extends CSVWriter<MedicineDeliverySR> {
+public class LabSystemSRCSVWriter extends CSVWriter<LabSystemSR> {
+
     /**
      * Manually define headers of attributes output to CSV.
      * @return The array of headers to be output to CSV.
@@ -20,8 +22,7 @@ public class MedicineDeliverySRCSVWriter extends CSVWriter<MedicineDeliverySR> {
                 "priority",
                 "requestType",
                 "description",
-                "medicine",
-                "dosage",
+                "labType",
                 "patientID",
                 "modifierID",
                 "modifiedTimestamp"
@@ -35,7 +36,7 @@ public class MedicineDeliverySRCSVWriter extends CSVWriter<MedicineDeliverySR> {
      * @return The retrieved value to be output to the CSV.
      */
     @Override
-    protected String compileAttribute(MedicineDeliverySR serviceRequest, String header) {
+    protected String compileAttribute(LabSystemSR serviceRequest, String header) {
         String output = "";
         switch (header) {
             case "requestID":
@@ -67,11 +68,8 @@ public class MedicineDeliverySRCSVWriter extends CSVWriter<MedicineDeliverySR> {
             case "description":
                 output = serviceRequest.getDescription();
                 break;
-            case "medicine":
-                output = serviceRequest.getMedicine();
-                break;
-            case "dosage":
-                output = serviceRequest.getDosage();
+            case "labType":
+                output = serviceRequest.getLabType().toString();
                 break;
             case "patientID":
                 output = serviceRequest.getPatientID();

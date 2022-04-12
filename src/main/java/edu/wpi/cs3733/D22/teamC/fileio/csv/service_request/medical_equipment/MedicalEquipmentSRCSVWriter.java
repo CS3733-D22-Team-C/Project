@@ -1,9 +1,14 @@
-package edu.wpi.cs3733.D22.teamC.fileio.csv;
+package edu.wpi.cs3733.D22.teamC.fileio.csv.service_request.medical_equipment;
 
 import edu.wpi.cs3733.D22.teamC.entity.employee.Employee;
-import edu.wpi.cs3733.D22.teamC.entity.service_request.sanitation.SanitationSR;
+import edu.wpi.cs3733.D22.teamC.entity.service_request.medical_equipment.MedicalEquipmentSR;
+import edu.wpi.cs3733.D22.teamC.fileio.csv.CSVWriter;
 
-public class SanitationSRCSVWriter extends CSVWriter<SanitationSR> {
+public class MedicalEquipmentSRCSVWriter extends CSVWriter<MedicalEquipmentSR> {
+    /**
+     * Manually define headers of attributes output to CSV.
+     * @return The array of headers to be output to CSV.
+     */
     @Override
     protected String[] compileHeaders() {
         return new String[]{
@@ -16,14 +21,20 @@ public class SanitationSRCSVWriter extends CSVWriter<SanitationSR> {
                 "priority",
                 "requestType",
                 "description",
-                "sanitationType",
+                "equipType",
+                "equipID",
                 "modifierID",
                 "modifiedTimestamp"
         };
     }
-
+    /**
+     * Maps headers to a value to get from the object.
+     * @param serviceRequest The object to be read from.
+     * @param header The header to be mapped to an attribute.
+     * @return The retrieved value to be output to the CSV.
+     */
     @Override
-    protected String compileAttribute(SanitationSR serviceRequest, String header) {
+    protected String compileAttribute(MedicalEquipmentSR serviceRequest, String header) {
         String output = "";
         switch (header) {
             case "requestID":
@@ -55,8 +66,11 @@ public class SanitationSRCSVWriter extends CSVWriter<SanitationSR> {
             case "description":
                 output = serviceRequest.getDescription();
                 break;
-            case "sanitationType":
-                output = serviceRequest.getSanitationType().toString();
+            case "equipType":
+                output = serviceRequest.getEquipmentType().toString();
+                break;
+            case "equipID":
+                output = serviceRequest.getEquipmentID();
                 break;
             case "modifierID":
                 Employee modifier = serviceRequest.getModifier();
@@ -70,4 +84,6 @@ public class SanitationSRCSVWriter extends CSVWriter<SanitationSR> {
         }
         return output;
     }
+
+
 }

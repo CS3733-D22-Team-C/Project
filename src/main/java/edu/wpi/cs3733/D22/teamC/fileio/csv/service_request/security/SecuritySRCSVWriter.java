@@ -1,9 +1,10 @@
-package edu.wpi.cs3733.D22.teamC.fileio.csv;
+package edu.wpi.cs3733.D22.teamC.fileio.csv.service_request.security;
 
 import edu.wpi.cs3733.D22.teamC.entity.employee.Employee;
-import edu.wpi.cs3733.D22.teamC.entity.service_request.facility_maintenance.FacilityMaintenanceSR;
+import edu.wpi.cs3733.D22.teamC.entity.service_request.security.SecuritySR;
+import edu.wpi.cs3733.D22.teamC.fileio.csv.CSVWriter;
 
-public class FacilityMaintenanceSRCSVWriter extends CSVWriter<FacilityMaintenanceSR> {
+public class SecuritySRCSVWriter extends CSVWriter<SecuritySR> {
     /**
      * Manually define headers of attributes output to CSV.
      * @return The array of headers to be output to CSV.
@@ -20,7 +21,7 @@ public class FacilityMaintenanceSRCSVWriter extends CSVWriter<FacilityMaintenanc
                 "priority",
                 "requestType",
                 "description",
-                "maintenanceType",
+                "securityType",
                 "modifierID",
                 "modifiedTimestamp"
         };
@@ -33,7 +34,7 @@ public class FacilityMaintenanceSRCSVWriter extends CSVWriter<FacilityMaintenanc
      * @return The retrieved value to be output to the CSV.
      */
     @Override
-    protected String compileAttribute(FacilityMaintenanceSR serviceRequest, String header) {
+    protected String compileAttribute(SecuritySR serviceRequest, String header) {
         String output = "";
         switch (header) {
             case "requestID":
@@ -65,8 +66,8 @@ public class FacilityMaintenanceSRCSVWriter extends CSVWriter<FacilityMaintenanc
             case "description":
                 output = serviceRequest.getDescription();
                 break;
-            case "maintenanceType":
-                output = serviceRequest.getMaintenanceType().toString();
+            case "securityType":
+                output = serviceRequest.getSecurityType().toString();
                 break;
             case "modifierID":
                 Employee modifier = serviceRequest.getModifier();

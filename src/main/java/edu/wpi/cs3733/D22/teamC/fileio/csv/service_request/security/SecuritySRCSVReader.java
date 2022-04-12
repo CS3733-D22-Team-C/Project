@@ -1,14 +1,15 @@
-package edu.wpi.cs3733.D22.teamC.fileio.csv;
+package edu.wpi.cs3733.D22.teamC.fileio.csv.service_request.security;
 
 import edu.wpi.cs3733.D22.teamC.entity.employee.Employee;
 import edu.wpi.cs3733.D22.teamC.entity.employee.EmployeeDAO;
 import edu.wpi.cs3733.D22.teamC.entity.service_request.ServiceRequest;
-import edu.wpi.cs3733.D22.teamC.entity.service_request.lab_system.LabSystemSR;
 import edu.wpi.cs3733.D22.teamC.entity.service_request.medical_equipment.MedicalEquipmentSR;
+import edu.wpi.cs3733.D22.teamC.entity.service_request.security.SecuritySR;
+import edu.wpi.cs3733.D22.teamC.fileio.csv.CSVReader;
 
 import java.sql.Timestamp;
 
-public class LabSystemSRCSVReader extends CSVReader<LabSystemSR> {
+public class SecuritySRCSVReader extends CSVReader<SecuritySR> {
     private EmployeeDAO employeeDAO = new EmployeeDAO();
     /**
      * Maps ServiceRequest (header, value) pairs to a value to change for the object.
@@ -18,7 +19,8 @@ public class LabSystemSRCSVReader extends CSVReader<LabSystemSR> {
      * @return The Location modified with the value at the corresponding attribute.
      */
     @Override
-    protected LabSystemSR parseAttribute(LabSystemSR serviceRequest, String header, String value) {
+    protected SecuritySR parseAttribute(SecuritySR serviceRequest, String header, String value) {
+
         switch(header) {
             case "requestID":
                 serviceRequest.setRequestID(value);
@@ -50,11 +52,8 @@ public class LabSystemSRCSVReader extends CSVReader<LabSystemSR> {
             case "description":
                 serviceRequest.setDescription(value);
                 break;
-            case "labType":
-                serviceRequest.setLabType(LabSystemSR.LabType.valueOf(value));
-                break;
-            case "patientID":
-                serviceRequest.setPatientID(value);
+            case "securityType":
+                serviceRequest.setSecurityType(SecuritySR.SecurityType.valueOf(value));
                 break;
             case "modifierID":
                 Employee modifier = employeeDAO.getByID(value);
@@ -69,7 +68,7 @@ public class LabSystemSRCSVReader extends CSVReader<LabSystemSR> {
     }
 
     @Override
-    protected LabSystemSR createObject() {
-        return new LabSystemSR();
+    protected SecuritySR createObject() {
+        return new SecuritySR();
     }
 }

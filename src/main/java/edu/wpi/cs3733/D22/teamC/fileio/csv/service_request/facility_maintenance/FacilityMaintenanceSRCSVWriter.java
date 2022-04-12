@@ -1,10 +1,10 @@
-package edu.wpi.cs3733.D22.teamC.fileio.csv;
+package edu.wpi.cs3733.D22.teamC.fileio.csv.service_request.facility_maintenance;
 
 import edu.wpi.cs3733.D22.teamC.entity.employee.Employee;
-import edu.wpi.cs3733.D22.teamC.entity.service_request.lab_system.LabSystemSR;
+import edu.wpi.cs3733.D22.teamC.entity.service_request.facility_maintenance.FacilityMaintenanceSR;
+import edu.wpi.cs3733.D22.teamC.fileio.csv.CSVWriter;
 
-public class LabSystemSRCSVWriter extends CSVWriter<LabSystemSR> {
-
+public class FacilityMaintenanceSRCSVWriter extends CSVWriter<FacilityMaintenanceSR> {
     /**
      * Manually define headers of attributes output to CSV.
      * @return The array of headers to be output to CSV.
@@ -21,8 +21,7 @@ public class LabSystemSRCSVWriter extends CSVWriter<LabSystemSR> {
                 "priority",
                 "requestType",
                 "description",
-                "labType",
-                "patientID",
+                "maintenanceType",
                 "modifierID",
                 "modifiedTimestamp"
         };
@@ -35,7 +34,7 @@ public class LabSystemSRCSVWriter extends CSVWriter<LabSystemSR> {
      * @return The retrieved value to be output to the CSV.
      */
     @Override
-    protected String compileAttribute(LabSystemSR serviceRequest, String header) {
+    protected String compileAttribute(FacilityMaintenanceSR serviceRequest, String header) {
         String output = "";
         switch (header) {
             case "requestID":
@@ -67,11 +66,8 @@ public class LabSystemSRCSVWriter extends CSVWriter<LabSystemSR> {
             case "description":
                 output = serviceRequest.getDescription();
                 break;
-            case "labType":
-                output = serviceRequest.getLabType().toString();
-                break;
-            case "patientID":
-                output = serviceRequest.getPatientID();
+            case "maintenanceType":
+                output = serviceRequest.getMaintenanceType().toString();
                 break;
             case "modifierID":
                 Employee modifier = serviceRequest.getModifier();

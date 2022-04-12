@@ -1,16 +1,16 @@
-package edu.wpi.cs3733.D22.teamC.fileio.csv;
+package edu.wpi.cs3733.D22.teamC.fileio.csv.service_request.facility_maintenance;
 
 import edu.wpi.cs3733.D22.teamC.entity.employee.Employee;
 import edu.wpi.cs3733.D22.teamC.entity.employee.EmployeeDAO;
 import edu.wpi.cs3733.D22.teamC.entity.service_request.ServiceRequest;
+import edu.wpi.cs3733.D22.teamC.entity.service_request.facility_maintenance.FacilityMaintenanceSR;
 import edu.wpi.cs3733.D22.teamC.entity.service_request.medical_equipment.MedicalEquipmentSR;
-import org.hibernate.exception.spi.TemplatedViolatedConstraintNameExtracter;
+import edu.wpi.cs3733.D22.teamC.fileio.csv.CSVReader;
 
 import java.sql.Timestamp;
 
-public class MedicalEquipmentSRCSVReader extends CSVReader<MedicalEquipmentSR>{
+public class FacilityMaintenanceSRCSVReader extends CSVReader<FacilityMaintenanceSR> {
     private EmployeeDAO employeeDAO = new EmployeeDAO();
-
     /**
      * Maps ServiceRequest (header, value) pairs to a value to change for the object.
      * @param serviceRequest The object to be modified.
@@ -19,7 +19,7 @@ public class MedicalEquipmentSRCSVReader extends CSVReader<MedicalEquipmentSR>{
      * @return The Location modified with the value at the corresponding attribute.
      */
     @Override
-    protected MedicalEquipmentSR parseAttribute(MedicalEquipmentSR serviceRequest, String header, String value){
+    protected FacilityMaintenanceSR parseAttribute(FacilityMaintenanceSR serviceRequest, String header, String value) {
         switch(header) {
             case "requestID":
                 serviceRequest.setRequestID(value);
@@ -51,11 +51,8 @@ public class MedicalEquipmentSRCSVReader extends CSVReader<MedicalEquipmentSR>{
             case "description":
                 serviceRequest.setDescription(value);
                 break;
-            case "equipID":
-                serviceRequest.setEquipmentID(value);
-                break;
-            case "equipType":
-                serviceRequest.setEquipmentType(MedicalEquipmentSR.EquipmentType.valueOf(value));
+            case "maintenanceType":
+                serviceRequest.setMaintenanceType(FacilityMaintenanceSR.MaintenanceType.valueOf(value));
                 break;
             case "modifierID":
                 Employee modifier = employeeDAO.getByID(value);
@@ -70,5 +67,7 @@ public class MedicalEquipmentSRCSVReader extends CSVReader<MedicalEquipmentSR>{
     }
 
     @Override
-    protected MedicalEquipmentSR createObject(){ return new MedicalEquipmentSR();}
+    protected FacilityMaintenanceSR createObject() {
+        return new FacilityMaintenanceSR();
+    }
 }

@@ -1,14 +1,15 @@
-package edu.wpi.cs3733.D22.teamC.fileio.csv;
+package edu.wpi.cs3733.D22.teamC.fileio.csv.service_request.medicine_delivery;
 
 import edu.wpi.cs3733.D22.teamC.entity.employee.Employee;
 import edu.wpi.cs3733.D22.teamC.entity.employee.EmployeeDAO;
 import edu.wpi.cs3733.D22.teamC.entity.service_request.ServiceRequest;
-import edu.wpi.cs3733.D22.teamC.entity.service_request.facility_maintenance.FacilityMaintenanceSR;
 import edu.wpi.cs3733.D22.teamC.entity.service_request.medical_equipment.MedicalEquipmentSR;
+import edu.wpi.cs3733.D22.teamC.entity.service_request.medicine_delivery.MedicineDeliverySR;
+import edu.wpi.cs3733.D22.teamC.fileio.csv.CSVReader;
 
 import java.sql.Timestamp;
 
-public class FacilityMaintenanceSRCSVReader extends CSVReader<FacilityMaintenanceSR> {
+public class MedicineDeliverySRCSVReader extends CSVReader<MedicineDeliverySR> {
     private EmployeeDAO employeeDAO = new EmployeeDAO();
     /**
      * Maps ServiceRequest (header, value) pairs to a value to change for the object.
@@ -18,7 +19,7 @@ public class FacilityMaintenanceSRCSVReader extends CSVReader<FacilityMaintenanc
      * @return The Location modified with the value at the corresponding attribute.
      */
     @Override
-    protected FacilityMaintenanceSR parseAttribute(FacilityMaintenanceSR serviceRequest, String header, String value) {
+    protected MedicineDeliverySR parseAttribute(MedicineDeliverySR serviceRequest, String header, String value) {
         switch(header) {
             case "requestID":
                 serviceRequest.setRequestID(value);
@@ -50,8 +51,14 @@ public class FacilityMaintenanceSRCSVReader extends CSVReader<FacilityMaintenanc
             case "description":
                 serviceRequest.setDescription(value);
                 break;
-            case "maintenanceType":
-                serviceRequest.setMaintenanceType(FacilityMaintenanceSR.MaintenanceType.valueOf(value));
+            case "medicine":
+                serviceRequest.setMedicine(value);
+                break;
+            case "dosage":
+                serviceRequest.setDosage(value);
+                break;
+            case "patientID":
+                serviceRequest.setPatientID(value);
                 break;
             case "modifierID":
                 Employee modifier = employeeDAO.getByID(value);
@@ -66,7 +73,7 @@ public class FacilityMaintenanceSRCSVReader extends CSVReader<FacilityMaintenanc
     }
 
     @Override
-    protected FacilityMaintenanceSR createObject() {
-        return new FacilityMaintenanceSR();
+    protected MedicineDeliverySR createObject() {
+        return new MedicineDeliverySR();
     }
 }

@@ -1,14 +1,15 @@
-package edu.wpi.cs3733.D22.teamC.fileio.csv;
+package edu.wpi.cs3733.D22.teamC.fileio.csv.service_request.sanitation;
 
 import edu.wpi.cs3733.D22.teamC.entity.employee.Employee;
 import edu.wpi.cs3733.D22.teamC.entity.employee.EmployeeDAO;
 import edu.wpi.cs3733.D22.teamC.entity.service_request.ServiceRequest;
 import edu.wpi.cs3733.D22.teamC.entity.service_request.medical_equipment.MedicalEquipmentSR;
-import edu.wpi.cs3733.D22.teamC.entity.service_request.medicine_delivery.MedicineDeliverySR;
+import edu.wpi.cs3733.D22.teamC.entity.service_request.sanitation.SanitationSR;
+import edu.wpi.cs3733.D22.teamC.fileio.csv.CSVReader;
 
 import java.sql.Timestamp;
 
-public class MedicineDeliverySRCSVReader extends CSVReader<MedicineDeliverySR> {
+public class SanitationSRCSVReader extends CSVReader<SanitationSR> {
     private EmployeeDAO employeeDAO = new EmployeeDAO();
     /**
      * Maps ServiceRequest (header, value) pairs to a value to change for the object.
@@ -18,7 +19,7 @@ public class MedicineDeliverySRCSVReader extends CSVReader<MedicineDeliverySR> {
      * @return The Location modified with the value at the corresponding attribute.
      */
     @Override
-    protected MedicineDeliverySR parseAttribute(MedicineDeliverySR serviceRequest, String header, String value) {
+    protected SanitationSR parseAttribute(SanitationSR serviceRequest, String header, String value) {
         switch(header) {
             case "requestID":
                 serviceRequest.setRequestID(value);
@@ -50,14 +51,8 @@ public class MedicineDeliverySRCSVReader extends CSVReader<MedicineDeliverySR> {
             case "description":
                 serviceRequest.setDescription(value);
                 break;
-            case "medicine":
-                serviceRequest.setMedicine(value);
-                break;
-            case "dosage":
-                serviceRequest.setDosage(value);
-                break;
-            case "patientID":
-                serviceRequest.setPatientID(value);
+            case "sanitationType":
+                serviceRequest.setSanitationType(SanitationSR.SanitationType.valueOf(value));
                 break;
             case "modifierID":
                 Employee modifier = employeeDAO.getByID(value);
@@ -72,7 +67,7 @@ public class MedicineDeliverySRCSVReader extends CSVReader<MedicineDeliverySR> {
     }
 
     @Override
-    protected MedicineDeliverySR createObject() {
-        return new MedicineDeliverySR();
+    protected SanitationSR createObject() {
+        return new SanitationSR();
     }
 }
