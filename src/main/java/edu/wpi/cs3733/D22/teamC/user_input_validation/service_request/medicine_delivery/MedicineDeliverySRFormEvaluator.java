@@ -1,17 +1,17 @@
 package edu.wpi.cs3733.D22.teamC.user_input_validation.service_request.medicine_delivery;
 
-import edu.wpi.cs3733.D22.teamC.error.error_item.service_request_user_input_validation.ServiceRequestUserInputValidationErrorItem;
+import edu.wpi.cs3733.D22.teamC.error.error_item.user_input_validation_error_item.service_request_user_input_validation_error_item.ServiceRequestUserInputValidationErrorItem;
 import edu.wpi.cs3733.D22.teamC.error.error_record.service_request_user_input_validation.ServiceRequestUserInputValidationErrorRecord;
-import edu.wpi.cs3733.D22.teamC.user_input_validation.service_request.ServiceRequestFormEvaluator;
+import edu.wpi.cs3733.D22.teamC.user_input_validation.service_request.SRFormEvaluator;
 import javafx.scene.control.SingleSelectionModel;
 
 import java.util.ArrayList;
 
-public class MedicineDeliverySRFormEvaluator extends ServiceRequestFormEvaluator {
+public class MedicineDeliverySRFormEvaluator extends SRFormEvaluator {
 
     public MedicineDeliverySRFormEvaluator() {}
 
-    public ArrayList<ServiceRequestUserInputValidationErrorItem> getMedicineDeliverySRValidationTestResult(String location, String assigneeID, SingleSelectionModel priority, SingleSelectionModel status, String patientID, String medicine, String dosage)
+    public ArrayList<ServiceRequestUserInputValidationErrorItem> getMedicineDeliverySRFormValidationTestResult(String location, String assigneeID, SingleSelectionModel priority, SingleSelectionModel status, String patientID, String medicine, String dosage)
     {
         ArrayList <ServiceRequestUserInputValidationErrorItem> errorList = new ArrayList <ServiceRequestUserInputValidationErrorItem> ();
 
@@ -84,10 +84,5 @@ public class MedicineDeliverySRFormEvaluator extends ServiceRequestFormEvaluator
         {
             return null;
         }
-    }
-
-    @Override
-    public boolean noServiceRequestFormUserInputErrors(ArrayList<ServiceRequestUserInputValidationErrorItem> l) {
-        return super.noServiceRequestFormUserInputErrors(l);
     }
 }
