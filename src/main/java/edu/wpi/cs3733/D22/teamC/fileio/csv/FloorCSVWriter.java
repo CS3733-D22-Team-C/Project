@@ -44,7 +44,10 @@ public class FloorCSVWriter extends CSVWriter<Floor> {
                 output = object.getShortName();
                 break;
             case "imageSrc":
-                output = Arrays.toString(object.getImageSrc());//?
+                output = object.getImageSrc();
+                break;
+            case "image":
+                output = Arrays.toString(object.getImage());
                 break;
             default:
                 break;

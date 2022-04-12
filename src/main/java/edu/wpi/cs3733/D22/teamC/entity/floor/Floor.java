@@ -23,9 +23,12 @@ public class Floor {
     @Column(name = "ShortName")
     private String shortName;
 
+    @Column(name ="ImageSrc")
+    private String imageSrc;
+
     @Lob
-    @Column(name = "ImageSrc")
-    private byte[] imageSrc;
+    @Column(name = "Image")
+    private byte[] image;
 
 
     public Floor(){
@@ -74,12 +77,20 @@ public class Floor {
         this.shortName = shortName;
     }
 
-    public byte[] getImageSrc() {
+    public String getImageSrc() {
         return imageSrc;
     }
 
-    public void setImageSrc(byte[] imageSrc) {
+    public void setImageSrc(String imageSrc) {
         this.imageSrc = imageSrc;
+    }
+
+    public byte[] getImage() {
+        return image;
+    }
+
+    public void setImage(byte[] image) {
+        this.image = image;
     }
 
     @Override

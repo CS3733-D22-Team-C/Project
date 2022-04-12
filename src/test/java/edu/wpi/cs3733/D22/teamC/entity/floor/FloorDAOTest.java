@@ -57,13 +57,13 @@ public class FloorDAOTest extends DAOTest<Floor> {
             e.printStackTrace();
         }
         Floor floorGround = new Floor();
-        floorGround.setImageSrc(bFile);
+        floorGround.setImage(bFile);
         floorGround.setLongName("ground");
 
         FloorDAO testDAO = new FloorDAO();
         String floorID = testDAO.insert(floorGround);
         assertNotNull(floorID);
 
-        assertNotNull(floorGround.getImageSrc());
+        assertNotNull(floorGround.getImage());
     }
 }
