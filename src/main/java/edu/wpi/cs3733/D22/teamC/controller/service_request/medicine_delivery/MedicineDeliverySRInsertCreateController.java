@@ -5,6 +5,7 @@ import com.jfoenix.controls.JFXTreeTableView;
 import edu.wpi.cs3733.D22.teamC.controller.service_request.InsertServiceRequestCreateController;
 import edu.wpi.cs3733.D22.teamC.entity.generic.DAO;
 import edu.wpi.cs3733.D22.teamC.entity.service_request.ServiceRequestDAO;
+import edu.wpi.cs3733.D22.teamC.entity.service_request.lab_system.LabSystemSR;
 import edu.wpi.cs3733.D22.teamC.entity.service_request.medicine_delivery.MedicineDeliverySR;
 import edu.wpi.cs3733.D22.teamC.entity.service_request.medicine_delivery.MedicineDeliverySRDAO;
 import edu.wpi.cs3733.D22.teamC.models.service_request.ServiceRequestTableDisplay;
@@ -60,5 +61,10 @@ public class MedicineDeliverySRInsertCreateController implements InsertServiceRe
         if(patientID.getText().equals(""))
             return false;
         return true;
+    }
+
+
+    public MedicineDeliverySR createNewServiceRequest(){
+        return new MedicineDeliverySR();
     }
 }

@@ -58,7 +58,7 @@ public class App extends Application {
 
     public static final String BASE_CSS_PATH = "css/base.css";
     //public static final String IMAGE_PATH = "static/images/BrighamAndWomensHospital.png";
-    
+
     // Singleton Instance
     public static App instance;
 
@@ -72,7 +72,7 @@ public class App extends Application {
     @Override
     public void init() {
         SessionManager.switchDatabase(SessionManager.DBMode.EMBEDDED);
-        
+
         // Load CSV Data - Floor
         {
             FloorCSVReader csvReader = new FloorCSVReader();

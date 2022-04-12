@@ -150,3 +150,101 @@ e8650a13-8550-4bd7-8a7c-064d7650d1c1,597,645,c2b73a98-db9b-495a-a031-8f9f163ab8c
 fe76c2b5-fa0e-4a77-862f-4fef70150af1,647,580,c2b73a98-db9b-495a-a031-8f9f163ab8ce,Tower,PATI,Pod C Patient Room 10,Pod C PR10
 32e145e9-3c2d-4bdc-9bc6-620ee6ebc671,717,215,c2b73a98-db9b-495a-a031-8f9f163ab8ce,Tower,STOR,Pods AB Bed and Recliner Parking,PodsAB BRP
 9cb6daca-13d9-4170-8908-1c76274a23d3,717,595,c2b73a98-db9b-495a-a031-8f9f163ab8ce,Tower,STOR,Pods CD Bed and Recliner Parking,PodsCD BRP
+5c5d42ba-a350-4394-85cb-8587237325df,812,305,23525e7b-3ca9-4f1b-9d69-005c81d56a7f,Tower,BATH,Bathroom 1 Tower Floor 4,Bathroom 0104
+b4d7253b-1d41-44be-a145-9e0ca7d15ab6,777,460,23525e7b-3ca9-4f1b-9d69-005c81d56a7f,Tower,BATH,Bathroom 2 Tower Floor 4,Bathroom 0204
+de20f1ed-ac36-4188-aaa4-6934337c7555,752,375,23525e7b-3ca9-4f1b-9d69-005c81d56a7f,Tower,DEPT,Dialysis Waiting Room,Dialysis WR
+9f9158e2-98e8-4e84-9780-d5836a4a2116,717,305,23525e7b-3ca9-4f1b-9d69-005c81d56a7f,Tower,DEPT,MICU 3BC Waiting Room,MICU 3BC WR
+6818eedc-ab99-4a34-ae32-830d3b4f0db4,352,130,23525e7b-3ca9-4f1b-9d69-005c81d56a7f,Tower,HALL,Hallway Connector 1 Floor 4,Hallway H00104
+0ef871f8-04a3-4727-8b7a-bd98576ce9f9,262,460,23525e7b-3ca9-4f1b-9d69-005c81d56a7f,Tower,HALL,Hallway Connector 2 Floor 4,Hallway H00204
+342df218-4dd5-4ad5-80c3-fc19b77c74eb,352,460,23525e7b-3ca9-4f1b-9d69-005c81d56a7f,Tower,HALL,Hallway Connector 3 Floor 4,Hallway H00304
+085cb860-123d-4718-a2b3-eda420bba414,352,765,23525e7b-3ca9-4f1b-9d69-005c81d56a7f,Tower,HALL,Hallway Connector 4 Floor 4,Hallway H00404
+87a97861-97f2-487d-942d-7e3ae2d33740,707,765,23525e7b-3ca9-4f1b-9d69-005c81d56a7f,Tower,HALL,Hallway Connector 5 Floor 4,Hallway H00502
+505b682c-bd83-4a16-a15a-564da1585627,762,400,23525e7b-3ca9-4f1b-9d69-005c81d56a7f,Tower,HALL,Hallway Connector 6 Floor 4,Hallway H00604
+301e9a2c-4ea0-4afe-8aee-ccf3f6a4fedd,762,375,23525e7b-3ca9-4f1b-9d69-005c81d56a7f,Tower,HALL,Hallway Connector 7 Floor 4,Hallway H00704
+374699a0-f0b8-4b9f-8528-95fe199e8673,762,340,23525e7b-3ca9-4f1b-9d69-005c81d56a7f,Tower,HALL,Hallway Connector 8 Floor 4,Hallway H00804
+d909aa48-4e4d-4207-9f49-5774ee2800e7,762,295,23525e7b-3ca9-4f1b-9d69-005c81d56a7f,Tower,HALL,Hallway Connector 9 Floor 4,Hallway H00904
+7fa72afe-a2bf-41ff-8416-c4ef5303599d,812,295,23525e7b-3ca9-4f1b-9d69-005c81d56a7f,Tower,HALL,Hallway Connector 10 Floor 4,Hallway H01004
+9ef1efb3-1214-488a-8397-14225ce5527c,717,295,23525e7b-3ca9-4f1b-9d69-005c81d56a7f,Tower,HALL,Hallway Connector 11 Floor 4,Hallway H01104
+31c71556-5482-45b0-8a84-21d4e8cd8def,627,295,23525e7b-3ca9-4f1b-9d69-005c81d56a7f,Tower,HALL,Hallway Connector 12 Floor 4,Hallway H01204
+c1a70f5f-4eb7-43a5-8f64-baed8d137711,627,505,23525e7b-3ca9-4f1b-9d69-005c81d56a7f,Tower,HALL,Hallway Connector 13 Floor 4,Hallway H01304
+0e8e34d2-8033-4f6b-992f-a62ed4552fdf,762,505,23525e7b-3ca9-4f1b-9d69-005c81d56a7f,Tower,HALL,Hallway Connector 14 Floor 4,Hallway H01404
+6efcfceb-7abf-45ed-9e11-882693408d92,762,460,23525e7b-3ca9-4f1b-9d69-005c81d56a7f,Tower,HALL,Hallway Connector 15 Floor 4,Hallway H01504
+16939604-dc8b-496c-859b-a93d78fba686,262,340,23525e7b-3ca9-4f1b-9d69-005c81d56a7f,Tower,LABS,Reproductive Endocrine Labs,Reproductive Endocrine Labs
+4347dd15-28b2-4fd5-a6ae-03d6c4854e98,777,340,23525e7b-3ca9-4f1b-9d69-005c81d56a7f,Tower,SERV,Nursing Room,Nursing Room
+c0f1d7a3-0e79-4193-858b-5800b8857d52,707,750,23525e7b-3ca9-4f1b-9d69-005c81d56a7f,Tower,STAI,Stairwell 1 Floor 4,Stairwell
+3f13afcb-ee84-46d7-89a6-6f179cf69fce,817,400,23525e7b-3ca9-4f1b-9d69-005c81d56a7f,Tower,ELEV,Elevator L Floor 4,Elevator L4
+6c606553-2982-482d-b588-8bde231d4d7f,842,765,23525e7b-3ca9-4f1b-9d69-005c81d56a7f,Tower,ELEV,Elevator M Floor 4,Elevator M4
+b48927ee-862e-4ed3-9ae2-b3aecf1590a4,557,235,23525e7b-3ca9-4f1b-9d69-005c81d56a7f,Tower,STOR,Pod B Clean Equipment Storage (Floor 4),Pod B4 CES
+edb51178-2d60-41d7-b306-5ac21724d55c,547,565,23525e7b-3ca9-4f1b-9d69-005c81d56a7f,Tower,STOR,Pod C Clean Equipment Storage (Floor 4),Pod C4 CES
+3ad05d89-e4fd-42a5-a8c3-bbd26542adbb,517,400,23525e7b-3ca9-4f1b-9d69-005c81d56a7f,Tower,DIRT,Dirty Equipment Storage (Floor 4),DES4
+24732346-02de-4888-8ea5-12b4cc4b9b99,537,345,23525e7b-3ca9-4f1b-9d69-005c81d56a7f,Tower,PATI,Pod B Patient Room 1,Pod B PR1
+5992457b-6f4a-44cd-8722-e68e35be813e,492,325,23525e7b-3ca9-4f1b-9d69-005c81d56a7f,Tower,PATI,Pod B Patient Room 2,Pod B PR2
+ce2133af-9040-4154-836c-f020394f971d,467,285,23525e7b-3ca9-4f1b-9d69-005c81d56a7f,Tower,PATI,Pod B Patient Room 3,Pod B PR3
+8d460016-321b-4ddf-b5a0-70f542782c9a,457,240,23525e7b-3ca9-4f1b-9d69-005c81d56a7f,Tower,PATI,Pod B Patient Room 4,Pod B PR4
+aa9cbb97-91e2-4b78-a773-31f9fc7b9f69,472,195,23525e7b-3ca9-4f1b-9d69-005c81d56a7f,Tower,PATI,Pod B Patient Room 5,Pod B PR5
+37a84aaf-2527-4261-b32b-658dde0a0fd5,497,170,23525e7b-3ca9-4f1b-9d69-005c81d56a7f,Tower,PATI,Pod B Patient Room 6,Pod B PR6
+a5a2b83c-b653-461f-8194-c60bc0048577,542,155,23525e7b-3ca9-4f1b-9d69-005c81d56a7f,Tower,PATI,Pod B Patient Room 7,Pod B PR7
+4999553f-2b3f-4d5c-99f0-7c2994261c0a,587,155,23525e7b-3ca9-4f1b-9d69-005c81d56a7f,Tower,PATI,Pod B Patient Room 8,Pod B PR8
+746edf27-a7e6-4f83-a4c0-7f7ca78ac6bb,622,175,23525e7b-3ca9-4f1b-9d69-005c81d56a7f,Tower,PATI,Pod B Patient Room 9,Pod B PR9
+0def3dbf-9caf-4900-8a95-06d7c9dbf1c7,647,235,23525e7b-3ca9-4f1b-9d69-005c81d56a7f,Tower,PATI,Pod B Patient Room 10,Pod B PR10
+4376fb83-2599-4aff-b5d4-554a1e1005b5,537,465,23525e7b-3ca9-4f1b-9d69-005c81d56a7f,Tower,PATI,Pod C Patient Room 1,Pod C PR1
+fb9c71fa-27e9-4a1c-af32-538deb429f9a,487,490,23525e7b-3ca9-4f1b-9d69-005c81d56a7f,Tower,PATI,Pod C Patient Room 2,Pod C PR2
+0aada891-bcb8-43d5-93ba-ddef85e7459c,457,525,23525e7b-3ca9-4f1b-9d69-005c81d56a7f,Tower,PATI,Pod C Patient Room 3,Pod C PR3
+8fb9abd6-dc33-4fef-988a-7bb08ece65ef,457,575,23525e7b-3ca9-4f1b-9d69-005c81d56a7f,Tower,PATI,Pod C Patient Room 4,Pod C PR4
+80742586-d074-49c1-b3ba-5e9fd76f5ac1,477,615,23525e7b-3ca9-4f1b-9d69-005c81d56a7f,Tower,PATI,Pod C Patient Room 5,Pod C PR5
+3d272fdc-6643-4542-b16c-208e3e291775,507,635,23525e7b-3ca9-4f1b-9d69-005c81d56a7f,Tower,PATI,Pod C Patient Room 6,Pod C PR6
+edb9d02b-8692-4bc5-ae54-a64cb2fc170f,547,655,23525e7b-3ca9-4f1b-9d69-005c81d56a7f,Tower,PATI,Pod C Patient Room 7,Pod C PR7
+e8ea6e79-50b3-4535-b8ab-9975d30a3cea,597,645,23525e7b-3ca9-4f1b-9d69-005c81d56a7f,Tower,PATI,Pod C Patient Room 8,Pod C PR8
+92c66826-1946-42ba-bf69-841507780e18,627,625,23525e7b-3ca9-4f1b-9d69-005c81d56a7f,Tower,PATI,Pod C Patient Room 9,Pod C PR9
+11c7aa28-16b6-4cd6-87ca-f88adaf5317f,647,580,23525e7b-3ca9-4f1b-9d69-005c81d56a7f,Tower,PATI,Pod C Patient Room 10,Pod C PR10
+1b19c318-15f1-40ca-99ec-0c3ddd7161d1,717,215,23525e7b-3ca9-4f1b-9d69-005c81d56a7f,Tower,STOR,Pods AB Bed and Recliner Parking,PodsAB BRP
+227e3751-db97-461f-9e20-d4b035b8563e,717,595,23525e7b-3ca9-4f1b-9d69-005c81d56a7f,Tower,STOR,Pods CD Bed and Recliner Parking,PodsCD BRP
+2ee47c37-6c10-416b-9e0c-5a86fcb9a22c,812,305,e9f57945-aad3-42ea-bf10-0796dde13964,Tower,BATH,Bathroom 1 Tower Floor 5,Bathroom 0105
+4512c495-017b-4c48-a1dc-3e5aeacf709d,777,460,e9f57945-aad3-42ea-bf10-0796dde13964,Tower,BATH,Bathroom 2 Tower Floor 5,Bathroom 0205
+f608b55c-519e-4653-bec8-0d2c5f968493,752,375,e9f57945-aad3-42ea-bf10-0796dde13964,Tower,DEPT,Dialysis Waiting Room,Dialysis WR
+7711bce2-c6b8-499e-8bb2-715e691add9b,717,305,e9f57945-aad3-42ea-bf10-0796dde13964,Tower,DEPT,MICU 3BC Waiting Room,MICU 3BC WR
+963a0353-c0e3-445f-87fe-586e0132852e,352,130,e9f57945-aad3-42ea-bf10-0796dde13964,Tower,HALL,Hallway Connector 1 Floor 5,Hallway H00105
+c2c68eea-ba2b-44ab-83c9-86fdd523980a,262,460,e9f57945-aad3-42ea-bf10-0796dde13964,Tower,HALL,Hallway Connector 2 Floor 5,Hallway H00205
+571e0b57-da51-4af5-87b1-06d1246705ba,352,460,e9f57945-aad3-42ea-bf10-0796dde13964,Tower,HALL,Hallway Connector 3 Floor 5,Hallway H00305
+07d8c692-cb91-476f-87fd-c68a5c8540a7,352,765,e9f57945-aad3-42ea-bf10-0796dde13964,Tower,HALL,Hallway Connector 4 Floor 5,Hallway H00405
+aeed0481-7aa8-45c9-aae4-922ec8c819d1,707,765,e9f57945-aad3-42ea-bf10-0796dde13964,Tower,HALL,Hallway Connector 5 Floor 5,Hallway H00502
+37e9b897-6309-4426-8641-13eac92dc528,762,400,e9f57945-aad3-42ea-bf10-0796dde13964,Tower,HALL,Hallway Connector 6 Floor 5,Hallway H00605
+f9546ec3-3a92-4e7f-a44b-829aa08c225f,762,375,e9f57945-aad3-42ea-bf10-0796dde13964,Tower,HALL,Hallway Connector 7 Floor 5,Hallway H00705
+5776a676-7e90-4473-b4ce-0376760e18ed,762,340,e9f57945-aad3-42ea-bf10-0796dde13964,Tower,HALL,Hallway Connector 8 Floor 5,Hallway H00805
+5ddd0a6f-daae-47a1-a4f4-61526956c815,762,295,e9f57945-aad3-42ea-bf10-0796dde13964,Tower,HALL,Hallway Connector 9 Floor 5,Hallway H00905
+04ebd08c-a633-4814-85f9-7cb8650d5b8d,812,295,e9f57945-aad3-42ea-bf10-0796dde13964,Tower,HALL,Hallway Connector 10 Floor 5,Hallway H01005
+bef51c13-9bfc-4e23-934e-37631a9fb064,717,295,e9f57945-aad3-42ea-bf10-0796dde13964,Tower,HALL,Hallway Connector 11 Floor 5,Hallway H01105
+692e5e74-bc27-49a9-81db-1653ade9476f,627,295,e9f57945-aad3-42ea-bf10-0796dde13964,Tower,HALL,Hallway Connector 12 Floor 5,Hallway H01205
+14c0554d-a3fd-454d-870f-755a5269544b,627,505,e9f57945-aad3-42ea-bf10-0796dde13964,Tower,HALL,Hallway Connector 13 Floor 5,Hallway H01305
+be49eac6-63c5-4c90-b46c-f79aeeab8626,762,505,e9f57945-aad3-42ea-bf10-0796dde13964,Tower,HALL,Hallway Connector 14 Floor 5,Hallway H01405
+cffd7585-3d40-4dad-9f65-8014824b4a9e,762,460,e9f57945-aad3-42ea-bf10-0796dde13964,Tower,HALL,Hallway Connector 15 Floor 5,Hallway H01505
+48d1b1b4-6669-48e9-b70c-7856a6224776,262,340,e9f57945-aad3-42ea-bf10-0796dde13964,Tower,LABS,Reproductive Endocrine Labs,Reproductive Endocrine Labs
+741d10a7-3afa-483a-b924-c122e7c18816,777,340,e9f57945-aad3-42ea-bf10-0796dde13964,Tower,SERV,Nursing Room,Nursing Room
+5478b6fe-80ad-4653-b761-45933aff5c32,707,750,e9f57945-aad3-42ea-bf10-0796dde13964,Tower,STAI,Stairwell 1 Floor 5,Stairwell
+3682be34-5c68-4432-960e-b8c490db1c0a,817,400,e9f57945-aad3-42ea-bf10-0796dde13964,Tower,ELEV,Elevator L Floor 5,Elevator L5
+2965d6b5-83e0-4572-90bf-169c8613cf30,842,765,e9f57945-aad3-42ea-bf10-0796dde13964,Tower,ELEV,Elevator M Floor 5,Elevator M5
+aec1dc5f-6f73-4266-ae77-e7f40637ceb0,557,235,e9f57945-aad3-42ea-bf10-0796dde13964,Tower,STOR,Pod B Clean Equipment Storage (Floor 5),Pod B5 CES
+579992f2-b555-4172-a4f3-e5a4607dd795,547,565,e9f57945-aad3-42ea-bf10-0796dde13964,Tower,STOR,Pod C Clean Equipment Storage (Floor 5),Pod C5 CES
+53598a3d-ba0a-4151-b88f-9d725a680b5b,517,400,e9f57945-aad3-42ea-bf10-0796dde13964,Tower,DIRT,Dirty Equipment Storage (Floor 5),DES5
+a750082a-4695-4064-9500-8a57c5f5df27,537,345,e9f57945-aad3-42ea-bf10-0796dde13964,Tower,PATI,Pod B Patient Room 1,Pod B PR1
+e7338ea3-8c11-45f5-b87d-e119481687ce,492,325,e9f57945-aad3-42ea-bf10-0796dde13964,Tower,PATI,Pod B Patient Room 2,Pod B PR2
+bba0eb3b-4f79-403c-b889-4dbec82fc65a,467,285,e9f57945-aad3-42ea-bf10-0796dde13964,Tower,PATI,Pod B Patient Room 3,Pod B PR3
+a41fd834-d3d2-4408-995b-67f5435fbfed,457,240,e9f57945-aad3-42ea-bf10-0796dde13964,Tower,PATI,Pod B Patient Room 4,Pod B PR4
+d52bc79a-81b4-4de4-9e82-34b8e15b352b,472,195,e9f57945-aad3-42ea-bf10-0796dde13964,Tower,PATI,Pod B Patient Room 5,Pod B PR5
+49747703-d5f2-4d49-8275-25bdd5696f26,497,170,e9f57945-aad3-42ea-bf10-0796dde13964,Tower,PATI,Pod B Patient Room 6,Pod B PR6
+a74dc4b6-47d9-45fa-a6f9-5fba434abdd6,542,155,e9f57945-aad3-42ea-bf10-0796dde13964,Tower,PATI,Pod B Patient Room 7,Pod B PR7
+9f5be2ca-edfc-4c9b-88dd-a4c144d77175,587,155,e9f57945-aad3-42ea-bf10-0796dde13964,Tower,PATI,Pod B Patient Room 8,Pod B PR8
+fceaec3c-8e47-4383-994b-cbcc4104a60d,622,175,e9f57945-aad3-42ea-bf10-0796dde13964,Tower,PATI,Pod B Patient Room 9,Pod B PR9
+37a1c045-5225-433e-b156-ad14f11d4da3,647,235,e9f57945-aad3-42ea-bf10-0796dde13964,Tower,PATI,Pod B Patient Room 10,Pod B PR10
+9ea51ab4-2ac8-456d-b0b0-22e6ef932908,537,465,e9f57945-aad3-42ea-bf10-0796dde13964,Tower,PATI,Pod C Patient Room 1,Pod C PR1
+bd42d33f-e6d8-4b36-97cd-3e39f990884d,487,490,e9f57945-aad3-42ea-bf10-0796dde13964,Tower,PATI,Pod C Patient Room 2,Pod C PR2
+ee8ee2fd-0d47-4170-8853-9a9c9a6061de,457,525,e9f57945-aad3-42ea-bf10-0796dde13964,Tower,PATI,Pod C Patient Room 3,Pod C PR3
+ef3225a8-0e2d-48ce-b78a-af66cb57b582,457,575,e9f57945-aad3-42ea-bf10-0796dde13964,Tower,PATI,Pod C Patient Room 4,Pod C PR4
+43a69b52-db87-4a14-9731-9c8125ad857c,477,615,e9f57945-aad3-42ea-bf10-0796dde13964,Tower,PATI,Pod C Patient Room 5,Pod C PR5
+2c39de97-7ba9-4742-91ee-19da37e77e80,507,635,e9f57945-aad3-42ea-bf10-0796dde13964,Tower,PATI,Pod C Patient Room 6,Pod C PR6
+080ccb97-9d9b-4a9b-9538-b4eb7f80d940,547,655,e9f57945-aad3-42ea-bf10-0796dde13964,Tower,PATI,Pod C Patient Room 7,Pod C PR7
+fb698551-3e39-46e6-8c09-7c121e0b5ff7,597,645,e9f57945-aad3-42ea-bf10-0796dde13964,Tower,PATI,Pod C Patient Room 8,Pod C PR8
+4e205725-941e-43a5-98cb-1cdbee8334e6,627,625,e9f57945-aad3-42ea-bf10-0796dde13964,Tower,PATI,Pod C Patient Room 9,Pod C PR9
+b0608fb9-62a0-485b-8fc7-2462474a5c5b,647,580,e9f57945-aad3-42ea-bf10-0796dde13964,Tower,PATI,Pod C Patient Room 10,Pod C PR10
+e9cc078b-6e7b-49f0-aef0-bb56cdffbe3a,717,215,e9f57945-aad3-42ea-bf10-0796dde13964,Tower,STOR,Pods AB Bed and Recliner Parking,PodsAB BRP
+393bfc52-5bea-4edd-a283-b75f89e87378,717,595,e9f57945-aad3-42ea-bf10-0796dde13964,Tower,STOR,Pods CD Bed and Recliner Parking,PodsCD BRP
