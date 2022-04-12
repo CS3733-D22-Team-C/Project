@@ -1,5 +1,6 @@
 package edu.wpi.cs3733.D22.teamC.fileio.csv;
 
+import edu.wpi.cs3733.D22.teamC.entity.employee.Employee;
 import edu.wpi.cs3733.D22.teamC.entity.service_request.medical_equipment.MedicalEquipmentSR;
 
 public class MedicalEquipmentSRCSVWriter extends CSVWriter<MedicalEquipmentSR> {
@@ -20,7 +21,9 @@ public class MedicalEquipmentSRCSVWriter extends CSVWriter<MedicalEquipmentSR> {
                 "requestType",
                 "description",
                 "equipType",
-                "equipID"
+                "equipID",
+                "modifierID",
+                "modifiedTimestamp"
         };
     }
     /**
@@ -37,10 +40,12 @@ public class MedicalEquipmentSRCSVWriter extends CSVWriter<MedicalEquipmentSR> {
                 output = serviceRequest.getRequestID();
                 break;
             case "creatorID":
-                output = serviceRequest.getCreatorID();
+                Employee employee = serviceRequest.getCreator();
+                output = (employee != null) ? employee.getEmployeeID() : "";
                 break;
             case "assigneeID":
-                output = serviceRequest.getAssigneeID();
+                Employee assignee = serviceRequest.getAssignee();
+                output = (assignee != null) ? assignee.getEmployeeID() : "";
                 break;
             case "location":
                 output = serviceRequest.getLocation();
@@ -65,6 +70,13 @@ public class MedicalEquipmentSRCSVWriter extends CSVWriter<MedicalEquipmentSR> {
                 break;
             case "equipID":
                 output = serviceRequest.getEquipmentID();
+                break;
+            case "modifierID":
+                Employee modifier = serviceRequest.getModifier();
+                output = (modifier != null) ? modifier.getEmployeeID() : "";
+                break;
+            case "modifiedTimestamp":
+                output = (serviceRequest.getModifiedTimestamp() == null) ? "" : serviceRequest.getModifiedTimestamp().toString();
                 break;
             default:
                 break;
