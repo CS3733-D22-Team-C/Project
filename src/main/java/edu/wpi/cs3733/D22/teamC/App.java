@@ -131,7 +131,7 @@ public class App extends Application {
 
         stage.setFullScreen(true);
 
-        setView(VIEW_LOCATIONS_PATH);
+        setView(DASHBOARD_PATH);
     }
 
     @Override
