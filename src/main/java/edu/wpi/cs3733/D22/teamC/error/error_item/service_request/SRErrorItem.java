@@ -1,11 +1,11 @@
-package edu.wpi.cs3733.D22.teamC.error.error_item.service_request_user_input_validation;
+package edu.wpi.cs3733.D22.teamC.error.error_item.service_request;
 
 import edu.wpi.cs3733.D22.teamC.error.error_item.ErrorItem;
 
-public class ServiceRequestUserInputValidationErrorItem extends ErrorItem {
+public class SRErrorItem extends ErrorItem {
     private String reasonForValidationError;
 
-    public ServiceRequestUserInputValidationErrorItem(int errorNumber, String reasonForValidationError)
+    public SRErrorItem(int errorNumber, String reasonForValidationError)
     {
         super("User Input Validation", errorNumber);
         this.reasonForValidationError = reasonForValidationError;

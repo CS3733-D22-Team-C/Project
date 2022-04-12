@@ -1,18 +1,18 @@
-package edu.wpi.cs3733.D22.teamC.user_input_validation.service_request;
+package edu.wpi.cs3733.D22.teamC.validation.service_request;
 
 //Note: If user input validation expands beyond service requests forms as development continues, then user validation can be further abstracted when refactoring.
 
 import edu.wpi.cs3733.D22.teamC.entity.location.LocationDAO;
 import edu.wpi.cs3733.D22.teamC.entity.service_request.ServiceRequestDAO;
-import edu.wpi.cs3733.D22.teamC.error.error_item.service_request_user_input_validation.ServiceRequestUserInputValidationErrorItem;
-import edu.wpi.cs3733.D22.teamC.error.error_record.service_request_user_input_validation.ServiceRequestUserInputValidationErrorRecord;
+import edu.wpi.cs3733.D22.teamC.error.error_item.service_request.SRErrorItem;
+import edu.wpi.cs3733.D22.teamC.error.error_record.service_request.SRErrorRecord;
 import javafx.scene.control.SingleSelectionModel;
 
 import java.util.ArrayList;
 
-public class ServiceRequestFormEvaluator {
+public class SRFormEvaluator {
 
-    public ServiceRequestFormEvaluator() {}
+    public SRFormEvaluator() {}
 
     /**
      * Determine if all the basic fields of a Service Request (locationID, assigneeID, status, and priority) have been filled,
@@ -22,9 +22,9 @@ public class ServiceRequestFormEvaluator {
      * @param priority
      * @return ArrayList <ServiceRequestUserInputValidationErrorItem>
      */
-    public ArrayList<ServiceRequestUserInputValidationErrorItem> getBasicRequiredFieldsFilledValidationResult(String location, String assigneeID, SingleSelectionModel priority, SingleSelectionModel status)
+    public ArrayList<SRErrorItem> getBasicRequiredFieldsFilledValidationResult(String location, String assigneeID, SingleSelectionModel priority, SingleSelectionModel status)
     {
-        ArrayList <ServiceRequestUserInputValidationErrorItem> errorList = new ArrayList <ServiceRequestUserInputValidationErrorItem>();
+        ArrayList <SRErrorItem> errorList = new ArrayList <SRErrorItem>();
 
         errorList.add(checkLocationIDFilled(location));
         errorList.add(checkPriorityFilled(priority));
@@ -39,7 +39,7 @@ public class ServiceRequestFormEvaluator {
      * @param assigneeID The assigneeID of the service request.
      * @return ServiceRequestValidationErrorItem.
      */
-    public ServiceRequestUserInputValidationErrorItem getValidateAssigneeIDResult(String assigneeID)
+    public SRErrorItem getValidateAssigneeIDResult(String assigneeID)
     {
         ServiceRequestDAO serviceRequestDaoVar = new ServiceRequestDAO();
 
@@ -51,7 +51,7 @@ public class ServiceRequestFormEvaluator {
         }
         else
         {
-            return ServiceRequestUserInputValidationErrorRecord.serviceRequestUserInputValidationErrorList[3];
+            return SRErrorRecord.serviceRequestUserInputValidationErrorList[3];
         }
     }
 
@@ -61,7 +61,7 @@ public class ServiceRequestFormEvaluator {
      * @param locationID The location ID of the service request
      * @return ServiceRequestValidationErrorItem
      */
-    public ServiceRequestUserInputValidationErrorItem getValidateLocationIDResult(String locationID)
+    public SRErrorItem getValidateLocationIDResult(String locationID)
     {
         LocationDAO locationDaoVar = new LocationDAO();
 
@@ -75,7 +75,7 @@ public class ServiceRequestFormEvaluator {
 
             if(locationDaoVar.getByID(locationConv) == null) //assumes the user inputs a location ID in the service request location field.
             {
-                return ServiceRequestUserInputValidationErrorRecord.serviceRequestUserInputValidationErrorList[4];
+                return SRErrorRecord.serviceRequestUserInputValidationErrorList[4];
             }
             else
             {
@@ -89,11 +89,11 @@ public class ServiceRequestFormEvaluator {
      * @param locationID
      * @return ServiceRequestValidationErrorItem
      */
-    public ServiceRequestUserInputValidationErrorItem checkLocationIDFilled(String locationID)
+    public SRErrorItem checkLocationIDFilled(String locationID)
     {
         if(locationID.isEmpty())
         {
-            return ServiceRequestUserInputValidationErrorRecord.serviceRequestUserInputValidationErrorList[0];
+            return SRErrorRecord.serviceRequestUserInputValidationErrorList[0];
         }
         else
         {
@@ -102,7 +102,7 @@ public class ServiceRequestFormEvaluator {
 
             if(locationIDLength == 0)
             {
-                return ServiceRequestUserInputValidationErrorRecord.serviceRequestUserInputValidationErrorList[0];
+                return SRErrorRecord.serviceRequestUserInputValidationErrorList[0];
             }
             else
             {
@@ -116,11 +116,11 @@ public class ServiceRequestFormEvaluator {
      * @param status
      * @return ServiceRequestValidationErrorItem
      */
-    public ServiceRequestUserInputValidationErrorItem checkStatusFilled(SingleSelectionModel status)
+    public SRErrorItem checkStatusFilled(SingleSelectionModel status)
     {
        if(status.isEmpty())
        {
-           return ServiceRequestUserInputValidationErrorRecord.serviceRequestUserInputValidationErrorList[1];
+           return SRErrorRecord.serviceRequestUserInputValidationErrorList[1];
        }
        else
        {
@@ -133,11 +133,11 @@ public class ServiceRequestFormEvaluator {
      * @param priority
      * @return ServiceRequestValidationErrorItem
      */
-    public ServiceRequestUserInputValidationErrorItem checkPriorityFilled(SingleSelectionModel priority)
+    public SRErrorItem checkPriorityFilled(SingleSelectionModel priority)
     {
         if(priority.isEmpty())
         {
-            return ServiceRequestUserInputValidationErrorRecord.serviceRequestUserInputValidationErrorList[2];
+            return SRErrorRecord.serviceRequestUserInputValidationErrorList[2];
         }
         else
         {
@@ -150,7 +150,7 @@ public class ServiceRequestFormEvaluator {
      * @param l
      * @return boolean
      */
-    public boolean noServiceRequestFormUserInputErrors(ArrayList <ServiceRequestUserInputValidationErrorItem> l)
+    public boolean noServiceRequestFormUserInputErrors(ArrayList <SRErrorItem> l)
     {
         for(int x = 0; x < l.size(); x++)
         {
