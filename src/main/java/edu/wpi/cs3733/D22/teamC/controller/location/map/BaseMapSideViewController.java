@@ -90,6 +90,8 @@ public class BaseMapSideViewController implements Initializable {
         //floorDescription.setText(selectedFloor.getDescription());
         floorDescription.setText("OOOhhh you want to give us an A in this class, you want to give it to us so bad.");
 
+        loadEquipment();
+
         tableDisplay.emptyTable();
 
         //tableDisplay.addObject(dirtyEquip);
@@ -109,9 +111,10 @@ public class BaseMapSideViewController implements Initializable {
 
     }
 
-    void loadEquipment() {
+    private void loadEquipment() {
         MedicalEquipmentDAO MEL = new MedicalEquipmentDAO();
         List<MedicalEquipment> medicalEquipmentPerFloor = MEL.getEquipmentByFloor(selectedFloor.getFloorID());
+
 
         List<MedicalEquipment> floorXDirty = new ArrayList<>();
         List<MedicalEquipment> floorXClean = new ArrayList<>();
@@ -142,18 +145,21 @@ public class BaseMapSideViewController implements Initializable {
         List<MedicalEquipment> inUseRecliners   = new ArrayList<>();
 
         for(MedicalEquipment medicalEquipment : floorXDirty){
+            System.out.println(medicalEquipment.getEquipmentType().toString());
             if(medicalEquipment.getEquipmentType().equals(MedicalEquipment.EquipmentType.Recliner)) dirtyRecliners.add(medicalEquipment);
             if(medicalEquipment.getEquipmentType().equals(MedicalEquipment.EquipmentType.Portable_X_Ray)) dirtyXRays.add(medicalEquipment);
             if(medicalEquipment.getEquipmentType().equals(MedicalEquipment.EquipmentType.Bed)) dirtyBeds.add(medicalEquipment);
             if(medicalEquipment.getEquipmentType().equals(MedicalEquipment.EquipmentType.Infusion_Pump)) dirtyPumps.add(medicalEquipment);
         }
         for(MedicalEquipment medicalEquipment : floorXClean){
+            System.out.println(medicalEquipment.getEquipmentType().toString());
             if(medicalEquipment.getEquipmentType().equals(MedicalEquipment.EquipmentType.Recliner)) cleanRecliners.add(medicalEquipment);
             if(medicalEquipment.getEquipmentType().equals(MedicalEquipment.EquipmentType.Portable_X_Ray)) cleanXRays.add(medicalEquipment);
             if(medicalEquipment.getEquipmentType().equals(MedicalEquipment.EquipmentType.Bed)) cleanBeds.add(medicalEquipment);
             if(medicalEquipment.getEquipmentType().equals(MedicalEquipment.EquipmentType.Infusion_Pump)) cleanPumps.add(medicalEquipment);
         }
         for(MedicalEquipment medicalEquipment : floorXPod){
+            System.out.println(medicalEquipment.getEquipmentType().toString());
             if(medicalEquipment.getEquipmentType().equals(MedicalEquipment.EquipmentType.Recliner)) inUseRecliners.add(medicalEquipment);
             if(medicalEquipment.getEquipmentType().equals(MedicalEquipment.EquipmentType.Portable_X_Ray)) inUseXRays.add(medicalEquipment);
             if(medicalEquipment.getEquipmentType().equals(MedicalEquipment.EquipmentType.Bed)) inUseBeds.add(medicalEquipment);
@@ -173,5 +179,9 @@ public class BaseMapSideViewController implements Initializable {
         inUseEquip.numOfXRays       = inUseXRays.size();
         inUseEquip.numOfPumps       = inUsePumps.size();
         inUseEquip.numOfRecliners   = inUseRecliners.size();
+
+        System.out.println(Integer.toString(dirtyEquip.numOfBeds));
+        System.out.println(Integer.toString(readyEquip.numOfBeds));
+        System.out.println(Integer.toString(inUseEquip.numOfBeds));
     }
 }
