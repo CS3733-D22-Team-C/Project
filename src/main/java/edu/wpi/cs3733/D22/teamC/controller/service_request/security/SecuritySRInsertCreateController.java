@@ -4,6 +4,8 @@ import com.jfoenix.controls.JFXComboBox;
 import com.jfoenix.controls.JFXTreeTableView;
 import edu.wpi.cs3733.D22.teamC.controller.service_request.InsertServiceRequestCreateController;
 import edu.wpi.cs3733.D22.teamC.entity.generic.DAO;
+import edu.wpi.cs3733.D22.teamC.entity.service_request.ServiceRequest;
+import edu.wpi.cs3733.D22.teamC.entity.service_request.lab_system.LabSystemSR;
 import edu.wpi.cs3733.D22.teamC.entity.service_request.security.SecuritySR;
 import edu.wpi.cs3733.D22.teamC.entity.service_request.security.SecuritySRDAO;
 import edu.wpi.cs3733.D22.teamC.models.service_request.ServiceRequestTableDisplay;
@@ -53,5 +55,10 @@ public class SecuritySRInsertCreateController implements InsertServiceRequestCre
         if(securityType.getValue() == null)
             return false;
         return true;
+    }
+
+
+    public SecuritySR createNewServiceRequest(){
+        return new SecuritySR();
     }
 }
