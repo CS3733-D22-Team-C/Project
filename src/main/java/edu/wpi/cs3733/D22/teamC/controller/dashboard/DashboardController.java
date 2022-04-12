@@ -1,6 +1,8 @@
 package edu.wpi.cs3733.D22.teamC.controller.dashboard;
 
 import com.jfoenix.controls.JFXTreeTableView;
+import edu.wpi.cs3733.D22.teamC.App;
+import edu.wpi.cs3733.D22.teamC.entity.employee.Employee;
 import edu.wpi.cs3733.D22.teamC.entity.service_request.ServiceRequest;
 import edu.wpi.cs3733.D22.teamC.entity.service_request.ServiceRequestDAO;
 import javafx.fxml.FXML;
@@ -20,6 +22,7 @@ public class DashboardController<T extends ServiceRequest> implements Initializa
     @FXML
     private Label greetingLabel;
 
+    private Employee employee;
     private DashboardAssignedTableDisplay assignedTableDisplay;
     private DashboardCreatedTableDisplay createdTableDisplay;
 
@@ -34,7 +37,7 @@ public class DashboardController<T extends ServiceRequest> implements Initializa
         serviceRequests.forEach(assignedTableDisplay::addObject);
         serviceRequests.forEach(createdTableDisplay::addObject);
 
-        setGreetingLabel("Brandon");
+        setGreetingLabel(App.instance.getUserAccount().getUsername());
     }
 
     public void setGreetingLabel(String username) {
