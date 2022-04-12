@@ -9,16 +9,11 @@ import javafx.fxml.Initializable;
 import javafx.geometry.Pos;
 import javafx.scene.Node;
 import javafx.scene.control.ContentDisplay;
-import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
-import javafx.scene.paint.Color;
 import javafx.scene.shape.SVGPath;
-import javafx.scene.shape.TriangleMesh;
 import javafx.util.Duration;
 
 import java.net.URL;
-import java.util.ArrayList;
-import java.util.List;
 import java.util.ResourceBundle;
 import java.util.concurrent.TimeUnit;
 
@@ -125,8 +120,8 @@ public class DrawerContentController implements Initializable {
 
     @FXML
     void logOutButtonPress(ActionEvent event) {
-        // TODO: Logout functionality
-        App.instance.setView(App.LOGIN_PATH);
+        // TODO: Logout functionality, path to login page
+        App.instance.setViewStatic(App.LOGIN_PATH);
     }
 
     @FXML
