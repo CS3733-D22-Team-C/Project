@@ -146,7 +146,7 @@
             </HBox>
          </children>
       </GridPane>
-      <GridPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="40.0" prefWidth="202.0" styleClass="toggle-button-background" stylesheets="@../../css/toggle_button.css" translateY="-300.0">
+      <GridPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="35.0" prefWidth="202.0" styleClass="toggle-button-background" stylesheets="@../../css/toggle_button.css" translateY="-300.0">
          <columnConstraints>
             <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
          </columnConstraints>
@@ -154,7 +154,7 @@
             <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
          </rowConstraints>
          <children>
-            <MFXToggleButton fx:id="toggleButton" onSwipeLeft="#toggleDragged" onSwipeRight="#toggleDragged" prefHeight="34.0" prefWidth="200.0" translateY="5.0" />
+            <MFXToggleButton fx:id="toggleButton" onMouseDragExited="#toggleDragged" prefHeight="46.0" prefWidth="200.0" translateY="5.0" />
          </children>
       </GridPane>
    </children>
