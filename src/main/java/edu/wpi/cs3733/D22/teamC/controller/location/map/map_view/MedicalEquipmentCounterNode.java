@@ -32,6 +32,7 @@ public class MedicalEquipmentCounterNode {
     // Variables
     MedicalEquipment.EquipmentType equipmentType;
     List<MedicalEquipment> medicalEquipments;
+    boolean editMode;
 
     public void setLocationNode(LocationNode locationNode) {
         this.locationNode = locationNode;
@@ -52,6 +53,11 @@ public class MedicalEquipmentCounterNode {
             group.setLayoutY(offsets.getValue());
         }
 
+        private void resetDisabled() {
+            setIncreaseDisabled(locationNode.mapController.parentController.medicalEquipmentManager.getDisabledIncrease(equipmentType));
+            setDecreaseDisabled(medicalEquipments.size() == 0);
+        }
+
         private void resetCounter() {
             counter.setText(Integer.toString(medicalEquipments.size()));
         }
@@ -64,6 +70,7 @@ public class MedicalEquipmentCounterNode {
             medicalEquipments.remove(0);
             locationNode.mapController.parentController.medicalEquipmentManager.releaseMedicalEquipment(medicalEquipment);
             resetCounter();
+            resetDisabled();
 
             setDecreaseDisabled(medicalEquipments.size() == 0);
 
@@ -75,6 +82,7 @@ public class MedicalEquipmentCounterNode {
             MedicalEquipment medicalEquipment = locationNode.mapController.parentController.medicalEquipmentManager.reclaimMedicalEquipment(equipmentType);
             medicalEquipments.add(medicalEquipment);
             resetCounter();
+            resetDisabled();
 
             event.consume();
         }
@@ -87,10 +95,12 @@ public class MedicalEquipmentCounterNode {
 
         public void setVisible(boolean visible) {
             group.setVisible(visible);
+            if (editMode) resetDisabled();
         }
 
         public void setEditable(boolean editable) {
             editGroup.setVisible(editable);
+            if (editMode) resetDisabled();
         }
 
         public void setMedicalEquipments(List<MedicalEquipment> medicalEquipments) {

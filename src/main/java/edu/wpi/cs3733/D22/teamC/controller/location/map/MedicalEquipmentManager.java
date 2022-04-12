@@ -29,8 +29,9 @@ public class MedicalEquipmentManager {
     // Variables
     private List<MedicalEquipment> medicalEquipments;
     private final List<MedicalEquipment>[] equipmentsByType = new List[MedicalEquipment.EquipmentType.values().length];
-    private final List<MedicalEquipment>[] releasedEquipmentsByType = new List[MedicalEquipment.EquipmentType.values().length];;
+    private final List<MedicalEquipment>[] releasedEquipmentsByType = new List[MedicalEquipment.EquipmentType.values().length];
     private final boolean[] disabledIncreases = new boolean[MedicalEquipment.EquipmentType.values().length];
+    private MedicalEquipmentCounterNode[] editOverlays = new MedicalEquipmentCounterNode[MedicalEquipment.EquipmentType.values().length];
 
     // References
     private BaseMapViewController parentController;
@@ -74,8 +75,6 @@ public class MedicalEquipmentManager {
 
         List<MedicalEquipment> releasedEquipmentByType = releasedEquipmentsByType[equipmentType.ordinal()];
         releasedEquipmentByType.add(medicalEquipment);
-
-        if (disabledIncreases[equipmentType.ordinal()]) setIncreaseDisabled(equipmentType, false);
     }
 
     public MedicalEquipment reclaimMedicalEquipment(MedicalEquipment.EquipmentType equipmentType) {
@@ -85,8 +84,6 @@ public class MedicalEquipmentManager {
         if (releasedEquipmentByType.size() > 0) {
             medicalEquipment = releasedEquipmentByType.get(0);
             releasedEquipmentByType.remove(medicalEquipment);
-
-            if (releasedEquipmentByType.size() == 0) setIncreaseDisabled(equipmentType, true);
         }
 
         return medicalEquipment;
@@ -95,19 +92,10 @@ public class MedicalEquipmentManager {
 
     //#region Edit Mode
         public void setEditMode(boolean editMode) {
-            if (editMode) addEditCounters();
-
-//            for (LocationNode locationNode : parentController.mapController.locationNodes) {
-//                for (MedicalEquipment.EquipmentType equipmentType : MedicalEquipment.EquipmentType.values()) {
-//                    locationNode.medicalEquipmentCounterNodes[equipmentType.ordinal()].setIncreaseDisabled(disabledIncreases[equipmentType.ordinal()]);
-//                }
-//            }
-//            for (MedicalEquipment.EquipmentType equipmentType : MedicalEquipment.EquipmentType.values()) {
-//                setIncreaseDisabled(equipmentType, disabledIncreases[equipmentType.ordinal()]);
-//            }
+            if (editMode) initializeEditCounters();
         }
 
-        public void addEditCounters() {
+        public void initializeEditCounters() {
             for (MedicalEquipment.EquipmentType equipmentType : MedicalEquipment.EquipmentType.values()) {
                 MedicalEquipmentCounterNode medicalEquipmentCounterNode = MedicalEquipmentCounterNode.loadNewMedicalEquipmentCounterNode(equipmentType);
                 medicalEquipmentCounterNode.setEditable(false);
@@ -115,15 +103,17 @@ public class MedicalEquipmentManager {
                 medicalEquipmentCounterNode.group.setScaleX(1.5);
                 medicalEquipmentCounterNode.group.setScaleY(1.5);
                 medicalEquipmentCounterNode.render(parentController.mapController.rightOverlay, MEDICAL_EQUIPMENT_COUNTER_NODE_OFFSETS[equipmentType.ordinal()]);
+
+                medicalEquipmentCounterNode.setMedicalEquipments(releasedEquipmentsByType[equipmentType.ordinal()]);
+                disabledIncreases[equipmentType.ordinal()] = (releasedEquipmentsByType[equipmentType.ordinal()].size() == 0);
+
+                editOverlays[equipmentType.ordinal()] = medicalEquipmentCounterNode;
             }
         }
 
 
-        public void setIncreaseDisabled(MedicalEquipment.EquipmentType equipmentType, boolean disabled) {
-            for (LocationNode locationNode : parentController.mapController.locationNodes) {
-                locationNode.medicalEquipmentCounterNodes[equipmentType.ordinal()].setIncreaseDisabled(disabled);
-            }
-            disabledIncreases[equipmentType.ordinal()] = disabled;
+        public boolean getDisabledIncrease(MedicalEquipment.EquipmentType equipmentType) {
+            return disabledIncreases[equipmentType.ordinal()];
         }
     //#endregion
 
