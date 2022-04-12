@@ -7,6 +7,11 @@ import edu.wpi.cs3733.D22.teamC.factory.floor.FloorFactory;
 import edu.wpi.cs3733.D22.teamC.factory.location.LocationFactory;
 import org.junit.jupiter.api.Test;
 
+import javax.sql.rowset.serial.SerialBlob;
+import java.io.File;
+import java.io.FileInputStream;
+import java.sql.Blob;
+import java.sql.SQLException;
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -37,5 +42,28 @@ public class FloorDAOTest extends DAOTest<Floor> {
         
         List<Location> returnList = testDAO.getAllLocations(testFloorID);
         assertEquals(1, returnList.size());
+    }
+
+    @Test
+    void insertImageTest(){
+        File file = new File("maps/00_thegroundfloor.png");
+        byte[] bFile = new byte[(int) file.length()];
+
+        try {
+            FileInputStream fileInputStream = new FileInputStream(file);
+            fileInputStream.read(bFile);
+            fileInputStream.close();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        Floor floorGround = new Floor();
+        floorGround.setImageSrc(bFile);
+        floorGround.setLongName("ground");
+
+        FloorDAO testDAO = new FloorDAO();
+        String floorID = testDAO.insert(floorGround);
+        assertNotNull(floorID);
+
+        assertNotNull(floorGround.getImageSrc());
     }
 }

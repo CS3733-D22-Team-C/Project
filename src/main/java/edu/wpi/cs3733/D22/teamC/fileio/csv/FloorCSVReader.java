@@ -2,6 +2,8 @@ package edu.wpi.cs3733.D22.teamC.fileio.csv;
 
 import edu.wpi.cs3733.D22.teamC.entity.floor.Floor;
 
+import java.nio.charset.StandardCharsets;
+
 public class FloorCSVReader extends CSVReader<Floor> {
 
     /**
@@ -27,7 +29,7 @@ public class FloorCSVReader extends CSVReader<Floor> {
                 object.setShortName(value);
                 break;
             case "imageSrc":
-                object.setImageSrc(value);
+                object.setImageSrc(value.getBytes(StandardCharsets.UTF_8));
                 break;
             default:
                 break;
