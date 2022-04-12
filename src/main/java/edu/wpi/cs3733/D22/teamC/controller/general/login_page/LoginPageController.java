@@ -4,8 +4,8 @@ import edu.wpi.cs3733.D22.teamC.App;
 import edu.wpi.cs3733.D22.teamC.SessionManager;
 import edu.wpi.cs3733.D22.teamC.controller.component.sidebar.SidebarMenuController;
 import edu.wpi.cs3733.D22.teamC.entity.employee.EmployeeDAO;
-import edu.wpi.cs3733.D22.teamC.error.error_item.user_input_validation_error_item.login_user_input_validation_error_item.LoginUserInputValidationErrorItem;
-import edu.wpi.cs3733.D22.teamC.user_input_validation.login.LoginEvaluator;
+import edu.wpi.cs3733.D22.teamC.error.error_item.user_input.login.LoginErrorItem;
+import edu.wpi.cs3733.D22.teamC.validation.login.LoginEvaluator;
 import io.github.palexdev.materialfx.controls.MFXButton;
 import io.github.palexdev.materialfx.controls.MFXToggleButton;
 import javafx.beans.value.ChangeListener;
@@ -54,7 +54,7 @@ public class LoginPageController implements Initializable {
         LoginEvaluator loginEV = new LoginEvaluator();
         EmployeeDAO eDAO = new EmployeeDAO();
 
-        ArrayList<LoginUserInputValidationErrorItem> errors = loginEV.getLoginValidationTestResult(username.getText(), password.getText(), eDAO);
+        ArrayList<LoginErrorItem> errors = loginEV.getLoginValidationTestResult(username.getText(), password.getText(), eDAO);
 
         if(errors.get(0) != null ){
             prepareLoginErrorMessage(errors.get(0));
@@ -74,7 +74,7 @@ public class LoginPageController implements Initializable {
         App.instance.getStage().close();
     }
 
-    public void prepareLoginErrorMessage(LoginUserInputValidationErrorItem i)
+    public void prepareLoginErrorMessage(LoginErrorItem i)
     {
         invalidLogin.setText(i.getReasonForValidationError());
         invalidLogin.setAlignment(Pos.CENTER);
