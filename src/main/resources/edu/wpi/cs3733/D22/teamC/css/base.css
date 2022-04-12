@@ -15,7 +15,7 @@
 
 /* Default Button Style (applies to all button types) */
 .button {
-    
+
 }
 
 .button:hover {
@@ -259,4 +259,11 @@ padding goes top, right, bottom, left
     -fx-cursor: hand;
     -fx-background-color: -color-primary;
     -mfx-button-type: RAISED;
+}
+
+.button-create {
+    -fx-background-color: -color-primary-light;
+    -fx-text-fill: -color-button-text;
+    -fx-font-size: 15;
+    -fx-spacing: 5px;
 }

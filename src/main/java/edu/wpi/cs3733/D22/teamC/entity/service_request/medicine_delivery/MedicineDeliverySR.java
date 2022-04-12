@@ -17,6 +17,12 @@ public class MedicineDeliverySR extends ServiceRequest {
 
     @Column (name = "PatientID")
     protected String patientID;     // TODO: Link to Patient
+    
+    public MedicineDeliverySR() {}
+    
+    public MedicineDeliverySR(ServiceRequest serviceRequest) {
+        super(serviceRequest);
+    }
 
     public String getMedicine() {
         return medicine;

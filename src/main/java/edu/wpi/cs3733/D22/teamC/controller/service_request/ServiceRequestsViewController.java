@@ -30,7 +30,6 @@ public class ServiceRequestsViewController implements Initializable {
     //public static final String RESOLVE_FORM = "resolve_form.fxml";
 
     //Buttons
-    @FXML private JFXButton selectButton;
     @FXML private JFXComboBox<String> serviceType;
     @FXML private JFXButton edit;
     @FXML private JFXButton resolve;
@@ -44,10 +43,6 @@ public class ServiceRequestsViewController implements Initializable {
 
     @FXML
     public void initialize(URL url, ResourceBundle rb) {
-        // Service Request Dropdown
-        for (ServiceRequest.RequestType requestType : ServiceRequest.RequestType.values()) {
-            serviceType.getItems().add(requestType.toString());
-        }
 
         // Populate Table Display
         ServiceRequestDAO serviceRequestDAO  = new ServiceRequestDAO();
@@ -60,24 +55,29 @@ public class ServiceRequestsViewController implements Initializable {
     }
 
     //#region Button Events
-        @FXML
-        void onSelectButton(ActionEvent event) {
-            if (serviceType.getValue() != null) {
-                App.View<BaseServiceRequestCreateController> view = App.instance.loadView(CREATE_FORM);
-                view.getController().setup(ServiceRequest.RequestType.valueOf(serviceType.getValue()));
-                App.instance.setView(view.getNode());
-            }
+    @FXML
+    void onSelectButton(ActionEvent event) {
+        if (serviceType.getValue() != null) {
+            App.View<BaseServiceRequestCreateController> view = App.instance.loadView(CREATE_FORM);
+            view.getController().setup(ServiceRequest.RequestType.valueOf(serviceType.getValue()));
+            App.instance.setView(view.getNode());
         }
+    }
 
-        @FXML
-        public void onEditButton(ActionEvent actionEvent) {
-            toEditPage(activeServiceRequest);
-        }
+    @FXML
+    public void onEditButton(ActionEvent actionEvent) {
+        toEditPage(activeServiceRequest);
+    }
 
-        @FXML
-        public void onResolveButton(ActionEvent actionEvent) {
-            toResolvePage(activeServiceRequest);
-        }
+    @FXML
+    public void onResolveButton(ActionEvent actionEvent) {
+        toResolvePage(activeServiceRequest);
+    }
+
+    @FXML
+    void onCreateButton(ActionEvent event) {
+        App.instance.setView(App.SERVICE_REQUEST_LANDING_PAGE);
+    }
     //#endregion
 
     /**
@@ -123,42 +123,42 @@ public class ServiceRequestsViewController implements Initializable {
     }
 
     //#region Page Navigation
-        private void toDefaultPage(ServiceRequest serviceRequest) {
-            switch (serviceRequest.getStatus()) {
-                case Blank:
-                    toEditPage(serviceRequest);
-                    break;
-                case Processing:
-                    toResolvePage(serviceRequest);
-                    break;
-                case Done:
-                    // "Done" Service Requests cannot be edited or resolved
-                    return;
-            }
+    private void toDefaultPage(ServiceRequest serviceRequest) {
+        switch (serviceRequest.getStatus()) {
+            case Blank:
+                toEditPage(serviceRequest);
+                break;
+            case Processing:
+                toResolvePage(serviceRequest);
+                break;
+            case Done:
+                // "Done" Service Requests cannot be edited or resolved
+                return;
         }
+    }
 
-        private void toEditPage(ServiceRequest serviceRequest) {
-            App.View<BaseServiceRequestResolveController> view = App.instance.loadView(RESOLVE_FORM);
-            view.getController().setup(serviceRequest, true);
-            App.instance.setView(view.getNode());
-        }
+    private void toEditPage(ServiceRequest serviceRequest) {
+        App.View<BaseServiceRequestResolveController> view = App.instance.loadView(RESOLVE_FORM);
+        view.getController().setup(serviceRequest, true);
+        App.instance.setView(view.getNode());
+    }
 
-        private void toResolvePage(ServiceRequest serviceRequest) {
-            App.View<BaseServiceRequestResolveController> view = App.instance.loadView(RESOLVE_FORM);
-            view.getController().setup(serviceRequest, false);
-            App.instance.setView(view.getNode());
-        }
+    private void toResolvePage(ServiceRequest serviceRequest) {
+        App.View<BaseServiceRequestResolveController> view = App.instance.loadView(RESOLVE_FORM);
+        view.getController().setup(serviceRequest, false);
+        App.instance.setView(view.getNode());
+    }
 
-        /**
-         * Generate view for given service request resolve page and context.
-         * @param requestType The service request type for which view we are creating.
-         * @return The generated path name.
-         */
-        private String generatePath(ServiceRequest.RequestType requestType) {
-            String pathName = BASE_PATH;
-            pathName += (requestType.toString()).toLowerCase();
-            pathName += "/" + RESOLVE_FORM;
-            return pathName;
-        }
+    /**
+     * Generate view for given service request resolve page and context.
+     * @param requestType The service request type for which view we are creating.
+     * @return The generated path name.
+     */
+    private String generatePath(ServiceRequest.RequestType requestType) {
+        String pathName = BASE_PATH;
+        pathName += (requestType.toString()).toLowerCase();
+        pathName += "/" + RESOLVE_FORM;
+        return pathName;
+    }
     //#endregion
 }
