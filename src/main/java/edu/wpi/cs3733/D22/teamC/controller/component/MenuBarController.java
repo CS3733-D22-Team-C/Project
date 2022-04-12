@@ -11,7 +11,7 @@ public class MenuBarController {
 
     @FXML
     protected void onMenuBarLocationsButtonPress() {
-        App.instance.setView(App.VIEW_LOCATIONS_PATH);
+        App.instance.setSkeletonView("view/table/base_view.fxml", "view/table/locations/table_insert.fxml");
     }
 
     @FXML
