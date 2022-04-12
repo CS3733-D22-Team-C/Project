@@ -44,7 +44,7 @@ public class LoginPageController implements Initializable {
         LoginEvaluator loginEV = new LoginEvaluator();
         ArrayList<LoginUserInputValidationErrorItem> errors = loginEV.getLoginValidationTestResult(username.getText(), password.getText());
 
-        if(errors != null) {
+        if(errors.get(0) != null ){
             prepareLoginErrorMessage(errors.get(0));
         }
         else
