@@ -137,7 +137,7 @@ public class MapController implements Initializable {
                 // Single-Click select toggle
                 {
                     // Update current Location
-                    parentController.changeCurrentLocation((locationNode != null) ? locationNode.location : null);
+                    parentController.changeCurrentLocation((locationNode != activeLocation) ? locationNode.location : null);
                 }
 
                 event.consume();

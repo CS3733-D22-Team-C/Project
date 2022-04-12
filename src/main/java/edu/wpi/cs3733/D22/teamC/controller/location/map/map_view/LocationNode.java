@@ -63,9 +63,25 @@ public class LocationNode {
             pane.getChildren().remove(group);
         }
 
-        public void setPosition(int newMapX, int newMapY) {
-            group.setTranslateX(newMapX);
-            group.setTranslateY(newMapY);
+        public void updatePosition() {
+            int xOffset = (int) node.getCenterX();
+            int yOffset = (int) node.getCenterY();
+
+            int x = location.getX() + xOffset;
+            int y = location.getY() + yOffset;
+
+            location.setX(x);
+            location.setY(y);
+
+            node.setCenterX(0);
+            node.setCenterY(0);
+
+            setPosition(x, y);
+        }
+
+        public void setPosition(int x, int y) {
+            group.setTranslateX(x);
+            group.setTranslateY(y);
         }
 
         public void activate() {

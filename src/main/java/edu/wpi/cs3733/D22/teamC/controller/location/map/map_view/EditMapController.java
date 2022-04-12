@@ -35,20 +35,10 @@ public class EditMapController extends MapController {
             super.onMouseDraggedNode(event, locationNode);
 
             if (event.getButton().equals(MouseButton.PRIMARY))  {
-                double offsetX = event.getX() - locationNode.getLocationNodeGroup().getTranslateX();
-                double offsetY = event.getY() - locationNode.getLocationNodeGroup().getTranslateY();
+                locationNode.getLocationNodeCircle().setCenterX(event.getX());
+                locationNode.getLocationNodeCircle().setCenterY(event.getY());
 
-                int newMapX = (int) (locationNode.getLocationNodeGroup().getTranslateX() + offsetX);
-                newMapX = Math.max(0, newMapX);
-                newMapX = Math.min((int) mapPane.getPrefWidth(), newMapX);
-                int newMapY = (int) (locationNode.getLocationNodeGroup().getTranslateY() + offsetY);
-                newMapY = Math.max(0, newMapY);
-                newMapY = Math.min((int) mapPane.getPrefHeight(), newMapY);
-
-                locationNode.setPosition(newMapX, newMapY);
-
-                locationNode.location.setX(newMapX);
-                locationNode.location.setY(newMapY);
+                locationNode.updatePosition();
 
                 event.consume();
             }
