@@ -1,6 +1,7 @@
 package edu.wpi.cs3733.D22.teamC.models.service_request;
 
 import com.jfoenix.controls.JFXTreeTableView;
+import edu.wpi.cs3733.D22.teamC.entity.location.LocationDAO;
 import edu.wpi.cs3733.D22.teamC.entity.service_request.ServiceRequest;
 import edu.wpi.cs3733.D22.teamC.models.generic.TableDisplay;
 import javafx.beans.property.*;
@@ -25,7 +26,7 @@ public class ServiceRequestTableDisplay<T extends ServiceRequest> extends TableD
             this.id           = new SimpleStringProperty(serviceRequest.getRequestID());
             this.type         = new SimpleStringProperty(serviceRequest.getRequestType().toString());
             this.assigneeID   = new SimpleStringProperty(serviceRequest.getAssignee() == null ? "" : serviceRequest.getAssignee().getLastName() + ", " + serviceRequest.getAssignee().getFirstName());
-            this.location     = new SimpleStringProperty(serviceRequest.getLocation());
+            this.location     = new SimpleStringProperty(new LocationDAO().getByID(serviceRequest.getLocation()).getShortName());
             this.status       = new SimpleStringProperty(serviceRequest.getStatus().toString());
             this.priority     = new SimpleStringProperty(serviceRequest.getPriority().toString());
             this.createTime   = new SimpleStringProperty(serviceRequest.getCreationTimestamp().toString());
