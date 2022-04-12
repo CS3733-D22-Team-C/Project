@@ -49,6 +49,8 @@ public class EditMapController extends MapController {
 
                 locationNode.location.setX(newMapX);
                 locationNode.location.setY(newMapY);
+
+                event.consume();
             }
         }
 

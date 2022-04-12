@@ -14,6 +14,7 @@ import javafx.scene.input.MouseButton;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.input.ScrollEvent;
 import javafx.scene.layout.Pane;
+import javafx.scene.layout.StackPane;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Circle;
 
@@ -34,6 +35,7 @@ public class MapController implements Initializable {
     @FXML MFXScrollPane scrollPane;
     @FXML ImageView mapImage;
     @FXML Pane mapPane;
+    @FXML StackPane stackPane;
 
     // Variables
     protected List<LocationNode> locationNodes = new ArrayList<>();
@@ -174,10 +176,8 @@ public class MapController implements Initializable {
                 double scale = (event.getDeltaY() < 0)
                         ? Math.max(mapPane.getScaleX() - 0.1, MIN_SCALE)
                         : Math.min(mapPane.getScaleX() + 0.1, MAX_SCALE);
-                mapPane.setScaleX(scale);
-                mapImage.setScaleX(scale);
-                mapPane.setScaleY(scale);
-                mapImage.setScaleY(scale);
+                stackPane.setScaleX(scale);
+                stackPane.setScaleY(scale);
 
                 event.consume();
             }
