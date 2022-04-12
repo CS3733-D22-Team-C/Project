@@ -1,7 +1,7 @@
 package edu.wpi.cs3733.D22.teamC.user_input_validation.service_request.facility_maintenance;
 
 import edu.wpi.cs3733.D22.teamC.error.error_item.user_input_validation_error_item.service_request_user_input_validation_error_item.ServiceRequestUserInputValidationErrorItem;
-import edu.wpi.cs3733.D22.teamC.error.error_record.service_request_user_input_validation.ErrorRecord;
+import edu.wpi.cs3733.D22.teamC.error.error_record.service_request_user_input_validation.ServiceRequestUserInputValidationErrorRecord;
 import edu.wpi.cs3733.D22.teamC.user_input_validation.service_request.SRFormEvaluator;
 import javafx.scene.control.SingleSelectionModel;
 
@@ -32,7 +32,7 @@ public class FacilityMaintenanceSRFormEvaluator extends SRFormEvaluator {
     {
         if(maintenanceType.isEmpty())
         {
-            return ErrorRecord.serviceRequestUserInputValidationErrorList[5];
+            return ServiceRequestUserInputValidationErrorRecord.serviceRequestUserInputValidationErrorList[5];
         }
         else
         {

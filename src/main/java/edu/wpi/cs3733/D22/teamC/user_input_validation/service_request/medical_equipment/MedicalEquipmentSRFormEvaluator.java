@@ -1,7 +1,7 @@
 package edu.wpi.cs3733.D22.teamC.user_input_validation.service_request.medical_equipment;
 
 import edu.wpi.cs3733.D22.teamC.error.error_item.user_input_validation_error_item.service_request_user_input_validation_error_item.ServiceRequestUserInputValidationErrorItem;
-import edu.wpi.cs3733.D22.teamC.error.error_record.service_request_user_input_validation.ErrorRecord;
+import edu.wpi.cs3733.D22.teamC.error.error_record.service_request_user_input_validation.ServiceRequestUserInputValidationErrorRecord;
 import edu.wpi.cs3733.D22.teamC.user_input_validation.service_request.SRFormEvaluator;
 import javafx.scene.control.SingleSelectionModel;
 
@@ -33,7 +33,7 @@ public class MedicalEquipmentSRFormEvaluator extends SRFormEvaluator {
    {
        if(equipType.isEmpty())
        {
-           return ErrorRecord.serviceRequestUserInputValidationErrorList[8];
+           return ServiceRequestUserInputValidationErrorRecord.serviceRequestUserInputValidationErrorList[8];
        }
        else
        {
@@ -50,7 +50,7 @@ public class MedicalEquipmentSRFormEvaluator extends SRFormEvaluator {
    {
        if(equipID.isEmpty())
        {
-            return ErrorRecord.serviceRequestUserInputValidationErrorList[9];
+            return ServiceRequestUserInputValidationErrorRecord.serviceRequestUserInputValidationErrorList[9];
        }
        else
        {

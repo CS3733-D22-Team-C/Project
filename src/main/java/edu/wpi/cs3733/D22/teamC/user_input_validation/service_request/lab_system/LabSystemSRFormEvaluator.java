@@ -1,7 +1,7 @@
 package edu.wpi.cs3733.D22.teamC.user_input_validation.service_request.lab_system;
 
 import edu.wpi.cs3733.D22.teamC.error.error_item.user_input_validation_error_item.service_request_user_input_validation_error_item.ServiceRequestUserInputValidationErrorItem;
-import edu.wpi.cs3733.D22.teamC.error.error_record.service_request_user_input_validation.ErrorRecord;
+import edu.wpi.cs3733.D22.teamC.error.error_record.service_request_user_input_validation.ServiceRequestUserInputValidationErrorRecord;
 import edu.wpi.cs3733.D22.teamC.user_input_validation.service_request.SRFormEvaluator;
 import javafx.scene.control.SingleSelectionModel;
 
@@ -33,7 +33,7 @@ public class LabSystemSRFormEvaluator extends SRFormEvaluator {
     {
         if(labType.isEmpty())
         {
-            return ErrorRecord.serviceRequestUserInputValidationErrorList[6];
+            return ServiceRequestUserInputValidationErrorRecord.serviceRequestUserInputValidationErrorList[6];
         }
         else
         {
@@ -51,7 +51,7 @@ public class LabSystemSRFormEvaluator extends SRFormEvaluator {
 
         if(patientID.isEmpty())
         {
-            return ErrorRecord.serviceRequestUserInputValidationErrorList[10];
+            return ServiceRequestUserInputValidationErrorRecord.serviceRequestUserInputValidationErrorList[10];
         }
         else
         {
@@ -60,7 +60,7 @@ public class LabSystemSRFormEvaluator extends SRFormEvaluator {
 
             if(patientIDLength == 0)
             {
-                return ErrorRecord.serviceRequestUserInputValidationErrorList[10];
+                return ServiceRequestUserInputValidationErrorRecord.serviceRequestUserInputValidationErrorList[10];
             }
             else
             {

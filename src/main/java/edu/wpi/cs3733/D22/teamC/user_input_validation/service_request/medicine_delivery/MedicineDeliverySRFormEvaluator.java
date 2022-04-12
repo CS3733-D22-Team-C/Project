@@ -1,7 +1,7 @@
 package edu.wpi.cs3733.D22.teamC.user_input_validation.service_request.medicine_delivery;
 
 import edu.wpi.cs3733.D22.teamC.error.error_item.user_input_validation_error_item.service_request_user_input_validation_error_item.ServiceRequestUserInputValidationErrorItem;
-import edu.wpi.cs3733.D22.teamC.error.error_record.service_request_user_input_validation.ErrorRecord;
+import edu.wpi.cs3733.D22.teamC.error.error_record.service_request_user_input_validation.ServiceRequestUserInputValidationErrorRecord;
 import edu.wpi.cs3733.D22.teamC.user_input_validation.service_request.SRFormEvaluator;
 import javafx.scene.control.SingleSelectionModel;
 
@@ -34,7 +34,7 @@ public class MedicineDeliverySRFormEvaluator extends SRFormEvaluator {
     {
         if(patientID.isEmpty())
         {
-            return ErrorRecord.serviceRequestUserInputValidationErrorList[10];
+            return ServiceRequestUserInputValidationErrorRecord.serviceRequestUserInputValidationErrorList[10];
         }
         else
         {
@@ -43,7 +43,7 @@ public class MedicineDeliverySRFormEvaluator extends SRFormEvaluator {
 
             if(patientIDLength == 0)
             {
-                return ErrorRecord.serviceRequestUserInputValidationErrorList[10];
+                return ServiceRequestUserInputValidationErrorRecord.serviceRequestUserInputValidationErrorList[10];
             }
             else
             {
@@ -61,7 +61,7 @@ public class MedicineDeliverySRFormEvaluator extends SRFormEvaluator {
     {
         if(medicine.isEmpty())
         {
-            return ErrorRecord.serviceRequestUserInputValidationErrorList[11];
+            return ServiceRequestUserInputValidationErrorRecord.serviceRequestUserInputValidationErrorList[11];
         }
         else
         {
@@ -78,7 +78,7 @@ public class MedicineDeliverySRFormEvaluator extends SRFormEvaluator {
     {
         if(dosage.isEmpty())
         {
-            return ErrorRecord.serviceRequestUserInputValidationErrorList[12];
+            return ServiceRequestUserInputValidationErrorRecord.serviceRequestUserInputValidationErrorList[12];
         }
         else
         {
