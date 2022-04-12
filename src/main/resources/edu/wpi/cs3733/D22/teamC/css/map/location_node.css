@@ -1,0 +1,33 @@
+@import "base.css";
+
+/* Node Type Icons */
+.location-node {
+    -fx-fill: -color-primary;
+    -fx-cursor: hand;
+}
+
+.location-node:hover {
+    -fx-fill: -color-primary-light;
+}
+
+.location-node.active {
+    -fx-fill: -color-primary-dark;
+}
+
+.medical-equipment-node {
+    -fx-fill: #444444;
+}
+
+.medical-equipment-arrow {
+    -fx-fill: white;
+    -fx-cursor: hand;
+}
+
+.medical-equipment-arrow:hover {
+    -fx-fill: #adadad;
+}
+
+.medical-equipment-arrow:disabled {
+    -fx-fill: rgba(255, 255, 255, 0.25);
+    -fx-stroke: rgba(0, 0, 0, 0.25);
+}

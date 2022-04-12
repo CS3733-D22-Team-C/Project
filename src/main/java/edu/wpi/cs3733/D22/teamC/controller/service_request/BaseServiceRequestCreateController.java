@@ -1,30 +1,31 @@
 package edu.wpi.cs3733.D22.teamC.controller.service_request;
 
+import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXComboBox;
 import com.jfoenix.controls.JFXTextArea;
 import com.jfoenix.controls.JFXTreeTableView;
 import edu.wpi.cs3733.D22.teamC.App;
+import edu.wpi.cs3733.D22.teamC.entity.employee.Employee;
 import edu.wpi.cs3733.D22.teamC.entity.generic.DAO;
 import edu.wpi.cs3733.D22.teamC.entity.service_request.ServiceRequest;
-import edu.wpi.cs3733.D22.teamC.entity.service_request.ServiceRequestDAO;
 import edu.wpi.cs3733.D22.teamC.models.service_request.ServiceRequestTableDisplay;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.fxml.Initializable;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
-import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.VBox;
+import javafx.stage.Modality;
+import javafx.stage.Stage;
 
-import java.net.URL;
-import java.sql.Timestamp;
-import java.util.ResourceBundle;
+import java.io.IOException;
+import java.security.Timestamp;
 
-public class BaseServiceRequestCreateController<T extends ServiceRequest> {
+public class BaseServiceRequestCreateController<T extends ServiceRequest> implements ServiceRequestController {
     // FXML
     @FXML
     private TextField assigneeID;
@@ -56,16 +57,20 @@ public class BaseServiceRequestCreateController<T extends ServiceRequest> {
     @FXML
     private JFXTreeTableView<?> table;
 
+    @FXML
+    private JFXButton employeeTableButton;
+
     // References
     private InsertServiceRequestCreateController<T> insertController;
 
     // Variables
     private ServiceRequestTableDisplay<T> tableDisplay;
     private ServiceRequest.RequestType requestType;
+    private T serviceRequest;
+    private EmployeeViewController employeeViewController;
 
     public void setup(ServiceRequest.RequestType requestType) {
         this.requestType = requestType;
-
         switch (requestType)
         {
             case Medical_Equipment:
@@ -98,7 +103,7 @@ public class BaseServiceRequestCreateController<T extends ServiceRequest> {
         }
 
         // Restrict ID TextFields to only contain numeric values
-        setIDFieldToNumeric(assigneeID);
+        //setIDFieldToNumeric(assigneeID);
         setIDFieldToNumeric(locationField);
 
         // Limit the length of TextFields and TextAreas so that users can input a limited number of characters:
@@ -114,6 +119,10 @@ public class BaseServiceRequestCreateController<T extends ServiceRequest> {
         for (T serviceRequest : serviceRequestDAO.getAll()) {
             tableDisplay.addObject(serviceRequest);
         }
+
+        serviceRequest = insertController.createNewServiceRequest();
+
+
     }
 
 
@@ -148,11 +157,18 @@ public class BaseServiceRequestCreateController<T extends ServiceRequest> {
         insertController.clearFields();
     }
 
+    public void setEmployee(Employee employee){
+        serviceRequest.setAssignee(employee);
+        String employeeName = employee.getLastName() + ", " + employee.getFirstName();
+        assigneeID.setText(employeeName);
+    }
+
+
     private void createServiceRequest() {
         // Create Service Request
         T serviceRequest = insertController.createServiceRequest();
 
-//        serviceRequest.setAssignee(assigneeID.getText()); //TODO: Replace with Employee Selector
+        serviceRequest.setAssignee(this.serviceRequest.getAssignee()); //TODO: Replace with Employee Selector
         serviceRequest.setLocation(locationField.getText());
         serviceRequest.setDescription(description.getText());
         serviceRequest.setPriority(ServiceRequest.Priority.valueOf(priority.getValue()));
@@ -177,6 +193,25 @@ public class BaseServiceRequestCreateController<T extends ServiceRequest> {
 
         clearFields();
     }
+    @FXML
+    void goToEmployeeTable(ActionEvent event) throws IOException {
+        //Setting up pop up
+        App.View<EmployeeViewController> view = App.instance.loadView("view/general/employee_view.fxml");
+        employeeViewController = view.getController();
+        VBox root = (VBox) view.getNode();
+
+
+
+        Scene scene = new Scene(root);
+        Stage primaryStage= new Stage();
+        if (scene != null) scene.setRoot(root);
+        else scene = new Scene(root);
+        primaryStage.setScene(scene);
+        primaryStage.initModality(Modality.WINDOW_MODAL);
+        primaryStage.initOwner(employeeTableButton.getScene().getWindow());
+        primaryStage.show();
+        employeeViewController.setup(this, primaryStage);
+    }
 
     //#region FXML Buttons
     @FXML
@@ -193,6 +228,7 @@ public class BaseServiceRequestCreateController<T extends ServiceRequest> {
     void clickSubmit(ActionEvent event) {
         createServiceRequest();
         clearFields();
+        clickGoBack(null);
     }
     //#endregion
 

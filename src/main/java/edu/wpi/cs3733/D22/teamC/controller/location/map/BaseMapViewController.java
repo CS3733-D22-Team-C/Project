@@ -3,25 +3,28 @@ package edu.wpi.cs3733.D22.teamC.controller.location.map;
 import edu.wpi.cs3733.D22.teamC.App;
 import edu.wpi.cs3733.D22.teamC.controller.location.map.controls.EditMapControlsController;
 import edu.wpi.cs3733.D22.teamC.controller.location.map.controls.MapControlsController;
+import edu.wpi.cs3733.D22.teamC.controller.location.map.map_view.EditMapController;
+import edu.wpi.cs3733.D22.teamC.controller.location.map.map_view.MapController;
 import edu.wpi.cs3733.D22.teamC.entity.floor.Floor;
 import edu.wpi.cs3733.D22.teamC.entity.floor.FloorDAO;
 import edu.wpi.cs3733.D22.teamC.entity.location.Location;
 import edu.wpi.cs3733.D22.teamC.entity.location.LocationDAO;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.Group;
+import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.SVGPath;
 
 import java.net.URL;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.ResourceBundle;
 import java.util.stream.Collectors;
 
 public class BaseMapViewController implements Initializable {
     // Constants
-    public static final String MAP_PATH = "view/location/map/map.fxml";
+    public static final String MAP_PATH = "view/location/map/map_view/map.fxml";
     public static final String VIEW_CONTROLS_PATH = "view/location/map/controls/view_controls.fxml";
     public static final String EDIT_CONTROLS_PATH = "view/location/map/controls/edit_controls.fxml";
     public static final String INFO_PANE_PATH = "view/location/map/info_pane.fxml";
@@ -33,25 +36,32 @@ public class BaseMapViewController implements Initializable {
 
     // Controllers
     MapController mapController;
-    InfoPaneController infoPaneController;
+    public MedicalEquipmentManager medicalEquipmentManager;
+    public InfoPaneController infoPaneController;
     MapControlsController mapControlsController;
     
     // Variables
-    private boolean isEditMode = false;
+    public boolean isEditMode = false;
+    public boolean showMedicalEquipment = true;
 
-    List<Floor> floors;
-    Floor currentFloor;
+    private List<Floor> floors;
+    private Floor currentFloor;
 
-    List<Location> touchedLocations = new ArrayList<>();
-    List<Location> additionLocations = new ArrayList<>();
-    List<Location> deletionLocations = new ArrayList<>();
-    Location currentLocation;
+    private List<Location> locations;
+    private Location currentLocation;
 
     @Override
     public final void initialize(URL location, ResourceBundle resource) {
         // Get Floors
-        floors = new FloorDAO().getAll();
-        currentFloor = floors.get(0);
+        this.floors = new FloorDAO().getAll();
+        this.currentFloor = floors.get(0);
+
+        // Get Locations
+        this.locations = new LocationDAO().getAll();
+        this.currentLocation = null;
+
+        // Initialize Medical Equipment Manager
+        medicalEquipmentManager = new MedicalEquipmentManager(this);
 
         // Setup Info Pane
         App.View infoPane = App.instance.loadView(INFO_PANE_PATH);
@@ -70,169 +80,152 @@ public class BaseMapViewController implements Initializable {
         }
 
         public Floor getFloorByID(String id) {
-            return floors.stream().filter(floor -> floor.getFloorID().equals(id)).collect(Collectors.toList()).get(0);
+            List<Floor> floorList = floors.stream().filter(floor -> floor.getFloorID().equals(id)).collect(Collectors.toList());
+            return (floorList.size() > 0) ? floorList.get(0) : null;
         }
 
         public Floor getCurrentFloor() {
             return currentFloor;
         }
 
-        public void setCurrentFloor(Floor floor) {
+        /**
+         * Change the current floor to the given Floor.
+         * @param floor The Floor to be changed to.
+         */
+        public void changeCurrentFloor(Floor floor) {
             this.currentFloor = floor;
-            mapController.renderFloor(currentFloor);
-            renderLocationChanges();
+            this.currentLocation = null;
+
+            renderCurrentFloor();
+        }
+
+        /**
+         * Render the current floor via the Map Controller
+         */
+        private void renderCurrentFloor() {
+            mapController.renderFloor(currentFloor, locations.stream().filter(location -> location.getFloor().equals(currentFloor.getFloorID())).collect(Collectors.toList()));
         }
     //#endregion
 
     //#region Location Interaction
+        /**
+         * Get a list of currently loaded locations.
+         * @return A list of currently loaded locations. In edit mode, all map edits will be applied to them.
+         */
+        public List<Location> getAllLocations() {
+            return locations;
+        }
+
+        /**
+         * Get Location by ID.
+         * @return Location of the given ID.
+         */
+        public Location getLocationByID(String id) {
+            List<Location> locationList = locations.stream().filter(location -> location.getNodeID().equals(id)).collect(Collectors.toList());
+            return (locationList.size() > 0) ? locationList.get(0) : null;
+        }
+
         public Location getCurrentLocation() {
             return currentLocation;
         }
 
-        public void setCurrentLocation(Location location) { setCurrentLocation(location, true); }
-        public void setCurrentLocation(Location location, boolean updateClick) {
-            // Base
+        /**
+         * Change the current location to the given Location.
+         * @param location The Location to be changed to.
+         * @param locked Whether the Current Location selection is locking.
+         */
+        public void changeCurrentLocation(Location location, boolean locked) {
             this.currentLocation = location;
 
-            // Info
-            infoPaneController.setVisible((currentLocation != null));
+            // Update Info Pane
             infoPaneController.setLocation(currentLocation);
+            infoPaneController.setVisible(currentLocation != null);
 
-            // Map
-            if (updateClick) mapController.setClickedLocation(location);
+            // Update Map View
+            if (locked) mapController.setLocation(currentLocation);
         }
+        public void changeCurrentLocation(Location location) { changeCurrentLocation(location, true); }
 
-        public void createLocation(int x, int y) {
-            if (isEditMode) {
-                // Create Location
-                Location location = new Location();
-
-                location.setX((int) x);
-                location.setY((int) y);
-                location.setFloor(currentFloor.getFloorID());
-                location.setNodeType(Location.NodeType.PATI);
-
-                addLocation(location);
-                setCurrentLocation(location);
-            }
-        }
-
-    public void addLocation(Location location) {
-        if (isEditMode) {
-            ((EditMapControlsController) mapControlsController).setSaveStatus(true);
-
+        /**
+         * Add a Location.
+         * @param location The Location to be added.
+         */
+        public Location addLocation(Location location) {
             // Location addition reflected in Lists
-            additionLocations.add(location);
+            locations.add(location);
 
-            // Location addition reflected in LocationNode
-            mapController.addLocationNode(location);
+            // Location addition reflected in Controls
+            setSaveStatus();
 
-            setCurrentLocation(location);
-        }
-    }
+            // Location addition reflected in Map View
+            if (location.getFloor().equals(currentFloor.getFloorID())) mapController.addLocationNode(location);
 
-        public void touchLocation(Location location) {
-            if (isEditMode && location != null) {
-                ((EditMapControlsController) mapControlsController).setSaveStatus(true);
-
-                if (!additionLocations.contains(location) && !deletionLocations.contains(location)) {
-                    if (touchedLocations.contains(location)) touchedLocations.remove(location);
-                    touchedLocations.add(location);
-                }
-            }
+            return location;
         }
 
+        /**
+         * Reset changes for the provided Location.
+         * @param location The Location to be reset.
+         */
         public void resetLocation(Location location) {
-            // Location reset reflected in Lists
-            if (additionLocations.contains(location)) {
-                additionLocations.remove(location);
-                mapController.removeLocationNode(location);
+            LocationDAO locationDAO = new LocationDAO();
+            Location original = locationDAO.getByID(location.getNodeID());
 
-                // Location reset reflected in Info
-                if (currentLocation == location) infoPaneController.setLocation(null);
-            } else {
-                Location original = new LocationDAO().getByID(location.getNodeID());
+            if (original != null) {
                 location.Copy(original);
-
-                if (deletionLocations.contains(location)) {
-                    deletionLocations.remove(location);
-                    mapController.addLocationNode(location);
-                } else if (touchedLocations.contains(location)) {
-                    touchedLocations.remove(location);
-                    mapController.updateLocationNode(location);
-                }
-
-                // Location reset reflected in Info
-                if (currentLocation == location) infoPaneController.setLocation(currentLocation);
+                mapController.updateLocationNode(location);
+            } else {
+                deleteLocation(location);
             }
         }
 
         public void deleteLocation(Location location) {
-            if (location != null && isEditMode) {
-                // Location deletion reflected in Controls
-                ((EditMapControlsController) mapControlsController).setSaveStatus(true);
+            // Location deletion reflected in Lists
+            if (locations.contains(location)) locations.remove(location);
 
-                // Location deletion reflected in Lists
-                if (additionLocations.contains(location)) {
-                    additionLocations.remove(location);
-                } else {
-                    if (touchedLocations.contains(location)) touchedLocations.remove(location);
-                    deletionLocations.add(location);
-                }
+            // Location deletion reflected in Controls
+            setSaveStatus();
 
-                // Location deletion reflected in Maps
-                mapController.removeLocationNode(location);
+            // Location deletion reflected in Medical Equipment Manager
+            mapController.getLocationNode(location).releaseAllMedicalEquipment();
 
-                // Location deletion reflected in Info
-                if (currentLocation == location) setCurrentLocation(null);
-            }
+            // Location deletion reflected in Map View
+            if (location.getFloor().equals(currentFloor.getFloorID())) mapController.removeLocationNode(location);
+
+            if (currentLocation == location) changeCurrentLocation(null);
+        }
+    //#endregion
+
+    //#region Stashed Changes
+        /**
+         * Save locations with changes to DB.
+         */
+        public void saveChanges() {
+            LocationDAO locationDAO = new LocationDAO();
+            locationDAO.deleteAllFromTable();
+
+            locations.forEach(locationDAO::insert);
+
+            medicalEquipmentManager.saveChanges();
+        }
+
+        /**
+         * Clear locations of changes from DB.
+         */
+        public void clearChanges() {
+            LocationDAO locationDAO = new LocationDAO();
+
+            locations = locationDAO.getAll();
+
+            medicalEquipmentManager.clearChanges();
         }
     //#endregion
 
     //#region Mode Switching
-        public void saveLocationChanges() {
-            LocationDAO locationDAO = new LocationDAO();
-
-            // Update touched locations
-            for (Location location : touchedLocations) {
-                locationDAO.update(location);
-            }
-            touchedLocations = new ArrayList<>();
-
-            // Insert addition locations
-            for (Location location : additionLocations) {
-                locationDAO.insert(location);
-            }
-            additionLocations = new ArrayList<>();
-
-            // Delete deletion locations
-            for (Location location : deletionLocations) {
-                locationDAO.delete(location);
-            }
-            deletionLocations = new ArrayList<>();
-        }
-
-        public void resetLocationChanges() {
-            touchedLocations = new ArrayList<>();
-            additionLocations = new ArrayList<>();
-            deletionLocations = new ArrayList<>();
-        }
-
-        public void renderLocationChanges() {
-            // Update touched location nodes
-            for (Location location : touchedLocations.stream().filter(location -> location.getFloor().equals(currentFloor.getFloorID())).collect(Collectors.toList())) {
-                mapController.updateLocationNode(location);
-            }
-
-            // Insert additional location nodes
-            for (Location location : additionLocations.stream().filter(location -> location.getFloor().equals(currentFloor.getFloorID())).collect(Collectors.toList())) {
-                mapController.addLocationNode(location);
-            }
-
-            // Delete deletion location nodes
-            for (Location location : deletionLocations.stream().filter(location -> location.getFloor().equals(currentFloor.getFloorID())).collect(Collectors.toList())) {
-                mapController.removeLocationNode(location);
-            }
+        public void showMedicalEquipment(boolean visible) {
+            showMedicalEquipment = visible;
+            if (mapController.activeLocation != null) mapController.activeLocation.showMedicalEquipmentCounters(visible, isEditMode);
+            mapController.rightOverlay.setVisible(visible);
         }
 
         /**
@@ -264,7 +257,10 @@ public class BaseMapViewController implements Initializable {
             mapController = (EditMapController) mapPane.getController();
             mapController.setParentController(this);
 
-            mapController.renderFloor(currentFloor);
+            // (Edit) Medical Equipment Manager
+            medicalEquipmentManager.setEditMode(true);
+
+            renderCurrentFloor();
         }
 
         /**
@@ -296,7 +292,10 @@ public class BaseMapViewController implements Initializable {
             mapController = (MapController) mapPane.getController();
             mapController.setParentController(this);
 
-            mapController.renderFloor(currentFloor);
+            // (View) Medical Equipment Manager
+            medicalEquipmentManager.setEditMode(false);
+
+            renderCurrentFloor();
         }
 
         public void clearLastMode() {
@@ -305,42 +304,9 @@ public class BaseMapViewController implements Initializable {
         }
     //#endregion
 
-    // TODO: Partially Implemented Tooltips
-    //#region SVG stuff
-        // SVGs
-        public SVGPath medicalBedIcon = new SVGPath();
-        public SVGPath medicalPumpIcon = new SVGPath();
-        public SVGPath reclinerIcon = new SVGPath();
-        public SVGPath xRayIcon = new SVGPath();
-
-        protected void loadSVGs() {
-            // Load SVGs
-            medicalBedIcon.setContent("M176 288C220.1 288 256 252.1 256 208S220.1 128 176 128S96 163.9 96 208S131.9 288 176 288zM544 128H304C295.2 128 288 135.2 288 144V320H64V48C64 39.16 56.84 32 48 32h-32C7.163 32 0 39.16 0 48v416C0 472.8 7.163 480 16 480h32C56.84 480 64 472.8 64 464V416h512v48c0 8.837 7.163 16 16 16h32c8.837 0 16-7.163 16-16V224C640 170.1 597 128 544 128z");
-            medicalBedIcon.setFill(Color.web("#183153"));
-            medicalBedIcon.setScaleX(.03);
-            medicalBedIcon.setScaleY(.03);
-            //splitPane.getChildren().add(medicalBedIcon);
-
-            // load XRay SVG
-            xRayIcon.setContent("M208 352C199.2 352 192 359.2 192 368C192 376.8 199.2 384 208 384S224 376.8 224 368C224 359.2 216.8 352 208 352zM304 384c8.836 0 16-7.164 16-16c0-8.838-7.164-16-16-16S288 359.2 288 368C288 376.8 295.2 384 304 384zM496 96C504.8 96 512 88.84 512 80v-32C512 39.16 504.8 32 496 32h-480C7.164 32 0 39.16 0 48v32C0 88.84 7.164 96 16 96H32v320H16C7.164 416 0 423.2 0 432v32C0 472.8 7.164 480 16 480h480c8.836 0 16-7.164 16-16v-32c0-8.836-7.164-16-16-16H480V96H496zM416 216C416 220.4 412.4 224 408 224H272v32h104C380.4 256 384 259.6 384 264v16C384 284.4 380.4 288 376 288H272v32h69.33c25.56 0 40.8 28.48 26.62 49.75l-21.33 32C340.7 410.7 330.7 416 319.1 416H192c-10.7 0-20.69-5.347-26.62-14.25l-21.33-32C129.9 348.5 145.1 320 170.7 320H240V288H136C131.6 288 128 284.4 128 280v-16C128 259.6 131.6 256 136 256H240V224H104C99.6 224 96 220.4 96 216v-16C96 195.6 99.6 192 104 192H240V160H136C131.6 160 128 156.4 128 152v-16C128 131.6 131.6 128 136 128H240V104C240 99.6 243.6 96 248 96h16c4.4 0 8 3.6 8 8V128h104C380.4 128 384 131.6 384 136v16C384 156.4 380.4 160 376 160H272v32h136C412.4 192 416 195.6 416 200V216z");
-            xRayIcon.setFill(Color.web("#183153"));
-            xRayIcon.setScaleX(.03);
-            xRayIcon.setScaleY(.03);
-            //splitPane.getChildren().add(xRayIcon);
-
-            // load recliner SVG
-            reclinerIcon.setContent("M592 224C565.5 224 544 245.5 544 272V352H96V272C96 245.5 74.51 224 48 224S0 245.5 0 272v192C0 472.8 7.164 480 16 480h64c8.836 0 15.1-7.164 15.1-16L96 448h448v16c0 8.836 7.164 16 16 16h64c8.836 0 16-7.164 16-16v-192C640 245.5 618.5 224 592 224zM128 272V320h384V272c0-38.63 27.53-70.95 64-78.38V160c0-70.69-57.31-128-128-128H191.1c-70.69 0-128 57.31-128 128L64 193.6C100.5 201.1 128 233.4 128 272z");
-            reclinerIcon.setFill(Color.web("#183153"));
-            reclinerIcon.setScaleX(.03);
-            reclinerIcon.setScaleY(.03);
-            //splitPane.getChildren().add(reclinerIcon);
-
-            // load medical pump svg
-            medicalPumpIcon.setContent("M379.3 94.06l-43.32-43.32C323.1 38.74 307.7 32 290.8 32h-66.75c0-17.67-14.33-32-32-32H127.1c-17.67 0-32 14.33-32 32L96 128h128l-.0002-32h66.75l43.31 43.31c6.248 6.248 16.38 6.248 22.63 0l22.62-22.62C385.6 110.4 385.6 100.3 379.3 94.06zM235.6 160H84.37C51.27 160 23.63 185.2 20.63 218.2l-20.36 224C-3.139 479.7 26.37 512 64.01 512h191.1c37.63 0 67.14-32.31 63.74-69.79l-20.36-224C296.4 185.2 268.7 160 235.6 160zM239.1 333.3c0 7.363-5.971 13.33-13.33 13.33h-40v40c0 7.363-5.969 13.33-13.33 13.33h-26.67c-7.363 0-13.33-5.971-13.33-13.33v-40H93.33c-7.363 0-13.33-5.971-13.33-13.33V306.7c0-7.365 5.971-13.33 13.33-13.33h40v-40C133.3 245.1 139.3 240 146.7 240h26.67c7.363 0 13.33 5.969 13.33 13.33v40h40c7.363 0 13.33 5.969 13.33 13.33V333.3z");reclinerIcon.setFill(Color.web("#183153"));
-            medicalPumpIcon.setFill(Color.web("#183153"));
-            medicalPumpIcon.setScaleX(.03);
-            medicalPumpIcon.setScaleY(.03);
-//            splitPane.getChildren().add(medicalPumpIcon);
+    //#region Save Status
+        public void setSaveStatus() {
+            if (isEditMode) ((EditMapControlsController) mapControlsController).setSaveStatus(true);
         }
     //#endregion
 }
