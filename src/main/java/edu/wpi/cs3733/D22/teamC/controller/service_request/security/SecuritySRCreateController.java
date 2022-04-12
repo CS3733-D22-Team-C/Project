@@ -50,7 +50,7 @@ public class SecuritySRCreateController extends ServiceRequestCreateController <
         {
             SecuritySR securitySR = new SecuritySR();
 
-            securitySR.setAssigneeID(assigneeID.getText());
+            //securitySR.setAssigneeID(assigneeID.getText());
             securitySR.setLocation(location.getText());
             securitySR.setPriority(ServiceRequest.Priority.valueOf(priority.getValue()));
             securitySR.setStatus(ServiceRequest.Status.valueOf(status.getValue()));
@@ -62,7 +62,7 @@ public class SecuritySRCreateController extends ServiceRequestCreateController <
         securitySR.setCreationTimestamp(new Timestamp(System.currentTimeMillis()));
 
         //Sets from textFields
-        securitySR.setAssigneeID(assigneeID.getText());
+        //securitySR.setAssigneeID(assigneeID.getText());
         securitySR.setDescription(description.getText());
         securitySR.setLocation(location.getText());
 

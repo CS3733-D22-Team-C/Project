@@ -1,5 +1,7 @@
 package edu.wpi.cs3733.D22.teamC;
 
+import edu.wpi.cs3733.D22.teamC.entity.employee.Employee;
+import edu.wpi.cs3733.D22.teamC.entity.employee.EmployeeDAO;
 import edu.wpi.cs3733.D22.teamC.entity.floor.Floor;
 import edu.wpi.cs3733.D22.teamC.entity.floor.FloorDAO;
 import edu.wpi.cs3733.D22.teamC.entity.location.Location;
@@ -53,8 +55,9 @@ public class App extends Application {
     public static final String VIEW_SERVICE_REQUESTS_PATH = "view/service_request/view_service_requests.fxml";
     public static final String MAP_PATH = "view/location/map/base_map_view.fxml";
 
+    public static final String BASE_CSS_PATH = "css/base.css";
     //public static final String IMAGE_PATH = "static/images/BrighamAndWomensHospital.png";
-
+    
     // Singleton Instance
     public static App instance;
 
@@ -64,6 +67,8 @@ public class App extends Application {
 
     @Override
     public void init() {
+        SessionManager.switchDatabase(SessionManager.DBMode.EMBEDDED);
+        
         // Load CSV Data - Floor
         {
             FloorCSVReader csvReader = new FloorCSVReader();
@@ -88,6 +93,18 @@ public class App extends Application {
             }
         }
 
+        // Load CSV Data = Employee
+        {
+            EmployeeCSVReader csvReader =  new EmployeeCSVReader();
+            List<Employee> employees = csvReader.readFile("Employees.csv");
+            if(employees !=null){
+                EmployeeDAO employeeDAO = new EmployeeDAO();
+                for(Employee employee : employees){
+                    employeeDAO.insert(employee);
+                }
+            }
+        }
+
         // Load CSV Data - Medical Equipment Service Request
         {
             MedicalEquipmentSRCSVReader csvReader = new MedicalEquipmentSRCSVReader();
@@ -100,6 +117,8 @@ public class App extends Application {
             }
         }
 
+
+
         log.info("Starting Up");
     }
 
@@ -110,7 +129,7 @@ public class App extends Application {
 
         // Store window as stage
         stage = primaryStage;
-        
+
         stage.setFullScreen(true);
 
         setView(LOGIN_PATH);
@@ -138,6 +157,17 @@ public class App extends Application {
             }
         }
 
+        //Export CSV Data - Employee
+        {
+            EmployeeCSVWriter csvWriter = new EmployeeCSVWriter();
+            EmployeeDAO employeeDAO = new EmployeeDAO();
+            List<Employee> employees = employeeDAO.getAll();
+            if(employees!=null){
+                csvWriter.writeFile("Employees.csv", employees);
+            }
+        }
+
+
         // Export CSV Data - Medical Equipment Service Requests
         {
             MedicalEquipmentSRCSVWriter csvWriter = new MedicalEquipmentSRCSVWriter();
@@ -147,6 +177,7 @@ public class App extends Application {
                 csvWriter.writeFile("MedEquipReq.csv", serviceRequests);
             }
         }
+
 
         log.info("Shutting Down");
     }
@@ -169,10 +200,12 @@ public class App extends Application {
         BorderPane baseNode = (BorderPane) loadView(BASE_COMPONENT_PATH).getNode();
 
         // Load Menu Bar
+        // TODO: Find a way to only change the center of the baseNode, nothing else
         Node menuBarNode = loadView(MENU_BAR_COMPONENT_PATH).getNode();
 
         // Load Sidebar Menu
         Node sidebarNode = loadView(SIDEBAR_PATH).getNode();
+
         // Embed views and components
         //baseNode.setTop(menuBarNode);
         baseNode.setCenter(viewNode);
