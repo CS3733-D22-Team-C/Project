@@ -5,6 +5,7 @@ import edu.wpi.cs3733.D22.teamC.entity.service_request.ServiceRequest;
 import edu.wpi.cs3733.D22.teamC.entity.service_request.ServiceRequestDAO;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Label;
 
 import java.net.URL;
 import java.util.List;
@@ -13,9 +14,11 @@ import java.util.ResourceBundle;
 public class DashboardController<T extends ServiceRequest> implements Initializable {
 
     @FXML
-    JFXTreeTableView assignedTable;
+    private JFXTreeTableView assignedTable;
     @FXML
-    JFXTreeTableView createdTable;
+    private JFXTreeTableView createdTable;
+    @FXML
+    private Label greetingLabel;
 
     private DashboardAssignedTableDisplay assignedTableDisplay;
     private DashboardCreatedTableDisplay createdTableDisplay;
@@ -31,7 +34,11 @@ public class DashboardController<T extends ServiceRequest> implements Initializa
         serviceRequests.forEach(assignedTableDisplay::addObject);
         serviceRequests.forEach(createdTableDisplay::addObject);
 
+        setGreetingLabel("Brandon");
     }
 
+    public void setGreetingLabel(String username) {
+        greetingLabel.setText("Hello, " + username + "!");
+    }
 
 }
