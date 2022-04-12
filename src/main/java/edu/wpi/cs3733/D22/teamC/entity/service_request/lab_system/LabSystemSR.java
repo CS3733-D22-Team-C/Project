@@ -24,6 +24,12 @@ public class LabSystemSR extends ServiceRequest {
         Cat_Scan,
         MRI
     }
+    
+    public LabSystemSR() {}
+    
+    public LabSystemSR(ServiceRequest serviceRequest) {
+        super(serviceRequest);
+    } 
 
     public LabType getLabType() {
        return labType;
