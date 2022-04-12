@@ -3,7 +3,6 @@ package edu.wpi.cs3733.D22.teamC.controller.dashboard;
 import com.jfoenix.controls.JFXTreeTableView;
 import edu.wpi.cs3733.D22.teamC.entity.service_request.ServiceRequest;
 import edu.wpi.cs3733.D22.teamC.entity.service_request.ServiceRequestDAO;
-import edu.wpi.cs3733.D22.teamC.models.service_request.ServiceRequestTableDisplay;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 
@@ -18,19 +17,19 @@ public class DashboardController<T extends ServiceRequest> implements Initializa
     @FXML
     JFXTreeTableView createdTable;
 
-    private DashboardTableDisplay assignedTableDisplay;
-    private DashboardTableDisplay createdTableDisplay;
+    private DashboardAssignedTableDisplay assignedTableDisplay;
+    private DashboardCreatedTableDisplay createdTableDisplay;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        assignedTableDisplay = new DashboardTableDisplay(assignedTable);
-        createdTableDisplay = new DashboardTableDisplay(createdTable);
+        assignedTableDisplay = new DashboardAssignedTableDisplay(assignedTable);
+        createdTableDisplay = new DashboardCreatedTableDisplay(createdTable);
 
         // Populate Table Display
         ServiceRequestDAO serviceRequestDAO  = new ServiceRequestDAO();
         List<ServiceRequest> serviceRequests = serviceRequestDAO.getAll();
-        System.out.println("");
         serviceRequests.forEach(assignedTableDisplay::addObject);
+        serviceRequests.forEach(createdTableDisplay::addObject);
 
     }
 

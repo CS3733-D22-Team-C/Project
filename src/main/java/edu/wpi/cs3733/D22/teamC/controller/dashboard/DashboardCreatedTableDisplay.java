@@ -11,9 +11,9 @@ import javafx.beans.property.StringProperty;
 
 import java.sql.Timestamp;
 
-public class DashboardTableDisplay extends ServiceRequestTableDisplay<ServiceRequest> {
+public class DashboardCreatedTableDisplay extends ServiceRequestTableDisplay<ServiceRequest> {
 
-    public DashboardTableDisplay(JFXTreeTableView table) {
+    public DashboardCreatedTableDisplay(JFXTreeTableView table) {
         super(table);
     }
 
