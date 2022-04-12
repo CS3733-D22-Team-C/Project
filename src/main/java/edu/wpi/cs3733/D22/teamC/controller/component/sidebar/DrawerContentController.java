@@ -129,7 +129,7 @@ public class DrawerContentController implements Initializable {
     void logOutButtonPress(ActionEvent event) {
         // TODO: Logout functionality, path to login page
         Login.resetUserLogin();
-        App.instance.setView("LOGIN_PATH");
+        App.instance.setView(App.LOGIN_PATH);
     }
 
     @FXML
