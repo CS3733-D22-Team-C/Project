@@ -11,6 +11,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
+import javafx.scene.text.TextAlignment;
 
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -33,18 +34,22 @@ public class LoginPageController implements Initializable {
     }
 
     @FXML
-    public void loginButtonClicked(ActionEvent event)
-    {
+    public void loginButtonClicked(ActionEvent event) {
         //Login Validation eventually needed here
-
         LoginEvaluator loginEV = new LoginEvaluator();
 
-        Login login = new Login();
+        if(loginEV.getLoginValidationTestResult(username.getText(), password.getText()) != null) {
+            insertLoginErrorMessage();
+        }
+        else
+        {
+            Login login = new Login();
+            login.setPassword(password.getText());
+            login.setUsername(username.getText());
+            App.instance.setView(App.VIEW_SERVICE_REQUESTS_PATH);
+         }
 
-        login.setPassword(password.getText());
-        login.setUsername(username.getText());
 
-        App.instance.setView(App.VIEW_SERVICE_REQUESTS_PATH);
     }
 
     @FXML
@@ -55,6 +60,7 @@ public class LoginPageController implements Initializable {
 
     public void insertLoginErrorMessage()
     {
+        invalidLogin.setText("Invalid username or password");
         invalidLogin.setVisible(true);
     }
 
