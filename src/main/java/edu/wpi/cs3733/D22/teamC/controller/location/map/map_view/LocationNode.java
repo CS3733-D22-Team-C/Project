@@ -71,7 +71,7 @@ public class LocationNode {
 
         public void showMedicalEquipmentCounters(boolean visibility, boolean editable) {
             for (MedicalEquipmentCounterNode medicalEquipmentCounterNode : medicalEquipmentCounterNodes) {
-                medicalEquipmentCounterNode.setVisible(visibility);
+                medicalEquipmentCounterNode.setVisible(visibility && mapController.parentController.showMedicalEquipment);
                 medicalEquipmentCounterNode.setEditable(editable);
             }
         }

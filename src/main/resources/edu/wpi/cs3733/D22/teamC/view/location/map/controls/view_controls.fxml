@@ -59,7 +59,7 @@
                                     <HBox prefHeight="100.0" prefWidth="200.0" />
                                     <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
                                        <children>
-                                          <MFXToggleButton alignment="CENTER" contentDisposition="RIGHT" prefWidth="250.0" selected="true" text="Medical Equipment">
+                                          <MFXToggleButton fx:id="medicalEquipmentToggle" alignment="CENTER" contentDisposition="RIGHT" prefWidth="250.0" selected="true" text="Medical Equipment">
                                              <padding>
                                                 <Insets right="35.0" />
                                              </padding>

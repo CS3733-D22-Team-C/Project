@@ -42,7 +42,7 @@ public class MapController implements Initializable {
 
     // Variables
     public List<LocationNode> locationNodes = new ArrayList<>();
-    protected LocationNode activeLocation;
+    public LocationNode activeLocation;
 
     // References
     protected BaseMapViewController parentController;

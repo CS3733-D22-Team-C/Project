@@ -2,6 +2,7 @@
 
 <?import com.jfoenix.controls.JFXComboBox?>
 <?import io.github.palexdev.materialfx.controls.MFXButton?>
+<?import io.github.palexdev.materialfx.controls.MFXToggleButton?>
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.layout.AnchorPane?>
@@ -55,14 +56,13 @@
                                     <JFXComboBox fx:id="floorComboBox" maxWidth="1.7976931348623157E308" minHeight="30.0" minWidth="150.0" onAction="#onFloorChanged" styleClass="combo-box" />
                                  </children>
                               </HBox>
-                              <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" GridPane.hgrow="ALWAYS" GridPane.rowIndex="2" GridPane.vgrow="ALWAYS">
+                              <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" GridPane.rowIndex="2">
                                  <children>
-                                    <MFXButton fx:id="importButton" buttonType="RAISED" minHeight="30.0" minWidth="150.0" onAction="#onImportButtonPressed" rippleColor="BLACK" styleClass="alt-button" text="Import CSV" visible="false" />
-                                 </children>
-                              </HBox>
-                              <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" GridPane.hgrow="ALWAYS" GridPane.rowIndex="3" GridPane.vgrow="ALWAYS">
-                                 <children>
-                                    <MFXButton fx:id="exportButton" buttonType="RAISED" minHeight="30.0" minWidth="150.0" onAction="#onExportButtonPressed" styleClass="alt-button" text="Export CSV" visible="false" />
+                                    <MFXToggleButton fx:id="medicalEquipmentToggle" alignment="CENTER" contentDisposition="RIGHT" prefWidth="250.0" selected="true" text="Medical Equipment">
+                                       <padding>
+                                          <Insets right="35.0" />
+                                       </padding>
+                                    </MFXToggleButton>
                                  </children>
                               </HBox>
                               <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" GridPane.rowIndex="4">

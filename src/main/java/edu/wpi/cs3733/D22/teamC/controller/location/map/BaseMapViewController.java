@@ -42,6 +42,7 @@ public class BaseMapViewController implements Initializable {
     
     // Variables
     public boolean isEditMode = false;
+    public boolean showMedicalEquipment = true;
 
     private List<Floor> floors;
     private Floor currentFloor;
@@ -221,6 +222,12 @@ public class BaseMapViewController implements Initializable {
     //#endregion
 
     //#region Mode Switching
+        public void showMedicalEquipment(boolean visible) {
+            showMedicalEquipment = visible;
+            if (mapController.activeLocation != null) mapController.activeLocation.showMedicalEquipmentCounters(visible, isEditMode);
+            mapController.rightOverlay.setVisible(visible);
+        }
+
         /**
          * Swap to Edit Mode, clearing first.
          */
