@@ -53,6 +53,7 @@ public class App extends Application {
     public static final String DRAWER_CONTENT_PATH = "view/component/drawer_content.fxml";
 
     public static final String LOGIN_PATH = "view/general/login.fxml";
+    public static final String DASHBOARD_PATH = "view/general/dashboard.fxml";
     public static final String VIEW_LOCATIONS_PATH = "view/location/view_locations.fxml";
 
     public static final String VIEW_SERVICE_REQUESTS_PATH = "view/service_request/view_service_requests.fxml";
