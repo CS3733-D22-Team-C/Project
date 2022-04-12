@@ -115,8 +115,7 @@ public class DrawerContentController implements Initializable {
 
     @FXML
     void dashboardButtonPress(ActionEvent event) {
-        // TODO: Add path to dashboard
-        App.instance.setView("");
+        App.instance.setView(App.DASHBOARD_PATH);
     }
 
     @FXML
