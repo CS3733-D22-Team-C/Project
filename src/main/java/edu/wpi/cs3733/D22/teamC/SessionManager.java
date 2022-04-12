@@ -6,10 +6,15 @@ import org.hibernate.cfg.Configuration;
 
 /** Manage Hibernation session. */
 public class SessionManager {
-    private static boolean serverDatabase = false;
+    private static DBMode serverDatabase = DBMode.EMBEDDED;
 	private static SessionFactory sf = createSessionFactory(serverDatabase);
 
 	private SessionManager() {}
+    
+    public enum DBMode {
+        EMBEDDED,
+        SERVER
+    }
 
 	/**
 	* Retrieves the session built from the factory. YOU MUST CLOSE THE SESSION AFTER USE!
@@ -23,8 +28,8 @@ public class SessionManager {
 		return sf.openSession();
 	}
     
-    private static SessionFactory createSessionFactory(boolean server) {
-        if (server) {
+    private static SessionFactory createSessionFactory(DBMode mode) {
+        if (mode == DBMode.SERVER) {
             return new Configuration().configure("hibernate_server.cfg.xml").buildSessionFactory();
         } else {
             return new Configuration().configure("hibernate.cfg.xml").buildSessionFactory();
@@ -46,10 +51,10 @@ public class SessionManager {
     /**
      * Switch the database system between embedded and client-server.
      * NOTE: THIS WILL NOT POPULATE THE NEW DATABASE DURING RUNTIME!
-     * @param serverDatabase True for client-server database.
+     * @param mode DBMode.EMBEDDED for client-server database.
      */
-	public static void switchDatabase(boolean serverDatabase) {
-        SessionManager.serverDatabase = serverDatabase;
+	public static void switchDatabase(DBMode mode) {
+        SessionManager.serverDatabase = (mode == DBMode.EMBEDDED) ? DBMode.EMBEDDED : DBMode.SERVER;
         killSessionFactory();
         sf = createSessionFactory(serverDatabase);
     }
