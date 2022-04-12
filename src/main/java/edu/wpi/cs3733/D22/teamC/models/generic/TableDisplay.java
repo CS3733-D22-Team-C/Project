@@ -28,7 +28,10 @@ public abstract class TableDisplay<T extends Object> {
         };
 
         // TODO: Make Abstract
-        public void RefreshEntry() {};
+        public void RefreshEntry() {
+            System.out.println("If you are seeing this, it means you forgot to overwrite the RefreshEntry function" +
+                    "for your child TableDisplayEntry class!");
+        };
     }
 
     // Variables

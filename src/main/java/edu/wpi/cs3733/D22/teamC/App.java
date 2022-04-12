@@ -148,7 +148,11 @@ public class App extends Application {
         // Store window as stage
         stage = primaryStage;
         stage.setFullScreen(true);
-        setSkeletonView("view/table/base_view.fxml", "view/table/locations/table_insert.fxml");
+
+        setViewStatic(LOGIN_PATH);
+
+        // TODO: Hook up via sidebar
+//        setSkeletonView("view/table/base_view.fxml", "view/table/locations/table_insert.fxml");
     }
 
     @Override

@@ -115,7 +115,9 @@ public class Location {
         return nodeType;
     }
     
-    public void setNodeType(NodeType nodeType) {this.nodeType = nodeType;}
+    public void setNodeType(NodeType nodeType) {
+        this.nodeType = nodeType;
+    }
     
     public String getLongName() {
         return longName;
