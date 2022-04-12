@@ -2,7 +2,7 @@
 @import "fonts.css";
 
 .base_view_table_add {
-    -fx-background-color: -color-red-contrast;
+    -fx-background-color: -color-red-constrast;
     -fx-text-fill: -color-menu-text;
     -fx-border-radius: 10px
 }
@@ -46,4 +46,8 @@
     -fx-border-style: solid;
     -fx-border-color: gray;
 
+}
+
+.base-insert-heeder{
+    -fx-font-size: 32;
 }

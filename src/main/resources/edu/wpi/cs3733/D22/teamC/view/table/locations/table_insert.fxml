@@ -18,7 +18,7 @@
                <children>
                   <VBox alignment="CENTER_LEFT" prefHeight="115.0" prefWidth="419.0">
                      <children>
-                        <Label fx:id="title" prefHeight="25.0" prefWidth="270.0" text="dfgdfgdg">
+                        <Label fx:id="title" prefHeight="25.0" prefWidth="270.0" styleClass="base-insert-heeder" stylesheets="@../../../css/table_skeleton.css" text="dfgdfgdg">
                            <font>
                               <Font size="24.0" />
                            </font>
@@ -64,7 +64,7 @@
                   <VBox>
                      <children>
                         <Label fx:id="label6" prefHeight="17.0" prefWidth="272.0" text="Label 6" />
-                        <JFXComboBox fx:id="floorBox" maxWidth="1.7976931348623157E308" onAction="#keyPressed" prefHeight="47.0" prefWidth="419.0" styleClass="dropdown" stylesheets="@../../../css/base.css" />
+                        <JFXComboBox fx:id="floorBox" maxWidth="1.7976931348623157E308" onAction="#keyPressed" prefHeight="47.0" prefWidth="419.0" styleClass="base_view_table_header" stylesheets="@../../../css/table_skeleton.css" />
                      </children>
                   </VBox>
                   <HBox spacing="20.0">

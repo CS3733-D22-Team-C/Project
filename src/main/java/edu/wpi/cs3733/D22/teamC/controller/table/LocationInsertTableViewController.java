@@ -14,6 +14,7 @@ import edu.wpi.cs3733.D22.teamC.models.utils.ComponentWrapper;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 
@@ -29,7 +30,7 @@ public class LocationInsertTableViewController extends  InsertTableViewControlle
     @FXML private TextField field2;
     @FXML private JFXComboBox<String> field4;
     @FXML private TextField field5;
-    @FXML private JFXComboBox<Floor> floorBox;
+    @FXML private ComboBox<Floor> floorBox;
     @FXML private TextField field7;
     @FXML private TextField field8;
 
