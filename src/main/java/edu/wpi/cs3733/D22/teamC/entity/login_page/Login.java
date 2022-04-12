@@ -3,6 +3,12 @@ package edu.wpi.cs3733.D22.teamC.entity.login_page;
 public class Login {
     private String username;
     private String password;
+    private static Login user;
+
+    public void initializeUserLogin()
+    {
+        
+    }
 
     public String getUsername() {
         return username;
