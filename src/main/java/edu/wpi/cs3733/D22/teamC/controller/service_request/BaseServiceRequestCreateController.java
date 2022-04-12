@@ -5,6 +5,8 @@ import com.jfoenix.controls.JFXComboBox;
 import com.jfoenix.controls.JFXTextArea;
 import com.jfoenix.controls.JFXTreeTableView;
 import edu.wpi.cs3733.D22.teamC.App;
+import edu.wpi.cs3733.D22.teamC.controller.component.EmployeeViewController;
+import edu.wpi.cs3733.D22.teamC.entity.employee.Employee;
 import edu.wpi.cs3733.D22.teamC.entity.generic.DAO;
 import edu.wpi.cs3733.D22.teamC.entity.service_request.ServiceRequest;
 import edu.wpi.cs3733.D22.teamC.entity.service_request.ServiceRequestDAO;
@@ -15,6 +17,7 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
@@ -22,6 +25,7 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.input.KeyEvent;
+import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.VBox;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
@@ -74,6 +78,8 @@ public class BaseServiceRequestCreateController<T extends ServiceRequest> {
     // Variables
     private ServiceRequestTableDisplay<T> tableDisplay;
     private ServiceRequest.RequestType requestType;
+    private T serviceRequest;
+    private EmployeeViewController employeeViewController;
 
     public void setup(ServiceRequest.RequestType requestType) {
         this.requestType = requestType;
@@ -126,6 +132,10 @@ public class BaseServiceRequestCreateController<T extends ServiceRequest> {
         for (T serviceRequest : serviceRequestDAO.getAll()) {
             tableDisplay.addObject(serviceRequest);
         }
+
+        serviceRequest = insertController.createNewServiceRequest();
+
+
     }
 
 
@@ -160,11 +170,16 @@ public class BaseServiceRequestCreateController<T extends ServiceRequest> {
         insertController.clearFields();
     }
 
+    public void setEmployee(Employee employee){
+        serviceRequest.setAssignee(employee);
+    }
+
+
     private void createServiceRequest() {
         // Create Service Request
         T serviceRequest = insertController.createServiceRequest();
 
-//        serviceRequest.setAssignee(assigneeID.getText()); //TODO: Replace with Employee Selector
+        serviceRequest.setAssignee(serviceRequest.getAssignee()); //TODO: Replace with Employee Selector
         serviceRequest.setLocation(locationField.getText());
         serviceRequest.setDescription(description.getText());
         serviceRequest.setPriority(ServiceRequest.Priority.valueOf(priority.getValue()));
@@ -191,17 +206,23 @@ public class BaseServiceRequestCreateController<T extends ServiceRequest> {
     }
     @FXML
     void goToEmployeeTable(ActionEvent event) throws IOException {
-        Parent root = FXMLLoader.load(getClass().getResource("view/general/employee_view.fxml"));
+        //Setting up pop up
+        App.View<EmployeeViewController> view = App.instance.loadView("view/general/employee_view.fxml");
+        employeeViewController = view.getController();
+        VBox root = (VBox) view.getNode();
+
+        employeeViewController.setup(this);
 
         Scene scene = new Scene(root);
         Stage primaryStage= new Stage();
+        if (scene != null) scene.setRoot(root);
+        else scene = new Scene(root);
         primaryStage.setScene(scene);
         primaryStage.initModality(Modality.WINDOW_MODAL);
         primaryStage.initOwner(employeeTableButton.getScene().getWindow());
         primaryStage.show();
-
-
     }
+
     //#region FXML Buttons
     @FXML
     void clickGoBack(ActionEvent event) {

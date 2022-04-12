@@ -1,6 +1,7 @@
 package edu.wpi.cs3733.D22.teamC.controller.component;
 
 import com.jfoenix.controls.JFXTreeTableView;
+import edu.wpi.cs3733.D22.teamC.controller.service_request.BaseServiceRequestCreateController;
 import edu.wpi.cs3733.D22.teamC.entity.employee.Employee;
 import edu.wpi.cs3733.D22.teamC.entity.location.Location;
 import edu.wpi.cs3733.D22.teamC.entity.location.LocationDAO;
@@ -24,6 +25,7 @@ public class EmployeeViewController implements Initializable {
     private JFXTreeTableView table;
 
     private EmployeeTableDisplay tableDisplay;
+    private BaseServiceRequestCreateController parentController;
 
     @FXML
     private Label title;
@@ -45,6 +47,10 @@ public class EmployeeViewController implements Initializable {
             tableDisplay.addObject(employee);
         }
 
+    }
+
+    public void setup(BaseServiceRequestCreateController parentController){
+        this.parentController = parentController;
     }
 
     @FXML

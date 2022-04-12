@@ -38,7 +38,7 @@
                         <HBox spacing="1.5">
                            <children>
                               <TextField fx:id="assigneeID" prefHeight="26.0" prefWidth="92.0" />
-                              <JFXButton fx:id="employeeTableButton" onAction="#goToEmployeeTable" style="-fx-background-color: -color-secondary;" stylesheets="@../../../css/colors.css" text="-&gt;" />
+                              <JFXButton fx:id="employeeTableButton" onAction="#goToEmployeeTable" prefHeight="26.0" style="-fx-background-color: -color-secondary;" stylesheets="@../../../css/colors.css" text="-&gt;" />
                            </children>
                         </HBox>
                      </children>

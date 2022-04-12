@@ -53,6 +53,10 @@ public class MedicalEquipmentSRInsertCreateController implements InsertServiceRe
         return new MedicalEquipmentSRDAO();
     }
 
+    public MedicalEquipmentSR createNewServiceRequest() {
+        return new MedicalEquipmentSR();
+    }
+
     @Override
     public ServiceRequestTableDisplay<MedicalEquipmentSR> setupTable(JFXTreeTableView<?> table) {
         return new MedicalEquipmentSRTableDisplay(table);
