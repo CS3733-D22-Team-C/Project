@@ -15,12 +15,12 @@ public class FloorFactory implements Factory<Floor> {
         int order = generator.nextInt(5);
         String longName = "Steve Harvey Temple";
         String shortName = "SH500";
-        String img = "imgSource";
+        //byte[] img = null;
 
         floor.setOrder(order);
         floor.setLongName(longName);
         floor.setShortName(shortName);
-        floor.setImageSrc(img);
+        //floor.setImageSrc(img);
 
         return floor;
     }

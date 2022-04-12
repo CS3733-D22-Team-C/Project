@@ -4,16 +4,20 @@ import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXComboBox;
 import com.jfoenix.controls.JFXTextArea;
 import edu.wpi.cs3733.D22.teamC.App;
+import edu.wpi.cs3733.D22.teamC.entity.employee.Employee;
 import edu.wpi.cs3733.D22.teamC.entity.generic.DAO;
 import edu.wpi.cs3733.D22.teamC.entity.service_request.ServiceRequest;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.VBox;
+import javafx.stage.Modality;
+import javafx.stage.Stage;
 
-public class BaseServiceRequestResolveController<T extends ServiceRequest> {
+public class BaseServiceRequestResolveController<T extends ServiceRequest> implements ServiceRequestController{
 
     @FXML private VBox fieldsBox;
 
@@ -39,6 +43,8 @@ public class BaseServiceRequestResolveController<T extends ServiceRequest> {
     @FXML private Label secondStatus;
     @FXML private Label firstStatus;
 
+    @FXML private JFXButton employeeTableButton;
+
     // References
     private InsertServiceRequestResolveController<T> insertController;
 
@@ -47,6 +53,7 @@ public class BaseServiceRequestResolveController<T extends ServiceRequest> {
 
     private T serviceRequest;
     private boolean isEditMode;
+    private EmployeeViewController employeeViewController;
 
     @FXML
     public void setup(ServiceRequest serviceRequest, boolean isEditMode) {
@@ -70,6 +77,7 @@ public class BaseServiceRequestResolveController<T extends ServiceRequest> {
 
         // Set labels
         requestID.setText(serviceRequest.getRequestID()); //TODO print something else here or don't print maybe
+        assigneeID.setEditable(false);
 
         if (isEditMode) {
             // Set generic title (overridden in children)
@@ -85,9 +93,9 @@ public class BaseServiceRequestResolveController<T extends ServiceRequest> {
             secondStatus.setText(serviceRequest.getStatus().toString().toLowerCase());
 
             // Set fields editable
-            assigneeID.setEditable(true);
             priority.setDisable(false);
             locationField.setEditable(true);
+            employeeTableButton.setDisable(false);
 
         } else {
             // Set generic title (overridden in children)
@@ -98,9 +106,9 @@ public class BaseServiceRequestResolveController<T extends ServiceRequest> {
             secondStatus.setText("resolve");
 
             // Set fields uneditable
-            assigneeID.setEditable(false);
             priority.setDisable(true);
             locationField.setEditable(false);
+            employeeTableButton.setDisable(true);
         }
 
     }
@@ -116,7 +124,7 @@ public class BaseServiceRequestResolveController<T extends ServiceRequest> {
                 serviceRequest.setPriority(ServiceRequest.Priority.valueOf(priority.getValue()));
             }
             //Assignee ID
-            //serviceRequest.setAssignee(assigneeID.getText());
+            serviceRequest.setAssignee(this.serviceRequest.getAssignee());
             //Location
             serviceRequest.setLocation(locationField.getText());
             //Status
@@ -179,6 +187,26 @@ public class BaseServiceRequestResolveController<T extends ServiceRequest> {
     }
 
     @FXML
+    void goToEmployeeTable(ActionEvent event) {
+        //Setting up pop up
+        App.View<EmployeeViewController> view = App.instance.loadView("view/general/employee_view.fxml");
+        employeeViewController = view.getController();
+        VBox root = (VBox) view.getNode();
+
+
+
+        Scene scene = new Scene(root);
+        Stage primaryStage= new Stage();
+        if (scene != null) scene.setRoot(root);
+        else scene = new Scene(root);
+        primaryStage.setScene(scene);
+        primaryStage.initModality(Modality.WINDOW_MODAL);
+        primaryStage.initOwner(employeeTableButton.getScene().getWindow());
+        primaryStage.show();
+        employeeViewController.setup(this, primaryStage);
+    }
+
+    @FXML
     void statusKeyPressedUpdated(KeyEvent event) {
         statusUpdated();
     }
@@ -186,4 +214,13 @@ public class BaseServiceRequestResolveController<T extends ServiceRequest> {
     public void onFieldUpdated() {
         statusUpdated();
     }
+
+    public void setEmployee(Employee employee){
+        serviceRequest.setAssignee(employee);
+        String employeeName = employee.getLastName() + ", " + employee.getFirstName();
+        assigneeID.setText(employeeName);
+    }
+
+
+
 }
