@@ -18,7 +18,6 @@ import java.util.ResourceBundle;
 
 public class SidebarMenuController implements Initializable {
 
-
     // Child Drawers
     private DrawerContentController childController;
 
