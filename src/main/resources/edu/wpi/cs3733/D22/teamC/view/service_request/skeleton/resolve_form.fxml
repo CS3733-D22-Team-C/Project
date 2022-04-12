@@ -13,16 +13,16 @@
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.layout.VBox?>
 
-<GridPane alignment="CENTER" maxWidth="1.7976931348623157E308" prefHeight="683.0" prefWidth="534.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.wpi.cs3733.D22.teamC.controller.service_request.BaseServiceRequestResolveController">
+<GridPane alignment="CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="683.0" prefWidth="534.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.wpi.cs3733.D22.teamC.controller.service_request.BaseServiceRequestResolveController">
    <columnConstraints>
-      <ColumnConstraints hgrow="SOMETIMES" maxWidth="478.4000244140625" minWidth="10.0" prefWidth="272.79998779296875" />
+      <ColumnConstraints hgrow="ALWAYS" maxWidth="1.7976931348623157E308" minWidth="10.0" prefWidth="272.79998779296875" />
    </columnConstraints>
    <rowConstraints>
       <RowConstraints />
-      <RowConstraints maxHeight="185.60000228881836" minHeight="0.0" prefHeight="146.2" vgrow="SOMETIMES" />
-      <RowConstraints maxHeight="377.6" minHeight="10.0" prefHeight="199.19998168945315" vgrow="SOMETIMES" />
-      <RowConstraints maxHeight="260.0000183105468" minHeight="10.0" prefHeight="190.4000183105469" vgrow="SOMETIMES" />
-      <RowConstraints maxHeight="226.40000000000003" minHeight="0.0" prefHeight="133.59999389648442" vgrow="SOMETIMES" />
+      <RowConstraints maxHeight="1.7976931348623157E308" minHeight="0.0" prefHeight="146.2" vgrow="ALWAYS" />
+      <RowConstraints maxHeight="1.7976931348623157E308" minHeight="10.0" prefHeight="199.19998168945315" vgrow="ALWAYS" />
+      <RowConstraints maxHeight="1.7976931348623157E308" minHeight="10.0" prefHeight="190.4000183105469" vgrow="ALWAYS" />
+      <RowConstraints maxHeight="1.7976931348623157E308" minHeight="0.0" prefHeight="133.59999389648442" vgrow="ALWAYS" />
    </rowConstraints>
    <children>
       <VBox prefHeight="148.0" prefWidth="478.0" GridPane.rowIndex="1">

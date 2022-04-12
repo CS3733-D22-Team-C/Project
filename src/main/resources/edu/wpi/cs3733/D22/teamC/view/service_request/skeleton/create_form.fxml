@@ -17,7 +17,7 @@
 
 <GridPane alignment="CENTER" maxWidth="1.7976931348623157E308" prefHeight="683.0" prefWidth="458.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.wpi.cs3733.D22.teamC.controller.service_request.BaseServiceRequestCreateController">
     <columnConstraints>
-      <ColumnConstraints hgrow="ALWAYS" maxWidth="478.4000244140625" minWidth="10.0" prefWidth="272.79998779296875" />
+      <ColumnConstraints hgrow="ALWAYS" maxWidth="1.7976931348623157E308" minWidth="10.0" prefWidth="272.79998779296875" />
     </columnConstraints>
     <rowConstraints>
         <RowConstraints maxHeight="1.7976931348623157E308" vgrow="ALWAYS" />

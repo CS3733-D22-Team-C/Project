@@ -138,7 +138,7 @@ public class App extends Application {
 
         stage.setFullScreen(true);
 
-        setViewStatic(LOGIN_PATH);
+        setView(VIEW_SERVICE_REQUESTS_PATH);
     }
 
     @Override

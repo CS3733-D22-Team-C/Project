@@ -5,24 +5,20 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 
-<HBox prefHeight="68.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.wpi.cs3733.D22.teamC.controller.service_request.medical_equipment.MedicalEquipmentSRInsertResolveController">
+<HBox maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="68.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.wpi.cs3733.D22.teamC.controller.service_request.medical_equipment.MedicalEquipmentSRInsertResolveController">
    <children>
-      <VBox prefWidth="227.0" styleClass="box-margin">
+      <VBox alignment="CENTER_LEFT" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefWidth="227.0" styleClass="box-margin" HBox.hgrow="ALWAYS">
          <children>
             <Label styleClass="service-field-label" text="Equipment Type:" />
             <JFXComboBox fx:id="equipmentType" maxWidth="1.7976931348623157E308" onAction="#statusUpdated" prefWidth="190.0" styleClass="dropdown" stylesheets="@../../../css/base.css" VBox.vgrow="ALWAYS" />
          </children>
       </VBox>
-      <VBox prefWidth="227.0" styleClass="box-margin">
+      <VBox alignment="CENTER_LEFT" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefWidth="227.0" styleClass="box-margin" HBox.hgrow="ALWAYS">
          <children>
-            <VBox alignment="CENTER_LEFT" prefWidth="227.0" spacing="10.0">
-               <children>
-                  <Label styleClass="service-field-label" text="Equipment ID:" />
-                  <JFXComboBox fx:id="equipmentID" maxWidth="1.7976931348623157E308" onAction="#statusUpdated" onMouseClicked="#equipTypeChanged" prefWidth="190.0" styleClass="dropdown" stylesheets="@../../../css/base.css" VBox.vgrow="ALWAYS" />
-               </children>
-            </VBox>
+            <Label styleClass="service-field-label" text="Equipment ID:" />
+            <JFXComboBox fx:id="equipmentID" maxWidth="1.7976931348623157E308" onAction="#statusUpdated" onMouseClicked="#equipTypeChanged" prefWidth="190.0" styleClass="dropdown" stylesheets="@../../../css/base.css" VBox.vgrow="ALWAYS" />
          </children>
       </VBox>
-      <VBox alignment="CENTER_LEFT" prefWidth="227.0" styleClass="box-margin" />
+      <VBox alignment="CENTER_LEFT" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefWidth="227.0" styleClass="box-margin" HBox.hgrow="ALWAYS" />
    </children>
 </HBox>
