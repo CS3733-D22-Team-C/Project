@@ -138,7 +138,7 @@ public class App extends Application {
 
         stage.setFullScreen(true);
 
-        setViewStatic(LOGIN_PATH);
+        setViewStatic("view/location/map/csv_component.fxml");
     }
 
     @Override
