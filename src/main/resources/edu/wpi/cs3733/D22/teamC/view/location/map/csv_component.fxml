@@ -4,9 +4,9 @@
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.HBox?>
 
-<HBox alignment="CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="132.0" prefWidth="546.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.wpi.cs3733.D22.teamC.controller.location.map.CSVComponent">
+<HBox alignment="CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="132.0" prefWidth="546.0" spacing="1.5" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.wpi.cs3733.D22.teamC.controller.location.map.CSVComponent">
    <children>
       <TextField fx:id="csvName" editable="false" prefHeight="26.0" prefWidth="162.0" stylesheets="@../../../css/map/controls.css" />
-      <JFXButton onAction="#chooseCSV" stylesheets="@../../../css/map/base.css" text=". . ." />
+      <JFXButton onAction="#chooseCSV" prefHeight="26.0" stylesheets="@../../../css/map/base.css" text=". . ." />
    </children>
 </HBox>
