@@ -2,11 +2,13 @@ package edu.wpi.cs3733.D22.teamC.error.error_item;
 
 public class ErrorItem {
     protected String errorType;
-    protected int errorNumber;
+    protected int errorID;
+    protected String reasonForValidationError;
 
-    public ErrorItem(String errorType, int errorNumber) {
+    public ErrorItem(String errorType, int errorID, String reasonForValidationError) {
         this.errorType = errorType;
-        this.errorNumber = errorNumber;
+        this.errorID = errorID;
+        this.reasonForValidationError = reasonForValidationError;
     }
 
     public String getErrorType() {
@@ -14,7 +16,7 @@ public class ErrorItem {
     }
 
     public int getErrorNumber() {
-        return errorNumber;
+        return errorID;
     }
 
     public void setErrorType(String errorType) {
@@ -22,6 +24,14 @@ public class ErrorItem {
     }
 
     public void setErrorNumber(int errorNumber) {
-        this.errorNumber = errorNumber;
+        this.errorID = errorNumber;
+    }
+
+    public String getReasonForValidationError() {
+        return reasonForValidationError;
+    }
+
+    public void setReasonForValidationError(String reasonForValidationError) {
+        this.reasonForValidationError = reasonForValidationError;
     }
 }
