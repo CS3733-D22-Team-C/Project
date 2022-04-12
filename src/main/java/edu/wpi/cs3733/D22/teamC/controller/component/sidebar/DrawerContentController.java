@@ -25,8 +25,6 @@ import java.util.concurrent.TimeUnit;
 public class DrawerContentController implements Initializable {
 
     SidebarMenuController sidebarMenuController;
-    private FadeTransition fadeOut;
-    private FadeTransition fadeIn;
 
     //#region FXML
     @FXML
@@ -164,10 +162,10 @@ public class DrawerContentController implements Initializable {
      * @param fadeOutTime The amount of time the node takes to fade out in seconds
      */
     private void fadeTransition(Node fadeInNode, double fadeInTime, Node fadeOutNode, double fadeOutTime) {
-        fadeOut = new FadeTransition(Duration.seconds(fadeOutTime), fadeOutNode);
+        FadeTransition fadeOut = new FadeTransition(Duration.seconds(fadeOutTime), fadeOutNode);
         fadeOut.setFromValue(1.0);
         fadeOut.setToValue(0.0);
-        fadeIn = new FadeTransition(Duration.seconds(fadeInTime), fadeInNode);
+        FadeTransition fadeIn = new FadeTransition(Duration.seconds(fadeInTime), fadeInNode);
         fadeIn.setFromValue(0.0);
         fadeIn.setToValue(1.0);
         fadeOut.play();

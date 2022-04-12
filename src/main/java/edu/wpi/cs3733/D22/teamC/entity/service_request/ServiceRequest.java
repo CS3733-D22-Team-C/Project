@@ -1,10 +1,12 @@
 package edu.wpi.cs3733.D22.teamC.entity.service_request;
 
+import edu.wpi.cs3733.D22.teamC.entity.employee.Employee;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
 
 import javax.persistence.*;
 import java.sql.Timestamp;
+import java.util.Objects;
 import java.util.UUID;
 
 @Entity
@@ -14,12 +16,20 @@ public class ServiceRequest {
     @Id
     @Column(name = "ID")
     protected String requestID;
-    
-    @Column(name = "CreatorID")
-    protected String creatorID;     // TODO: Link to Employee
-    
-    @Column(name = "AssigneeID")
-    protected String assigneeID;    // TODO: Link to Employee
+
+
+    //@Column(name = "CreatorID")
+    @ManyToOne
+    @JoinColumn(name = "CreatorID", referencedColumnName = "ID")
+    protected Employee creator;
+
+
+
+    //@Column(name = "AssigneeID")
+    //protected String assigneeID;
+    @ManyToOne
+    @JoinColumn(name = "AssigneeID", referencedColumnName = "ID")
+    protected Employee assignee;
     
     @Column(name = "LocationID")
     protected String locationID;      // TODO: Link to Location
@@ -41,9 +51,11 @@ public class ServiceRequest {
     
     @Column(name = "Description")
     protected String description;
-    
-    @Column(name = "ModifierID")
-    protected String modifierID;
+
+    @ManyToOne
+    @JoinColumn(name = "ModifierID", referencedColumnName = "ID")
+    protected Employee modifier;
+
 
     @Column(name = "ModifiedTimestamp")
     protected Timestamp modifiedTimestamp;
@@ -75,15 +87,15 @@ public class ServiceRequest {
     
     public ServiceRequest(ServiceRequest serviceRequest) {
         this.requestID = serviceRequest.getRequestID();
-        this.creatorID = serviceRequest.getCreatorID();
-        this.assigneeID = serviceRequest.getAssigneeID();
+        this.creator = serviceRequest.getCreator();
+        this.assignee = serviceRequest.getAssignee();
         this.locationID = serviceRequest.getLocation();
         this.creationTimestamp = serviceRequest.getCreationTimestamp();
         this.status = serviceRequest.getStatus();
         this.priority = serviceRequest.getPriority();
         this.requestType = serviceRequest.getRequestType();
         this.description = serviceRequest.getDescription();
-        this.modifierID = serviceRequest.getModifierID();
+        this.modifier = serviceRequest.getModifier();
         this.modifiedTimestamp = serviceRequest.getModifiedTimestamp();
     }
     
@@ -99,20 +111,18 @@ public class ServiceRequest {
         this.requestID = requestID;
     }
     
-    public String getCreatorID() {
-        return creatorID;
+    public Employee getCreator() {
+        return creator;
     }
     
-    public void setCreatorID(String creatorID) {
-        this.creatorID = creatorID;
+    public void setCreator(Employee creator) {this.creator = creator;}
+    
+    public Employee getAssignee() {
+        return assignee;
     }
     
-    public String getAssigneeID() {
-        return assigneeID;
-    }
-    
-    public void setAssigneeID(String assigneeID) {
-        this.assigneeID = assigneeID;
+    public void setAssignee(Employee assignee) {
+        this.assignee = assignee;
     }
     
     public String getLocation() {
@@ -161,12 +171,12 @@ public class ServiceRequest {
         this.description = description;
     }
     
-    public String getModifierID() {
-        return modifierID;
+    public Employee getModifier() {
+        return modifier;
     }
     
-    public void setModifierID(String modifierID) {
-        this.modifierID = modifierID;
+    public void setModifier(Employee modifier) {
+        this.modifier = modifier;
     }
     
     public Timestamp getModifiedTimestamp() {
@@ -183,15 +193,15 @@ public class ServiceRequest {
         if (o == null || getClass() != o.getClass()) return false;
         ServiceRequest that = (ServiceRequest) o;
         return requestID.equals(that.requestID)
-                && creatorID.equals(that.creatorID)
-                && assigneeID.equals(that.assigneeID)
+                && Objects.equals(creator, that.creator) //(creator == null ? that.creator == null : creator.equals(that.creator))
+                && Objects.equals(assignee, that.assignee)
                 && locationID.equals(that.locationID)
                 && creationTimestamp.equals(that.creationTimestamp)
                 && status == that.status
                 && priority == that.priority
                 && requestType == that.requestType
                 && description.equals(that.description)
-                && modifierID.equals(that.modifierID)
+                && Objects.equals(modifier, that.modifier)
                 && modifiedTimestamp.equals(that.modifiedTimestamp);
     }
 }
