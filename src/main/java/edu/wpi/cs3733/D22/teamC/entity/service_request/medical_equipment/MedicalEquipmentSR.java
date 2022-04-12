@@ -33,6 +33,12 @@ public class MedicalEquipmentSR extends ServiceRequest {
         Unavailable,
         Dirty
     }
+    
+    public MedicalEquipmentSR() {}
+    
+    public MedicalEquipmentSR(ServiceRequest serviceRequest) {
+        super(serviceRequest);
+    }
 
     public EquipmentType getEquipmentType() {
         return equipmentType;

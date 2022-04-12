@@ -64,12 +64,12 @@ public class BaseServiceRequestResolveController<T extends ServiceRequest> {
         // Set initial values
         priority.setPromptText(serviceRequest.getPriority().toString());
         locationField.setText(serviceRequest.getLocation());
-        assigneeID.setText(serviceRequest.getAssigneeID());
+        assigneeID.setText(serviceRequest.getAssignee() == null ? "" : serviceRequest.getAssignee().getLastName() + ", " + serviceRequest.getAssignee().getFirstName());
         creationTime.setText(serviceRequest.getCreationTimestamp().toString());
         description.setText(serviceRequest.getDescription());
 
         // Set labels
-        requestID.setText(String.format("%07d" , serviceRequest.getRequestID()));
+        requestID.setText(serviceRequest.getRequestID()); //TODO print something else here or don't print maybe
 
         if (isEditMode) {
             // Set generic title (overridden in children)
@@ -116,7 +116,7 @@ public class BaseServiceRequestResolveController<T extends ServiceRequest> {
                 serviceRequest.setPriority(ServiceRequest.Priority.valueOf(priority.getValue()));
             }
             //Assignee ID
-            serviceRequest.setAssigneeID(assigneeID.getText());
+            //serviceRequest.setAssignee(assigneeID.getText());
             //Location
             serviceRequest.setLocation(locationField.getText());
             //Status

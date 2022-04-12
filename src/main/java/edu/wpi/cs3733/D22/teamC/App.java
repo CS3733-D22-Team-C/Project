@@ -1,6 +1,8 @@
 package edu.wpi.cs3733.D22.teamC;
 
 import edu.wpi.cs3733.D22.teamC.controller.SkeletonController;
+import edu.wpi.cs3733.D22.teamC.entity.employee.Employee;
+import edu.wpi.cs3733.D22.teamC.entity.employee.EmployeeDAO;
 import edu.wpi.cs3733.D22.teamC.entity.floor.Floor;
 import edu.wpi.cs3733.D22.teamC.entity.floor.FloorDAO;
 import edu.wpi.cs3733.D22.teamC.entity.location.Location;
@@ -50,7 +52,11 @@ public class App extends Application {
     public static final String DRAWER_CONTENT_PATH = "view/component/drawer_content.fxml";
 
     public static final String LOGIN_PATH = "view/general/login.fxml";
+    public static final String VIEW_LOCATIONS_PATH = "view/location/view_locations.fxml";
+
     public static final String VIEW_SERVICE_REQUESTS_PATH = "view/service_request/view_service_requests.fxml";
+    public static final String SERVICE_REQUEST_LANDING_PAGE = "view/service_request/service_request_landing_page.fxml";
+
     public static final String MAP_PATH = "view/location/map/base_map_view.fxml";
 
     public static final String BASE_CSS_PATH = "css/base.css";
@@ -59,12 +65,17 @@ public class App extends Application {
     // Singleton Instance
     public static App instance;
 
+    //Employee
+    private Employee userAccount;
+
     // Variables
     private Stage stage;
     private Scene scene;
 
     @Override
     public void init() {
+        SessionManager.switchDatabase(SessionManager.DBMode.EMBEDDED);
+        
         // Load CSV Data - Floor
         {
             FloorCSVReader csvReader = new FloorCSVReader();
@@ -89,6 +100,18 @@ public class App extends Application {
             }
         }
 
+        // Load CSV Data = Employee
+        {
+            EmployeeCSVReader csvReader =  new EmployeeCSVReader();
+            List<Employee> employees = csvReader.readFile("Employees.csv");
+            if(employees !=null){
+                EmployeeDAO employeeDAO = new EmployeeDAO();
+                for(Employee employee : employees){
+                    employeeDAO.insert(employee);
+                }
+            }
+        }
+
         // Load CSV Data - Medical Equipment Service Request
         {
             MedicalEquipmentSRCSVReader csvReader = new MedicalEquipmentSRCSVReader();
@@ -100,6 +123,8 @@ public class App extends Application {
                 }
             }
         }
+
+
 
         log.info("Starting Up");
     }
@@ -136,6 +161,17 @@ public class App extends Application {
             }
         }
 
+        //Export CSV Data - Employee
+        {
+            EmployeeCSVWriter csvWriter = new EmployeeCSVWriter();
+            EmployeeDAO employeeDAO = new EmployeeDAO();
+            List<Employee> employees = employeeDAO.getAll();
+            if(employees!=null){
+                csvWriter.writeFile("Employees.csv", employees);
+            }
+        }
+
+
         // Export CSV Data - Medical Equipment Service Requests
         {
             MedicalEquipmentSRCSVWriter csvWriter = new MedicalEquipmentSRCSVWriter();
@@ -145,6 +181,7 @@ public class App extends Application {
                 csvWriter.writeFile("MedEquipReq.csv", serviceRequests);
             }
         }
+
 
         log.info("Shutting Down");
     }
@@ -172,6 +209,12 @@ public class App extends Application {
         setView(node);
     }
 
+    public void setViewStatic(String viewFile)
+    {
+        Node node = loadView(viewFile).getNode();
+        setViewStatic(node);
+    }
+
     /**
      * Set view for window from a node.
      * @param viewNode Node to be displayed.
@@ -191,6 +234,26 @@ public class App extends Application {
         //baseNode.setTop(menuBarNode);
         baseNode.setCenter(viewNode);
         baseNode.setLeft(sidebarNode);
+        baseNode.autosize();
+
+        if (scene != null) scene.setRoot(baseNode);
+        else scene = new Scene(baseNode);
+        stage.setScene(scene);
+        stage.show();
+    }
+
+    public void setViewStatic(Node viewNode)
+    {
+        // Load Base Node
+        BorderPane baseNode = (BorderPane) loadView(BASE_COMPONENT_PATH).getNode();
+
+        // Load Menu Bar
+        // TODO: Find a way to only change the center of the baseNode, nothing else
+        Node menuBarNode = loadView(MENU_BAR_COMPONENT_PATH).getNode();
+
+        // Embed views and components
+        //baseNode.setTop(menuBarNode);
+        baseNode.setCenter(viewNode);
         baseNode.autosize();
 
         if (scene != null) scene.setRoot(baseNode);
@@ -238,4 +301,14 @@ public class App extends Application {
     public Stage getStage() {
         return stage;
     }
+
+    public Employee getUserAccount() {
+        return userAccount;
+    }
+
+    public void setUserAccount(Employee userAccount) {
+        this.userAccount = userAccount;
+    }
+
+
 }

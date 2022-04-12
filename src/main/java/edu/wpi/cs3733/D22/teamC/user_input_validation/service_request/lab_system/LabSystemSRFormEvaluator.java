@@ -1,17 +1,17 @@
 package edu.wpi.cs3733.D22.teamC.user_input_validation.service_request.lab_system;
 
-import edu.wpi.cs3733.D22.teamC.error.error_item.service_request_user_input_validation.ServiceRequestUserInputValidationErrorItem;
+import edu.wpi.cs3733.D22.teamC.error.error_item.user_input_validation_error_item.service_request_user_input_validation_error_item.ServiceRequestUserInputValidationErrorItem;
 import edu.wpi.cs3733.D22.teamC.error.error_record.service_request_user_input_validation.ServiceRequestUserInputValidationErrorRecord;
-import edu.wpi.cs3733.D22.teamC.user_input_validation.service_request.ServiceRequestFormEvaluator;
+import edu.wpi.cs3733.D22.teamC.user_input_validation.service_request.SRFormEvaluator;
 import javafx.scene.control.SingleSelectionModel;
 
 import java.util.ArrayList;
 
-public class LabSystemSRFormEvaluator extends ServiceRequestFormEvaluator {
+public class LabSystemSRFormEvaluator extends SRFormEvaluator {
 
     public LabSystemSRFormEvaluator() {}
 
-    public ArrayList<ServiceRequestUserInputValidationErrorItem> getLabSystemSRValidationTestResult(String location, String assigneeID, SingleSelectionModel priority, SingleSelectionModel status, SingleSelectionModel labType, String patientID)
+    public ArrayList<ServiceRequestUserInputValidationErrorItem> getLabSystemSRValidationFormTestResult(String location, String assigneeID, SingleSelectionModel priority, SingleSelectionModel status, SingleSelectionModel labType, String patientID)
     {
         ArrayList <ServiceRequestUserInputValidationErrorItem> errorList = new ArrayList <ServiceRequestUserInputValidationErrorItem> ();
 
@@ -67,10 +67,5 @@ public class LabSystemSRFormEvaluator extends ServiceRequestFormEvaluator {
                 return null;
             }
         }
-    }
-
-    @Override
-    public boolean noServiceRequestFormUserInputErrors(ArrayList<ServiceRequestUserInputValidationErrorItem> l) {
-        return super.noServiceRequestFormUserInputErrors(l);
     }
 }

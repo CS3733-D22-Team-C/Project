@@ -24,15 +24,15 @@
     -fx-padding: 4;
     -fx-text-fill: -color-primary-light;
     -fx-wrap-text: true;
-    -fx-text-alignment: bottom_center;
-    -fx-alignment: bottom_center;
+    -fx-text-alignment: center;
+    -fx-alignment: center;
 }
 
 .label-our-names {
     -fx-font-family: Inter;
     -fx-font-weight: normal;
     -fx-font-size: 12;
-    -fx-text-alignment: top_center;
+    -fx-text-alignment: center;
     -fx-wrap-text: true;
     -fx-padding: 4;
     -fx-text-fill: -color-primary-dark;
