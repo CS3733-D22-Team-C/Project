@@ -5,7 +5,6 @@ import edu.wpi.cs3733.D22.teamC.controller.service_request.ServiceRequestCreateC
 import edu.wpi.cs3733.D22.teamC.entity.service_request.ServiceRequest;
 import edu.wpi.cs3733.D22.teamC.entity.service_request.security.SecuritySR;
 import edu.wpi.cs3733.D22.teamC.entity.service_request.security.SecuritySRDAO;
-import edu.wpi.cs3733.D22.teamC.error.error_item.service_request.SRErrorItem;
 import edu.wpi.cs3733.D22.teamC.models.service_request.security.SecuritySRTableDisplay;
 import edu.wpi.cs3733.D22.teamC.validation.service_request.security.SecuritySRFormEvaluator;
 import javafx.event.ActionEvent;

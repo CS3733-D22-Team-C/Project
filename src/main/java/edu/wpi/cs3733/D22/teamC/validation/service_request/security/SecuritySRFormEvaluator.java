@@ -1,6 +1,5 @@
 package edu.wpi.cs3733.D22.teamC.validation.service_request.security;
 
-import edu.wpi.cs3733.D22.teamC.error.error_item.service_request.SRErrorItem;
 import edu.wpi.cs3733.D22.teamC.error.error_record.service_request.SRErrorRecord;
 import edu.wpi.cs3733.D22.teamC.validation.service_request.SRFormEvaluator;
 import javafx.scene.control.SingleSelectionModel;

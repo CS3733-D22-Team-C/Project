@@ -1,9 +1,9 @@
 package edu.wpi.cs3733.D22.teamC.error.error_record.login_user_input_validation;
 
-import edu.wpi.cs3733.D22.teamC.error.error_item.user_input_validation_error_item.login_user_input_validation_error_item.LoginUserInputValidationErrorItem;
+import edu.wpi.cs3733.D22.teamC.error.error_item.user_input.login.LoginErrorItem;
 
 public class LoginUserInputValidationErrorRecord {
-    public static final LoginUserInputValidationErrorItem[] loginUserInputValidationErrorList = {
-            new LoginUserInputValidationErrorItem(16, "Invalid username or password")
+    public static final LoginErrorItem[] loginUserInputValidationErrorList = {
+            new LoginErrorItem(16, "Invalid username or password")
     };
 }
