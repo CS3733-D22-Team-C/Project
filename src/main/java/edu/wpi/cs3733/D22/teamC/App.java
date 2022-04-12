@@ -67,6 +67,8 @@ public class App extends Application {
 
     @Override
     public void init() {
+        SessionManager.switchDatabase(SessionManager.DBMode.EMBEDDED);
+        
         // Load CSV Data - Floor
         {
             FloorCSVReader csvReader = new FloorCSVReader();
