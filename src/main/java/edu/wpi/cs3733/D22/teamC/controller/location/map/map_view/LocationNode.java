@@ -86,6 +86,10 @@ public class LocationNode {
             group.toFront();
         }
 
+        public void renderInBack() {
+            group.toBack();
+        }
+
         public void remove(Pane pane) {
             group.getChildren().clear();
             pane.getChildren().remove(group);

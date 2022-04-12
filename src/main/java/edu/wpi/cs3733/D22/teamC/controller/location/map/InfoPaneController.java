@@ -40,7 +40,7 @@ public class InfoPaneController implements Initializable {
     @FXML private TextField buildingField;
     @FXML private TextField longNameField;
     @FXML private ComboBox<Floor> floorComboBox;
-    @FXML private ComboBox<String> nodeComboBox;
+    @FXML private ComboBox<Location.NodeType> nodeComboBox;
 
     // Medical Equipment - Table
     @FXML JFXTreeTableView medicalEquipmentTable;
@@ -58,6 +58,9 @@ public class InfoPaneController implements Initializable {
     // References
     private BaseMapViewController parentController;
 
+    // Variables
+    private boolean initialized = false;
+
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         // Initialize Tabs
@@ -74,7 +77,7 @@ public class InfoPaneController implements Initializable {
         // Initialize Medical Equipment Info
         medicalEquipmentTableDisplay = new MedicalEquipmentTableDisplay(medicalEquipmentTable);
 
-        nodeComboBox.getItems().setAll(Stream.of(Location.NodeType.values()).map(Enum::name).collect(Collectors.toList()));
+        nodeComboBox.getItems().setAll(Location.NodeType.values());
     }
 
     /**
@@ -138,17 +141,19 @@ public class InfoPaneController implements Initializable {
          * @param location The Location object which this info splitPane will display info of.
          */
         public void setLocation(Location location) {
-            if (location == null) return;
+            initialized = (location != null);
+
+            if (!initialized) return;
 
             // Location Info
             shortNameField.setText(location.getShortName());
             longNameField.setText(location.getLongName());
             buildingField.setText(location.getBuilding());
-            floorComboBox.setValue(parentController.getFloorByID(location.getFloor()));
-            nodeComboBox.setValue(location.getNodeType().toString());
+            ComponentWrapper.setValueSilently(floorComboBox, parentController.getFloorByID(location.getFloor()));
+            ComponentWrapper.setValueSilently(nodeComboBox, location.getNodeType());
 
             // Medical Equipment
-            serviceRequestTableDisplay.emptyTable();
+            medicalEquipmentTableDisplay.emptyTable();
             List<MedicalEquipment> medicalEquipments = parentController.medicalEquipmentManager.getPerLocation(location);
             medicalEquipments.forEach(medicalEquipmentTableDisplay::addObject);
 
@@ -166,7 +171,7 @@ public class InfoPaneController implements Initializable {
         private void updateLocation() {
             Location location = parentController.getCurrentLocation();
 
-            if (location == null) return;
+            if (!initialized) return;
 
             // Copy original for comparison
             Location original = new Location();
@@ -176,7 +181,7 @@ public class InfoPaneController implements Initializable {
             location.setLongName(longNameField.getText());
             location.setBuilding(buildingField.getText());
             location.setFloor(floorComboBox.getValue().getFloorID());
-            location.setNodeType(Location.NodeType.valueOf(nodeComboBox.getValue()));
+            location.setNodeType(nodeComboBox.getValue());
 
             if (!original.equals(location)) {
                 revertButton.setDisable(false);

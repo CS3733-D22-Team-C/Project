@@ -125,11 +125,19 @@ public class MapController implements Initializable {
                 parentController.changeCurrentLocation(locationNode.location, false);
                 locationNode.renderInFront();
             }
+            if (locationNode != activeLocation) {
+                locationNode.showMedicalEquipmentCounters(true, parentController.isEditMode);
+                locationNode.renderInFront();
+            }
         }
 
         protected void onMouseExitNode(MouseEvent event, LocationNode locationNode) {
             if (activeLocation == null) {
                 parentController.changeCurrentLocation(null, false);
+            }
+            if (activeLocation != locationNode) {
+                locationNode.showMedicalEquipmentCounters(false, parentController.isEditMode);
+                locationNode.renderInBack();
             }
         }
 
@@ -175,10 +183,11 @@ public class MapController implements Initializable {
         protected void onMouseScrollMap(ScrollEvent event) {
             if (event.getDeltaY() != 0) {
                 double scale = (event.getDeltaY() < 0)
-                        ? Math.max(mapPane.getScaleX() - 0.1, MIN_SCALE)
-                        : Math.min(mapPane.getScaleX() + 0.1, MAX_SCALE);
+                        ? Math.max(stackPane.getScaleX() - 0.1, MIN_SCALE)
+                        : Math.min(stackPane.getScaleX() + 0.1, MAX_SCALE);
                 stackPane.setScaleX(scale);
                 stackPane.setScaleY(scale);
+                System.out.println(scale);
 
                 event.consume();
             }
