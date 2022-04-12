@@ -2,6 +2,9 @@ package edu.wpi.cs3733.D22.teamC.fileio.csv;
 
 import edu.wpi.cs3733.D22.teamC.entity.floor.Floor;
 
+import java.nio.charset.StandardCharsets;
+import java.util.Arrays;
+
 public class FloorCSVWriter extends CSVWriter<Floor> {
     /**
      * Manually define headers of attributes output to CSV.
@@ -42,6 +45,9 @@ public class FloorCSVWriter extends CSVWriter<Floor> {
                 break;
             case "imageSrc":
                 output = object.getImageSrc();
+                break;
+            case "image":
+                output = Arrays.toString(object.getImage());
                 break;
             default:
                 break;

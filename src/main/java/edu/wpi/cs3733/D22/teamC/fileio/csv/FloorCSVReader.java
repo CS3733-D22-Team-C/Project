@@ -2,6 +2,14 @@ package edu.wpi.cs3733.D22.teamC.fileio.csv;
 
 import edu.wpi.cs3733.D22.teamC.entity.floor.Floor;
 
+import javax.imageio.ImageIO;
+import java.awt.image.BufferedImage;
+import java.io.ByteArrayOutputStream;
+import java.io.File;
+import java.io.IOException;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+
 public class FloorCSVReader extends CSVReader<Floor> {
 
     /**
@@ -28,6 +36,19 @@ public class FloorCSVReader extends CSVReader<Floor> {
                 break;
             case "imageSrc":
                 object.setImageSrc(value);
+
+                try {
+                    Path filePath = Paths.get("maps/" + object.getImageSrc());
+                    //Image image = new Image("file:" + filePath);
+                    File imgPath = new File(filePath.toString());
+                    BufferedImage bImg = ImageIO.read(imgPath);
+                    ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
+                    ImageIO.write(bImg, "png", byteArrayOutputStream);
+                    object.setImage(byteArrayOutputStream.toByteArray());
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+
                 break;
             default:
                 break;

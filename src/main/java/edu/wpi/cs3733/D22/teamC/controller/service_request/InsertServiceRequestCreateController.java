@@ -23,6 +23,7 @@ public interface InsertServiceRequestCreateController<T extends ServiceRequest> 
      * @return Service Request DAO of type T.
      */
     DAO<T> createServiceRequestDAO();
+    T createNewServiceRequest();
 
     /**
      * Setup Service Request Table Display of insert form.

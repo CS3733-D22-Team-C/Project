@@ -3,7 +3,6 @@ package edu.wpi.cs3733.D22.teamC.entity.service_request.facility_maintenance;
 import edu.wpi.cs3733.D22.teamC.entity.service_request.ServiceRequest;
 
 import javax.persistence.*;
-import java.util.Objects;
 
 @Entity
 @Table(name = "FACILITY_MAINTENANCE_SR")
@@ -17,6 +16,14 @@ public class FacilityMaintenanceSR extends ServiceRequest {
         Cleaning,
         Organizing
     }
+    
+    public FacilityMaintenanceSR() {
+        super();
+    }
+    
+    public FacilityMaintenanceSR(ServiceRequest serviceRequest) {
+        super(serviceRequest);
+    } 
 
     public MaintenanceType getMaintenanceType() {
         return maintenanceType;
