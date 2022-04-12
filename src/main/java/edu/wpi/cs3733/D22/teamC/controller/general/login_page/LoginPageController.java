@@ -29,8 +29,8 @@ public class LoginPageController implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        setTextLengthLimiter(username, 5);
-        setTextLengthLimiter(password, 5);
+        setTextLengthLimiter(username, 20);
+        setTextLengthLimiter(password, 20);
         invalidLogin.setVisible(false);
     }
 
