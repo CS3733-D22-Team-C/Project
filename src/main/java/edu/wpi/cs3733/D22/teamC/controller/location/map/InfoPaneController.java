@@ -153,15 +153,19 @@ public class InfoPaneController implements Initializable {
             ComponentWrapper.setValueSilently(nodeComboBox, location.getNodeType());
 
             // Medical Equipment
-            medicalEquipmentTableDisplay.emptyTable();
-            List<MedicalEquipment> medicalEquipments = parentController.medicalEquipmentManager.getPerLocation(location);
-            medicalEquipments.forEach(medicalEquipmentTableDisplay::addObject);
+            resetMedicalEquipment(location);
 
             // Service Requests
             serviceRequestTableDisplay.emptyTable();
             new ServiceRequestDAO().getAllSRByLocation(location.getNodeID()).forEach(serviceRequestTableDisplay::addObject);
 
             revertButton.setDisable(location.equals(new LocationDAO().getByID(location.getNodeID())));
+        }
+
+        public void resetMedicalEquipment(Location location) {
+            medicalEquipmentTableDisplay.emptyTable();
+            List<MedicalEquipment> medicalEquipments = parentController.medicalEquipmentManager.getPerLocation(location);
+            medicalEquipments.forEach(medicalEquipmentTableDisplay::addObject);
         }
 
         /**

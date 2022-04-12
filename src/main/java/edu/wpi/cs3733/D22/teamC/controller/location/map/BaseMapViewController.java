@@ -37,7 +37,7 @@ public class BaseMapViewController implements Initializable {
     // Controllers
     MapController mapController;
     public MedicalEquipmentManager medicalEquipmentManager;
-    InfoPaneController infoPaneController;
+    public InfoPaneController infoPaneController;
     MapControlsController mapControlsController;
     
     // Variables

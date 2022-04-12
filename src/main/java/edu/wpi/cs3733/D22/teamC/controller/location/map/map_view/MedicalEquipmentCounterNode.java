@@ -38,6 +38,7 @@ public class MedicalEquipmentCounterNode {
         this.locationNode = locationNode;
         this.medicalEquipments = locationNode.mapController.parentController.medicalEquipmentManager.getPerLocationPerType(locationNode.location, equipmentType);
         resetCounter();
+        resetDisabled();
     }
 
     //#region State Update
@@ -58,7 +59,7 @@ public class MedicalEquipmentCounterNode {
             setDecreaseDisabled(medicalEquipments.size() == 0);
         }
 
-        private void resetCounter() {
+        public void resetCounter() {
             counter.setText(Integer.toString(medicalEquipments.size()));
         }
     //#endregion
@@ -69,20 +70,26 @@ public class MedicalEquipmentCounterNode {
             MedicalEquipment medicalEquipment = medicalEquipments.get(0);
             medicalEquipments.remove(0);
             locationNode.mapController.parentController.medicalEquipmentManager.releaseMedicalEquipment(medicalEquipment);
+            locationNode.mapController.parentController.infoPaneController.resetMedicalEquipment(locationNode.location);
             resetCounter();
             resetDisabled();
 
             setDecreaseDisabled(medicalEquipments.size() == 0);
+
+            locationNode.mapController.parentController.setSaveStatus();
 
             event.consume();
         }
 
         @FXML
         void onUpArrowClicked(MouseEvent event) {
-            MedicalEquipment medicalEquipment = locationNode.mapController.parentController.medicalEquipmentManager.reclaimMedicalEquipment(equipmentType);
+            MedicalEquipment medicalEquipment = locationNode.mapController.parentController.medicalEquipmentManager.reclaimMedicalEquipment(equipmentType, locationNode.location);
+            locationNode.mapController.parentController.infoPaneController.resetMedicalEquipment(locationNode.location);
             medicalEquipments.add(medicalEquipment);
             resetCounter();
             resetDisabled();
+
+            locationNode.mapController.parentController.setSaveStatus();
 
             event.consume();
         }
@@ -99,6 +106,7 @@ public class MedicalEquipmentCounterNode {
         }
 
         public void setEditable(boolean editable) {
+            editMode = editable;
             editGroup.setVisible(editable);
             if (editMode) resetDisabled();
         }
@@ -106,6 +114,10 @@ public class MedicalEquipmentCounterNode {
         public void setMedicalEquipments(List<MedicalEquipment> medicalEquipments) {
             this.medicalEquipments = medicalEquipments;
             this.resetCounter();
+        }
+
+        public List<MedicalEquipment> getMedicalEquipments() {
+            return medicalEquipments;
         }
 
         public void setIncreaseDisabled(boolean increaseDisabled) {

@@ -109,6 +109,8 @@ public class LocationNode {
             node.setCenterY(0);
 
             setPosition(x, y);
+
+            mapController.parentController.setSaveStatus();
         }
 
         public void setPosition(int x, int y) {
