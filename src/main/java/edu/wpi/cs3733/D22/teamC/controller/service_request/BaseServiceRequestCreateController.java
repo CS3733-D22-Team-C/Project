@@ -83,7 +83,7 @@ public class BaseServiceRequestCreateController<T extends ServiceRequest> {
 
     public void setup(ServiceRequest.RequestType requestType) {
         this.requestType = requestType;
-
+        assigneeID.setText("hello");
         switch (requestType)
         {
             case Medical_Equipment:
@@ -116,7 +116,7 @@ public class BaseServiceRequestCreateController<T extends ServiceRequest> {
         }
 
         // Restrict ID TextFields to only contain numeric values
-        setIDFieldToNumeric(assigneeID);
+        //setIDFieldToNumeric(assigneeID);
         setIDFieldToNumeric(locationField);
 
         // Limit the length of TextFields and TextAreas so that users can input a limited number of characters:
@@ -172,7 +172,9 @@ public class BaseServiceRequestCreateController<T extends ServiceRequest> {
 
     public void setEmployee(Employee employee){
         serviceRequest.setAssignee(employee);
-        System.out.println(serviceRequest.getAssignee().getFirstName());
+        String employeeName = employee.getLastName() + ", " + employee.getFirstName();
+        assigneeID.setText(employeeName);
+        System.out.println(employeeName);
     }
 
 
@@ -212,7 +214,7 @@ public class BaseServiceRequestCreateController<T extends ServiceRequest> {
         employeeViewController = view.getController();
         VBox root = (VBox) view.getNode();
 
-        employeeViewController.setup(this);
+
 
         Scene scene = new Scene(root);
         Stage primaryStage= new Stage();
@@ -222,6 +224,7 @@ public class BaseServiceRequestCreateController<T extends ServiceRequest> {
         primaryStage.initModality(Modality.WINDOW_MODAL);
         primaryStage.initOwner(employeeTableButton.getScene().getWindow());
         primaryStage.show();
+        employeeViewController.setup(this, primaryStage);
     }
 
     //#region FXML Buttons

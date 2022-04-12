@@ -17,6 +17,7 @@ import edu.wpi.cs3733.D22.teamC.entity.employee.EmployeeDAO;
 import edu.wpi.cs3733.D22.teamC.models.employee.EmployeeTableDisplay;
 import javafx.scene.control.TreeTableRow;
 import javafx.scene.input.MouseButton;
+import javafx.stage.Stage;
 
 import java.net.URL;
 import java.util.List;
@@ -30,6 +31,7 @@ public class EmployeeViewController implements Initializable {
     private EmployeeTableDisplay tableDisplay;
     private BaseServiceRequestCreateController parentController;
     private Employee activeEmployee;
+    private Stage primaryStage;
 
     @FXML
     private Label title;
@@ -53,13 +55,16 @@ public class EmployeeViewController implements Initializable {
 
     }
 
-    public void setup(BaseServiceRequestCreateController parentController){
+    public void setup(BaseServiceRequestCreateController parentController, Stage primaryStage){
         this.parentController = parentController;
+        this.primaryStage = primaryStage;
         setRowInteraction();
     }
 
     @FXML
     void onSelect(ActionEvent event) {
+        parentController.setEmployee(activeEmployee);
+        primaryStage.close();
 
     }
 
@@ -70,12 +75,11 @@ public class EmployeeViewController implements Initializable {
             row.setOnMouseClicked(event -> {
                 if (!row.isEmpty() && event.getButton() == MouseButton.PRIMARY) {
                     activeEmployee = (Employee) row.getItem().object;
-                    System.out.println(activeEmployee.getFirstName());
 
                     if (event.getClickCount() == 2) {
                         // Double Click shortcut back to base page
                         parentController.setEmployee(activeEmployee);
-                        App.instance.getStage().close();
+                        primaryStage.close();
                     }
                 }
             });
