@@ -3,11 +3,14 @@ package edu.wpi.cs3733.D22.teamC.controller.table;
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXComboBox;
 import com.jfoenix.controls.JFXTreeTableView;
+import edu.wpi.cs3733.D22.teamC.entity.floor.Floor;
+import edu.wpi.cs3733.D22.teamC.entity.floor.FloorDAO;
 import edu.wpi.cs3733.D22.teamC.entity.location.Location;
 import edu.wpi.cs3733.D22.teamC.entity.location.LocationDAO;
 import edu.wpi.cs3733.D22.teamC.entity.service_request.medical_equipment.MedicalEquipmentSR;
 import edu.wpi.cs3733.D22.teamC.models.generic.TableDisplay;
 import edu.wpi.cs3733.D22.teamC.models.location.LocationTableDisplay;
+import edu.wpi.cs3733.D22.teamC.models.utils.ComponentWrapper;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -26,7 +29,7 @@ public class LocationInsertTableViewController extends  InsertTableViewControlle
     @FXML private TextField field2;
     @FXML private JFXComboBox<String> field4;
     @FXML private TextField field5;
-    @FXML private TextField field6;
+    @FXML private JFXComboBox<Floor> floorBox;
     @FXML private TextField field7;
     @FXML private TextField field8;
 
@@ -56,6 +59,11 @@ public class LocationInsertTableViewController extends  InsertTableViewControlle
             field4.getItems().add(nodeType.toString());
         }
 
+        ComponentWrapper.InitializeComboBox(floorBox, Floor::getShortName);
+
+        floorBox.getItems().setAll(new FloorDAO().getAll());
+//        floorBox.setValue(null);
+
         fieldsEditable(false);
     }
 
@@ -69,15 +77,15 @@ public class LocationInsertTableViewController extends  InsertTableViewControlle
     {
         super.getRowInfo(location);
         title.setText("Edit Location");
-        setFields(location.getLongName(), location.getShortName(), location.getNodeType().toString(), location.getBuilding(), location.getFloor(), Integer.toString(location.getX()), Integer.toString(location.getY()));
+        setFields(location.getLongName(), location.getShortName(), location.getNodeType().toString(), location.getBuilding(), new FloorDAO().getByID(location.getFloor()), Integer.toString(location.getX()), Integer.toString(location.getY()));
     }
 
-    public void setFields(String r1,String r2, String r4, String r5,String r6, String r7, String r8) {
+    public void setFields(String r1,String r2, String r4, String r5,Floor r6, String r7, String r8) {
         field1.setText(r1);
         field2.setText(r2);
         field4.setValue(r4);
         field5.setText(r5);
-        field6.setText(r6);
+        floorBox.setValue(r6);
         field7.setText(r7);
         field8.setText(r8);
     }
@@ -89,7 +97,7 @@ public class LocationInsertTableViewController extends  InsertTableViewControlle
         field2.setText("");
         field4.setValue(null);
         field5.setText("");
-        field6.setText("");
+//        floorBox.setValue(null);
         field7.setText("");
         field8.setText("");
         title.setText("");
@@ -104,7 +112,7 @@ public class LocationInsertTableViewController extends  InsertTableViewControlle
             currentRow.setShortName(field2.getText());
             currentRow.setNodeType(Location.NodeType.valueOf(field4.getValue()));
             currentRow.setBuilding(field5.getText());
-            currentRow.setFloor(field6.getText());
+            currentRow.setFloor(floorBox.getValue().getFloorID());
             currentRow.setX(Integer.valueOf(field7.getText()));
             currentRow.setY(Integer.valueOf(field8.getText()));
 
@@ -124,7 +132,7 @@ public class LocationInsertTableViewController extends  InsertTableViewControlle
             newLocal.setShortName(field2.getText());
             newLocal.setNodeType(Location.NodeType.valueOf(field4.getValue()));
             newLocal.setBuilding(field5.getText());
-            newLocal.setFloor(field6.getText());
+            newLocal.setFloor(floorBox.getValue().getFloorID());
             newLocal.setX(Integer.valueOf(field7.getText()));
             newLocal.setY(Integer.valueOf(field8.getText()));
 
@@ -149,7 +157,7 @@ public class LocationInsertTableViewController extends  InsertTableViewControlle
 
     public boolean fieldsNotFilled(){
         return field1.getText().equals("") || field2.getText().equals("") || field4.getValue() == null
-                || field5.getText().equals("") || field6.getText().equals("") ||
+                || field5.getText().equals("") || floorBox.getValue() == null ||
                 field7.getText().equals("") || field8.getText().equals("");
     }
 
@@ -165,7 +173,7 @@ public class LocationInsertTableViewController extends  InsertTableViewControlle
         field4.setEditable(edit);
         field4.setDisable(!edit);
         field5.setEditable(edit);
-        field6.setEditable(edit);
+        floorBox.setEditable(edit);
         field7.setEditable(edit);
         field8.setEditable(edit);
     }
