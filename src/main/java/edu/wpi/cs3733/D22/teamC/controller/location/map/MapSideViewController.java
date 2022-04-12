@@ -17,13 +17,6 @@ import java.util.ResourceBundle;
 public class MapSideViewController {
 
     // Floor Buttons
-    @FXML private MFXButton floor1;
-    @FXML private MFXButton floor2;
-    @FXML private MFXButton floor3;
-    @FXML private MFXButton floor4;
-    @FXML private MFXButton floor5;
-    @FXML private MFXButton floorLL1;
-    @FXML private MFXButton floorLL2;
     private String selectedFloor;
 
     @Override // TODO: Get rid of initialize and move functionality into helper function or at beginning of each floor button
