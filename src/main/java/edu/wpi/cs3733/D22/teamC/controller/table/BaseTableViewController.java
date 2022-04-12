@@ -2,6 +2,7 @@ package edu.wpi.cs3733.D22.teamC.controller.table;
 
 import com.jfoenix.controls.JFXTreeTableView;
 import edu.wpi.cs3733.D22.teamC.App;
+import edu.wpi.cs3733.D22.teamC.controller.SkeletonController;
 import edu.wpi.cs3733.D22.teamC.models.generic.TableDisplay;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -14,7 +15,7 @@ import java.net.URL;
 import java.util.List;
 import java.util.ResourceBundle;
 
-public class BaseTableViewController<T extends Object> implements Initializable {
+public class BaseTableViewController<T extends Object> implements Initializable, SkeletonController {
 
     @FXML private VBox insertBox;
     InsertTableViewController insertController;

@@ -1,5 +1,6 @@
 package edu.wpi.cs3733.D22.teamC;
 
+import edu.wpi.cs3733.D22.teamC.controller.SkeletonController;
 import edu.wpi.cs3733.D22.teamC.entity.floor.Floor;
 import edu.wpi.cs3733.D22.teamC.entity.floor.FloorDAO;
 import edu.wpi.cs3733.D22.teamC.entity.location.Location;
@@ -49,7 +50,6 @@ public class App extends Application {
     public static final String DRAWER_CONTENT_PATH = "view/component/drawer_content.fxml";
 
     public static final String LOGIN_PATH = "view/general/login.fxml";
-    public static final String VIEW_LOCATIONS_PATH = "view/location/view_locations.fxml";
     public static final String VIEW_SERVICE_REQUESTS_PATH = "view/service_request/view_service_requests.fxml";
     public static final String MAP_PATH = "view/location/map/base_map_view.fxml";
 
@@ -111,7 +111,7 @@ public class App extends Application {
         // Store window as stage
         stage = primaryStage;
         stage.setFullScreen(true);
-        setView(LOGIN_PATH);
+        setSkeletonView("view/table/base_view.fxml", "view/table/locations/table_insert.fxml");
     }
 
     @Override
@@ -149,6 +149,20 @@ public class App extends Application {
         log.info("Shutting Down");
     }
 
+
+    /**
+     * Set a skeleton file for a view.
+     * @param skeletonFile The path to the skeleton view.
+     * @param insertFile The path to the insert view.
+     */
+    @SuppressWarnings("unchecked")
+    public void setSkeletonView(String skeletonFile, String insertFile) {
+        View view = loadView(skeletonFile);
+        SkeletonController skeletonController = (SkeletonController) view.getController();
+        skeletonController.setUp(insertFile);
+        setView(view.getNode());
+    }
+
     /**
      * Set view for window from a file.
      * @param viewFile Path to the FXML file to be displayed.
@@ -184,6 +198,7 @@ public class App extends Application {
         stage.setScene(scene);
         stage.show();
     }
+
     /**
      * Load a view from a file.
      * @param viewFile Path to the FXML file to be loaded.
