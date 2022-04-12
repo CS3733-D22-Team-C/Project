@@ -7,6 +7,8 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Group;
 import javafx.scene.control.Label;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.HBox;
+import javafx.scene.layout.Pane;
 import javafx.scene.shape.SVGPath;
 import javafx.util.Pair;
 
@@ -15,7 +17,7 @@ import java.util.List;
 
 public class MedicalEquipmentCounterNode {
     // General Components
-    @FXML private Group group;
+    @FXML public Group group;
     @FXML private SVGPath icon;
     @FXML private Label counter;
 
@@ -39,6 +41,12 @@ public class MedicalEquipmentCounterNode {
 
     //#region State Update
         public void render(Group pane, Pair<Integer, Integer> offsets) {
+            pane.getChildren().add(group);
+            group.setLayoutX(offsets.getKey());
+            group.setLayoutY(offsets.getValue());
+        }
+
+        public void render(Pane pane, Pair<Integer, Integer> offsets) {
             pane.getChildren().add(group);
             group.setLayoutX(offsets.getKey());
             group.setLayoutY(offsets.getValue());
@@ -73,6 +81,10 @@ public class MedicalEquipmentCounterNode {
     //#endregion
 
     //#region External Interaction
+        public Group getGroup() {
+            return group;
+        }
+
         public void setVisible(boolean visible) {
             group.setVisible(visible);
         }

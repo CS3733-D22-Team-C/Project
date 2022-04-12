@@ -11,6 +11,8 @@ import edu.wpi.cs3733.D22.teamC.entity.location.Location;
 import edu.wpi.cs3733.D22.teamC.entity.location.LocationDAO;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.Group;
+import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.SVGPath;
@@ -199,6 +201,8 @@ public class BaseMapViewController implements Initializable {
             locationDAO.deleteAllFromTable();
 
             locations.forEach(locationDAO::insert);
+
+            medicalEquipmentManager.saveChanges();
         }
 
         /**
@@ -208,6 +212,8 @@ public class BaseMapViewController implements Initializable {
             LocationDAO locationDAO = new LocationDAO();
 
             locations = locationDAO.getAll();
+
+            medicalEquipmentManager.clearChanges();
         }
     //#endregion
 
@@ -241,6 +247,9 @@ public class BaseMapViewController implements Initializable {
             mapController = (EditMapController) mapPane.getController();
             mapController.setParentController(this);
 
+            // (Edit) Medical Equipment Manager
+            medicalEquipmentManager.setEditMode(true);
+
             renderCurrentFloor();
         }
 
@@ -272,6 +281,9 @@ public class BaseMapViewController implements Initializable {
             mapViewPane.getChildren().add(mapPane.getNode());
             mapController = (MapController) mapPane.getController();
             mapController.setParentController(this);
+
+            // (View) Medical Equipment Manager
+            medicalEquipmentManager.setEditMode(false);
 
             renderCurrentFloor();
         }

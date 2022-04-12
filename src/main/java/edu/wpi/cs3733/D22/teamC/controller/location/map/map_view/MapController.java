@@ -13,6 +13,7 @@ import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseButton;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.input.ScrollEvent;
+import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.StackPane;
 import javafx.scene.paint.Color;
@@ -36,6 +37,8 @@ public class MapController implements Initializable {
     @FXML ImageView mapImage;
     @FXML Pane mapPane;
     @FXML StackPane stackPane;
+    @FXML public HBox rightOverlay;
+    @FXML public HBox leftOverlay;
 
     // Variables
     public List<LocationNode> locationNodes = new ArrayList<>();
