@@ -10,22 +10,24 @@
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.ColumnConstraints?>
 <?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
 <GridPane fx:id="root" alignment="CENTER" prefHeight="650.0" prefWidth="900.0" style="-fx-background-color: FFFFFF;" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.wpi.cs3733.D22.teamC.controller.service_request.ServiceRequestLandingPage">
-  <columnConstraints>
-    <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+   <columnConstraints>
       <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
       <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
       <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-    <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-  </columnConstraints>
-  <rowConstraints>
-    <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-    <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-  </rowConstraints>
+      <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+      <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+   </columnConstraints>
+   <rowConstraints>
+      <RowConstraints maxHeight="345.79998779296875" minHeight="10.0" prefHeight="329.0" vgrow="SOMETIMES" />
+      <RowConstraints maxHeight="434.79999999999995" minHeight="10.0" prefHeight="252.2" vgrow="SOMETIMES" />
+      <RowConstraints maxHeight="212.60001220703123" minHeight="0.0" prefHeight="67.80002441406248" vgrow="SOMETIMES" />
+   </rowConstraints>
    <children>
       <VBox alignment="BOTTOM_CENTER" prefHeight="312.0" prefWidth="192.0">
          <children>
@@ -69,7 +71,8 @@
             <Label prefHeight="57.0" prefWidth="99.0" styleClass="label-service-names" stylesheets="@../../css/service_request_landing_page.css" text="Medicine Delivery" textAlignment="CENTER">
                <padding>
                   <Insets bottom="3.0" />
-               </padding></Label>
+               </padding>
+            </Label>
             <JFXButton onAction="#clickMedicineDelivery" opacity="0.5" prefHeight="134.0" prefWidth="131.0" styleClass="button-requests" stylesheets="@../../css/service_request_landing_page.css">
                <effect>
                   <DropShadow height="3.51" offsetY="10.0" radius="0.37749999999999995" width="0.0" />
@@ -119,17 +122,17 @@
          </padding>
       </VBox>
       <GridPane prefHeight="372.0" prefWidth="360.0" GridPane.columnIndex="4">
-        <columnConstraints>
-          <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-        </columnConstraints>
-        <rowConstraints>
-          <RowConstraints maxHeight="413.6000183105469" minHeight="8.000010299682629" prefHeight="40.2666633605957" vgrow="SOMETIMES" />
-          <RowConstraints maxHeight="568.000001525879" minHeight="10.0" prefHeight="286.33333663940425" vgrow="SOMETIMES" />
-        </rowConstraints>
+         <columnConstraints>
+            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+         </columnConstraints>
+         <rowConstraints>
+            <RowConstraints maxHeight="413.6000183105469" minHeight="8.000010299682629" prefHeight="40.2666633605957" vgrow="SOMETIMES" />
+            <RowConstraints maxHeight="568.000001525879" minHeight="10.0" prefHeight="286.33333663940425" vgrow="SOMETIMES" />
+         </rowConstraints>
          <children>
             <VBox alignment="BOTTOM_CENTER" prefHeight="191.0" prefWidth="360.0" GridPane.rowIndex="1">
                <children>
-                  <Label alignment="CENTER" prefHeight="84.0" prefWidth="130.0" styleClass="label-service-names" stylesheets="@../../css/service_request_landing_page.css" text="Medical Equipment" textAlignment="CENTER" wrapText="true" />
+                  <Label alignment="CENTER" prefHeight="57.0" prefWidth="130.0" styleClass="label-service-names" stylesheets="@../../css/service_request_landing_page.css" text="Medical Equipment" textAlignment="CENTER" wrapText="true" />
                   <JFXButton onAction="#clickMedicalEquipment" opacity="0.5" prefHeight="134.0" prefWidth="131.0" styleClass="button-requests" stylesheets="@../../css/service_request_landing_page.css">
                      <effect>
                         <DropShadow height="3.51" offsetY="10.0" radius="0.37749999999999995" width="0.0" />
@@ -154,7 +157,7 @@
                   <Insets bottom="50.0" />
                </padding>
             </VBox>
-            <VBox alignment="TOP_RIGHT" prefHeight="29.0" prefWidth="180.0">
+            <VBox alignment="TOP_RIGHT" prefHeight="19.0" prefWidth="180.0">
                <children>
                   <JFXButton contentDisplay="RIGHT" graphicTextGap="0.0" onAction="#canViewNames" prefHeight="22.0" prefWidth="0.0" text=" ">
                      <font>
@@ -176,7 +179,7 @@
                   <Insets />
                </opaqueInsets>
                <padding>
-                  <Insets bottom="15.0" left="15.0" right="15.0" top="15.0" />
+                  <Insets left="15.0" right="15.0" top="15.0" />
                </padding>
             </VBox>
          </children>
@@ -202,7 +205,7 @@
             <Label fx:id="jack" styleClass="label-our-names" stylesheets="@../../css/service_request_landing_page.css" text="Jack Muirhead" />
          </children>
          <padding>
-            <Insets bottom="90.0" />
+            <Insets bottom="40.0" />
          </padding>
       </VBox>
       <VBox alignment="BOTTOM_CENTER" GridPane.columnIndex="1" GridPane.rowIndex="1">
@@ -219,7 +222,7 @@
             <Label fx:id="grace" styleClass="label-our-names" stylesheets="@../../css/service_request_landing_page.css" text="Grace O'Reilly" />
          </children>
          <padding>
-            <Insets bottom="90.0" />
+            <Insets bottom="40.0" />
          </padding>
       </VBox>
       <VBox alignment="BOTTOM_CENTER" GridPane.columnIndex="2" GridPane.rowIndex="1">
@@ -243,7 +246,7 @@
             <Label fx:id="nelson" styleClass="label-our-names" stylesheets="@../../css/service_request_landing_page.css" text="Nelson Pires" />
          </children>
          <padding>
-            <Insets bottom="90.0" />
+            <Insets bottom="40.0" />
          </padding>
       </VBox>
       <VBox alignment="BOTTOM_CENTER" GridPane.columnIndex="3" GridPane.rowIndex="1">
@@ -263,7 +266,7 @@
             <Label fx:id="brian" styleClass="label-our-names" stylesheets="@../../css/service_request_landing_page.css" text="Brian Shin" />
          </children>
          <padding>
-            <Insets bottom="90.0" />
+            <Insets bottom="40.0" />
          </padding>
       </VBox>
       <VBox alignment="BOTTOM_CENTER" prefHeight="174.0" prefWidth="192.0" GridPane.columnIndex="4" GridPane.rowIndex="1">
@@ -287,8 +290,16 @@
             <Label fx:id="brandon" styleClass="label-our-names" stylesheets="@../../css/service_request_landing_page.css" text="Brandon Vuong" />
          </children>
          <padding>
-            <Insets bottom="90.0" />
+            <Insets bottom="40.0" />
          </padding>
       </VBox>
+      <HBox alignment="CENTER" maxHeight="-Infinity" prefHeight="66.0" prefWidth="180.0" GridPane.rowIndex="2" GridPane.vgrow="NEVER">
+         <children>
+            <JFXButton onAction="#clickBackToTable" prefWidth="131.0" styleClass="button-back" stylesheets="@../../css/base.css" text="Back to Table">
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor></JFXButton>
+         </children>
+      </HBox>
    </children>
 </GridPane>
