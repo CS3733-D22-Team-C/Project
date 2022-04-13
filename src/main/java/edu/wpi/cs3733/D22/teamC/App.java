@@ -146,7 +146,6 @@ public class App extends Application {
         stage.setFullScreen(true);
 
         setViewStatic(LOGIN_PATH);
-
         // TODO: Hook up via sidebar
     }
 
