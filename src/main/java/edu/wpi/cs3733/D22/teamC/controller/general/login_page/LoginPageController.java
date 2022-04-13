@@ -41,19 +41,28 @@ public class LoginPageController implements Initializable {
         setTextLengthLimiter(username, 20);
         setTextLengthLimiter(password, 20);
         invalidLogin.setVisible(false);
-        toggleButton.setText("Switch to Server");
 
+        setInitialSelection();
         toggleButton.setOnAction(e -> checkSelection());
     }
 
-    public void checkSelection()
-    {
-        if(toggleButton.isSelected()) {
+    public void setInitialSelection() {
+        if (SessionManager.getServerDatabase() == SessionManager.DBMode.SERVER) {
+            toggleButton.setSelected(true);
+            toggleButton.setText("Switch to Embedded");
+        } else {
+            toggleButton.setSelected(false);
             toggleButton.setText("Switch to Server");
+        }
+    }
+
+    public void checkSelection() {
+        if (toggleButton.isSelected()) {
+            toggleButton.setText("Switch to Embedded");
             SessionManager.switchDatabase(SessionManager.DBMode.SERVER);
         } else {
-          toggleButton.setText("Switch to Embedded");
-          SessionManager.switchDatabase(SessionManager.DBMode.EMBEDDED);
+            toggleButton.setText("Switch to Server");
+            SessionManager.switchDatabase(SessionManager.DBMode.EMBEDDED);
         }
     }
 
@@ -100,18 +109,5 @@ public class LoginPageController implements Initializable {
                 }
             }
         });
-    }
-
-    public void switchLabelText(boolean isSelected) {
-       if(isSelected && (toggleButton.getText().equals("Switch to Server")))
-       {
-           SessionManager.switchDatabase(SessionManager.DBMode.EMBEDDED);
-           toggleButton.setText("Switch to Embedded");
-       }
-       else if(isSelected && (toggleButton.getText().equals("Switch to Embedded")))
-       {
-           SessionManager.switchDatabase(SessionManager.DBMode.SERVER);
-           toggleButton.setText("Switch to Server");
-       }
     }
 }

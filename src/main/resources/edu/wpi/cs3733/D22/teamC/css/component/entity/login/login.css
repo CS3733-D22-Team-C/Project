@@ -87,3 +87,6 @@
     -fx-background-position: left center;
 }
 
+.toggle-button {
+    -fx-cursor: hand;
+}
