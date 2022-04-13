@@ -36,16 +36,23 @@ public class LoginPageController implements Initializable {
     @FXML
     private MFXToggleButton toggleButton;
 
+    private static boolean loggedIn = false;
+
     @Override
-    public void initialize(URL location, ResourceBundle resources) {
+    public void initialize(URL location, ResourceBundle resources) { //Initialize functions for the entirety of the controller's life
         setTextLengthLimiter(username, 20);
         setTextLengthLimiter(password, 20);
         invalidLogin.setVisible(false);
-        toggleButton.setText("Switch to server");
-        toggleButton.setOnAction(e -> switchLabelText(toggleButton.isSelected()));
+        toggleButton.setText("Switch to Server");
+
+        if(toggleButton.isSelected()) { //isSelected() constantly checks if the toggle button has been selected, much more efficient and error-proof than checking the state of its text
+            toggleButton.setOnAction(e -> toggleButton.setText("Switch to Embedded"));
+            SessionManager.switchDatabase(SessionManager.DBMode.EMBEDDED);
+        } else {
+            toggleButton.setOnAction(e -> toggleButton.setText("Switch to Server"));
+            SessionManager.switchDatabase(SessionManager.DBMode.SERVER);
+        }
     }
-
-
 
     @FXML
     public void loginButtonClicked(ActionEvent event) {
@@ -63,6 +70,7 @@ public class LoginPageController implements Initializable {
         else
         {
             App.instance.setUserAccount(eDAO.getEmployeeByUsername(username.getText()));
+            loggedIn = true;
             App.instance.setView(App.VIEW_SERVICE_REQUESTS_PATH);
         }
     }
@@ -90,18 +98,5 @@ public class LoginPageController implements Initializable {
                 }
             }
         });
-    }
-
-    public void switchLabelText(boolean isSelected) {
-       if(isSelected && (toggleButton.getText().equals("Switch to Server")))
-       {
-           SessionManager.switchDatabase(SessionManager.DBMode.EMBEDDED);
-           toggleButton.setText("Switch to Embedded");
-       }
-       else if(isSelected && (toggleButton.getText().equals("Switch to Embedded")))
-       {
-           SessionManager.switchDatabase(SessionManager.DBMode.SERVER);
-           toggleButton.setText("Switch to Server");
-       }
     }
 }
