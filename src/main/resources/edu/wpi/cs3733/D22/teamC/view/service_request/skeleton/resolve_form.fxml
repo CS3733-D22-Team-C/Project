@@ -18,27 +18,27 @@
       <ColumnConstraints hgrow="ALWAYS" maxWidth="1.7976931348623157E308" minWidth="10.0" prefWidth="272.79998779296875" />
    </columnConstraints>
    <rowConstraints>
-      <RowConstraints maxHeight="99.20000839233398" minHeight="5.599998474121094" prefHeight="48.399987792968744" vgrow="NEVER" />
-      <RowConstraints maxHeight="185.60000228881836" minHeight="0.0" prefHeight="105.40001220703127" vgrow="SOMETIMES" />
-      <RowConstraints maxHeight="377.6" minHeight="10.0" prefHeight="127.80000610351561" vgrow="SOMETIMES" />
+      <RowConstraints maxHeight="144.8000030517578" minHeight="5.599998474121094" prefHeight="70.59999389648436" vgrow="NEVER" />
+      <RowConstraints maxHeight="185.60000228881836" minHeight="0.0" prefHeight="164.8000061035156" vgrow="SOMETIMES" />
+      <RowConstraints maxHeight="377.6" minHeight="10.0" prefHeight="105.99999999999997" vgrow="SOMETIMES" />
       <RowConstraints maxHeight="260.0000183105468" minHeight="10.0" prefHeight="190.4000183105469" vgrow="SOMETIMES" />
       <RowConstraints maxHeight="226.40000000000003" minHeight="0.0" prefHeight="133.59999389648442" vgrow="SOMETIMES" />
    </rowConstraints>
    <children>
       <VBox GridPane.hgrow="ALWAYS" GridPane.vgrow="ALWAYS">
          <children>
-            <Label fx:id="title" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="46.0" prefWidth="565.0" styleClass="page-title" text="Resolve Service Request " />
+            <Label fx:id="title" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="71.0" prefWidth="590.0" styleClass="page-title" text="Resolve Service Request " />
          </children>
       </VBox>
       <VBox prefHeight="148.0" prefWidth="478.0" GridPane.rowIndex="1">
          <children>
             <HBox prefHeight="6.0" prefWidth="520.0">
                <children>
-                  <Label prefHeight="14.0" prefWidth="200.0" styleClass="big-text" text="Service Request ID:  " />
-                  <Label fx:id="requestID" styleClass="big-text" text="00000000" />
+                  <Label prefHeight="27.0" prefWidth="167.0" styleClass="big-text" text="Service Request ID:  " />
+                  <Label fx:id="requestID" prefWidth="89.0" styleClass="big-text" text="00000000" />
                </children>
             </HBox>
-            <GridPane prefHeight="90.0" prefWidth="387.0" VBox.vgrow="ALWAYS">
+            <GridPane prefHeight="38.0" prefWidth="590.0" VBox.vgrow="ALWAYS">
                <columnConstraints>
                   <ColumnConstraints hgrow="SOMETIMES" maxWidth="1.7976931348623157E308" minWidth="6.99996719360351" prefWidth="166.1999755859375" />
                   <ColumnConstraints hgrow="SOMETIMES" maxWidth="1.7976931348623157E308" minWidth="10.0" prefWidth="287.8000244140625" />
@@ -48,13 +48,13 @@
                   <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="ALWAYS" />
                </rowConstraints>
                <children>
-                  <HBox prefHeight="100.0" prefWidth="200.0" spacing="6.0" GridPane.columnIndex="1">
+                  <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="6.0" GridPane.columnIndex="1">
                      <children>
                         <Label styleClass="service-field-label" text="Creation Time:" />
                         <Label fx:id="creationTime" maxWidth="1.7976931348623157E308" prefHeight="22.0" prefWidth="190.0" styleClass="service-field-label" text="00000000000000000000000" underline="true" HBox.hgrow="ALWAYS" />
                      </children>
                   </HBox>
-                  <HBox prefHeight="100.0" prefWidth="200.0" spacing="6.0">
+                  <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="6.0">
                      <children>
                         <Label styleClass="service-field-label" text="Created By:" />
                         <Label fx:id="createdBy" styleClass="service-field-label" text="00000000" underline="true" />
@@ -63,7 +63,7 @@
                         <Insets left="10.0" />
                      </GridPane.margin>
                   </HBox>
-                  <HBox prefHeight="100.0" prefWidth="200.0" spacing="6.0" GridPane.rowIndex="1">
+                  <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="6.0" GridPane.rowIndex="1">
                      <children>
                         <Label styleClass="service-field-label" text="Updated By:" />
                         <Label fx:id="updatedBy" styleClass="service-field-label" text="00000000" underline="true" />
@@ -72,7 +72,7 @@
                         <Insets left="10.0" />
                      </GridPane.margin>
                   </HBox>
-                  <HBox prefHeight="100.0" prefWidth="200.0" spacing="6.0" GridPane.columnIndex="1" GridPane.rowIndex="1">
+                  <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="6.0" GridPane.columnIndex="1" GridPane.rowIndex="1">
                      <children>
                         <Label styleClass="service-field-label" text="Last Updated:" />
                         <Label fx:id="lastUpdated" maxWidth="1.7976931348623157E308" prefHeight="22.0" prefWidth="191.0" styleClass="service-field-label" text="00000000000000000000000" underline="true" HBox.hgrow="ALWAYS" />
@@ -81,6 +81,9 @@
                </children>
             </GridPane>
          </children>
+         <padding>
+            <Insets left="10.0" top="10.0" />
+         </padding>
       </VBox>
       <VBox fx:id="fieldsBox" prefHeight="170.0" prefWidth="479.0" GridPane.rowIndex="2">
          <children>
