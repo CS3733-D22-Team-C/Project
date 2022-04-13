@@ -19,10 +19,7 @@ import edu.wpi.cs3733.D22.teamC.entity.service_request.sanitation.SanitationSR;
 import edu.wpi.cs3733.D22.teamC.entity.service_request.sanitation.SanitationSRDAO;
 import edu.wpi.cs3733.D22.teamC.entity.service_request.security.SecuritySR;
 import edu.wpi.cs3733.D22.teamC.entity.service_request.security.SecuritySRDAO;
-import edu.wpi.cs3733.D22.teamC.fileio.csv.LocationCSVReader;
-import edu.wpi.cs3733.D22.teamC.fileio.csv.LocationCSVWriter;
-import edu.wpi.cs3733.D22.teamC.fileio.csv.MedicalEquipmentCSVReader;
-import edu.wpi.cs3733.D22.teamC.fileio.csv.MedicalEquipmentSRCSVReader;
+import edu.wpi.cs3733.D22.teamC.fileio.csv.CSVFacade;
 import io.github.palexdev.materialfx.controls.MFXCheckbox;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -44,7 +41,6 @@ public class CSVComponent {
     @FXML private MFXCheckbox floorsImport;
     @FXML private MFXCheckbox locationsExport;
     @FXML private MFXCheckbox locationsImport;
-    @FXML private MFXCheckbox locationsImport1;
     @FXML private MFXCheckbox medicalEquipmentExport;
     @FXML private MFXCheckbox medicalEquipmentImport;
     @FXML private MFXCheckbox medicineDeliveryExport;
@@ -92,11 +88,13 @@ public class CSVComponent {
     @FXML
     void clickExportFiles(ActionEvent event) {
         entitiesChecked(true);
+        resetFields();
     }
 
     @FXML
     void clickImportFiles(ActionEvent event) {
         entitiesChecked(false);
+        resetFields();
 
     }
 
@@ -228,6 +226,30 @@ public class CSVComponent {
                 employees.forEach(employeeDAO::insert);
             }
         }
+    }
+
+    void resetFields(){
+        employeesExport.setSelected(false);
+        employeesImport.setSelected(false);
+        facilityMaintenanceExport.setSelected(false);
+        facilityMaintenanceImport.setSelected(false);
+        floorsExport.setSelected(false);
+        floorsImport.setSelected(false);
+        locationsExport.setSelected(false);
+        locationsImport.setSelected(false);
+        medicalEquipmentExport.setSelected(false);
+        medicalEquipmentImport.setSelected(false);
+        medicineDeliveryExport.setSelected(false);
+        medicineDeliveryImport.setSelected(false);
+        sanitationExport.setSelected(false);
+        sanitationImport.setSelected(false);
+        securityExport.setSelected(false);
+        securityImport.setSelected(false);
+        labSystemExport.setSelected(false);
+        labSystemImport.setSelected(false);
+
+        exportText.setText("");
+        importText.setText("");
     }
 
 

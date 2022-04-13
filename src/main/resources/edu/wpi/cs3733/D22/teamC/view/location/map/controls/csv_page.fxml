@@ -14,11 +14,11 @@
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.layout.VBox?>
 
-<TabPane minHeight="-Infinity" minWidth="-Infinity" prefHeight="483.0" prefWidth="455.0" stylesheets="@../../../../css/map/csv_page.css" tabClosingPolicy="UNAVAILABLE" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.wpi.cs3733.D22.teamC.controller.location.map.CSVComponent">
+<TabPane minHeight="-Infinity" minWidth="-Infinity" prefHeight="617.0" prefWidth="455.0" stylesheets="@../../../../css/map/csv_page.css" tabClosingPolicy="UNAVAILABLE" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.wpi.cs3733.D22.teamC.controller.location.map.CSVComponent">
   <tabs>
     <Tab text="Import">
          <content>
-            <VBox alignment="TOP_CENTER" prefHeight="476.0" prefWidth="483.0" spacing="10.0">
+            <VBox alignment="CENTER" prefHeight="476.0" prefWidth="483.0" spacing="10.0">
                <children>
                   <VBox prefHeight="286.0" prefWidth="434.0">
                      <children>
@@ -113,9 +113,6 @@
                                           <URL value="@../../../../css/colors.css" />
                                           <URL value="@../../../../css/map/info_pane.css" />
                                        </stylesheets>
-                                       <font>
-                                          <Font size="14.0" />
-                                       </font>
                                     </JFXButton>
                                  </children>
                                  <padding>
@@ -143,7 +140,7 @@
     </Tab>
     <Tab text="Export">
          <content>
-            <VBox alignment="TOP_CENTER" prefHeight="200.0" prefWidth="100.0" spacing="10.0">
+            <VBox alignment="CENTER_LEFT" prefHeight="200.0" prefWidth="100.0" spacing="10.0">
                <children>
                   <VBox prefHeight="286.0" prefWidth="434.0">
                      <children>

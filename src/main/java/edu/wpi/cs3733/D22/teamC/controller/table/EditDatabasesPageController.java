@@ -1,6 +1,7 @@
 package edu.wpi.cs3733.D22.teamC.controller.table;
 
 import edu.wpi.cs3733.D22.teamC.App;
+import edu.wpi.cs3733.D22.teamC.controller.location.LocationsViewController;
 import edu.wpi.cs3733.D22.teamC.controller.location.map.CSVComponent;
 import edu.wpi.cs3733.D22.teamC.controller.service_request.InsertServiceRequestCreateController;
 import edu.wpi.cs3733.D22.teamC.entity.service_request.ServiceRequest;
@@ -29,6 +30,7 @@ public class EditDatabasesPageController implements Initializable {
 
     @FXML
     void clickLocations(ActionEvent event) {
+        LocationsViewController lvc = new LocationsViewController();
     }
 
     @FXML
@@ -37,7 +39,7 @@ public class EditDatabasesPageController implements Initializable {
     }
 
     public void setInsert() {
-        String viewFile = "view/location/map/csv_component.fxml";
+        String viewFile = "view/location/map/controls/csv_page.fxml";
 
         App.View<CSVComponent> view = App.instance.loadView(viewFile);
         insertVbox.getChildren().add(view.getNode());

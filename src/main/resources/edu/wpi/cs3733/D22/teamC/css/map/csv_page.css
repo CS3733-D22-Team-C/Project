@@ -14,7 +14,7 @@
 
 .check-box:selected .box {
     -fx-background-color: -color-secondary-dark;
-    -fx-show-tick-marks: black;
+/*    -fx-show-tick-marks: black;*/
 }
 
 .button-import {
