@@ -22,6 +22,7 @@ public abstract class DAOTest<T>{
 
     @BeforeEach
     void setUp() {
+        SessionManager.setTestDatabase();
         SessionManager.getSession();
     }
 

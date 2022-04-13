@@ -34,7 +34,7 @@ public class Employee {
     private Role role;
 
     @Column(name = "IsAdmin")
-    private Boolean isAdmin;
+    private boolean isAdmin;
 
     @Column(name = "Username", unique = true)
     private String username;
@@ -147,7 +147,7 @@ public class Employee {
                 && phone.equals(employee.phone)
                 && address.equals(employee.address)
                 && role == employee.role
-                && isAdmin.equals(employee.isAdmin)
+                && isAdmin == employee.isAdmin
                 && username.equals(employee.username)
                 && password.equals(employee.password);
     }

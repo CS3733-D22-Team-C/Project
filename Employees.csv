@@ -1,4 +1,6 @@
 ID,FirstName,LastName,EmailID,Phone,Address,Role,IsAdmin,Username,Password
+6b6d7700-7ff3-4ac5-8864-3d8ab318f558,null,null,null,null,null,Doctor,true,admin,admin
+7346dd15-7db8-4dfe-90da-b2da589293b3,null,null,null,null,null,Doctor,false,staff,staff
 b11e4a8c-7897-4112-9913-9c8b6471fcfb,Vishnu,U,u@mail.com,31231,fafhakhdk,Doctor,true,Vishnu,Vishnu1
 27acc353-7be8-44dd-87ad-d09cc497ad2e,Nick,K,k@mail.com,322342,dsasd,Nurse,true,Nick,Nick1
 646cf6b5-4173-4e49-b989-0ddbe1475def,Mia,A,a@mail.com,4563432,sadasd,Doctor,false,Mia,Mia1
@@ -9,5 +11,3 @@ b11e4a8c-7897-4112-9913-9c8b6471fcfb,Vishnu,U,u@mail.com,31231,fafhakhdk,Doctor,
 40571107-30da-42a3-8bad-e9084334fdd2,Vagmi,V,v@mail.com,81232198,xvdfshf,Nurse,false,Vagmi,Vagmi1
 b05e6fda-98f1-43b4-bf09-756a955aad27,Jack,K,k@mail.com,615235,sdfsdfs,Doctor,true,Jack,Jack1
 fa5dde82-0d24-4152-9d50-cf78de263f1c,Nelson,N,n@mail.com,3712619,guhvf,Nurse,true,Nelson,Nelson1
-dc8eab6f-6078-4181-823a-3ed6cb40f180,admin,A,a@mail.com,9654376,wwfl,Doctor,true,admin,admin
-81963b49-e229-4af7-bdb7-74aa978ebe2e,staff,S,s@mail.com,9234565,sswq,Nurse,false,staff,staff
