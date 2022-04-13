@@ -37,7 +37,7 @@ public class FacilityMaintenanceSRInsertCreateController implements InsertServic
     public DAO<FacilityMaintenanceSR> createServiceRequestDAO() {
         return new FacilityMaintenanceSRDAO();
     }
-    
+
     public FacilityMaintenanceSR createNewServiceRequest() {
         return new FacilityMaintenanceSR();
     }
