@@ -62,49 +62,49 @@ public class LocationTableDisplay extends TableDisplay<Location> {
         addColumn(
                 table,
                 "Long Name",
-                1f * Integer.MAX_VALUE * 16.66,
+                1f * Integer.MAX_VALUE * 29.0,
                 (LocationTableEntry entry) -> {return entry.longName;}
         );
 
         addColumn(
                 table,
                 "Short Name",
-                1f * Integer.MAX_VALUE * 16.66,
+                1f * Integer.MAX_VALUE * 20.0,
                 (LocationTableEntry entry) -> {return entry.shortName;}
         );
 
         addColumn(
                 table,
                 "Node Type",
-                1f * Integer.MAX_VALUE * 16.66,
+                1f * Integer.MAX_VALUE * 12.0,
                 (LocationTableEntry entry) -> {return entry.nodeType;}
         );
 
         addColumn(
                 table,
                 "Floor",
-                1f * Integer.MAX_VALUE * 16.66,
+                1f * Integer.MAX_VALUE * 8.0,
                 (LocationTableEntry entry) -> {return entry.floor;}
         );
 
         addColumn(
                 table,
                 "Building",
-                1f * Integer.MAX_VALUE * 16.66,
+                1f * Integer.MAX_VALUE * 10.0,
                 (LocationTableEntry entry) -> {return entry.building;}
         );
 
         addColumn(
                 table,
                 "X",
-                1f * Integer.MAX_VALUE * 16.66,
+                1f * Integer.MAX_VALUE * 10.0,
                 (LocationTableEntry entry) -> {return entry.x;}
         );
 
         addColumn(
                 table,
                 "Y",
-                1f * Integer.MAX_VALUE * 16.66,
+                1f * Integer.MAX_VALUE * 10.0,
                 (LocationTableEntry entry) -> {return entry.y;}
         );
     }
