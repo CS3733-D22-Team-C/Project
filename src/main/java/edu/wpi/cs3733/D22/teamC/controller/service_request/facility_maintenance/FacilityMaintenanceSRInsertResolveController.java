@@ -9,6 +9,7 @@ import edu.wpi.cs3733.D22.teamC.entity.service_request.facility_maintenance.Faci
 import edu.wpi.cs3733.D22.teamC.entity.service_request.lab_system.LabSystemSR;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.input.KeyEvent;
 
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -28,7 +29,6 @@ public class FacilityMaintenanceSRInsertResolveController extends InsertServiceR
         }
     }
 
-    @Override
     public DAO<FacilityMaintenanceSR> createServiceRequestDAO() {
         return new FacilityMaintenanceSRDAO();
     }
@@ -47,15 +47,21 @@ public class FacilityMaintenanceSRInsertResolveController extends InsertServiceR
         maintType.setPromptText(serviceRequest.getMaintenanceType().toString());
     }
 
-    @Override
     public boolean requiredFieldsPresent() {
         if(maintType.getValue() == null && maintType.getPromptText().equals(""))
             return false;
         return true;
     }
 
-    @Override
-    protected void onFieldUpdated() {
+    @FXML
+    public void statusUpdated()
+    {
         super.onFieldUpdated();
+    }
+
+    @FXML
+    void statusUpdatedKeyEvent(KeyEvent event)
+    {
+        statusUpdated();
     }
 }
