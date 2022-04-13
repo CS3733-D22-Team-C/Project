@@ -25,6 +25,14 @@ public class MedicalEquipmentTableDisplay extends TableDisplay<MedicalEquipment>
             this.typeNumberProperty     = new SimpleIntegerProperty(medicalEquipment.getTypeNumber());
             this.statusProperty         = new SimpleStringProperty(medicalEquipment.getStatus().toString());
         }
+
+        @Override
+        public void RefreshEntry() {
+            idProperty.setValue(object.getEquipID());
+            locationNameProperty.setValue(object.getLocationID());
+            typeNumberProperty.setValue(object.getTypeNumber());
+            statusProperty.setValue(object.getStatus().toString());
+        }
     }
 
     public MedicalEquipmentTableDisplay(JFXTreeTableView table) {
@@ -39,12 +47,12 @@ public class MedicalEquipmentTableDisplay extends TableDisplay<MedicalEquipment>
     @Override
     protected void setColumns(JFXTreeTableView table) {
         // Insert Columns for Table
-        addColumn(
-                table,
-                "ID",
-                1f * Integer.MAX_VALUE * 16.66,
-                (MedicalEquipmentTableEntry entry) -> entry.idProperty
-        );
+//        addColumn(
+//                table,
+//                "ID",
+//                1f * Integer.MAX_VALUE * 16.66,
+//                (MedicalEquipmentTableEntry entry) -> entry.idProperty
+//        );
 
         addColumn(
                 table,

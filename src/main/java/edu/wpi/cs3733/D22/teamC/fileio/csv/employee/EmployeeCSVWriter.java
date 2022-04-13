@@ -1,8 +1,9 @@
-package edu.wpi.cs3733.D22.teamC.fileio.csv;
+package edu.wpi.cs3733.D22.teamC.fileio.csv.employee;
 
 import edu.wpi.cs3733.D22.teamC.entity.employee.Employee;
+import edu.wpi.cs3733.D22.teamC.fileio.csv.CSVWriter;
 
-public class EmployeeCSVWriter extends CSVWriter<Employee>{
+public class EmployeeCSVWriter extends CSVWriter<Employee> {
     @Override
     protected String[] compileHeaders() {
         return new String[]{

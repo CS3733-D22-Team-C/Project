@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import com.jfoenix.controls.JFXComboBox?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.layout.VBox?>
+
+<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="535.0" prefWidth="600.0" stylesheets="@../../css/base.css" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <HBox prefHeight="50.0" prefWidth="200.0">
+         <padding>
+            <Insets bottom="20.0" left="20.0" right="10.0" top="10.0" />
+         </padding>
+         <children>
+            <Label fx:id="title" prefHeight="68.0" prefWidth="463.0" styleClass="page-title" stylesheets="@../../css/base.css" text="Select a Location" HBox.hgrow="ALWAYS" />
+         </children>
+      </HBox>
+      <GridPane fx:id="mapViewContainer" VBox.vgrow="ALWAYS">
+        <columnConstraints>
+          <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+        </columnConstraints>
+        <rowConstraints>
+          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+        </rowConstraints>
+         <VBox.margin>
+            <Insets />
+         </VBox.margin>
+         <padding>
+            <Insets bottom="15.0" left="15.0" right="15.0" top="15.0" />
+         </padding>
+      </GridPane>
+      <HBox alignment="CENTER" prefHeight="80.0" prefWidth="600.0">
+         <children>
+            <HBox alignment="CENTER_LEFT" prefWidth="200.0" HBox.hgrow="ALWAYS">
+               <children>
+                  <JFXComboBox fx:id="floorComboBox" maxWidth="1.7976931348623157E308" onAction="#onFloorChanged" prefHeight="30.0" prefWidth="150.0" styleClass="combo-box" />
+               </children>
+               <padding>
+                  <Insets bottom="15.0" left="25.0" right="15.0" top="15.0" />
+               </padding></HBox>
+            <HBox alignment="CENTER_RIGHT" prefWidth="200.0" HBox.hgrow="ALWAYS">
+               <children>
+                  <TextField fx:id="selectedLocationField" disable="true" prefHeight="30.0" prefWidth="150.0">
+                     <padding>
+                        <Insets bottom="7.0" top="7.0" />
+                     </padding>
+                  </TextField>
+                  <JFXButton onAction="#onSelectButtonPressed" prefHeight="30.0" prefWidth="75.0" styleClass="button-confirm" stylesheets="@../../css/base.css" text="Select" />
+               </children>
+               <padding>
+                  <Insets bottom="15.0" left="15.0" right="25.0" top="15.0" />
+               </padding>
+            </HBox>
+         </children>
+      </HBox>
+   </children>
+</VBox>
