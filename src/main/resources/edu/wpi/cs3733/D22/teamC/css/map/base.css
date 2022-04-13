@@ -3,17 +3,20 @@
 @import "../base.css";
 
 .card {
-    -fx-border-width: 2px;
-    -fx-border-radius: 5px;
+    /*-fx-border-width: 2px;*/
+    /*-fx-border-radius: 5px;*/
 }
 
 .inner-card {
-    -fx-border-color: #b5b5b5;
-    -fx-border-radius: 2px;
+    -fx-background-radius: 50px;
+    -fx-effect: dropshadow(three-pass-box, rgba(0, 0, 0, 0.8), 10, 0, 0, 0);
+    -fx-background-color: -color-surface;
 }
 
 .card-content-header {
     -fx-background-color: -color-primary;
     -fx-text-fill: -color-primary-text;
-    -fx-background-radius: 1px;
+    -fx-hgap: 20px;
+    -fx-font-size: 18px;
+    -fx-background-radius: 50px 50px 0px 0px;
 }

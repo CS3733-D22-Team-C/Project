@@ -2,18 +2,18 @@
 @import "base.css";
 
 .button {
-    -fx-background-color: -color-secondary-dark;
+    -fx-background-color: -color-primary-light;
     -fx-pref-height: 40px;
     -fx-pref-width: 40px;
     -fx-padding: 10px;
 }
 
 .mfx-button .mfx-ripple-generator {
-    -fx-background-color: -color-secondary-light;
+    -fx-background-color: -color-primary;
 }
 
 .button:hover {
-    -fx-background-color: -color-secondary;
+    -fx-background-color: -color-primary;
 }
 
 .top-label {
