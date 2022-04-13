@@ -9,6 +9,7 @@ import edu.wpi.cs3733.D22.teamC.entity.service_request.lab_system.LabSystemSR;
 import edu.wpi.cs3733.D22.teamC.entity.service_request.medicine_delivery.MedicineDeliverySR;
 import edu.wpi.cs3733.D22.teamC.entity.service_request.medicine_delivery.MedicineDeliverySRDAO;
 import edu.wpi.cs3733.D22.teamC.models.service_request.ServiceRequestTableDisplay;
+import edu.wpi.cs3733.D22.teamC.models.service_request.medicine_delivery.MedicineDeliverySRTableDisplay;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.TextField;
@@ -50,7 +51,7 @@ public class MedicineDeliverySRInsertCreateController implements InsertServiceRe
 
     @Override
     public ServiceRequestTableDisplay<MedicineDeliverySR> setupTable(JFXTreeTableView<?> table) {
-        return new ServiceRequestTableDisplay(table);
+        return new MedicineDeliverySRTableDisplay(table);
     }
     @Override
     public boolean requiredFieldsPresent(){
