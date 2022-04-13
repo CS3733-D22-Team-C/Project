@@ -78,7 +78,7 @@
             <JFXTreeTableView fx:id="table" prefHeight="144.0" prefWidth="240.0" />
             <HBox alignment="TOP_CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" GridPane.hgrow="ALWAYS" GridPane.rowIndex="2" GridPane.vgrow="NEVER">
                <children>
-                  <MFXButton fx:id="deleteButton" alignment="BOTTOM_LEFT" disable="true" onAction="#onDeleteClicked" styleClass="delete" stylesheets="@../../../css/map/side_view.css" text="Delete" />
+                  <MFXButton fx:id="deleteButton" alignment="BOTTOM_LEFT" disable="true" onAction="#onDeleteClicked" styleClass="delete" stylesheets="@../../../css/map/side_view.css" text="Delete" visible="false" />
                   <Region HBox.hgrow="ALWAYS" />
                   <MFXButton fx:id="goToButton" alignment="BOTTOM_RIGHT" disable="true" onAction="#onGoToClicked" styleClass="button-confirm" text="Go To" />
                </children></HBox>

@@ -67,6 +67,13 @@ public class BaseMapViewController extends MapViewController {
             infoPaneController.setVisible(currentLocation != null);
         }
 
+        @Override
+        public void changeCurrentFloor(Floor floor) {
+            super.changeCurrentFloor(floor);
+
+            mapControlsController.updateFloorSilent(floor);
+        }
+
         /**
          * Add a Location.
          * @param location The Location to be added.
