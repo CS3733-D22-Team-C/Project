@@ -37,7 +37,7 @@ public class LabSystemSRCSVReader extends CSVReader<LabSystemSR> {
                 break;
             case "creationTimestamp":
                 serviceRequest.setCreationTimestamp(Timestamp.valueOf(value));
-                System.out.println(value);
+
                 break;
             case "status":
                 serviceRequest.setStatus(ServiceRequest.Status.valueOf(value));
@@ -63,7 +63,6 @@ public class LabSystemSRCSVReader extends CSVReader<LabSystemSR> {
                 break;
             case "modifiedTimestamp":
                 serviceRequest.setModifiedTimestamp(Timestamp.valueOf(value)); //TODO: Handle the modified time
-                System.out.println(value);
                 break;
         }
         return serviceRequest;

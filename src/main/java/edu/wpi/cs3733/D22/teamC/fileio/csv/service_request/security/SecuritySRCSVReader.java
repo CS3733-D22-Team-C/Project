@@ -38,7 +38,6 @@ public class SecuritySRCSVReader extends CSVReader<SecuritySR> {
                 break;
             case "creationTimestamp":
                 serviceRequest.setCreationTimestamp(Timestamp.valueOf(value));
-                System.out.println(value);
                 break;
             case "status":
                 serviceRequest.setStatus(ServiceRequest.Status.valueOf(value));
@@ -61,7 +60,6 @@ public class SecuritySRCSVReader extends CSVReader<SecuritySR> {
                 break;
             case "modifiedTimestamp":
                 serviceRequest.setModifiedTimestamp(Timestamp.valueOf(value)); //TODO: Handle the modified time
-                System.out.println(value);
                 break;
         }
         return serviceRequest;
