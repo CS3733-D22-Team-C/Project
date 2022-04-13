@@ -1,9 +1,11 @@
-package edu.wpi.cs3733.D22.teamC.fileio.csv;
+package edu.wpi.cs3733.D22.teamC.fileio.csv.service_request.lab_system;
 
 import edu.wpi.cs3733.D22.teamC.entity.employee.Employee;
-import edu.wpi.cs3733.D22.teamC.entity.service_request.medical_equipment.MedicalEquipmentSR;
+import edu.wpi.cs3733.D22.teamC.entity.service_request.lab_system.LabSystemSR;
+import edu.wpi.cs3733.D22.teamC.fileio.csv.CSVWriter;
 
-public class MedicalEquipmentSRCSVWriter extends CSVWriter<MedicalEquipmentSR> {
+public class LabSystemSRCSVWriter extends CSVWriter<LabSystemSR> {
+
     /**
      * Manually define headers of attributes output to CSV.
      * @return The array of headers to be output to CSV.
@@ -20,12 +22,13 @@ public class MedicalEquipmentSRCSVWriter extends CSVWriter<MedicalEquipmentSR> {
                 "priority",
                 "requestType",
                 "description",
-                "equipType",
-                "equipID",
+                "labType",
+                "patientID",
                 "modifierID",
                 "modifiedTimestamp"
         };
     }
+
     /**
      * Maps headers to a value to get from the object.
      * @param serviceRequest The object to be read from.
@@ -33,7 +36,7 @@ public class MedicalEquipmentSRCSVWriter extends CSVWriter<MedicalEquipmentSR> {
      * @return The retrieved value to be output to the CSV.
      */
     @Override
-    protected String compileAttribute(MedicalEquipmentSR serviceRequest, String header) {
+    protected String compileAttribute(LabSystemSR serviceRequest, String header) {
         String output = "";
         switch (header) {
             case "requestID":
@@ -65,11 +68,11 @@ public class MedicalEquipmentSRCSVWriter extends CSVWriter<MedicalEquipmentSR> {
             case "description":
                 output = serviceRequest.getDescription();
                 break;
-            case "equipType":
-                output = serviceRequest.getEquipmentType().toString();
+            case "labType":
+                output = serviceRequest.getLabType().toString();
                 break;
-            case "equipID":
-                output = serviceRequest.getEquipmentID();
+            case "patientID":
+                output = serviceRequest.getPatientID();
                 break;
             case "modifierID":
                 Employee modifier = serviceRequest.getModifier();
@@ -83,6 +86,4 @@ public class MedicalEquipmentSRCSVWriter extends CSVWriter<MedicalEquipmentSR> {
         }
         return output;
     }
-
-
 }
