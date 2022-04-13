@@ -1,0 +1,44 @@
+/*@import "base.css";*/
+
+.check-box .box {
+    -fx-background-color: white;
+    -fx-border-color:grey;
+    -fx-border-radius:3px;
+
+}
+
+.check-box:selected .mark {
+    -fx-background-color: black;
+
+}
+
+.check-box:selected .box {
+    -fx-background-color: -color-secondary-dark;
+    -fx-show-tick-marks: black;
+}
+
+.button-import {
+    -fx-text-fill: -color-primary-text;
+    -fx-background-color: -color-button-import-export;
+    -fx-font-size: 15;
+    -fx-spacing: 5px;
+}
+
+
+* {
+    -color-primary: #005A9B;
+    -color-primary-text: #FFFFFF;
+    -color-primary-dark: #00316C;
+    -color-primary-light: #4E86CC;
+    -color-secondary: #B3EDF0;
+    -color-secondary-dark: #82BBBE;
+    -color-secondary-text: #000000;
+    -color-secondary-light: #E6FFFF;
+
+    -color-red-contrast: #F44336;
+    -color-sidebar-white: #F5F5F6;
+    -color-page-background: #FFFFFF;
+    -color-black: #000000;
+}
+
+
