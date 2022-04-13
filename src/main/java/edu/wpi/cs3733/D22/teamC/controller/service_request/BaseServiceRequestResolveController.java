@@ -6,8 +6,11 @@ import com.jfoenix.controls.JFXTextArea;
 import edu.wpi.cs3733.D22.teamC.App;
 import edu.wpi.cs3733.D22.teamC.entity.employee.Employee;
 import edu.wpi.cs3733.D22.teamC.entity.generic.DAO;
+import edu.wpi.cs3733.D22.teamC.entity.location.Location;
+import edu.wpi.cs3733.D22.teamC.entity.location.LocationDAO;
 import edu.wpi.cs3733.D22.teamC.entity.service_request.ServiceRequest;
 import edu.wpi.cs3733.D22.teamC.models.employee.EmployeeSelectorWindow;
+import edu.wpi.cs3733.D22.teamC.models.location.MapSelectorWindow;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.Scene;
@@ -18,13 +21,15 @@ import javafx.scene.layout.VBox;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 
+import java.sql.Timestamp;
+
 public class BaseServiceRequestResolveController<T extends ServiceRequest> implements ServiceRequestController{
 
     @FXML private VBox fieldsBox;
 
     //Generic boxes
     @FXML private TextField assigneeID;
-    @FXML private TextField locationField;
+    @FXML private TextField locationID;
     @FXML private JFXComboBox<String> priority;
     @FXML private JFXTextArea description;
 
@@ -45,6 +50,7 @@ public class BaseServiceRequestResolveController<T extends ServiceRequest> imple
     @FXML private Label firstStatus;
 
     @FXML private JFXButton employeeTableButton;
+    @FXML private JFXButton mapViewButton;
 
     // References
     private InsertServiceRequestResolveController<T> insertController;
@@ -54,7 +60,9 @@ public class BaseServiceRequestResolveController<T extends ServiceRequest> imple
 
     private T serviceRequest;
     private boolean isEditMode;
-    private EmployeeSelectorWindow employeeSelectorWindow;
+
+    private Employee employee;
+    private Location location;
 
     @FXML
     public void setup(ServiceRequest serviceRequest, boolean isEditMode) {
@@ -67,18 +75,21 @@ public class BaseServiceRequestResolveController<T extends ServiceRequest> imple
         DAO<T> serviceRequestDAO = insertController.createServiceRequestDAO();
         this.serviceRequest = serviceRequestDAO.getByID(serviceRequest.getRequestID());
 
+        if (serviceRequest.getLocation() != null) location = new LocationDAO().getByID(serviceRequest.getLocation());
+
         insertController.setup(this, this.serviceRequest, isEditMode);
 
         // Set initial values
         priority.setPromptText(serviceRequest.getPriority().toString());
-        locationField.setText(serviceRequest.getLocation());
         assigneeID.setText(serviceRequest.getAssignee() == null ? "" : serviceRequest.getAssignee().getLastName() + ", " + serviceRequest.getAssignee().getFirstName());
+        locationID.setText(location == null ? "" : location.getShortName());
         creationTime.setText(serviceRequest.getCreationTimestamp().toString());
         description.setText(serviceRequest.getDescription());
 
         // Set labels
         requestID.setText(serviceRequest.getRequestID()); //TODO print something else here or don't print maybe
         assigneeID.setEditable(false);
+        locationID.setEditable(false);
 
         if (isEditMode) {
             // Set generic title (overridden in children)
@@ -95,8 +106,8 @@ public class BaseServiceRequestResolveController<T extends ServiceRequest> imple
 
             // Set fields editable
             priority.setDisable(false);
-            locationField.setEditable(true);
             employeeTableButton.setDisable(false);
+            mapViewButton.setDisable(false);
 
         } else {
             // Set generic title (overridden in children)
@@ -108,8 +119,8 @@ public class BaseServiceRequestResolveController<T extends ServiceRequest> imple
 
             // Set fields uneditable
             priority.setDisable(true);
-            locationField.setEditable(false);
             employeeTableButton.setDisable(true);
+            mapViewButton.setDisable(true);
         }
 
     }
@@ -127,12 +138,16 @@ public class BaseServiceRequestResolveController<T extends ServiceRequest> imple
             //Assignee ID
             serviceRequest.setAssignee(this.serviceRequest.getAssignee());
             //Location
-            serviceRequest.setLocation(locationField.getText());
+            serviceRequest.setLocation(location.getNodeID());
             //Status
             if(requiredFieldsPresent())
                 serviceRequest.setStatus(ServiceRequest.Status.Processing);
             else
                 serviceRequest.setStatus(ServiceRequest.Status.Blank);
+
+            serviceRequest.setModifiedTimestamp(new Timestamp(System.currentTimeMillis()));
+            serviceRequest.setModifier(App.instance.getUserAccount());
+
             insertController.updateServiceRequest(serviceRequest);
         }
         else {
@@ -167,7 +182,7 @@ public class BaseServiceRequestResolveController<T extends ServiceRequest> imple
             return false;
         if (assigneeID.getText().equals(""))
             return false;
-        if (locationField.getText() .equals(""))
+        if (locationID.getText().equals(""))
             return false;
         return insertController.requiredFieldsPresent();
     }
@@ -189,7 +204,12 @@ public class BaseServiceRequestResolveController<T extends ServiceRequest> imple
 
     @FXML
     void goToEmployeeTable(ActionEvent event) {
-        new EmployeeSelectorWindow(employee -> this.setEmployee(employee));
+        new EmployeeSelectorWindow(this::setEmployee);
+    }
+
+    @FXML
+    void goToMapView(ActionEvent event) {
+        new MapSelectorWindow(this::setLocation);
     }
 
     @FXML
@@ -201,12 +221,27 @@ public class BaseServiceRequestResolveController<T extends ServiceRequest> imple
         statusUpdated();
     }
 
-    public void setEmployee(Employee employee){
-        serviceRequest.setAssignee(employee);
-        String employeeName = employee.getLastName() + ", " + employee.getFirstName();
-        assigneeID.setText(employeeName);
-    }
+    //#region Selector Window Updaters
+        public void setEmployee(Employee employee){
+            serviceRequest.setAssignee(employee);
 
+            String employeeName = "";
+            if (employee != null) {
+                employeeName = employee.getLastName() + ", " + employee.getFirstName();
+            }
 
+            assigneeID.setText(employeeName);
+        }
 
+        public void setLocation(Location location) {
+            this.location = location;
+
+            String locationName = "";
+            if (location != null) {
+                locationName = location.getShortName();
+            }
+
+            locationID.setText(locationName);
+        }
+    //#endregion
 }
