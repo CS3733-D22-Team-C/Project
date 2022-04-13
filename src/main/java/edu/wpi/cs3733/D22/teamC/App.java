@@ -58,6 +58,7 @@ public class App extends Application {
     public static final String VIEW_SERVICE_REQUESTS_PATH = "view/service_request/view_service_requests.fxml";
     public static final String SERVICE_REQUEST_LANDING_PAGE = "view/service_request/service_request_landing_page.fxml";
 
+    public static final String MAP_DASHBOARD_PATH = "view/location/map/base_side_map_view.fxml";
     public static final String MAP_PATH = "view/location/map/base_map_view.fxml";
 
     public static final String BASE_CSS_PATH = "css/base.css";
@@ -149,7 +150,7 @@ public class App extends Application {
         stage = primaryStage;
 
         stage.setFullScreen(true);
-        setView("view/location/map/base_side_map_view.fxml");
+        setView(LOGIN_PATH);
     }
 
     @Override

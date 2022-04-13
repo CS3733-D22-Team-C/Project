@@ -107,8 +107,9 @@ public class BaseMapSideViewController implements Initializable {
 
     @FXML
     void onGoToClicked(ActionEvent event) {
-        // TODO: Place map function from nick (Thanks Nick!)
-        App.instance.setView(App.MAP_PATH);
+        App.View<BaseMapViewController> view = App.instance.loadView(App.MAP_PATH);
+        view.getController().changeCurrentFloor(selectedFloor);
+        App.instance.setView(view.getNode());
     }
 
     @FXML
