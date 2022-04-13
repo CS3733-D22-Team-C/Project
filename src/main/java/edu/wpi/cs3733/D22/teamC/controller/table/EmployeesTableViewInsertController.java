@@ -37,7 +37,7 @@ public class EmployeesTableViewInsertController extends InsertTableViewControlle
 
 
     public void initialize(URL location, ResourceBundle resources) {
-        title.setText("Add Location");
+        title.setText("Add Employee");
 
         //make a list of roles from the enum and put it into the combo box
         roleComboBox.getItems().setAll(Employee.Role.values());
@@ -69,10 +69,10 @@ public class EmployeesTableViewInsertController extends InsertTableViewControlle
      * @param object The (nullable) object to set field values from.
      */
     public void setFields(Employee object) {
-        title.setText((object == null) ? "Add Location" : "Edit Location");
+        title.setText((object == null) ? "Add Employee" : "Edit Employee");
         firstName.setText((object == null) ? "" : object.getFirstName());
         lastName.setText((object == null) ? "" : object.getLastName());
-        phone.setText((object == null) ? "" : object.getUsername());
+        phone.setText((object == null) ? "" : object.getPhone());
         roleComboBox.setValue((object == null) ? null : object.getRole());
         confirmButton.setDisable(true);
     }
