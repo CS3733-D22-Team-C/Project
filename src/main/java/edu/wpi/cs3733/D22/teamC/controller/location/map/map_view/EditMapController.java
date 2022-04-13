@@ -1,5 +1,6 @@
 package edu.wpi.cs3733.D22.teamC.controller.location.map.map_view;
 
+import edu.wpi.cs3733.D22.teamC.controller.location.map.BaseMapViewController;
 import edu.wpi.cs3733.D22.teamC.entity.location.Location;
 import javafx.scene.input.MouseButton;
 import javafx.scene.input.MouseEvent;
@@ -12,7 +13,7 @@ public class EditMapController extends MapController {
 
             if (event.getButton().equals(MouseButton.SECONDARY)) {
                 // Single-Click delete LocationNode
-                parentController.deleteLocation(locationNode.location);
+                ((BaseMapViewController) parentController).deleteLocation(locationNode.location);
             }
         }
 
@@ -24,8 +25,8 @@ public class EditMapController extends MapController {
                 // Double-Click create new LocationNode
                 if (event.getClickCount() == 2) {
                     Location location = createLocation((int) event.getX(), (int) event.getY());
-                    parentController.addLocation(location);
-                    parentController.changeCurrentLocation(location);
+                    ((BaseMapViewController) parentController).addLocation(location);
+                    ((BaseMapViewController) parentController).changeCurrentLocation(location);
                 }
             }
         }
@@ -52,7 +53,7 @@ public class EditMapController extends MapController {
 
             location.setX((int) x);
             location.setY((int) y);
-            location.setFloor(parentController.getCurrentFloor().getFloorID());
+            location.setFloor(((BaseMapViewController) parentController).getCurrentFloor().getFloorID());
             location.setNodeType(Location.NodeType.PATI);
 
             return location;

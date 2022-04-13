@@ -1,6 +1,7 @@
 package edu.wpi.cs3733.D22.teamC.controller.location.map.map_view;
 
 import edu.wpi.cs3733.D22.teamC.App;
+import edu.wpi.cs3733.D22.teamC.controller.location.map.BaseMapViewController;
 import edu.wpi.cs3733.D22.teamC.entity.location.Location;
 import edu.wpi.cs3733.D22.teamC.entity.medical_equipment.MedicalEquipment;
 import edu.wpi.cs3733.D22.teamC.entity.medical_equipment.MedicalEquipmentDAO;
@@ -45,8 +46,10 @@ public class LocationNode {
         group.setTranslateX(location.getX());
         group.setTranslateY(location.getY());
 
-        addMedicalEquipmentCounters();
-        showMedicalEquipmentCounters(false, false);
+        if (mapController.parentController.getClass().equals(BaseMapViewController.class)) {
+            addMedicalEquipmentCounters();
+            showMedicalEquipmentCounters(false, false);
+        }
     }
 
     //#region Medical Equipment Counter Node Interaction
@@ -71,7 +74,7 @@ public class LocationNode {
 
         public void showMedicalEquipmentCounters(boolean visibility, boolean editable) {
             for (MedicalEquipmentCounterNode medicalEquipmentCounterNode : medicalEquipmentCounterNodes) {
-                medicalEquipmentCounterNode.setVisible(visibility && mapController.parentController.showMedicalEquipment);
+                medicalEquipmentCounterNode.setVisible(visibility && ((BaseMapViewController) mapController.parentController).showMedicalEquipment);
                 medicalEquipmentCounterNode.setEditable(editable);
             }
         }
@@ -116,7 +119,7 @@ public class LocationNode {
 
             setPosition(x, y);
 
-            mapController.parentController.setSaveStatus();
+            ((BaseMapViewController) mapController.parentController).setSaveStatus();
         }
 
         public void setPosition(int x, int y) {
@@ -126,13 +129,17 @@ public class LocationNode {
 
         public void activate() {
             node.getStyleClass().add("active");
-            showMedicalEquipmentCounters(true, mapController.parentController.isEditMode);
+            if  (mapController.parentController.getClass().equals(BaseMapViewController.class)) {
+                showMedicalEquipmentCounters(true, ((BaseMapViewController) mapController.parentController).isEditMode);
+            }
             renderInFront();
         }
 
         public void deactivate() {
             node.getStyleClass().remove("active");
-            showMedicalEquipmentCounters(false, mapController.parentController.isEditMode);
+            if  (mapController.parentController.getClass().equals(BaseMapViewController.class)) {
+                showMedicalEquipmentCounters(false, ((BaseMapViewController) mapController.parentController).isEditMode);
+            }
         }
     //#endregion
 
