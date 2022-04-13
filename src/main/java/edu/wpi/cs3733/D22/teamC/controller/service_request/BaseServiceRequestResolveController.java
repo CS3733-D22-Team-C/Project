@@ -22,6 +22,7 @@ import javafx.stage.Modality;
 import javafx.stage.Stage;
 
 import java.sql.Timestamp;
+import java.util.Locale;
 
 public class BaseServiceRequestResolveController<T extends ServiceRequest> implements ServiceRequestController{
 
@@ -170,7 +171,7 @@ public class BaseServiceRequestResolveController<T extends ServiceRequest> imple
     }
 
     public void setInsert(ServiceRequest.RequestType requestType) {
-        String viewFile = "view/service_request/" + requestType.toString() + "/resolve_insert.fxml";
+        String viewFile = "view/service_request/" + requestType.toString().toLowerCase(Locale.ROOT) + "/resolve_insert.fxml";
 
         App.View<InsertServiceRequestResolveController<T>> view = App.instance.loadView(viewFile);
         insertController = view.getController();

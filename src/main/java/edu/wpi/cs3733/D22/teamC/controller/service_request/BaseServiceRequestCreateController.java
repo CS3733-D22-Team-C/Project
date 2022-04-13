@@ -28,6 +28,7 @@ import javafx.stage.Stage;
 
 import java.io.IOException;
 import java.sql.Timestamp;
+import java.util.Locale;
 
 public class BaseServiceRequestCreateController<T extends ServiceRequest> implements ServiceRequestController {
     // FXML
@@ -142,7 +143,7 @@ public class BaseServiceRequestCreateController<T extends ServiceRequest> implem
 
 
     public void setInsert(ServiceRequest.RequestType requestType) {
-        String viewFile = "view/service_request/" + requestType.toString() + "/create_insert.fxml";
+        String viewFile = "view/service_request/" + requestType.toString().toLowerCase(Locale.ROOT) + "/create_insert.fxml";
 
         App.View<InsertServiceRequestCreateController<T>> view = App.instance.loadView(viewFile);
         fieldsBox.getChildren().add(view.getNode());
