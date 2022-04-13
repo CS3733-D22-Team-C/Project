@@ -58,7 +58,9 @@ public class SessionManager {
      */
     public static void killSessionFactory() {
         try {
-            sf.close();
+            if (sf != null) {
+                sf.close();
+            }
             sf = null;
         } catch (Exception e) {
             e.printStackTrace();
