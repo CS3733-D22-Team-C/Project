@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.geometry.Insets?>
 <?import javafx.scene.control.SplitPane?>
 <?import javafx.scene.layout.ColumnConstraints?>
 <?import javafx.scene.layout.GridPane?>
@@ -23,17 +22,14 @@
             <HBox VBox.vgrow="ALWAYS">
                <children>
                   <VBox alignment="TOP_RIGHT" prefHeight="200.0" prefWidth="0.0" HBox.hgrow="ALWAYS" />
-                  <VBox fx:id="controlsBox" alignment="TOP_RIGHT" prefHeight="200.0" prefWidth="250.0" HBox.hgrow="ALWAYS">
-                     <padding>
-                        <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
-                     </padding></VBox>
+                  <VBox fx:id="controlsBox" alignment="TOP_RIGHT" prefHeight="200.0" prefWidth="250.0" HBox.hgrow="NEVER" />
                   <VBox alignment="TOP_RIGHT" layoutX="10.0" layoutY="10.0" prefHeight="200.0" prefWidth="0.0" HBox.hgrow="ALWAYS" />
                </children>
             </HBox>
             <HBox prefHeight="322.0" prefWidth="146.0" VBox.vgrow="ALWAYS">
                <children>
                   <VBox alignment="TOP_RIGHT" prefHeight="200.0" prefWidth="0.0" HBox.hgrow="ALWAYS" />
-                  <VBox fx:id="infoPaneBox" alignment="TOP_RIGHT" prefHeight="200.0" prefWidth="250.0" HBox.hgrow="ALWAYS" />
+                  <VBox fx:id="infoPaneBox" alignment="TOP_RIGHT" prefHeight="200.0" prefWidth="250.0" HBox.hgrow="NEVER" />
                   <VBox alignment="TOP_RIGHT" prefHeight="200.0" prefWidth="0.0" HBox.hgrow="ALWAYS" />
                </children>
             </HBox>
