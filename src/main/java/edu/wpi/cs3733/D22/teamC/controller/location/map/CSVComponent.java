@@ -193,6 +193,23 @@ public class CSVComponent {
                 locations.forEach(locationDAO::insert);
             }
 
+
+            //Employee
+            if(employeesImport.isSelected()) {
+                List<Employee> employees = CSVFacade.read(Employee.class, savedFile.getPath() + "\\" + EMPLOYEE_CSV);
+                EmployeeDAO employeeDAO = new EmployeeDAO();
+                employeeDAO.deleteAllFromTable();
+                employees.forEach(employeeDAO::insert);
+            }
+
+            //Medical Equipment Entity
+            if(medicalEquipmentEntityImport.isSelected()) {
+                List<MedicalEquipment> medicalEquipments = CSVFacade.read(MedicalEquipment.class, savedFile.getPath() + "\\" + MEDICAL_EQUIPMENT_ENTITY_CSV);
+                MedicalEquipmentDAO medicalEquipmentDAO = new MedicalEquipmentDAO();
+                medicalEquipmentDAO.deleteAllFromTable();
+                medicalEquipments.forEach(medicalEquipmentDAO::insert);
+            }
+
             //Service Request
             if(medicalEquipmentImport.isSelected()) {
                 List<MedicalEquipmentSR> medicalEquipmentSRS = CSVFacade.read(MedicalEquipmentSR.class, savedFile.getPath() + "\\" + MEDICAL_EQUIPMENT_CSV);
@@ -229,22 +246,6 @@ public class CSVComponent {
                 SecuritySRDAO securitySRDAO = new SecuritySRDAO();
                 securitySRDAO.deleteAllFromTable();
                 securitySRS.forEach(securitySRDAO::insert);
-            }
-
-            //Employee
-            if(employeesImport.isSelected()) {
-                List<Employee> employees = CSVFacade.read(Employee.class, savedFile.getPath() + "\\" + EMPLOYEE_CSV);
-                EmployeeDAO employeeDAO = new EmployeeDAO();
-                employeeDAO.deleteAllFromTable();
-                employees.forEach(employeeDAO::insert);
-            }
-
-            //Medical Equipment Entity
-            if(medicalEquipmentEntityImport.isSelected()) {
-                List<MedicalEquipment> medicalEquipments = CSVFacade.read(MedicalEquipment.class, savedFile.getPath() + "\\" + MEDICAL_EQUIPMENT_ENTITY_CSV);
-                MedicalEquipmentDAO medicalEquipmentDAO = new MedicalEquipmentDAO();
-                medicalEquipmentDAO.deleteAllFromTable();
-                medicalEquipments.forEach(medicalEquipmentDAO::insert);
             }
         }
     }
