@@ -107,12 +107,15 @@
                               <HBox alignment="CENTER_LEFT" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="32.0" prefWidth="435.0" spacing="1.5">
                                  <children>
                                     <TextField fx:id="importText" editable="false" prefHeight="26.0" prefWidth="162.0" promptText="Select a Folder" stylesheets="@../../../../css/map/controls.css" />
-                                    <JFXButton onAction="#chooseImportCSV" prefHeight="26.0" prefWidth="30.0" style="-fx-background-color: -color-secondary-dark;" text=". . .">
+                                    <JFXButton onAction="#chooseImportCSV" prefHeight="26.0" prefWidth="30.0" style="-fx-background-color: -color-secondary-dark;" text=". . ." textAlignment="CENTER" textFill="WHITE">
                                        <stylesheets>
                                           <URL value="@../../../../css/map/base.css" />
                                           <URL value="@../../../../css/colors.css" />
                                           <URL value="@../../../../css/map/info_pane.css" />
                                        </stylesheets>
+                                       <font>
+                                          <Font size="14.0" />
+                                       </font>
                                     </JFXButton>
                                  </children>
                                  <padding>

@@ -1,0 +1,30 @@
+@import "colors.css";
+@import "fonts.css";
+.button-toDatabase {
+    -fx-background-color: -color-primary-light;
+    text-indent: -9999px;
+    -fx-font-size: 22;
+    -fx-font-weight: bold;
+    -fx-effect: dropshadow(three-pass-box  , rgba(0, 0, 0, 0.63), 1 , 0.1 , 0 , 4);
+    -fx-border-color: #00316C;
+    -fx-border-width: 1px;
+    -fx-pref-width: 270;
+    -fx-pref-height: 110;
+    -fx-text-fill: white;
+}
+
+.button-toDatabase:hover {
+    -fx-background-color: -color-primary;
+}
+
+
+.label-title {
+    -fx-font-family: Inter;
+    -fx-font-weight: bold;
+    -fx-font-size: 25;
+    -fx-text-alignment: center;
+    -fx-wrap-text: true;
+    -fx-padding: 4;
+    -fx-text-fill: black;
+    -fx-underline: true;
+}
