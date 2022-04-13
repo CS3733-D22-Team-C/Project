@@ -23,7 +23,7 @@ public class FacilityMaintenanceSRInsertCreateController implements InsertServic
 
     @Override
     public void clearFields() {
-        maintType.valueProperty().setValue(null);
+        maintType.valueProperty().setValue("");
     }
 
     @Override
