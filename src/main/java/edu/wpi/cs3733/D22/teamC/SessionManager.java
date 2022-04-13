@@ -75,6 +75,7 @@ public class SessionManager {
         Arrays.stream(accounts).forEach(accountName -> {
             if (dao.getEmployeeByUsername(accountName) == null) {
                 Employee employee = new Employee();
+                employee.setRole(Employee.Role.Doctor);
                 if (accountName.equals("admin")) employee.setAdmin(true);
                 employee.setUsername(accountName);
                 employee.setPassword(accountName);
