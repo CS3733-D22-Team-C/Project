@@ -3,7 +3,6 @@ package edu.wpi.cs3733.D22.teamC.controller.service_request.facility_maintenance
 import com.jfoenix.controls.JFXComboBox;
 import com.jfoenix.controls.JFXTreeTableView;
 import edu.wpi.cs3733.D22.teamC.controller.service_request.InsertServiceRequestCreateController;
-import edu.wpi.cs3733.D22.teamC.controller.service_request.ServiceRequestCreateController;
 import edu.wpi.cs3733.D22.teamC.entity.generic.DAO;
 import edu.wpi.cs3733.D22.teamC.entity.service_request.facility_maintenance.FacilityMaintenanceSR;
 import edu.wpi.cs3733.D22.teamC.entity.service_request.facility_maintenance.FacilityMaintenanceSRDAO;
@@ -15,7 +14,7 @@ import javafx.fxml.Initializable;
 import java.net.URL;
 import java.util.ResourceBundle;
 
-public class FacilityMaintenanceSRInsertController implements InsertServiceRequestCreateController<FacilityMaintenanceSR>, Initializable {
+public class FacilityMaintenanceSRInsertCreateController implements InsertServiceRequestCreateController<FacilityMaintenanceSR>, Initializable {
 
     //Fields:
     @FXML
