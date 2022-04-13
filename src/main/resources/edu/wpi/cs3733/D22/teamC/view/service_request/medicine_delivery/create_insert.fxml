@@ -10,18 +10,18 @@
       <VBox alignment="CENTER_LEFT" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" styleClass="box-margin" HBox.hgrow="ALWAYS">
          <children>
             <Label styleClass="service-field-label" text="Patient ID" />
-            <TextField fx:id="medicine" />
+            <TextField fx:id="patientID" />
          </children>
       </VBox>
       <VBox alignment="CENTER_LEFT" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" styleClass="box-margin" HBox.hgrow="ALWAYS">
          <children>
             <Label styleClass="service-field-label" text="Medicine" />
-            <TextField fx:id="dosage" />
+            <TextField fx:id="medicine" />
          </children></VBox>
       <VBox alignment="CENTER_LEFT" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" styleClass="box-margin" HBox.hgrow="ALWAYS">
          <children>
             <Label styleClass="service-field-label" text="Dosage" />
-            <TextField fx:id="patientID" />
+            <TextField fx:id="dosage" />
          </children></VBox>
    </children>
 </HBox>

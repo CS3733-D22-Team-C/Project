@@ -22,7 +22,7 @@ public class EmployeeTableDisplay extends TableDisplay<Employee> {
         private StringProperty address;
         private StringProperty role;
         private StringProperty username;
-        private StringProperty password;
+//        private StringProperty password;
         private BooleanProperty isAdmin;
 
 
@@ -52,7 +52,7 @@ public class EmployeeTableDisplay extends TableDisplay<Employee> {
             username.setValue(object.getUsername());
             isAdmin.setValue(object.getAdmin());
             address.setValue(object.getAddress());
-            password.setValue(object.getPassword());
+//            password.setValue(object.getPassword());
         }
     }
 

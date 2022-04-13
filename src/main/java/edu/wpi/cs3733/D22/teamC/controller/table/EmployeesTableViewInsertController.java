@@ -81,7 +81,7 @@ public class EmployeesTableViewInsertController extends InsertTableViewControlle
     public boolean checkFieldsFilled() {
         return !(firstName.getText().equals("")
                 || lastName.getText().equals("")
-                || phone.getText() == ("")
+                || phone.getText().equals("")
                 || roleComboBox.getValue()==null);
     }
 

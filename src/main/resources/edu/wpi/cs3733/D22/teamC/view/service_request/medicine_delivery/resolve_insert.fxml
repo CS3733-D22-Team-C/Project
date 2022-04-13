@@ -10,19 +10,19 @@
       <VBox alignment="CENTER_LEFT" prefWidth="227.0" styleClass="box-margin">
          <children>
             <Label styleClass="service-field-label" text="Patient ID" />
-            <TextField fx:id="medicine" onAction="#statusUpdated" onKeyPressed="#statusUpdatedKeyEvent" />
+            <TextField fx:id="patientID" onAction="#statusUpdated" onKeyPressed="#statusUpdatedKeyEvent" />
          </children>
       </VBox>
       <VBox alignment="CENTER_LEFT" prefWidth="227.0" styleClass="box-margin">
          <children>
             <Label styleClass="service-field-label" text="Medicine" />
-            <TextField fx:id="dosage" onAction="#statusUpdated" onKeyPressed="#statusUpdatedKeyEvent" />
+            <TextField fx:id="medicine" onAction="#statusUpdated" onKeyPressed="#statusUpdatedKeyEvent" />
          </children>
       </VBox>
       <VBox alignment="CENTER_LEFT" prefWidth="227.0" styleClass="box-margin">
          <children>
             <Label styleClass="service-field-label" text="Dosage" />
-            <TextField fx:id="patientID" onAction="#statusUpdated" onKeyPressed="#statusUpdatedKeyEvent" />
+            <TextField fx:id="dosage" onAction="#statusUpdated" onKeyPressed="#statusUpdatedKeyEvent" />
          </children>
       </VBox>
    </children>

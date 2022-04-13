@@ -135,7 +135,7 @@ public class BaseServiceRequestCreateController<T extends ServiceRequest> implem
             return false;
         if (assigneeID.getText().equals(""))
             return false;
-        if (locationID.getText() .equals(""))
+        if (locationID.getText().equals(""))
             return false;
         return insertController.requiredFieldsPresent();
     }

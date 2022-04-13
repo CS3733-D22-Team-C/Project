@@ -14,6 +14,7 @@ import edu.wpi.cs3733.D22.teamC.entity.service_request.medical_equipment.Medical
 import edu.wpi.cs3733.D22.teamC.models.employee.EmployeeTableDisplay;
 import edu.wpi.cs3733.D22.teamC.models.generic.TableDisplay;
 import edu.wpi.cs3733.D22.teamC.models.location.LocationTableDisplay;
+import edu.wpi.cs3733.D22.teamC.models.location.MapSelectorWindow;
 import edu.wpi.cs3733.D22.teamC.models.medical_equipment.MedicalEquipmentTableDisplay;
 import edu.wpi.cs3733.D22.teamC.models.utils.ComponentWrapper;
 import javafx.event.ActionEvent;
@@ -32,12 +33,15 @@ public class MedicalEquipmentViewController extends InsertTableViewController<Me
     // FXML
     @FXML protected JFXButton confirmButton;
 
-    @FXML private TextField location;
+    @FXML private TextField locationID;
     @FXML private ComboBox<MedicalEquipment.EquipmentType> typeComboBox;
     @FXML private TextField number;
     @FXML private ComboBox<MedicalEquipment.EquipmentStatus> statusComboBox;//
     @FXML Label title;
 
+    @FXML JFXButton mapViewButton;
+
+    Location location;
 
     public void initialize(URL location, ResourceBundle resources) {
         title.setText("Add Equipment");
@@ -55,10 +59,9 @@ public class MedicalEquipmentViewController extends InsertTableViewController<Me
      * @return The modified object.
      */
     public MedicalEquipment setValues(MedicalEquipment object) {
-
         //fields in table
         object.setStatus(statusComboBox.getValue());
-        object.setLocationID(location.getText());
+        object.setLocationID(location.getNodeID());
         object.setEquipmentType(typeComboBox.getValue());
         object.setTypeNumber(Integer.parseInt(number.getText()));
         return object;
@@ -69,8 +72,10 @@ public class MedicalEquipmentViewController extends InsertTableViewController<Me
      * @param object The (nullable) object to set field values from.
      */
     public void setFields(MedicalEquipment object) {
+        location = new LocationDAO().getByID(object.getLocationID());
+
         title.setText((object == null) ? "Add Equipment" : "Edit Equipment");
-        location.setText((object == null) ? "" : new LocationDAO().getByID(object.getLocationID()).getShortName());
+        locationID.setText((object == null) ? "" : location.getShortName());
         typeComboBox.setValue((object == null) ? null : object.getEquipmentType());
         number.setText(String.valueOf((object == null) ? "" : object.getTypeNumber()));
         statusComboBox.setValue((object == null) ? null : object.getStatus());
@@ -80,10 +85,22 @@ public class MedicalEquipmentViewController extends InsertTableViewController<Me
     //#endregion
 
     public boolean checkFieldsFilled() {
-        return !(location.getText().equals("")
-                || typeComboBox.getValue()==null
+        if (locationID.getText().equals("")) return false;
+
+        return !(typeComboBox.getValue()==null
                 || number.getText().equals("")
                 || statusComboBox.getValue()==null);
+    }
+
+    public void setLocation(Location location) {
+        this.location = location;
+
+        String locationName = "";
+        if (location != null) {
+            locationName = location.getShortName();
+        }
+
+        locationID.setText(locationName);
     }
 
     //#region Abstraction
@@ -111,16 +128,21 @@ public class MedicalEquipmentViewController extends InsertTableViewController<Me
     //#endregion
 
     //#region FXML Events
-    @FXML
-    void clickConfirm(ActionEvent event) {
-        if (parentController.currentObj == null) addObject();
-        else updateObject();
-        parentController.setCurrentObj(null);
+        @FXML
+        void clickConfirm(ActionEvent event) {
+            if (parentController.currentObj == null) addObject();
+            else updateObject();
+            parentController.setCurrentObj(null);
+        }
+
+        @FXML
+        void onFieldUpdated() {
+            confirmButton.setDisable(!checkFieldsFilled());
     }
 
-    @FXML
-    void onFieldUpdated() {
-        confirmButton.setDisable(!checkFieldsFilled());
-    }
+        @FXML
+        void goToMapView() {
+            new MapSelectorWindow(this::setLocation);
+        }
     //#endregion
 }
