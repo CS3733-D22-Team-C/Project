@@ -14,6 +14,7 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
+import javafx.scene.layout.VBox;
 import javafx.scene.shape.SVGPath;
 
 import java.net.URL;
@@ -31,6 +32,7 @@ public class InfoPaneController implements Initializable {
     @FXML private Tab locationTab;
     @FXML private Tab medicalEquipmentTab;
     @FXML private Tab serviceRequestTab;
+    @FXML private Label tabLabel;
 
     // Location Info - Form Fields
     @FXML private TextField shortNameField;

@@ -7,7 +7,7 @@
 
 <HBox prefHeight="46.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.wpi.cs3733.D22.teamC.controller.service_request.medicine_delivery.MedicineDeliverySRInsertResolveController">
    <children>
-      <VBox prefWidth="227.0" styleClass="box-margin">
+      <VBox alignment="CENTER_LEFT" prefWidth="227.0" styleClass="box-margin">
          <children>
             <Label styleClass="service-field-label" text="Patient ID" />
             <TextField fx:id="medicine" onAction="#statusUpdated" onKeyPressed="#statusUpdatedKeyEvent" />
