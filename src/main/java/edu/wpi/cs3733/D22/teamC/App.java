@@ -148,7 +148,8 @@ public class App extends Application {
         setViewStatic(LOGIN_PATH);
 
         // TODO: Hook up via sidebar
-//        setSkeletonView("view/table/base_view.fxml", "view/table/locations/table_insert.fxml");
+
+        setSkeletonView("view/table/base_view.fxml", "view/table/locations/table_insert.fxml");
     }
 
     @Override
