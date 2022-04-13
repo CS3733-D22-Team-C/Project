@@ -91,7 +91,7 @@
                         <Label styleClass="service-field-label" text="Assign To:" />
                         <HBox>
                            <children>
-                              <TextField fx:id="assigneeID" onAction="#statusUpdated" onKeyPressed="#statusKeyPressedUpdated" prefHeight="26.0" prefWidth="110.0" HBox.hgrow="ALWAYS" />
+                              <TextField fx:id="assigneeID" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" onAction="#statusUpdated" onKeyPressed="#statusKeyPressedUpdated" prefHeight="26.0" prefWidth="110.0" HBox.hgrow="ALWAYS" />
                               <JFXButton fx:id="employeeTableButton" onAction="#goToEmployeeTable" prefHeight="26.0" style="-fx-background-color: -color-secondary;" stylesheets="@../../../css/colors.css" text="-&gt;" />
                            </children>
                         </HBox>
@@ -102,7 +102,7 @@
                         <Label styleClass="service-field-label" text="Location:" />
                         <HBox>
                            <children>
-                              <TextField fx:id="locationID" onAction="#statusUpdated" onKeyPressed="#statusKeyPressedUpdated" prefHeight="26.0" prefWidth="110.0" />
+                              <TextField fx:id="locationID" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" onAction="#statusUpdated" onKeyPressed="#statusKeyPressedUpdated" prefHeight="26.0" prefWidth="110.0" HBox.hgrow="ALWAYS" />
                               <JFXButton fx:id="mapViewButton" onAction="#goToMapView" prefHeight="26.0" style="-fx-background-color: -color-secondary;" stylesheets="@../../../css/colors.css" text="-&gt;" />
                            </children>
                         </HBox>

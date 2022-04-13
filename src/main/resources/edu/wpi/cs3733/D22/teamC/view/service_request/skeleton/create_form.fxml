@@ -27,7 +27,7 @@
         <RowConstraints maxHeight="1.7976931348623157E308" vgrow="ALWAYS" />
     </rowConstraints>
     <children>
-        <Label fx:id="title" alignment="CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="102.0" prefWidth="800.0" styleClass="page-title" text="Generic Service Request " />
+        <Label fx:id="title" alignment="CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="0.0" prefWidth="442.0" styleClass="page-title" text="Generic Service Request " GridPane.hgrow="ALWAYS" GridPane.vgrow="ALWAYS" />
       <VBox fx:id="fieldsBox" prefHeight="200.0" prefWidth="100.0" GridPane.rowIndex="1">
          <children>
             <HBox maxHeight="-Infinity" prefHeight="124.0" prefWidth="490.0" VBox.vgrow="NEVER">
@@ -38,7 +38,7 @@
                         <HBox spacing="1.5">
                            <children>
                               <TextField fx:id="assigneeID" editable="false" prefHeight="26.0" prefWidth="96.0" HBox.hgrow="ALWAYS" />
-                              <JFXButton fx:id="employeeTableButton" ellipsisString="" onAction="#goToEmployeeTable" prefHeight="26.0" style="-fx-background-color: -color-secondary;" stylesheets="@../../../css/colors.css" text="-&gt;" />
+                              <JFXButton fx:id="employeeTableButton" ellipsisString="" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" onAction="#goToEmployeeTable" prefHeight="26.0" style="-fx-background-color: -color-secondary;" stylesheets="@../../../css/colors.css" text="-&gt;" />
                            </children>
                         </HBox>
                      </children>
@@ -48,8 +48,8 @@
                         <Label styleClass="service-field-label" text="Location:" />
                         <HBox>
                            <children>
-                              <TextField fx:id="locationID" prefHeight="26.0" prefWidth="110.0" />
-                              <JFXButton fx:id="mapViewButton" onAction="#goToMapView" prefHeight="26.0" prefWidth="45.0" style="-fx-background-color: -color-secondary;" stylesheets="@../../../css/colors.css" text="-&gt;" />
+                              <TextField fx:id="locationID" prefHeight="26.0" prefWidth="110.0" HBox.hgrow="ALWAYS" />
+                              <JFXButton fx:id="mapViewButton" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" onAction="#goToMapView" prefHeight="26.0" style="-fx-background-color: -color-secondary;" stylesheets="@../../../css/colors.css" text="-&gt;" />
                            </children>
                         </HBox>
                      </children>
