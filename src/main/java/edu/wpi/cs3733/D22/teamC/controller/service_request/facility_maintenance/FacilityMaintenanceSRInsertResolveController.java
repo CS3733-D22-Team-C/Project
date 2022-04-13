@@ -6,10 +6,8 @@ import edu.wpi.cs3733.D22.teamC.controller.service_request.InsertServiceRequestR
 import edu.wpi.cs3733.D22.teamC.entity.generic.DAO;
 import edu.wpi.cs3733.D22.teamC.entity.service_request.facility_maintenance.FacilityMaintenanceSR;
 import edu.wpi.cs3733.D22.teamC.entity.service_request.facility_maintenance.FacilityMaintenanceSRDAO;
-import edu.wpi.cs3733.D22.teamC.entity.service_request.lab_system.LabSystemSR;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.input.KeyEvent;
 
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -57,11 +55,5 @@ public class FacilityMaintenanceSRInsertResolveController extends InsertServiceR
     public void statusUpdated()
     {
         super.onFieldUpdated();
-    }
-
-    @FXML
-    void statusUpdatedKeyEvent(KeyEvent event)
-    {
-        statusUpdated();
     }
 }
