@@ -35,18 +35,12 @@ public class EmployeesTableViewInsertController extends InsertTableViewControlle
     @FXML private ComboBox<Employee.Role> roleComboBox;//
     @FXML Label title;
 
-    // References
-    List<Employee.Role> Roles;
-
 
     public void initialize(URL location, ResourceBundle resources) {
         title.setText("Add Location");
 
         //make a list of roles from the enum and put it into the combo box
-        for (Employee.Role role : Employee.Role.values()) {
-            Roles.add(role);
-        }
-        roleComboBox.getItems().setAll(Roles);
+        roleComboBox.getItems().setAll(Employee.Role.values());
         confirmButton.setDisable(true);
     }
 
@@ -57,10 +51,16 @@ public class EmployeesTableViewInsertController extends InsertTableViewControlle
      * @return The modified object.
      */
     public Employee setValues(Employee object) {
+
+        //Those displayed in the table
         object.setFirstName(firstName.getText());
         object.setLastName(lastName.getText());
-        object.setUsername(phone.getText());
+        object.setPhone(phone.getText());
         object.setRole(roleComboBox.getValue());
+        //defaults, not in table / text field
+        object.setUsername(firstName.getText());
+        object.setPassword("password");
+        object.setAdmin(false);
         return object;
     }
 

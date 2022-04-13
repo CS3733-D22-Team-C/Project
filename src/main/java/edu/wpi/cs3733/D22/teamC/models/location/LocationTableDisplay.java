@@ -24,7 +24,7 @@ public class LocationTableDisplay extends TableDisplay<Location> {
             super(location);
             
             id          = new SimpleStringProperty((location.getNodeID()));
-            floor       = new SimpleStringProperty(new FloorDAO().getByID(location.getFloor()).getShortName());
+            floor       = new SimpleStringProperty(location.getFloor());
             building    = new SimpleStringProperty(location.getBuilding());
             nodeType    = new SimpleStringProperty(location.getNodeType().toString());
             longName    = new SimpleStringProperty(location.getLongName());
@@ -36,7 +36,8 @@ public class LocationTableDisplay extends TableDisplay<Location> {
         @Override
         public void RefreshEntry() {
             id.setValue(object.getNodeID());
-            floor.setValue((new FloorDAO()).getByID(object.getFloor()).getShortName());
+            //floor.setValue((new FloorDAO()).getByID(object.getFloor()).getShortName());
+            floor.setValue(object.getFloor());
             building.setValue(object.getBuilding());
             nodeType.setValue(object.getNodeType().toString());
             longName.setValue(object.getLongName());
