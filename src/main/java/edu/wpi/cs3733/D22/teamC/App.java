@@ -151,50 +151,50 @@ public class App extends Application {
 
     @Override
     public void stop() {
-        // Export CSV Data - Floor
-        {
-            FloorDAO floorDAO = new FloorDAO();
-            List<Floor> floors = floorDAO.getAll();
-            if (floors != null) {
-                CSVFacade.write(Floor.class,"TowerFloors.csv",floors);
-            }
-        }
-
-        // Export CSV Data - Location
-        {
-            LocationDAO locationDAO = new LocationDAO();
-            List<Location> locations = locationDAO.getAll();
-            if (locations != null) {
-                CSVFacade.write(Location.class, "TowerLocations.csv", locations);
-            }
-        }
-
-        //Export CSV Data - Employee
-        {
-            EmployeeDAO employeeDAO = new EmployeeDAO();
-            List<Employee> employees = employeeDAO.getAll();
-            if(employees!=null){
-                CSVFacade.write(Employee.class,"Employees.csv", employees);
-            }
-        }
-
-        // Export CSV Data - Medical Equipment
-        {
-            MedicalEquipmentDAO medicalEquipmentDAO = new MedicalEquipmentDAO();
-            List<MedicalEquipment> medicalEquipments = medicalEquipmentDAO.getAll();
-            if(medicalEquipments!=null){
-                CSVFacade.write(MedicalEquipment.class,"MedicalEquip.csv", medicalEquipments);
-            }
-        }
-
-        // Export CSV Data - Medical Equipment Service Requests
-        {
-            MedicalEquipmentSRDAO medicalEquipmentSRDAO = new MedicalEquipmentSRDAO();
-            List<MedicalEquipmentSR> medicalEquipmentSRS = medicalEquipmentSRDAO.getAll();
-            if(medicalEquipmentSRS!=null){
-                CSVFacade.write(MedicalEquipmentSR.class,"MedEquipReq.csv", medicalEquipmentSRS);
-            }
-        }
+//        // Export CSV Data - Floor
+//        {
+//            FloorDAO floorDAO = new FloorDAO();
+//            List<Floor> floors = floorDAO.getAll();
+//            if (floors != null) {
+//                CSVFacade.write(Floor.class,"TowerFloors.csv",floors);
+//            }
+//        }
+//
+//        // Export CSV Data - Location
+//        {
+//            LocationDAO locationDAO = new LocationDAO();
+//            List<Location> locations = locationDAO.getAll();
+//            if (locations != null) {
+//                CSVFacade.write(Location.class, "TowerLocations.csv", locations);
+//            }
+//        }
+//
+//        //Export CSV Data - Employee
+//        {
+//            EmployeeDAO employeeDAO = new EmployeeDAO();
+//            List<Employee> employees = employeeDAO.getAll();
+//            if(employees!=null){
+//                CSVFacade.write(Employee.class,"Employees.csv", employees);
+//            }
+//        }
+//
+//        // Export CSV Data - Medical Equipment
+//        {
+//            MedicalEquipmentDAO medicalEquipmentDAO = new MedicalEquipmentDAO();
+//            List<MedicalEquipment> medicalEquipments = medicalEquipmentDAO.getAll();
+//            if(medicalEquipments!=null){
+//                CSVFacade.write(MedicalEquipment.class,"MedicalEquip.csv", medicalEquipments);
+//            }
+//        }
+//
+//        // Export CSV Data - Medical Equipment Service Requests
+//        {
+//            MedicalEquipmentSRDAO medicalEquipmentSRDAO = new MedicalEquipmentSRDAO();
+//            List<MedicalEquipmentSR> medicalEquipmentSRS = medicalEquipmentSRDAO.getAll();
+//            if(medicalEquipmentSRS!=null){
+//                CSVFacade.write(MedicalEquipmentSR.class,"MedEquipReq.csv", medicalEquipmentSRS);
+//            }
+//        }
 
         log.info("Shutting Down");
     }
