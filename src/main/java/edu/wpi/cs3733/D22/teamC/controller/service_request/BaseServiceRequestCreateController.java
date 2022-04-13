@@ -111,11 +111,11 @@ public class BaseServiceRequestCreateController<T extends ServiceRequest> implem
 
         // Restrict ID TextFields to only contain numeric values
         //setIDFieldToNumeric(assigneeID);
-        ComponentWrapper.setIDFieldToNumeric(locationField);
+        //ComponentWrapper.setIDFieldToNumeric(locationField);
 
         // Limit the length of TextFields and TextAreas so that users can input a limited number of characters:
         ComponentWrapper.setTextLengthLimiter(assigneeID, 10);
-        ComponentWrapper.setTextLengthLimiter(locationField, 10);
+        //ComponentWrapper.setTextLengthLimiter(locationField, 10);
         // Limit the length of TextFields and TextAreas so that users can input a limited number of characters:
         ComponentWrapper.setTextLengthLimiter(description, 100);
 
