@@ -36,8 +36,6 @@ public class LoginPageController implements Initializable {
     @FXML
     private MFXToggleButton toggleButton;
 
-    private static boolean loggedIn = false;
-
     @Override
     public void initialize(URL location, ResourceBundle resources) { //Initialize functions for the entirety of the controller's life
         setTextLengthLimiter(username, 20);
@@ -70,7 +68,6 @@ public class LoginPageController implements Initializable {
         else
         {
             App.instance.setUserAccount(eDAO.getEmployeeByUsername(username.getText()));
-            loggedIn = true;
             App.instance.setView(App.VIEW_SERVICE_REQUESTS_PATH);
         }
     }

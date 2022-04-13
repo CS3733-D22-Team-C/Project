@@ -76,8 +76,8 @@
                                     </Label>
                                     <VBox maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="80.0" prefWidth="324.0" GridPane.hgrow="ALWAYS" GridPane.rowIndex="1" GridPane.vgrow="ALWAYS">
                                        <children>
-                                          <Label styleClass="login-username-label" stylesheets="@../../css/component/entity/login/login.css" text="Username" translateX="75.0" translateY="15.0" />
-                                          <TextField fx:id="username" prefHeight="26.0" prefWidth="240.0" styleClass="login-username-field" stylesheets="@../../css/component/entity/login/login.css" translateY="35.0">
+                                          <Label styleClass="login-username-label" stylesheets="@../../css/component/entity/login/login.css" text="Username" translateX="73.0" translateY="15.0" />
+                                          <TextField fx:id="username" prefHeight="26.0" prefWidth="240.0" styleClass="login-username-field" stylesheets="@../../css/component/entity/login/login.css" translateX="-2.0" translateY="35.0">
                                              <effect>
                                                 <DropShadow />
                                              </effect>
@@ -89,8 +89,8 @@
                                     </VBox>
                                     <VBox maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="200.0" prefWidth="100.0" GridPane.hgrow="ALWAYS" GridPane.rowIndex="2" GridPane.vgrow="ALWAYS">
                                        <children>
-                                          <Label styleClass="login-username-label" stylesheets="@../../css/component/entity/login/login.css" text="Password" translateX="75.0" translateY="5.0" />
-                                          <TextField fx:id="password" prefHeight="26.0" prefWidth="240.0" styleClass="login-username-field" stylesheets="@../../css/component/entity/login/login.css" translateY="25.0">
+                                          <Label styleClass="login-username-label" stylesheets="@../../css/component/entity/login/login.css" text="Password" translateX="73.0" translateY="5.0" />
+                                          <TextField fx:id="password" prefHeight="26.0" prefWidth="240.0" styleClass="login-username-field" stylesheets="@../../css/component/entity/login/login.css" translateX="-2.0" translateY="25.0">
                                              <effect>
                                                 <DropShadow />
                                              </effect>

@@ -277,7 +277,7 @@ public class App extends Application {
      * @param viewFile Path to the FXML file to be loaded.
      * @return Loaded FXML file wrapped in a View as a Node and Controller.
      */
-    @SuppressWarnings("unchecked")
+
     public View loadView(String viewFile) {
         try {
             FXMLLoader loader = new FXMLLoader();
