@@ -8,7 +8,8 @@
     /* Default Font */
     -fx-font-family: "Roboto";
     /*-fx-font-size: 14px;*/
-
+    -fx-focus-color: transparent;
+    -fx-faint-focus-color: transparent;
     /*-fx-min-height: 0px;*/
     /*-fx-min-width: 0px;*/
     /* Default Background Color */
@@ -220,6 +221,8 @@ padding goes top, right, bottom, left
     -fx-fill: -color-primary-text;
 }
 
+
+/* Table Scrollbar Styling */
 .table-view .virtual-flow .scroll-bar:vertical,
 .table-view .virtual-flow .scroll-bar:vertical .track,
 .table-view .virtual-flow .scroll-bar:vertical .track-background,

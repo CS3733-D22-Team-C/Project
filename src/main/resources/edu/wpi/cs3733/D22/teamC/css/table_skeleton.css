@@ -1,0 +1,55 @@
+@import "colors.css";
+@import "fonts.css";
+
+.base_view_table_add {
+    -fx-background-color: -color-primary;
+    -fx-text-fill: -color-menu-text;
+    -fx-border-radius: 10px;
+    -fx-cursor: hand;
+}
+
+.base_view_table_header {
+    -fx-background-color: -color-table-color;
+    -fx-text-fill: -color-menu-text;
+    -fx-border-radius: 10px;
+    -fx-font-size: 20px;
+}
+
+.base_view_table_sub {
+    -fx-background-color: -color-red-contrast;
+    -fx-text-fill: -color-black;
+    -fx-border-radius: 10px;
+    -fx-cursor: hand;
+}
+.base_view_table_grid {
+    -fx-background-color: -color-menu-text;
+}
+
+.base_view_table_back {
+    -fx-background-color: #c5c5c5;
+    -fx-border-radius: 10px;
+    -fx-cursor: hand;
+}
+
+.base_view_table_confirm {
+    -fx-background-color:  -color-menu-light;
+    -fx-border-radius: 50px;
+    -fx-text-fill: black;
+}
+
+.base_view_table_text {
+    -fx-background-color: white;
+    -fx-border-radius: 12px;
+}
+
+.base_view_table_insert {
+    -fx-background-color: -color-table-insert;
+    -fx-border-radius: 10px;
+    -fx-border-style: solid;
+    -fx-border-color: gray;
+
+}
+
+.base-insert-heeder{
+    -fx-font-size: 32;
+}

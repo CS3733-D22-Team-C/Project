@@ -5,7 +5,6 @@ import edu.wpi.cs3733.D22.teamC.entity.floor.Floor;
 import edu.wpi.cs3733.D22.teamC.entity.location.Location;
 import edu.wpi.cs3733.D22.teamC.entity.location.LocationDAO;
 import edu.wpi.cs3733.D22.teamC.entity.medical_equipment.MedicalEquipment;
-import edu.wpi.cs3733.D22.teamC.entity.medical_equipment.MedicalEquipmentDAO;
 import edu.wpi.cs3733.D22.teamC.entity.service_request.ServiceRequest;
 import edu.wpi.cs3733.D22.teamC.entity.service_request.ServiceRequestDAO;
 import edu.wpi.cs3733.D22.teamC.models.medical_equipment.MedicalEquipmentTableDisplay;
@@ -21,8 +20,6 @@ import javafx.scene.shape.SVGPath;
 import java.net.URL;
 import java.util.List;
 import java.util.ResourceBundle;
-import java.util.stream.Collectors;
-import java.util.stream.Stream;
 
 public class InfoPaneController implements Initializable {
     // Constants
@@ -71,7 +68,7 @@ public class InfoPaneController implements Initializable {
         setTabIcon(serviceRequestTab, SERVICE_REQUEST_ICON);
 
         // Initialize Location Info
-        ComponentWrapper.InitializeComboBox(floorComboBox, Floor::getShortName);
+        ComponentWrapper.initializeComboBox(floorComboBox, Floor::getShortName);
 
         // Initialize Service Request Info
         serviceRequestTableDisplay = new ServiceRequestTableDisplay<>(serviceRequestTable);

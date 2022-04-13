@@ -1,12 +1,11 @@
 nodeID,xcoord,ycoord,floor,building,nodeType,longName,shortName
-186f1ae6-d12f-4994-a0a5-875f02e9072c,644,300,4c995e14-cb6b-49eb-bbe8-95fea57b5374,Tower,DEPT,Center for International Medicine,CIM
-948a0a64-86c9-4c76-ab24-f200580bd96a,637,595,4c995e14-cb6b-49eb-bbe8-95fea57b5374,Tower,DEPT,Bretholtz Center for Patients and Families,Bretholtz WR
-12eea339-69f3-47eb-ac0b-d2b7cd34341e,748,406,4c995e14-cb6b-49eb-bbe8-95fea57b5374,Tower,DEPT,Multifaith Chapel,Chapel
+186f1ae6-d12f-4994-a0a5-875f02e9072c,650,300,4c995e14-cb6b-49eb-bbe8-95fea57b5374,PLACE,DEPT,Center for International Medicine,CIM
+948a0a64-86c9-4c76-ab24-f200580bd96a,637,590,4c995e14-cb6b-49eb-bbe8-95fea57b5374,Tower,DEPT,Bretholtz Center for Patients and Families,Bretholtz WR
+12eea339-69f3-47eb-ac0b-d2b7cd34341e,748,400,4c995e14-cb6b-49eb-bbe8-95fea57b5374,Tower,DEPT,Multifaith Chapel,Chapel
 8204f7bc-404c-4010-a72e-104c09f0dfda,821,621,4c995e14-cb6b-49eb-bbe8-95fea57b5374,Tower,DEPT,Sharf Admitting Center,Sharf Center
 57857b80-1fed-4f2c-9e41-cff00ff47b69,1155,775,4c995e14-cb6b-49eb-bbe8-95fea57b5374,Tower,DEPT,Emergency Department,Emergency
-d0885116-ebd4-4791-a77f-4b4b28f7175f,807,504,4c995e14-cb6b-49eb-bbe8-95fea57b5374,Tower,DEPT,International Patient Center,IPC
-a40d836c-1876-4736-b88c-cae2fe2d25a9,1044,274,4c995e14-cb6b-49eb-bbe8-95fea57b5374,Tower,EXIT,Shattuck Street Lobby Exit,Shattuck St. Exit
-1b35b1fc-9407-4008-a494-3f829f34469d,775,796,4c995e14-cb6b-49eb-bbe8-95fea57b5374,Tower,EXIT,75 Francis Valet Drop-off,75 Francis Exit
+d0885116-ebd4-4791-a77f-4b4b28f7175f,807,504,4c995e14-cb6b-49eb-bbe8-95fea57b5374,Tower,DEPT,TEST,IPC
+a40d836c-1876-4736-b88c-cae2fe2d25a9,104,274,4c995e14-cb6b-49eb-bbe8-95fea57b5374,Tower,EXIT,Shattuck Street Lobby Exit,Shattuck St. Exit
 214b0d96-507f-4ace-be62-631243ca7727,1126,832,4c995e14-cb6b-49eb-bbe8-95fea57b5374,Tower,EXIT,Emergency Department Entrance,Emergency Entrance
 8650f955-a150-4397-bdf4-a3e3e995b999,1082,385,4c995e14-cb6b-49eb-bbe8-95fea57b5374,Tower,HALL,Lower Pike Hallway Exit Lobby,Hallway F00101
 38571e90-7c43-44a1-bfff-8b63251fcb80,1053,385,4c995e14-cb6b-49eb-bbe8-95fea57b5374,Tower,HALL,Lobby Shattuck Street,Hallway F00201

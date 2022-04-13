@@ -9,6 +9,7 @@ import edu.wpi.cs3733.D22.teamC.entity.employee.Employee;
 import edu.wpi.cs3733.D22.teamC.entity.generic.DAO;
 import edu.wpi.cs3733.D22.teamC.entity.service_request.ServiceRequest;
 import edu.wpi.cs3733.D22.teamC.models.service_request.ServiceRequestTableDisplay;
+import edu.wpi.cs3733.D22.teamC.models.utils.ComponentWrapper;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.event.ActionEvent;
@@ -104,12 +105,12 @@ public class BaseServiceRequestCreateController<T extends ServiceRequest> implem
 
         // Restrict ID TextFields to only contain numeric values
         //setIDFieldToNumeric(assigneeID);
-        setIDFieldToNumeric(locationField);
+        ComponentWrapper.setIDFieldToNumeric(locationField);
 
         // Limit the length of TextFields and TextAreas so that users can input a limited number of characters:
-        setTextLengthLimiter(assigneeID, 10);
-        setTextLengthLimiter(locationField, 10);
-        setTextLengthLimiter(description, 100);
+        ComponentWrapper.setTextLengthLimiter(assigneeID, 10);
+        ComponentWrapper.setTextLengthLimiter(locationField, 10);
+        ComponentWrapper.setTextLengthLimiter(description, 100);
 
         // Setup table
         tableDisplay = insertController.setupTable(table);
@@ -229,45 +230,6 @@ public class BaseServiceRequestCreateController<T extends ServiceRequest> implem
         createServiceRequest();
         clearFields();
         clickGoBack(null);
-    }
-    //#endregion
-
-    //#region Field Constraints
-    public void setIDFieldToNumeric(TextField tf)
-    {
-        tf.textProperty().addListener(new ChangeListener<String>() {
-            @Override
-            public void changed(ObservableValue<? extends String> observable, String oldValue,
-                                String newValue) {
-                if (!newValue.matches("\\d*")) {
-                    tf.setText(newValue.replaceAll("[^\\d]", ""));
-                }
-            }
-        });
-    }
-
-    public void setTextLengthLimiter(final TextField textF, final int maxLength) {
-        textF.textProperty().addListener(new ChangeListener<String>() {
-            @Override
-            public void changed(final ObservableValue<? extends String> ov, final String oldValue, final String newValue) {
-                if (textF.getText().length() > maxLength) {
-                    String s = textF.getText().substring(0, maxLength);
-                    textF.setText(s);
-                }
-            }
-        });
-    }
-
-    public void setTextLengthLimiter(final TextArea textA, final int maxLength) {
-        textA.textProperty().addListener(new ChangeListener<String>() {
-            @Override
-            public void changed(final ObservableValue<? extends String> ov, final String oldValue, final String newValue) {
-                if (textA.getText().length() > maxLength) {
-                    String s = textA.getText().substring(0, maxLength);
-                    textA.setText(s);
-                }
-            }
-        });
     }
     //#endregion
 }
