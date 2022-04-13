@@ -35,9 +35,9 @@
          <children>
             <HBox prefHeight="626.0" prefWidth="358.0" GridPane.hgrow="ALWAYS" GridPane.vgrow="ALWAYS" VBox.vgrow="ALWAYS">
                <children>
-                  <VBox prefHeight="626.0" prefWidth="342.0">
+                  <VBox alignment="CENTER" prefHeight="626.0" prefWidth="342.0">
                      <children>
-                        <StackPane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="150.0" prefWidth="357.0" styleClass="login-interface-background-upper" VBox.vgrow="ALWAYS">
+                        <StackPane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="150.0" prefWidth="357.0" styleClass="login-interface-background-upper" VBox.vgrow="NEVER">
                            <children>
                               <VBox prefHeight="150.0" prefWidth="349.0" VBox.vgrow="ALWAYS">
                                  <children>
