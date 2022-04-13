@@ -7,6 +7,8 @@ import edu.wpi.cs3733.D22.teamC.entity.employee.EmployeeDAO;
 import edu.wpi.cs3733.D22.teamC.error.error_item.user_input.login.LoginErrorItem;
 import edu.wpi.cs3733.D22.teamC.validation.login.LoginEvaluator;
 import io.github.palexdev.materialfx.controls.MFXButton;
+import io.github.palexdev.materialfx.controls.MFXPasswordField;
+import io.github.palexdev.materialfx.controls.MFXTextField;
 import io.github.palexdev.materialfx.controls.MFXToggleButton;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
@@ -25,10 +27,10 @@ import java.util.ResourceBundle;
 
 public class LoginPageController implements Initializable {
     @FXML
-    private TextField username;
+    private MFXTextField username;
 
     @FXML
-    private TextField password;
+    private MFXPasswordField password;
 
     @FXML
     private Label invalidLogin;
