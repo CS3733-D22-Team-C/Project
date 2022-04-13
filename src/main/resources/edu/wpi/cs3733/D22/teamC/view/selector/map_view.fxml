@@ -11,7 +11,7 @@
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.layout.VBox?>
 
-<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="535.0" prefWidth="600.0" stylesheets="@../../css/base.css" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1">
+<VBox minHeight="-Infinity" minWidth="-Infinity" prefHeight="700.0" prefWidth="800.0" stylesheets="@../../css/base.css" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1">
    <children>
       <HBox prefHeight="50.0" prefWidth="200.0">
          <padding>
@@ -20,19 +20,22 @@
          <children>
             <Label fx:id="title" prefHeight="68.0" prefWidth="463.0" styleClass="page-title" stylesheets="@../../css/base.css" text="Select a Location" HBox.hgrow="ALWAYS" />
          </children>
+         <VBox.margin>
+            <Insets bottom="20.0" />
+         </VBox.margin>
       </HBox>
-      <GridPane fx:id="mapViewContainer" VBox.vgrow="ALWAYS">
+      <GridPane fx:id="mapViewContainer" maxHeight="-Infinity" prefHeight="600.0" VBox.vgrow="SOMETIMES">
         <columnConstraints>
           <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
         </columnConstraints>
         <rowConstraints>
-          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+          <RowConstraints fillHeight="false" minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
         </rowConstraints>
          <VBox.margin>
-            <Insets />
+            <Insets bottom="20.0" top="20.0" />
          </VBox.margin>
          <padding>
-            <Insets bottom="15.0" left="15.0" right="15.0" top="15.0" />
+            <Insets bottom="30.0" left="30.0" right="30.0" top="30.0" />
          </padding>
       </GridPane>
       <HBox alignment="CENTER" prefHeight="80.0" prefWidth="600.0">
@@ -58,6 +61,9 @@
                </padding>
             </HBox>
          </children>
+         <VBox.margin>
+            <Insets top="20.0" />
+         </VBox.margin>
       </HBox>
    </children>
 </VBox>
