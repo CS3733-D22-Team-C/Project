@@ -11,21 +11,20 @@ import edu.wpi.cs3733.D22.teamC.entity.medical_equipment.MedicalEquipment;
 import edu.wpi.cs3733.D22.teamC.entity.medical_equipment.MedicalEquipmentDAO;
 import edu.wpi.cs3733.D22.teamC.entity.service_request.medical_equipment.MedicalEquipmentSR;
 import edu.wpi.cs3733.D22.teamC.entity.service_request.medical_equipment.MedicalEquipmentSRDAO;
-import edu.wpi.cs3733.D22.teamC.fileio.csv.*;
+import edu.wpi.cs3733.D22.teamC.fileio.csv.CSVFacade;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Scene;
-import javafx.scene.image.Image;
-import javafx.scene.image.ImageView;
 import javafx.scene.layout.BorderPane;
 import javafx.stage.Stage;
 import lombok.extern.slf4j.Slf4j;
 
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.List;
+
+import static edu.wpi.cs3733.D22.teamC.fileio.csv.CSVFacade.read;
+import static edu.wpi.cs3733.D22.teamC.fileio.csv.CSVFacade.write;
 
 @Slf4j
 public class App extends Application {
@@ -54,6 +53,7 @@ public class App extends Application {
     public static final String DRAWER_CONTENT_PATH = "view/component/drawer_content.fxml";
 
     public static final String LOGIN_PATH = "view/general/login.fxml";
+    public static final String DASHBOARD_PATH = "view/general/dashboard.fxml";
     public static final String VIEW_LOCATIONS_PATH = "view/location/view_locations.fxml";
 
     public static final String VIEW_SERVICE_REQUESTS_PATH = "view/service_request/view_service_requests.fxml";
@@ -80,8 +80,7 @@ public class App extends Application {
 
         // Load CSV Data - Floor
         {
-            FloorCSVReader csvReader = new FloorCSVReader();
-            List<Floor> floors = csvReader.readFile("TowerFloors.csv");
+            List<Floor> floors = CSVFacade.read(Floor.class,"TowerFloors.csv");
             if (floors != null) {
                 FloorDAO floorDAO = new FloorDAO();
                 for (Floor floor : floors) {
@@ -92,8 +91,7 @@ public class App extends Application {
 
         // Load CSV Data - Location
         {
-            LocationCSVReader csvReader = new LocationCSVReader();
-            List<Location> locations = csvReader.readFile("TowerLocations.csv");
+            List<Location> locations = CSVFacade.read(Location.class, "TowerLocations.csv");
             if (locations != null) {
                 LocationDAO locationDAO = new LocationDAO();
                 for (Location location : locations) {
@@ -104,9 +102,8 @@ public class App extends Application {
 
         // Load CSV Data = Employee
         {
-            EmployeeCSVReader csvReader =  new EmployeeCSVReader();
-            List<Employee> employees = csvReader.readFile("Employees.csv");
-            if(employees !=null){
+            List<Employee> employees = CSVFacade.read(Employee.class, "Employees.csv");
+            if(employees != null){
                 EmployeeDAO employeeDAO = new EmployeeDAO();
                 for(Employee employee : employees){
                     employeeDAO.insert(employee);
@@ -114,26 +111,25 @@ public class App extends Application {
             }
         }
 
-        // Load CSV Data - Medical Equipment Service Request
+        //Load CSV Data = MedicalEquipment
         {
-            MedicalEquipmentSRCSVReader csvReader = new MedicalEquipmentSRCSVReader();
-            List<MedicalEquipmentSR> medicalEquipmentSRs = csvReader.readFile("MedEquipReq.csv");
-            if(medicalEquipmentSRs != null){
-                MedicalEquipmentSRDAO serviceRequestDAO = new MedicalEquipmentSRDAO();
-                for(MedicalEquipmentSR medEquipSR : medicalEquipmentSRs){
-                    serviceRequestDAO.insert(medEquipSR);
+            List<MedicalEquipment> medicalEquipments = CSVFacade.read(MedicalEquipment.class, "MedicalEquip.csv");
+            if(medicalEquipments != null){
+                MedicalEquipmentDAO medicalEquipmentDAO = new MedicalEquipmentDAO();
+                for(MedicalEquipment medicalEquipment: medicalEquipments){
+                    medicalEquipmentDAO.insert(medicalEquipment);
+
                 }
             }
         }
 
-        // Load CSV Data - Medical Equipment
+        //Load CSV Data = MedicalEquipmentSR
         {
-            MedicalEquipmentCSVReader csvReader = new MedicalEquipmentCSVReader();
-            List<MedicalEquipment> medicalEquipments = csvReader.readFile("MedicalEquip.csv");
-            if(medicalEquipments != null){
-                MedicalEquipmentDAO medicalEquipmentDAO = new MedicalEquipmentDAO();
-                for(MedicalEquipment medicalEquipment : medicalEquipments){
-                    medicalEquipmentDAO.insert(medicalEquipment);
+            List<MedicalEquipmentSR> medicalEquipmentSRS = CSVFacade.read(MedicalEquipmentSR.class, "MedEquipReq.csv");
+            if(medicalEquipmentSRS != null){
+                MedicalEquipmentSRDAO medicalEquipmentSRDAO = new MedicalEquipmentSRDAO();
+                for(MedicalEquipmentSR medicalEquipmentSR: medicalEquipmentSRS){
+                    medicalEquipmentSRDAO.insert(medicalEquipmentSR);
                 }
             }
         }
@@ -152,59 +148,52 @@ public class App extends Application {
         setViewStatic(LOGIN_PATH);
 
         // TODO: Hook up via sidebar
-        setSkeletonView("view/table/base_view.fxml", "view/table/employee/table_insert.fxml");
     }
 
     @Override
     public void stop() {
         // Export CSV Data - Floor
         {
-            FloorCSVWriter csvWriter = new FloorCSVWriter();
             FloorDAO floorDAO = new FloorDAO();
             List<Floor> floors = floorDAO.getAll();
             if (floors != null) {
-                csvWriter.writeFile("TowerFloors.csv", floors);
+                CSVFacade.write(Floor.class,"TowerFloors.csv",floors);
             }
         }
 
         // Export CSV Data - Location
         {
-            LocationCSVWriter csvWriter = new LocationCSVWriter();
             LocationDAO locationDAO = new LocationDAO();
             List<Location> locations = locationDAO.getAll();
             if (locations != null) {
-                csvWriter.writeFile("TowerLocations.csv", locations);
+                CSVFacade.write(Location.class, "TowerLocations.csv", locations);
             }
         }
 
         //Export CSV Data - Employee
         {
-            EmployeeCSVWriter csvWriter = new EmployeeCSVWriter();
             EmployeeDAO employeeDAO = new EmployeeDAO();
             List<Employee> employees = employeeDAO.getAll();
             if(employees!=null){
-                csvWriter.writeFile("Employees.csv", employees);
-            }
-        }
-
-
-        // Export CSV Data - Medical Equipment Service Requests
-        {
-            MedicalEquipmentSRCSVWriter csvWriter = new MedicalEquipmentSRCSVWriter();
-            MedicalEquipmentSRDAO serviceRequestDAO = new MedicalEquipmentSRDAO();
-            List<MedicalEquipmentSR> serviceRequests = serviceRequestDAO.getAll();
-            if (serviceRequests != null){
-                csvWriter.writeFile("MedEquipReq.csv", serviceRequests);
+                CSVFacade.write(Employee.class,"Employees.csv", employees);
             }
         }
 
         // Export CSV Data - Medical Equipment
         {
-            MedicalEquipmentCSVWriter csvWriter = new MedicalEquipmentCSVWriter();
             MedicalEquipmentDAO medicalEquipmentDAO = new MedicalEquipmentDAO();
             List<MedicalEquipment> medicalEquipments = medicalEquipmentDAO.getAll();
-            if (medicalEquipments != null){
-                csvWriter.writeFile("MedicalEquip.csv", medicalEquipments);
+            if(medicalEquipments!=null){
+                CSVFacade.write(MedicalEquipment.class,"MedicalEquip.csv", medicalEquipments);
+            }
+        }
+
+        // Export CSV Data - Medical Equipment Service Requests
+        {
+            MedicalEquipmentSRDAO medicalEquipmentSRDAO = new MedicalEquipmentSRDAO();
+            List<MedicalEquipmentSR> medicalEquipmentSRS = medicalEquipmentSRDAO.getAll();
+            if(medicalEquipmentSRS!=null){
+                CSVFacade.write(MedicalEquipmentSR.class,"MedEquipReq.csv", medicalEquipmentSRS);
             }
         }
 

@@ -39,7 +39,7 @@ public class BaseTableViewController<T extends Object> implements Initializable,
     }
 
     public void setInsert(String path){
-        System.out.println(path);
+
         App.View<InsertTableViewController<T>> view = App.instance.loadView(path);
         insertController = view.getController();
         insertBox.getChildren().add(view.getNode());
