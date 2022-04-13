@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXComboBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+
+<HBox prefHeight="46.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.wpi.cs3733.D22.teamC.controller.service_request.facility_maintenance.FacilityMaintenanceSRInsertResolveController">
+   <children>
+      <VBox prefWidth="227.0" styleClass="box-margin">
+         <children>
+            <Label styleClass="service-field-label" text="Maintenance Type:" />
+            <JFXComboBox fx:id="maintType" maxWidth="1.7976931348623157E308" onAction="#statusUpdated" prefWidth="190.0" styleClass="dropdown" stylesheets="@../../../css/base.css" VBox.vgrow="ALWAYS" />
+         </children>
+      </VBox>
+   </children>
+</HBox>

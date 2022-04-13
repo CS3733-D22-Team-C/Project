@@ -63,8 +63,8 @@ public class ServiceRequestLandingPage implements Initializable {
     }
 
     @FXML
-    void clickFacilityMaintenance(MouseEvent event) {
-        //goToSRPage(ServiceRequest.RequestType.Facility_Maintenance);
+    void clickFacilityMaintenance(ActionEvent event) {
+        goToSRPage(ServiceRequest.RequestType.Facility_Maintenance);
     }
 
     @FXML
@@ -92,6 +92,7 @@ public class ServiceRequestLandingPage implements Initializable {
     void clickSecurity(ActionEvent event) {
         goToSRPage(ServiceRequest.RequestType.Security);
     }
+
 
     private void changeNameVisibility(boolean canSee) {//throws FileNotFoundException {
         brandon.setVisible(canSee);

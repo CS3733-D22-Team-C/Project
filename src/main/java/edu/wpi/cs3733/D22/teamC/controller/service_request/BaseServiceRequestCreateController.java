@@ -231,7 +231,6 @@ public class BaseServiceRequestCreateController<T extends ServiceRequest> implem
         void clickSubmit(ActionEvent event) {
             createServiceRequest();
             clearFields();
-            clickGoBack(null);
         }
 
         @FXML
