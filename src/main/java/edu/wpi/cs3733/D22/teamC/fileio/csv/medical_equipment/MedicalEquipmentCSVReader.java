@@ -21,7 +21,9 @@ public class MedicalEquipmentCSVReader extends CSVReader<MedicalEquipment> {
                 object.setLocationID(value);
                 break;
             case "typeNumber":
-                object.setTypeNumber(Integer.parseInt(value));
+                if(!value.equals("")){
+                    object.setTypeNumber(Integer.parseInt(value));
+                }
                 break;
             case "equipType":
                 object.setEquipmentType(MedicalEquipment.EquipmentType.valueOf(value));

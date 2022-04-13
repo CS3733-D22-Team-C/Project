@@ -6,6 +6,8 @@ import edu.wpi.cs3733.D22.teamC.entity.floor.Floor;
 import edu.wpi.cs3733.D22.teamC.entity.floor.FloorDAO;
 import edu.wpi.cs3733.D22.teamC.entity.location.Location;
 import edu.wpi.cs3733.D22.teamC.entity.location.LocationDAO;
+import edu.wpi.cs3733.D22.teamC.entity.medical_equipment.MedicalEquipment;
+import edu.wpi.cs3733.D22.teamC.entity.medical_equipment.MedicalEquipmentDAO;
 import edu.wpi.cs3733.D22.teamC.entity.service_request.medical_equipment.MedicalEquipmentSR;
 import edu.wpi.cs3733.D22.teamC.entity.service_request.medical_equipment.MedicalEquipmentSRDAO;
 import edu.wpi.cs3733.D22.teamC.fileio.csv.CSVFacade;
@@ -109,6 +111,18 @@ public class App extends Application {
 
         //Load CSV Data = MedicalEquipmentSR
         {
+            List<MedicalEquipment> medicalEquipments = CSVFacade.read(MedicalEquipment.class, "MedicalEquip.csv");
+            if(medicalEquipments != null){
+                MedicalEquipmentDAO medicalEquipmentDAO = new MedicalEquipmentDAO();
+                for(MedicalEquipment medicalEquipment: medicalEquipments){
+                    medicalEquipmentDAO.insert(medicalEquipment);
+                }
+            }
+        }
+
+
+        //Load CSV Data = MedicalEquipmentSR
+        {
             List<MedicalEquipmentSR> medicalEquipmentSRS = CSVFacade.read(MedicalEquipmentSR.class, "MedEquipReq.csv");
             if(medicalEquipmentSRS != null){
                 MedicalEquipmentSRDAO medicalEquipmentSRDAO = new MedicalEquipmentSRDAO();
@@ -161,6 +175,15 @@ public class App extends Application {
             List<Employee> employees = employeeDAO.getAll();
             if(employees!=null){
                 CSVFacade.write(Employee.class,"Employees.csv", employees);
+            }
+        }
+
+        // Export CSV Data - Medical Equipment
+        {
+            MedicalEquipmentDAO medicalEquipmentDAO = new MedicalEquipmentDAO();
+            List<MedicalEquipment> medicalEquipments = medicalEquipmentDAO.getAll();
+            if(medicalEquipments!=null){
+                CSVFacade.write(MedicalEquipment.class,"MedicalEquip.csv", medicalEquipments);
             }
         }
 

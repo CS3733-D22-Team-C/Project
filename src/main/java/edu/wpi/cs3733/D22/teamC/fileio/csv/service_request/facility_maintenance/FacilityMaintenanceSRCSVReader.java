@@ -37,7 +37,6 @@ public class FacilityMaintenanceSRCSVReader extends CSVReader<FacilityMaintenanc
                 break;
             case "creationTimestamp":
                 serviceRequest.setCreationTimestamp(Timestamp.valueOf(value));
-                System.out.println(value);
                 break;
             case "status":
                 serviceRequest.setStatus(ServiceRequest.Status.valueOf(value));
@@ -60,7 +59,6 @@ public class FacilityMaintenanceSRCSVReader extends CSVReader<FacilityMaintenanc
                 break;
             case "modifiedTimestamp":
                 serviceRequest.setModifiedTimestamp(Timestamp.valueOf(value)); //TODO: Handle the modified time
-                System.out.println(value);
                 break;
         }
         return serviceRequest;
