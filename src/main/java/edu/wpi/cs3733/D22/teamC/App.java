@@ -1,5 +1,6 @@
 package edu.wpi.cs3733.D22.teamC;
 
+import edu.wpi.cs3733.D22.teamC.controller.SkeletonController;
 import edu.wpi.cs3733.D22.teamC.entity.employee.Employee;
 import edu.wpi.cs3733.D22.teamC.entity.employee.EmployeeDAO;
 import edu.wpi.cs3733.D22.teamC.entity.floor.Floor;
@@ -52,6 +53,7 @@ public class App extends Application {
     public static final String DRAWER_CONTENT_PATH = "view/component/drawer_content.fxml";
 
     public static final String LOGIN_PATH = "view/general/login.fxml";
+    public static final String DASHBOARD_PATH = "view/general/dashboard.fxml";
     public static final String VIEW_LOCATIONS_PATH = "view/location/view_locations.fxml";
 
     public static final String VIEW_SERVICE_REQUESTS_PATH = "view/service_request/view_service_requests.fxml";
@@ -109,17 +111,17 @@ public class App extends Application {
             }
         }
 
-        //Load CSV Data = MedicalEquipmentSR
+        //Load CSV Data = MedicalEquipment
         {
             List<MedicalEquipment> medicalEquipments = CSVFacade.read(MedicalEquipment.class, "MedicalEquip.csv");
             if(medicalEquipments != null){
                 MedicalEquipmentDAO medicalEquipmentDAO = new MedicalEquipmentDAO();
                 for(MedicalEquipment medicalEquipment: medicalEquipments){
                     medicalEquipmentDAO.insert(medicalEquipment);
+
                 }
             }
         }
-
 
         //Load CSV Data = MedicalEquipmentSR
         {
@@ -132,7 +134,6 @@ public class App extends Application {
             }
         }
 
-
         log.info("Starting Up");
     }
 
@@ -140,13 +141,14 @@ public class App extends Application {
     public void start(Stage primaryStage) {
         // Create singleton instance
         instance = this;
-
         // Store window as stage
         stage = primaryStage;
-
         stage.setFullScreen(true);
 
         setViewStatic(LOGIN_PATH);
+
+        // TODO: Hook up via sidebar
+//        setSkeletonView("view/table/base_view.fxml", "view/table/locations/table_insert.fxml");
     }
 
     @Override
@@ -195,8 +197,22 @@ public class App extends Application {
                 CSVFacade.write(MedicalEquipmentSR.class,"MedEquipReq.csv", medicalEquipmentSRS);
             }
         }
-        
+
         log.info("Shutting Down");
+    }
+
+
+    /**
+     * Set a skeleton file for a view.
+     * @param skeletonFile The path to the skeleton view.
+     * @param insertFile The path to the insert view.
+     */
+    @SuppressWarnings("unchecked")
+    public void setSkeletonView(String skeletonFile, String insertFile) {
+        View view = loadView(skeletonFile);
+        SkeletonController skeletonController = (SkeletonController) view.getController();
+        skeletonController.setUp(insertFile);
+        setView(view.getNode());
     }
 
     /**

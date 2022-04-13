@@ -31,6 +31,5 @@ public class MedicalEquipmentDAOTest extends DAOTest<MedicalEquipment> {
         List<MedicalEquipment> meList = ((MedicalEquipmentDAO) dao).getEquipmentByLocation(locationID);
 
         assertEquals(2, meList.size());
-
     }
 }
