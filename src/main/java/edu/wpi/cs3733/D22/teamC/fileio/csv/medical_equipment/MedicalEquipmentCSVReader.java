@@ -28,7 +28,7 @@ public class MedicalEquipmentCSVReader extends CSVReader<MedicalEquipment> {
             case "equipType":
                 object.setEquipmentType(MedicalEquipment.EquipmentType.valueOf(value));
                 break;
-            case "equipStatus":
+            case "status":
                 object.setStatus(MedicalEquipment.EquipmentStatus.valueOf(value));
                 break;
         }
