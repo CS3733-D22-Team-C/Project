@@ -189,22 +189,7 @@ public class BaseServiceRequestResolveController<T extends ServiceRequest> imple
 
     @FXML
     void goToEmployeeTable(ActionEvent event) {
-        //Setting up pop up
-        App.View<EmployeeSelectorWindow> view = App.instance.loadView("view/selector/employee_table.fxml");
-        employeeSelectorWindow = view.getController();
-        VBox root = (VBox) view.getNode();
-
-
-
-        Scene scene = new Scene(root);
-        Stage primaryStage= new Stage();
-        if (scene != null) scene.setRoot(root);
-        else scene = new Scene(root);
-        primaryStage.setScene(scene);
-        primaryStage.initModality(Modality.WINDOW_MODAL);
-        primaryStage.initOwner(employeeTableButton.getScene().getWindow());
-        primaryStage.show();
-        employeeSelectorWindow.setup(this, primaryStage);
+        new EmployeeSelectorWindow(employee -> this.setEmployee(employee));
     }
 
     @FXML

@@ -3,6 +3,7 @@ package edu.wpi.cs3733.D22.teamC.models.employee;
 import com.jfoenix.controls.JFXTreeTableView;
 import edu.wpi.cs3733.D22.teamC.controller.service_request.ServiceRequestController;
 import edu.wpi.cs3733.D22.teamC.entity.employee.Employee;
+import edu.wpi.cs3733.D22.teamC.models.generic.SelectorWindow;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -15,51 +16,31 @@ import javafx.stage.Stage;
 import java.net.URL;
 import java.util.List;
 import java.util.ResourceBundle;
+import java.util.function.Consumer;
 
-public class EmployeeSelectorWindow implements Initializable {
+public class EmployeeSelectorWindow extends SelectorWindow<Employee> implements Initializable {
+    // FXML
+    @FXML private JFXTreeTableView table;
 
-    @FXML
-    private JFXTreeTableView table;
-
+    // Variables
     private EmployeeTableDisplay tableDisplay;
-    private ServiceRequestController parentController;
     private Employee activeEmployee;
-    private Stage primaryStage;
 
-    @FXML
-    private Label title;
+    public EmployeeSelectorWindow(Consumer<Employee> consumer) {
+        super(consumer);
+    }
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        title.setText("Select an Employee");
-        //Columns for table
-        tableDisplay = new EmployeeTableDisplay(table);
-
         // Query Database
-        System.out.println("38");
         EmployeeDAO employeeDAO = new EmployeeDAO();
         List<Employee> employees = employeeDAO.getAll();
-        System.out.println("41");
 
-        for (Employee employee : employees) {
-            System.out.println(employee.getFirstName());
-            tableDisplay.addObject(employee);
-        }
+        // Initialize Table
+        tableDisplay = new EmployeeTableDisplay(table);
+        employees.forEach(tableDisplay::addObject);
 
-    }
-
-    public void setup(ServiceRequestController parentController, Stage primaryStage){
-        this.parentController = parentController;
-        this.primaryStage = primaryStage;
         setRowInteraction();
-    }
-
-
-    @FXML
-    void onSelect(ActionEvent event) {
-        parentController.setEmployee(activeEmployee);
-        primaryStage.close();
-
     }
 
     protected void setRowInteraction() {
@@ -72,8 +53,7 @@ public class EmployeeSelectorWindow implements Initializable {
 
                     if (event.getClickCount() == 2) {
                         // Double Click shortcut back to base page
-                        parentController.setEmployee(activeEmployee);
-                        primaryStage.close();
+                        onSelectionMade(activeEmployee);
                     }
                 }
             });
@@ -81,4 +61,16 @@ public class EmployeeSelectorWindow implements Initializable {
             return row ;
         });
     }
+
+    //#region FXML Events
+        @FXML
+        void onSelect(ActionEvent event) {
+            onSelectionMade(activeEmployee);
+        }
+
+    @Override
+    protected String getView() {
+        return "view/selector/employee_table.fxml";
+    }
+    //#endregion
 }
