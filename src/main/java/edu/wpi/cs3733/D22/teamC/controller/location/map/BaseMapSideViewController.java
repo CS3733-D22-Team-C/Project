@@ -56,6 +56,9 @@ public class BaseMapSideViewController implements Initializable {
 
     @Override // Load floors and buttons
     public void initialize(URL location, ResourceBundle resources) {
+        this.readyEquip = new Equipment();
+        this.dirtyEquip = new Equipment();
+        this.inUseEquip = new Equipment();
         floorNodeControllerList = new ArrayList<>();
         FloorDAO floorDAO = new FloorDAO();
         List<Floor> lof = floorDAO.getAll();
@@ -65,6 +68,7 @@ public class BaseMapSideViewController implements Initializable {
             floorVBox.getChildren().add(floorNode.getGroup());
             floorNodeControllerList.add(floorNode);
             floorNode.getGroup().getChildren().get(0).setOnMouseClicked(e -> onFloorClicked(e, floorNode));
+            System.out.println(floorNode.getGroup().getChildren().get(0).toString());
         }
 
         tableDisplay = new EquipmentTableDisplay(table);
@@ -72,10 +76,17 @@ public class BaseMapSideViewController implements Initializable {
     }
 
     public class Equipment extends RecursiveTreeObject<Equipment> {
-        public int numOfBeds;
+        public String numOfBeds;
         public int numOfRecliners;
         public int numOfXRays;
         public int numOfPumps;
+
+        Equipment(){
+            this.numOfBeds = "";
+            this.numOfRecliners = 0;
+            this.numOfXRays = 0;
+            this.numOfPumps = 0;
+        }
     }
 
 
@@ -84,19 +95,18 @@ public class BaseMapSideViewController implements Initializable {
         this.selectedFloor = floorNode.getFloor();
 
         goToButton.setDisable(false);
-        //deleteButton.setDisable(false);
+        deleteButton.setDisable(false);
 
         floorTitle.setText(selectedFloor.getLongName());
-        //floorDescription.setText(selectedFloor.getDescription());
-        floorDescription.setText("OOOhhh you want to give us an A in this class, you want to give it to us so bad.");
+        floorDescription.setText(selectedFloor.getDescription());
 
         loadEquipment();
 
         tableDisplay.emptyTable();
 
-        //tableDisplay.addObject(dirtyEquip);
-        //tableDisplay.addObject(inUseEquip);
-        //tableDisplay.addObject(readyEquip);
+        tableDisplay.addObject(dirtyEquip);
+        tableDisplay.addObject(inUseEquip);
+        tableDisplay.addObject(readyEquip);
 
     }
 
@@ -108,13 +118,21 @@ public class BaseMapSideViewController implements Initializable {
 
     @FXML
     void onDeleteClicked(ActionEvent event){
+        FloorDAO floorDAO = new FloorDAO();
+        floorDAO.delete(selectedFloor);
+        for(FloorNode node : floorNodeControllerList){
+            if(node.getFloor() == selectedFloor){
+                floorNodeControllerList.remove(node);
+                App.instance.setView("view/location/map/base_side_map_view.fxml");
+                return;
+            }
+        }
 
     }
 
     private void loadEquipment() {
         MedicalEquipmentDAO MEL = new MedicalEquipmentDAO();
         List<MedicalEquipment> medicalEquipmentPerFloor = MEL.getEquipmentByFloor(selectedFloor.getFloorID());
-
 
         List<MedicalEquipment> floorXDirty = new ArrayList<>();
         List<MedicalEquipment> floorXClean = new ArrayList<>();
@@ -145,43 +163,36 @@ public class BaseMapSideViewController implements Initializable {
         List<MedicalEquipment> inUseRecliners   = new ArrayList<>();
 
         for(MedicalEquipment medicalEquipment : floorXDirty){
-            System.out.println(medicalEquipment.getEquipmentType().toString());
             if(medicalEquipment.getEquipmentType().equals(MedicalEquipment.EquipmentType.Recliner)) dirtyRecliners.add(medicalEquipment);
             if(medicalEquipment.getEquipmentType().equals(MedicalEquipment.EquipmentType.Portable_X_Ray)) dirtyXRays.add(medicalEquipment);
             if(medicalEquipment.getEquipmentType().equals(MedicalEquipment.EquipmentType.Bed)) dirtyBeds.add(medicalEquipment);
             if(medicalEquipment.getEquipmentType().equals(MedicalEquipment.EquipmentType.Infusion_Pump)) dirtyPumps.add(medicalEquipment);
         }
         for(MedicalEquipment medicalEquipment : floorXClean){
-            System.out.println(medicalEquipment.getEquipmentType().toString());
             if(medicalEquipment.getEquipmentType().equals(MedicalEquipment.EquipmentType.Recliner)) cleanRecliners.add(medicalEquipment);
             if(medicalEquipment.getEquipmentType().equals(MedicalEquipment.EquipmentType.Portable_X_Ray)) cleanXRays.add(medicalEquipment);
             if(medicalEquipment.getEquipmentType().equals(MedicalEquipment.EquipmentType.Bed)) cleanBeds.add(medicalEquipment);
             if(medicalEquipment.getEquipmentType().equals(MedicalEquipment.EquipmentType.Infusion_Pump)) cleanPumps.add(medicalEquipment);
         }
         for(MedicalEquipment medicalEquipment : floorXPod){
-            System.out.println(medicalEquipment.getEquipmentType().toString());
             if(medicalEquipment.getEquipmentType().equals(MedicalEquipment.EquipmentType.Recliner)) inUseRecliners.add(medicalEquipment);
             if(medicalEquipment.getEquipmentType().equals(MedicalEquipment.EquipmentType.Portable_X_Ray)) inUseXRays.add(medicalEquipment);
             if(medicalEquipment.getEquipmentType().equals(MedicalEquipment.EquipmentType.Bed)) inUseBeds.add(medicalEquipment);
             if(medicalEquipment.getEquipmentType().equals(MedicalEquipment.EquipmentType.Infusion_Pump)) inUsePumps.add(medicalEquipment);
         }
         dirtyEquip.numOfRecliners   = dirtyRecliners.size();
-        dirtyEquip.numOfBeds        = dirtyBeds.size();
+        dirtyEquip.numOfBeds        = "Dirty:   " + dirtyBeds.size(); //YE
         dirtyEquip.numOfPumps       = dirtyPumps.size();
         dirtyEquip.numOfXRays       = dirtyXRays.size();
 
-        readyEquip.numOfXRays       = cleanXRays.size();
-        readyEquip.numOfPumps       = cleanPumps.size();
-        readyEquip.numOfRecliners   = cleanRecliners.size();
-        readyEquip.numOfBeds        = cleanBeds.size();
-
-        inUseEquip.numOfBeds        = inUseBeds.size();
+        inUseEquip.numOfBeds        = "In Use: " + inUseBeds.size();
         inUseEquip.numOfXRays       = inUseXRays.size();
         inUseEquip.numOfPumps       = inUsePumps.size();
         inUseEquip.numOfRecliners   = inUseRecliners.size();
 
-        System.out.println(Integer.toString(dirtyEquip.numOfBeds));
-        System.out.println(Integer.toString(readyEquip.numOfBeds));
-        System.out.println(Integer.toString(inUseEquip.numOfBeds));
+        readyEquip.numOfXRays       = cleanXRays.size();
+        readyEquip.numOfPumps       = cleanPumps.size();
+        readyEquip.numOfRecliners   = cleanRecliners.size();
+        readyEquip.numOfBeds        = "Ready: " + cleanBeds.size();
     }
 }

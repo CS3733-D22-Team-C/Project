@@ -5,11 +5,13 @@ import edu.wpi.cs3733.D22.teamC.controller.location.map.BaseMapSideViewControlle
 import edu.wpi.cs3733.D22.teamC.models.generic.TableDisplay;
 import javafx.beans.property.IntegerProperty;
 import javafx.beans.property.SimpleIntegerProperty;
+import javafx.beans.property.SimpleStringProperty;
+import javafx.beans.property.StringProperty;
 
 public class EquipmentTableDisplay extends TableDisplay<BaseMapSideViewController.Equipment> {
     public class EquipmentTableEntry extends TableDisplayEntry {
         // Properties
-        private IntegerProperty numOfBeds;
+        private StringProperty numOfBeds;
         private IntegerProperty numOfRecliners;
         private IntegerProperty numOfXRays;
         private IntegerProperty numOfPumps;
@@ -17,7 +19,7 @@ public class EquipmentTableDisplay extends TableDisplay<BaseMapSideViewControlle
         public EquipmentTableEntry(BaseMapSideViewController.Equipment equipment) {
             super(equipment);
 
-            numOfBeds           = new SimpleIntegerProperty(equipment.numOfBeds);
+            numOfBeds           = new SimpleStringProperty(equipment.numOfBeds);
             numOfRecliners      = new SimpleIntegerProperty(equipment.numOfRecliners);
             numOfXRays          = new SimpleIntegerProperty(equipment.numOfXRays);
             numOfPumps          = new SimpleIntegerProperty(equipment.numOfPumps);
