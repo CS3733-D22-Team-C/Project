@@ -1,8 +1,12 @@
 package edu.wpi.cs3733.D22.teamC;
 
+import edu.wpi.cs3733.D22.teamC.entity.employee.Employee;
+import edu.wpi.cs3733.D22.teamC.entity.employee.EmployeeDAO;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.cfg.Configuration;
+
+import java.util.Arrays;
 
 /** Manage Hibernation session. */
 public class SessionManager {
@@ -13,6 +17,7 @@ public class SessionManager {
     
     public enum DBMode {
         EMBEDDED,
+        EMBEDDED_TEST,
         SERVER
     }
 
@@ -27,12 +32,24 @@ public class SessionManager {
         }
 		return sf.openSession();
 	}
-    
+
+    public static DBMode getServerDatabase() {
+        return serverDatabase;
+    }
+
+    public static void setTestDatabase() {
+        SessionManager.serverDatabase = DBMode.EMBEDDED_TEST;
+        killSessionFactory();
+        sf = createSessionFactory(serverDatabase);
+    }
+
     private static SessionFactory createSessionFactory(DBMode mode) {
         if (mode == DBMode.SERVER) {
             return new Configuration().configure("hibernate_server.cfg.xml").buildSessionFactory();
-        } else {
+        } else if (mode == DBMode.EMBEDDED){
             return new Configuration().configure("hibernate.cfg.xml").buildSessionFactory();
+        } else {
+            return new Configuration().configure("hibernate_test.cfg.xml").buildSessionFactory();
         }
     }
     
@@ -41,7 +58,9 @@ public class SessionManager {
      */
     public static void killSessionFactory() {
         try {
-            sf.close();
+            if (sf != null) {
+                sf.close();
+            }
             sf = null;
         } catch (Exception e) {
             e.printStackTrace();
@@ -57,5 +76,22 @@ public class SessionManager {
         SessionManager.serverDatabase = (mode == DBMode.EMBEDDED) ? DBMode.EMBEDDED : DBMode.SERVER;
         killSessionFactory();
         sf = createSessionFactory(serverDatabase);
+
+        addStaticAccounts();
+    }
+
+    private static void addStaticAccounts() {
+        EmployeeDAO dao = new EmployeeDAO();
+        String[] accounts = new String[] {"admin", "staff"};
+        Arrays.stream(accounts).forEach(accountName -> {
+            if (dao.getEmployeeByUsername(accountName) == null) {
+                Employee employee = new Employee();
+                employee.setRole(Employee.Role.Doctor);
+                if (accountName.equals("admin")) employee.setAdmin(true);
+                employee.setUsername(accountName);
+                employee.setPassword(accountName);
+                dao.insert(employee);
+            }
+        });
     }
 }

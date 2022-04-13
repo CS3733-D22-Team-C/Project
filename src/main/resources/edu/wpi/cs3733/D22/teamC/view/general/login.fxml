@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import io.github.palexdev.materialfx.controls.MFXButton?>
+<?import io.github.palexdev.materialfx.controls.MFXToggleButton?>
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TextField?>
@@ -101,9 +102,14 @@
                                     </VBox>
                                     <VBox maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="200.0" prefWidth="100.0" GridPane.hgrow="ALWAYS" GridPane.rowIndex="3" GridPane.vgrow="ALWAYS">
                                        <children>
-                                          <StackPane prefHeight="150.0" prefWidth="200.0">
+                                          <MFXToggleButton fx:id="toggleButton" prefHeight="46.0" prefWidth="200.0" styleClass="toggle-button-background" stylesheets="@../../css/toggle_button.css" translateX="69.0" translateY="20.0" />
+                                       </children>
+                                    </VBox>
+                                    <VBox maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="200.0" prefWidth="100.0" GridPane.hgrow="ALWAYS" GridPane.rowIndex="4" GridPane.vgrow="ALWAYS">
+                                       <children>
+                                          <StackPane prefHeight="150.0" prefWidth="200.0" translateY="-40.0">
                                              <children>
-                                                <MFXButton onAction="#loginButtonClicked" prefHeight="39.0" prefWidth="114.0" styleClass="login-button" stylesheets="@../../css/component/entity/login/login.css" text="Login" translateY="30.0" StackPane.alignment="CENTER">
+                                                <MFXButton onAction="#loginButtonClicked" prefHeight="20.0" prefWidth="114.0" styleClass="login-button" stylesheets="@../../css/component/entity/login/login.css" text="Login" translateY="30.0" StackPane.alignment="CENTER">
                                                    <font>
                                                       <Font name="Roboto Light" size="12.0" />
                                                    </font>
@@ -115,13 +121,9 @@
                                                 </ImageView>
                                              </children>
                                           </StackPane>
-                                       </children>
-                                    </VBox>
-                                    <VBox maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="200.0" prefWidth="100.0" GridPane.hgrow="ALWAYS" GridPane.rowIndex="4" GridPane.vgrow="ALWAYS">
-                                       <children>
-                                          <StackPane prefHeight="100.0" prefWidth="342.0">
+                                          <StackPane prefHeight="32.0" prefWidth="324.0" translateY="-20.0">
                                              <children>
-                                                <MFXButton onAction="#exitButtonClicked" prefHeight="39.0" prefWidth="114.0" styleClass="login-exit-button" stylesheets="@../../css/component/entity/login/login.css" text="Exit" StackPane.alignment="CENTER">
+                                                <MFXButton onAction="#exitButtonClicked" prefHeight="20.0" prefWidth="114.0" styleClass="login-exit-button" stylesheets="@../../css/component/entity/login/login.css" text="Exit" StackPane.alignment="CENTER">
                                                    <font>
                                                       <Font name="Roboto Light" size="12.0" />
                                                    </font>

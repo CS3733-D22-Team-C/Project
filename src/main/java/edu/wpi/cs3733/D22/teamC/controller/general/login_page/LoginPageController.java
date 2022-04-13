@@ -1,9 +1,13 @@
 package edu.wpi.cs3733.D22.teamC.controller.general.login_page;
 
 import edu.wpi.cs3733.D22.teamC.App;
+import edu.wpi.cs3733.D22.teamC.SessionManager;
+import edu.wpi.cs3733.D22.teamC.controller.component.sidebar.SidebarMenuController;
 import edu.wpi.cs3733.D22.teamC.entity.employee.EmployeeDAO;
 import edu.wpi.cs3733.D22.teamC.error.error_item.user_input.login.LoginErrorItem;
 import edu.wpi.cs3733.D22.teamC.validation.login.LoginEvaluator;
+import io.github.palexdev.materialfx.controls.MFXButton;
+import io.github.palexdev.materialfx.controls.MFXToggleButton;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.event.ActionEvent;
@@ -12,6 +16,8 @@ import javafx.fxml.Initializable;
 import javafx.geometry.Pos;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
+import javafx.scene.input.MouseDragEvent;
+import org.sqlite.core.DB;
 
 import java.net.URL;
 import java.util.ArrayList;
@@ -25,13 +31,39 @@ public class LoginPageController implements Initializable {
     private TextField password;
 
     @FXML
-    Label invalidLogin;
+    private Label invalidLogin;
+
+    @FXML
+    private MFXToggleButton toggleButton;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         setTextLengthLimiter(username, 20);
         setTextLengthLimiter(password, 20);
         invalidLogin.setVisible(false);
+
+        setInitialSelection();
+        toggleButton.setOnAction(e -> checkSelection());
+    }
+
+    public void setInitialSelection() {
+        if (SessionManager.getServerDatabase() == SessionManager.DBMode.SERVER) {
+            toggleButton.setSelected(true);
+            toggleButton.setText("Switch to Embedded");
+        } else {
+            toggleButton.setSelected(false);
+            toggleButton.setText("Switch to Server");
+        }
+    }
+
+    public void checkSelection() {
+        if (toggleButton.isSelected()) {
+            toggleButton.setText("Switch to Embedded");
+            SessionManager.switchDatabase(SessionManager.DBMode.SERVER);
+        } else {
+            toggleButton.setText("Switch to Server");
+            SessionManager.switchDatabase(SessionManager.DBMode.EMBEDDED);
+        }
     }
 
     @FXML
@@ -52,8 +84,6 @@ public class LoginPageController implements Initializable {
             App.instance.setUserAccount(eDAO.getEmployeeByUsername(username.getText()));
             App.instance.setView(App.VIEW_SERVICE_REQUESTS_PATH);
         }
-
-
     }
 
     @FXML
