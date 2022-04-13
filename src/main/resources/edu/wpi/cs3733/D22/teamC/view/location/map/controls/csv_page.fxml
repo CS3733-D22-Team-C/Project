@@ -14,7 +14,7 @@
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.layout.VBox?>
 
-<TabPane maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="617.0" prefWidth="487.0" stylesheets="@../../../../css/map/csv_page.css" tabClosingPolicy="UNAVAILABLE" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.wpi.cs3733.D22.teamC.controller.location.map.CSVComponent">
+<TabPane maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="600.0" prefWidth="487.0" stylesheets="@../../../../css/map/csv_page.css" tabClosingPolicy="UNAVAILABLE" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.wpi.cs3733.D22.teamC.controller.location.map.CSVComponent">
   <tabs>
     <Tab text="Import">
          <content>
