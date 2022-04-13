@@ -45,7 +45,7 @@
                      <children>
                         <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" GridPane.hgrow="ALWAYS" GridPane.vgrow="ALWAYS">
                            <children>
-                              <MFXButton fx:id="saveButton" buttonType="RAISED" disable="true" minHeight="30.0" minWidth="150.0" onAction="#onSaveButtonPressed" rippleColor="#ffffff99" styleClass="primary-button" text="Save" />
+                              <MFXButton fx:id="saveButton" buttonType="RAISED" disable="true" minHeight="30.0" minWidth="150.0" onAction="#onSaveButtonPressed" rippleColor="#ffffff99" styleClass="primary-button" text="Save" textFill="WHITE" />
                            </children>
                         </HBox>
                         <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" GridPane.hgrow="ALWAYS" GridPane.rowIndex="1" GridPane.vgrow="ALWAYS">
@@ -64,7 +64,7 @@
                         </HBox>
                         <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" GridPane.rowIndex="4">
                            <children>
-                              <MFXButton fx:id="exitButton" buttonType="RAISED" minHeight="30.0" minWidth="150.0" onAction="#onExitButtonPressed" rippleColor="#ffffff40" styleClass="cancel-button" text="Exit" />
+                              <MFXButton fx:id="exitButton" buttonType="RAISED" minHeight="30.0" minWidth="150.0" onAction="#onExitButtonPressed" rippleColor="#ffffff40" styleClass="button-failure" text="Exit" />
                            </children>
                         </HBox>
                      </children>

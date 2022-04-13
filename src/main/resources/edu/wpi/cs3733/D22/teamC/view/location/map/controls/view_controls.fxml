@@ -43,7 +43,7 @@
                      <children>
                         <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
                            <children>
-                              <MFXButton fx:id="editButton" buttonType="RAISED" minHeight="30.0" minWidth="150.0" onAction="#onEditButtonPressed" rippleColor="#ffffff40" styleClass="primary-button" text="Edit" />
+                              <MFXButton fx:id="editButton" buttonType="RAISED" minHeight="30.0" minWidth="150.0" onAction="#onEditButtonPressed" rippleColor="#ffffff40" styleClass="primary-button" text="Edit" textFill="WHITE" />
                            </children>
                         </HBox>
                         <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" GridPane.hgrow="ALWAYS" GridPane.rowIndex="1" GridPane.vgrow="ALWAYS">

@@ -112,9 +112,9 @@
                                     </GridPane>
                                  </children>
                               </HBox>
-                              <HBox alignment="CENTER" prefHeight="134.0" prefWidth="290.0" styleClass="HBox">
+                              <HBox alignment="CENTER" prefHeight="134.0" prefWidth="290.0" style="-fx-spacing: 10;" styleClass="HBox">
                                  <children>
-                                    <Button fx:id="deselectButton" mnemonicParsing="false" onAction="#onDeselectButtonPressed" text="Deselect">
+                                    <Button fx:id="deselectButton" mnemonicParsing="false" onAction="#onDeselectButtonPressed" styleClass="button-confirm" text="Deselect">
                                        <cursor>
                                           <Cursor fx:constant="HAND" />
                                        </cursor>
@@ -122,7 +122,7 @@
                                           <Insets />
                                        </opaqueInsets>
                                     </Button>
-                                    <Button fx:id="revertButton" disable="true" mnemonicParsing="false" onAction="#onRevertButtonPressed" text="Revert">
+                                    <Button fx:id="revertButton" disable="true" mnemonicParsing="false" onAction="#onRevertButtonPressed" styleClass="button-confirm" text="Revert">
                                        <cursor>
                                           <Cursor fx:constant="HAND" />
                                        </cursor>
@@ -130,7 +130,7 @@
                                           <Insets />
                                        </opaqueInsets>
                                     </Button>
-                                    <Button fx:id="deleteButton" mnemonicParsing="false" onAction="#onDeleteButtonPressed" text="Delete" textAlignment="CENTER">
+                                    <Button fx:id="deleteButton" mnemonicParsing="false" onAction="#onDeleteButtonPressed" styleClass="button-failure" text="Delete" textAlignment="CENTER">
                                        <cursor>
                                           <Cursor fx:constant="HAND" />
                                        </cursor>
