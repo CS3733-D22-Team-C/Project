@@ -1,4 +1,6 @@
 ID,FirstName,LastName,EmailID,Phone,Address,Role,IsAdmin,Username,Password
+1ab76998-3dfe-4d16-944d-ba53d3db5c46,null,null,null,null,null,Doctor,true,admin,admin
+9030ad43-3bb9-4022-9bcc-64cd579e8234,null,null,null,null,null,Doctor,false,staff,staff
 b11e4a8c-7897-4112-9913-9c8b6471fcfb,Vishnu,U,u@mail.com,31231,fafhakhdk,Doctor,true,Vishnu,Vishnu1
 27acc353-7be8-44dd-87ad-d09cc497ad2e,Nick,K,k@mail.com,322342,dsasd,Nurse,true,Nick,Nick1
 646cf6b5-4173-4e49-b989-0ddbe1475def,Mia,A,a@mail.com,4563432,sadasd,Doctor,false,Mia,Mia1

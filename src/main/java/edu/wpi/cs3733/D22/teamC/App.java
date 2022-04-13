@@ -78,65 +78,65 @@ public class App extends Application {
     public void init() {
         SessionManager.switchDatabase(SessionManager.DBMode.EMBEDDED);
 
-        // Load CSV Data - Floor
-        {
-            FloorCSVReader csvReader = new FloorCSVReader();
-            List<Floor> floors = csvReader.readFile("TowerFloors.csv");
-            if (floors != null) {
-                FloorDAO floorDAO = new FloorDAO();
-                for (Floor floor : floors) {
-                    floorDAO.insert(floor);
-                }
-            }
-        }
-
-        // Load CSV Data - Location
-        {
-            LocationCSVReader csvReader = new LocationCSVReader();
-            List<Location> locations = csvReader.readFile("TowerLocations.csv");
-            if (locations != null) {
-                LocationDAO locationDAO = new LocationDAO();
-                for (Location location : locations) {
-                    locationDAO.insert(location);
-                }
-            }
-        }
-
-        // Load CSV Data = Employee
-        {
-            EmployeeCSVReader csvReader =  new EmployeeCSVReader();
-            List<Employee> employees = csvReader.readFile("Employees.csv");
-            if(employees !=null){
-                EmployeeDAO employeeDAO = new EmployeeDAO();
-                for(Employee employee : employees){
-                    employeeDAO.insert(employee);
-                }
-            }
-        }
-
-        // Load CSV Data - Medical Equipment Service Request
-        {
-            MedicalEquipmentSRCSVReader csvReader = new MedicalEquipmentSRCSVReader();
-            List<MedicalEquipmentSR> medicalEquipmentSRs = csvReader.readFile("MedEquipReq.csv");
-            if(medicalEquipmentSRs != null){
-                MedicalEquipmentSRDAO serviceRequestDAO = new MedicalEquipmentSRDAO();
-                for(MedicalEquipmentSR medEquipSR : medicalEquipmentSRs){
-                    serviceRequestDAO.insert(medEquipSR);
-                }
-            }
-        }
-
-        // Load CSV Data - Medical Equipment
-        {
-            MedicalEquipmentCSVReader csvReader = new MedicalEquipmentCSVReader();
-            List<MedicalEquipment> medicalEquipments = csvReader.readFile("MedicalEquip.csv");
-            if(medicalEquipments != null){
-                MedicalEquipmentDAO medicalEquipmentDAO = new MedicalEquipmentDAO();
-                for(MedicalEquipment medicalEquipment : medicalEquipments){
-                    medicalEquipmentDAO.insert(medicalEquipment);
-                }
-            }
-        }
+//        // Load CSV Data - Floor
+//        {
+//            FloorCSVReader csvReader = new FloorCSVReader();
+//            List<Floor> floors = csvReader.readFile("TowerFloors.csv");
+//            if (floors != null) {
+//                FloorDAO floorDAO = new FloorDAO();
+//                for (Floor floor : floors) {
+//                    floorDAO.insert(floor);
+//                }
+//            }
+//        }
+//
+//        // Load CSV Data - Location
+//        {
+//            LocationCSVReader csvReader = new LocationCSVReader();
+//            List<Location> locations = csvReader.readFile("TowerLocations.csv");
+//            if (locations != null) {
+//                LocationDAO locationDAO = new LocationDAO();
+//                for (Location location : locations) {
+//                    locationDAO.insert(location);
+//                }
+//            }
+//        }
+//
+//        // Load CSV Data = Employee
+//        {
+//            EmployeeCSVReader csvReader =  new EmployeeCSVReader();
+//            List<Employee> employees = csvReader.readFile("Employees.csv");
+//            if(employees !=null){
+//                EmployeeDAO employeeDAO = new EmployeeDAO();
+//                for(Employee employee : employees){
+//                    employeeDAO.insert(employee);
+//                }
+//            }
+//        }
+//
+//        // Load CSV Data - Medical Equipment Service Request
+//        {
+//            MedicalEquipmentSRCSVReader csvReader = new MedicalEquipmentSRCSVReader();
+//            List<MedicalEquipmentSR> medicalEquipmentSRs = csvReader.readFile("MedEquipReq.csv");
+//            if(medicalEquipmentSRs != null){
+//                MedicalEquipmentSRDAO serviceRequestDAO = new MedicalEquipmentSRDAO();
+//                for(MedicalEquipmentSR medEquipSR : medicalEquipmentSRs){
+//                    serviceRequestDAO.insert(medEquipSR);
+//                }
+//            }
+//        }
+//
+//        // Load CSV Data - Medical Equipment
+//        {
+//            MedicalEquipmentCSVReader csvReader = new MedicalEquipmentCSVReader();
+//            List<MedicalEquipment> medicalEquipments = csvReader.readFile("MedicalEquip.csv");
+//            if(medicalEquipments != null){
+//                MedicalEquipmentDAO medicalEquipmentDAO = new MedicalEquipmentDAO();
+//                for(MedicalEquipment medicalEquipment : medicalEquipments){
+//                    medicalEquipmentDAO.insert(medicalEquipment);
+//                }
+//            }
+//        }
 
         log.info("Starting Up");
     }
