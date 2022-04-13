@@ -41,11 +41,21 @@ public class LoginPageController implements Initializable {
         setTextLengthLimiter(username, 20);
         setTextLengthLimiter(password, 20);
         invalidLogin.setVisible(false);
-        toggleButton.setText("Switch to server");
-        toggleButton.setOnAction(e -> switchLabelText(toggleButton.isSelected()));
+        toggleButton.setText("Switch to Server");
+
+        toggleButton.setOnAction(e -> checkSelection());
     }
 
-
+    public void checkSelection()
+    {
+        if(toggleButton.isSelected()) {
+            toggleButton.setText("Switch to Server");
+            SessionManager.switchDatabase(SessionManager.DBMode.SERVER);
+        } else {
+          toggleButton.setText("Switch to Embedded");
+          SessionManager.switchDatabase(SessionManager.DBMode.EMBEDDED);
+        }
+    }
 
     @FXML
     public void loginButtonClicked(ActionEvent event) {

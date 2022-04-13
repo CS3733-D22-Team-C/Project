@@ -1,7 +1,7 @@
 @import "../css/colors.css";
 
 .toggle-button-background {
-    -fx-background-color: -color-secondary;
-    -fx-effect: dropshadow(three-pass-box, rgb(179, 237, 240), 1 , 0.1 , 0 , 2);
-    -fx-border-color: -color-secondary;
+    -fx-background-color: -color-primary-light;
+    -fx-effect: dropshadow(three-pass-box, rgb(0, 90, 155), 1 , 0.1 , 0 , 2);
+    -fx-border-color: -color-primary-light;
 }

@@ -1,8 +1,1 @@
 id,order,longName,shortName,imageSrc
-4c995e14-cb6b-49eb-bbe8-95fea57b5374,3,Floor 1,1,01_thefirstfloor.png
-805166d9-6117-4752-9780-28216d61fc26,4,Floor 2,2,02_thesecondfloor.png
-c2b73a98-db9b-495a-a031-8f9f163ab8ce,5,Floor 3,3,03_thethirdfloor_OVERLAY.png
-b34d0c16-0523-4dce-9d71-f6f3bf2749aa,2,Lower Floor 1,L1,00_thelowerlevel1.png
-fd5e0a98-c7b7-44ea-a07f-8cb3d99dbfe1,1,Lower Floor 2,L2,00_thelowerlevel2.png
-23525e7b-3ca9-4f1b-9d69-005c81d56a7f,6,Floor 4,4,04_fourthfloor_OVERLAY.png
-e9f57945-aad3-42ea-bf10-0796dde13964,7,Floor 5,5,05_fifthfloor_OVERLAY.png
