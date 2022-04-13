@@ -24,9 +24,9 @@
       <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="ALWAYS" />
    </rowConstraints>
    <children>
-      <MFXScrollPane hbarPolicy="NEVER" maxHeight="1.7976931348623157E308" maxWidth="-Infinity" prefWidth="220.0" GridPane.halignment="CENTER" GridPane.valignment="CENTER">
+      <MFXScrollPane hbarPolicy="NEVER" maxHeight="500.0" maxWidth="-Infinity" prefHeight="500.0" prefWidth="220.0" vbarPolicy="NEVER" GridPane.halignment="CENTER" GridPane.valignment="CENTER">
          <content>
-            <VBox fx:id="floorVBox" alignment="CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="28.0" prefWidth="220.0" spacing="5.0">
+            <VBox fx:id="floorVBox" alignment="CENTER" maxWidth="1.7976931348623157E308" prefHeight="28.0" prefWidth="220.0" spacing="5.0">
                <padding>
                   <Insets top="5.0" />
                </padding>
