@@ -82,7 +82,7 @@
             </GridPane>
          </children>
          <padding>
-            <Insets left="10.0" top="10.0" />
+            <Insets left="30.0" right="30.0" />
          </padding>
       </VBox>
       <VBox fx:id="fieldsBox" prefHeight="170.0" prefWidth="479.0" GridPane.rowIndex="2">
@@ -120,6 +120,9 @@
                </children>
             </HBox>
          </children>
+         <padding>
+            <Insets left="30.0" right="30.0" />
+         </padding>
       </VBox>
       <VBox maxWidth="1.7976931348623157E308" prefHeight="150.0" prefWidth="479.0" styleClass="box-margin" GridPane.rowIndex="3">
          <children>
@@ -130,6 +133,9 @@
                </children>
             </VBox>
          </children>
+         <padding>
+            <Insets left="30.0" right="30.0" />
+         </padding>
       </VBox>
       <VBox GridPane.rowIndex="4">
          <children>
@@ -156,13 +162,13 @@
                </children>
             </HBox>
          </children>
+         <padding>
+            <Insets left="30.0" right="30.0" />
+         </padding>
       </VBox>
    </children>
    <stylesheets>
       <URL value="@../../../css/request_page.css" />
       <URL value="@../../../css/base.css" />
    </stylesheets>
-   <padding>
-      <Insets bottom="8.0" left="8.0" right="8.0" top="8.0" />
-   </padding>
 </GridPane>
