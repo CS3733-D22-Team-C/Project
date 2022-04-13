@@ -12,3 +12,13 @@
     -fx-font-size: 15;
     -fx-spacing: 5px;
 }
+
+.floor-label{
+    -fx-background-color: #005A9B;
+    -fx-background-radius: 44px 44px 0px 0px;
+    -fx-text-fill: #FFFFFF;
+}
+.description-box{
+    -fx-background-radius: 44px 44px 44px 44px;
+    -fx-background-color: #F0F0F0;
+}
