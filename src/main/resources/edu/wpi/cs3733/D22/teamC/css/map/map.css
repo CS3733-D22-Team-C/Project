@@ -6,14 +6,11 @@
     -fx-max-height: 800px;
     -fx-hgap: 20px;
     -fx-padding: 40px;
-
     -fx-background-radius: 50px;
-
     -fx-border-radius: 5px;
     -fx-border-width: 5px;
     -fx-effect: dropshadow(three-pass-box, rgba(0, 0, 0, 0.8), 10, 0, 0, 0);
 }
-
 
 .container {
     -fx-background-color: -color-surface !important;
@@ -21,13 +18,12 @@
     -fx-max-height: 800px;
     -fx-hgap: 20px;
     -fx-padding: 40px;
-
     -fx-background-radius: 50px;
-
     -fx-border-radius: 5px;
     -fx-border-width: 5px;
     -fx-effect: dropshadow(three-pass-box, rgba(0, 0, 0, 0.8), 10, 0, 0, 0);
 }
+
 /* Locations button styling */
 .button {
     -fx-max-width: 115px;
