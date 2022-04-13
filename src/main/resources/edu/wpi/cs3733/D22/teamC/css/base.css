@@ -202,7 +202,7 @@ padding goes top, right, bottom, left
 }
 .tree-table-row-cell:hover {
     -fx-background-color: #93f9b911;
-    -fx-text-background-color: -color-red-contrast;
+    -fx-text-background-color: -color-primary-light;
 }
 .tree-table-row-cell:odd{
     -fx-background-color: -color-background;
@@ -278,7 +278,7 @@ padding goes top, right, bottom, left
 
     -fx-background-radius: 50px;
 
-    -fx-border-radius: 5px;
-    -fx-border-width: 5px;
+    /*-fx-border-radius: 5px;*/
+    /*-fx-border-width: 5px;*/
     -fx-effect: dropshadow(three-pass-box, rgba(0, 0, 0, 0.8), 10, 0, 0, 0);
 }
