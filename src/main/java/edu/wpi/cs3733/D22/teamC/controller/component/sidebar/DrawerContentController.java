@@ -35,7 +35,7 @@ public class DrawerContentController implements Initializable {
     private MFXButton mapsButton;
 
     @FXML
-    private MFXButton myTasksButton;
+    private MFXButton databaseButton;
 
     @FXML
     private MFXButton serviceRequestsButton;
@@ -59,8 +59,9 @@ public class DrawerContentController implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        allButtons = new MFXButton[]{dashboardButton, exitButton, logOutButton, myTasksButton, viewProfileButton, mapsButton, serviceRequestsButton};
+        allButtons = new MFXButton[]{dashboardButton, exitButton, logOutButton, databaseButton, viewProfileButton, mapsButton, serviceRequestsButton};
         initializeSVG();
+        databaseButton.setVisible(App.instance.getUserAccount().getAdmin());
     }
 
     /**
@@ -135,9 +136,9 @@ public class DrawerContentController implements Initializable {
     }
 
     @FXML
-    void taskButtonPress(ActionEvent event) {
+    void databaseButtonPress(ActionEvent event) {
         // TODO: Path to view tasks related to user
-        App.instance.setView("");
+        App.instance.setView(App.DATABASE_PAGE_PATH);
     }
 
     @FXML
