@@ -63,7 +63,7 @@ public class ServiceRequestLandingPage implements Initializable {
     }
 
     @FXML
-    void clickFacilityMaintenance(MouseEvent event) {
+    void clickFacilityMaintenance(ActionEvent event) {
         goToSRPage(ServiceRequest.RequestType.Facility_Maintenance);
     }
 
