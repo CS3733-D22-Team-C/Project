@@ -21,7 +21,7 @@
         <!--        <property name="format_sql">true</property>-->
 
         <!--CREATE-DROP DELETES EVERYTHING ON STARTUP-->
-                <property name="hibernate.hbm2ddl.auto">validate</property>
+        <property name="hibernate.hbm2ddl.auto">create-only</property>
 <!--        <property name="hibernate.hbm2ddl.auto">create-drop</property>-->
 
         <mapping class="edu.wpi.cs3733.D22.teamC.entity.location.Location" />
