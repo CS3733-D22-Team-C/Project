@@ -1,6 +1,7 @@
-package edu.wpi.cs3733.D22.teamC.fileio.csv;
+package edu.wpi.cs3733.D22.teamC.fileio.csv.location;
 
 import edu.wpi.cs3733.D22.teamC.entity.location.Location;
+import edu.wpi.cs3733.D22.teamC.fileio.csv.CSVReader;
 
 public class LocationCSVReader extends CSVReader<Location> {
 
