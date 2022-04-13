@@ -15,12 +15,12 @@
 .page-title {
     -fx-background-color: -color-primary !important;
     -fx-text-fill: -color-primary-text;
-    -fx-hgap: 20px;
-    -fx-padding: 20px;
+    /*-fx-hgap: 20px;*/
+    /*-fx-padding: 20px;*/
     -fx-alignment: top-center;
-    -fx-background-radius: 50, 50, 0, 0;
-    -fx-border-radius: 50, 50, 0, 0;
-    -fx-border-width: 5px;
+    -fx-background-radius: 50 50 0 0 ;
+    /*-fx-border-radius: 50, 50, 0, 0;*/
+    /*-fx-border-width: 5px;*/
 }
 
 .big-text {

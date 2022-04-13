@@ -273,8 +273,8 @@ padding goes top, right, bottom, left
     -fx-background-color: -color-surface !important;
     -fx-max-width: 800px !important;
     -fx-max-height: 800px;
-    -fx-hgap: 20px;
-    -fx-padding: 40px;
+    /*-fx-hgap: 20px;*/
+    /*-fx-padding: 40px;*/
 
     -fx-background-radius: 50px;
 
