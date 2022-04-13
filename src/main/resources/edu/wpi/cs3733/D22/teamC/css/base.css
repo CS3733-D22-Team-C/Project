@@ -6,7 +6,7 @@
 /* Defaults for EVERYTHING */
 .root * {
     /* Default Font */
-    -fx-font-family: "Roboto";
+    /*-fx-font-family: Roboto;*/
     /*-fx-font-size: 14px;*/
     -fx-focus-color: transparent;
     -fx-faint-focus-color: transparent;
@@ -282,3 +282,4 @@ padding goes top, right, bottom, left
     /*-fx-border-width: 5px;*/
     -fx-effect: dropshadow(three-pass-box, rgba(0, 0, 0, 0.8), 10, 0, 0, 0);
 }
+
