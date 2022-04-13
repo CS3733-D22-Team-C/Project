@@ -1,16 +1,16 @@
-package edu.wpi.cs3733.D22.teamC.fileio.csv;
+package edu.wpi.cs3733.D22.teamC.fileio.csv.service_request.medicine_delivery;
 
 import edu.wpi.cs3733.D22.teamC.entity.employee.Employee;
 import edu.wpi.cs3733.D22.teamC.entity.employee.EmployeeDAO;
 import edu.wpi.cs3733.D22.teamC.entity.service_request.ServiceRequest;
 import edu.wpi.cs3733.D22.teamC.entity.service_request.medical_equipment.MedicalEquipmentSR;
-import org.hibernate.exception.spi.TemplatedViolatedConstraintNameExtracter;
+import edu.wpi.cs3733.D22.teamC.entity.service_request.medicine_delivery.MedicineDeliverySR;
+import edu.wpi.cs3733.D22.teamC.fileio.csv.CSVReader;
 
 import java.sql.Timestamp;
 
-public class MedicalEquipmentSRCSVReader extends CSVReader<MedicalEquipmentSR>{
+public class MedicineDeliverySRCSVReader extends CSVReader<MedicineDeliverySR> {
     private EmployeeDAO employeeDAO = new EmployeeDAO();
-
     /**
      * Maps ServiceRequest (header, value) pairs to a value to change for the object.
      * @param serviceRequest The object to be modified.
@@ -19,7 +19,7 @@ public class MedicalEquipmentSRCSVReader extends CSVReader<MedicalEquipmentSR>{
      * @return The Location modified with the value at the corresponding attribute.
      */
     @Override
-    protected MedicalEquipmentSR parseAttribute(MedicalEquipmentSR serviceRequest, String header, String value){
+    protected MedicineDeliverySR parseAttribute(MedicineDeliverySR serviceRequest, String header, String value) {
         switch(header) {
             case "requestID":
                 serviceRequest.setRequestID(value);
@@ -37,7 +37,6 @@ public class MedicalEquipmentSRCSVReader extends CSVReader<MedicalEquipmentSR>{
                 break;
             case "creationTimestamp":
                 serviceRequest.setCreationTimestamp(Timestamp.valueOf(value));
-                System.out.println(value);
                 break;
             case "status":
                 serviceRequest.setStatus(ServiceRequest.Status.valueOf(value));
@@ -51,11 +50,14 @@ public class MedicalEquipmentSRCSVReader extends CSVReader<MedicalEquipmentSR>{
             case "description":
                 serviceRequest.setDescription(value);
                 break;
-            case "equipID":
-                serviceRequest.setEquipmentID(value);
+            case "medicine":
+                serviceRequest.setMedicine(value);
                 break;
-            case "equipType":
-                serviceRequest.setEquipmentType(MedicalEquipmentSR.EquipmentType.valueOf(value));
+            case "dosage":
+                serviceRequest.setDosage(value);
+                break;
+            case "patientID":
+                serviceRequest.setPatientID(value);
                 break;
             case "modifierID":
                 Employee modifier = employeeDAO.getByID(value);
@@ -63,12 +65,14 @@ public class MedicalEquipmentSRCSVReader extends CSVReader<MedicalEquipmentSR>{
                 break;
             case "modifiedTimestamp":
                 serviceRequest.setModifiedTimestamp(Timestamp.valueOf(value)); //TODO: Handle the modified time
-                System.out.println(value);
+
                 break;
         }
         return serviceRequest;
     }
 
     @Override
-    protected MedicalEquipmentSR createObject(){ return new MedicalEquipmentSR();}
+    protected MedicineDeliverySR createObject() {
+        return new MedicineDeliverySR();
+    }
 }

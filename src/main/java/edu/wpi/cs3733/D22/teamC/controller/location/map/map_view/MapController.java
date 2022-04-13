@@ -1,6 +1,7 @@
 package edu.wpi.cs3733.D22.teamC.controller.location.map.map_view;
 
 import edu.wpi.cs3733.D22.teamC.controller.location.map.BaseMapViewController;
+import edu.wpi.cs3733.D22.teamC.controller.location.map.MapViewController;
 import edu.wpi.cs3733.D22.teamC.entity.floor.Floor;
 import edu.wpi.cs3733.D22.teamC.entity.floor.FloorDAO;
 import edu.wpi.cs3733.D22.teamC.entity.location.Location;
@@ -45,7 +46,7 @@ public class MapController implements Initializable {
     public LocationNode activeLocation;
 
     // References
-    protected BaseMapViewController parentController;
+    protected MapViewController parentController;
 
 
     @Override
@@ -129,7 +130,9 @@ public class MapController implements Initializable {
                 locationNode.renderInFront();
             }
             if (locationNode != activeLocation) {
-                locationNode.showMedicalEquipmentCounters(true, parentController.isEditMode);
+                if (parentController.getClass().equals(BaseMapViewController.class)) {
+                    locationNode.showMedicalEquipmentCounters(true, ((BaseMapViewController) parentController).isEditMode);
+                }
                 locationNode.renderInFront();
             }
         }
@@ -139,7 +142,9 @@ public class MapController implements Initializable {
                 parentController.changeCurrentLocation(null, false);
             }
             if (activeLocation != locationNode) {
-                locationNode.showMedicalEquipmentCounters(false, parentController.isEditMode);
+                if (parentController.getClass().equals(BaseMapViewController.class)) {
+                    locationNode.showMedicalEquipmentCounters(false, ((BaseMapViewController) parentController).isEditMode);
+                }
                 locationNode.renderInBack();
             }
         }
@@ -190,7 +195,6 @@ public class MapController implements Initializable {
                         : Math.min(stackPane.getScaleX() + 0.1, MAX_SCALE);
                 stackPane.setScaleX(scale);
                 stackPane.setScaleY(scale);
-                System.out.println(scale);
 
                 event.consume();
             }
@@ -198,8 +202,8 @@ public class MapController implements Initializable {
     //#endregion
 
     //#region External Interaction
-        public void setParentController(BaseMapViewController baseMapViewController) {
-            this.parentController = baseMapViewController;
+        public void setParentController(MapViewController mapViewController) {
+            this.parentController = mapViewController;
         }
 
         public void setLocation(Location location) {
