@@ -100,7 +100,7 @@
       <VBox alignment="BOTTOM_CENTER" GridPane.columnIndex="3">
          <children>
             <Label alignment="BOTTOM_CENTER" prefHeight="58.0" prefWidth="133.0" styleClass="label-service-names" stylesheets="@../../css/service_request_landing_page.css" text="Facility Maintenance" textAlignment="CENTER" wrapText="true" />
-            <JFXButton opacity="0.5" prefHeight="134.0" prefWidth="131.0" styleClass="button-requests" stylesheets="@../../css/service_request_landing_page.css" text=" ">
+            <JFXButton onAction="#clickFacilityMaintenance" opacity="0.5" prefHeight="134.0" prefWidth="131.0" styleClass="button-requests" stylesheets="@../../css/service_request_landing_page.css" text=" ">
                <effect>
                   <DropShadow height="3.51" offsetY="10.0" radius="0.37749999999999995" width="0.0" />
                </effect>

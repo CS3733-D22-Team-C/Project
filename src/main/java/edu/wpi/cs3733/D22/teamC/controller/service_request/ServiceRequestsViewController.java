@@ -22,7 +22,7 @@ import static edu.wpi.cs3733.D22.teamC.entity.service_request.ServiceRequest.Sta
 
 public class ServiceRequestsViewController implements Initializable {
     // New Paths
-    public static final String CREATE_FORM = "view/service_request/skeleton/create_form.fxml";
+    public static final String CREATE_FORM = "view/service_request/skeleton/create_insert.fxml";
     public static final String RESOLVE_FORM = "view/service_request/skeleton/resolve_form.fxml";
 
     // Old Paths
