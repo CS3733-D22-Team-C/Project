@@ -13,9 +13,9 @@ public class MedicalEquipmentCSVWriter extends CSVWriter<MedicalEquipment> {
         return new String[] {
                 "ID",
                 "locationID",
-                "typeNumber",
                 "equipType",
-                "equipStatus"
+                "typeNumber",
+                "status"
         };
     }
 
@@ -38,8 +38,11 @@ public class MedicalEquipmentCSVWriter extends CSVWriter<MedicalEquipment> {
             case "equipType":
                 output = object.getEquipmentType().toString();
                 break;
-            case "equipStatus":
+            case "status":
                 output = object.getStatus().toString();
+                break;
+            case "typeNumber":
+                output = Integer.toString(object.getTypeNumber());
                 break;
         }
         return output;
