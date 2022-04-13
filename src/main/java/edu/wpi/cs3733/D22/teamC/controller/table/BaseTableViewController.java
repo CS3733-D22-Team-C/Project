@@ -25,6 +25,8 @@ public class BaseTableViewController<T extends Object> implements Initializable,
     // References
     InsertTableViewController<T> insertController;
 
+    final public static String DATABASE_PATH = "view/general/edit_databases_page.fxml";
+
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         rowInteraction();
@@ -92,7 +94,7 @@ public class BaseTableViewController<T extends Object> implements Initializable,
 
         @FXML
         public void onBackButtonClicked() {
-            App.instance.setView(App.LOGIN_PATH);
+            App.instance.setView(App.DATABASE_PAGE_PATH);
         }
     //#endregion
 }
