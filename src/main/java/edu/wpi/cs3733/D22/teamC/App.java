@@ -78,61 +78,61 @@ public class App extends Application {
     public void init() {
         SessionManager.switchDatabase(SessionManager.DBMode.EMBEDDED);
 
-        // // Load CSV Data - Floor
-        // {
-        //     List<Floor> floors = CSVFacade.read(Floor.class,"TowerFloors.csv");
-        //     if (floors != null) {
-        //         FloorDAO floorDAO = new FloorDAO();
-        //         for (Floor floor : floors) {
-        //             floorDAO.insert(floor);
-        //         }
-        //     }
-        // }
-
-        // // Load CSV Data - Location
-        // {
-        //     List<Location> locations = CSVFacade.read(Location.class, "TowerLocations.csv");
-        //     if (locations != null) {
-        //         LocationDAO locationDAO = new LocationDAO();
-        //         for (Location location : locations) {
-        //             locationDAO.insert(location);
-        //         }
-        //     }
-        // }
-
-        // // Load CSV Data = Employee
-        // {
-        //     List<Employee> employees = CSVFacade.read(Employee.class, "Employees.csv");
-        //     if(employees != null){
-        //         EmployeeDAO employeeDAO = new EmployeeDAO();
-        //         for(Employee employee : employees){
-        //             employeeDAO.insert(employee);
-        //         }
-        //     }
-        // }
-
-        // //Load CSV Data = MedicalEquipment
-        // {
-        //     List<MedicalEquipment> medicalEquipments = CSVFacade.read(MedicalEquipment.class, "MedicalEquip.csv");
-        //     if(medicalEquipments != null){
-        //         MedicalEquipmentDAO medicalEquipmentDAO = new MedicalEquipmentDAO();
-        //         for(MedicalEquipment medicalEquipment: medicalEquipments){
-        //             medicalEquipmentDAO.insert(medicalEquipment);
-
-        //         }
-        //     }
-        // }
-
-        // //Load CSV Data = MedicalEquipmentSR
-        // {
-        //     List<MedicalEquipmentSR> medicalEquipmentSRS = CSVFacade.read(MedicalEquipmentSR.class, "MedEquipReq.csv");
-        //     if(medicalEquipmentSRS != null){
-        //         MedicalEquipmentSRDAO medicalEquipmentSRDAO = new MedicalEquipmentSRDAO();
-        //         for(MedicalEquipmentSR medicalEquipmentSR: medicalEquipmentSRS){
-        //             medicalEquipmentSRDAO.insert(medicalEquipmentSR);
-        //         }
-        //     }
-        // }
+//         // Load CSV Data - Floor
+//         {
+//             List<Floor> floors = CSVFacade.read(Floor.class,"TowerFloors.csv");
+//             if (floors != null) {
+//                 FloorDAO floorDAO = new FloorDAO();
+//                 for (Floor floor : floors) {
+//                     floorDAO.insert(floor);
+//                 }
+//             }
+//         }
+//
+//         // Load CSV Data - Location
+//         {
+//             List<Location> locations = CSVFacade.read(Location.class, "TowerLocations.csv");
+//             if (locations != null) {
+//                 LocationDAO locationDAO = new LocationDAO();
+//                 for (Location location : locations) {
+//                     locationDAO.insert(location);
+//                 }
+//             }
+//         }
+//
+//         // Load CSV Data = Employee
+//         {
+//             List<Employee> employees = CSVFacade.read(Employee.class, "Employees.csv");
+//             if(employees != null){
+//                 EmployeeDAO employeeDAO = new EmployeeDAO();
+//                 for(Employee employee : employees){
+//                     employeeDAO.insert(employee);
+//                 }
+//             }
+//         }
+//
+//         //Load CSV Data = MedicalEquipment
+//         {
+//             List<MedicalEquipment> medicalEquipments = CSVFacade.read(MedicalEquipment.class, "MedicalEquip.csv");
+//             if(medicalEquipments != null){
+//                 MedicalEquipmentDAO medicalEquipmentDAO = new MedicalEquipmentDAO();
+//                 for(MedicalEquipment medicalEquipment: medicalEquipments){
+//                     medicalEquipmentDAO.insert(medicalEquipment);
+//
+//                 }
+//             }
+//         }
+//
+//         //Load CSV Data = MedicalEquipmentSR
+//         {
+//             List<MedicalEquipmentSR> medicalEquipmentSRS = CSVFacade.read(MedicalEquipmentSR.class, "MedEquipReq.csv");
+//             if(medicalEquipmentSRS != null){
+//                 MedicalEquipmentSRDAO medicalEquipmentSRDAO = new MedicalEquipmentSRDAO();
+//                 for(MedicalEquipmentSR medicalEquipmentSR: medicalEquipmentSRS){
+//                     medicalEquipmentSRDAO.insert(medicalEquipmentSR);
+//                 }
+//             }
+//         }
 
         log.info("Starting Up");
     }
