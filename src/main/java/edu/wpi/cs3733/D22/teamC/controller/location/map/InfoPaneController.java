@@ -3,10 +3,11 @@ package edu.wpi.cs3733.D22.teamC.controller.location.map;
 import com.jfoenix.controls.JFXTreeTableView;
 import edu.wpi.cs3733.D22.teamC.entity.floor.Floor;
 import edu.wpi.cs3733.D22.teamC.entity.location.Location;
+import edu.wpi.cs3733.D22.teamC.entity.location.LocationDAO;
 import edu.wpi.cs3733.D22.teamC.entity.medical_equipment.MedicalEquipment;
-import edu.wpi.cs3733.D22.teamC.entity.medical_equipment.MedicalEquipmentDAO;
 import edu.wpi.cs3733.D22.teamC.entity.service_request.ServiceRequest;
 import edu.wpi.cs3733.D22.teamC.entity.service_request.ServiceRequestDAO;
+import edu.wpi.cs3733.D22.teamC.models.medical_equipment.MedicalEquipmentTableDisplay;
 import edu.wpi.cs3733.D22.teamC.models.service_request.ServiceRequestTableDisplay;
 import edu.wpi.cs3733.D22.teamC.models.utils.ComponentWrapper;
 import javafx.event.ActionEvent;
@@ -16,8 +17,8 @@ import javafx.scene.control.*;
 import javafx.scene.shape.SVGPath;
 
 import java.net.URL;
+import java.util.List;
 import java.util.ResourceBundle;
-import java.util.stream.Collectors;
 
 public class InfoPaneController implements Initializable {
     // Constants
@@ -39,8 +40,8 @@ public class InfoPaneController implements Initializable {
     @FXML private ComboBox<Location.NodeType> nodeComboBox;
 
     // Medical Equipment - Table
-//    JFXTreeTableView medicalEquipmentTable;
-//    MedicalEquipmentTableDisplay<MedicalEquipment> medicalEquipmentTableDisplay;
+    @FXML JFXTreeTableView medicalEquipmentTable;
+    MedicalEquipmentTableDisplay medicalEquipmentTableDisplay;
 
     // Service Requests - Table
     @FXML JFXTreeTableView serviceRequestTable;
@@ -54,6 +55,9 @@ public class InfoPaneController implements Initializable {
     // References
     private BaseMapViewController parentController;
 
+    // Variables
+    private boolean initialized = false;
+
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         // Initialize Tabs
@@ -62,10 +66,13 @@ public class InfoPaneController implements Initializable {
         setTabIcon(serviceRequestTab, SERVICE_REQUEST_ICON);
 
         // Initialize Location Info
-        ComponentWrapper.InitializeComboBox(floorComboBox, Floor::getShortName);
+        ComponentWrapper.initializeComboBox(floorComboBox, Floor::getShortName);
 
         // Initialize Service Request Info
         serviceRequestTableDisplay = new ServiceRequestTableDisplay<>(serviceRequestTable);
+
+        // Initialize Medical Equipment Info
+        medicalEquipmentTableDisplay = new MedicalEquipmentTableDisplay(medicalEquipmentTable);
 
         nodeComboBox.getItems().setAll(Location.NodeType.values());
     }
@@ -131,25 +138,31 @@ public class InfoPaneController implements Initializable {
          * @param location The Location object which this info splitPane will display info of.
          */
         public void setLocation(Location location) {
-            if (location == null) return;
+            initialized = (location != null);
+
+            if (!initialized) return;
 
             // Location Info
             shortNameField.setText(location.getShortName());
             longNameField.setText(location.getLongName());
             buildingField.setText(location.getBuilding());
-            floorComboBox.setValue(parentController.getFloorByID(location.getFloor()));
-            nodeComboBox.setValue(location.getNodeType());
+            ComponentWrapper.setValueSilently(floorComboBox, parentController.getFloorByID(location.getFloor()));
+            ComponentWrapper.setValueSilently(nodeComboBox, location.getNodeType());
 
             // Medical Equipment
-            // TODO: Populate table with Medical Equipment at Location
-            new MedicalEquipmentDAO().getEquipmentByLocation(location.getNodeID());
+            resetMedicalEquipment(location);
 
             // Service Requests
             serviceRequestTableDisplay.emptyTable();
             new ServiceRequestDAO().getAllSRByLocation(location.getNodeID()).forEach(serviceRequestTableDisplay::addObject);
 
-            revertButton.setDisable(!(parentController.touchedLocations.contains(location)
-                    || parentController.additionLocations.contains(location) || parentController.deletionLocations.contains(location)));
+            revertButton.setDisable(location.equals(new LocationDAO().getByID(location.getNodeID())));
+        }
+
+        public void resetMedicalEquipment(Location location) {
+            medicalEquipmentTableDisplay.emptyTable();
+            List<MedicalEquipment> medicalEquipments = parentController.medicalEquipmentManager.getPerLocation(location);
+            medicalEquipments.forEach(medicalEquipmentTableDisplay::addObject);
         }
 
         /**
@@ -158,6 +171,8 @@ public class InfoPaneController implements Initializable {
         @FXML
         private void updateLocation() {
             Location location = parentController.getCurrentLocation();
+
+            if (!initialized) return;
 
             // Copy original for comparison
             Location original = new Location();
@@ -171,7 +186,7 @@ public class InfoPaneController implements Initializable {
 
             if (!original.equals(location)) {
                 revertButton.setDisable(false);
-                parentController.touchLocation(location);
+                parentController.setSaveStatus();
             }
         }
     //#endregion
@@ -179,7 +194,7 @@ public class InfoPaneController implements Initializable {
     //#region FXML Events
         @FXML
         void onDeselectButtonPressed(ActionEvent event) {
-            parentController.setCurrentLocation(null);
+            parentController.changeCurrentLocation(null);
         }
 
         @FXML
