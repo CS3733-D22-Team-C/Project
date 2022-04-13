@@ -37,6 +37,7 @@ public class MedicalEquipmentSRInsertCreateController implements InsertServiceRe
     @Override
     public void clearFields() {
         equipmentType.valueProperty().setValue(null);
+        equipmentID.valueProperty().setValue(null);
     }
 
     @Override
