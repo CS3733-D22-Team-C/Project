@@ -60,15 +60,15 @@ public class CSVComponent {
     File savedFile;
     private BaseMapViewController parentController;
 
-    public static final String FLOOR_CSV = "";
-    public static final String LOCATION_CSV = "";
-    public static final String MEDICAL_EQUIPMENT_CSV = "";
-    public static final String MEDICINE_DELIVERY_CSV = "";
-    public static final String SANITATION_CSV = "";
-    public static final String LAB_SYSTEM_CSV = "";
-    public static final String FACILITY_MAINTENANCE_CSV = "";
-    public static final String SECURITY_CSV = "";
-    public static final String  EMPLOYEE_CSV = "";
+    public static final String FLOOR_CSV = "TowerFloors.csv";
+    public static final String LOCATION_CSV = "TowerLocations.csv";
+    public static final String MEDICAL_EQUIPMENT_CSV = "MedEquipReq.csv";
+    public static final String MEDICINE_DELIVERY_CSV = "MedDeliveryReq.csv";
+    public static final String SANITATION_CSV = "SanitationReq.csv";
+    public static final String LAB_SYSTEM_CSV = "LabReq.csv";
+    public static final String FACILITY_MAINTENANCE_CSV = "FacilityReq.csv";
+    public static final String SECURITY_CSV = "SecurityReq.csv";
+    public static final String  EMPLOYEE_CSV = "Employees.csv";
 
 
     public void setup(BaseMapViewController baseMapViewController) {
