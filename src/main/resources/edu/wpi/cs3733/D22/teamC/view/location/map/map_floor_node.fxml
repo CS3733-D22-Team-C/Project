@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import io.github.palexdev.materialfx.controls.MFXButton?>
+<?import javafx.scene.Group?>
+<?import javafx.scene.text.Font?>
+
+<Group fx:id="group" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.wpi.cs3733.D22.teamC.controller.location.map.FloorNode">
+   <children>
+      <MFXButton id="floor" fx:id="floorButton" alignment="CENTER" maxWidth="1.7976931348623157E308" minWidth="-Infinity" prefWidth="210.0" styleClass="floor" stylesheets="@../../../css/map/side_view.css" text="Floor X">
+         <font>
+            <Font size="16.0" />
+         </font></MFXButton>
+   </children>
+</Group>

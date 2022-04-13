@@ -127,7 +127,7 @@ public class DrawerContentController implements Initializable {
 
     @FXML
     void mapButtonPress(ActionEvent event) {
-        App.instance.setView(App.MAP_PATH);
+        App.instance.setView(App.MAP_DASHBOARD_PATH);
     }
 
     @FXML

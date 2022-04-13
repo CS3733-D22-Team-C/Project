@@ -1,0 +1,38 @@
+@import "base.css";
+
+.floor{
+    -fx-background-color: #ffffff;
+    -fx-background-radius: 15px;
+    -fx-text-fill: #000000;
+    -fx-border-color: #000000;
+    -fx-border-radius: 15px;
+    -fx-font-size: 16px;
+}
+
+.mfx-button .mfx-ripple-generator{
+    -mfx-ripple-radius: 16px;
+    -mfx-auto-clip: true;
+}
+
+.delete{
+    -fx-background-color: #f44336;
+    -fx-text-fill: #000000;
+    -fx-font-size: 15;
+    -fx-spacing: 5px;
+}
+
+.floor-label{
+    -fx-background-color: #005A9B;
+    -fx-background-radius: 44px 44px 0px 0px;
+    -fx-text-fill: #FFFFFF;
+}
+.description-box{
+    -fx-background-radius: 44px 44px 44px 44px;
+    -fx-background-color: #F0F0F0;
+}
+.floor-box{
+    -fx-background-radius: 44px 44px 44px 44px;
+    -fx-background-color: #F0F0F0;
+    -fx-padding: 20 20 20 20;
+    -fx-alignment: center;
+}

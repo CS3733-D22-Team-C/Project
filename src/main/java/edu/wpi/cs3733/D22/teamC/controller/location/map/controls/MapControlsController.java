@@ -36,6 +36,10 @@ public abstract class MapControlsController implements Initializable {
         floorComboBox.setValue(parentController.getCurrentFloor());
     }
 
+    public void updateFloorSilent(Floor floor) {
+        ComponentWrapper.setValueSilently(floorComboBox, floor);
+    }
+
     //#region FXML Events
         @FXML
         void onFloorChanged(ActionEvent event) {

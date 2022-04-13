@@ -32,4 +32,9 @@ public class MedicalEquipmentDAOTest extends DAOTest<MedicalEquipment> {
 
         assertEquals(2, meList.size());
     }
+
+    @Test
+    void testGetByFloor(){
+
+    }
 }

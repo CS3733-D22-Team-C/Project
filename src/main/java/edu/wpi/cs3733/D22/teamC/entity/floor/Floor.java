@@ -23,13 +23,15 @@ public class Floor {
     @Column(name = "ShortName")
     private String shortName;
 
+    @Column(name = "Description")
+    private String description;
+
     @Column(name ="ImageSrc")
     private String imageSrc;
 
     @Lob
     @Column(name = "Image")
     private byte[] image;
-
 
     public Floor(){
         this.floorID = UUID.randomUUID().toString();
@@ -77,6 +79,14 @@ public class Floor {
         this.shortName = shortName;
     }
 
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
     public String getImageSrc() {
         return imageSrc;
     }
@@ -101,6 +111,7 @@ public class Floor {
         return floorID.equals(floor.floorID)
                 && order == floor.order
                 && longName.equals(floor.longName)
-                && shortName.equals(floor.shortName);
+                && shortName.equals(floor.shortName)
+                && description.equals(floor.description);
     }
 }
