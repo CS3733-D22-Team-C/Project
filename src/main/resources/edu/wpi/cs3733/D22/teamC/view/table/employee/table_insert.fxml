@@ -10,6 +10,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
+
 <VBox xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.wpi.cs3733.D22.teamC.controller.table.LocationTableViewInsertController">
    <children>
       <ScrollPane fitToHeight="true" fitToWidth="true" prefHeight="524.0" prefWidth="421.0">
