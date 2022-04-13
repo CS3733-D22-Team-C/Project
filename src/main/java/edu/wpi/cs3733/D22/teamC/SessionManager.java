@@ -38,7 +38,9 @@ public class SessionManager {
     }
 
     public static void setTestDatabase() {
-        serverDatabase = DBMode.EMBEDDED_TEST;
+        SessionManager.serverDatabase = DBMode.EMBEDDED_TEST;
+        killSessionFactory();
+        sf = createSessionFactory(serverDatabase);
     }
 
     private static SessionFactory createSessionFactory(DBMode mode) {
@@ -47,9 +49,7 @@ public class SessionManager {
         } else if (mode == DBMode.EMBEDDED){
             return new Configuration().configure("hibernate.cfg.xml").buildSessionFactory();
         } else {
-            Configuration cfg = new Configuration().configure("hibernate.cfg.xml");
-            cfg.setProperty("hibernate.hbm2ddl.auto", "create-drop");
-            return cfg.buildSessionFactory();
+            return new Configuration().configure("hibernate_test.cfg.xml").buildSessionFactory();
         }
     }
     
