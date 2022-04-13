@@ -1,8 +1,8 @@
 id,order,longName,shortName,description,imageSrc
-4c995e14-cb6b-49eb-bbe8-95fea57b5374,3,Floor 1,1,This is a cycle,01_thefirstfloor.png
-805166d9-6117-4752-9780-28216d61fc26,4,Floor 2,2,This is a curse,02_thesecondfloor.png
-c2b73a98-db9b-495a-a031-8f9f163ab8ce,5,Floor 3,3,#Wilson Wrong,03_thethirdfloor_OVERLAY.png
-b34d0c16-0523-4dce-9d71-f6f3bf2749aa,2,Lower Floor 1,L1,Teeth,00_thelowerlevel1.png
-fd5e0a98-c7b7-44ea-a07f-8cb3d99dbfe1,1,Lower Floor 2,L2,You only took from me but did you ever care,00_thelowerlevel2.png
-23525e7b-3ca9-4f1b-9d69-005c81d56a7f,6,Floor 4,4,Cause when you're backs to the wall,04_fourthfloor_OVERLAY.png
-e9f57945-aad3-42ea-bf10-0796dde13964,7,Floor 5,5,You disappear just in time to let me fall,05_fifthfloor_OVERLAY.png
+e9f57945-aad3-42ea-bf10-0796dde13964,7,Floor 5,5,This is the fifth floor of the hospital. It contains the letter 5.,05_fifthfloor_OVERLAY.png
+23525e7b-3ca9-4f1b-9d69-005c81d56a7f,6,Floor 4,4,This is the fourth floor of the hospital. You can tell by the way it's spelled.,04_fourthfloor_OVERLAY.png
+c2b73a98-db9b-495a-a031-8f9f163ab8ce,5,Floor 3,3,#WilsonWong.,03_thethirdfloor_OVERLAY.png
+805166d9-6117-4752-9780-28216d61fc26,4,Floor 2,2,Drip swag like a broken faucet.,02_thesecondfloor.png
+4c995e14-cb6b-49eb-bbe8-95fea57b5374,3,Floor 1,1,This is the first floor; home to all the things.,01_thefirstfloor.png
+b34d0c16-0523-4dce-9d71-f6f3bf2749aa,2,Lower Floor 1,L1,This is a certified hood classic,00_thelowerlevel1.png
+fd5e0a98-c7b7-44ea-a07f-8cb3d99dbfe1,1,Lower Floor 2,L2,Why do they call it oven when you of in the cold food of out hot eat the food?,00_thelowerlevel2.png

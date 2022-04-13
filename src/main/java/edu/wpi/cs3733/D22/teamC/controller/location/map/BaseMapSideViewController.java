@@ -1,6 +1,5 @@
 package edu.wpi.cs3733.D22.teamC.controller.location.map;
 
-import com.jfoenix.controls.JFXTreeTableColumn;
 import com.jfoenix.controls.JFXTreeTableView;
 import com.jfoenix.controls.datamodels.treetable.RecursiveTreeObject;
 import edu.wpi.cs3733.D22.teamC.App;
@@ -8,11 +7,8 @@ import edu.wpi.cs3733.D22.teamC.entity.floor.Floor;
 import edu.wpi.cs3733.D22.teamC.entity.floor.FloorDAO;
 import edu.wpi.cs3733.D22.teamC.entity.medical_equipment.MedicalEquipment;
 import edu.wpi.cs3733.D22.teamC.entity.medical_equipment.MedicalEquipmentDAO;
-import edu.wpi.cs3733.D22.teamC.models.generic.TableDisplay;
 import edu.wpi.cs3733.D22.teamC.models.location.EquipmentTableDisplay;
 import io.github.palexdev.materialfx.controls.MFXButton;
-import io.github.palexdev.materialfx.controls.MFXTableColumn;
-import io.github.palexdev.materialfx.controls.legacy.MFXLegacyTableRow;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -48,7 +44,7 @@ public class BaseMapSideViewController implements Initializable {
 
     // Floor Descriptors
     @FXML private Label floorTitle;
-    @FXML private Text floorDescription;
+    @FXML private Label floorDescription;
 
     // Buttons
     @FXML private MFXButton deleteButton;
@@ -68,7 +64,6 @@ public class BaseMapSideViewController implements Initializable {
             floorVBox.getChildren().add(floorNode.getGroup());
             floorNodeControllerList.add(floorNode);
             floorNode.getGroup().getChildren().get(0).setOnMouseClicked(e -> onFloorClicked(e, floorNode));
-            System.out.println(floorNode.getGroup().getChildren().get(0).toString());
         }
 
         tableDisplay = new EquipmentTableDisplay(table);
