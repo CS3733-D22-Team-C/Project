@@ -7,11 +7,11 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 
-<VBox alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="561.0" prefWidth="600.0" styleClass="container" stylesheets="@../../css/base.css" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.wpi.cs3733.D22.teamC.controller.service_request.EmployeeViewController">
+<VBox alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="561.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1">
    <children>
       <HBox alignment="CENTER_LEFT" prefHeight="52.0" prefWidth="600.0">
          <children>
-            <Label fx:id="title" prefHeight="68.0" prefWidth="463.0" styleClass="page-title" stylesheets="@../../css/base.css" text="Page Title" />
+            <Label fx:id="title" prefHeight="68.0" prefWidth="463.0" styleClass="page-title" stylesheets="@../../css/base.css" text="Select an Employee" />
          </children>
          <padding>
             <Insets bottom="15.0" left="35.0" right="15.0" top="15.0" />
@@ -19,7 +19,7 @@
       </HBox>
       <VBox>
          <children>
-            <JFXTreeTableView fx:id="table" prefHeight="495.0" prefWidth="600.0" styleClass="table-view" />
+            <JFXTreeTableView fx:id="table" prefHeight="495.0" prefWidth="600.0" />
          </children>
          <padding>
             <Insets left="35.0" right="35.0" />

@@ -7,7 +7,10 @@ import com.jfoenix.controls.JFXTreeTableView;
 import edu.wpi.cs3733.D22.teamC.App;
 import edu.wpi.cs3733.D22.teamC.entity.employee.Employee;
 import edu.wpi.cs3733.D22.teamC.entity.generic.DAO;
+import edu.wpi.cs3733.D22.teamC.entity.location.Location;
 import edu.wpi.cs3733.D22.teamC.entity.service_request.ServiceRequest;
+import edu.wpi.cs3733.D22.teamC.models.employee.EmployeeSelectorWindow;
+import edu.wpi.cs3733.D22.teamC.models.location.MapSelectorWindow;
 import edu.wpi.cs3733.D22.teamC.models.service_request.ServiceRequestTableDisplay;
 import edu.wpi.cs3733.D22.teamC.models.utils.ComponentWrapper;
 import javafx.beans.value.ChangeListener;
@@ -24,7 +27,7 @@ import javafx.stage.Modality;
 import javafx.stage.Stage;
 
 import java.io.IOException;
-import java.security.Timestamp;
+import java.sql.Timestamp;
 
 public class BaseServiceRequestCreateController<T extends ServiceRequest> implements ServiceRequestController {
     // FXML
@@ -32,13 +35,13 @@ public class BaseServiceRequestCreateController<T extends ServiceRequest> implem
     private TextField assigneeID;
 
     @FXML
+    private TextField locationID;
+
+    @FXML
     private JFXTextArea description;
 
     @FXML
     private Button goBackButton;
-
-    @FXML
-    private TextField locationField;
 
     @FXML
     private Label title;
@@ -67,8 +70,11 @@ public class BaseServiceRequestCreateController<T extends ServiceRequest> implem
     // Variables
     private ServiceRequestTableDisplay<T> tableDisplay;
     private ServiceRequest.RequestType requestType;
-    private T serviceRequest;
-    private EmployeeViewController employeeViewController;
+    private EmployeeSelectorWindow employeeSelectorWindow;
+
+    private Location location;
+    private Employee assignee;
+
 
     public void setup(ServiceRequest.RequestType requestType) {
         this.requestType = requestType;
@@ -105,11 +111,12 @@ public class BaseServiceRequestCreateController<T extends ServiceRequest> implem
 
         // Restrict ID TextFields to only contain numeric values
         //setIDFieldToNumeric(assigneeID);
-        ComponentWrapper.setIDFieldToNumeric(locationField);
+        //ComponentWrapper.setIDFieldToNumeric(locationField);
 
         // Limit the length of TextFields and TextAreas so that users can input a limited number of characters:
         ComponentWrapper.setTextLengthLimiter(assigneeID, 10);
-        ComponentWrapper.setTextLengthLimiter(locationField, 10);
+        //ComponentWrapper.setTextLengthLimiter(locationField, 10);
+        // Limit the length of TextFields and TextAreas so that users can input a limited number of characters:
         ComponentWrapper.setTextLengthLimiter(description, 100);
 
         // Setup table
@@ -120,10 +127,6 @@ public class BaseServiceRequestCreateController<T extends ServiceRequest> implem
         for (T serviceRequest : serviceRequestDAO.getAll()) {
             tableDisplay.addObject(serviceRequest);
         }
-
-        serviceRequest = insertController.createNewServiceRequest();
-
-
     }
 
 
@@ -132,7 +135,7 @@ public class BaseServiceRequestCreateController<T extends ServiceRequest> implem
             return false;
         if (assigneeID.getText().equals(""))
             return false;
-        if (locationField.getText() .equals(""))
+        if (locationID.getText() .equals(""))
             return false;
         return insertController.requiredFieldsPresent();
     }
@@ -149,7 +152,9 @@ public class BaseServiceRequestCreateController<T extends ServiceRequest> implem
     private void clearFields() {
         // Clearing Fields
         assigneeID.clear();
-        locationField.clear();
+        assignee = null;
+        locationID.clear();
+        location = null;
         description.setText("");
 
         // Clearing Dropdowns
@@ -158,30 +163,46 @@ public class BaseServiceRequestCreateController<T extends ServiceRequest> implem
         insertController.clearFields();
     }
 
-    public void setEmployee(Employee employee){
-        serviceRequest.setAssignee(employee);
-        String employeeName = employee.getLastName() + ", " + employee.getFirstName();
-        assigneeID.setText(employeeName);
-    }
+    //#region Selector Window Updaters
+        public void setEmployee(Employee employee){
+            assignee = employee;
 
+            String employeeName = "";
+            if (employee != null) {
+                employeeName = employee.getLastName() + ", " + employee.getFirstName();
+            }
+
+            assigneeID.setText(employeeName);
+        }
+
+        public void setLocation(Location location) {
+            this.location = location;
+
+            String locationName = "";
+            if (location != null) {
+                locationName = location.getShortName();
+            }
+
+            locationID.setText(locationName);
+        }
+    //#endregion
 
     private void createServiceRequest() {
         // Create Service Request
         T serviceRequest = insertController.createServiceRequest();
 
-        serviceRequest.setAssignee(this.serviceRequest.getAssignee()); //TODO: Replace with Employee Selector
-        serviceRequest.setLocation(locationField.getText());
+        serviceRequest.setAssignee(assignee);
+        serviceRequest.setLocation(location.getNodeID());
         serviceRequest.setDescription(description.getText());
         serviceRequest.setPriority(ServiceRequest.Priority.valueOf(priority.getValue()));
 
         if (requiredFieldsPresent()) serviceRequest.setStatus(ServiceRequest.Status.Processing);
         else serviceRequest.setStatus(ServiceRequest.Status.Blank);
 
-        // TODO: Timestamps should be handled by Hibernation, investigate later !!!
-//        serviceRequest.setCreationTimestamp(new Timestamp(System.currentTimeMillis()));
-//        serviceRequest.setCreatorID();
-//        serviceRequest.setModifiedTimestamp(new Timestamp(System.currentTimeMillis()));
-//        serviceRequest.setModifierID()
+        serviceRequest.setCreationTimestamp(new Timestamp(System.currentTimeMillis()));
+        serviceRequest.setCreator(App.instance.getUserAccount());
+        serviceRequest.setModifiedTimestamp(new Timestamp(System.currentTimeMillis()));
+        serviceRequest.setModifier(App.instance.getUserAccount());
 
         serviceRequest.setRequestType(requestType);
 
@@ -194,42 +215,34 @@ public class BaseServiceRequestCreateController<T extends ServiceRequest> implem
 
         clearFields();
     }
-    @FXML
-    void goToEmployeeTable(ActionEvent event) throws IOException {
-        //Setting up pop up
-        App.View<EmployeeViewController> view = App.instance.loadView("view/general/employee_view.fxml");
-        employeeViewController = view.getController();
-        VBox root = (VBox) view.getNode();
-
-
-
-        Scene scene = new Scene(root);
-        Stage primaryStage= new Stage();
-        if (scene != null) scene.setRoot(root);
-        else scene = new Scene(root);
-        primaryStage.setScene(scene);
-        primaryStage.initModality(Modality.WINDOW_MODAL);
-        primaryStage.initOwner(employeeTableButton.getScene().getWindow());
-        primaryStage.show();
-        employeeViewController.setup(this, primaryStage);
-    }
 
     //#region FXML Buttons
-    @FXML
-    void clickGoBack(ActionEvent event) {
-        App.instance.setView(App.SERVICE_REQUEST_LANDING_PAGE);
-    }
+        @FXML
+        void clickGoBack(ActionEvent event) {
+            App.instance.setView(App.SERVICE_REQUEST_LANDING_PAGE);
+        }
 
-    @FXML
-    void clickReset(ActionEvent event) {
-        clearFields();
-    }
+        @FXML
+        void clickReset(ActionEvent event) {
+            clearFields();
+        }
 
-    @FXML
-    void clickSubmit(ActionEvent event) {
-        createServiceRequest();
-        clearFields();
-        clickGoBack(null);
-    }
+        @FXML
+        void clickSubmit(ActionEvent event) {
+            createServiceRequest();
+            clearFields();
+            clickGoBack(null);
+        }
+
+        @FXML
+        void goToEmployeeTable(ActionEvent event) throws IOException {
+            new EmployeeSelectorWindow(employee -> this.setEmployee(employee));
+        }
+
+
+        @FXML
+        void goToMapView(ActionEvent event) {
+            new MapSelectorWindow(this::setLocation);
+        }
     //#endregion
 }

@@ -10,7 +10,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<VBox xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.wpi.cs3733.D22.teamC.controller.table.EmployeesTableViewInsertController">
+<VBox xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.wpi.cs3733.D22.teamC.controller.table.MedicalEquipmentViewController">
    <children>
       <ScrollPane fitToHeight="true" fitToWidth="true" prefHeight="524.0" prefWidth="421.0">
          <content>
@@ -27,8 +27,8 @@
                   </VBox>
                   <VBox>
                      <children>
-                        <Label prefHeight="17.0" prefWidth="272.0" text="First Name" />
-                        <TextField fx:id="firstName" onKeyTyped="#onFieldUpdated" prefHeight="47.0" prefWidth="373.0" styleClass="base_view_table_text" stylesheets="@../../../css/table_skeleton.css">
+                        <Label prefHeight="17.0" prefWidth="272.0" text="Location" />
+                        <TextField fx:id="location" onKeyTyped="#onFieldUpdated" prefHeight="47.0" prefWidth="373.0" styleClass="base_view_table_text" stylesheets="@../../../css/table_skeleton.css">
                            <padding>
                               <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
                            </padding>
@@ -40,12 +40,8 @@
                   </VBox>
                   <VBox>
                      <children>
-                        <Label prefHeight="17.0" prefWidth="367.0" text="Last Name" />
-                        <TextField fx:id="lastName" onKeyTyped="#onFieldUpdated" prefHeight="47.0" prefWidth="373.0" styleClass="base_view_table_text" stylesheets="@../../../css/table_skeleton.css">
-                           <padding>
-                              <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
-                           </padding>
-                        </TextField>
+                        <Label prefHeight="17.0" prefWidth="367.0" text="Type" />
+                        <JFXComboBox fx:id="typeComboBox" maxWidth="1.7976931348623157E308" onAction="#onFieldUpdated" prefHeight="47.0" prefWidth="419.0" styleClass="dropdown" stylesheets="@../../../css/base.css" />
                      </children>
                      <VBox.margin>
                         <Insets top="10.0" />
@@ -53,8 +49,8 @@
                   </VBox>
                   <VBox>
                      <children>
-                        <Label prefHeight="17.0" prefWidth="421.0" text="Phone" />
-                        <TextField fx:id="phone" onKeyTyped="#onFieldUpdated" prefHeight="47.0" prefWidth="410.0" styleClass="base_view_table_text" stylesheets="@../../../css/table_skeleton.css" />
+                        <Label prefHeight="17.0" prefWidth="421.0" text="Number" />
+                        <TextField fx:id="number" onKeyTyped="#onFieldUpdated" prefHeight="47.0" prefWidth="410.0" styleClass="base_view_table_text" stylesheets="@../../../css/table_skeleton.css" />
                      </children>
                      <VBox.margin>
                         <Insets top="10.0" />
@@ -65,12 +61,12 @@
                         <Insets top="10.0" />
                      </VBox.margin>
                      <children>
-                        <Label prefHeight="17.0" prefWidth="404.0" text="Role">
+                        <Label prefHeight="17.0" prefWidth="421.0" text="Status">
                            <padding>
                               <Insets left="10.0" />
                            </padding>
                         </Label>
-                        <JFXComboBox fx:id="roleComboBox" maxWidth="1.7976931348623157E308" onAction="#onFieldUpdated" prefHeight="47.0" prefWidth="419.0" styleClass="dropdown" stylesheets="@../../../css/base.css" />
+                        <JFXComboBox fx:id="statusComboBox" maxWidth="1.7976931348623157E308" onAction="#onFieldUpdated" prefHeight="47.0" prefWidth="419.0" styleClass="dropdown" stylesheets="@../../../css/base.css" />
                      </children>
                   </VBox>
                   <HBox alignment="CENTER_RIGHT" prefHeight="61.0" prefWidth="395.0">
