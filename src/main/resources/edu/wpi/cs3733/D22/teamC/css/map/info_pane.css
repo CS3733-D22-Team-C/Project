@@ -14,9 +14,38 @@
     -fx-fill: -color-primary-dark;
 }
 
+.button {
+    -fx-spacing: 20px;
+}
+
+.info-inner-card {
+     -fx-background-radius: 0 50 50 0;
+     -fx-effect: dropshadow(three-pass-box, rgba(0, 0, 0, 0.8), 10, 0, 0, 0);
+     -fx-background-color: -color-surface;
+ }
+
+.vbox-container {
+    -fx-background-radius: 50 50 50 50;
+    -fx-effect: dropshadow(three-pass-box, rgba(0, 0, 0, 0.8), 10, 0, 0, 0);
+}
+
 /* Default Overrides */
 
 .tab-header-background {
-    -fx-background-color: #00000000;
-    -fx-opacity: 0;
+    -fx-background-color: -color-primary;
+    -fx-background-radius: 50px 50px 0px 0px;
 }
+
+.tab-header-area {
+    -fx-padding: 70 0 0 0;
+}
+
+.card-content-header {
+    -fx-background-color: -color-primary;
+    -fx-text-fill: -color-primary-text;
+    -fx-hgap: 20px;
+    -fx-font-size: 18px;
+    -fx-background-radius: 0px 50px 0px 0px;
+}
+
+

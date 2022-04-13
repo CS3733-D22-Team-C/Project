@@ -6,19 +6,19 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 
-<HBox prefHeight="46.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.wpi.cs3733.D22.teamC.controller.service_request.lab_system.LabSystemSRInsertResolveController">
+<HBox maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="46.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.wpi.cs3733.D22.teamC.controller.service_request.lab_system.LabSystemSRInsertResolveController">
     <children>
-        <VBox prefWidth="227.0" styleClass="box-margin">
+        <VBox alignment="CENTER_LEFT" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefWidth="227.0" styleClass="box-margin" HBox.hgrow="ALWAYS">
             <children>
                 <Label styleClass="service-field-label" text="Lab Type:" />
                 <JFXComboBox fx:id="labType" maxWidth="1.7976931348623157E308" onAction="#statusUpdated" prefWidth="190.0" styleClass="dropdown" stylesheets="@../../../css/base.css" VBox.vgrow="ALWAYS" />
             </children>
         </VBox>
-        <VBox alignment="CENTER_LEFT" prefWidth="227.0" styleClass="box-margin">
+        <VBox alignment="CENTER_LEFT" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefWidth="227.0" styleClass="box-margin" HBox.hgrow="ALWAYS">
             <children>
                 <Label prefHeight="18.0" prefWidth="118.0" styleClass="service-field-label" text="Patient ID:" />
                 <TextField fx:id="patientID" onAction="#statusUpdated" onKeyPressed="#statusUpdatedKeyEvent" />
             </children></VBox>
-        <VBox alignment="CENTER_LEFT" prefWidth="227.0" styleClass="box-margin" />
+        <VBox alignment="CENTER_LEFT" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefWidth="227.0" styleClass="box-margin" HBox.hgrow="ALWAYS" />
     </children>
 </HBox>
