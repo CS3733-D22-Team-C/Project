@@ -26,6 +26,12 @@ public abstract class TableDisplay<T extends Object> {
         public TableDisplayEntry(T object) {
             this.object = object;
         };
+
+        // TODO: Make Abstract
+        public void RefreshEntry() {
+            System.out.println("If you are seeing this, it means you forgot to overwrite the RefreshEntry function" +
+                    "for your child TableDisplayEntry class!");
+        };
     }
 
     // Variables
@@ -43,7 +49,33 @@ public abstract class TableDisplay<T extends Object> {
         setColumns(table);
     }
 
-    //region Abstraction
+    //region Table Interaction
+        /**
+         * Remnove object row entry.
+         * @param object The object of type T to be removed.
+         */
+        public void removeObject(T object) {
+            for (TableDisplayEntry entry : entries) {
+                if (entry.object == object) {
+                    entries.remove(entry);
+                    return;
+                }
+            }
+        }
+
+        /**
+         * Update object corresponding row entry.
+         * @param object The object of type T to be removed.
+         */
+        public void updateObject(T object) {
+            for (TableDisplayEntry entry : entries) {
+                if (entry.object == object) {
+                    entry.RefreshEntry();
+                    return;
+                }
+            }
+        }
+
         /**
          * Add object as a row entry. Essentially, call the constructor for the corresponding TableEntry object.
          * @param object The object of type T to be added.

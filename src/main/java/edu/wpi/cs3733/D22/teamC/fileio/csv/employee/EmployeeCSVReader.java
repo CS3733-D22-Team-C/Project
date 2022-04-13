@@ -1,9 +1,10 @@
-package edu.wpi.cs3733.D22.teamC.fileio.csv;
+package edu.wpi.cs3733.D22.teamC.fileio.csv.employee;
 
 import edu.wpi.cs3733.D22.teamC.entity.employee.Employee;
 import edu.wpi.cs3733.D22.teamC.entity.location.Location;
+import edu.wpi.cs3733.D22.teamC.fileio.csv.CSVReader;
 
-public class EmployeeCSVReader extends CSVReader<Employee>{
+public class EmployeeCSVReader extends CSVReader<Employee> {
 
     /**
      * Maps Location (header, value) pairs to a value to change for the object.

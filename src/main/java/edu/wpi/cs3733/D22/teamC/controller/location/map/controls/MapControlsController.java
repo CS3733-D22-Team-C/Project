@@ -3,7 +3,6 @@ package edu.wpi.cs3733.D22.teamC.controller.location.map.controls;
 import com.jfoenix.controls.JFXComboBox;
 import edu.wpi.cs3733.D22.teamC.controller.location.map.BaseMapViewController;
 import edu.wpi.cs3733.D22.teamC.entity.floor.Floor;
-import edu.wpi.cs3733.D22.teamC.entity.location.Location;
 import edu.wpi.cs3733.D22.teamC.models.utils.ComponentWrapper;
 import io.github.palexdev.materialfx.controls.MFXToggleButton;
 import javafx.event.ActionEvent;
@@ -24,7 +23,7 @@ public abstract class MapControlsController implements Initializable {
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         // Initialize Location Info
-        ComponentWrapper.InitializeComboBox(floorComboBox, Floor::getShortName);
+        ComponentWrapper.initializeComboBox(floorComboBox, Floor::getShortName);
 
         medicalEquipmentToggle.setOnAction(e -> parentController.showMedicalEquipment(medicalEquipmentToggle.isSelected()));
     }
