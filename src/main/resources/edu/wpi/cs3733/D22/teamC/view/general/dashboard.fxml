@@ -21,12 +21,12 @@
                <tabs>
                   <Tab closable="false" text="Assigned Service Requests">
                      <content>
-                        <JFXTreeTableView fx:id="assignedTable" />
+                        <JFXTreeTableView fx:id="assignedTable" styleClass="table-view" />
                      </content>
                   </Tab>
                   <Tab closable="false" text="Created Service Requests">
                      <content>
-                        <JFXTreeTableView fx:id="createdTable" />
+                        <JFXTreeTableView fx:id="createdTable" styleClass="table-view" />
                      </content>
                   </Tab>
                </tabs>
