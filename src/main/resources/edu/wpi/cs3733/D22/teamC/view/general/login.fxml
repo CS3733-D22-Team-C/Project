@@ -50,25 +50,39 @@
                         <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                     </rowConstraints>
                      <children>
-                        <VBox alignment="CENTER" GridPane.rowIndex="5">
+                        <VBox alignment="CENTER">
                            <children>
-                              <MFXButton onAction="#exitButtonClicked" prefHeight="20.0" prefWidth="114.0" styleClass="login-exit-button" stylesheets="@../../css/component/entity/login/login.css" text="Exit">
+                              <Label fx:id="invalidLogin" alignment="CENTER" prefHeight="40.0" prefWidth="197.0" styleClass="login-invalid-label" stylesheets="@../../css/component/entity/login/login.css">
                                  <font>
-                                    <Font name="Roboto Light" size="12.0" />
+                                    <Font size="10.0" />
                                  </font>
-                                 <graphic>
-                                    <ImageView fitHeight="16.0" fitWidth="150.0" pickOnBounds="true" preserveRatio="true">
-                                       <image>
-                                          <Image url="@../../static/images/powerbutton.png" />
-                                       </image>
-                                    </ImageView>
-                                 </graphic>
-                              </MFXButton>
+                              </Label>
+                           </children>
+                        </VBox>
+                        <VBox alignment="CENTER_LEFT" GridPane.rowIndex="1">
+                           <children>
+                              <MFXTextField fx:id="username" floatMode="ABOVE" floatingText="Username" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="30.0" prefWidth="269.0" />
+                           </children>
+                           <padding>
+                              <Insets bottom="20.0" left="100.0" right="100.0" top="20.0" />
+                           </padding>
+                        </VBox>
+                        <VBox GridPane.rowIndex="2">
+                           <children>
+                              <MFXPasswordField fx:id="password" alignment="TOP_LEFT" floatMode="ABOVE" floatingText="Password" maxWidth="1.7976931348623157E308" prefHeight="26.0" prefWidth="240.0" />
+                           </children>
+                           <padding>
+                              <Insets bottom="20.0" left="100.0" right="100.0" top="20.0" />
+                           </padding>
+                        </VBox>
+                        <VBox alignment="CENTER" GridPane.rowIndex="3">
+                           <children>
+                              <MFXToggleButton fx:id="toggleButton" prefHeight="46.0" prefWidth="200.0" styleClass="toggle-button-background" stylesheets="@../../css/toggle_button.css" />
                            </children>
                         </VBox>
                         <VBox alignment="CENTER" GridPane.rowIndex="4">
                            <children>
-                              <MFXButton onAction="#loginButtonClicked" prefHeight="20.0" prefWidth="114.0" styleClass="login-button" stylesheets="@../../css/component/entity/login/login.css" text="Login">
+                              <MFXButton defaultButton="true" onAction="#loginButtonClicked" prefHeight="50.0" prefWidth="200.0" styleClass="login-button" stylesheets="@../../css/component/entity/login/login.css" text="Login">
                                  <font>
                                     <Font name="Roboto Light" size="12.0" />
                                  </font>
@@ -82,35 +96,21 @@
                               </MFXButton>
                            </children>
                         </VBox>
-                        <VBox alignment="CENTER" GridPane.rowIndex="3">
+                        <VBox alignment="CENTER" GridPane.rowIndex="5">
                            <children>
-                              <MFXToggleButton fx:id="toggleButton" prefHeight="46.0" prefWidth="200.0" styleClass="toggle-button-background" stylesheets="@../../css/toggle_button.css" />
-                           </children>
-                        </VBox>
-                        <VBox GridPane.rowIndex="2">
-                           <children>
-                              <MFXPasswordField fx:id="password" alignment="TOP_LEFT" floatMode="ABOVE" floatingText="Password" maxWidth="1.7976931348623157E308" prefHeight="26.0" prefWidth="240.0" />
-                           </children>
-                           <padding>
-                              <Insets bottom="20.0" left="30.0" right="30.0" top="20.0" />
-                           </padding>
-                        </VBox>
-                        <VBox alignment="CENTER">
-                           <children>
-                              <Label fx:id="invalidLogin" alignment="CENTER" prefHeight="40.0" prefWidth="197.0" styleClass="login-invalid-label" stylesheets="@../../css/component/entity/login/login.css">
+                              <MFXButton onAction="#exitButtonClicked" prefHeight="50.0" prefWidth="200.0" styleClass="login-exit-button" stylesheets="@../../css/component/entity/login/login.css" text="Exit">
                                  <font>
-                                    <Font size="10.0" />
+                                    <Font name="Roboto Light" size="12.0" />
                                  </font>
-                              </Label>
+                                 <graphic>
+                                    <ImageView fitHeight="16.0" fitWidth="150.0" pickOnBounds="true" preserveRatio="true">
+                                       <image>
+                                          <Image url="@../../static/images/powerbutton.png" />
+                                       </image>
+                                    </ImageView>
+                                 </graphic>
+                              </MFXButton>
                            </children>
-                        </VBox>
-                        <VBox alignment="CENTER_LEFT" GridPane.rowIndex="1">
-                           <children>
-                              <MFXTextField fx:id="username" floatMode="ABOVE" floatingText="Username" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" />
-                           </children>
-                           <padding>
-                              <Insets bottom="20.0" left="30.0" right="30.0" top="20.0" />
-                           </padding>
                         </VBox>
                      </children>
                   </GridPane>
