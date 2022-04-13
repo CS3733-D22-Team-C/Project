@@ -40,7 +40,7 @@ public class MapSelectorWindow extends SelectorWindow<Location> implements Initi
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         // Setup Floor Combo Box
-        ComponentWrapper.InitializeComboBox(floorComboBox, Floor::getShortName);
+        ComponentWrapper.initializeComboBox(floorComboBox, Floor::getShortName);
     }
 
     public void setup() {
