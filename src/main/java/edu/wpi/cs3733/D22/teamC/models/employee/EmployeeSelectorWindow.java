@@ -67,10 +67,10 @@ public class EmployeeSelectorWindow extends SelectorWindow<Employee> implements 
         void onSelect(ActionEvent event) {
             onSelectionMade(activeEmployee);
         }
+    //#endregion
 
     @Override
     protected String getView() {
         return "view/selector/employee_table.fxml";
     }
-    //#endregion
 }

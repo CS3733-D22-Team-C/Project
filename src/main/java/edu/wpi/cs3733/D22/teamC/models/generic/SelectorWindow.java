@@ -41,5 +41,9 @@ public abstract class SelectorWindow<T> {
         stage.close();
     }
 
+    /**
+     * Returns path to the view for the implementing Selector Window page.
+     * @return Path to the view for the implementing Selector Window page.
+     */
     protected abstract String getView();
 }

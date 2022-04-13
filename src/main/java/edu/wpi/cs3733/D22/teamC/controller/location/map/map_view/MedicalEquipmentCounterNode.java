@@ -1,6 +1,7 @@
 package edu.wpi.cs3733.D22.teamC.controller.location.map.map_view;
 
 import edu.wpi.cs3733.D22.teamC.App;
+import edu.wpi.cs3733.D22.teamC.controller.location.map.BaseMapViewController;
 import edu.wpi.cs3733.D22.teamC.entity.medical_equipment.MedicalEquipment;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -36,7 +37,7 @@ public class MedicalEquipmentCounterNode {
 
     public void setLocationNode(LocationNode locationNode) {
         this.locationNode = locationNode;
-        this.medicalEquipments = locationNode.mapController.parentController.medicalEquipmentManager.getPerLocationPerType(locationNode.location, equipmentType);
+        this.medicalEquipments = ((BaseMapViewController) locationNode.mapController.parentController).medicalEquipmentManager.getPerLocationPerType(locationNode.location, equipmentType);
         resetCounter();
         resetDisabled();
     }
@@ -55,7 +56,7 @@ public class MedicalEquipmentCounterNode {
         }
 
         private void resetDisabled() {
-            setIncreaseDisabled(locationNode.mapController.parentController.medicalEquipmentManager.getDisabledIncrease(equipmentType));
+            setIncreaseDisabled(((BaseMapViewController) locationNode.mapController.parentController).medicalEquipmentManager.getDisabledIncrease(equipmentType));
             setDecreaseDisabled(medicalEquipments.size() == 0);
         }
 
@@ -69,27 +70,27 @@ public class MedicalEquipmentCounterNode {
         void onDownArrowClicked(MouseEvent event) {
             MedicalEquipment medicalEquipment = medicalEquipments.get(0);
             medicalEquipments.remove(0);
-            locationNode.mapController.parentController.medicalEquipmentManager.releaseMedicalEquipment(medicalEquipment);
-            locationNode.mapController.parentController.infoPaneController.resetMedicalEquipment(locationNode.location);
+            ((BaseMapViewController) locationNode.mapController.parentController).medicalEquipmentManager.releaseMedicalEquipment(medicalEquipment);
+            ((BaseMapViewController) locationNode.mapController.parentController).infoPaneController.resetMedicalEquipment(locationNode.location);
             resetCounter();
             resetDisabled();
 
             setDecreaseDisabled(medicalEquipments.size() == 0);
 
-            locationNode.mapController.parentController.setSaveStatus();
+            ((BaseMapViewController) locationNode.mapController.parentController).setSaveStatus();
 
             event.consume();
         }
 
         @FXML
         void onUpArrowClicked(MouseEvent event) {
-            MedicalEquipment medicalEquipment = locationNode.mapController.parentController.medicalEquipmentManager.reclaimMedicalEquipment(equipmentType, locationNode.location);
-            locationNode.mapController.parentController.infoPaneController.resetMedicalEquipment(locationNode.location);
+            MedicalEquipment medicalEquipment = ((BaseMapViewController) locationNode.mapController.parentController).medicalEquipmentManager.reclaimMedicalEquipment(equipmentType, locationNode.location);
+            ((BaseMapViewController) locationNode.mapController.parentController).infoPaneController.resetMedicalEquipment(locationNode.location);
             medicalEquipments.add(medicalEquipment);
             resetCounter();
             resetDisabled();
 
-            locationNode.mapController.parentController.setSaveStatus();
+            ((BaseMapViewController) locationNode.mapController.parentController).setSaveStatus();
 
             event.consume();
         }
@@ -98,7 +99,7 @@ public class MedicalEquipmentCounterNode {
     //#region External Interaction
         public void releaseAllMedicalEquipment() {
             for (MedicalEquipment medicalEquipment : medicalEquipments) {
-                locationNode.mapController.parentController.medicalEquipmentManager.releaseMedicalEquipment(medicalEquipment);
+                ((BaseMapViewController) locationNode.mapController.parentController).medicalEquipmentManager.releaseMedicalEquipment(medicalEquipment);
             }
         }
 
