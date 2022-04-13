@@ -97,10 +97,10 @@ public class MedicalEquipmentViewController extends InsertTableViewController<Me
         // Query Database
         MedicalEquipmentDAO medicalEquipmentDAO = new MedicalEquipmentDAO();
         //ISSUE HERE
-        List<MedicalEquipment> employees = medicalEquipmentDAO.getAll();
+        List<MedicalEquipment> medicalEquipments = medicalEquipmentDAO.getAll();
 
         // Add Table Entries
-        employees.forEach(tableDisplay::addObject);
+        medicalEquipments.forEach(tableDisplay::addObject);
 
         return tableDisplay;
     }

@@ -7,6 +7,8 @@ import edu.wpi.cs3733.D22.teamC.entity.floor.Floor;
 import edu.wpi.cs3733.D22.teamC.entity.floor.FloorDAO;
 import edu.wpi.cs3733.D22.teamC.entity.location.Location;
 import edu.wpi.cs3733.D22.teamC.entity.location.LocationDAO;
+import edu.wpi.cs3733.D22.teamC.entity.medical_equipment.MedicalEquipment;
+import edu.wpi.cs3733.D22.teamC.entity.medical_equipment.MedicalEquipmentDAO;
 import edu.wpi.cs3733.D22.teamC.entity.service_request.facility_maintenance.FacilityMaintenanceSR;
 import edu.wpi.cs3733.D22.teamC.entity.service_request.facility_maintenance.FacilityMaintenanceSRDAO;
 import edu.wpi.cs3733.D22.teamC.entity.service_request.lab_system.LabSystemSR;
@@ -51,6 +53,9 @@ public class CSVComponent {
     @FXML private MFXCheckbox securityImport;
     @FXML private MFXCheckbox labSystemExport;
     @FXML private MFXCheckbox labSystemImport;
+    @FXML private MFXCheckbox medicalEquipmentEntityExport;
+    @FXML private MFXCheckbox medicalEquipmentEntityImport;
+
 
 
     //Textfields
@@ -69,6 +74,7 @@ public class CSVComponent {
     public static final String FACILITY_MAINTENANCE_CSV = "FacilityReq.csv";
     public static final String SECURITY_CSV = "SecurityReq.csv";
     public static final String  EMPLOYEE_CSV = "Employees.csv";
+    public static final String MEDICAL_EQUIPMENT_ENTITY_CSV = "MedicalEquip.csv";
 
 
     public void setup(BaseMapViewController baseMapViewController) {
@@ -164,6 +170,13 @@ public class CSVComponent {
                 List<Employee> employees = employeeDAO.getAll();
                 CSVFacade.write(Employee.class, savedFile.getPath() + "\\" + EMPLOYEE_CSV, employees);
             }
+
+            //Medical Equipment Entity
+            if(medicalEquipmentEntityExport.isSelected()) {
+                MedicalEquipmentDAO medicalEquipmentDAO = new MedicalEquipmentDAO();
+                List<MedicalEquipment> medicalEquipments = medicalEquipmentDAO.getAll();
+                CSVFacade.write(MedicalEquipment.class, savedFile.getPath() + "\\" + MEDICAL_EQUIPMENT_ENTITY_CSV, medicalEquipments);
+            }
         }
         else {
             //Map
@@ -178,6 +191,23 @@ public class CSVComponent {
                 LocationDAO locationDAO = new LocationDAO();
                 locationDAO.deleteAllFromTable();
                 locations.forEach(locationDAO::insert);
+            }
+
+
+            //Employee
+            if(employeesImport.isSelected()) {
+                List<Employee> employees = CSVFacade.read(Employee.class, savedFile.getPath() + "\\" + EMPLOYEE_CSV);
+                EmployeeDAO employeeDAO = new EmployeeDAO();
+                employeeDAO.deleteAllFromTable();
+                employees.forEach(employeeDAO::insert);
+            }
+
+            //Medical Equipment Entity
+            if(medicalEquipmentEntityImport.isSelected()) {
+                List<MedicalEquipment> medicalEquipments = CSVFacade.read(MedicalEquipment.class, savedFile.getPath() + "\\" + MEDICAL_EQUIPMENT_ENTITY_CSV);
+                MedicalEquipmentDAO medicalEquipmentDAO = new MedicalEquipmentDAO();
+                medicalEquipmentDAO.deleteAllFromTable();
+                medicalEquipments.forEach(medicalEquipmentDAO::insert);
             }
 
             //Service Request
@@ -217,26 +247,20 @@ public class CSVComponent {
                 securitySRDAO.deleteAllFromTable();
                 securitySRS.forEach(securitySRDAO::insert);
             }
-
-            //Employee
-            if(employeesImport.isSelected()) {
-                List<Employee> employees = CSVFacade.read(Employee.class, savedFile.getPath() + "\\" + EMPLOYEE_CSV);
-                EmployeeDAO employeeDAO = new EmployeeDAO();
-                employeeDAO.deleteAllFromTable();
-                employees.forEach(employeeDAO::insert);
-            }
         }
     }
 
     void resetFields(){
-        employeesExport.setSelected(false);
-        employeesImport.setSelected(false);
-        facilityMaintenanceExport.setSelected(false);
-        facilityMaintenanceImport.setSelected(false);
+
+        //Map
         floorsExport.setSelected(false);
         floorsImport.setSelected(false);
         locationsExport.setSelected(false);
         locationsImport.setSelected(false);
+
+        //Service Requests
+        facilityMaintenanceExport.setSelected(false);
+        facilityMaintenanceImport.setSelected(false);
         medicalEquipmentExport.setSelected(false);
         medicalEquipmentImport.setSelected(false);
         medicineDeliveryExport.setSelected(false);
@@ -247,6 +271,13 @@ public class CSVComponent {
         securityImport.setSelected(false);
         labSystemExport.setSelected(false);
         labSystemImport.setSelected(false);
+
+
+        medicalEquipmentEntityImport.setSelected(false);
+        medicalEquipmentEntityExport.setSelected(false);
+
+        employeesExport.setSelected(false);
+        employeesImport.setSelected(false);
 
         exportText.setText("");
         importText.setText("");
