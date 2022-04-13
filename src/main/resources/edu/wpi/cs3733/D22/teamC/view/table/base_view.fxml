@@ -28,7 +28,7 @@
          </GridPane.margin></VBox>
       <VBox prefHeight="200.0" prefWidth="100.0" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.valignment="CENTER" GridPane.vgrow="ALWAYS">
          <children>
-            <JFXTreeTableView fx:id="table" prefHeight="560.0" prefWidth="290.0" VBox.vgrow="ALWAYS">
+            <JFXTreeTableView fx:id="table" prefHeight="560.0" prefWidth="290.0" styleClass="table-view" stylesheets="@../../css/base.css" VBox.vgrow="ALWAYS">
                <VBox.margin>
                   <Insets />
                </VBox.margin></JFXTreeTableView>
