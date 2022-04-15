@@ -4,6 +4,7 @@ import edu.wpi.cs3733.D22.teamC.entity.employee.Employee;
 import edu.wpi.cs3733.D22.teamC.entity.floor.Floor;
 import edu.wpi.cs3733.D22.teamC.entity.location.Location;
 import edu.wpi.cs3733.D22.teamC.entity.medical_equipment.MedicalEquipment;
+import edu.wpi.cs3733.D22.teamC.entity.service_request.delivery_system.DeliverySystemSR;
 import edu.wpi.cs3733.D22.teamC.entity.service_request.facility_maintenance.FacilityMaintenanceSR;
 import edu.wpi.cs3733.D22.teamC.entity.service_request.lab_system.LabSystemSR;
 import edu.wpi.cs3733.D22.teamC.entity.service_request.medical_equipment.MedicalEquipmentSR;
@@ -18,6 +19,8 @@ import edu.wpi.cs3733.D22.teamC.fileio.csv.location.LocationCSVReader;
 import edu.wpi.cs3733.D22.teamC.fileio.csv.location.LocationCSVWriter;
 import edu.wpi.cs3733.D22.teamC.fileio.csv.medical_equipment.MedicalEquipmentCSVReader;
 import edu.wpi.cs3733.D22.teamC.fileio.csv.medical_equipment.MedicalEquipmentCSVWriter;
+import edu.wpi.cs3733.D22.teamC.fileio.csv.service_request.delivery_system.DeliverySystemSRCSVReader;
+import edu.wpi.cs3733.D22.teamC.fileio.csv.service_request.delivery_system.DeliverySystemSRCSVWriter;
 import edu.wpi.cs3733.D22.teamC.fileio.csv.service_request.facility_maintenance.FacilityMaintenanceSRCSVReader;
 import edu.wpi.cs3733.D22.teamC.fileio.csv.service_request.facility_maintenance.FacilityMaintenanceSRCSVWriter;
 import edu.wpi.cs3733.D22.teamC.fileio.csv.service_request.lab_system.LabSystemSRCSVReader;
@@ -43,6 +46,7 @@ public class CSVFacade {
      * @param <T> generic
      * @return List of certain type of objects
      */
+    @SuppressWarnings("unchecked")
     public static <T> List<T> read(Class<T> classType, String fileName){
         CSVReader<T> csvReader = null;
 
@@ -75,6 +79,9 @@ public class CSVFacade {
         }
         else if(classType == SecuritySR.class){
             csvReader = (CSVReader<T>) new SecuritySRCSVReader();
+        } 
+        else if(classType == DeliverySystemSR.class) {
+            csvReader = (CSVReader<T>) new SanitationSRCSVReader();
         }
 
         return csvReader.readFile(fileName);
@@ -87,6 +94,7 @@ public class CSVFacade {
      * @param <T> generic
      * @return List of certain type of objects
      */
+    @SuppressWarnings("unchecked")
     public static <T> List<T> read(Class<T> classType, File file){
         CSVReader<T> csvReader = null;
 
@@ -120,7 +128,10 @@ public class CSVFacade {
         else if(classType == SecuritySR.class){
             csvReader = (CSVReader<T>) new SecuritySRCSVReader();
         }
-
+        else if(classType == DeliverySystemSR.class) {
+            csvReader = (CSVReader<T>) new DeliverySystemSRCSVReader();
+        }
+        
         return csvReader.readFile(file);
     }
 
@@ -132,7 +143,7 @@ public class CSVFacade {
      * @param <T> generic
      * @return true if it wrote, false otherwise
      */
-
+    @SuppressWarnings("unchecked")
     public static <T> boolean write(Class<T> classType, String fileName, List<T> data){
         CSVWriter<T> csvWriter = null;
 
@@ -166,6 +177,10 @@ public class CSVFacade {
         else if(classType == SecuritySR.class){
             csvWriter = (CSVWriter<T>) new SecuritySRCSVWriter();
         }
+        else if(classType == DeliverySystemSR.class) {
+            csvWriter = (CSVWriter<T>) new DeliverySystemSRCSVWriter();
+        }
+        
         return csvWriter.writeFile(fileName, data);
 
     }
@@ -178,6 +193,7 @@ public class CSVFacade {
      * @param <T> generic
      * @return true if it wrote, false otherwise
      */
+    @SuppressWarnings("unchecked")
     public static <T> boolean write(Class<T> classType, File file, List<T> data){
         CSVWriter<T> csvWriter = null;
 
@@ -211,6 +227,10 @@ public class CSVFacade {
         else if(classType == SecuritySR.class){
             csvWriter = (CSVWriter<T>) new SecuritySRCSVWriter();
         }
+        else if(classType == DeliverySystemSR.class) {
+            csvWriter = (CSVWriter<T>) new DeliverySystemSRCSVWriter();
+        }
+        
         return csvWriter.writeFile(file, data);
     }
 
