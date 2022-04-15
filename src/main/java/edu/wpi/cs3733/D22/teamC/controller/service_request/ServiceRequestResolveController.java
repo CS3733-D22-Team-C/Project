@@ -53,7 +53,7 @@ public class ServiceRequestResolveController {
         assigneeID.setText(serviceRequest.getAssignee().getLastName() + ", " + serviceRequest.getAssignee().getFirstName() );
 
         // Set labels
-        requestID.setText(String.format("%07d" , serviceRequest.getRequestID()));
+        requestID.setText(String.format("%07d" , serviceRequest.getID()));
 
         if (isEditMode) {
             // Set generic title (overridden in children)

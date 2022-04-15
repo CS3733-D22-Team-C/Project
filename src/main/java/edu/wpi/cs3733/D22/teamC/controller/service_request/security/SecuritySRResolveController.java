@@ -26,7 +26,7 @@ public class SecuritySRResolveController extends ServiceRequestResolveController
 //        MedicalEquipmentSRDAOImpl medicalEquipmentSRDAOImpl = new MedicalEquipmentSRDAOImpl();
 //        MedicalEquipmentSR medicalEquipmentSR = medicalEquipmentSRDAOImpl.getServiceRequest(serviceRequest.getRequestID());
         SecuritySRDAO securitySRDAOImpl = new SecuritySRDAO();
-        SecuritySR securitySR = securitySRDAOImpl.getByID(serviceRequest.getRequestID());
+        SecuritySR securitySR = securitySRDAOImpl.getByID(serviceRequest.getID());
         title.setText("Resolve Security Service Request");
 
 
@@ -59,7 +59,7 @@ public class SecuritySRResolveController extends ServiceRequestResolveController
         //Accessing Service Request in Database
 
         SecuritySRDAO securitySRDAOImpl = new SecuritySRDAO();
-        SecuritySR securitySR = securitySRDAOImpl.getByID(serviceRequest.getRequestID());
+        SecuritySR securitySR = securitySRDAOImpl.getByID(serviceRequest.getID());
         if(isEditMode){
             //check if value has changed
             if(securityType.getValue() != null) {

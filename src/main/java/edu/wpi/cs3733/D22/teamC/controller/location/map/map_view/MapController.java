@@ -3,9 +3,7 @@ package edu.wpi.cs3733.D22.teamC.controller.location.map.map_view;
 import edu.wpi.cs3733.D22.teamC.controller.location.map.BaseMapViewController;
 import edu.wpi.cs3733.D22.teamC.controller.location.map.MapViewController;
 import edu.wpi.cs3733.D22.teamC.entity.floor.Floor;
-import edu.wpi.cs3733.D22.teamC.entity.floor.FloorDAO;
 import edu.wpi.cs3733.D22.teamC.entity.location.Location;
-import edu.wpi.cs3733.D22.teamC.entity.location.LocationDAO;
 import io.github.palexdev.materialfx.controls.MFXScrollPane;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -17,7 +15,6 @@ import javafx.scene.input.ScrollEvent;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.StackPane;
-import javafx.scene.paint.Color;
 import javafx.scene.shape.Circle;
 
 import java.net.URL;
@@ -60,7 +57,7 @@ public class MapController implements Initializable {
 
     //#region Location Node Interaction
         public final LocationNode getLocationNode(Location location) {
-            List<LocationNode> locationNodeList = locationNodes.stream().filter(locationNode -> locationNode.location.getNodeID().equals(location.getNodeID())).collect(Collectors.toList());
+            List<LocationNode> locationNodeList = locationNodes.stream().filter(locationNode -> locationNode.location.getID().equals(location.getID())).collect(Collectors.toList());
             return (locationNodeList.size() > 0) ? locationNodeList.get(0) : null;
         }
 
@@ -234,7 +231,7 @@ public class MapController implements Initializable {
             mapPane.setPrefHeight(image.getHeight());
 
             // Load Locations
-            List<Location> floorLocations = locations.stream().filter(location -> location.getFloor().equals(floor.getFloorID())).collect(Collectors.toList());
+            List<Location> floorLocations = locations.stream().filter(location -> location.getFloor().equals(floor.getID())).collect(Collectors.toList());
 
             // Load LocationNodes
             renderLocationsNodes(floorLocations);

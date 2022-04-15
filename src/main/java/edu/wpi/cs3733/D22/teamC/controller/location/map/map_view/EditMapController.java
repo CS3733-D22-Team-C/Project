@@ -53,7 +53,7 @@ public class EditMapController extends MapController {
 
             location.setX((int) x);
             location.setY((int) y);
-            location.setFloor(((BaseMapViewController) parentController).getCurrentFloor().getFloorID());
+            location.setFloor(((BaseMapViewController) parentController).getCurrentFloor().getID());
             location.setNodeType(Location.NodeType.PATI);
 
             return location;

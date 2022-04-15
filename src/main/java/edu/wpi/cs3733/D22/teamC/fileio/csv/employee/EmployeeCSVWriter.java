@@ -25,7 +25,7 @@ public class EmployeeCSVWriter extends CSVWriter<Employee> {
         String output = "";
         switch (header){
             case "ID":
-                output = object.getEmployeeID();
+                output = object.getID();
                 break;
             case "FirstName":
                 output = object.getFirstName();
