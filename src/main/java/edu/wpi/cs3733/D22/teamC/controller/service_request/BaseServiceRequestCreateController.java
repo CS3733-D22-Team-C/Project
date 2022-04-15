@@ -48,7 +48,7 @@ public class BaseServiceRequestCreateController<T extends ServiceRequest> implem
     private Label title;
 
     @FXML
-    private JFXComboBox<String> priority;
+    private SearchableComboBox<String> priority;
 
     @FXML
     private Button resetButton;

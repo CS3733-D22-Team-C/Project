@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import com.jfoenix.controls.JFXButton?>
-<?import com.jfoenix.controls.JFXComboBox?>
 <?import com.jfoenix.controls.JFXTextArea?>
 <?import com.jfoenix.controls.JFXTreeTableView?>
 <?import java.lang.String?>
@@ -15,6 +14,7 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.layout.VBox?>
+<?import org.controlsfx.control.SearchableComboBox?>
 
 <GridPane alignment="CENTER" maxWidth="1.7976931348623157E308" prefHeight="683.0" prefWidth="458.0" styleClass="container" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.wpi.cs3733.D22.teamC.controller.service_request.BaseServiceRequestCreateController">
     <columnConstraints>
@@ -57,7 +57,7 @@
                   <VBox alignment="CENTER_LEFT" prefHeight="200.0" prefWidth="100.0" styleClass="box-margin" HBox.hgrow="ALWAYS">
                      <children>
                         <Label styleClass="service-field-label" text="Priority:" />
-                        <JFXComboBox fx:id="priority" maxWidth="1.7976931348623157E308" styleClass="dropdown" />
+                        <SearchableComboBox fx:id="priority" styleClass="dropdown" />
                      </children>
                   </VBox>
                </children>
