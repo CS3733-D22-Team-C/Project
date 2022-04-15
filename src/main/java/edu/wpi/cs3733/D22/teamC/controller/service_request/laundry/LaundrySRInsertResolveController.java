@@ -10,13 +10,14 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.TextField;
 import javafx.scene.input.KeyEvent;
+import org.controlsfx.control.SearchableComboBox;
 
 import java.net.URL;
 import java.util.ResourceBundle;
 
 public class LaundrySRInsertResolveController extends InsertServiceRequestResolveController<LaundrySR> implements Initializable {
     @FXML
-    private JFXComboBox<String> laundryType;
+    private SearchableComboBox<String> laundryType;
 
     @FXML
     private TextField quantity;
