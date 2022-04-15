@@ -1,8 +1,6 @@
 package edu.wpi.cs3733.D22.teamC.controller.map;
 
 
-import edu.wpi.cs3733.D22.teamC.controller.location.map.BaseMapViewController;
-import edu.wpi.cs3733.D22.teamC.controller.location.map.map_view.LocationNode;
 import edu.wpi.cs3733.D22.teamC.entity.floor.Floor;
 import javafx.fxml.FXML;
 import javafx.scene.control.ScrollPane;
@@ -17,6 +15,7 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.function.BiConsumer;
 import java.util.function.Consumer;
 
 /**
@@ -84,7 +83,14 @@ public class MapController {
         }
     //#endregion
 
-    //#region
+    //#region External Events
+        public void addClickedMapEvent(Consumer<MouseEvent> consumer) {
+        onClickedMapEvents.add(consumer);
+    }
+    //#endregion
+
+
+    //#region Getters
         public Pane getMap() {
             return mapPane;
         }

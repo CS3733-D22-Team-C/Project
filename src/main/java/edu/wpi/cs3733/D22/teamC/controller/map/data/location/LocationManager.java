@@ -10,23 +10,26 @@ import edu.wpi.cs3733.D22.teamC.entity.location.Location;
 import edu.wpi.cs3733.D22.teamC.entity.location.LocationDAO;
 
 import java.util.ArrayList;
-import java.util.Iterator;
 
 public class LocationManager extends ManagerMapNodes<Location> {
     public LocationManager(MapViewController mapViewController) {
         super(mapViewController);
     }
 
-    public void renderFloor(Floor floor) {
-        allNodes.forEach(this::removeNode);
-        allNodes = new ArrayList<>();
+    //#region Map Node Manipulation
+        public MapNode<Location> drawNode(Location location) {
+            return new LocationMapNode(this, location);
+        }
+    //#endregion
 
-        all = new FloorDAO().getAllLocations(floor.getFloorID());
+    //#region Content Changes
+        public void renderFloor(Floor floor) {
+            allNodes.forEach(this::removeNode);
+            allNodes = new ArrayList<>();
 
-        all.forEach(location -> allNodes.add(drawNode(location)));
-    }
+            all = new FloorDAO().getAllLocations(floor.getFloorID());
 
-    public MapNode<Location> drawNode(Location object) {
-        return new LocationMapNode(this, object);
-    }
+            all.forEach(location -> allNodes.add(drawNode(location)));
+        }
+    //#endregion
 }

@@ -6,6 +6,7 @@ import javafx.scene.Group;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public abstract class ManagerMapNodes<T> extends Manager<T> {
         // References
@@ -34,33 +35,60 @@ public abstract class ManagerMapNodes<T> extends Manager<T> {
         }
     //#endregion
 
+    //#region Filtering
+        public MapNode<T> getByLocation(Location location) {
+            List<MapNode<T>> list = allNodes.stream().filter(mapNode -> mapNode.location == location).collect(Collectors.toList());
+            return (list.size()) == 0 ? null : list.get(0);
+        }
+
+        public List<MapNode<T>> getAllNodes() {
+            return allNodes;
+        }
+
+        public List<MapNode<T>> getPreviewed() {
+            return previewed;
+        }
+
+        public List<MapNode<T>> getFocused() {
+            return focused;
+        }
+    //#endregion
+
     //#region Map Node Interaction
         public void focus(MapNode<T> mapNode) {
             if (!focused.contains(mapNode)) {
-                focused.add(mapNode);
                 mapNode.onFocus();
+                focused.add(mapNode);
             }
         }
 
         public void unfocus(MapNode<T> mapNode) {
             if (focused.contains(mapNode)) {
-                focused.remove(mapNode);
                 mapNode.offFocus();
+                focused.remove(mapNode);
             }
+        }
+
+        public void unfocusAll() {
+            new ArrayList<>(focused).forEach(this::unfocus);
         }
 
         public void preview(MapNode<T> mapNode) {
             if (!previewed.contains(mapNode)) {
-                previewed.add(mapNode);
                 mapNode.onPreview();
+                previewed.add(mapNode);
             }
         }
 
         public void unpreview(MapNode<T> mapNode) {
             if (previewed.contains(mapNode)) {
-                previewed.remove(mapNode);
                 mapNode.offPreview();
+                previewed.remove(mapNode);
             }
+        }
+
+        public void unpreviewAll() {
+            new ArrayList<>(previewed).forEach(this::unpreview);
         }
     //#endregion
 

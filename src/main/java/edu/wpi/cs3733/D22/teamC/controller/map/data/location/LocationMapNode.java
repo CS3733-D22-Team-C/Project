@@ -13,6 +13,8 @@ import javafx.scene.input.MouseButton;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.shape.Circle;
 
+import java.util.ArrayList;
+
 public class LocationMapNode extends MapNode<Location> {
     // FXML
     @FXML private Group contextGroup;
@@ -56,27 +58,23 @@ public class LocationMapNode extends MapNode<Location> {
     //#region State Updating
         @Override
         public void onFocus() {
+            manager.unfocusAll();
+
+            locationCircle.getStyleClass().add("active");
             manager.changeCurrent(location);
         }
 
         @Override
         public void offFocus() {
+            locationCircle.getStyleClass().remove("active");
             manager.changeCurrent(null);
         }
 
         @Override
-        public void onPreview() {
-            if (!manager.isFocusing()) {
-                manager.changeCurrent(location);
-            }
-        }
+        public void onPreview() {}
 
         @Override
-        public void offPreview() {
-            if (!manager.isFocusing()) {
-                manager.changeCurrent(null);
-            }
-        }
+        public void offPreview() {}
     //#endregion
 
     //#region FXML Events
@@ -98,7 +96,7 @@ public class LocationMapNode extends MapNode<Location> {
         protected void onMouseClickedNode(MouseEvent event) {
             if (event.getButton().equals(MouseButton.PRIMARY)) {
                 // Single-Click select toggle
-                if (manager.getCurrent() == this.location ) {
+                if (manager.isFocusing() && manager.getCurrent() == location) {
                     manager.unfocus(this);
                 } else {
                     manager.focus(this);
