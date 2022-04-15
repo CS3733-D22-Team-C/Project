@@ -1,0 +1,50 @@
+@import "colors.css";
+
+/* These rules will apply to ALL COMPONENTS */
+/* YOU MUST OVERRIDE THEM BY APPLYING OTHER STYLE CLASSES OR THEY WILL DEFAULT TO THESE */
+.root * {
+    /* All text will be 14pt unless a title or otherwise specified */
+    -fx-font-size: 14pt;
+
+    /* Font Style */
+    -fx-font-family: "Roboto";
+
+    /* Removes the focus box on all components */
+    -fx-focus-color: transparent;
+    -fx-faint-focus-color: transparent;
+
+    /* Allows for all MFX buttons to have their ripple generators generate the ripples to the correct shape */
+    -mfx-auto-clip: true;
+
+
+}
+
+/* CUSTOM */
+
+/* Within SceneBuilder give every thing that is a title the title ID */
+#title {
+    -fx-font-size: 18pt;
+}
+
+/* This class will be the base container that holds virtually every page */
+.container {
+    -fx-background-color: -color-surface !important;
+    -fx-max-width: 800px;
+    -fx-max-height: 800px;
+    -fx-background-radius: 50px;
+    -fx-effect: dropshadow(three-pass-box, rgba(0, 0, 0, 0.8), 10, 0, 0, 0);
+}
+
+/* DEFAULT OVERRIDES */
+
+/* Going to assume that all buttons are primary unless overwritten */
+.button {
+    -fx-background-color: -color-primary;
+
+}
+
+.text-field {
+
+}
+
+/* Table Styling */

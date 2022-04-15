@@ -49,7 +49,7 @@ public class App extends Application {
     // Constants
     public static final String BASE_COMPONENT_PATH = "view/component/base.fxml";
     public static final String MENU_BAR_COMPONENT_PATH = "view/component/menu_bar.fxml";
-    public static final String SIDEBAR_PATH = "view/component/sidebar_menu.fxml";
+    public static final String SIDEBAR_PATH = "view/component/drawer.fxml";
     public static final String DRAWER_CONTENT_PATH = "view/component/drawer_content.fxml";
     public static final String LOGIN_PATH = "view/general/login.fxml";
     public static final String DASHBOARD_PATH = "view/general/dashboard.fxml";

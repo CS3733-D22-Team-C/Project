@@ -8,7 +8,7 @@
 <?import javafx.scene.shape.SVGPath?>
 <?import javafx.scene.text.Text?>
 
-<VBox alignment="CENTER" maxHeight="1.7976931348623157E308" maxWidth="256.0" minWidth="52.0" onMouseEntered="#contentPaneOnMouseEntered" onMouseExited="#contentPaneOnMouseExited" prefWidth="52.0" stylesheets="@../../css/sidebar.css" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.wpi.cs3733.D22.teamC.controller.component.sidebar.DrawerContentController">
+<VBox alignment="CENTER" maxHeight="1.7976931348623157E308" maxWidth="256.0" minWidth="52.0" onMouseEntered="#contentPaneOnMouseEntered" onMouseExited="#contentPaneOnMouseExited" prefWidth="52.0" stylesheets="@../../css/drawer.css" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.wpi.cs3733.D22.teamC.controller.component.sidebar.DrawerContentController">
    <children>
       <VBox alignment="TOP_CENTER" maxHeight="1.7976931348623157E308" maxWidth="256.0" minWidth="52.0" prefHeight="485.0" prefWidth="52.0" VBox.vgrow="ALWAYS">
          <children>
@@ -40,7 +40,7 @@
             </VBox>
             <VBox maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minWidth="52.0" prefWidth="52.0" styleClass="vbox" VBox.vgrow="ALWAYS">
                <children>
-                  <MFXButton fx:id="dashboardButton" ellipsisString="" maxWidth="1.7976931348623157E308" onAction="#dashboardButtonPress" text="Dashboard">
+                  <MFXButton fx:id="dashboardButton" buttonType="RAISED" ellipsisString="" maxWidth="1.7976931348623157E308" onAction="#dashboardButtonPress" text="Dashboard">
                      <graphic>
                         <SVGPath content="M4 13h6c.55 0 1-.45 1-1V4c0-.55-.45-1-1-1H4c-.55 0-1 .45-1 1v8c0 .55.45 1 1 1zm0 8h6c.55 0 1-.45 1-1v-4c0-.55-.45-1-1-1H4c-.55 0-1 .45-1 1v4c0 .55.45 1 1 1zm10 0h6c.55 0 1-.45 1-1v-8c0-.55-.45-1-1-1h-6c-.55 0-1 .45-1 1v8c0 .55.45 1 1 1zM13 4v4c0 .55.45 1 1 1h6c.55 0 1-.45 1-1V4c0-.55-.45-1-1-1h-6c-.55 0-1 .45-1 1z" />
                      </graphic>
