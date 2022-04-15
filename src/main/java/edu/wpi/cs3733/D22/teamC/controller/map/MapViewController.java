@@ -2,6 +2,7 @@ package edu.wpi.cs3733.D22.teamC.controller.map;
 
 import edu.wpi.cs3733.D22.teamC.App;
 import edu.wpi.cs3733.D22.teamC.controller.map.data.floor.FloorManager;
+import edu.wpi.cs3733.D22.teamC.controller.map.data.location.LocationManager;
 import edu.wpi.cs3733.D22.teamC.controller.map.panel.MapControlsController;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -24,19 +25,22 @@ public class MapViewController implements Initializable {
 //    @FXML Pane infoPane;
 
     // References
-    private FloorManager floorManager;
     private MapController mapController;
+
+    private FloorManager floorManager;
+    private LocationManager locationManager;
 
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         // Managers
-        floorManager = new FloorManager();
+        floorManager = new FloorManager(this);
+        locationManager = new LocationManager(this);
 
         // Map
         App.View<MapController> mapView = App.instance.loadView(MAP_PATH);
         mapPane.getChildren().add(mapView.getNode());
-        MapController mapController = mapView.getController();
+        mapController = mapView.getController();
 
         // Controls
         App.View<MapControlsController> controlsView = App.instance.loadView(MAP_CONTROLS_PATH);
@@ -47,13 +51,18 @@ public class MapViewController implements Initializable {
         // Events
         floorManager.addChangeCurrentEvent((oldFloor, newFloor) -> mapController.setFloor(newFloor));
         floorManager.addChangeCurrentEvent((oldFloor, newFloor) -> mapControlsController.setFloor(newFloor));
+        floorManager.addChangeCurrentEvent((oldFloor, newFloor) -> locationManager.renderFloor(newFloor));
 
 
         // TODO: Remove hard-coded change
         floorManager.changeCurrent(floorManager.getAll().get(0));
     }
 
-    //#region Managers
+    //#region Getters
+        public Pane getMap() {
+            return mapController.getMap();
+        }
+
         public FloorManager getFloorManager() {
             return floorManager;
         }

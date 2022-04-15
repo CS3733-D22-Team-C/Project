@@ -28,10 +28,10 @@ public class MapController {
     protected final static double MIN_SCALE = 0.7f;
 
     // FXML
-    @FXML Pane stackPane;
-    @FXML Pane mapPane;
-    @FXML ScrollPane scrollPane;
-    @FXML ImageView mapImage;
+    @FXML private Pane stackPane;
+    @FXML private Pane mapPane;
+    @FXML private ScrollPane scrollPane;
+    @FXML private ImageView mapImage;
 
     // Events
     List<Consumer<MouseEvent>> onClickedMapEvents = new ArrayList<>();
@@ -81,6 +81,12 @@ public class MapController {
 
                 event.consume();
             }
+        }
+    //#endregion
+
+    //#region
+        public Pane getMap() {
+            return mapPane;
         }
     //#endregion
 }

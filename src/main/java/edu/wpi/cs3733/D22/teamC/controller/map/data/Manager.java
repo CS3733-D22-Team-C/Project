@@ -1,6 +1,8 @@
 package edu.wpi.cs3733.D22.teamC.controller.map.data;
 
 import edu.wpi.cs3733.D22.teamC.controller.map.MapViewController;
+import edu.wpi.cs3733.D22.teamC.controller.map.data.floor.FloorManager;
+import javafx.scene.layout.Pane;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -18,11 +20,9 @@ public abstract class Manager<T> {
         // References
     // A reference to the overall map view controller.
     protected MapViewController mapViewController;
-    // List of map nodes of this type being display.
-    protected List<MapNode<T>> mapNodes = new ArrayList<>();
 
 
-    public void setup(MapViewController mapViewController) {
+    public Manager(MapViewController mapViewController) {
         this.mapViewController = mapViewController;
     }
 
@@ -50,6 +50,12 @@ public abstract class Manager<T> {
     //#region Current Object Change Events
         public void addChangeCurrentEvent(BiConsumer<T, T> consumer) {
             onChangeCurrentEvents.add(consumer);
+        }
+    //#endregion
+
+    //#region Managers
+        public Pane getMap() {
+            return mapViewController.getMap();
         }
     //#endregion
 }
