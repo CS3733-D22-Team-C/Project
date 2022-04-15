@@ -5,19 +5,24 @@ import com.jfoenix.controls.JFXTreeTableView;
 import edu.wpi.cs3733.D22.teamC.controller.service_request.InsertServiceRequestCreateController;
 import edu.wpi.cs3733.D22.teamC.entity.generic.DAO;
 import edu.wpi.cs3733.D22.teamC.entity.patient.Patient;
+import edu.wpi.cs3733.D22.teamC.entity.patient.PatientDAO;
 import edu.wpi.cs3733.D22.teamC.entity.service_request.patient_transport.PatientTransportSR;
 import edu.wpi.cs3733.D22.teamC.entity.service_request.patient_transport.PatientTransportSRDAO;
+import edu.wpi.cs3733.D22.teamC.models.patient.PatientSelectorWindow;
 import edu.wpi.cs3733.D22.teamC.models.service_request.ServiceRequestTableDisplay;
 import edu.wpi.cs3733.D22.teamC.models.service_request.patient_transport.PatientTransportSRTableDisplay;
+import edu.wpi.cs3733.D22.teamC.models.utils.ComponentWrapper;
 import io.github.palexdev.materialfx.controls.MFXDatePicker;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import org.controlsfx.control.SearchableComboBox;
 
+import java.io.IOException;
 import java.net.URL;
 import java.sql.Time;
 import java.sql.Timestamp;
+import java.util.List;
 import java.util.ResourceBundle;
 
 public class PatientTransportSRInsertCreateController implements InsertServiceRequestCreateController<PatientTransportSR>, Initializable {
@@ -25,11 +30,6 @@ public class PatientTransportSRInsertCreateController implements InsertServiceRe
     @FXML private MFXDatePicker date;
     @FXML private JFXButton patientTableButton;
     @FXML private SearchableComboBox<Patient> patient;
-
-    @FXML
-    void goToPatientTable(ActionEvent event) {
-
-    }
 
     @FXML
     void onClickDate(ActionEvent event) {
@@ -42,7 +42,13 @@ public class PatientTransportSRInsertCreateController implements InsertServiceRe
     }
     @Override
     public void initialize(URL location, ResourceBundle resources) {
+        PatientDAO patientDAO = new PatientDAO();
 
+        List<Patient> patientList = patientDAO.getAll();
+
+        ComponentWrapper.initializeComboBox(patient,Patient::getFirstName);
+
+        patient.getItems().setAll(patientList);
     }
 
     @Override
@@ -85,5 +91,14 @@ public class PatientTransportSRInsertCreateController implements InsertServiceRe
             return false;
         }
         return true;
+    }
+
+    @FXML
+    void goToPatientTable(ActionEvent event) throws IOException {
+        new PatientSelectorWindow(patient -> this.setPatient(patient));
+    }
+
+    private void setPatient(Patient patient) {
+        this.patient.setValue(patient);
     }
 }

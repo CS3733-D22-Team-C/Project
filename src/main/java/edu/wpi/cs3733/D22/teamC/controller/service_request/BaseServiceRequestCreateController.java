@@ -8,9 +8,11 @@ import edu.wpi.cs3733.D22.teamC.App;
 import edu.wpi.cs3733.D22.teamC.entity.employee.Employee;
 import edu.wpi.cs3733.D22.teamC.entity.generic.DAO;
 import edu.wpi.cs3733.D22.teamC.entity.location.Location;
+import edu.wpi.cs3733.D22.teamC.entity.patient.Patient;
 import edu.wpi.cs3733.D22.teamC.entity.service_request.ServiceRequest;
 import edu.wpi.cs3733.D22.teamC.models.employee.EmployeeSelectorWindow;
 import edu.wpi.cs3733.D22.teamC.models.location.MapSelectorWindow;
+import edu.wpi.cs3733.D22.teamC.models.patient.PatientSelectorWindow;
 import edu.wpi.cs3733.D22.teamC.models.service_request.ServiceRequestTableDisplay;
 import edu.wpi.cs3733.D22.teamC.models.utils.ComponentWrapper;
 import javafx.event.ActionEvent;
@@ -92,6 +94,9 @@ public class BaseServiceRequestCreateController<T extends ServiceRequest> implem
                 break;
             case Sanitation:
                 title.setText("Create Sanitation Service Request");
+                break;
+            case Patient_Transport:
+                title.setText("Create Patient Transport Service Request");
                 break;
             default:
         }
@@ -234,7 +239,7 @@ public class BaseServiceRequestCreateController<T extends ServiceRequest> implem
         }
 
 
-        @FXML
+    @FXML
         void goToMapView(ActionEvent event) {
             new MapSelectorWindow(this::setLocation);
         }
