@@ -7,7 +7,7 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Table;
 import java.security.SecureRandom;
-import java.security.Timestamp;
+import java.sql.Timestamp;
 import java.util.Objects;
 
 @Entity
