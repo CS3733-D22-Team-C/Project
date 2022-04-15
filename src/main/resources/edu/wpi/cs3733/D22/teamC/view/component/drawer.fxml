@@ -3,7 +3,7 @@
 <?import com.jfoenix.controls.JFXDrawer?>
 <?import javafx.scene.effect.DropShadow?>
 
-<JFXDrawer fx:id="sidebarDrawer" alignment="CENTER_LEFT" defaultDrawerSize="256.0" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" miniDrawerSize="52.0" onDrawerClosed="#drawerClosed" onMouseEntered="#drawerOnMouseEnter" onMouseExited="#drawerOnMouseExit" overLayVisible="false" resizeContent="true" stylesheets="@../../css/drawer.css" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.wpi.cs3733.D22.teamC.controller.component.sidebar.SidebarMenuController">
+<JFXDrawer fx:id="sidebarDrawer" alignment="CENTER_LEFT" defaultDrawerSize="256.0" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" miniDrawerSize="52.0" onDrawerClosed="#drawerClosed" onMouseEntered="#drawerOnMouseEnter" onMouseExited="#drawerOnMouseExit" overLayVisible="false" resizeContent="true" stylesheets="@../../css/component/drawer.css" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.wpi.cs3733.D22.teamC.controller.component.sidebar.SidebarMenuController">
    <effect>
       <DropShadow />
    </effect>

@@ -16,7 +16,11 @@
     /* Allows for all MFX buttons to have their ripple generators generate the ripples to the correct shape */
     -mfx-auto-clip: true;
 
-
+    /* This allows all components to be resized */
+    /* If labels or anything is not showing up its due to this, must beware what this entails */
+    /* I'm confused why this doesn't break things now. */
+    -fx-min-height: 0px;
+    -fx-min-width: 0px;
 }
 
 /* CUSTOM */
