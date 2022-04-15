@@ -27,7 +27,7 @@ public class LaundrySR extends ServiceRequest {
     }
 
     @Column(name = "Quantity")
-    private Integer quantity;
+    private String quantity;
 
     public LaundrySR() {}
 
@@ -40,11 +40,11 @@ public class LaundrySR extends ServiceRequest {
         this.laundryType = laundryType;
     }
 
-    public Integer getQuantity() {
+    public String getQuantity() {
         return quantity;
     }
 
-    public void setQuantity(Integer quantity) {
+    public void setQuantity(String quantity) {
         this.quantity = quantity;
     }
 

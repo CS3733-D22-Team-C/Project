@@ -119,4 +119,7 @@ public class ServiceRequestLandingPage implements Initializable {
         App.instance.setView(App.VIEW_SERVICE_REQUESTS_PATH);
     }
 
+    @FXML
+    void clickLaundry(ActionEvent event) { goToSRPage(ServiceRequest.RequestType.Laundry);
+    }
 }
