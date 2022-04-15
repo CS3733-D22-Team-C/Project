@@ -1,6 +1,7 @@
 package edu.wpi.cs3733.D22.teamC.entity.patient;
 
 import edu.wpi.cs3733.D22.teamC.entity.employee.Employee;
+import edu.wpi.cs3733.D22.teamC.entity.generic.IDEntity;
 
 import javax.persistence.*;
 import java.util.Date;
@@ -8,7 +9,7 @@ import java.util.UUID;
 
 @Entity
 @Table(name = "PATIENT")
-public class Patient {
+public class Patient implements IDEntity {
 
     @Id
     @Column(name = "ID")

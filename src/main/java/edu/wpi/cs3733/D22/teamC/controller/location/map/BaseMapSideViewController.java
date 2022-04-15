@@ -15,7 +15,6 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.VBox;
-import javafx.scene.text.Text;
 
 import java.net.URL;
 import java.util.ArrayList;
@@ -128,7 +127,7 @@ public class BaseMapSideViewController implements Initializable {
 
     private void loadEquipment() {
         MedicalEquipmentDAO MEL = new MedicalEquipmentDAO();
-        List<MedicalEquipment> medicalEquipmentPerFloor = MEL.getEquipmentByFloor(selectedFloor.getFloorID());
+        List<MedicalEquipment> medicalEquipmentPerFloor = MEL.getEquipmentByFloor(selectedFloor.getID());
 
         List<MedicalEquipment> floorXDirty = new ArrayList<>();
         List<MedicalEquipment> floorXClean = new ArrayList<>();
