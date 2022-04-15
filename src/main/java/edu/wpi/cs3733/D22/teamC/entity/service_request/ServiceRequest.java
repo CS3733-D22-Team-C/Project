@@ -78,7 +78,8 @@ public class ServiceRequest {
         Lab_System,
         Medicine_Delivery,
         Sanitation,
-        Security
+        Security,
+        Laundry
     }
     
     public ServiceRequest(){
