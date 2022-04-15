@@ -9,6 +9,8 @@ import edu.wpi.cs3733.D22.teamC.entity.location.Location;
 import edu.wpi.cs3733.D22.teamC.entity.location.LocationDAO;
 import edu.wpi.cs3733.D22.teamC.entity.medical_equipment.MedicalEquipment;
 import edu.wpi.cs3733.D22.teamC.entity.medical_equipment.MedicalEquipmentDAO;
+import edu.wpi.cs3733.D22.teamC.entity.patient.Patient;
+import edu.wpi.cs3733.D22.teamC.entity.patient.PatientDAO;
 import edu.wpi.cs3733.D22.teamC.entity.service_request.medical_equipment.MedicalEquipmentSR;
 import edu.wpi.cs3733.D22.teamC.entity.service_request.medical_equipment.MedicalEquipmentSRDAO;
 import edu.wpi.cs3733.D22.teamC.fileio.csv.CSVFacade;
@@ -133,6 +135,17 @@ public class App extends Application {
 //             }
 //         }
 
+        //Load CSV data = patient
+        {
+            List<Patient> patients = CSVFacade.read(Patient.class, "Patients.csv");
+            if(patients!=null){
+                PatientDAO patientDAO = new PatientDAO();
+                for(Patient p : patients){
+                    patientDAO.insert(p);
+                }
+            }
+        }
+
         log.info("Starting Up");
     }
 
@@ -194,6 +207,16 @@ public class App extends Application {
 //                CSVFacade.write(MedicalEquipmentSR.class,"MedEquipReq.csv", medicalEquipmentSRS);
 //            }
 //        }
+
+        //Export CSV data = patient
+
+        {
+            PatientDAO patientDAO = new PatientDAO();
+            List<Patient> patients = patientDAO.getAll();
+            if(patients!=null){
+                CSVFacade.write(Patient.class, "Patients.csv", patients);
+            }
+        }
 
         log.info("Shutting Down");
     }
