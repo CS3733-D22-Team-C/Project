@@ -8,7 +8,7 @@ import java.util.UUID;
 public class Location {
     @Id
     @Column(name = "ID")
-    private String nodeID;
+    private String ID;
     
     @Column(name = "FloorID")
     private String floor; // TODO: Floors should be objects
@@ -51,7 +51,7 @@ public class Location {
     }
     
     public Location() {
-        this.nodeID = UUID.randomUUID().toString();
+        this.ID = UUID.randomUUID().toString();
     }
     
     public Location(
@@ -62,7 +62,7 @@ public class Location {
             String shortName,
             int x,
             int y) {
-        this.nodeID = UUID.randomUUID().toString();
+        this.ID = UUID.randomUUID().toString();
         this.floor = floor;
         this.building = building;
         this.nodeType = nodeType;
@@ -77,7 +77,7 @@ public class Location {
      * @param copy Copy of Location to deep copy from.
      */
     public void Copy(Location copy) {
-        this.nodeID = copy.getNodeID();
+        this.ID = copy.getID();
         this.floor = copy.getFloor();
         this.building = copy.getBuilding();
         this.nodeType = copy.getNodeType();
@@ -87,12 +87,12 @@ public class Location {
         this.y = copy.getY();
     }
 
-    public String getNodeID() {
-        return nodeID;
+    public String getID() {
+        return ID;
     }
     
-    public void setNodeID(String nodeID) {
-        this.nodeID = nodeID;
+    public void setID(String nodeID) {
+        this.ID = nodeID;
     }
     
     public String getFloor() {
@@ -156,7 +156,7 @@ public class Location {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Location location = (Location) o;
-        return nodeID.equals(location.nodeID)
+        return ID.equals(location.ID)
                 && floor.equals(location.floor)
                 && x == location.x
                 && y == location.y

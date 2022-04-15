@@ -2,14 +2,8 @@ package edu.wpi.cs3733.D22.teamC.models.employee;
 
 import com.jfoenix.controls.JFXTreeTableView;
 import edu.wpi.cs3733.D22.teamC.entity.employee.Employee;
-import edu.wpi.cs3733.D22.teamC.entity.location.Location;
 import edu.wpi.cs3733.D22.teamC.models.generic.TableDisplay;
-import edu.wpi.cs3733.D22.teamC.models.location.LocationTableDisplay;
 import javafx.beans.property.*;
-import javax.persistence.Column;
-import javax.persistence.EnumType;
-import javax.persistence.Enumerated;
-import javax.persistence.Id;
 
 public class EmployeeTableDisplay extends TableDisplay<Employee> {
     public class EmployeeTableEntry extends TableDisplayEntry {
@@ -28,7 +22,7 @@ public class EmployeeTableDisplay extends TableDisplay<Employee> {
 
         public EmployeeTableEntry(Employee employee) {
             super(employee);
-            employeeID = new SimpleStringProperty((employee.getEmployeeID()));
+            employeeID = new SimpleStringProperty((employee.getID()));
             firstName = new SimpleStringProperty(employee.getFirstName());
             lastName = new SimpleStringProperty(employee.getLastName());
             emailID = new SimpleStringProperty(employee.getEmailID());
@@ -47,7 +41,7 @@ public class EmployeeTableDisplay extends TableDisplay<Employee> {
             phone.setValue(object.getPhone());
             role.setValue(object.getRole().toString());
 
-            employeeID.setValue(object.getEmployeeID());
+            employeeID.setValue(object.getID());
             emailID.setValue(object.getEmailID());
             username.setValue(object.getUsername());
             isAdmin.setValue(object.getAdmin());

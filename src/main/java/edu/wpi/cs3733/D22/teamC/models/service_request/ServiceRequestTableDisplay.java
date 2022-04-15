@@ -6,8 +6,6 @@ import edu.wpi.cs3733.D22.teamC.entity.service_request.ServiceRequest;
 import edu.wpi.cs3733.D22.teamC.models.generic.TableDisplay;
 import javafx.beans.property.*;
 
-import java.sql.Timestamp;
-
 public class ServiceRequestTableDisplay<T extends ServiceRequest> extends TableDisplay<T> {
     public class ServiceRequestTableEntry extends TableDisplayEntry {
         // Properties
@@ -23,7 +21,7 @@ public class ServiceRequestTableDisplay<T extends ServiceRequest> extends TableD
         public ServiceRequestTableEntry(T serviceRequest) {
             super(serviceRequest);
 
-            this.id           = new SimpleStringProperty(serviceRequest.getRequestID());
+            this.id           = new SimpleStringProperty(serviceRequest.getID());
             this.type         = new SimpleStringProperty(serviceRequest.getRequestType().toString());
             this.assigneeID   = new SimpleStringProperty(serviceRequest.getAssignee() == null ? "" : serviceRequest.getAssignee().getLastName() + ", " + serviceRequest.getAssignee().getFirstName());
             this.location     = new SimpleStringProperty(new LocationDAO().getByID(serviceRequest.getLocation()).getShortName());

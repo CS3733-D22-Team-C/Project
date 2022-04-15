@@ -6,21 +6,10 @@ import edu.wpi.cs3733.D22.teamC.controller.location.map.controls.MapControlsCont
 import edu.wpi.cs3733.D22.teamC.controller.location.map.map_view.EditMapController;
 import edu.wpi.cs3733.D22.teamC.controller.location.map.map_view.MapController;
 import edu.wpi.cs3733.D22.teamC.entity.floor.Floor;
-import edu.wpi.cs3733.D22.teamC.entity.floor.FloorDAO;
 import edu.wpi.cs3733.D22.teamC.entity.location.Location;
 import edu.wpi.cs3733.D22.teamC.entity.location.LocationDAO;
 import javafx.fxml.FXML;
-import javafx.fxml.Initializable;
-import javafx.scene.Group;
-import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
-import javafx.scene.paint.Color;
-import javafx.scene.shape.SVGPath;
-
-import java.net.URL;
-import java.util.List;
-import java.util.ResourceBundle;
-import java.util.stream.Collectors;
 
 public class BaseMapViewController extends MapViewController {
     // Constants
@@ -86,7 +75,7 @@ public class BaseMapViewController extends MapViewController {
             setSaveStatus();
 
             // Location addition reflected in Map View
-            if (location.getFloor().equals(currentFloor.getFloorID())) mapController.addLocationNode(location);
+            if (location.getFloor().equals(currentFloor.getID())) mapController.addLocationNode(location);
 
             return location;
         }
@@ -97,7 +86,7 @@ public class BaseMapViewController extends MapViewController {
          */
         public void resetLocation(Location location) {
             LocationDAO locationDAO = new LocationDAO();
-            Location original = locationDAO.getByID(location.getNodeID());
+            Location original = locationDAO.getByID(location.getID());
 
             if (original != null) {
                 location.Copy(original);
@@ -118,7 +107,7 @@ public class BaseMapViewController extends MapViewController {
             mapController.getLocationNode(location).releaseAllMedicalEquipment();
 
             // Location deletion reflected in Map View
-            if (location.getFloor().equals(currentFloor.getFloorID())) mapController.removeLocationNode(location);
+            if (location.getFloor().equals(currentFloor.getID())) mapController.removeLocationNode(location);
 
             if (currentLocation == location) changeCurrentLocation(null);
         }

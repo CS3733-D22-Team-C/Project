@@ -1,9 +1,6 @@
 package edu.wpi.cs3733.D22.teamC.entity.employee;
 
-import org.hibernate.annotations.GenericGenerator;
-
 import javax.persistence.*;
-import java.util.Objects;
 import java.util.UUID;
 
 @Entity
@@ -12,7 +9,7 @@ public class Employee {
 
     @Id
     @Column(name = "ID")
-    private String employeeID;
+    private String ID;
 
     @Column(name = "FirstName")
     private String firstName;
@@ -48,19 +45,19 @@ public class Employee {
     }
 
     public Employee(){
-        employeeID = UUID.randomUUID().toString();
+        ID = UUID.randomUUID().toString();
     }
 
-    public Employee(String employeeID) {
-        this.employeeID = employeeID;
+    public Employee(String ID) {
+        this.ID = ID;
     }
 
-    public String getEmployeeID() {
-        return employeeID;
+    public String getID() {
+        return ID;
     }
 
-    public void setEmployeeID(String employeeID) {
-        this.employeeID = employeeID;
+    public void setID(String employeeID) {
+        this.ID = employeeID;
     }
 
     public String getFirstName() {
@@ -140,7 +137,7 @@ public class Employee {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Employee employee = (Employee) o;
-        return employeeID.equals(employee.employeeID)
+        return ID.equals(employee.ID)
                 && firstName.equals(employee.firstName)
                 && lastName.equals(employee.lastName)
                 && emailID.equals(employee.emailID)

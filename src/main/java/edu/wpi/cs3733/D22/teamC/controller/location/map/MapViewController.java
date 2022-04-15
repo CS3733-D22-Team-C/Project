@@ -6,7 +6,6 @@ import edu.wpi.cs3733.D22.teamC.entity.floor.Floor;
 import edu.wpi.cs3733.D22.teamC.entity.floor.FloorDAO;
 import edu.wpi.cs3733.D22.teamC.entity.location.Location;
 import edu.wpi.cs3733.D22.teamC.entity.location.LocationDAO;
-import edu.wpi.cs3733.D22.teamC.models.utils.ComponentWrapper;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.layout.GridPane;
@@ -65,7 +64,7 @@ public class MapViewController implements Initializable {
         }
 
         public Floor getFloorByID(String id) {
-            List<Floor> floorList = floors.stream().filter(floor -> floor.getFloorID().equals(id)).collect(Collectors.toList());
+            List<Floor> floorList = floors.stream().filter(floor -> floor.getID().equals(id)).collect(Collectors.toList());
             return (floorList.size() > 0) ? floorList.get(0) : null;
         }
 
@@ -88,7 +87,7 @@ public class MapViewController implements Initializable {
          * Render the current floor via the Map Controller
          */
         public void renderCurrentFloor() {
-            mapController.renderFloor(currentFloor, locations.stream().filter(location -> location.getFloor().equals(currentFloor.getFloorID())).collect(Collectors.toList()));
+            mapController.renderFloor(currentFloor, locations.stream().filter(location -> location.getFloor().equals(currentFloor.getID())).collect(Collectors.toList()));
         }
     //#endregion
 
@@ -106,7 +105,7 @@ public class MapViewController implements Initializable {
          * @return Location of the given ID.
          */
         public Location getLocationByID(String id) {
-            List<Location> locationList = locations.stream().filter(location -> location.getNodeID().equals(id)).collect(Collectors.toList());
+            List<Location> locationList = locations.stream().filter(location -> location.getID().equals(id)).collect(Collectors.toList());
             return (locationList.size() > 0) ? locationList.get(0) : null;
         }
 
