@@ -1,11 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import io.github.palexdev.materialfx.controls.MFXScrollPane?>
-<?import javafx.geometry.Insets?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
-<?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.StackPane?>
 
 <StackPane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" prefHeight="449.0" prefWidth="437.0" styleClass="container" stylesheets="@../../css/base.css" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.wpi.cs3733.D22.teamC.controller.map.MapController">
@@ -18,7 +16,7 @@
                      <image>
                         <Image url="@../../../../../../../../../../maps/01_thefirstfloor.png" />
                      </image></ImageView>
-                  <AnchorPane fx:id="mapPane" prefHeight="200.0" prefWidth="200.0" />
+                  <AnchorPane fx:id="mapPane" prefHeight="200.0" prefWidth="200.0" onMouseClicked="#onMouseClickedMap" onMousePressed="#onMousePressedMap" onMouseReleased="#onMouseReleasedMap" onScroll="#onMouseScrollMap" />
                </children>
             </StackPane>
          </content>

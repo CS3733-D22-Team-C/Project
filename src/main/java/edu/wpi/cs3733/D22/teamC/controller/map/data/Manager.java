@@ -14,7 +14,7 @@ public abstract class Manager<T> {
     List<T> loaded;
 
     // On change events for the manager to invoke when current .
-    List<BiConsumer<T, T>> onCurrentChanges = new ArrayList<>();
+    List<BiConsumer<T, T>> onCurrentChangeEvents = new ArrayList<>();
 
     // References
 
@@ -26,7 +26,7 @@ public abstract class Manager<T> {
      * @param object The new object to be tracked by this manager.
      */
     public void changeCurrent(T object) {
-        onCurrentChanges.forEach(onCurrentChange -> onCurrentChange.accept(current, object));
+        onCurrentChangeEvents.forEach(event -> event.accept(current, object));
         current = object;
     }
 }
