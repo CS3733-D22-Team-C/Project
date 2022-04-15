@@ -144,7 +144,7 @@ public class App extends Application {
         stage = primaryStage;
         stage.setFullScreen(true);
 
-        setViewStatic(LOGIN_PATH);
+        setViewStatic("view/service_request/translator/create_insert.fxml");
         // TODO: Hook up via sidebar
     }
 

@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import com.jfoenix.controls.JFXComboBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import org.controlsfx.control.SearchableComboBox?>
+
+<HBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="52.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.wpi.cs3733.D22.teamC.controller.service_request.translator.TranslatorSRInsertResolveController">
+   <children>
+      <VBox prefHeight="52.0" prefWidth="199.0">
+         <children>
+            <Label text="Patient" />
+            <HBox prefHeight="100.0" prefWidth="200.0">
+               <children>
+                  <SearchableComboBox fx:id="patientComboBox" onAction="#statusUpdated" prefHeight="0.0" prefWidth="136.0" />
+                  <JFXButton fx:id="patientButton" onAction="#goToPatientTable" prefHeight="43.0" prefWidth="52.0" />
+               </children>
+            </HBox>
+         </children>
+      </VBox>
+      <VBox prefHeight="52.0" prefWidth="218.0">
+         <children>
+            <Label prefHeight="17.0" prefWidth="90.0" text="Language" />
+            <JFXComboBox fx:id="languageComboBox" onAction="#statusUpdated" prefHeight="39.0" prefWidth="167.0" />
+         </children>
+      </VBox>
+      <VBox prefHeight="52.0" prefWidth="192.0" />
+   </children>
+</HBox>

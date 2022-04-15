@@ -70,7 +70,8 @@ public class ServiceRequest implements IDEntity {
         Lab_System,
         Medicine_Delivery,
         Sanitation,
-        Security
+        Security,
+        Translator
     }
     
     public ServiceRequest(){
