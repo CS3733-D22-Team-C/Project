@@ -3,13 +3,18 @@ package edu.wpi.cs3733.D22.teamC.controller.map;
 
 import edu.wpi.cs3733.D22.teamC.controller.location.map.BaseMapViewController;
 import edu.wpi.cs3733.D22.teamC.controller.location.map.map_view.LocationNode;
+import edu.wpi.cs3733.D22.teamC.entity.floor.Floor;
 import javafx.fxml.FXML;
 import javafx.scene.control.ScrollPane;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseButton;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.input.ScrollEvent;
 import javafx.scene.layout.Pane;
 
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.function.Consumer;
@@ -26,9 +31,21 @@ public class MapController {
     @FXML Pane stackPane;
     @FXML Pane mapPane;
     @FXML ScrollPane scrollPane;
+    @FXML ImageView mapImage;
 
     // Events
     List<Consumer<MouseEvent>> onClickedMapEvents = new ArrayList<>();
+
+    //#region External Events
+        public void setFloor(Floor newFloor) {
+            // TODO: Pull Image from DB
+            Path filePath = Paths.get("maps/" + newFloor.getImageSrc());
+            Image image = new Image("file:" + filePath);
+            mapImage.setImage(image);
+            mapPane.setPrefWidth(image.getWidth());
+            mapPane.setPrefHeight(image.getHeight());
+        }
+    //#endregion
 
     //#region FXML Events
         @FXML

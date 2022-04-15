@@ -1,32 +1,55 @@
 package edu.wpi.cs3733.D22.teamC.controller.map.data;
 
+import edu.wpi.cs3733.D22.teamC.controller.map.MapViewController;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.function.BiConsumer;
 
 public abstract class Manager<T> {
-    // Variables
-
+        // Variables
     // Tracks the currently selected object for this manager.
-    T current;
+    protected T current;
+    // All data for this manager.
+    protected List<T> all;
+    // On change events for the manager to invoke when current changes.
+    protected List<BiConsumer<T, T>> onChangeCurrentEvents = new ArrayList<>();
 
-    // Tracks any already loaded data for this manager.
-    List<T> loaded;
-
-    // On change events for the manager to invoke when current .
-    List<BiConsumer<T, T>> onCurrentChangeEvents = new ArrayList<>();
-
-    // References
-
+        // References
+    // A reference to the overall map view controller.
+    protected MapViewController mapViewController;
     // List of map nodes of this type being display.
-    List<MapNode<T>> mapNodes = new ArrayList<>();
+    protected List<MapNode<T>> mapNodes = new ArrayList<>();
 
-    /**
-     * Changes the currently tracked object for this manager.
-     * @param object The new object to be tracked by this manager.
-     */
-    public void changeCurrent(T object) {
-        onCurrentChangeEvents.forEach(event -> event.accept(current, object));
-        current = object;
+
+    public void setup(MapViewController mapViewController) {
+        this.mapViewController = mapViewController;
     }
+
+    //#region Current Object
+        /**
+         * Changes the currently tracked object for this manager.
+         * @param object The new object to be tracked by this manager.
+         */
+        public void changeCurrent(T object) {
+            onChangeCurrentEvents.forEach(event -> event.accept(current, object));
+            current = object;
+        }
+
+        public T getCurrent() {
+            return current;
+        }
+    //#endregion
+
+    //#region All Objects
+        public List<T> getAll() {
+            return all;
+        }
+    //#endregion
+
+    //#region Current Object Change Events
+        public void addChangeCurrentEvent(BiConsumer<T, T> consumer) {
+            onChangeCurrentEvents.add(consumer);
+        }
+    //#endregion
 }
