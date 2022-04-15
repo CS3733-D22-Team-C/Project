@@ -143,8 +143,10 @@ public class App extends Application {
         stage = primaryStage;
         stage.setFullScreen(true);
 
-        setViewStatic(LOGIN_PATH);
+//        setViewStatic(LOGIN_PATH);
         // TODO: Hook up via sidebar
+
+        setViewStatic("view/map/floor_map_view.fxml");
     }
 
     @Override
