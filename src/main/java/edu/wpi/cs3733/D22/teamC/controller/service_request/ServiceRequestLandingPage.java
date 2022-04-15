@@ -95,7 +95,7 @@ public class ServiceRequestLandingPage implements Initializable {
 
     @FXML
     void clickPatientTransport(ActionEvent event) {
-        goToSRPage(ServiceRequest.RequestType.);
+        goToSRPage(ServiceRequest.RequestType.Patient_Transport);
     }
 
 
