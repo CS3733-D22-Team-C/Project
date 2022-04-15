@@ -1,6 +1,7 @@
 package edu.wpi.cs3733.D22.teamC.entity.service_request;
 
 import edu.wpi.cs3733.D22.teamC.entity.employee.Employee;
+import edu.wpi.cs3733.D22.teamC.entity.generic.IDEntity;
 
 import javax.persistence.*;
 import java.sql.Timestamp;
@@ -10,7 +11,7 @@ import java.util.UUID;
 @Entity
 @Inheritance(strategy = InheritanceType.JOINED)
 @Table(name = "SERVICE_REQUEST")
-public class ServiceRequest {
+public class ServiceRequest implements IDEntity {
     @Id
     @Column(name = "ID")
     protected String ID;

@@ -1,11 +1,13 @@
 package edu.wpi.cs3733.D22.teamC.entity.floor;
 
+import edu.wpi.cs3733.D22.teamC.entity.generic.IDEntity;
+
 import javax.persistence.*;
 import java.util.UUID;
 
 @Entity
 @Table(name = "FLOOR")
-public class Floor {
+public class Floor implements IDEntity {
     @Id
     @Column(name = "ID")
     private String ID;

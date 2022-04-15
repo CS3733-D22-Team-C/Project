@@ -1,12 +1,14 @@
 package edu.wpi.cs3733.D22.teamC.entity.medical_equipment;
 
+import edu.wpi.cs3733.D22.teamC.entity.generic.IDEntity;
+
 import javax.persistence.*;
 
 import java.util.UUID;
 
 @Entity
 @Table(name = "MEDICAL_EQUIPMENT")
-public class MedicalEquipment {
+public class MedicalEquipment implements IDEntity {
     @Id
     @Column(name = "ID")
     private String ID;

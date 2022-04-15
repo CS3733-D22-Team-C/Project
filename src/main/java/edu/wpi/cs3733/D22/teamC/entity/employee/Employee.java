@@ -1,11 +1,13 @@
 package edu.wpi.cs3733.D22.teamC.entity.employee;
 
+import edu.wpi.cs3733.D22.teamC.entity.generic.IDEntity;
+
 import javax.persistence.*;
 import java.util.UUID;
 
 @Entity
 @Table(name = "EMPLOYEE")
-public class Employee {
+public class Employee implements IDEntity {
 
     @Id
     @Column(name = "ID")
