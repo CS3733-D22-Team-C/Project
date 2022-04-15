@@ -46,13 +46,13 @@ public class MedicalEquipmentManager {
     }
 
     public List<MedicalEquipment> getPerLocation(Location location) {
-        return medicalEquipments.stream().filter(medicalEquipment -> medicalEquipment.getLocationID().equals(location.getNodeID())).collect(Collectors.toList());
+        return medicalEquipments.stream().filter(medicalEquipment -> medicalEquipment.getLocationID().equals(location.getID())).collect(Collectors.toList());
     }
 
     public List<MedicalEquipment> getPerLocationPerType(Location location, MedicalEquipment.EquipmentType equipmentType) {
         List<MedicalEquipment> equipmentByType = equipmentsByType[equipmentType.ordinal()];
 
-        return equipmentByType.stream().filter(medicalEquipment -> medicalEquipment.getLocationID().equals(location.getNodeID())).collect(Collectors.toList());
+        return equipmentByType.stream().filter(medicalEquipment -> medicalEquipment.getLocationID().equals(location.getID())).collect(Collectors.toList());
     }
 
     /**
@@ -77,7 +77,7 @@ public class MedicalEquipmentManager {
         List<MedicalEquipment> releasedEquipmentByType = editOverlays[equipmentType.ordinal()].getMedicalEquipments();
         if (releasedEquipmentByType.size() > 0) {
             medicalEquipment = releasedEquipmentByType.get(0);
-            medicalEquipment.setLocationID(location.getNodeID());
+            medicalEquipment.setLocationID(location.getID());
 
             releasedEquipmentByType.remove(medicalEquipment);
             editOverlays[equipmentType.ordinal()].resetCounter();

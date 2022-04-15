@@ -38,15 +38,15 @@ public class SecuritySRCSVWriter extends CSVWriter<SecuritySR> {
         String output = "";
         switch (header) {
             case "requestID":
-                output = serviceRequest.getRequestID();
+                output = serviceRequest.getID();
                 break;
             case "creatorID":
                 Employee employee = serviceRequest.getCreator();
-                output = (employee != null) ? employee.getEmployeeID() : "";
+                output = (employee != null) ? employee.getID() : "";
                 break;
             case "assigneeID":
                 Employee assignee = serviceRequest.getAssignee();
-                output = (assignee != null) ? assignee.getEmployeeID() : "";
+                output = (assignee != null) ? assignee.getID() : "";
                 break;
             case "location":
                 output = serviceRequest.getLocation();
@@ -71,7 +71,7 @@ public class SecuritySRCSVWriter extends CSVWriter<SecuritySR> {
                 break;
             case "modifierID":
                 Employee modifier = serviceRequest.getModifier();
-                output = (modifier != null) ? modifier.getEmployeeID() : "";
+                output = (modifier != null) ? modifier.getID() : "";
                 break;
             case "modifiedTimestamp":
                 output = (serviceRequest.getModifiedTimestamp() == null) ? "" : serviceRequest.getModifiedTimestamp().toString();

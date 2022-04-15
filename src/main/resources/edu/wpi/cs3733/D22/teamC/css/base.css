@@ -36,6 +36,8 @@
     -fx-spacing: 5px;
 }
 
+
+
 .button-success:hover {
     -fx-background-color: -color-button-success-hover;
 }

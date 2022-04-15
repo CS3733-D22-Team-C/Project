@@ -3,7 +3,6 @@ package edu.wpi.cs3733.D22.teamC.fileio.csv.service_request.medicine_delivery;
 import edu.wpi.cs3733.D22.teamC.entity.employee.Employee;
 import edu.wpi.cs3733.D22.teamC.entity.employee.EmployeeDAO;
 import edu.wpi.cs3733.D22.teamC.entity.service_request.ServiceRequest;
-import edu.wpi.cs3733.D22.teamC.entity.service_request.medical_equipment.MedicalEquipmentSR;
 import edu.wpi.cs3733.D22.teamC.entity.service_request.medicine_delivery.MedicineDeliverySR;
 import edu.wpi.cs3733.D22.teamC.fileio.csv.CSVReader;
 
@@ -22,7 +21,7 @@ public class MedicineDeliverySRCSVReader extends CSVReader<MedicineDeliverySR> {
     protected MedicineDeliverySR parseAttribute(MedicineDeliverySR serviceRequest, String header, String value) {
         switch(header) {
             case "requestID":
-                serviceRequest.setRequestID(value);
+                serviceRequest.setID(value);
                 break;
             case "creatorID":
                 Employee creator = employeeDAO.getByID(value);
