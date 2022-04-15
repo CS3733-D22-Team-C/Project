@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import io.github.palexdev.materialfx.controls.MFXDatePicker?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import org.controlsfx.control.SearchableComboBox?>
+
+
+<HBox alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="89.0" prefWidth="600.0" stylesheets="@../../../css/base.css" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.wpi.cs3733.D22.teamC.controller.service_request.patient_transport.PatientTransportSRInsertCreateController.javaedu.wpi.cs3733.D22.teamC.controller.service_request.patient_transport.PatientTransportSRInsertCreateControlleredu.wpi.cs3733.D22.teamC.controller.service_request.patient_transport.PatientTransportSRInsertCreateController">
+   <children>
+      <VBox alignment="CENTER_LEFT">
+         <children>
+            <Label text="Patient:" />
+            <HBox prefHeight="38.0" prefWidth="182.0">
+               <children>
+                  <SearchableComboBox fx:id="patient" maxHeight="-Infinity" maxWidth="1.7976931348623157E308" onAction="#onDropDown" prefHeight="38.0" prefWidth="156.0" />
+                  <JFXButton fx:id="patientTableButton" maxHeight="-Infinity" onAction="#goToPatientTable" prefHeight="38.0" prefWidth="39.0" style="-fx-background-color: -color-secondary;" stylesheets="@../../../css/colors.css" text="-&gt;" />
+               </children>
+            </HBox>
+         </children>
+      </VBox>
+      <VBox alignment="CENTER_LEFT">
+         <children>
+            <Label text="Transport Time:" />
+            <MFXDatePicker fx:id="date" maxWidth="1.7976931348623157E308" onAction="#onClickDate" />
+         </children>
+      </VBox>
+      <VBox prefHeight="183.0" prefWidth="216.0" />
+   </children>
+</HBox>
