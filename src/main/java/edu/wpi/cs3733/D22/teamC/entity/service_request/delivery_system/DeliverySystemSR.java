@@ -12,7 +12,7 @@ public class DeliverySystemSR extends ServiceRequest {
     @Column(name = "DeliveryType")
     protected DeliveryType deliveryType;
     
-    @Column(name = "patientID")
+    @Column(name = "PatientID")
     protected String patientID;
     
     public enum DeliveryType {
