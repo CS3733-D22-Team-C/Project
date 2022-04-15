@@ -37,7 +37,7 @@
                         <Label styleClass="service-field-label" text="Assign To:" />
                         <HBox spacing="1.5">
                            <children>
-                              <TextField fx:id="assigneeID" editable="false" prefHeight="26.0" prefWidth="96.0" HBox.hgrow="ALWAYS" />
+                              <SearchableComboBox fx:id="employeeComboBox" />
                               <JFXButton fx:id="employeeTableButton" ellipsisString="" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" onAction="#goToEmployeeTable" prefHeight="26.0" style="-fx-background-color: -color-secondary;" stylesheets="@../../../css/colors.css" text="-&gt;" />
                            </children>
                         </HBox>

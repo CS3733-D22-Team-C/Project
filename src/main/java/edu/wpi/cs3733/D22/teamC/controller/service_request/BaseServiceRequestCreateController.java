@@ -6,6 +6,7 @@ import com.jfoenix.controls.JFXTextArea;
 import com.jfoenix.controls.JFXTreeTableView;
 import edu.wpi.cs3733.D22.teamC.App;
 import edu.wpi.cs3733.D22.teamC.entity.employee.Employee;
+import edu.wpi.cs3733.D22.teamC.entity.employee.EmployeeDAO;
 import edu.wpi.cs3733.D22.teamC.entity.generic.DAO;
 import edu.wpi.cs3733.D22.teamC.entity.location.Location;
 import edu.wpi.cs3733.D22.teamC.entity.service_request.ServiceRequest;
@@ -25,14 +26,17 @@ import javafx.scene.control.TextField;
 import javafx.scene.layout.VBox;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
+import org.controlsfx.control.SearchableComboBox;
 
 import java.io.IOException;
 import java.sql.Timestamp;
+import java.util.List;
 import java.util.Locale;
 
 public class BaseServiceRequestCreateController<T extends ServiceRequest> implements ServiceRequestController {
     // FXML
     @FXML
+    private SearchableComboBox<Employee> employeeComboBox;
     private TextField assigneeID;
 
     @FXML
@@ -74,7 +78,6 @@ public class BaseServiceRequestCreateController<T extends ServiceRequest> implem
     private EmployeeSelectorWindow employeeSelectorWindow;
 
     private Location location;
-    private Employee assignee;
 
 
     public void setup(ServiceRequest.RequestType requestType) {
@@ -115,9 +118,6 @@ public class BaseServiceRequestCreateController<T extends ServiceRequest> implem
         //ComponentWrapper.setIDFieldToNumeric(locationField);
 
         // Limit the length of TextFields and TextAreas so that users can input a limited number of characters:
-        ComponentWrapper.setTextLengthLimiter(assigneeID, 10);
-        //ComponentWrapper.setTextLengthLimiter(locationField, 10);
-        // Limit the length of TextFields and TextAreas so that users can input a limited number of characters:
         ComponentWrapper.setTextLengthLimiter(description, 100);
 
         // Setup table
@@ -128,13 +128,19 @@ public class BaseServiceRequestCreateController<T extends ServiceRequest> implem
         for (T serviceRequest : serviceRequestDAO.getAll()) {
             tableDisplay.addObject(serviceRequest);
         }
+
+        // Setup Combobox
+        List<Employee> employees = new EmployeeDAO().getAll();
+
+        ComponentWrapper.initializeComboBox(employeeComboBox, Employee::getFirstName);
+        employeeComboBox.getItems().setAll(employees);
     }
 
 
     boolean requiredFieldsPresent(){
         if (priority.getValue() == null && priority.getPromptText().equals(""))
             return false;
-        if (assigneeID.getText().equals(""))
+        if (employeeComboBox.getValue() == null)
             return false;
         if (locationID.getText().equals(""))
             return false;
@@ -152,8 +158,7 @@ public class BaseServiceRequestCreateController<T extends ServiceRequest> implem
 
     private void clearFields() {
         // Clearing Fields
-        assigneeID.clear();
-        assignee = null;
+        employeeComboBox.setValue(null);
         locationID.clear();
         location = null;
         description.setText("");
@@ -165,15 +170,8 @@ public class BaseServiceRequestCreateController<T extends ServiceRequest> implem
     }
 
     //#region Selector Window Updaters
-        public void setEmployee(Employee employee){
-            assignee = employee;
-
-            String employeeName = "";
-            if (employee != null) {
-                employeeName = employee.getLastName() + ", " + employee.getFirstName();
-            }
-
-            assigneeID.setText(employeeName);
+        public void setEmployee(Employee employee) {
+            employeeComboBox.setValue(employee);
         }
 
         public void setLocation(Location location) {
@@ -192,7 +190,7 @@ public class BaseServiceRequestCreateController<T extends ServiceRequest> implem
         // Create Service Request
         T serviceRequest = insertController.createServiceRequest();
 
-        serviceRequest.setAssignee(assignee);
+        serviceRequest.setAssignee(employeeComboBox.getValue());
         serviceRequest.setLocation(location.getNodeID());
         serviceRequest.setDescription(description.getText());
         serviceRequest.setPriority(ServiceRequest.Priority.valueOf(priority.getValue()));
