@@ -1,5 +1,7 @@
 package edu.wpi.cs3733.D22.teamC.entity.patient;
 
+import edu.wpi.cs3733.D22.teamC.entity.employee.Employee;
+
 import javax.persistence.*;
 import java.util.Date;
 import java.util.UUID;
@@ -87,5 +89,20 @@ public class Patient {
 
     public void setEmergencyContact(String emergencyContact) {
         this.emergencyContact = emergencyContact;
+    }
+
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Patient patient = (Patient) o;
+        return ID.equals(patient.ID)
+                && firstName.equals(patient.firstName)
+                && lastName.equals(patient.lastName)
+                && emergencyContact.equals(patient.emergencyContact)
+                && phone.equals(patient.phone)
+                && DOB.equals(patient.DOB)
+                && locationID.equals(patient.locationID);
     }
 }
