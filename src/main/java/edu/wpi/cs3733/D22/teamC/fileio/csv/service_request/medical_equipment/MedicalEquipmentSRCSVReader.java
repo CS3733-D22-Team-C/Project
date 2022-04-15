@@ -5,7 +5,6 @@ import edu.wpi.cs3733.D22.teamC.entity.employee.EmployeeDAO;
 import edu.wpi.cs3733.D22.teamC.entity.service_request.ServiceRequest;
 import edu.wpi.cs3733.D22.teamC.entity.service_request.medical_equipment.MedicalEquipmentSR;
 import edu.wpi.cs3733.D22.teamC.fileio.csv.CSVReader;
-import org.hibernate.exception.spi.TemplatedViolatedConstraintNameExtracter;
 
 import java.sql.Timestamp;
 
@@ -23,7 +22,7 @@ public class MedicalEquipmentSRCSVReader extends CSVReader<MedicalEquipmentSR> {
     protected MedicalEquipmentSR parseAttribute(MedicalEquipmentSR serviceRequest, String header, String value){
         switch(header) {
             case "requestID":
-                serviceRequest.setRequestID(value);
+                serviceRequest.setID(value);
                 break;
             case "creatorID":
                 Employee creator = employeeDAO.getByID(value);

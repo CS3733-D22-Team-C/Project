@@ -15,7 +15,7 @@ public class MedicalEquipmentCSVReader extends CSVReader<MedicalEquipment> {
     protected MedicalEquipment parseAttribute(MedicalEquipment object, String header, String value) {
         switch(header) {
             case "ID":
-                object.setEquipID(value);
+                object.setID(value);
                 break;
             case "locationID":
                 object.setLocationID(value);

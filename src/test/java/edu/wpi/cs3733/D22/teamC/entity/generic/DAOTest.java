@@ -7,10 +7,11 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import java.util.List;
+import java.util.UUID;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-public abstract class DAOTest<T>{
+public abstract class DAOTest<T extends IDEntity>{
     protected Factory<T> factory;
     protected DAO<T> dao;
 
@@ -52,23 +53,33 @@ public abstract class DAOTest<T>{
         //check if they are equal
         assertEquals(obj, queryObj);
     }
-
     
-    // TODO: Abstract ID to Entity superclass for overwriting test procedure
-    //@Test
+    @Test
     void updateTest(){
-        //create a new Factory
+        // Create a new object
         T obj = factory.create();
-        // insert
+        
+        // Insert into DB, and check that its ID is not null
         String id = dao.insert(obj);
-        //get the ID and check if it doesn't equal to -1
         assertNotNull(id);
-        // Retrieve object by using the getByID
+        
+        // Retrieve object by using `getByID()` and check that it is not null
         T queryObj = dao.getByID(id);
-        // check if not null
         assertNotNull(queryObj);
-
         assertEquals(obj, queryObj);
+        
+        // Create a new object with new different attributes, but set its ID to the first object
+        T newObj = factory.create();
+        newObj.setID(queryObj.getID());
+        
+        // See if we can update the database with the new object with the same ID
+        boolean success = dao.update(newObj);
+        assertTrue(success);
+        
+        // Check that update is reflected in the DB
+        queryObj = dao.getByID(id);
+        assertNotNull(queryObj);
+        assertEquals(newObj, queryObj);
     }
 
     @Test
@@ -101,9 +112,7 @@ public abstract class DAOTest<T>{
           
             String id = dao.insert(obj);
             assertNotNull(id);
-
         }
-
 
         List<T> list = dao.getAll();
         assertEquals(size, list.size());
