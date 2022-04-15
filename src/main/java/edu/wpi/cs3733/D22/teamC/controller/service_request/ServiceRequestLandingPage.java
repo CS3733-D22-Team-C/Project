@@ -93,6 +93,12 @@ public class ServiceRequestLandingPage implements Initializable {
         goToSRPage(ServiceRequest.RequestType.Security);
     }
 
+    @FXML
+    void clickPatientTransport(ActionEvent event) {
+        goToSRPage(ServiceRequest.RequestType.);
+    }
+
+
 
     private void changeNameVisibility(boolean canSee) {//throws FileNotFoundException {
         brandon.setVisible(canSee);
