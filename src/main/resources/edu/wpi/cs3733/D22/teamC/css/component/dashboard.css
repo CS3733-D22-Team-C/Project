@@ -1,0 +1,8 @@
+@import "../colors.css";
+@import "../default.css";
+
+/* TODO: Want to find another color to overlay the table on */
+
+.page-container {
+    -fx-max-width: 1000px;
+}

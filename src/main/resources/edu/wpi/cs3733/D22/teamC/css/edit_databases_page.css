@@ -17,7 +17,7 @@
     -fx-background-color: -color-primary;
 }
 
-.container {
+.page-container {
     -fx-background-color: -color-surface !important;
     -fx-max-width: 800px !important;
     -fx-max-height: 800px;
