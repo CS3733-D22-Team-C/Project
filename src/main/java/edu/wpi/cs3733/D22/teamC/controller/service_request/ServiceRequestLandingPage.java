@@ -70,7 +70,6 @@ public class ServiceRequestLandingPage implements Initializable {
     @FXML
     void clickLabSystem(ActionEvent event) {
         goToSRPage(ServiceRequest.RequestType.Lab_System);
-
     }
 
     @FXML
@@ -99,6 +98,9 @@ public class ServiceRequestLandingPage implements Initializable {
     }
 
 
+    void clickDeliverySystem(ActionEvent event) {
+        goToSRPage(ServiceRequest.RequestType.Delivery_System);
+    }
 
     private void changeNameVisibility(boolean canSee) {//throws FileNotFoundException {
         brandon.setVisible(canSee);

@@ -251,8 +251,8 @@
       </VBox>
       <VBox alignment="BOTTOM_CENTER" GridPane.columnIndex="3" GridPane.rowIndex="1">
          <children>
-            <Label prefHeight="37.0" prefWidth="170.0" styleClass="label-service-names" stylesheets="@../../css/service_request_landing_page.css" text="Label" visible="false" />
-            <JFXButton prefHeight="134.0" prefWidth="131.0" styleClass="button-requests" stylesheets="@../../css/service_request_landing_page.css" text=" " visible="false">
+            <Label prefHeight="61.0" prefWidth="120.0" styleClass="label-service-names" stylesheets="@../../css/service_request_landing_page.css" text="Delivery System" />
+            <JFXButton onAction="#clickDeliverySystem" prefHeight="134.0" prefWidth="131.0" styleClass="button-requests" stylesheets="@../../css/service_request_landing_page.css" text=" ">
                <effect>
                   <DropShadow height="3.51" offsetY="10.0" radius="0.37749999999999995" width="0.0" />
                </effect>
@@ -262,8 +262,15 @@
                <cursor>
                   <Cursor fx:constant="HAND" />
                </cursor>
+               <graphic>
+                  <ImageView fitHeight="71.0" fitWidth="71.0">
+                     <image>
+                        <Image url="@../../static/images/Lab_Systems(vial).png" />
+                     </image>
+                  </ImageView>
+               </graphic>
             </JFXButton>
-            <Label fx:id="brian" styleClass="label-our-names" stylesheets="@../../css/service_request_landing_page.css" text="Brian Shin" visible="false" />
+            <Label fx:id="brian" styleClass="label-our-names" stylesheets="@../../css/service_request_landing_page.css" text="Brian Shin" />
          </children>
          <padding>
             <Insets bottom="40.0" />

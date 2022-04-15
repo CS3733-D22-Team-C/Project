@@ -106,4 +106,9 @@ public class Patient implements IDEntity {
                 && DOB.equals(patient.DOB)
                 && locationID.equals(patient.locationID);
     }
+    
+    @Override
+    public String toString() {
+        return lastName + ", " + firstName;
+    }
 }

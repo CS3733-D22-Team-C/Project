@@ -14,20 +14,20 @@
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.layout.VBox?>
 
-<TabPane maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="600.0" prefWidth="487.0" stylesheets="@../../../../css/map/csv_page.css" tabClosingPolicy="UNAVAILABLE" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.wpi.cs3733.D22.teamC.controller.location.map.CSVComponent">
+<TabPane maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="650.0" prefWidth="487.0" stylesheets="@../../../../css/map/csv_page.css" tabClosingPolicy="UNAVAILABLE" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.wpi.cs3733.D22.teamC.controller.location.map.CSVComponent">
   <tabs>
     <Tab text="Import">
          <content>
             <VBox alignment="CENTER" prefHeight="476.0" prefWidth="483.0" spacing="10.0">
                <children>
-                  <VBox prefHeight="286.0" prefWidth="434.0">
+                  <VBox prefHeight="365.0" prefWidth="466.0">
                      <children>
                         <HBox>
                            <children>
                               <Label styleClass="page-title" stylesheets="@../../../../css/base.css" text="Select Entities to Import" />
                            </children>
                         </HBox>
-                        <VBox prefHeight="255.0" prefWidth="434.0" spacing="10.0">
+                        <VBox prefHeight="347.0" prefWidth="466.0" spacing="10.0">
                            <children>
                               <VBox prefHeight="56.0" prefWidth="424.0" spacing="5.0">
                                  <children>
@@ -47,15 +47,17 @@
                                     </GridPane>
                                  </children>
                               </VBox>
-                              <VBox prefHeight="111.0" prefWidth="424.0" spacing="5.0">
+                              <VBox prefHeight="159.0" prefWidth="453.0" spacing="5.0">
                                  <children>
                                     <Label styleClass="service-field-label" stylesheets="@../../../../css/base.css" text="Service Request" underline="true" />
-                                    <GridPane>
+                                    <GridPane prefHeight="130.0" prefWidth="453.0">
                                        <columnConstraints>
                                           <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
                                           <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
                                        </columnConstraints>
                                        <rowConstraints>
+                                          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                                           <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                                           <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                                           <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
@@ -67,6 +69,7 @@
                                           <MFXCheckbox fx:id="sanitationImport" text="Sanitation" GridPane.rowIndex="2" />
                                           <MFXCheckbox fx:id="facilityMaintenanceImport" text="Facility Maintenance" GridPane.columnIndex="1" GridPane.rowIndex="1" />
                                           <MFXCheckbox fx:id="securityImport" text="Security" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                                          <MFXCheckbox fx:id="deliveryImport" text="Delivery System" GridPane.rowIndex="3" />
                                        </children>
                                     </GridPane>
                                  </children>
@@ -161,16 +164,16 @@
          <content>
             <VBox alignment="CENTER_LEFT" prefHeight="200.0" prefWidth="100.0" spacing="10.0">
                <children>
-                  <VBox prefHeight="286.0" prefWidth="434.0">
+                  <VBox prefHeight="359.0" prefWidth="466.0">
                      <children>
                         <HBox>
                            <children>
                               <Label styleClass="page-title" stylesheets="@../../../../css/base.css" text="Select Entities to Export" />
                            </children>
                         </HBox>
-                        <VBox prefHeight="255.0" prefWidth="434.0" spacing="10.0">
+                        <VBox prefHeight="294.0" prefWidth="466.0" spacing="10.0">
                            <children>
-                              <VBox prefHeight="56.0" prefWidth="424.0" spacing="5.0">
+                              <VBox prefHeight="89.0" prefWidth="453.0" spacing="5.0">
                                  <children>
                                     <Label styleClass="service-field-label" stylesheets="@../../../../css/base.css" text="Maps" underline="true" />
                                     <GridPane>
@@ -188,15 +191,17 @@
                                     </GridPane>
                                  </children>
                               </VBox>
-                              <VBox prefHeight="111.0" prefWidth="421.0" spacing="5.0">
+                              <VBox prefHeight="178.0" prefWidth="453.0" spacing="5.0">
                                  <children>
                                     <Label styleClass="service-field-label" stylesheets="@../../../../css/base.css" text="Service Request" underline="true" />
-                                    <GridPane>
+                                    <GridPane prefHeight="154.0" prefWidth="453.0">
                                        <columnConstraints>
                                           <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
                                           <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
                                        </columnConstraints>
                                        <rowConstraints>
+                                          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                                           <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                                           <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                                           <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
@@ -208,11 +213,12 @@
                                           <MFXCheckbox fx:id="sanitationExport" text="Sanitation" GridPane.rowIndex="2" />
                                           <MFXCheckbox fx:id="facilityMaintenanceExport" text="Facility Maintenance" GridPane.columnIndex="1" GridPane.rowIndex="1" />
                                           <MFXCheckbox fx:id="securityExport" text="Security" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                                          <MFXCheckbox fx:id="deliveryExport" text="Delivery System" GridPane.rowIndex="3" />
                                        </children>
                                     </GridPane>
                                  </children>
                               </VBox>
-                              <HBox>
+                              <HBox prefHeight="92.0" prefWidth="453.0">
                                  <children>
                                     <VBox prefHeight="55.0" prefWidth="424.0" spacing="5.0">
                                        <children>
