@@ -145,7 +145,6 @@ public class App extends Application {
         stage.setFullScreen(true);
 
         setViewStatic(LOGIN_PATH);
-        new PatientSelectorWindow(e->{});
         // TODO: Hook up via sidebar
     }
 
