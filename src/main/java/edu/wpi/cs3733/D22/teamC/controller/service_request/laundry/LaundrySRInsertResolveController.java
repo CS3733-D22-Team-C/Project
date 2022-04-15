@@ -17,7 +17,7 @@ import java.util.ResourceBundle;
 
 public class LaundrySRInsertResolveController extends InsertServiceRequestResolveController<LaundrySR> implements Initializable {
     @FXML
-    private SearchableComboBox<String> laundryType;
+    private SearchableComboBox<LaundrySR.LaundryType> laundryType;
 
     @FXML
     private TextField quantity;
@@ -26,7 +26,7 @@ public class LaundrySRInsertResolveController extends InsertServiceRequestResolv
     public void initialize(URL location, ResourceBundle resources) {
         // Sanitation Type dropdown
         for (LaundrySR.LaundryType laundry : LaundrySR.LaundryType.values()) {
-            laundryType.getItems().add(laundry.toString());
+            laundryType.getItems().add(LaundrySR.LaundryType.valueOf(laundry.toString()));
         }
     }
 
@@ -52,7 +52,7 @@ public class LaundrySRInsertResolveController extends InsertServiceRequestResolv
     public void updateServiceRequest(LaundrySR serviceRequest){
         if(isEditMode){
             if(laundryType.getValue() != null)
-                serviceRequest.setLaundryType(LaundrySR.LaundryType.valueOf(laundryType.getValue()));
+                serviceRequest.setLaundryType(LaundrySR.LaundryType.valueOf(String.valueOf(laundryType.getValue())));
             serviceRequest.setQuantity(quantity.getText());
         }
     }

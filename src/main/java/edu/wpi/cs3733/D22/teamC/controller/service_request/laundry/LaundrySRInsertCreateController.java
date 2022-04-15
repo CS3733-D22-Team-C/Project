@@ -21,7 +21,7 @@ import java.util.ResourceBundle;
 
 public class LaundrySRInsertCreateController implements InsertServiceRequestCreateController<LaundrySR>, Initializable {
     @FXML
-    private SearchableComboBox<String> laundryType;
+    private SearchableComboBox<LaundrySR.LaundryType> laundryType;
     @FXML
     private TextField quantity;
 
@@ -29,7 +29,7 @@ public class LaundrySRInsertCreateController implements InsertServiceRequestCrea
     public void initialize(URL location, ResourceBundle resources) {
         // Priority dropdown
         for (LaundrySR.LaundryType laundry : LaundrySR.LaundryType.values()) {
-            laundryType.getItems().add(laundry.toString());
+            laundryType.getItems().add(LaundrySR.LaundryType.valueOf(laundry.toString()));
         }
     }
 
@@ -43,7 +43,7 @@ public class LaundrySRInsertCreateController implements InsertServiceRequestCrea
     public LaundrySR createServiceRequest() {
         LaundrySR laundrySR = new LaundrySR();
 
-        laundrySR.setLaundryType(LaundrySR.LaundryType.valueOf(laundryType.getValue()));
+        laundrySR.setLaundryType(LaundrySR.LaundryType.valueOf(String.valueOf(laundryType.getValue())));
         laundrySR.setQuantity(quantity.getText());
 
         return laundrySR;
