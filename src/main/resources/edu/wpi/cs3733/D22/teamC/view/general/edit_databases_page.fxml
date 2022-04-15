@@ -17,31 +17,27 @@
     <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
   </rowConstraints>
    <children>
-      <VBox>
+      <VBox alignment="CENTER" prefHeight="710.0" prefWidth="474.0" spacing="60.0">
          <children>
-            <VBox alignment="CENTER" prefHeight="710.0" prefWidth="474.0" spacing="60.0">
-               <children>
-                  <Button mnemonicParsing="false" onAction="#clickEmployee" prefHeight="110.0" prefWidth="270.0" styleClass="button-toDatabase" text="Employee ">
-                     <cursor>
-                        <Cursor fx:constant="HAND" />
-                     </cursor>
-                  </Button>
-                  <Button mnemonicParsing="false" onAction="#clickMedicalEquipment" prefHeight="107.0" prefWidth="270.0" styleClass="button-toDatabase" text="Medical Equipment">
-                     <cursor>
-                        <Cursor fx:constant="HAND" />
-                     </cursor>
-                  </Button>
-                  <Button mnemonicParsing="false" onAction="#clickLocations" prefHeight="107.0" prefWidth="270.0" styleClass="button-toDatabase" text="Locations">
-                     <cursor>
-                        <Cursor fx:constant="HAND" />
-                     </cursor>
-                  </Button>
-               </children>
-               <padding>
-                  <Insets bottom="20.0" top="15.0" />
-               </padding>
-            </VBox>
+            <Button mnemonicParsing="false" onAction="#clickEmployee" prefHeight="110.0" prefWidth="270.0" text="Employee ">
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </Button>
+            <Button mnemonicParsing="false" onAction="#clickMedicalEquipment" prefHeight="107.0" prefWidth="270.0" text="Medical Equipment">
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </Button>
+            <Button mnemonicParsing="false" onAction="#clickLocations" prefHeight="107.0" prefWidth="270.0" text="Locations">
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </Button>
          </children>
+         <padding>
+            <Insets bottom="20.0" top="15.0" />
+         </padding>
       </VBox>
       <VBox fx:id="insertVbox" alignment="CENTER" prefHeight="200.0" prefWidth="100.0" styleClass="page-container" GridPane.columnIndex="1" />
    </children>
