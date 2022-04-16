@@ -30,7 +30,7 @@ public class LocationMapNode extends MapNode<Location> {
 
     //#region Rendering
         @Override
-        protected void setPosition(int x, int y) {
+        public void setPosition(int x, int y) {
             node.setTranslateX(x);
             node.setTranslateY(y);
 
@@ -41,7 +41,7 @@ public class LocationMapNode extends MapNode<Location> {
         /**
          * Updates Position of Location Map Node based on the moved Circle.
          */
-        private void updatePosition() {
+        public void updatePosition() {
             int xOffset = (int) locationCircle.getCenterX();
             int yOffset = (int) locationCircle.getCenterY();
 
@@ -71,10 +71,14 @@ public class LocationMapNode extends MapNode<Location> {
         }
 
         @Override
-        public void onPreview() {}
+        public void onPreview() {
+            if (!manager.isFocusing()) manager.changeCurrent(location);
+        }
 
         @Override
-        public void offPreview() {}
+        public void offPreview() {
+            if (!manager.isFocusing()) manager.changeCurrent(null);
+        }
     //#endregion
 
     //#region FXML Events

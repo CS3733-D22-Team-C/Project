@@ -3,6 +3,7 @@ package edu.wpi.cs3733.D22.teamC.controller.map;
 import edu.wpi.cs3733.D22.teamC.App;
 import edu.wpi.cs3733.D22.teamC.controller.map.data.floor.FloorManager;
 import edu.wpi.cs3733.D22.teamC.controller.map.data.location.LocationManager;
+import edu.wpi.cs3733.D22.teamC.controller.map.panel.LocationInfoController;
 import edu.wpi.cs3733.D22.teamC.controller.map.panel.MapControlsController;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -18,11 +19,12 @@ public class MapViewController implements Initializable {
     // Constants
     public static final String MAP_PATH = "view/map/map.fxml";
     public static final String MAP_CONTROLS_PATH = "view/map/panel/controls.fxml";
+    public static final String LOCATION_INFO_PATH = "view/map/panel/info.fxml";
 
     // FXML
     @FXML Pane mapPane;
     @FXML Pane controlsPane;
-//    @FXML Pane infoPane;
+    @FXML Pane infoPane;
 
     // References
     private MapController mapController;
@@ -48,13 +50,21 @@ public class MapViewController implements Initializable {
         MapControlsController mapControlsController = controlsView.getController();
         mapControlsController.setup(this);
 
+        // Info
+        App.View<LocationInfoController> infoView = App.instance.loadView(LOCATION_INFO_PATH);
+        infoPane.getChildren().add(infoView.getNode());
+        LocationInfoController locationInfoController = infoView.getController();
+        locationInfoController.setup(this);
+
         // Events
         floorManager.addChangeCurrentEvent((oldFloor, newFloor) -> mapController.setFloor(newFloor));
         floorManager.addChangeCurrentEvent((oldFloor, newFloor) -> mapControlsController.setFloor(newFloor));
         floorManager.addChangeCurrentEvent((oldFloor, newFloor) -> locationManager.renderFloor(newFloor));
+        floorManager.addChangeCurrentEvent((oldFloor, newFloor) -> locationManager.changeCurrent(null));
+
+        locationManager.addChangeCurrentEvent((oldLocation, newLocation) -> locationInfoController.setLocation(newLocation));
 
         mapController.addClickedMapEvent((event) -> locationManager.unfocusAll());
-
 
         // TODO: Remove hard-coded change
         floorManager.changeCurrent(floorManager.getAll().get(0));
@@ -67,6 +77,10 @@ public class MapViewController implements Initializable {
 
         public FloorManager getFloorManager() {
             return floorManager;
+        }
+
+        public LocationManager getLocationManager() {
+            return locationManager;
         }
     //#endregion
 }
