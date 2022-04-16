@@ -95,7 +95,6 @@ public class MapController {
          */
         public void doubleClickAddLocation(MouseEvent event) {
             if (event.getClickCount() == 2) {
-                System.out.println("Fired!");
                 Location location = new Location();
                 location.setX((int) event.getX());
                 location.setY((int) event.getY());

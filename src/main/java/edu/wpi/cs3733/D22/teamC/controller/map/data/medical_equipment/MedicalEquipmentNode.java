@@ -13,7 +13,7 @@ import javafx.util.Pair;
 import java.util.List;
 import java.util.stream.Collectors;
 
-public class MedicalEquipmentNode {
+public class MedicalEquipmentNode extends MapNode<MedicalEquipment> {
     // Constants
     private static final String[] COUNTER_PATHS = {
             "view/map/nodes/medical_equipment/bed.fxml",
@@ -28,9 +28,6 @@ public class MedicalEquipmentNode {
             new Pair(10, 35)
     };
 
-    // Variables
-    Location location;
-
     // References
     Group contextGroup;
 
@@ -38,11 +35,10 @@ public class MedicalEquipmentNode {
     private MedicalEquipmentCounter[] counters = new MedicalEquipmentCounter[MedicalEquipment.EquipmentType.values().length];
 
     public MedicalEquipmentNode(MedicalEquipmentManager manager, Location location) {
-        // Set Variables
-        this.location = location;
+        super(manager, location);
 
         // Load FXML
-        LocationMapNode locationMapNode = (LocationMapNode) manager.mapViewController.getLocationManager().getByLocation(location);
+        LocationMapNode locationMapNode = (LocationMapNode) manager.getMapViewController().getLocationManager().getByLocation(location);
         contextGroup = locationMapNode.getContextGroup();
 
         for (int i = 0; i < MedicalEquipment.EquipmentType.values().length; i++) {

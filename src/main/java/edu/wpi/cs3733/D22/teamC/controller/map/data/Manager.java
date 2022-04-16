@@ -28,7 +28,7 @@ public abstract class Manager<T extends IDEntity> {
         this.mapViewController = mapViewController;
     }
 
-    //#region Current Object
+    //#region Current Object Manipulation
         /**
          * Changes the currently tracked object for this manager.
          * @param object The new object to be tracked by this manager.
@@ -63,7 +63,11 @@ public abstract class Manager<T extends IDEntity> {
         }
     //#endregion
 
-    //#region Managers
+    //#region Getters
+        public MapViewController getMapViewController() {
+            return mapViewController;
+        }
+
         public Pane getMap() {
             return mapViewController.getMap();
         }

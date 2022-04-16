@@ -9,6 +9,7 @@ import edu.wpi.cs3733.D22.teamC.controller.map.data.MapNode;
 import edu.wpi.cs3733.D22.teamC.entity.location.Location;
 import javafx.fxml.FXML;
 import javafx.scene.Group;
+import javafx.scene.Parent;
 import javafx.scene.input.MouseButton;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.shape.Circle;
@@ -16,6 +17,9 @@ import javafx.scene.shape.Circle;
 import java.util.ArrayList;
 
 public class LocationMapNode extends MapNode<Location> {
+    // Constants
+    private static final String NODE_PATH = "view/map/nodes/location.fxml";
+
     // FXML
     @FXML private Group contextGroup;
     @FXML private Circle locationCircle;
@@ -23,7 +27,10 @@ public class LocationMapNode extends MapNode<Location> {
     public LocationMapNode(LocationManager manager, Location location) {
         super(manager, location);
 
-        this.manager = manager;
+        // Load Node
+        App.View<MapNode<Location>> view = App.instance.loadView(NODE_PATH, this);
+        Parent root = (Parent) view.getNode();
+        this.node = view.getNode();
 
         // Initialize Location
         manager.getMap().getChildren().add(node);
@@ -31,7 +38,6 @@ public class LocationMapNode extends MapNode<Location> {
     }
 
     //#region Rendering
-        @Override
         public void setPosition(int x, int y) {
             node.setTranslateX(x);
             node.setTranslateY(y);
@@ -58,24 +64,20 @@ public class LocationMapNode extends MapNode<Location> {
     //#endregion
 
     //#region State Updating
-        @Override
         public void onFocus() {
             locationCircle.getStyleClass().add("active");
             manager.changeCurrent(location);
         }
 
-        @Override
         public void offFocus() {
             locationCircle.getStyleClass().remove("active");
             manager.changeCurrent(null);
         }
 
-        @Override
         public void onPreview() {
             if (!((LocationManager) manager).isFocusing()) manager.changeCurrent(location);
         }
 
-        @Override
         public void offPreview() {
             if (!((LocationManager) manager).isFocusing()) manager.changeCurrent(null);
         }
@@ -152,11 +154,7 @@ public class LocationMapNode extends MapNode<Location> {
         }
     //#endregion
 
-    //#endregion Loading
-        protected String getNodePath() {
-            return "view/map/nodes/location.fxml";
-        }
-
+    //#endregion Getters
         public Group getContextGroup() {
             return contextGroup;
         }

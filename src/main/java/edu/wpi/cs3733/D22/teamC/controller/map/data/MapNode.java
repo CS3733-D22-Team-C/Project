@@ -16,30 +16,11 @@ public abstract class MapNode<T extends IDEntity> {
     protected Location location;
 
     public MapNode(Manager<T> manager, Location mapLocation) {
-        // Load Node
-        App.View<MapNode<T>> view = App.instance.loadView(getNodePath(), this);
-        Parent root = (Parent) view.getNode();
-
         this.manager = manager;
-        this.node = view.getNode();
         this.location = mapLocation;
     }
 
-    //#region Rendering
-        protected abstract void setPosition(int x, int y);
-    //#endregion
-
-    //#region State Updating
-        public abstract void onFocus();
-        public abstract void offFocus();
-
-        public abstract void onPreview();
-        public abstract void offPreview();
-    //#endregion
-
     //#endregion Loading
-        protected abstract String getNodePath();
-
         public Location getLocation() {
             return location;
         }

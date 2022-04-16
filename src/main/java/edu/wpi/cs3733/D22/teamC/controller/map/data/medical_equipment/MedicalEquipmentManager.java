@@ -16,16 +16,10 @@ import java.util.stream.Collectors;
 /**
  * Manages Medical Equipment data for MapControllers. An optional manager for Map to work with Medical Equipment Functionality.
  */
-public class MedicalEquipmentManager {
-    // Variables
-    private MedicalEquipmentNode previewed;
-    private MedicalEquipmentNode focused;
-
-    // References
-    MapViewController mapViewController;
+public class MedicalEquipmentManager extends ManagerMapNodes<MedicalEquipment> {
 
     public MedicalEquipmentManager(MapViewController mapViewController) {
-        this.mapViewController = mapViewController;
+        super(mapViewController);
 
         mapViewController.getLocationManager().onPreviewLocationEvents.add(this::previewLocation);
         mapViewController.getLocationManager().onFocusLocationEvents.add(this::focusLocation);
@@ -33,35 +27,44 @@ public class MedicalEquipmentManager {
 
     //#region Location Changes
         public void previewLocation(Location location) {
-            if (previewed != null) {
-                previewed.removeNode();
-                previewed = null;
-            }
+            if (focused == null || focused.getLocation() != location) {
+                if (previewed != null) {
+                    removeNode(previewed);
+                    previewed = null;
+                }
 
-            if (focused != null && focused.location == location) {
-                focused.toPreviewMode();
-                previewed = focused;
-                focused = null;
-            } else if (location != null) {
-                previewed = new MedicalEquipmentNode(this, location);
-                previewed.toPreviewMode();
+                if (focused != null && focused.getLocation() == location) {
+                    ((MedicalEquipmentNode) focused).toPreviewMode();
+                    previewed = focused;
+                    focused = null;
+                } else if (location != null) {
+                    previewed = new MedicalEquipmentNode(this, location);
+                    ((MedicalEquipmentNode) previewed).toPreviewMode();
+                }
             }
         }
 
         public void focusLocation(Location location) {
             if (focused != null) {
-                focused.removeNode();
+                removeNode(focused);
                 focused = null;
             }
 
-            if (previewed != null && previewed.location == location) {
-                previewed.toFocusMode();
+            if (previewed != null && previewed.getLocation() == location) {
+                ((MedicalEquipmentNode) previewed).toFocusMode();
                 focused = previewed;
                 previewed = null;
             } else if (location != null) {
                 focused = new MedicalEquipmentNode(this, location);
-                focused.toFocusMode();
+                ((MedicalEquipmentNode) focused).toFocusMode();
             }
+        }
+    //#endregion
+
+    //#region Map Node Manipulation
+        @Override
+        public void removeNode(MapNode<MedicalEquipment> mapNode) {
+            ((MedicalEquipmentNode) mapNode).removeNode();
         }
     //#endregion
 }
