@@ -24,6 +24,12 @@ public class MedicalEquipmentCounter {
     private MedicalEquipment.EquipmentType equipmentType;
     private List<MedicalEquipment> medicalEquipments;
 
+    // References
+    private MedicalEquipmentNode parentNode;
+
+    public void setup(MedicalEquipmentNode medicalEquipmentNode) {
+        this.parentNode = medicalEquipmentNode;
+    }
 
     public void setPosition(int x, int y) {
         root.setTranslateX(x);
@@ -45,7 +51,15 @@ public class MedicalEquipmentCounter {
     }
 
     public void updateCounter() {
-        counter.setText(Integer.toString(medicalEquipments.size()));
+        counter.setText(Integer.toString(getCount()));
+        if (this.parentNode != null) {
+            downArrow.setDisable((medicalEquipments.size() == 0));
+            upArrow.setDisable(((MedicalEquipmentManager) this.parentNode.getManager()).getFreeCount(equipmentType) > 0);
+        }
+    }
+
+    public int getCount() {
+        return medicalEquipments.size();
     }
 
     //#region FXML Events

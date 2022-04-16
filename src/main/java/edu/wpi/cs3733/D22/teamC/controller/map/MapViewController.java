@@ -51,8 +51,8 @@ public class MapViewController implements Initializable {
     }
 
     //#region Interfacing Getters/Setters
-        public Pane getMap() {
-            return mapController.getMap();
+        public MapController getMapController() {
+            return mapController;
         }
 
         public FloorManager getFloorManager() {

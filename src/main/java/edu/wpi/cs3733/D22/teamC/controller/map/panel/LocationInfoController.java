@@ -2,6 +2,7 @@ package edu.wpi.cs3733.D22.teamC.controller.map.panel;
 
 import com.jfoenix.controls.JFXTreeTableView;
 import edu.wpi.cs3733.D22.teamC.controller.map.MapViewController;
+import edu.wpi.cs3733.D22.teamC.controller.map.data.location.LocationMapNode;
 import edu.wpi.cs3733.D22.teamC.entity.floor.Floor;
 import edu.wpi.cs3733.D22.teamC.entity.location.Location;
 import edu.wpi.cs3733.D22.teamC.entity.location.LocationDAO;
@@ -181,7 +182,7 @@ public class LocationInfoController implements Initializable {
     //#region FXML Events
         @FXML
         void onDeselectButtonPressed(ActionEvent event) {
-            mapViewController.getLocationManager().changeCurrent(null);
+            mapViewController.getLocationManager().unfocus();
         }
 
         @FXML

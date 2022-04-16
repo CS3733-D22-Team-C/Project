@@ -10,6 +10,7 @@ import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseButton;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.input.ScrollEvent;
+import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
 
 import java.nio.file.Path;
@@ -30,6 +31,8 @@ public class MapController {
     @FXML private Pane mapPane;
     @FXML private ScrollPane scrollPane;
     @FXML private ImageView mapImage;
+
+    @FXML private HBox bottomOverlay;
 
     // References
     MapViewController mapViewController;
@@ -110,6 +113,10 @@ public class MapController {
     //#region Getters
         public Pane getMap() {
             return mapPane;
+        }
+
+        public HBox getBottomOverlay() {
+            return bottomOverlay;
         }
     //#endregion
 }

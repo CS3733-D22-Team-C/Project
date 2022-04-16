@@ -15,12 +15,6 @@ import java.util.stream.Collectors;
 
 public class MedicalEquipmentNode extends MapNode<MedicalEquipment> {
     // Constants
-    private static final String[] COUNTER_PATHS = {
-            "view/map/nodes/medical_equipment/bed.fxml",
-            "view/map/nodes/medical_equipment/pump.fxml",
-            "view/map/nodes/medical_equipment/recliner.fxml",
-            "view/map/nodes/medical_equipment/xray.fxml"
-    };
     private static final Pair<Integer, Integer>[] COUNTER_OFFSETS = new Pair[] {
             new Pair(10, -55),
             new Pair(30, -25),
@@ -42,7 +36,7 @@ public class MedicalEquipmentNode extends MapNode<MedicalEquipment> {
         contextGroup = locationMapNode.getContextGroup();
 
         for (int i = 0; i < MedicalEquipment.EquipmentType.values().length; i++) {
-            App.View<MedicalEquipmentCounter> view = App.instance.loadView(COUNTER_PATHS[i]);
+            App.View<MedicalEquipmentCounter> view = App.instance.loadView(MedicalEquipmentManager.COUNTER_PATHS[i]);
 
             // Setup Controller
             MedicalEquipmentCounter controller = view.getController();

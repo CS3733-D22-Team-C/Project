@@ -33,7 +33,7 @@ public class LocationMapNode extends MapNode<Location> {
         this.node = view.getNode();
 
         // Initialize Location
-        manager.getMap().getChildren().add(node);
+        manager.getMapController().getMap().getChildren().add(node);
         setPosition(location.getX(), location.getY());
     }
 
@@ -138,11 +138,11 @@ public class LocationMapNode extends MapNode<Location> {
         private void leftDragMove(MouseEvent event) {
             if (event.getButton().equals(MouseButton.PRIMARY))  {
                 int currentX = (int) node.getTranslateX();
-                int maxX = (int) manager.getMap().getPrefWidth();
+                int maxX = (int) manager.getMapController().getMap().getPrefWidth();
                 int newX = (int) Math.max(-currentX, (Math.min(maxX-currentX, event.getX())));
 
                 int currentY = (int) node.getTranslateY();
-                int maxY = (int) manager.getMap().getPrefHeight();
+                int maxY = (int) manager.getMapController().getMap().getPrefHeight();
                 int newY = (int) Math.max(-currentY, (Math.min(maxY-currentY, event.getY())));
 
                 locationCircle.setCenterX(newX);

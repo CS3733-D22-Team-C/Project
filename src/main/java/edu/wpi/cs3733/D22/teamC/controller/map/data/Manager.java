@@ -1,5 +1,6 @@
 package edu.wpi.cs3733.D22.teamC.controller.map.data;
 
+import edu.wpi.cs3733.D22.teamC.controller.map.MapController;
 import edu.wpi.cs3733.D22.teamC.controller.map.MapViewController;
 import edu.wpi.cs3733.D22.teamC.controller.map.data.floor.FloorManager;
 import edu.wpi.cs3733.D22.teamC.entity.generic.IDEntity;
@@ -14,7 +15,7 @@ public abstract class Manager<T extends IDEntity> {
         // Variables
     // Tracks the currently selected object for this manager.
     protected T current;
-    // All data for this manager.
+    // All data for this manager. Used for managers with data preservation for stashing changes.
     protected List<T> all;
     // On change events for the manager to invoke when current changes.
     public List<BiConsumer<T, T>> onChangeCurrentEvents = new ArrayList<>();
@@ -68,8 +69,8 @@ public abstract class Manager<T extends IDEntity> {
             return mapViewController;
         }
 
-        public Pane getMap() {
-            return mapViewController.getMap();
+        public MapController getMapController() {
+            return mapViewController.getMapController();
         }
     //#endregion
 }

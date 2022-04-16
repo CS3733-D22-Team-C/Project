@@ -70,8 +70,13 @@ public class FloorMapViewController extends MapViewController {
             return medicalEquipmentManager;
         }
 
-        public void setMedicalEquipmentManager(MedicalEquipmentManager medicalEquipmentManager) {
-            this.medicalEquipmentManager = medicalEquipmentManager;
+        public void activateMedicalEquipmentManager(boolean activate) {
+            if (activate) {
+                medicalEquipmentManager = new MedicalEquipmentManager(this);
+            } else {
+                if (medicalEquipmentManager != null) medicalEquipmentManager.shutdown();
+                medicalEquipmentManager = null;
+            }
         }
     //#endregion
 }

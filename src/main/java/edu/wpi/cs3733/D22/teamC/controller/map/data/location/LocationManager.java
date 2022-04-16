@@ -64,9 +64,10 @@ public class LocationManager extends ManagerMapNodes<Location> {
     //#endregion
 
     //#region Map Node Manipulation
+        @Override
         public void removeNode(MapNode<Location> mapNode) {
             ((Group) mapNode.getNode()).getChildren().clear();
-            getMap().getChildren().remove(mapNode);
+            getMapController().getMap().getChildren().remove(mapNode);
         }
     //#endregion
 

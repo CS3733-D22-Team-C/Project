@@ -62,20 +62,18 @@ public class MapControlsController implements Initializable {
         @FXML
         void onViewModeButtonPressed(ActionEvent event) {
             mapViewController.switchMode(false);
+            mapViewController.activateMedicalEquipmentManager(medicalEquipmentToggle.isSelected());
         }
 
         @FXML
         void onEditModeButtonPressed(ActionEvent event) {
             mapViewController.switchMode(true);
+            mapViewController.activateMedicalEquipmentManager(false);
         }
 
         @FXML
         void onMedicalEquipmentToggle(ActionEvent event) {
-            if (medicalEquipmentToggle.isSelected()) {
-                mapViewController.setMedicalEquipmentManager(new MedicalEquipmentManager(mapViewController));
-            } else {
-                mapViewController.getMedicalEquipmentManager().shutdown();
-            }
+            mapViewController.activateMedicalEquipmentManager(medicalEquipmentToggle.isSelected());
         }
 
         @FXML
@@ -96,6 +94,7 @@ public class MapControlsController implements Initializable {
         saveButton.setVisible(editing);
         exitButton.setVisible(!editing);
         saveButton.setDisable(true);
+        medicalEquipmentToggle.setVisible(!editing);
     }
 
     public void canSave() {
