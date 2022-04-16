@@ -15,6 +15,8 @@ public abstract class ManagerMapNodes<T extends IDEntity> extends Manager<T> {
     protected MapNode<T> previewed;
     protected MapNode<T> focused;
 
+    public List<Runnable> onUpdateDataEvents = new ArrayList<>();
+
     public ManagerMapNodes(MapViewController mapViewController) {
         super(mapViewController);
     }

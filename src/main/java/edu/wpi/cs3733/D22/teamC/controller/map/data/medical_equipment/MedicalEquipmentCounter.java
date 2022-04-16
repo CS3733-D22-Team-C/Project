@@ -1,6 +1,7 @@
 package edu.wpi.cs3733.D22.teamC.controller.map.data.medical_equipment;
 
 import edu.wpi.cs3733.D22.teamC.entity.medical_equipment.MedicalEquipment;
+import edu.wpi.cs3733.D22.teamC.entity.medical_equipment.MedicalEquipmentDAO;
 import javafx.fxml.FXML;
 import javafx.scene.Group;
 import javafx.scene.control.Label;
@@ -40,14 +41,31 @@ public class MedicalEquipmentCounter {
         this.equipmentType = equipmentType;
     }
 
-    public void setMedicalEquipments(List<MedicalEquipment> medicalEquipments) {
-        this.medicalEquipments = medicalEquipments;
+    //#region Medical Equipment Manipulation
+        public void setMedicalEquipments(List<MedicalEquipment> medicalEquipments) {
+            this.medicalEquipments = medicalEquipments;
 
-        updateCounter();
-    }
+            updateCounter();
+        }
+
+        public MedicalEquipment removeMedicalEquipment() {
+            MedicalEquipment medicalEquipment = medicalEquipments.remove(0);
+            updateCounter();
+            return medicalEquipment;
+        }
+
+        public void addMedicalEquipment(MedicalEquipment medicalEquipment) {
+            medicalEquipments.add(medicalEquipment);
+            updateCounter();
+        }
+    //#endregion
 
     public void setEditable(boolean editable) {
         editGroup.setVisible(editable);
+    }
+
+    public void setVisible(boolean visible) {
+        root.setVisible(visible);
     }
 
     public void updateCounter() {
@@ -65,13 +83,25 @@ public class MedicalEquipmentCounter {
     //#region FXML Events
         @FXML
         public void onUpArrowClicked(MouseEvent event) {
-            System.out.println("Ran Up!");
+            MedicalEquipment medicalEquipment = ((MedicalEquipmentManager) parentNode.getManager()).removeFree(equipmentType);
+            addMedicalEquipment(medicalEquipment);
+
+            medicalEquipment.setLocationID(parentNode.getLocation().getID());
+            new MedicalEquipmentDAO().update(medicalEquipment);
+            parentNode.getManager().onUpdateDataEvents.forEach(Runnable::run);
+
             event.consume();
         }
 
         @FXML
         public void onDownArrowClicked(MouseEvent event) {
-            System.out.println("Ran Down!");
+            MedicalEquipment medicalEquipment = removeMedicalEquipment();
+            ((MedicalEquipmentManager) parentNode.getManager()).addFree(medicalEquipment);
+
+            medicalEquipment.setLocationID("");
+            new MedicalEquipmentDAO().update(medicalEquipment);
+            parentNode.getManager().onUpdateDataEvents.forEach(Runnable::run);
+
             event.consume();
         }
     //#endregion

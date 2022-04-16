@@ -24,7 +24,6 @@ public class LocationManager extends ManagerMapNodes<Location> {
     private boolean isEditMode;
 
     // Events
-    public List<Runnable> onUpdateDataEvents = new ArrayList<>();
     public List<Consumer<Location>> onPreviewLocationEvents = new ArrayList<>();
     public List<Consumer<Location>> onFocusLocationEvents = new ArrayList<>();
 

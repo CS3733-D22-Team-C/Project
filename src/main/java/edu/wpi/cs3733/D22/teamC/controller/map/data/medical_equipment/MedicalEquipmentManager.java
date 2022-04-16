@@ -128,5 +128,15 @@ public class MedicalEquipmentManager extends ManagerMapNodes<MedicalEquipment> {
         public int getFreeCount(MedicalEquipment.EquipmentType equipmentType) {
             return counters[equipmentType.ordinal()].getCount();
         }
+
+        public MedicalEquipment removeFree(MedicalEquipment.EquipmentType equipmentType) {
+            MedicalEquipmentCounter counter = counters[equipmentType.ordinal()];
+            return counter.removeMedicalEquipment();
+        }
+
+        public void addFree(MedicalEquipment medicalEquipment) {
+            MedicalEquipmentCounter counter = counters[medicalEquipment.getEquipmentType().ordinal()];
+            counter.addMedicalEquipment(medicalEquipment);
+        }
     //#endregion
 }

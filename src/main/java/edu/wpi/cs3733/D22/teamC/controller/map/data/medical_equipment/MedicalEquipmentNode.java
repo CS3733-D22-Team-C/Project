@@ -66,12 +66,15 @@ public class MedicalEquipmentNode extends MapNode<MedicalEquipment> {
         public void toPreviewMode() {
             for (MedicalEquipmentCounter counter : counters) {
                 counter.setEditable(false);
+
+                counter.setVisible((counter.getCount() != 0));
             }
         }
 
         public void toFocusMode() {
             for (MedicalEquipmentCounter counter : counters) {
                 counter.setEditable(true);
+                counter.setVisible(true);
             }
         }
 

@@ -145,8 +145,7 @@ public class LocationInfoController implements Initializable {
             ComponentWrapper.setValueSilently(nodeComboBox, location.getNodeType());
 
             // Medical Equipment
-            medicalEquipmentTableDisplay.emptyTable();
-            new MedicalEquipmentDAO().getEquipmentByLocation(location.getID()).forEach(medicalEquipmentTableDisplay::addObject);
+            populateMedicalEquipmentTable(location);
 
             // Service Requests
             serviceRequestTableDisplay.emptyTable();
@@ -176,6 +175,11 @@ public class LocationInfoController implements Initializable {
                 revertButton.setDisable(false);
                 mapViewController.getLocationManager().updatesOccured();
             }
+        }
+
+        public void populateMedicalEquipmentTable(Location location) {
+            medicalEquipmentTableDisplay.emptyTable();
+            new MedicalEquipmentDAO().getEquipmentByLocation(location.getID()).forEach(medicalEquipmentTableDisplay::addObject);
         }
     //#endregion
 

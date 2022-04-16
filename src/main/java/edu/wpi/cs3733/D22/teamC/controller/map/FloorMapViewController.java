@@ -73,6 +73,7 @@ public class FloorMapViewController extends MapViewController {
         public void activateMedicalEquipmentManager(boolean activate) {
             if (activate) {
                 medicalEquipmentManager = new MedicalEquipmentManager(this);
+                medicalEquipmentManager.onUpdateDataEvents.add(() -> locationInfoController.populateMedicalEquipmentTable(locationManager.getCurrent()));
             } else {
                 if (medicalEquipmentManager != null) medicalEquipmentManager.shutdown();
                 medicalEquipmentManager = null;
