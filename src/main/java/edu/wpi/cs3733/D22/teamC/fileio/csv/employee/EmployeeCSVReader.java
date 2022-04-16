@@ -17,7 +17,7 @@ public class EmployeeCSVReader extends CSVReader<Employee> {
     protected Employee parseAttribute(Employee object, String header, String value) {
         switch (header) {
             case "ID":
-                object.setEmployeeID(value);
+                object.setID(value);
                 break;
             case "FirstName":
                 object.setFirstName(value);

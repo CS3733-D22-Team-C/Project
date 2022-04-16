@@ -26,6 +26,7 @@
         
         <mapping class="edu.wpi.cs3733.D22.teamC.entity.location.Location" />
         <mapping class="edu.wpi.cs3733.D22.teamC.entity.employee.Employee" />
+        <mapping class="edu.wpi.cs3733.D22.teamC.entity.patient.Patient" />
         <mapping class="edu.wpi.cs3733.D22.teamC.entity.floor.Floor" />
         <mapping class="edu.wpi.cs3733.D22.teamC.entity.medical_equipment.MedicalEquipment" />
         <mapping class="edu.wpi.cs3733.D22.teamC.entity.service_request.ServiceRequest" />
@@ -35,7 +36,7 @@
         <mapping class="edu.wpi.cs3733.D22.teamC.entity.service_request.facility_maintenance.FacilityMaintenanceSR" />
         <mapping class="edu.wpi.cs3733.D22.teamC.entity.service_request.lab_system.LabSystemSR" />
         <mapping class="edu.wpi.cs3733.D22.teamC.entity.service_request.medical_equipment.MedicalEquipmentSR" />
-
+        <mapping class="edu.wpi.cs3733.D22.teamC.entity.service_request.delivery_system.DeliverySystemSR" />
 
     </session-factory>
 </hibernate-configuration>

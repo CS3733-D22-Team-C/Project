@@ -55,3 +55,35 @@ although it is not a requirement for this class.
 To install the styleguide scheme into IntelliJ, `Preferences -> Editor -> Code Style -> Scheme
  -> ... -> Import Scheme -> IntelliJ IDEA code style XML`, then select `config/intellij-java
  -google-style.xml` from the project's root directory 
+
+
+# Adding Jars to SceneBuilder
+## Step 1: Download and run SceneBuilder
+Open up SceneBuilder. Everyone should have version 17.0.0. If you do not have version 17.0.0, 
+or you have the latest version (18.0.0), this will cause errors for everyone when you use certain features.
+
+## Step 2: Adding Jars
+There are 2 ways to add jar files. The first, everyone should have done when installing the required jars
+during the "Setting Up Software Dev Env." The second, is through the SceneBuilder GUI.
+
+### First, Navigate to the Library Bar at the top left of the screen.
+It should be just below the menu bar and above all SceneBuilder icons
+
+### Next, click the gear icon at the end of the search bar.
+It is a small gear just to the right of the search bar.
+
+### Next, click "JAR/FXML Manager." A pop-up should appear
+
+### Under Actions, click Search Repositories
+
+### Finally, search the required Jar files.
+We are using MaterialFX and ControlsFX. Type MaterialFX into the search repositories and be sure
+to download the repository named "io.github.palexdev:materialfx". Next, click Add Jar. Another pop-up
+should have shown up. Make sure every box is checked (it should be by default), and click "Import Contents".
+Now everything should be added. Follow the same process for ControlsFX. Search ControlsFx.
+In Search Results, click on the repository named "org.controlsfx:controlsfx". There are **multiple**
+versions of ControlsFX and MaterialFX. For Controls FX, some will not work properly without having 
+the main controlsfx jar downloaded. **Do not download these.** After adding every jar, SceneBuilder should have
+all of the icons for JFoenix, MaterialFX, and ControlsFX under custom, which is right under the library bar.
+JFoenix items all start with JFX and MaterialFX items all start with MFX. ControlsFX icons do not start with anything.
+

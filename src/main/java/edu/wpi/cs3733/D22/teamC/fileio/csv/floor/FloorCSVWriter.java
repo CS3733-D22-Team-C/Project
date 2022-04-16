@@ -3,7 +3,6 @@ package edu.wpi.cs3733.D22.teamC.fileio.csv.floor;
 import edu.wpi.cs3733.D22.teamC.entity.floor.Floor;
 import edu.wpi.cs3733.D22.teamC.fileio.csv.CSVWriter;
 
-import java.nio.charset.StandardCharsets;
 import java.util.Arrays;
 
 public class FloorCSVWriter extends CSVWriter<Floor> {
@@ -34,7 +33,7 @@ public class FloorCSVWriter extends CSVWriter<Floor> {
         String output = "";
         switch (header) {
             case "id":
-                output = object.getFloorID();
+                output = object.getID();
                 break;
             case "order":
                 output = Integer.toString(object.getOrder());
