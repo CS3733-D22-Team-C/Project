@@ -10,7 +10,7 @@ public class LaundrySRFactory extends ServiceRequestFactory<LaundrySR> {
 
         ServiceRequest.RequestType requestType = ServiceRequest.RequestType.Laundry;
         LaundrySR.LaundryType laundryType = LaundrySR.LaundryType.values()[generator.nextInt(LaundrySR.LaundryType.values().length)];
-        Integer quantity = 2;
+        String quantity = "2";
 
         serviceRequest.setRequestType(requestType);
         serviceRequest.setLaundryType(laundryType);
