@@ -37,7 +37,6 @@ public class MapControlsController implements Initializable {
         floorComboBox.getItems().setAll(mapViewController.getFloorManager().getAll());
 
         // Set Access
-        switchMode(false);
         saveButton.setDisable(true);
     }
 
@@ -55,12 +54,12 @@ public class MapControlsController implements Initializable {
 
         @FXML
         void onViewModeButtonPressed(ActionEvent event) {
-            switchMode(false);
+            mapViewController.switchMode(false);
         }
 
         @FXML
         void onEditModeButtonPressed(ActionEvent event) {
-            switchMode(true);
+            mapViewController.switchMode(true);
         }
 
         @FXML
@@ -75,12 +74,15 @@ public class MapControlsController implements Initializable {
         }
     //#endregion
 
-    private void switchMode(boolean editing) {
+    public void switchMode(boolean editing) {
         editModeButton.setVisible(!editing);
         viewModeButton.setVisible(editing);
         saveButton.setVisible(editing);
         exitButton.setVisible(!editing);
+        saveButton.setDisable(true);
+    }
 
-        mapViewController.switchMode(editing);
+    public void canSave() {
+        saveButton.setDisable(false);
     }
 }

@@ -42,9 +42,9 @@ public class MapViewController implements Initializable {
         mapController.setup(this);
 
         // Events
-        floorManager.addChangeCurrentEvent((oldFloor, newFloor) -> mapController.setFloor(newFloor));
-        floorManager.addChangeCurrentEvent((oldFloor, newFloor) -> locationManager.renderFloor(newFloor));
-        floorManager.addChangeCurrentEvent((oldFloor, newFloor) -> locationManager.changeCurrent(null));
+        floorManager.onChangeCurrentEvents.add((oldFloor, newFloor) -> mapController.setFloor(newFloor));
+        floorManager.onChangeCurrentEvents.add((oldFloor, newFloor) -> locationManager.renderFloor(newFloor));
+        floorManager.onChangeCurrentEvents.add((oldFloor, newFloor) -> locationManager.changeCurrent(null));
 
         // TODO: Remove hard-coded change
         floorManager.changeCurrent(floorManager.getAll().get(0));

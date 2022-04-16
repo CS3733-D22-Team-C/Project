@@ -21,6 +21,9 @@ public class FloorMapViewController extends MapViewController {
     @FXML Pane controlsPane;
     @FXML Pane infoPane;
 
+    // References
+    private LocationInfoController locationInfoController;
+    private MapControlsController mapControlsController;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
@@ -29,19 +32,22 @@ public class FloorMapViewController extends MapViewController {
         // Controls
         App.View<MapControlsController> controlsView = App.instance.loadView(MAP_CONTROLS_PATH);
         controlsPane.getChildren().add(controlsView.getNode());
-        MapControlsController mapControlsController = controlsView.getController();
+        mapControlsController = controlsView.getController();
         mapControlsController.setup(this);
 
         // Info
         App.View<LocationInfoController> infoView = App.instance.loadView(LOCATION_INFO_PATH);
         infoPane.getChildren().add(infoView.getNode());
-        LocationInfoController locationInfoController = infoView.getController();
+        locationInfoController = infoView.getController();
         locationInfoController.setup(this);
 
         // Events
-        floorManager.addChangeCurrentEvent((oldFloor, newFloor) -> mapControlsController.setFloor(newFloor));
+        floorManager.onChangeCurrentEvents.add((oldFloor, newFloor) -> mapControlsController.setFloor(newFloor));
 
-        locationManager.addChangeCurrentEvent((oldLocation, newLocation) -> locationInfoController.setLocation(newLocation));
+        locationManager.onChangeCurrentEvents.add((oldLocation, newLocation) -> locationInfoController.setLocation(newLocation));
+        locationManager.onUpdateDataEvents.add(mapControlsController::canSave);
+
+        switchMode(false);
 
         // TODO: Remove hard-coded change
         floorManager.changeCurrent(floorManager.getAll().get(0));
@@ -50,6 +56,8 @@ public class FloorMapViewController extends MapViewController {
     //#region Mode Switching
         public void switchMode(boolean editing) {
             locationManager.switchMode(editing);
+            mapControlsController.switchMode(editing);
+            locationInfoController.setEditable(editing);
         }
     //#endregion
 }

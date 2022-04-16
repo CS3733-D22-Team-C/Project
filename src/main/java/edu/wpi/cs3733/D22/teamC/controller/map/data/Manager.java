@@ -17,7 +17,7 @@ public abstract class Manager<T extends IDEntity> {
     // All data for this manager.
     protected List<T> all;
     // On change events for the manager to invoke when current changes.
-    protected List<BiConsumer<T, T>> onChangeCurrentEvents = new ArrayList<>();
+    public List<BiConsumer<T, T>> onChangeCurrentEvents = new ArrayList<>();
 
         // References
     // A reference to the overall map view controller.
@@ -60,12 +60,6 @@ public abstract class Manager<T extends IDEntity> {
         public void removeObject(T object) {
             all.remove(object);
             if (current == object) changeCurrent(null);
-        }
-    //#endregion
-
-    //#region Current Object Change Events
-        public void addChangeCurrentEvent(BiConsumer<T, T> consumer) {
-            onChangeCurrentEvents.add(consumer);
         }
     //#endregion
 

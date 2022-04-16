@@ -14,6 +14,8 @@ import javafx.scene.layout.Pane;
 
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Facilitates Map interaction as a go between for data (managers, nodes), panel (interaction, controls), and the Map.

@@ -20,6 +20,7 @@ import javafx.scene.control.*;
 import javafx.scene.shape.SVGPath;
 
 import java.net.URL;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.ResourceBundle;
 
@@ -176,7 +177,7 @@ public class LocationInfoController implements Initializable {
 
             if (!original.equals(location)) {
                 revertButton.setDisable(false);
-//                parentController.setSaveStatus();
+                mapViewController.getLocationManager().updatesOccured();
             }
         }
     //#endregion

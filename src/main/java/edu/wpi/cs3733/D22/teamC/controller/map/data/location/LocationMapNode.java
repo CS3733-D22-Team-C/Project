@@ -139,6 +139,7 @@ public class LocationMapNode extends MapNode<Location> {
                 locationCircle.setCenterY(event.getY());
 
                 updatePosition();
+                ((LocationManager) manager).updatesOccured();
             }
         }
     //#endregion

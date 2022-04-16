@@ -1,14 +1,11 @@
 package edu.wpi.cs3733.D22.teamC.controller.map.data.location;
 
 import edu.wpi.cs3733.D22.teamC.controller.map.MapViewController;
-import edu.wpi.cs3733.D22.teamC.controller.map.data.Manager;
 import edu.wpi.cs3733.D22.teamC.controller.map.data.ManagerMapNodes;
-import edu.wpi.cs3733.D22.teamC.controller.map.data.MapNode;
 import edu.wpi.cs3733.D22.teamC.entity.floor.Floor;
 import edu.wpi.cs3733.D22.teamC.entity.floor.FloorDAO;
 import edu.wpi.cs3733.D22.teamC.entity.location.Location;
 import edu.wpi.cs3733.D22.teamC.entity.location.LocationDAO;
-import javafx.scene.input.MouseEvent;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -17,6 +14,9 @@ import java.util.stream.Collectors;
 public class LocationManager extends ManagerMapNodes<Location> {
     // Variables
     private boolean isEditMode;
+
+    // Events
+    public List<Runnable> onUpdateDataEvents = new ArrayList<>();
 
     public LocationManager(MapViewController mapViewController) {
         super(mapViewController);
@@ -30,6 +30,7 @@ public class LocationManager extends ManagerMapNodes<Location> {
             if (original != null) {
                 location.Copy(original);
                 ((LocationMapNode) getByLocation(location)).updatePosition();
+                changeCurrent(current);
             } else {
                 removeObject(location);
             }
@@ -41,12 +42,14 @@ public class LocationManager extends ManagerMapNodes<Location> {
             if (object.getFloor().equals(mapViewController.getFloorManager().getCurrent().getID())) {
                 allNodes.add(drawNode(object));
             }
+            updatesOccured();
         }
 
         @Override
         public void removeObject(Location object) {
             super.removeObject(object);
             if (allNodes.contains(getByLocation(object))) removeNode(getByLocation(object));
+            updatesOccured();
         }
     //#endregion
 
@@ -88,6 +91,10 @@ public class LocationManager extends ManagerMapNodes<Location> {
 
             changeCurrent(null);
             renderFloor(mapViewController.getFloorManager().getCurrent());
+        }
+
+        public void updatesOccured() {
+            onUpdateDataEvents.forEach(Runnable::run);
         }
 
         /**
