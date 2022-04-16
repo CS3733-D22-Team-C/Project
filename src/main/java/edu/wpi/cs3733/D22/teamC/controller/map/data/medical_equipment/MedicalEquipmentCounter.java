@@ -1,10 +1,10 @@
 package edu.wpi.cs3733.D22.teamC.controller.map.data.medical_equipment;
 
 import edu.wpi.cs3733.D22.teamC.entity.medical_equipment.MedicalEquipment;
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.Group;
 import javafx.scene.control.Label;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.shape.SVGPath;
 
 import java.util.List;
@@ -54,7 +54,7 @@ public class MedicalEquipmentCounter {
         counter.setText(Integer.toString(getCount()));
         if (this.parentNode != null) {
             downArrow.setDisable((medicalEquipments.size() == 0));
-            upArrow.setDisable(((MedicalEquipmentManager) this.parentNode.getManager()).getFreeCount(equipmentType) > 0);
+            upArrow.setDisable(((MedicalEquipmentManager) this.parentNode.getManager()).getFreeCount(equipmentType) == 0);
         }
     }
 
@@ -64,13 +64,15 @@ public class MedicalEquipmentCounter {
 
     //#region FXML Events
         @FXML
-        public void onUpArrowClicked(ActionEvent event) {
-
+        public void onUpArrowClicked(MouseEvent event) {
+            System.out.println("Ran Up!");
+            event.consume();
         }
 
         @FXML
-        public void onDownArrowClicked(ActionEvent event) {
-
+        public void onDownArrowClicked(MouseEvent event) {
+            System.out.println("Ran Down!");
+            event.consume();
         }
     //#endregion
 }

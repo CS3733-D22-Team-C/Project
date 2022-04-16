@@ -44,6 +44,7 @@ public class MedicalEquipmentNode extends MapNode<MedicalEquipment> {
             contextGroup.getChildren().add(view.getNode());
             controller.setPosition(COUNTER_OFFSETS[i].getKey(), COUNTER_OFFSETS[i].getValue());
             controller.setType(MedicalEquipment.EquipmentType.values()[i]);
+            controller.setup(this);
 
             counters[i] = controller;
         }

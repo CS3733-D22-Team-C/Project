@@ -32,15 +32,13 @@ public class MedicalEquipmentManager extends ManagerMapNodes<MedicalEquipment> {
     // Variables
     Consumer<Location> onPreviewLocationEvent = this::previewLocation;
     Consumer<Location> onFocusLocationEvent = this::focusLocation;
-    private MedicalEquipmentCounter[] counters = new MedicalEquipmentCounter[MedicalEquipment.EquipmentType.values().length];
+    private final MedicalEquipmentCounter[] counters = new MedicalEquipmentCounter[MedicalEquipment.EquipmentType.values().length];
 
     public MedicalEquipmentManager(MapViewController mapViewController) {
         super(mapViewController);
 
         mapViewController.getLocationManager().onPreviewLocationEvents.add(onPreviewLocationEvent);
         mapViewController.getLocationManager().onFocusLocationEvents.add(onFocusLocationEvent);
-
-        focusLocation(mapViewController.getLocationManager().getCurrent());
 
         // Create Counters
         for (int i = 0; i < MedicalEquipment.EquipmentType.values().length; i++) {
@@ -65,6 +63,8 @@ public class MedicalEquipmentManager extends ManagerMapNodes<MedicalEquipment> {
             List<MedicalEquipment> medicalEquipmentsByType = medicalEquipments.stream().filter(medicalEquipment -> medicalEquipment.getEquipmentType() == equipmentType).collect(Collectors.toList());
             counters[equipmentType.ordinal()].setMedicalEquipments(medicalEquipmentsByType);
         }
+
+        focusLocation(mapViewController.getLocationManager().getCurrent());
     }
 
     public void shutdown() {
@@ -126,7 +126,7 @@ public class MedicalEquipmentManager extends ManagerMapNodes<MedicalEquipment> {
 
     //#region Free Medical Equipment
         public int getFreeCount(MedicalEquipment.EquipmentType equipmentType) {
-            return (counters[equipmentType.ordinal()].getCount());
+            return counters[equipmentType.ordinal()].getCount();
         }
     //#endregion
 }
