@@ -9,6 +9,7 @@ import edu.wpi.cs3733.D22.teamC.entity.service_request.facility_maintenance.Faci
 import edu.wpi.cs3733.D22.teamC.entity.service_request.lab_system.LabSystemSR;
 import edu.wpi.cs3733.D22.teamC.entity.service_request.medical_equipment.MedicalEquipmentSR;
 import edu.wpi.cs3733.D22.teamC.entity.service_request.medicine_delivery.MedicineDeliverySR;
+import edu.wpi.cs3733.D22.teamC.entity.service_request.patient_transport.PatientTransportSR;
 import edu.wpi.cs3733.D22.teamC.entity.service_request.sanitation.SanitationSR;
 import edu.wpi.cs3733.D22.teamC.entity.service_request.security.SecuritySR;
 import edu.wpi.cs3733.D22.teamC.fileio.csv.employee.EmployeeCSVReader;
@@ -83,6 +84,9 @@ public class CSVFacade {
         else if(classType == DeliverySystemSR.class) {
             csvReader = (CSVReader<T>) new DeliverySystemSRCSVReader();
         }
+        else if(classType == PatientTransportSR.class) {
+            csvReader = (CSVReader<T>) new PatientTransportSRCSVReader();
+        }
 
         return csvReader.readFile(fileName);
     }
@@ -130,6 +134,9 @@ public class CSVFacade {
         }
         else if(classType == DeliverySystemSR.class) {
             csvReader = (CSVReader<T>) new DeliverySystemSRCSVReader();
+        }
+        else if(classType == PatientTransportSR.class) {
+            csvReader = (CSVReader<T>) new PatientTransportSRCSVReader();
         }
         
         return csvReader.readFile(file);
@@ -180,6 +187,9 @@ public class CSVFacade {
         else if(classType == DeliverySystemSR.class) {
             csvWriter = (CSVWriter<T>) new DeliverySystemSRCSVWriter();
         }
+        else if(classType == PatientTransportSR.class) {
+            csvWriter = (CSVReader<T>) new PatientTransportSRCSVWriter();
+        }
         
         return csvWriter.writeFile(fileName, data);
 
@@ -229,6 +239,9 @@ public class CSVFacade {
         }
         else if(classType == DeliverySystemSR.class) {
             csvWriter = (CSVWriter<T>) new DeliverySystemSRCSVWriter();
+        }
+        else if(classType == PatientTransportSR.class) {
+            csvWriter = (CSVReader<T>) new PatientTransportSRCSVWriter();
         }
         
         return csvWriter.writeFile(file, data);

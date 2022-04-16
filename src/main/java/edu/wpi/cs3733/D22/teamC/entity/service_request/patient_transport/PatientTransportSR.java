@@ -15,10 +15,10 @@ import java.util.Objects;
 public class PatientTransportSR extends ServiceRequest {
 
     @Column(name = "PatientID")
-    private String patientID;
+    protected String patientID;
 
     @Column(name = "TransportTime")
-    private Timestamp transportTime;
+    protected Timestamp transportTime;
 
     public PatientTransportSR(){
 
