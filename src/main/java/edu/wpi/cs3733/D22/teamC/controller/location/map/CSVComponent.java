@@ -214,7 +214,6 @@ public class CSVComponent {
                 locations.forEach(locationDAO::insert);
             }
 
-
             //Employee
             if(employeesImport.isSelected()) {
                 List<Employee> employees = CSVFacade.read(Employee.class, savedFile.getPath() + "\\" + EMPLOYEE_CSV);

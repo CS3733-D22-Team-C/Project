@@ -33,6 +33,9 @@ public class PatientTransportSRInsertResolveController extends InsertServiceRequ
         date.setEditable(isEditMode);
         patient.setEditable(isEditMode);
 
+        date.setDisable(!isEditMode);
+        patient.setDisable(!isEditMode);
+
         PatientDAO patientDAO = new PatientDAO();
 
         date.setText(serviceRequest.getTransportTime().toString());
