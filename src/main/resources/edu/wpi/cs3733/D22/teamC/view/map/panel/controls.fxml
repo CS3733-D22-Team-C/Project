@@ -8,6 +8,7 @@
 <?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.layout.VBox?>
 
 <VBox alignment="CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefWidth="250.0" styleClass="inner-card" stylesheets="@../../../css/base.css" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.wpi.cs3733.D22.teamC.controller.map.panel.MapControlsController">
@@ -21,6 +22,7 @@
             <RowConstraints maxHeight="1.7976931348623157E308" vgrow="ALWAYS" />
             <RowConstraints maxHeight="1.7976931348623157E308" vgrow="ALWAYS" />
             <RowConstraints maxHeight="1.7976931348623157E308" vgrow="ALWAYS" />
+            <RowConstraints />
          </rowConstraints>
          <padding>
             <Insets bottom="25.0" left="25.0" right="25.0" top="25.0" />
@@ -28,7 +30,12 @@
          <children>
             <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" GridPane.halignment="CENTER" GridPane.vgrow="ALWAYS">
                <children>
-                  <MFXButton fx:id="editButton" buttonType="RAISED" minHeight="30.0" minWidth="150.0" rippleColor="#ffffff40" styleClass="primary-button" text="Edit" textFill="WHITE" />
+                  <StackPane prefHeight="150.0" prefWidth="200.0">
+                     <children>
+                        <MFXButton fx:id="editModeButton" buttonType="RAISED" minHeight="30.0" minWidth="150.0" onAction="#onEditModeButtonPressed" rippleColor="#ffffff40" styleClass="primary-button" text="To Edit Mode" textFill="WHITE" />
+                        <MFXButton fx:id="viewModeButton" buttonType="RAISED" minHeight="30.0" minWidth="150.0" onAction="#onViewModeButtonPressed" rippleColor="#ffffff40" styleClass="primary-button" text="To View Mode" textFill="WHITE" />
+                     </children>
+                  </StackPane>
                </children>
                <GridPane.margin>
                   <Insets bottom="10.0" top="10.0" />
@@ -45,6 +52,19 @@
             <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" GridPane.halignment="CENTER" GridPane.rowIndex="2" GridPane.vgrow="ALWAYS">
                <children>
                   <MFXToggleButton fx:id="medicalEquipmentToggle" alignment="CENTER" contentDisposition="RIGHT" prefHeight="22.0" selected="true" text="Medical Equipment" textAlignment="CENTER" />
+               </children>
+               <GridPane.margin>
+                  <Insets bottom="10.0" top="10.0" />
+               </GridPane.margin>
+            </HBox>
+            <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" GridPane.rowIndex="3">
+               <children>
+                  <StackPane prefHeight="150.0" prefWidth="200.0">
+                     <children>
+                        <MFXButton fx:id="saveButton" buttonType="RAISED" minHeight="30.0" minWidth="150.0" onAction="#onSaveButtonPressed" rippleColor="#ffffff40" text="Save" textFill="WHITE" />
+                        <MFXButton fx:id="exitButton" buttonType="RAISED" minHeight="30.0" minWidth="150.0" onAction="#onExitButtonPressed" rippleColor="#ffffff40" styleClass="button-failure" text="Exit" textFill="WHITE" visible="false" />
+                     </children>
+                  </StackPane>
                </children>
                <GridPane.margin>
                   <Insets bottom="10.0" top="10.0" />

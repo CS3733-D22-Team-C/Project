@@ -8,6 +8,7 @@ import edu.wpi.cs3733.D22.teamC.entity.floor.Floor;
 import edu.wpi.cs3733.D22.teamC.entity.floor.FloorDAO;
 import edu.wpi.cs3733.D22.teamC.entity.location.Location;
 import edu.wpi.cs3733.D22.teamC.entity.location.LocationDAO;
+import javafx.scene.input.MouseEvent;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -30,19 +31,22 @@ public class LocationManager extends ManagerMapNodes<Location> {
                 location.Copy(original);
                 ((LocationMapNode) getByLocation(location)).updatePosition();
             } else {
-                all.remove(location);
-                removeNode(getByLocation(location));
+                removeObject(location);
             }
         }
 
-        public void deleteLocation(Location location) {
-            LocationDAO locationDAO = new LocationDAO();
-            Location original = locationDAO.getByID(location.getID());
+        @Override
+        public void addObject(Location object) {
+            super.addObject(object);
+            if (object.getFloor().equals(mapViewController.getFloorManager().getCurrent().getID())) {
+                allNodes.add(drawNode(object));
+            }
+        }
 
-            if (original != null) locationDAO.delete(location);
-
-            all.remove(location);
-            removeNode(getByLocation(location));
+        @Override
+        public void removeObject(Location object) {
+            super.removeObject(object);
+            if (allNodes.contains(getByLocation(object))) removeNode(getByLocation(object));
         }
     //#endregion
 
@@ -81,6 +85,9 @@ public class LocationManager extends ManagerMapNodes<Location> {
             } else {
                 all = new FloorDAO().getAllLocations(mapViewController.getFloorManager().getCurrent().getID());
             }
+
+            changeCurrent(null);
+            renderFloor(mapViewController.getFloorManager().getCurrent());
         }
 
         /**
@@ -92,6 +99,10 @@ public class LocationManager extends ManagerMapNodes<Location> {
                 dao.deleteAllFromTable();
                 all.forEach(dao::insert);
             }
+        }
+
+        public boolean isEditMode() {
+            return isEditMode;
         }
     //#endregion
 }

@@ -2,6 +2,7 @@ package edu.wpi.cs3733.D22.teamC.controller.map;
 
 
 import edu.wpi.cs3733.D22.teamC.entity.floor.Floor;
+import edu.wpi.cs3733.D22.teamC.entity.location.Location;
 import javafx.fxml.FXML;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.image.Image;
@@ -13,10 +14,6 @@ import javafx.scene.layout.Pane;
 
 import java.nio.file.Path;
 import java.nio.file.Paths;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.function.BiConsumer;
-import java.util.function.Consumer;
 
 /**
  * Facilitates Map interaction as a go between for data (managers, nodes), panel (interaction, controls), and the Map.
@@ -32,10 +29,14 @@ public class MapController {
     @FXML private ScrollPane scrollPane;
     @FXML private ImageView mapImage;
 
-    // Events
-    List<Consumer<MouseEvent>> onClickedMapEvents = new ArrayList<>();
+    // References
+    MapViewController mapViewController;
 
     //#region External Events
+        public void setup(MapViewController mapViewController) {
+            this.mapViewController = mapViewController;
+        }
+
         public void setFloor(Floor newFloor) {
             // TODO: Pull Image from DB
             Path filePath = Paths.get("maps/" + newFloor.getImageSrc());
@@ -49,7 +50,9 @@ public class MapController {
     //#region FXML Events
         @FXML
         protected void onMouseClickedMap(MouseEvent event) {
-            onClickedMapEvents.forEach(e -> e.accept(event));
+            mapViewController.getLocationManager().unfocusAll();
+            if (mapViewController.getLocationManager().isEditMode()) doubleClickAddLocation(event);
+
             event.consume();
         }
 
@@ -83,12 +86,25 @@ public class MapController {
         }
     //#endregion
 
-    //#region External Events
-        public void addClickedMapEvent(Consumer<MouseEvent> consumer) {
-        onClickedMapEvents.add(consumer);
-    }
-    //#endregion
+    //#region Toggleable Events
+        /**
+         * Double Click Map, Add Location.
+         * @param event MouseEvent
+         */
+        public void doubleClickAddLocation(MouseEvent event) {
+            if (event.getClickCount() == 2) {
+                System.out.println("Fired!");
+                Location location = new Location();
+                location.setX((int) event.getX());
+                location.setY((int) event.getY());
+                location.setFloor(mapViewController.getFloorManager().getCurrent().getID());
+                location.setNodeType(Location.NodeType.values()[0]);
 
+                mapViewController.getLocationManager().addObject(location);
+                mapViewController.getLocationManager().changeCurrent(location);
+            }
+        }
+    //#endregion
 
     //#region Getters
         public Pane getMap() {

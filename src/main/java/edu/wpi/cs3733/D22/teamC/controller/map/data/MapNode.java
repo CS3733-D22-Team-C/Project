@@ -3,11 +3,8 @@ package edu.wpi.cs3733.D22.teamC.controller.map.data;
 import edu.wpi.cs3733.D22.teamC.App;
 import edu.wpi.cs3733.D22.teamC.entity.generic.IDEntity;
 import edu.wpi.cs3733.D22.teamC.entity.location.Location;
-import edu.wpi.cs3733.D22.teamC.models.generic.SelectorWindow;
 import javafx.scene.Node;
 import javafx.scene.Parent;
-
-import java.util.Map;
 
 public abstract class MapNode<T extends IDEntity> {
         // References

@@ -39,13 +39,12 @@ public class MapViewController implements Initializable {
         App.View<MapController> mapView = App.instance.loadView(MAP_PATH);
         mapPane.getChildren().add(mapView.getNode());
         mapController = mapView.getController();
+        mapController.setup(this);
 
         // Events
         floorManager.addChangeCurrentEvent((oldFloor, newFloor) -> mapController.setFloor(newFloor));
         floorManager.addChangeCurrentEvent((oldFloor, newFloor) -> locationManager.renderFloor(newFloor));
         floorManager.addChangeCurrentEvent((oldFloor, newFloor) -> locationManager.changeCurrent(null));
-
-        mapController.addClickedMapEvent((event) -> locationManager.unfocusAll());
 
         // TODO: Remove hard-coded change
         floorManager.changeCurrent(floorManager.getAll().get(0));

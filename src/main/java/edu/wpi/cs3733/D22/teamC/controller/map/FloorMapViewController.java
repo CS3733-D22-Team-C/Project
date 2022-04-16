@@ -1,12 +1,9 @@
 package edu.wpi.cs3733.D22.teamC.controller.map;
 
 import edu.wpi.cs3733.D22.teamC.App;
-import edu.wpi.cs3733.D22.teamC.controller.map.data.floor.FloorManager;
-import edu.wpi.cs3733.D22.teamC.controller.map.data.location.LocationManager;
 import edu.wpi.cs3733.D22.teamC.controller.map.panel.LocationInfoController;
 import edu.wpi.cs3733.D22.teamC.controller.map.panel.MapControlsController;
 import javafx.fxml.FXML;
-import javafx.fxml.Initializable;
 import javafx.scene.layout.Pane;
 
 import java.net.URL;
@@ -23,8 +20,6 @@ public class FloorMapViewController extends MapViewController {
     // FXML
     @FXML Pane controlsPane;
     @FXML Pane infoPane;
-
-    // References
 
 
     @Override
@@ -51,4 +46,10 @@ public class FloorMapViewController extends MapViewController {
         // TODO: Remove hard-coded change
         floorManager.changeCurrent(floorManager.getAll().get(0));
     }
+
+    //#region Mode Switching
+        public void switchMode(boolean editing) {
+            locationManager.switchMode(editing);
+        }
+    //#endregion
 }

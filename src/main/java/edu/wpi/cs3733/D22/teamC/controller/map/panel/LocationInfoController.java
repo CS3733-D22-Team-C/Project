@@ -195,7 +195,7 @@ public class LocationInfoController implements Initializable {
 
         @FXML
         void onDeleteButtonPressed(ActionEvent event) {
-            mapViewController.getLocationManager().deleteLocation(mapViewController.getLocationManager().getCurrent());
+            mapViewController.getLocationManager().removeObject(mapViewController.getLocationManager().getCurrent());
             setVisible(false);
         }
     //#endregion

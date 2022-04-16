@@ -108,11 +108,38 @@ public class LocationMapNode extends MapNode<Location> {
 
                 event.consume();
             }
+
+            if (((LocationManager) manager).isEditMode()) rightClickDelete(event);
         }
 
         @FXML
         protected void onMouseDraggedNode(MouseEvent event) {
+            if (((LocationManager) manager).isEditMode()) leftDragMove(event);
+        }
+    //#endregion
 
+    //#region Toggleable Events
+        /**
+         * Right Click Node, Delete Location
+         * @param event MouseEvent
+         */
+        private void rightClickDelete(MouseEvent event) {
+            if (event.getButton().equals(MouseButton.SECONDARY)) {
+                manager.removeObject(location);
+            }
+        }
+
+        /**
+         * Left Drag Node, Move Location
+         * @param event
+         */
+        private void leftDragMove(MouseEvent event) {
+            if (event.getButton().equals(MouseButton.PRIMARY))  {
+                locationCircle.setCenterX(event.getX());
+                locationCircle.setCenterY(event.getY());
+
+                updatePosition();
+            }
         }
     //#endregion
 

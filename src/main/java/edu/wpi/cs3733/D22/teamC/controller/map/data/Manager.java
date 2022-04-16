@@ -52,6 +52,15 @@ public abstract class Manager<T extends IDEntity> {
             List<T> objs = all.stream().filter(obj -> obj.getID().equals(id)).collect(Collectors.toList());
             return objs.size() > 0 ? objs.get(0) : null;
         }
+
+        public void addObject(T object) {
+            all.add(object);
+        }
+
+        public void removeObject(T object) {
+            all.remove(object);
+            if (current == object) changeCurrent(null);
+        }
     //#endregion
 
     //#region Current Object Change Events
