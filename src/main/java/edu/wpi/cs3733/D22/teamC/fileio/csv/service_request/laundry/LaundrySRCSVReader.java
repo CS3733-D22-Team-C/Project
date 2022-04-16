@@ -21,7 +21,7 @@ public class LaundrySRCSVReader extends CSVReader<LaundrySR> {
         protected LaundrySR parseAttribute(LaundrySR serviceRequest, String header, String value) {
             switch(header) {
                 case "requestID":
-                    serviceRequest.setRequestID(value);
+                    serviceRequest.setID(value);
                     break;
                 case "creatorID":
                     Employee creator = employeeDAO.getByID(value);
