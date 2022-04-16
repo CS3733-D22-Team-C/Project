@@ -1,13 +1,17 @@
 package edu.wpi.cs3733.D22.teamC.controller.map.panel;
 
+import edu.wpi.cs3733.D22.teamC.App;
 import edu.wpi.cs3733.D22.teamC.controller.map.FloorMapViewController;
+import edu.wpi.cs3733.D22.teamC.controller.map.data.medical_equipment.MedicalEquipmentManager;
 import edu.wpi.cs3733.D22.teamC.entity.floor.Floor;
 import edu.wpi.cs3733.D22.teamC.models.utils.ComponentWrapper;
+import io.github.palexdev.materialfx.controls.MFXToggleButton;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
+import javafx.scene.control.ToggleButton;
 
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -19,7 +23,7 @@ public class MapControlsController implements Initializable {
     @FXML ComboBox<Floor> floorComboBox;
     @FXML private Button saveButton;
     @FXML private Button exitButton;
-//    @FXML private MFXToggleButton medicalEquipmentToggle;
+    @FXML private MFXToggleButton medicalEquipmentToggle;
 
     // References
     private FloorMapViewController mapViewController;
@@ -38,6 +42,9 @@ public class MapControlsController implements Initializable {
 
         // Set Access
         saveButton.setDisable(true);
+
+        medicalEquipmentToggle.setSelected(false);
+        medicalEquipmentToggle.setOnAction(this::onMedicalEquipmentToggle);
     }
 
     //#region External Events
@@ -63,6 +70,15 @@ public class MapControlsController implements Initializable {
         }
 
         @FXML
+        void onMedicalEquipmentToggle(ActionEvent event) {
+            if (medicalEquipmentToggle.isSelected()) {
+                mapViewController.setMedicalEquipmentManager(new MedicalEquipmentManager(mapViewController));
+            } else {
+                mapViewController.getMedicalEquipmentManager().shutdown();
+            }
+        }
+
+        @FXML
         void onSaveButtonPressed(ActionEvent event) {
             mapViewController.getLocationManager().saveChanges();
             saveButton.setDisable(true);
@@ -70,7 +86,7 @@ public class MapControlsController implements Initializable {
 
         @FXML
         void onExitButtonPressed(ActionEvent event) {
-            // TODO: Return to map dashboard page
+            App.instance.setView(App.MAP_DASHBOARD_PATH);
         }
     //#endregion
 

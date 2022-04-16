@@ -1,6 +1,8 @@
 package edu.wpi.cs3733.D22.teamC.controller.map;
 
 import edu.wpi.cs3733.D22.teamC.App;
+import edu.wpi.cs3733.D22.teamC.controller.map.data.floor.FloorManager;
+import edu.wpi.cs3733.D22.teamC.controller.map.data.location.LocationManager;
 import edu.wpi.cs3733.D22.teamC.controller.map.data.medical_equipment.MedicalEquipmentManager;
 import edu.wpi.cs3733.D22.teamC.controller.map.panel.LocationInfoController;
 import edu.wpi.cs3733.D22.teamC.controller.map.panel.MapControlsController;
@@ -25,6 +27,7 @@ public class FloorMapViewController extends MapViewController {
     // References
     private LocationInfoController locationInfoController;
     private MapControlsController mapControlsController;
+    private MedicalEquipmentManager medicalEquipmentManager;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
@@ -48,8 +51,6 @@ public class FloorMapViewController extends MapViewController {
         locationManager.onChangeCurrentEvents.add((oldLocation, newLocation) -> locationInfoController.setLocation(newLocation));
         locationManager.onUpdateDataEvents.add(mapControlsController::canSave);
 
-        new MedicalEquipmentManager(this);
-
         switchMode(false);
 
         // TODO: Remove hard-coded change
@@ -61,6 +62,16 @@ public class FloorMapViewController extends MapViewController {
             locationManager.switchMode(editing);
             mapControlsController.switchMode(editing);
             locationInfoController.setEditable(editing);
+        }
+    //#endregion
+
+    //#region Interfacing Getters/Setters
+        public MedicalEquipmentManager getMedicalEquipmentManager() {
+            return medicalEquipmentManager;
+        }
+
+        public void setMedicalEquipmentManager(MedicalEquipmentManager medicalEquipmentManager) {
+            this.medicalEquipmentManager = medicalEquipmentManager;
         }
     //#endregion
 }

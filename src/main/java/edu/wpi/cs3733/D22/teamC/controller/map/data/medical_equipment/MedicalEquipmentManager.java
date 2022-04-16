@@ -11,18 +11,32 @@ import javafx.scene.Group;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.function.Consumer;
 import java.util.stream.Collectors;
 
 /**
  * Manages Medical Equipment data for MapControllers. An optional manager for Map to work with Medical Equipment Functionality.
  */
 public class MedicalEquipmentManager extends ManagerMapNodes<MedicalEquipment> {
+    // Variables
+    Consumer<Location> onPreviewLocationEvent = this::previewLocation;
+    Consumer<Location> onFocusLocationEvent = this::focusLocation;
 
     public MedicalEquipmentManager(MapViewController mapViewController) {
         super(mapViewController);
 
-        mapViewController.getLocationManager().onPreviewLocationEvents.add(this::previewLocation);
-        mapViewController.getLocationManager().onFocusLocationEvents.add(this::focusLocation);
+        mapViewController.getLocationManager().onPreviewLocationEvents.add(onPreviewLocationEvent);
+        mapViewController.getLocationManager().onFocusLocationEvents.add(onFocusLocationEvent);
+
+        focusLocation(mapViewController.getLocationManager().getCurrent());
+    }
+
+    public void shutdown() {
+        mapViewController.getLocationManager().onPreviewLocationEvents.remove(onPreviewLocationEvent);
+        mapViewController.getLocationManager().onFocusLocationEvents.remove(onFocusLocationEvent);
+
+        previewLocation(null);
+        focusLocation(null);
     }
 
     //#region Location Changes

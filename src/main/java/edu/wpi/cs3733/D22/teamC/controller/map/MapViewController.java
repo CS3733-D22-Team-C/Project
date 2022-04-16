@@ -50,7 +50,7 @@ public class MapViewController implements Initializable {
         floorManager.changeCurrent(floorManager.getAll().get(0));
     }
 
-    //#region Getters
+    //#region Interfacing Getters/Setters
         public Pane getMap() {
             return mapController.getMap();
         }
