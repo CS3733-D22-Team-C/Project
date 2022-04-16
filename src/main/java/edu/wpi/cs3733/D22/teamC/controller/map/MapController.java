@@ -52,7 +52,7 @@ public class MapController {
     //#region FXML Events
         @FXML
         protected void onMouseClickedMap(MouseEvent event) {
-            mapViewController.getLocationManager().unfocusAll();
+            mapViewController.getLocationManager().unfocus();
             if (mapViewController.getLocationManager().isEditMode()) doubleClickAddLocation(event);
 
             event.consume();

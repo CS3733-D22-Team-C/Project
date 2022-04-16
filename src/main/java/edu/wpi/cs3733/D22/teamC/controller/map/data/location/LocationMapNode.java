@@ -20,8 +20,10 @@ public class LocationMapNode extends MapNode<Location> {
     @FXML private Group contextGroup;
     @FXML private Circle locationCircle;
 
-    public LocationMapNode(ManagerMapNodes<Location> manager, Location location) {
+    public LocationMapNode(LocationManager manager, Location location) {
         super(manager, location);
+
+        this.manager = manager;
 
         // Initialize Location
         manager.getMap().getChildren().add(node);
@@ -58,8 +60,6 @@ public class LocationMapNode extends MapNode<Location> {
     //#region State Updating
         @Override
         public void onFocus() {
-            manager.unfocusAll();
-
             locationCircle.getStyleClass().add("active");
             manager.changeCurrent(location);
         }
@@ -72,12 +72,12 @@ public class LocationMapNode extends MapNode<Location> {
 
         @Override
         public void onPreview() {
-            if (!manager.isFocusing()) manager.changeCurrent(location);
+            if (!((LocationManager) manager).isFocusing()) manager.changeCurrent(location);
         }
 
         @Override
         public void offPreview() {
-            if (!manager.isFocusing()) manager.changeCurrent(null);
+            if (!((LocationManager) manager).isFocusing()) manager.changeCurrent(null);
         }
     //#endregion
 
@@ -86,24 +86,24 @@ public class LocationMapNode extends MapNode<Location> {
         protected void onMouseEnterNode(MouseEvent event) {
             node.toFront();
 
-            manager.preview(this);
+            ((LocationManager) manager).preview(this);
         }
 
         @FXML
         protected void onMouseExitNode(MouseEvent event) {
-            if (!(manager.isFocusing() && manager.getFocused().contains(this))) node.toBack();
+            if (!(((LocationManager) manager).isFocused(this))) node.toBack();
 
-            manager.unpreview(this);
+            ((LocationManager) manager).unpreview();
         }
 
         @FXML
         protected void onMouseClickedNode(MouseEvent event) {
             if (event.getButton().equals(MouseButton.PRIMARY)) {
                 // Single-Click select toggle
-                if (manager.isFocusing() && manager.getCurrent() == location) {
-                    manager.unfocus(this);
+                if (((LocationManager) manager).isFocused(this)) {
+                    ((LocationManager) manager).unfocus();
                 } else {
-                    manager.focus(this);
+                    ((LocationManager) manager).focus(this);
                 }
 
                 event.consume();

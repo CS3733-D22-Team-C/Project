@@ -9,20 +9,20 @@ import javafx.scene.Parent;
 public abstract class MapNode<T extends IDEntity> {
         // References
     // The manager for this Map Node type.
-    protected ManagerMapNodes<T> manager;
+    protected Manager<T> manager;
     // The graphical representation of this Map Node.
     protected Node node;
     // The related location for this Map Node.
     protected Location location;
 
-    public MapNode(ManagerMapNodes<T> manager, Location location) {
+    public MapNode(Manager<T> manager, Location mapLocation) {
         // Load Node
         App.View<MapNode<T>> view = App.instance.loadView(getNodePath(), this);
         Parent root = (Parent) view.getNode();
 
         this.manager = manager;
         this.node = view.getNode();
-        this.location = location;
+        this.location = mapLocation;
     }
 
     //#region Rendering
@@ -39,5 +39,13 @@ public abstract class MapNode<T extends IDEntity> {
 
     //#endregion Loading
         protected abstract String getNodePath();
+
+        public Location getLocation() {
+            return location;
+        }
+
+        public Node getNode() {
+            return node;
+        }
     //#endregion
 }

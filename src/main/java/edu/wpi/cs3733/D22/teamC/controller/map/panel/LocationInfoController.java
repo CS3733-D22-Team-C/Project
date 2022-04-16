@@ -1,12 +1,10 @@
 package edu.wpi.cs3733.D22.teamC.controller.map.panel;
 
 import com.jfoenix.controls.JFXTreeTableView;
-import edu.wpi.cs3733.D22.teamC.controller.location.map.BaseMapViewController;
 import edu.wpi.cs3733.D22.teamC.controller.map.MapViewController;
 import edu.wpi.cs3733.D22.teamC.entity.floor.Floor;
 import edu.wpi.cs3733.D22.teamC.entity.location.Location;
 import edu.wpi.cs3733.D22.teamC.entity.location.LocationDAO;
-import edu.wpi.cs3733.D22.teamC.entity.medical_equipment.MedicalEquipment;
 import edu.wpi.cs3733.D22.teamC.entity.medical_equipment.MedicalEquipmentDAO;
 import edu.wpi.cs3733.D22.teamC.entity.service_request.ServiceRequest;
 import edu.wpi.cs3733.D22.teamC.entity.service_request.ServiceRequestDAO;
@@ -20,8 +18,6 @@ import javafx.scene.control.*;
 import javafx.scene.shape.SVGPath;
 
 import java.net.URL;
-import java.util.ArrayList;
-import java.util.List;
 import java.util.ResourceBundle;
 
 public class LocationInfoController implements Initializable {
@@ -190,7 +186,7 @@ public class LocationInfoController implements Initializable {
 
         @FXML
         void onRevertButtonPressed(ActionEvent event) {
-            mapViewController.getLocationManager().resetLocation(mapViewController.getLocationManager().getCurrent());
+            mapViewController.getLocationManager().resetObject(mapViewController.getLocationManager().getCurrent());
             revertButton.setDisable(true);
         }
 

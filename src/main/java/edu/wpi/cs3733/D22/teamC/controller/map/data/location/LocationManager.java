@@ -1,32 +1,40 @@
 package edu.wpi.cs3733.D22.teamC.controller.map.data.location;
 
 import edu.wpi.cs3733.D22.teamC.controller.map.MapViewController;
-import edu.wpi.cs3733.D22.teamC.controller.map.data.ManagerMapNodes;
+import edu.wpi.cs3733.D22.teamC.controller.map.data.Manager;
+import edu.wpi.cs3733.D22.teamC.controller.map.data.MapNode;
 import edu.wpi.cs3733.D22.teamC.entity.floor.Floor;
 import edu.wpi.cs3733.D22.teamC.entity.floor.FloorDAO;
 import edu.wpi.cs3733.D22.teamC.entity.location.Location;
 import edu.wpi.cs3733.D22.teamC.entity.location.LocationDAO;
+import javafx.scene.Group;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.function.BiConsumer;
 import java.util.stream.Collectors;
 
 /**
  * Manages Location data for MapControllers. A mandatory manager for Maps to work.
  */
-public class LocationManager extends ManagerMapNodes<Location> {
+public class LocationManager extends Manager<Location> {
     // Variables
     private boolean isEditMode;
+    protected List<LocationMapNode> nodes = new ArrayList<>();
+    protected MapNode<Location> previewed;
+    protected MapNode<Location> focused;
 
     // Events
     public List<Runnable> onUpdateDataEvents = new ArrayList<>();
+    public List<BiConsumer<Location, Location>> onPreviewLocationEvents = new ArrayList<>();
+    public List<BiConsumer<Location, Location>> onFocusLocationEvents = new ArrayList<>();
 
     public LocationManager(MapViewController mapViewController) {
         super(mapViewController);
     }
 
-    //#region Location Manipulation
-        public void resetLocation(Location location) {
+    //#region Object Manipulation
+        public void resetObject(Location location) {
             LocationDAO locationDAO = new LocationDAO();
             Location original = locationDAO.getByID(location.getID());
 
@@ -43,29 +51,88 @@ public class LocationManager extends ManagerMapNodes<Location> {
         public void addObject(Location object) {
             super.addObject(object);
             if (object.getFloor().equals(mapViewController.getFloorManager().getCurrent().getID())) {
-                allNodes.add(drawNode(object));
+                nodes.add(drawNode(object));
             }
             updatesOccured();
         }
 
-        @Override
         public void removeObject(Location object) {
             super.removeObject(object);
-            if (allNodes.contains(getByLocation(object))) removeNode(getByLocation(object));
+            if (nodes.contains(getByLocation(object))) removeNode(getByLocation(object));
             updatesOccured();
         }
     //#endregion
 
     //#region Map Node Manipulation
+        public LocationMapNode getByLocation(Location location) {
+            List<LocationMapNode> list = nodes.stream().filter(mapNode -> mapNode.getLocation() == location).collect(Collectors.toList());
+            return (list.size()) == 0 ? null : list.get(0);
+        }
+
         public LocationMapNode drawNode(Location location) {
             return new LocationMapNode(this, location);
+        }
+
+        public void removeNode(MapNode<Location> mapNode) {
+            ((Group) mapNode.getNode()).getChildren().clear();
+            getMap().getChildren().remove(mapNode);
+        }
+    //#endregion
+
+    //#region Selection Status
+        public void focus(MapNode<Location> mapNode) {
+            if (focused != mapNode) {
+                if (isFocusing()) unfocus();
+
+                mapNode.onFocus();
+                focused = mapNode;
+            }
+        }
+
+        public void unfocus() {
+            if (isFocusing()) {
+                focused.offFocus();
+                focused = null;
+            }
+        }
+
+        public void preview(MapNode<Location> mapNode) {
+            if (previewed != mapNode) {
+                if (isPreviewing()) unpreview();
+
+                mapNode.onPreview();
+                previewed = mapNode;
+            }
+        }
+
+        public void unpreview() {
+            if (isPreviewing()) {
+                previewed.offPreview();
+                previewed = null;
+            }
+        }
+
+        public boolean isFocusing() {
+            return (focused != null);
+        }
+
+        public boolean isFocused(MapNode<Location> mapNode) {
+            return (focused == mapNode);
+        }
+
+        public boolean isPreviewing() {
+            return (previewed != null);
+        }
+
+        public boolean isPreviewed(MapNode<Location> mapNode) {
+            return (previewed == mapNode);
         }
     //#endregion
 
     //#region Content Changes
         public void renderFloor(Floor floor) {
-            allNodes.forEach(this::removeNode);
-            allNodes = new ArrayList<>();
+            nodes.forEach(this::removeNode);
+            nodes = new ArrayList<>();
 
             List<Location> renderLocations;
             if (!isEditMode) {
@@ -74,7 +141,7 @@ public class LocationManager extends ManagerMapNodes<Location> {
             } else {
                 renderLocations = all.stream().filter(location -> location.getFloor().equals(floor.getID())).collect(Collectors.toList());
             }
-            renderLocations.forEach(location -> allNodes.add(drawNode(location)));
+            renderLocations.forEach(location -> nodes.add(drawNode(location)));
         }
     //#endregion
 
