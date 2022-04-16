@@ -147,7 +147,7 @@ public class App extends Application {
 //        setViewStatic(LOGIN_PATH);
         // TODO: Hook up via sidebar
 
-        setViewStatic("view/map/floor_map_view.fxml");
+        setViewStatic("view/map/floor_map.fxml");
     }
 
     @Override

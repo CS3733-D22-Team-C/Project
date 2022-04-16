@@ -13,24 +13,20 @@ import java.net.URL;
 import java.util.ResourceBundle;
 
 /**
- * Controller for floor map view which sets up interaction for inner controllers on the page.
+ * Controller for generic map view which sets up interaction for default map and managers.
  */
 public class MapViewController implements Initializable {
     // Constants
     public static final String MAP_PATH = "view/map/map.fxml";
-    public static final String MAP_CONTROLS_PATH = "view/map/panel/controls.fxml";
-    public static final String LOCATION_INFO_PATH = "view/map/panel/info.fxml";
 
     // FXML
     @FXML Pane mapPane;
-    @FXML Pane controlsPane;
-    @FXML Pane infoPane;
 
     // References
-    private MapController mapController;
+    protected MapController mapController;
 
-    private FloorManager floorManager;
-    private LocationManager locationManager;
+    protected FloorManager floorManager;
+    protected LocationManager locationManager;
 
 
     @Override
@@ -44,25 +40,10 @@ public class MapViewController implements Initializable {
         mapPane.getChildren().add(mapView.getNode());
         mapController = mapView.getController();
 
-        // Controls
-        App.View<MapControlsController> controlsView = App.instance.loadView(MAP_CONTROLS_PATH);
-        controlsPane.getChildren().add(controlsView.getNode());
-        MapControlsController mapControlsController = controlsView.getController();
-        mapControlsController.setup(this);
-
-        // Info
-        App.View<LocationInfoController> infoView = App.instance.loadView(LOCATION_INFO_PATH);
-        infoPane.getChildren().add(infoView.getNode());
-        LocationInfoController locationInfoController = infoView.getController();
-        locationInfoController.setup(this);
-
         // Events
         floorManager.addChangeCurrentEvent((oldFloor, newFloor) -> mapController.setFloor(newFloor));
-        floorManager.addChangeCurrentEvent((oldFloor, newFloor) -> mapControlsController.setFloor(newFloor));
         floorManager.addChangeCurrentEvent((oldFloor, newFloor) -> locationManager.renderFloor(newFloor));
         floorManager.addChangeCurrentEvent((oldFloor, newFloor) -> locationManager.changeCurrent(null));
-
-        locationManager.addChangeCurrentEvent((oldLocation, newLocation) -> locationInfoController.setLocation(newLocation));
 
         mapController.addClickedMapEvent((event) -> locationManager.unfocusAll());
 
