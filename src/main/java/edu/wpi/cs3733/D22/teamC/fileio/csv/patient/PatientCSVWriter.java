@@ -32,7 +32,7 @@ public class PatientCSVWriter extends CSVWriter<Patient> {
                 output = object.getLastName();
                 break;
             case "DOB":
-                output = String.valueOf(object.getDOB());
+                output = object.getDOB().toString();
                 break;
             case "Location":
                 output = object.getLocationID();

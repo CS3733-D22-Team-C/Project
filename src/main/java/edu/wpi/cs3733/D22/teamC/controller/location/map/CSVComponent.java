@@ -9,6 +9,8 @@ import edu.wpi.cs3733.D22.teamC.entity.location.Location;
 import edu.wpi.cs3733.D22.teamC.entity.location.LocationDAO;
 import edu.wpi.cs3733.D22.teamC.entity.medical_equipment.MedicalEquipment;
 import edu.wpi.cs3733.D22.teamC.entity.medical_equipment.MedicalEquipmentDAO;
+import edu.wpi.cs3733.D22.teamC.entity.patient.Patient;
+import edu.wpi.cs3733.D22.teamC.entity.patient.PatientDAO;
 import edu.wpi.cs3733.D22.teamC.entity.service_request.delivery_system.DeliverySystemSR;
 import edu.wpi.cs3733.D22.teamC.entity.service_request.delivery_system.DeliverySystemSRDAO;
 import edu.wpi.cs3733.D22.teamC.entity.service_request.facility_maintenance.FacilityMaintenanceSR;
@@ -39,6 +41,8 @@ public class CSVComponent {
     //Checkboxes
     @FXML private MFXCheckbox employeesExport;
     @FXML private MFXCheckbox employeesImport;
+    @FXML private MFXCheckbox patientImport;
+    @FXML private MFXCheckbox patientExport;
     @FXML private MFXCheckbox facilityMaintenanceExport;
     @FXML private MFXCheckbox facilityMaintenanceImport;
     @FXML private MFXCheckbox floorsExport;
@@ -62,6 +66,7 @@ public class CSVComponent {
 
 
 
+
     //Textfields
     @FXML private TextField exportText;
     @FXML private TextField importText;
@@ -70,6 +75,7 @@ public class CSVComponent {
     private BaseMapViewController parentController;
 
     public static final String FLOOR_CSV = "TowerFloors.csv";
+    public static final String PATIENT_CSV = "Patients.csv";
     public static final String LOCATION_CSV = "TowerLocations.csv";
     public static final String MEDICAL_EQUIPMENT_CSV = "MedEquipReq.csv";
     public static final String MEDICINE_DELIVERY_CSV = "MedDeliveryReq.csv";
@@ -80,6 +86,7 @@ public class CSVComponent {
     public static final String EMPLOYEE_CSV = "Employees.csv";
     public static final String MEDICAL_EQUIPMENT_ENTITY_CSV = "MedicalEquip.csv";
     public static final String DELIVERY_SYSTEM_CSV = "DeliverySysReq.csv";
+
     
     
     public void setup(BaseMapViewController baseMapViewController) {
@@ -174,11 +181,18 @@ public class CSVComponent {
                 CSVFacade.write(DeliverySystemSR.class, savedFile.getPath() + "\\" + DELIVERY_SYSTEM_CSV, deliverySystemSRS);
             }
 
+
             //Employee
             if(employeesExport.isSelected()) {
                 EmployeeDAO employeeDAO = new EmployeeDAO();
                 List<Employee> employees = employeeDAO.getAll();
                 CSVFacade.write(Employee.class, savedFile.getPath() + "\\" + EMPLOYEE_CSV, employees);
+            }
+
+            if(patientExport.isSelected()) {
+                PatientDAO patientDAO =  new PatientDAO();
+                List<Patient> patients = patientDAO.getAll();
+                CSVFacade.write(Patient.class, savedFile.getPath() + "\\" + PATIENT_CSV, patients);
             }
 
             //Medical Equipment Entity
@@ -210,6 +224,13 @@ public class CSVComponent {
                 EmployeeDAO employeeDAO = new EmployeeDAO();
                 employeeDAO.deleteAllFromTable();
                 employees.forEach(employeeDAO::insert);
+            }
+
+            if(patientImport.isSelected()){
+                List<Patient> patients = CSVFacade.read(Patient.class, savedFile.getPath()+ "\\" + PATIENT_CSV);
+                PatientDAO patientDAO = new PatientDAO();
+                patientDAO.deleteAllFromTable();
+                patients.forEach(patientDAO::insert);
             }
 
             //Medical Equipment Entity
@@ -295,6 +316,8 @@ public class CSVComponent {
 
         employeesExport.setSelected(false);
         employeesImport.setSelected(false);
+        patientExport.setSelected(false);
+        patientImport.setSelected(false);
 
         exportText.setText("");
         importText.setText("");
