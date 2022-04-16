@@ -135,8 +135,16 @@ public class LocationMapNode extends MapNode<Location> {
          */
         private void leftDragMove(MouseEvent event) {
             if (event.getButton().equals(MouseButton.PRIMARY))  {
-                locationCircle.setCenterX(event.getX());
-                locationCircle.setCenterY(event.getY());
+                int currentX = (int) node.getTranslateX();
+                int maxX = (int) manager.getMap().getPrefWidth();
+                int newX = (int) Math.max(-currentX, (Math.min(maxX-currentX, event.getX())));
+
+                int currentY = (int) node.getTranslateY();
+                int maxY = (int) manager.getMap().getPrefHeight();
+                int newY = (int) Math.max(-currentY, (Math.min(maxY-currentY, event.getY())));
+
+                locationCircle.setCenterX(newX);
+                locationCircle.setCenterY(newY);
 
                 updatePosition();
                 ((LocationManager) manager).updatesOccured();
