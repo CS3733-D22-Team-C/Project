@@ -8,12 +8,15 @@ import edu.wpi.cs3733.D22.teamC.entity.patient.Patient;
 import edu.wpi.cs3733.D22.teamC.entity.patient.PatientDAO;
 import edu.wpi.cs3733.D22.teamC.entity.service_request.patient_transport.PatientTransportSR;
 import edu.wpi.cs3733.D22.teamC.entity.service_request.patient_transport.PatientTransportSRDAO;
+import edu.wpi.cs3733.D22.teamC.models.patient.PatientSelectorWindow;
 import io.github.palexdev.materialfx.controls.MFXDatePicker;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.input.KeyEvent;
 import org.controlsfx.control.SearchableComboBox;
 
+import java.io.IOException;
 import java.net.URL;
 import java.sql.Timestamp;
 import java.util.ResourceBundle;
@@ -23,7 +26,6 @@ public class PatientTransportSRInsertResolveController extends InsertServiceRequ
     @FXML private MFXDatePicker date;
     @FXML private JFXButton patientTableButton;
     @FXML private SearchableComboBox<Patient> patient;
-
 
     @Override
     public void setup(BaseServiceRequestResolveController<PatientTransportSR> baseServiceRequestResolveController, PatientTransportSR serviceRequest, boolean isEditMode) {
@@ -38,9 +40,9 @@ public class PatientTransportSRInsertResolveController extends InsertServiceRequ
     }
 
     public boolean requiredFieldsPresent(){
-        if(date.getText().equals(""))
+        if(date.getValue() == null)
             return false;
-        if(patient.getValue().equals(""))
+        if(patient.getValue() == null)
             return false;
         return true;
     }
@@ -48,8 +50,10 @@ public class PatientTransportSRInsertResolveController extends InsertServiceRequ
     @Override
     public void updateServiceRequest(PatientTransportSR serviceRequest) {
         if(isEditMode) {
-            serviceRequest.setPatientID(patient.getId());
-            serviceRequest.setTransportTime(Timestamp.valueOf(date.getValue().atStartOfDay()));
+            if(patient.getValue() != null)
+                serviceRequest.setPatientID(patient.getId());
+            if(date.getValue() != null)
+                serviceRequest.setTransportTime(Timestamp.valueOf(date.getValue().atStartOfDay()));
         }
     }
     @Override
@@ -70,5 +74,15 @@ public class PatientTransportSRInsertResolveController extends InsertServiceRequ
     @FXML
     void statusUpdatedKeyEvent(KeyEvent event) {
         statusUpdated();
+    }
+
+
+    @FXML
+    void goToPatientTable(ActionEvent event) throws IOException {
+        new PatientSelectorWindow(patient -> this.setPatient(patient));
+    }
+
+    private void setPatient(Patient patient) {
+        this.patient.setValue(patient);
     }
 }

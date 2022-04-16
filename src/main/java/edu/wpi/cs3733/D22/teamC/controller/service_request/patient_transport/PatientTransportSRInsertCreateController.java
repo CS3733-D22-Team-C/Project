@@ -29,31 +29,31 @@ public class PatientTransportSRInsertCreateController implements InsertServiceRe
 
     @FXML private MFXDatePicker date;
     @FXML private JFXButton patientTableButton;
-    @FXML private SearchableComboBox<Patient> patient;
+    @FXML private SearchableComboBox<Patient> patientComboBox;
 
     @FXML
     void onClickDate(ActionEvent event) {
 
     }
 
-    @FXML
-    void onDropDown(ActionEvent event) {
-
-    }
+//    @FXML
+//    void onDropDown(ActionEvent event) {
+//
+//    }
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         PatientDAO patientDAO = new PatientDAO();
 
         List<Patient> patientList = patientDAO.getAll();
 
-        ComponentWrapper.initializeComboBox(patient,Patient::getFirstName);
+        ComponentWrapper.initializeComboBox(patientComboBox,Patient::getFirstName);
 
-        patient.getItems().setAll(patientList);
+        patientComboBox.getItems().setAll(patientList);
     }
 
     @Override
     public void clearFields() {
-        patient.setValue(null);
+        patientComboBox.setValue(null);
         date.setValue(null);
     }
 
@@ -61,7 +61,7 @@ public class PatientTransportSRInsertCreateController implements InsertServiceRe
     public PatientTransportSR createServiceRequest() {
         PatientTransportSR patientTransportSR = new PatientTransportSR();
 
-        patientTransportSR.setPatientID(patient.getId());
+        patientTransportSR.setPatientID(patientComboBox.getId());
         patientTransportSR.setTransportTime(Timestamp.valueOf(date.getValue().atStartOfDay()));
 
         return patientTransportSR;
@@ -84,7 +84,7 @@ public class PatientTransportSRInsertCreateController implements InsertServiceRe
 
     @Override
     public boolean requiredFieldsPresent() {
-        if(patient.getValue() == null) {
+        if(patientComboBox.getValue() == null) {
             return false;
         }
         if(date.getValue() == null) {
@@ -99,6 +99,6 @@ public class PatientTransportSRInsertCreateController implements InsertServiceRe
     }
 
     private void setPatient(Patient patient) {
-        this.patient.setValue(patient);
+        this.patientComboBox.setValue(patient);
     }
 }

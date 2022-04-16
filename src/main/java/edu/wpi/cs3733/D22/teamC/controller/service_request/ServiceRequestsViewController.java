@@ -66,7 +66,7 @@ public class ServiceRequestsViewController implements Initializable {
 
     @FXML
     public void onEditButton(ActionEvent actionEvent) {
-        toEditPage(activeServiceRequest);
+         toEditPage(activeServiceRequest);
     }
 
     @FXML

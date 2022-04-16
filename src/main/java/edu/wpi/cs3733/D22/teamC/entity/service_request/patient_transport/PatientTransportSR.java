@@ -37,7 +37,7 @@ public class PatientTransportSR extends ServiceRequest {
     }
 
     public Timestamp getTransportTime() {
-        return transportTime;
+        return this.transportTime;
     }
 
     public void setTransportTime(Timestamp transportTime) {
