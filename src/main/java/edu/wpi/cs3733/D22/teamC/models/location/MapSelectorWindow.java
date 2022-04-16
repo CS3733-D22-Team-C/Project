@@ -1,7 +1,7 @@
 package edu.wpi.cs3733.D22.teamC.models.location;
 
 import edu.wpi.cs3733.D22.teamC.App;
-import edu.wpi.cs3733.D22.teamC.controller.location.map.MapViewController;
+import edu.wpi.cs3733.D22.teamC.controller.map.MapViewController;
 import edu.wpi.cs3733.D22.teamC.entity.floor.Floor;
 import edu.wpi.cs3733.D22.teamC.entity.location.Location;
 import edu.wpi.cs3733.D22.teamC.models.generic.SelectorWindow;
@@ -21,7 +21,7 @@ import java.util.function.Consumer;
 
 public class MapSelectorWindow extends SelectorWindow<Location> implements Initializable {
     // Constants
-    private static final String SELECTOR_MAP_VIEW_PATH = "view/location/map/selector_map_view.fxml";
+    private static final String SELECTOR_MAP_VIEW_PATH = "view/map/selector_map_view.fxml";
 
     // FXML
     @FXML private ComboBox<Floor> floorComboBox;
@@ -34,29 +34,23 @@ public class MapSelectorWindow extends SelectorWindow<Location> implements Initi
     public MapSelectorWindow(Consumer<Location> consumer) {
         super(consumer);
 
-        setup();
+        // Initialize Map View Controller insert
+        App.View<MapViewController> view = App.instance.loadView(SELECTOR_MAP_VIEW_PATH);
+        this.mapViewController = view.getController();
+
+        mapViewContainer.getChildren().add(view.getNode());
+
+
+        // Initialize Floor Combo Box values
+        mapViewController.getLocationManager().onChangeCurrentEvents.add((oldLocation, newLocation) -> this.updateLocationField(newLocation));
+        floorComboBox.getItems().setAll(mapViewController.getFloorManager().getAll());
+        ComponentWrapper.setValueSilently(floorComboBox, mapViewController.getFloorManager().getCurrent());
     }
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         // Setup Floor Combo Box
         ComponentWrapper.initializeComboBox(floorComboBox, Floor::getShortName);
-    }
-
-    public void setup() {
-        // Initialize Map View Controller insert
-        App.View<MapViewController> view = App.instance.loadView(SELECTOR_MAP_VIEW_PATH);
-        this.mapViewController = view.getController();
-
-        mapViewController.setExternalChangeListener(this::updateLocationField);
-
-        mapViewContainer.getChildren().add(view.getNode());
-
-        mapViewController.renderCurrentFloor();
-
-        // Initialize Floor Combo Box values
-        floorComboBox.getItems().setAll(mapViewController.getAllFloors());
-        ComponentWrapper.setValueSilently(floorComboBox, mapViewController.getCurrentFloor());
     }
 
     public void updateLocationField(Location location) {
@@ -66,12 +60,12 @@ public class MapSelectorWindow extends SelectorWindow<Location> implements Initi
     //#region FXML Events
         @FXML
         void onSelectButtonPressed(ActionEvent event) {
-            onSelectionMade(mapViewController.getCurrentLocation());
+            onSelectionMade(mapViewController.getLocationManager().getCurrent());
         }
 
         @FXML
         void onFloorChanged(ActionEvent event) {
-            mapViewController.changeCurrentFloor(floorComboBox.getValue());
+            mapViewController.getFloorManager().changeCurrent(floorComboBox.getValue());
             updateLocationField(null);
         }
     //#endregion

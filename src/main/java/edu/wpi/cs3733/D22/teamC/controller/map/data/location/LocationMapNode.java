@@ -1,10 +1,6 @@
 package edu.wpi.cs3733.D22.teamC.controller.map.data.location;
 
 import edu.wpi.cs3733.D22.teamC.App;
-import edu.wpi.cs3733.D22.teamC.controller.location.map.BaseMapViewController;
-import edu.wpi.cs3733.D22.teamC.controller.location.map.map_view.LocationNode;
-import edu.wpi.cs3733.D22.teamC.controller.location.map.map_view.MapController;
-import edu.wpi.cs3733.D22.teamC.controller.map.data.ManagerMapNodes;
 import edu.wpi.cs3733.D22.teamC.controller.map.data.MapNode;
 import edu.wpi.cs3733.D22.teamC.entity.location.Location;
 import javafx.fxml.FXML;
