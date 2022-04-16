@@ -12,6 +12,7 @@ import javafx.scene.Group;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.function.BiConsumer;
+import java.util.function.Consumer;
 import java.util.stream.Collectors;
 
 /**
@@ -26,8 +27,8 @@ public class LocationManager extends Manager<Location> {
 
     // Events
     public List<Runnable> onUpdateDataEvents = new ArrayList<>();
-    public List<BiConsumer<Location, Location>> onPreviewLocationEvents = new ArrayList<>();
-    public List<BiConsumer<Location, Location>> onFocusLocationEvents = new ArrayList<>();
+    public List<Consumer<Location>> onPreviewLocationEvents = new ArrayList<>();
+    public List<Consumer<Location>> onFocusLocationEvents = new ArrayList<>();
 
     public LocationManager(MapViewController mapViewController) {
         super(mapViewController);
@@ -84,6 +85,7 @@ public class LocationManager extends Manager<Location> {
             if (focused != mapNode) {
                 if (isFocusing()) unfocus();
 
+                onFocusLocationEvents.forEach(event -> event.accept(mapNode.getLocation()));
                 mapNode.onFocus();
                 focused = mapNode;
             }
@@ -91,6 +93,7 @@ public class LocationManager extends Manager<Location> {
 
         public void unfocus() {
             if (isFocusing()) {
+                onFocusLocationEvents.forEach(event -> event.accept(null));
                 focused.offFocus();
                 focused = null;
             }
@@ -100,6 +103,7 @@ public class LocationManager extends Manager<Location> {
             if (previewed != mapNode) {
                 if (isPreviewing()) unpreview();
 
+                onPreviewLocationEvents.forEach(event -> event.accept(mapNode.getLocation()));
                 mapNode.onPreview();
                 previewed = mapNode;
             }
@@ -107,6 +111,7 @@ public class LocationManager extends Manager<Location> {
 
         public void unpreview() {
             if (isPreviewing()) {
+                onPreviewLocationEvents.forEach(event -> event.accept(null));
                 previewed.offPreview();
                 previewed = null;
             }

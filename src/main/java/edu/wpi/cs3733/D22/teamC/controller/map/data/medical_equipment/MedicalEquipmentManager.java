@@ -27,8 +27,8 @@ public class MedicalEquipmentManager {
     public MedicalEquipmentManager(MapViewController mapViewController) {
         this.mapViewController = mapViewController;
 
-        mapViewController.getLocationManager().onPreviewLocationEvents.add((oldLocation, newLocation) -> previewLocation(newLocation));
-        mapViewController.getLocationManager().onFocusLocationEvents.add((oldLocation, newLocation) -> focusLocation(newLocation));
+        mapViewController.getLocationManager().onPreviewLocationEvents.add(this::previewLocation);
+        mapViewController.getLocationManager().onFocusLocationEvents.add(this::focusLocation);
     }
 
     //#region Location Changes
