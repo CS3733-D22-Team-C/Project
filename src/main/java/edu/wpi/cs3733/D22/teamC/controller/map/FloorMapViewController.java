@@ -1,6 +1,7 @@
 package edu.wpi.cs3733.D22.teamC.controller.map;
 
 import edu.wpi.cs3733.D22.teamC.App;
+import edu.wpi.cs3733.D22.teamC.controller.map.data.medical_equipment.MedicalEquipmentManager;
 import edu.wpi.cs3733.D22.teamC.controller.map.panel.LocationInfoController;
 import edu.wpi.cs3733.D22.teamC.controller.map.panel.MapControlsController;
 import javafx.fxml.FXML;
@@ -46,6 +47,8 @@ public class FloorMapViewController extends MapViewController {
 
         locationManager.onChangeCurrentEvents.add((oldLocation, newLocation) -> locationInfoController.setLocation(newLocation));
         locationManager.onUpdateDataEvents.add(mapControlsController::canSave);
+
+        new MedicalEquipmentManager(this);
 
         switchMode(false);
 

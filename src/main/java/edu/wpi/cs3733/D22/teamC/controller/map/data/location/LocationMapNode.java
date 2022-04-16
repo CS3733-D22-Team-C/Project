@@ -91,7 +91,7 @@ public class LocationMapNode extends MapNode<Location> {
 
         @FXML
         protected void onMouseExitNode(MouseEvent event) {
-            node.toBack();
+            if (!(manager.isFocusing() && manager.getFocused().contains(this))) node.toBack();
 
             manager.unpreview(this);
         }
@@ -155,6 +155,10 @@ public class LocationMapNode extends MapNode<Location> {
     //#endregion Loading
         protected String getNodePath() {
             return "view/map/nodes/location.fxml";
+        }
+
+        public Group getContextGroup() {
+            return contextGroup;
         }
     //#endregion
 }

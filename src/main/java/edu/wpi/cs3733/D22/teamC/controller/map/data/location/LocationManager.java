@@ -11,6 +11,9 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
+/**
+ * Manages Location data for MapControllers. A mandatory manager for Maps to work.
+ */
 public class LocationManager extends ManagerMapNodes<Location> {
     // Variables
     private boolean isEditMode;

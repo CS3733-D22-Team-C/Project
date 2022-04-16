@@ -299,7 +299,7 @@ public class App extends Application {
      * @param controller Controller to be attached to the FXML file.
      * @return Loaded FXML file wrapped in a View as a Node and Controller.
      */
-    public View loadView(String viewFile, Object controller) {
+    public <T> View<T> loadView(String viewFile, T controller) {
         try {
             FXMLLoader loader = new FXMLLoader();
             loader.setLocation(App.class.getResource(viewFile));

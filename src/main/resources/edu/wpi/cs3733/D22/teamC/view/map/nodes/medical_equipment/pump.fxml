@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.Group?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.shape.Line?>
+<?import javafx.scene.shape.Rectangle?>
+<?import javafx.scene.shape.SVGPath?>
+<?import javafx.scene.text.Font?>
+
+<Group fx:id="root" stylesheets="@../../../../css/map/location_node.css" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.wpi.cs3733.D22.teamC.controller.map.data.medical_equipment.MedicalEquipmentCounter">
+   <children>
+      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#00000087" height="25.0" stroke="BLACK" strokeType="INSIDE" styleClass="medical-equipment-node" width="50.0" />
+      <Group fx:id="editGroup" visible="false">
+         <children>
+            <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#00000087" height="25.0" stroke="BLACK" strokeType="INSIDE" styleClass="medical-equipment-node" width="65.0" />
+            <SVGPath fx:id="upArrow" content="M310.6 246.6l-127.1 128C176.4 380.9 168.2 384 160 384s-16.38-3.125-22.63-9.375l-127.1-128C.2244 237.5-2.516 223.7 2.438 211.8S19.07 192 32 192h255.1c12.94 0 24.62 7.781 29.58 19.75S319.8 237.5 310.6 246.6z" fill="WHITE" layoutX="-104.0" layoutY="-280.0" onMouseClicked="#onUpArrowClicked" rotate="180.0" scaleX="0.03" scaleY="0.03" stroke="BLACK" strokeWidth="15.0" styleClass="medical-equipment-arrow" />
+            <SVGPath fx:id="downArrow" content="M310.6 246.6l-127.1 128C176.4 380.9 168.2 384 160 384s-16.38-3.125-22.63-9.375l-127.1-128C.2244 237.5-2.516 223.7 2.438 211.8S19.07 192 32 192h255.1c12.94 0 24.62 7.781 29.58 19.75S319.8 237.5 310.6 246.6z" fill="WHITE" layoutX="-104.0" layoutY="-271.0" onMouseClicked="#onDownArrowClicked" scaleX="0.03" scaleY="0.03" stroke="BLACK" strokeWidth="15.0" styleClass="medical-equipment-arrow" />
+            <Line endX="4.0" endY="-7.0" layoutX="43.0" layoutY="8.0" startX="4.0" startY="16.0" />
+         </children>
+      </Group>
+      <SVGPath fx:id="icon" content="M23.7061 4.40906L20.9986 2.37844C20.1936 1.81594 19.2311 1.5 18.1749 1.5H14.003C14.003 0.671719 13.1074 0 12.003 0H7.94363C6.83926 0 5.94364 0.671719 5.94364 1.5L5.99989 6H13.9999L13.9999 4.5H18.1717L20.8786 6.53016C21.2691 6.82303 21.9024 6.82303 22.293 6.53016L23.7067 5.46984C24.0999 5.175 24.0999 4.70156 23.7061 4.40906ZM14.7249 7.5H5.27301C3.20427 7.5 1.47677 8.68125 1.28927 10.2281L0.0167702 20.7281C-0.196292 22.4859 1.64802 24 4.00051 24H15.9443C18.2961 24 20.1405 22.4855 19.928 20.7286L18.6555 10.2286C18.5249 8.68125 16.7936 7.5 14.7249 7.5ZM14.9436 15.6234C14.9436 15.9686 14.5704 16.2483 14.1105 16.2483H11.6105V18.1233C11.6105 18.4684 11.2374 18.7481 10.7774 18.7481H9.11051C8.65032 18.7481 8.27738 18.4682 8.27738 18.1233V16.2483H5.83301C5.37283 16.2483 4.99989 15.9684 4.99989 15.6234V14.3766C4.99989 14.0313 5.37308 13.7517 5.83301 13.7517H8.33301V11.8767C8.33113 11.4891 8.70613 11.25 9.16863 11.25H10.8355C11.2957 11.25 11.6686 11.5298 11.6686 11.8748V13.7498H14.1686C14.6288 13.7498 15.0018 14.0296 15.0018 14.3747V15.6234H14.9436Z" fill="WHITE" layoutX="2.0" mouseTransparent="true" scaleX="0.6" scaleY="0.65" stroke="BLACK" />
+      <Label fx:id="counter" alignment="CENTER" layoutX="21.0" mouseTransparent="true" prefHeight="25.0" prefWidth="29.0" text="99" textAlignment="CENTER" textFill="WHITE">
+         <font>
+            <Font name="ArtifaktElement-Regular" size="13.0" />
+         </font>
+      </Label>
+   </children>
+</Group>
