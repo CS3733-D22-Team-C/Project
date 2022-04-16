@@ -37,7 +37,7 @@ public class MedicalEquipmentDAO extends DAO<MedicalEquipment> {
         assert locationsOnFloor != null;
         for (Location loc : locationsOnFloor) {
             if (loc.getFloor().equals(floorID)) {
-                equipOnFloor.addAll(getEquipmentByLocation(loc.getNodeID()));
+                equipOnFloor.addAll(getEquipmentByLocation(loc.getID()));
             }
         }
         return equipOnFloor;

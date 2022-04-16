@@ -1,18 +1,17 @@
 package edu.wpi.cs3733.D22.teamC.entity.medical_equipment;
 
+import edu.wpi.cs3733.D22.teamC.entity.generic.IDEntity;
+
 import javax.persistence.*;
 
-import org.hibernate.annotations.GenericGenerator;
-
-import java.util.Objects;
 import java.util.UUID;
 
 @Entity
 @Table(name = "MEDICAL_EQUIPMENT")
-public class MedicalEquipment {
+public class MedicalEquipment implements IDEntity {
     @Id
     @Column(name = "ID")
-    private String equipID;
+    private String ID;
     
     @Column(name = "LocationID")
     private String locationID;
@@ -21,11 +20,11 @@ public class MedicalEquipment {
     private int typeNumber;
     
     @Enumerated(EnumType.STRING)
-    @Column(name = "equipType")
+    @Column(name = "EquipType")
     private EquipmentType equipmentType;
     
     @Enumerated(EnumType.STRING)
-    @Column(name = "status")
+    @Column(name = "Status")
     private EquipmentStatus equipmentStatus;
     
     public enum EquipmentType {
@@ -42,15 +41,15 @@ public class MedicalEquipment {
     }
     
     public MedicalEquipment() {
-        equipID = UUID.randomUUID().toString();
+        ID = UUID.randomUUID().toString();
     }
     
-    public String getEquipID() {
-        return equipID;
+    public String getID() {
+        return ID;
     }
     
-    public void setEquipID(String equipID) {
-        this.equipID = equipID;
+    public void setID(String equipID) {
+        this.ID = equipID;
     }
     
     public int getTypeNumber() {
@@ -90,7 +89,7 @@ public class MedicalEquipment {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         MedicalEquipment equipment = (MedicalEquipment) o;
-        return equipID.equals(equipment.equipID) 
+        return ID.equals(equipment.ID) 
                 && locationID.equals(equipment.locationID) 
                 && equipmentType == equipment.equipmentType 
                 && equipmentStatus == equipment.equipmentStatus 

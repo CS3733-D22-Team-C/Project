@@ -4,7 +4,6 @@ import edu.wpi.cs3733.D22.teamC.entity.employee.Employee;
 import edu.wpi.cs3733.D22.teamC.entity.employee.EmployeeDAO;
 import edu.wpi.cs3733.D22.teamC.entity.service_request.ServiceRequest;
 import edu.wpi.cs3733.D22.teamC.entity.service_request.facility_maintenance.FacilityMaintenanceSR;
-import edu.wpi.cs3733.D22.teamC.entity.service_request.medical_equipment.MedicalEquipmentSR;
 import edu.wpi.cs3733.D22.teamC.fileio.csv.CSVReader;
 
 import java.sql.Timestamp;
@@ -22,7 +21,7 @@ public class FacilityMaintenanceSRCSVReader extends CSVReader<FacilityMaintenanc
     protected FacilityMaintenanceSR parseAttribute(FacilityMaintenanceSR serviceRequest, String header, String value) {
         switch(header) {
             case "requestID":
-                serviceRequest.setRequestID(value);
+                serviceRequest.setID(value);
                 break;
             case "creatorID":
                 Employee creator = employeeDAO.getByID(value);
