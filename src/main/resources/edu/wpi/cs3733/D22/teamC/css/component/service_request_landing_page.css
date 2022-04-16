@@ -1,5 +1,5 @@
-@import "colors.css";
-@import "fonts.css";
+@import "../colors.css";
+@import "../default.css";
 
 .button-requests {
     -fx-background-color: -color-secondary-light;

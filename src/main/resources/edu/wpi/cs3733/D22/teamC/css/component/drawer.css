@@ -1,5 +1,5 @@
 @import "../colors.css";
-@import "../base.css";
+@import "../default.css";
 
 /* CUSTOM */
 /* Mass. General Brigham label */
@@ -21,9 +21,12 @@
 /* Override button styling */
 .button {
     -fx-background-color: -color-primary-light;
+    -fx-text-fill: -color-secondary-text;
     -fx-pref-height: 40px;
     -fx-pref-width: 40px;
     -fx-padding: 10px;
+    -fx-spacing: 10px;
+    -fx-font-size: 12pt;
 }
 
 .button:hover {

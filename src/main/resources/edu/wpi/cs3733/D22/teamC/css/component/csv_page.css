@@ -1,0 +1,54 @@
+@import "../default.css";
+@import "../colors.css";
+
+#title {
+    -fx-font-size: 22px;
+}
+
+.service-field-label {
+    -fx-font-family: -font-field-label;
+    -fx-font-size: 15;
+}
+
+.tab-pane {
+    -fx-effect: dropshadow(three-pass-box, rgba(0, 0, 0, 0.8), 10, 0, 0, 0);
+}
+
+.tab-pane .tab-content-area {
+    -fx-background-color: -color-surface;
+    -fx-background-radius: 20px;
+}
+
+.tab-header-area {
+    -fx-translate-x: 30px;
+}
+
+/* MFX Checkbox styling */
+.check-box .box {
+    -fx-background-color: white;
+    -fx-border-color:grey;
+    -fx-border-radius:3px;
+}
+
+.check-box:selected .mark {
+    -fx-background-color: black;
+}
+
+.check-box:selected .box {
+    -fx-background-color: -color-secondary-dark;
+}
+
+.button-import {
+    -fx-text-fill: -color-primary-text;
+    -fx-font-size: 15;
+    -fx-spacing: 5px;
+    -fx-background-color: -color-primary-light;
+}
+
+.button-file-select {
+    -fx-max-width: 30px;
+    -fx-max-height: 24px;
+    -fx-background-color: -color-secondary;
+    -fx-font-size: 12px;
+    -fx-border-color: transparent;
+}

@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import io.github.palexdev.materialfx.controls.MFXButton?>
-<?import java.net.URL?>
 <?import javafx.scene.Group?>
 <?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.layout.VBox?>
@@ -28,9 +27,6 @@
                                        </children>
                                     </Group>
                                  </children>
-                                 <stylesheets>
-                                    <URL value="@../../css/sidebar.css" />
-                                 </stylesheets>
                               </VBox>
                            </children>
                         </VBox>
