@@ -1,8 +1,7 @@
 package edu.wpi.cs3733.D22.teamC.entity.service_request;
 
 import edu.wpi.cs3733.D22.teamC.entity.employee.Employee;
-import org.hibernate.annotations.CreationTimestamp;
-import org.hibernate.annotations.UpdateTimestamp;
+import edu.wpi.cs3733.D22.teamC.entity.generic.IDEntity;
 
 import javax.persistence.*;
 import java.sql.Timestamp;
@@ -12,21 +11,15 @@ import java.util.UUID;
 @Entity
 @Inheritance(strategy = InheritanceType.JOINED)
 @Table(name = "SERVICE_REQUEST")
-public class ServiceRequest {
+public class ServiceRequest implements IDEntity {
     @Id
     @Column(name = "ID")
-    protected String requestID;
-
-
-    //@Column(name = "CreatorID")
+    protected String ID;
+    
     @ManyToOne
     @JoinColumn(name = "CreatorID", referencedColumnName = "ID")
     protected Employee creator;
-
-
-
-    //@Column(name = "AssigneeID")
-    //protected String assigneeID;
+    
     @ManyToOne
     @JoinColumn(name = "AssigneeID", referencedColumnName = "ID")
     protected Employee assignee;
@@ -55,8 +48,7 @@ public class ServiceRequest {
     @ManyToOne
     @JoinColumn(name = "ModifierID", referencedColumnName = "ID")
     protected Employee modifier;
-
-
+    
     @Column(name = "ModifiedTimestamp")
     protected Timestamp modifiedTimestamp;
     
@@ -79,15 +71,17 @@ public class ServiceRequest {
         Medicine_Delivery,
         Sanitation,
         Security,
-        Laundry
+        Laundry,
+        Delivery_System
+
     }
     
     public ServiceRequest(){
-        this.requestID = UUID.randomUUID().toString();
+        this.ID = UUID.randomUUID().toString();
     }
     
     public ServiceRequest(ServiceRequest serviceRequest) {
-        this.requestID = serviceRequest.getRequestID();
+        this.ID = serviceRequest.getID();
         this.creator = serviceRequest.getCreator();
         this.assignee = serviceRequest.getAssignee();
         this.locationID = serviceRequest.getLocation();
@@ -100,16 +94,16 @@ public class ServiceRequest {
         this.modifiedTimestamp = serviceRequest.getModifiedTimestamp();
     }
     
-    public ServiceRequest(String requestID) {
-        this.requestID = requestID;
+    public ServiceRequest(String ID) {
+        this.ID = ID;
     }
     
-    public String getRequestID() {
-        return requestID;
+    public String getID() {
+        return ID;
     }
     
-    public void setRequestID(String requestID) {
-        this.requestID = requestID;
+    public void setID(String requestID) {
+        this.ID = requestID;
     }
     
     public Employee getCreator() {
@@ -193,7 +187,7 @@ public class ServiceRequest {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         ServiceRequest that = (ServiceRequest) o;
-        return requestID.equals(that.requestID)
+        return ID.equals(that.ID)
                 && Objects.equals(creator, that.creator) //(creator == null ? that.creator == null : creator.equals(that.creator))
                 && Objects.equals(assignee, that.assignee)
                 && locationID.equals(that.locationID)

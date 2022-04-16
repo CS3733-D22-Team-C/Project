@@ -30,7 +30,7 @@ public class MedicalEquipmentCSVWriter extends CSVWriter<MedicalEquipment> {
         String output = "";
         switch(header) {
             case "ID":
-                output = object.getEquipID();
+                output = object.getID();
                 break;
             case "locationID":
                 output = object.getLocationID();

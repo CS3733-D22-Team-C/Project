@@ -14,7 +14,6 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
-import javafx.scene.layout.VBox;
 import javafx.scene.shape.SVGPath;
 
 import java.net.URL;
@@ -156,9 +155,9 @@ public class InfoPaneController implements Initializable {
 
             // Service Requests
             serviceRequestTableDisplay.emptyTable();
-            new ServiceRequestDAO().getAllSRByLocation(location.getNodeID()).forEach(serviceRequestTableDisplay::addObject);
+            new ServiceRequestDAO().getAllSRByLocation(location.getID()).forEach(serviceRequestTableDisplay::addObject);
 
-            revertButton.setDisable(location.equals(new LocationDAO().getByID(location.getNodeID())));
+            revertButton.setDisable(location.equals(new LocationDAO().getByID(location.getID())));
         }
 
         public void resetMedicalEquipment(Location location) {
@@ -183,7 +182,7 @@ public class InfoPaneController implements Initializable {
             location.setShortName(shortNameField.getText());
             location.setLongName(longNameField.getText());
             location.setBuilding(buildingField.getText());
-            location.setFloor(floorComboBox.getValue().getFloorID());
+            location.setFloor(floorComboBox.getValue().getID());
             location.setNodeType(nodeComboBox.getValue());
 
             if (!original.equals(location)) {
