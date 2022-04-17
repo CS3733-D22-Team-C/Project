@@ -199,7 +199,7 @@
                               <Insets left="12.0" />
                            </padding>
                            <tooltip>
-                              <Tooltip text="Medical Departments, clinics, waiting rooms" />
+                              <Tooltip text="Medical Departments, Clinics, Waiting Rooms" />
                            </tooltip>
                         </Label>
                      </children>
@@ -314,7 +314,7 @@
                               <Insets left="12.0" />
                            </padding>
                            <tooltip>
-                              <Tooltip text="shops, food, pay phone, areas that provide non-medical services forimmediate payment" />
+                              <Tooltip text="Shops, Food, Pay Phone, Areas that provide non-medical services for immediate payment" />
                            </tooltip>
                         </Label>
                      </children>
@@ -337,7 +337,7 @@
                               <Insets left="12.0" />
                            </padding>
                            <tooltip>
-                              <Tooltip text="hospital non-medical services, interpreters, shuttles, spiritual,library, patient financial, etc." />
+                              <Tooltip text="Hospital Non-Medical Services, Interpreters, Shuttles, Spiritual,Library, Patient Financial, etc." />
                            </tooltip>
                         </Label>
                      </children>
