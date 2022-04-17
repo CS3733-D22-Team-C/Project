@@ -26,47 +26,49 @@ import java.util.List;
 import java.util.ResourceBundle;
 
 public class TranslatorSRInsertCreateController implements InsertServiceRequestCreateController<TranslatorSR>, Initializable {
-    @FXML
-    private JFXComboBox<String> languageComboBox;
+
 
     @FXML
-    private SearchableComboBox<Patient> patientComboBox;
+    private SearchableComboBox<Patient> patientSComboBox;
 
     @FXML
     private JFXButton patientButton;
 
+    @FXML
+    private SearchableComboBox<String> languageSComboBox;
+
     public void setPatient(Patient patient){
-        patientComboBox.setValue(patient);
+        patientSComboBox.setValue(patient);
     }
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         // Language dropdown
         for (TranslatorSR.Language language : TranslatorSR.Language.values()) {
-            languageComboBox.getItems().add(language.toString());
+            languageSComboBox.getItems().add(language.toString());
         }
         //Patient ComboBox
         //Query DB
         PatientDAO patientDAO = new PatientDAO();
         List<Patient> patients = patientDAO.getAll();
 
-        ComponentWrapper.initializeComboBox(patientComboBox, Patient::getFirstName);
+        ComponentWrapper.initializeComboBox(patientSComboBox, Patient::getFirstName);
 
-        patientComboBox.getItems().setAll(patients);
+        patientSComboBox.getItems().setAll(patients);
     }
 
 
     @Override
     public void clearFields() {
-        languageComboBox.valueProperty().setValue(null);
-        patientComboBox.valueProperty().setValue(null);
+        languageSComboBox.valueProperty().setValue(null);
+        patientSComboBox.valueProperty().setValue(null);
     }
 
     @Override
     public TranslatorSR createServiceRequest() {
         TranslatorSR TSR = new TranslatorSR();
-        TSR.setLanguage(TranslatorSR.Language.valueOf(languageComboBox.getValue()));
-        TSR.setPatientID(patientComboBox.getValue().getID());
+        TSR.setLanguage(TranslatorSR.Language.valueOf(languageSComboBox.getValue()));
+        TSR.setPatientID(patientSComboBox.getId());
         return TSR;
     }
 
@@ -92,10 +94,10 @@ public class TranslatorSRInsertCreateController implements InsertServiceRequestC
 
     @Override
     public boolean requiredFieldsPresent() {
-        if(patientComboBox.getValue() == null){
+        if(patientSComboBox.getValue() == null){
             return false;
         }
-        if(languageComboBox.getValue() == null){
+        if(languageSComboBox.getValue() == null){
             return false;
         }
         return true;

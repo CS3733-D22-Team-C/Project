@@ -95,6 +95,8 @@ public class BaseServiceRequestCreateController<T extends ServiceRequest> implem
                 break;
             case Delivery_System:
                 title.setText("Create Delivery System Service Request");
+            case Translator:
+                title.setText("Create Translator Service Request");
             default:
         }
 

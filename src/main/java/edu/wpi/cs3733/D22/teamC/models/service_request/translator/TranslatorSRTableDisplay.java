@@ -1,6 +1,7 @@
 package edu.wpi.cs3733.D22.teamC.models.service_request.translator;
 
 import com.jfoenix.controls.JFXTreeTableView;
+import edu.wpi.cs3733.D22.teamC.entity.patient.PatientDAO;
 import edu.wpi.cs3733.D22.teamC.entity.service_request.medical_equipment.MedicalEquipmentSR;
 import edu.wpi.cs3733.D22.teamC.entity.service_request.translator.TranslatorSR;
 import edu.wpi.cs3733.D22.teamC.models.service_request.ServiceRequestTableDisplay;
@@ -13,12 +14,14 @@ public class TranslatorSRTableDisplay extends ServiceRequestTableDisplay<Transla
     public class TranslatorSRTableEntry extends ServiceRequestTableEntry {
         // Properties
         public StringProperty language;
-        public StringProperty patientID;
+        public StringProperty patient;
 
         public TranslatorSRTableEntry(TranslatorSR translatorSR) {
             super(translatorSR);
+
+            PatientDAO patientDAO = new PatientDAO();
             this.language = new SimpleStringProperty((translatorSR.getLanguage().toString()));
-            this.patientID = new SimpleStringProperty(translatorSR.getPatientID());
+            //this.patient = new SimpleStringProperty(patientDAO.getByID(translatorSR.getPatientID()).getFirstName());
 
         }
     }
@@ -39,16 +42,18 @@ public class TranslatorSRTableDisplay extends ServiceRequestTableDisplay<Transla
 
         addColumn(
                 table,
+                "Patient Name",
+                1f * Integer.MAX_VALUE * 16.66,
+                (TranslatorSRTableEntry entry) -> {return entry.patient;}
+        );
+
+        addColumn(
+                table,
                 "Language",
                 1f * Integer.MAX_VALUE * 16.66,
                 (TranslatorSRTableEntry entry) -> {return entry.language;}
         );
 
-        addColumn(
-                table,
-                "Patient ID",
-                1f * Integer.MAX_VALUE * 16.66,
-                (TranslatorSRTableEntry entry) -> {return entry.patientID;}
-        );
+
     }
 }
