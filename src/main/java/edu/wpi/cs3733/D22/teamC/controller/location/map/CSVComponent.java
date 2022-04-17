@@ -1,4 +1,5 @@
 package edu.wpi.cs3733.D22.teamC.controller.location.map;
+import com.jfoenix.controls.JFXButton;
 import edu.wpi.cs3733.D22.teamC.App;
 import edu.wpi.cs3733.D22.teamC.controller.location.map.controls.EditMapControlsController;
 import edu.wpi.cs3733.D22.teamC.entity.employee.Employee;
@@ -26,8 +27,13 @@ import io.github.palexdev.materialfx.controls.MFXCheckbox;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.TextField;
+import javafx.scene.paint.Color;
 import javafx.stage.DirectoryChooser;
 import javafx.stage.FileChooser;
+import org.controlsfx.glyphfont.FontAwesome;
+import org.controlsfx.glyphfont.Glyph;
+import org.controlsfx.glyphfont.GlyphFont;
+import org.controlsfx.glyphfont.GlyphFontRegistry;
 
 import java.io.File;
 import java.util.List;
@@ -55,6 +61,7 @@ public class CSVComponent {
     @FXML private MFXCheckbox labSystemImport;
     @FXML private MFXCheckbox medicalEquipmentEntityExport;
     @FXML private MFXCheckbox medicalEquipmentEntityImport;
+    @FXML private JFXButton importButton;
 
 
 
@@ -76,9 +83,12 @@ public class CSVComponent {
     public static final String  EMPLOYEE_CSV = "Employees.csv";
     public static final String MEDICAL_EQUIPMENT_ENTITY_CSV = "MedicalEquip.csv";
 
+    GlyphFont fontAwesome = GlyphFontRegistry.font("FontAwesome");
+    Glyph importIcon = fontAwesome.create('\uf07b').size(15);
 
     public void setup(BaseMapViewController baseMapViewController) {
         this.parentController = baseMapViewController;
+        importButton.setGraphic(fontAwesome.create(FontAwesome.Glyph.FOLDER_OPEN));
     }
 
     @FXML

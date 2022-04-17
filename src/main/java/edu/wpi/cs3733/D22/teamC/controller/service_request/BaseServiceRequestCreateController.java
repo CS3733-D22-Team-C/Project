@@ -9,6 +9,7 @@ import edu.wpi.cs3733.D22.teamC.entity.employee.Employee;
 import edu.wpi.cs3733.D22.teamC.entity.employee.EmployeeDAO;
 import edu.wpi.cs3733.D22.teamC.entity.generic.DAO;
 import edu.wpi.cs3733.D22.teamC.entity.location.Location;
+import edu.wpi.cs3733.D22.teamC.entity.location.LocationDAO;
 import edu.wpi.cs3733.D22.teamC.entity.service_request.ServiceRequest;
 import edu.wpi.cs3733.D22.teamC.models.employee.EmployeeSelectorWindow;
 import edu.wpi.cs3733.D22.teamC.models.location.MapSelectorWindow;
@@ -27,6 +28,11 @@ import javafx.scene.layout.VBox;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import org.controlsfx.control.SearchableComboBox;
+import org.controlsfx.control.action.ActionProxy;
+import org.controlsfx.glyphfont.FontAwesome;
+import org.controlsfx.glyphfont.Glyph;
+import org.controlsfx.glyphfont.GlyphFont;
+import org.controlsfx.glyphfont.GlyphFontRegistry;
 
 import java.io.IOException;
 import java.sql.Timestamp;
@@ -40,7 +46,7 @@ public class BaseServiceRequestCreateController<T extends ServiceRequest> implem
     private TextField assigneeID;
 
     @FXML
-    private TextField locationID;
+    private SearchableComboBox<Location> locationID;
 
     @FXML
     private JFXTextArea description;
@@ -68,6 +74,7 @@ public class BaseServiceRequestCreateController<T extends ServiceRequest> implem
 
     @FXML
     private JFXButton employeeTableButton;
+    @FXML private JFXButton mapViewButton;
 
     // References
     private InsertServiceRequestCreateController<T> insertController;
@@ -78,9 +85,16 @@ public class BaseServiceRequestCreateController<T extends ServiceRequest> implem
     private EmployeeSelectorWindow employeeSelectorWindow;
 
     private Location location;
+    //FontAwesome
+    //@ActionProxy(text = "Hello", graphic = "")
+    GlyphFont fontAwesome = GlyphFontRegistry.font("FontAwesome");
+    Glyph employeeIcon = fontAwesome.create('\uf2b9').size(15);
+    Glyph locationIcon = fontAwesome.create('\uf041').size(15);
 
-
+    //@ActionProxy(text="Test", graphic="font><FontAwesomeIcon icon=\"fa-solid fa-location-crosshairs\" />")
     public void setup(ServiceRequest.RequestType requestType) {
+        mapViewButton.setGraphic(locationIcon);
+        employeeTableButton.setGraphic(employeeIcon);
         this.requestType = requestType;
         switch (requestType)
         {
@@ -134,6 +148,11 @@ public class BaseServiceRequestCreateController<T extends ServiceRequest> implem
 
         ComponentWrapper.initializeComboBox(employeeComboBox, Employee::getFirstName);
         employeeComboBox.getItems().setAll(employees);
+
+        List<Location> locations = new LocationDAO().getAll();
+        ComponentWrapper.initializeComboBox(locationID, Location::getShortName);
+        locationID.getItems().setAll(locations);
+
     }
 
 
@@ -142,7 +161,7 @@ public class BaseServiceRequestCreateController<T extends ServiceRequest> implem
             return false;
         if (employeeComboBox.getValue() == null)
             return false;
-        if (locationID.getText().equals(""))
+        if (locationID.getValue() == null)
             return false;
         return insertController.requiredFieldsPresent();
     }
@@ -159,7 +178,7 @@ public class BaseServiceRequestCreateController<T extends ServiceRequest> implem
     private void clearFields() {
         // Clearing Fields
         employeeComboBox.setValue(null);
-        locationID.clear();
+        locationID.setValue(null);
         location = null;
         description.setText("");
 
@@ -177,12 +196,7 @@ public class BaseServiceRequestCreateController<T extends ServiceRequest> implem
         public void setLocation(Location location) {
             this.location = location;
 
-            String locationName = "";
-            if (location != null) {
-                locationName = location.getShortName();
-            }
-
-            locationID.setText(locationName);
+            locationID.setValue(location);
         }
     //#endregion
 

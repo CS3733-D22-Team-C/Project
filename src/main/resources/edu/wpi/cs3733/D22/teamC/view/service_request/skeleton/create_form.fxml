@@ -8,7 +8,6 @@
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
-<?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.ColumnConstraints?>
 <?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.HBox?>
@@ -37,8 +36,8 @@
                         <Label styleClass="service-field-label" text="Assign To:" />
                         <HBox spacing="1.5">
                            <children>
-                              <SearchableComboBox fx:id="employeeComboBox" />
-                              <JFXButton fx:id="employeeTableButton" ellipsisString="" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" onAction="#goToEmployeeTable" prefHeight="26.0" style="-fx-background-color: -color-secondary;" stylesheets="@../../../css/colors.css" text="-&gt;" />
+                              <SearchableComboBox fx:id="employeeComboBox" HBox.hgrow="ALWAYS" />
+                              <JFXButton fx:id="employeeTableButton" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" onAction="#goToEmployeeTable" prefHeight="26.0" style="-fx-background-color: -color-secondary;" stylesheets="@../../../css/colors.css" />
                            </children>
                         </HBox>
                      </children>
@@ -48,8 +47,8 @@
                         <Label styleClass="service-field-label" text="Location:" />
                         <HBox>
                            <children>
-                              <TextField fx:id="locationID" prefHeight="26.0" prefWidth="110.0" HBox.hgrow="ALWAYS" />
-                              <JFXButton fx:id="mapViewButton" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" onAction="#goToMapView" prefHeight="26.0" style="-fx-background-color: -color-secondary;" stylesheets="@../../../css/colors.css" text="-&gt;" />
+                              <SearchableComboBox fx:id="locationID" HBox.hgrow="ALWAYS" />
+                              <JFXButton fx:id="mapViewButton" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" onAction="#goToMapView" prefHeight="26.0" style="-fx-background-color: -color-secondary;" stylesheets="@../../../css/colors.css" />
                            </children>
                         </HBox>
                      </children>
