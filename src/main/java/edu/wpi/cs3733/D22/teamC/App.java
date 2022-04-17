@@ -135,16 +135,16 @@ public class App extends Application {
 //             }
 //         }
 
-        //Load CSV data = patient
-        {
-            List<Patient> patients = CSVFacade.read(Patient.class, "Patients.csv");
-            if(patients!=null){
-                PatientDAO patientDAO = new PatientDAO();
-                for(Patient p : patients){
-                    patientDAO.insert(p);
-                }
-            }
-        }
+//        //Load CSV data = patient
+//        {
+//            List<Patient> patients = CSVFacade.read(Patient.class, "Patients.csv");
+//            if(patients!=null){
+//                PatientDAO patientDAO = new PatientDAO();
+//                for(Patient p : patients){
+//                    patientDAO.insert(p);
+//                }
+//            }
+//        }
 
         log.info("Starting Up");
     }
@@ -208,15 +208,15 @@ public class App extends Application {
 //            }
 //        }
 
-        //Export CSV data = patient
-
-        {
-            PatientDAO patientDAO = new PatientDAO();
-            List<Patient> patients = patientDAO.getAll();
-            if(patients!=null){
-                CSVFacade.write(Patient.class, "Patients.csv", patients);
-            }
-        }
+//        //Export CSV data = patient
+//
+//        {
+//            PatientDAO patientDAO = new PatientDAO();
+//            List<Patient> patients = patientDAO.getAll();
+//            if(patients!=null){
+//                CSVFacade.write(Patient.class, "Patients.csv", patients);
+//            }
+//        }
 
         log.info("Shutting Down");
     }
