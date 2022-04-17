@@ -1,5 +1,14 @@
 /* Map - Legend Styling */
+@import "base.css";
 
 .mfx-rectangle-toggle-node {
     -fx-cursor: hand;
+}
+
+.mfx-rectangle-toggle-node .jfx-svg-glyph {
+    -fx-background-color: #afafaf;
+}
+
+.mfx-rectangle-toggle-node:selected .jfx-svg-glyph {
+    -fx-background-color: black;
 }

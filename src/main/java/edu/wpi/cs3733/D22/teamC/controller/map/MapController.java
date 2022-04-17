@@ -54,6 +54,7 @@ public class MapController implements Initializable {
 
             PopOver popOver = new PopOver(legendView.getNode());
             popOver.arrowLocationProperty().setValue(PopOver.ArrowLocation.TOP_RIGHT);
+            popOver.setTitle("Legend");
 
             legendButton.setOnAction(e -> popOver.show(legendButton));
         }
