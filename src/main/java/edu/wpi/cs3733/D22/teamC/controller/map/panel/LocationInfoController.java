@@ -1,10 +1,12 @@
-package edu.wpi.cs3733.D22.teamC.controller.location.map;
+package edu.wpi.cs3733.D22.teamC.controller.map.panel;
 
 import com.jfoenix.controls.JFXTreeTableView;
+import edu.wpi.cs3733.D22.teamC.controller.map.MapViewController;
+import edu.wpi.cs3733.D22.teamC.controller.map.data.location.LocationMapNode;
 import edu.wpi.cs3733.D22.teamC.entity.floor.Floor;
 import edu.wpi.cs3733.D22.teamC.entity.location.Location;
 import edu.wpi.cs3733.D22.teamC.entity.location.LocationDAO;
-import edu.wpi.cs3733.D22.teamC.entity.medical_equipment.MedicalEquipment;
+import edu.wpi.cs3733.D22.teamC.entity.medical_equipment.MedicalEquipmentDAO;
 import edu.wpi.cs3733.D22.teamC.entity.service_request.ServiceRequest;
 import edu.wpi.cs3733.D22.teamC.entity.service_request.ServiceRequestDAO;
 import edu.wpi.cs3733.D22.teamC.models.medical_equipment.MedicalEquipmentTableDisplay;
@@ -17,10 +19,9 @@ import javafx.scene.control.*;
 import javafx.scene.shape.SVGPath;
 
 import java.net.URL;
-import java.util.List;
 import java.util.ResourceBundle;
 
-public class InfoPaneController implements Initializable {
+public class LocationInfoController implements Initializable {
     // Constants
     private final String LOCATION_ICON = "M168.3 499.2C116.1 435 0 279.4 0 192C0 85.96 85.96 0 192 0C298 0 384 85.96 384 192C384 279.4 267 435 215.7 499.2C203.4 514.5 180.6 514.5 168.3 499.2H168.3zM192 256C227.3 256 256 227.3 256 192C256 156.7 227.3 128 192 128C156.7 128 128 156.7 128 192C128 227.3 156.7 256 192 256";
     private final String MEDICAL_EQUIPMENT_ICON = "M480 112c-44.18 0-80 35.82-80 80c0 32.84 19.81 60.98 48.11 73.31v78.7c0 57.25-50.25 104-112 104c-60 0-109.3-44.1-111.9-99.23C296.1 333.8 352 269.3 352 191.1V36.59c0-11.38-8.15-21.38-19.28-23.5L269.8 .4775c-13-2.625-25.54 5.766-28.16 18.77L238.4 34.99c-2.625 13 5.812 25.59 18.81 28.22l30.69 6.059L287.9 190.7c0 52.88-42.13 96.63-95.13 97.13c-53.38 .5-96.81-42.56-96.81-95.93L95.89 69.37l30.72-6.112c13-2.5 21.41-15.15 18.78-28.15L142.3 19.37c-2.5-13-15.15-21.41-28.15-18.78L51.28 12.99C40.15 15.24 32 25.09 32 36.59v155.4c0 77.25 55.11 142 128.1 156.8C162.7 439.3 240.6 512 336 512c97 0 176-75.37 176-168V265.3c28.23-12.36 48-40.46 48-73.25C560 147.8 524.2 112 480 112zM480 216c-13.25 0-24-10.75-24-24S466.7 168 480 168S504 178.7 504 192S493.3 216 480 216z";
@@ -31,7 +32,6 @@ public class InfoPaneController implements Initializable {
     @FXML private Tab locationTab;
     @FXML private Tab medicalEquipmentTab;
     @FXML private Tab serviceRequestTab;
-    @FXML private Label tabLabel;
 
     // Location Info - Form Fields
     @FXML private TextField shortNameField;
@@ -54,10 +54,7 @@ public class InfoPaneController implements Initializable {
     @FXML private Button deleteButton;
 
     // References
-    private BaseMapViewController parentController;
-
-    // Variables
-    private boolean initialized = false;
+    MapViewController mapViewController;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
@@ -66,32 +63,29 @@ public class InfoPaneController implements Initializable {
         setTabIcon(medicalEquipmentTab, MEDICAL_EQUIPMENT_ICON);
         setTabIcon(serviceRequestTab, SERVICE_REQUEST_ICON);
 
-        // Initialize Location Info
-        ComponentWrapper.initializeComboBox(floorComboBox, Floor::getShortName);
-
         // Initialize Service Request Info
         serviceRequestTableDisplay = new ServiceRequestTableDisplay<>(serviceRequestTable);
 
         // Initialize Medical Equipment Info
         medicalEquipmentTableDisplay = new MedicalEquipmentTableDisplay(medicalEquipmentTable);
-
-        nodeComboBox.getItems().setAll(Location.NodeType.values());
     }
 
     /**
-     * Setup the InfoPaneController and view with external data and references.
-     * @param baseMapViewController The parent controller to communicate with.
+     * Setup the LocationInfoController and view with external data and references.
+     * @param mapViewController The parent controller to communicate with.
      */
-    public void setup(BaseMapViewController baseMapViewController) {
-        this.parentController = baseMapViewController;
+    public void setup(MapViewController mapViewController) {
+        this.mapViewController = mapViewController;
 
-        // Reset to Location Info Pane
+        // Select default tab
         tabPane.getSelectionModel().select(0);
 
-        // Set Floor Values
-        floorComboBox.getItems().setAll(parentController.getAllFloors());
+        // Set Combo Box values
+        floorComboBox.getItems().setAll(mapViewController.getFloorManager().getAll());
+        nodeComboBox.getItems().setAll(Location.NodeType.values());
 
-        // Hide Pane
+        // Hide when inactive
+        setEditable(false);
         setVisible(false);
     }
 
@@ -110,7 +104,7 @@ public class InfoPaneController implements Initializable {
 
     //#region Pane Interaction
         /**
-         * Sets edit mode for Location Info Pane, changing editable and displayed fields and buttons.
+         * Sets Location Info to editable and displays edit-only buttons.
          * @param editable Mode which the Location Info Pane is setting to.
          */
         public void setEditable(boolean editable) {
@@ -139,19 +133,19 @@ public class InfoPaneController implements Initializable {
          * @param location The Location object which this info splitPane will display info of.
          */
         public void setLocation(Location location) {
-            initialized = (location != null);
+            setVisible(location != null);
 
-            if (!initialized) return;
+            if (location == null) return;
 
             // Location Info
             shortNameField.setText(location.getShortName());
             longNameField.setText(location.getLongName());
             buildingField.setText(location.getBuilding());
-            ComponentWrapper.setValueSilently(floorComboBox, parentController.getFloorByID(location.getFloor()));
+            ComponentWrapper.setValueSilently(floorComboBox, mapViewController.getFloorManager().getByID(location.getFloor()));
             ComponentWrapper.setValueSilently(nodeComboBox, location.getNodeType());
 
             // Medical Equipment
-            resetMedicalEquipment(location);
+            populateMedicalEquipmentTable(location);
 
             // Service Requests
             serviceRequestTableDisplay.emptyTable();
@@ -160,20 +154,12 @@ public class InfoPaneController implements Initializable {
             revertButton.setDisable(location.equals(new LocationDAO().getByID(location.getID())));
         }
 
-        public void resetMedicalEquipment(Location location) {
-            medicalEquipmentTableDisplay.emptyTable();
-            List<MedicalEquipment> medicalEquipments = parentController.medicalEquipmentManager.getPerLocation(location);
-            medicalEquipments.forEach(medicalEquipmentTableDisplay::addObject);
-        }
-
         /**
-         * Save updates to temporary Location.
+         * Save updates Location on LocationManager.
          */
         @FXML
         private void updateLocation() {
-            Location location = parentController.getCurrentLocation();
-
-            if (!initialized) return;
+            Location location = mapViewController.getLocationManager().getCurrent();
 
             // Copy original for comparison
             Location original = new Location();
@@ -187,26 +173,32 @@ public class InfoPaneController implements Initializable {
 
             if (!original.equals(location)) {
                 revertButton.setDisable(false);
-                parentController.setSaveStatus();
+                mapViewController.getLocationManager().updatesOccured();
             }
+        }
+
+        public void populateMedicalEquipmentTable(Location location) {
+            medicalEquipmentTableDisplay.emptyTable();
+            new MedicalEquipmentDAO().getEquipmentByLocation(location.getID()).forEach(medicalEquipmentTableDisplay::addObject);
         }
     //#endregion
 
     //#region FXML Events
         @FXML
         void onDeselectButtonPressed(ActionEvent event) {
-            parentController.changeCurrentLocation(null);
+            mapViewController.getLocationManager().unfocus();
         }
 
         @FXML
         void onRevertButtonPressed(ActionEvent event) {
-            parentController.resetLocation(parentController.getCurrentLocation());
+            mapViewController.getLocationManager().resetObject(mapViewController.getLocationManager().getCurrent());
             revertButton.setDisable(true);
         }
 
         @FXML
         void onDeleteButtonPressed(ActionEvent event) {
-            parentController.deleteLocation(parentController.getCurrentLocation());
+            mapViewController.getLocationManager().removeObject(mapViewController.getLocationManager().getCurrent());
+            setVisible(false);
         }
     //#endregion
 }
