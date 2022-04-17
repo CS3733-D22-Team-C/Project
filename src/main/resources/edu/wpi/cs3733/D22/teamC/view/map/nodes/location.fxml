@@ -10,7 +10,7 @@
       <Circle fx:id="locationCircle" fill="#005a9b" onMouseClicked="#onMouseClickedNode" onMouseDragged="#onMouseDraggedNode" onMouseEntered="#onMouseEnterNode" onMouseExited="#onMouseExitNode" radius="12.5" stroke="BLACK" strokeType="INSIDE" styleClass="location-node" />
       <Group fx:id="contextGroup">
          <children>
-            <Label fx:id="iconLabel" layoutX="-12.5" layoutY="-12.5" prefHeight="25.0" prefWidth="25.0" />
+            <Label fx:id="iconLabel" layoutX="-12.5" layoutY="-12.5" mouseTransparent="true" prefHeight="25.0" prefWidth="25.0" />
          </children>
       </Group>
    </children>
