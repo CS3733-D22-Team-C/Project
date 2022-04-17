@@ -1,0 +1,306 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import io.github.palexdev.materialfx.controls.MFXRectangleToggleNode?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.Group?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<Group fx:id="root" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.wpi.cs3733.D22.teamC.controller.map.panel.LegendController">
+   <children>
+      <HBox prefHeight="100.0" prefWidth="200.0">
+         <children>
+            <VBox prefHeight="200.0" prefWidth="100.0">
+               <children>
+                  <HBox>
+                     <children>
+                        <MFXRectangleToggleNode fx:id="patiToggleNode" contentDisplay="GRAPHIC_ONLY" maxHeight="36.0" maxWidth="36.0" minHeight="-Infinity" minWidth="-Infinity" prefHeight="36.0" prefWidth="36.0">
+                           <HBox.margin>
+                              <Insets bottom="4.0" left="4.0" right="4.0" top="4.0" />
+                           </HBox.margin>
+                           <font>
+                              <Font size="1.0" />
+                           </font>
+                        </MFXRectangleToggleNode>
+                        <Label contentDisplay="CENTER" maxHeight="1.7976931348623157E308" prefWidth="50.0" text="PATI">
+                           <HBox.margin>
+                              <Insets />
+                           </HBox.margin>
+                           <padding>
+                              <Insets left="12.0" />
+                           </padding>
+                        </Label>
+                     </children>
+                  </HBox>
+                  <HBox>
+                     <children>
+                        <MFXRectangleToggleNode fx:id="storToggleNode" contentDisplay="GRAPHIC_ONLY" maxHeight="36.0" maxWidth="36.0" minHeight="-Infinity" minWidth="-Infinity" prefHeight="36.0" prefWidth="36.0">
+                           <HBox.margin>
+                              <Insets bottom="4.0" left="4.0" right="4.0" top="4.0" />
+                           </HBox.margin>
+                           <font>
+                              <Font size="1.0" />
+                           </font>
+                        </MFXRectangleToggleNode>
+                        <Label contentDisplay="CENTER" maxHeight="1.7976931348623157E308" prefWidth="50.0" text="STOR">
+                           <HBox.margin>
+                              <Insets />
+                           </HBox.margin>
+                           <padding>
+                              <Insets left="12.0" />
+                           </padding>
+                        </Label>
+                     </children>
+                  </HBox>
+                  <HBox>
+                     <children>
+                        <MFXRectangleToggleNode fx:id="dirtToggleNode" contentDisplay="GRAPHIC_ONLY" maxHeight="36.0" maxWidth="36.0" minHeight="-Infinity" minWidth="-Infinity" prefHeight="36.0" prefWidth="36.0">
+                           <HBox.margin>
+                              <Insets bottom="4.0" left="4.0" right="4.0" top="4.0" />
+                           </HBox.margin>
+                           <font>
+                              <Font size="1.0" />
+                           </font>
+                        </MFXRectangleToggleNode>
+                        <Label contentDisplay="CENTER" maxHeight="1.7976931348623157E308" prefWidth="50.0" text="DIRT">
+                           <HBox.margin>
+                              <Insets />
+                           </HBox.margin>
+                           <padding>
+                              <Insets left="12.0" />
+                           </padding>
+                        </Label>
+                     </children>
+                  </HBox>
+                  <HBox>
+                     <children>
+                        <MFXRectangleToggleNode fx:id="hallToggleNode" contentDisplay="GRAPHIC_ONLY" maxHeight="36.0" maxWidth="36.0" minHeight="-Infinity" minWidth="-Infinity" prefHeight="36.0" prefWidth="36.0">
+                           <HBox.margin>
+                              <Insets bottom="4.0" left="4.0" right="4.0" top="4.0" />
+                           </HBox.margin>
+                           <font>
+                              <Font size="1.0" />
+                           </font>
+                        </MFXRectangleToggleNode>
+                        <Label contentDisplay="CENTER" maxHeight="1.7976931348623157E308" prefWidth="50.0" text="HALL">
+                           <HBox.margin>
+                              <Insets />
+                           </HBox.margin>
+                           <padding>
+                              <Insets left="12.0" />
+                           </padding>
+                        </Label>
+                     </children>
+                  </HBox>
+                  <HBox>
+                     <children>
+                        <MFXRectangleToggleNode fx:id="elevToggleNode" contentDisplay="GRAPHIC_ONLY" maxHeight="36.0" maxWidth="36.0" minHeight="-Infinity" minWidth="-Infinity" prefHeight="36.0" prefWidth="36.0">
+                           <HBox.margin>
+                              <Insets bottom="4.0" left="4.0" right="4.0" top="4.0" />
+                           </HBox.margin>
+                           <font>
+                              <Font size="1.0" />
+                           </font>
+                        </MFXRectangleToggleNode>
+                        <Label contentDisplay="CENTER" maxHeight="1.7976931348623157E308" prefWidth="50.0" text="ELEV">
+                           <HBox.margin>
+                              <Insets />
+                           </HBox.margin>
+                           <padding>
+                              <Insets left="12.0" />
+                           </padding>
+                        </Label>
+                     </children>
+                  </HBox>
+                  <HBox>
+                     <children>
+                        <MFXRectangleToggleNode fx:id="restToggleNode" contentDisplay="GRAPHIC_ONLY" maxHeight="36.0" maxWidth="36.0" minHeight="-Infinity" minWidth="-Infinity" prefHeight="36.0" prefWidth="36.0">
+                           <HBox.margin>
+                              <Insets bottom="4.0" left="4.0" right="4.0" top="4.0" />
+                           </HBox.margin>
+                           <font>
+                              <Font size="1.0" />
+                           </font>
+                        </MFXRectangleToggleNode>
+                        <Label contentDisplay="CENTER" maxHeight="1.7976931348623157E308" prefWidth="50.0" text="REST">
+                           <HBox.margin>
+                              <Insets />
+                           </HBox.margin>
+                           <padding>
+                              <Insets left="12.0" />
+                           </padding>
+                        </Label>
+                     </children>
+                  </HBox>
+                  <HBox>
+                     <children>
+                        <MFXRectangleToggleNode fx:id="staiToggleNode" contentDisplay="GRAPHIC_ONLY" maxHeight="36.0" maxWidth="36.0" minHeight="-Infinity" minWidth="-Infinity" prefHeight="36.0" prefWidth="36.0">
+                           <HBox.margin>
+                              <Insets bottom="4.0" left="4.0" right="4.0" top="4.0" />
+                           </HBox.margin>
+                           <font>
+                              <Font size="1.0" />
+                           </font>
+                        </MFXRectangleToggleNode>
+                        <Label contentDisplay="CENTER" maxHeight="1.7976931348623157E308" prefWidth="50.0" text="STAI">
+                           <HBox.margin>
+                              <Insets />
+                           </HBox.margin>
+                           <padding>
+                              <Insets left="12.0" />
+                           </padding>
+                        </Label>
+                     </children>
+                  </HBox>
+               </children>
+            </VBox>
+            <VBox prefHeight="200.0" prefWidth="100.0">
+               <children>
+                  <HBox>
+                     <children>
+                        <MFXRectangleToggleNode fx:id="deptToggleNode" contentDisplay="GRAPHIC_ONLY" maxHeight="36.0" maxWidth="36.0" minHeight="-Infinity" minWidth="-Infinity" prefHeight="36.0" prefWidth="36.0">
+                           <HBox.margin>
+                              <Insets bottom="4.0" left="4.0" right="4.0" top="4.0" />
+                           </HBox.margin>
+                           <font>
+                              <Font size="1.0" />
+                           </font>
+                        </MFXRectangleToggleNode>
+                        <Label contentDisplay="CENTER" maxHeight="1.7976931348623157E308" prefWidth="50.0" text="DEPT">
+                           <HBox.margin>
+                              <Insets />
+                           </HBox.margin>
+                           <padding>
+                              <Insets left="12.0" />
+                           </padding>
+                        </Label>
+                     </children>
+                  </HBox>
+                  <HBox>
+                     <children>
+                        <MFXRectangleToggleNode fx:id="labsToggleNode" contentDisplay="GRAPHIC_ONLY" maxHeight="36.0" maxWidth="36.0" minHeight="-Infinity" minWidth="-Infinity" prefHeight="36.0" prefWidth="36.0">
+                           <HBox.margin>
+                              <Insets bottom="4.0" left="4.0" right="4.0" top="4.0" />
+                           </HBox.margin>
+                           <font>
+                              <Font size="1.0" />
+                           </font>
+                        </MFXRectangleToggleNode>
+                        <Label contentDisplay="CENTER" maxHeight="1.7976931348623157E308" prefWidth="50.0" text="LABS">
+                           <HBox.margin>
+                              <Insets />
+                           </HBox.margin>
+                           <padding>
+                              <Insets left="12.0" />
+                           </padding>
+                        </Label>
+                     </children>
+                  </HBox>
+                  <HBox>
+                     <children>
+                        <MFXRectangleToggleNode fx:id="infoToggleNode" contentDisplay="GRAPHIC_ONLY" maxHeight="36.0" maxWidth="36.0" minHeight="-Infinity" minWidth="-Infinity" prefHeight="36.0" prefWidth="36.0">
+                           <HBox.margin>
+                              <Insets bottom="4.0" left="4.0" right="4.0" top="4.0" />
+                           </HBox.margin>
+                           <font>
+                              <Font size="1.0" />
+                           </font>
+                        </MFXRectangleToggleNode>
+                        <Label contentDisplay="CENTER" maxHeight="1.7976931348623157E308" prefWidth="50.0" text="INFO">
+                           <HBox.margin>
+                              <Insets />
+                           </HBox.margin>
+                           <padding>
+                              <Insets left="12.0" />
+                           </padding>
+                        </Label>
+                     </children>
+                  </HBox>
+                  <HBox>
+                     <children>
+                        <MFXRectangleToggleNode fx:id="confToggleNode" contentDisplay="GRAPHIC_ONLY" maxHeight="36.0" maxWidth="36.0" minHeight="-Infinity" minWidth="-Infinity" prefHeight="36.0" prefWidth="36.0">
+                           <HBox.margin>
+                              <Insets bottom="4.0" left="4.0" right="4.0" top="4.0" />
+                           </HBox.margin>
+                           <font>
+                              <Font size="1.0" />
+                           </font>
+                        </MFXRectangleToggleNode>
+                        <Label contentDisplay="CENTER" maxHeight="1.7976931348623157E308" prefWidth="50.0" text="CONF">
+                           <HBox.margin>
+                              <Insets />
+                           </HBox.margin>
+                           <padding>
+                              <Insets left="12.0" />
+                           </padding>
+                        </Label>
+                     </children>
+                  </HBox>
+                  <HBox>
+                     <children>
+                        <MFXRectangleToggleNode fx:id="exitToggleNode" contentDisplay="GRAPHIC_ONLY" maxHeight="36.0" maxWidth="36.0" minHeight="-Infinity" minWidth="-Infinity" prefHeight="36.0" prefWidth="36.0">
+                           <HBox.margin>
+                              <Insets bottom="4.0" left="4.0" right="4.0" top="4.0" />
+                           </HBox.margin>
+                           <font>
+                              <Font size="1.0" />
+                           </font>
+                        </MFXRectangleToggleNode>
+                        <Label contentDisplay="CENTER" maxHeight="1.7976931348623157E308" prefWidth="50.0" text="EXIT">
+                           <HBox.margin>
+                              <Insets />
+                           </HBox.margin>
+                           <padding>
+                              <Insets left="12.0" />
+                           </padding>
+                        </Label>
+                     </children>
+                  </HBox>
+                  <HBox>
+                     <children>
+                        <MFXRectangleToggleNode fx:id="retlToggleNode" contentDisplay="GRAPHIC_ONLY" maxHeight="36.0" maxWidth="36.0" minHeight="-Infinity" minWidth="-Infinity" prefHeight="36.0" prefWidth="36.0">
+                           <HBox.margin>
+                              <Insets bottom="4.0" left="4.0" right="4.0" top="4.0" />
+                           </HBox.margin>
+                           <font>
+                              <Font size="1.0" />
+                           </font>
+                        </MFXRectangleToggleNode>
+                        <Label contentDisplay="CENTER" maxHeight="1.7976931348623157E308" prefWidth="50.0" text="RETL">
+                           <HBox.margin>
+                              <Insets />
+                           </HBox.margin>
+                           <padding>
+                              <Insets left="12.0" />
+                           </padding>
+                        </Label>
+                     </children>
+                  </HBox>
+                  <HBox>
+                     <children>
+                        <MFXRectangleToggleNode fx:id="servToggleNode" contentDisplay="GRAPHIC_ONLY" maxHeight="36.0" maxWidth="36.0" minHeight="-Infinity" minWidth="-Infinity" prefHeight="36.0" prefWidth="36.0">
+                           <HBox.margin>
+                              <Insets bottom="4.0" left="4.0" right="4.0" top="4.0" />
+                           </HBox.margin>
+                           <font>
+                              <Font size="1.0" />
+                           </font>
+                        </MFXRectangleToggleNode>
+                        <Label contentDisplay="CENTER" maxHeight="1.7976931348623157E308" prefWidth="50.0" text="SERV">
+                           <HBox.margin>
+                              <Insets />
+                           </HBox.margin>
+                           <padding>
+                              <Insets left="12.0" />
+                           </padding>
+                        </Label>
+                     </children>
+                  </HBox>
+               </children>
+            </VBox>
+         </children>
+      </HBox>
+   </children>
+</Group>

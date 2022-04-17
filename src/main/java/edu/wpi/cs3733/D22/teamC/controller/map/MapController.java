@@ -1,9 +1,12 @@
 package edu.wpi.cs3733.D22.teamC.controller.map;
 
 
+import edu.wpi.cs3733.D22.teamC.App;
 import edu.wpi.cs3733.D22.teamC.entity.floor.Floor;
 import edu.wpi.cs3733.D22.teamC.entity.location.Location;
 import javafx.fxml.FXML;
+import javafx.fxml.Initializable;
+import javafx.scene.control.Button;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -12,16 +15,19 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.input.ScrollEvent;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
+import org.controlsfx.control.PopOver;
 
+import java.net.URL;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.ResourceBundle;
 
 /**
  * Facilitates Map interaction as a go between for data (managers, nodes), panel (interaction, controls), and the Map.
  */
-public class MapController {
+public class MapController implements Initializable {
     // Constants
     protected final static double MAX_SCALE = 1.3f;
     protected final static double MIN_SCALE = 0.7f;
@@ -32,12 +38,26 @@ public class MapController {
     @FXML private ScrollPane scrollPane;
     @FXML private ImageView mapImage;
 
+    @FXML private HBox topOverlay;
+    @FXML private HBox centerOverlay;
     @FXML private HBox bottomOverlay;
+
+    @FXML private Button legendButton;
 
     // References
     MapViewController mapViewController;
 
     //#region External Events
+        @Override
+        public void initialize(URL location, ResourceBundle resources) {
+            App.View legendView = App.instance.loadView("view/map/panel/legend.fxml");
+
+            PopOver popOver = new PopOver(legendView.getNode());
+            popOver.arrowLocationProperty().setValue(PopOver.ArrowLocation.TOP_RIGHT);
+
+            legendButton.setOnAction(e -> popOver.show(legendButton));
+        }
+
         public void setup(MapViewController mapViewController) {
             this.mapViewController = mapViewController;
         }
