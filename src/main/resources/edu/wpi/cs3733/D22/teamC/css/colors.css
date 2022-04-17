@@ -31,6 +31,7 @@
 
     /* appears behind content */
     -color-background: #e1e2e1;
+    /* appears on surfaces that aren't the background */
     -color-surface: #ffffff;
 
     -color-red-contrast: #F44336;
