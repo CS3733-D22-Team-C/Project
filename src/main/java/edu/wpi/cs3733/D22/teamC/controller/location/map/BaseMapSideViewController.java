@@ -3,6 +3,7 @@ package edu.wpi.cs3733.D22.teamC.controller.location.map;
 import com.jfoenix.controls.JFXTreeTableView;
 import com.jfoenix.controls.datamodels.treetable.RecursiveTreeObject;
 import edu.wpi.cs3733.D22.teamC.App;
+import edu.wpi.cs3733.D22.teamC.controller.map.MapViewController;
 import edu.wpi.cs3733.D22.teamC.entity.floor.Floor;
 import edu.wpi.cs3733.D22.teamC.entity.floor.FloorDAO;
 import edu.wpi.cs3733.D22.teamC.entity.medical_equipment.MedicalEquipment;
@@ -106,8 +107,8 @@ public class BaseMapSideViewController implements Initializable {
 
     @FXML
     void onGoToClicked(ActionEvent event) {
-        App.View<BaseMapViewController> view = App.instance.loadView(App.MAP_PATH);
-        view.getController().changeCurrentFloor(selectedFloor);
+        App.View<MapViewController> view = App.instance.loadView(App.MAP_PATH);
+        view.getController().getFloorManager().changeCurrent(selectedFloor);
         App.instance.setView(view.getNode());
     }
 

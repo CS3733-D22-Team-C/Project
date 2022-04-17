@@ -112,4 +112,9 @@ public class Floor implements IDEntity {
                 && shortName.equals(floor.shortName)
                 && description.equals(floor.description);
     }
+
+    @Override
+    public String toString() {
+        return getShortName();
+    }
 }

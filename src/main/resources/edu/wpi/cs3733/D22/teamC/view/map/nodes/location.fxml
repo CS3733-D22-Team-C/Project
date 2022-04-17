@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.Group?>
+<?import javafx.scene.shape.Circle?>
+
+<Group fx:id="rootGroup" stylesheets="@../../../css/map/location_node.css" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <Group fx:id="contextGroup" />
+      <Circle fx:id="locationCircle" fill="#005a9b" onMouseClicked="#onMouseClickedNode" onMouseDragged="#onMouseDraggedNode" onMouseEntered="#onMouseEnterNode" onMouseExited="#onMouseExitNode" radius="12.5" stroke="BLACK" strokeType="INSIDE" styleClass="location-node" />
+   </children>
+</Group>
