@@ -10,291 +10,375 @@
 
 <Group fx:id="root" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.wpi.cs3733.D22.teamC.controller.map.panel.LegendController">
    <children>
-      <HBox prefHeight="100.0" prefWidth="200.0">
+      <HBox layoutX="-30.0" layoutY="-50.0" prefHeight="100.0" prefWidth="250.0" scaleX="0.75" scaleY="0.75">
          <children>
-            <VBox prefHeight="200.0" prefWidth="100.0">
+            <VBox prefHeight="200.0" prefWidth="150.0">
                <children>
                   <HBox>
                      <children>
-                        <MFXRectangleToggleNode fx:id="patiToggleNode" contentDisplay="GRAPHIC_ONLY" maxHeight="36.0" maxWidth="36.0" minHeight="-Infinity" minWidth="-Infinity" prefHeight="36.0" prefWidth="36.0">
+                        <MFXRectangleToggleNode fx:id="patiToggleNode" contentDisplay="GRAPHIC_ONLY" maxHeight="48.0" maxWidth="48.0" minHeight="-Infinity" minWidth="-Infinity" prefHeight="48.0" prefWidth="48.0">
                            <HBox.margin>
                               <Insets bottom="4.0" left="4.0" right="4.0" top="4.0" />
                            </HBox.margin>
                            <font>
                               <Font size="1.0" />
                            </font>
+                           <padding>
+                              <Insets bottom="9.0" left="9.0" right="9.0" top="9.0" />
+                           </padding>
                         </MFXRectangleToggleNode>
-                        <Label contentDisplay="CENTER" maxHeight="1.7976931348623157E308" prefWidth="50.0" text="PATI">
+                        <Label contentDisplay="CENTER" maxHeight="1.7976931348623157E308" prefWidth="100.0" text="PATI">
                            <HBox.margin>
                               <Insets />
                            </HBox.margin>
                            <padding>
                               <Insets left="12.0" />
                            </padding>
+                           <font>
+                              <Font size="14.0" />
+                           </font>
                         </Label>
                      </children>
                   </HBox>
                   <HBox>
                      <children>
-                        <MFXRectangleToggleNode fx:id="storToggleNode" contentDisplay="GRAPHIC_ONLY" maxHeight="36.0" maxWidth="36.0" minHeight="-Infinity" minWidth="-Infinity" prefHeight="36.0" prefWidth="36.0">
+                        <MFXRectangleToggleNode fx:id="storToggleNode" contentDisplay="GRAPHIC_ONLY" maxHeight="48.0" maxWidth="48.0" minHeight="-Infinity" minWidth="-Infinity" prefHeight="48.0" prefWidth="48.0">
                            <HBox.margin>
                               <Insets bottom="4.0" left="4.0" right="4.0" top="4.0" />
                            </HBox.margin>
                            <font>
                               <Font size="1.0" />
                            </font>
+                           <padding>
+                              <Insets bottom="11.0" left="9.0" right="9.0" top="11.0" />
+                           </padding>
                         </MFXRectangleToggleNode>
-                        <Label contentDisplay="CENTER" maxHeight="1.7976931348623157E308" prefWidth="50.0" text="STOR">
+                        <Label contentDisplay="CENTER" maxHeight="1.7976931348623157E308" prefWidth="100.0" text="STOR">
                            <HBox.margin>
                               <Insets />
                            </HBox.margin>
                            <padding>
                               <Insets left="12.0" />
                            </padding>
+                           <font>
+                              <Font size="14.0" />
+                           </font>
                         </Label>
                      </children>
                   </HBox>
                   <HBox>
                      <children>
-                        <MFXRectangleToggleNode fx:id="dirtToggleNode" contentDisplay="GRAPHIC_ONLY" maxHeight="36.0" maxWidth="36.0" minHeight="-Infinity" minWidth="-Infinity" prefHeight="36.0" prefWidth="36.0">
+                        <MFXRectangleToggleNode fx:id="dirtToggleNode" contentDisplay="GRAPHIC_ONLY" maxHeight="48.0" maxWidth="48.0" minHeight="-Infinity" minWidth="-Infinity" prefHeight="48.0" prefWidth="48.0">
                            <HBox.margin>
                               <Insets bottom="4.0" left="4.0" right="4.0" top="4.0" />
                            </HBox.margin>
                            <font>
                               <Font size="1.0" />
                            </font>
+                           <padding>
+                              <Insets bottom="10.0" left="28.0" right="28.0" top="10.0" />
+                           </padding>
                         </MFXRectangleToggleNode>
-                        <Label contentDisplay="CENTER" maxHeight="1.7976931348623157E308" prefWidth="50.0" text="DIRT">
+                        <Label contentDisplay="CENTER" maxHeight="1.7976931348623157E308" prefWidth="100.0" text="DIRT">
                            <HBox.margin>
                               <Insets />
                            </HBox.margin>
                            <padding>
                               <Insets left="12.0" />
                            </padding>
+                           <font>
+                              <Font size="14.0" />
+                           </font>
                         </Label>
                      </children>
                   </HBox>
                   <HBox>
                      <children>
-                        <MFXRectangleToggleNode fx:id="hallToggleNode" contentDisplay="GRAPHIC_ONLY" maxHeight="36.0" maxWidth="36.0" minHeight="-Infinity" minWidth="-Infinity" prefHeight="36.0" prefWidth="36.0">
+                        <MFXRectangleToggleNode fx:id="hallToggleNode" contentDisplay="GRAPHIC_ONLY" maxHeight="48.0" maxWidth="48.0" minHeight="-Infinity" minWidth="-Infinity" prefHeight="48.0" prefWidth="48.0">
                            <HBox.margin>
                               <Insets bottom="4.0" left="4.0" right="4.0" top="4.0" />
                            </HBox.margin>
                            <font>
                               <Font size="1.0" />
                            </font>
+                           <padding>
+                              <Insets bottom="8.0" left="24.0" right="24.0" top="8.0" />
+                           </padding>
                         </MFXRectangleToggleNode>
-                        <Label contentDisplay="CENTER" maxHeight="1.7976931348623157E308" prefWidth="50.0" text="HALL">
+                        <Label contentDisplay="CENTER" maxHeight="1.7976931348623157E308" prefWidth="100.0" text="HALL">
                            <HBox.margin>
                               <Insets />
                            </HBox.margin>
                            <padding>
                               <Insets left="12.0" />
                            </padding>
+                           <font>
+                              <Font size="14.0" />
+                           </font>
                         </Label>
                      </children>
                   </HBox>
                   <HBox>
                      <children>
-                        <MFXRectangleToggleNode fx:id="elevToggleNode" contentDisplay="GRAPHIC_ONLY" maxHeight="36.0" maxWidth="36.0" minHeight="-Infinity" minWidth="-Infinity" prefHeight="36.0" prefWidth="36.0">
+                        <MFXRectangleToggleNode fx:id="elevToggleNode" contentDisplay="GRAPHIC_ONLY" maxHeight="48.0" maxWidth="48.0" minHeight="-Infinity" minWidth="-Infinity" prefHeight="48.0" prefWidth="48.0">
                            <HBox.margin>
                               <Insets bottom="4.0" left="4.0" right="4.0" top="4.0" />
                            </HBox.margin>
                            <font>
                               <Font size="1.0" />
                            </font>
+                           <padding>
+                              <Insets bottom="6.0" left="8.0" right="8.0" top="6.0" />
+                           </padding>
                         </MFXRectangleToggleNode>
-                        <Label contentDisplay="CENTER" maxHeight="1.7976931348623157E308" prefWidth="50.0" text="ELEV">
+                        <Label contentDisplay="CENTER" maxHeight="1.7976931348623157E308" prefWidth="100.0" text="ELEV">
                            <HBox.margin>
                               <Insets />
                            </HBox.margin>
                            <padding>
                               <Insets left="12.0" />
                            </padding>
+                           <font>
+                              <Font size="14.0" />
+                           </font>
                         </Label>
                      </children>
                   </HBox>
                   <HBox>
                      <children>
-                        <MFXRectangleToggleNode fx:id="restToggleNode" contentDisplay="GRAPHIC_ONLY" maxHeight="36.0" maxWidth="36.0" minHeight="-Infinity" minWidth="-Infinity" prefHeight="36.0" prefWidth="36.0">
+                        <MFXRectangleToggleNode fx:id="restToggleNode" contentDisplay="GRAPHIC_ONLY" maxHeight="48.0" maxWidth="48.0" minHeight="-Infinity" minWidth="-Infinity" prefHeight="48.0" prefWidth="48.0">
                            <HBox.margin>
                               <Insets bottom="4.0" left="4.0" right="4.0" top="4.0" />
                            </HBox.margin>
                            <font>
                               <Font size="1.0" />
                            </font>
+                           <padding>
+                              <Insets bottom="10.0" left="5.0" right="5.0" top="10.0" />
+                           </padding>
                         </MFXRectangleToggleNode>
-                        <Label contentDisplay="CENTER" maxHeight="1.7976931348623157E308" prefWidth="50.0" text="REST">
+                        <Label contentDisplay="CENTER" maxHeight="1.7976931348623157E308" prefWidth="100.0" text="REST">
                            <HBox.margin>
                               <Insets />
                            </HBox.margin>
                            <padding>
                               <Insets left="12.0" />
                            </padding>
+                           <font>
+                              <Font size="14.0" />
+                           </font>
                         </Label>
                      </children>
                   </HBox>
                   <HBox>
                      <children>
-                        <MFXRectangleToggleNode fx:id="staiToggleNode" contentDisplay="GRAPHIC_ONLY" maxHeight="36.0" maxWidth="36.0" minHeight="-Infinity" minWidth="-Infinity" prefHeight="36.0" prefWidth="36.0">
+                        <MFXRectangleToggleNode fx:id="staiToggleNode" contentDisplay="GRAPHIC_ONLY" maxHeight="48.0" maxWidth="48.0" minHeight="-Infinity" minWidth="-Infinity" prefHeight="48.0" prefWidth="48.0">
                            <HBox.margin>
                               <Insets bottom="4.0" left="4.0" right="4.0" top="4.0" />
                            </HBox.margin>
                            <font>
                               <Font size="1.0" />
                            </font>
+                           <padding>
+                              <Insets bottom="8.0" left="5.0" right="5.0" top="8.0" />
+                           </padding>
                         </MFXRectangleToggleNode>
-                        <Label contentDisplay="CENTER" maxHeight="1.7976931348623157E308" prefWidth="50.0" text="STAI">
+                        <Label contentDisplay="CENTER" maxHeight="1.7976931348623157E308" prefWidth="100.0" text="STAI">
                            <HBox.margin>
                               <Insets />
                            </HBox.margin>
                            <padding>
                               <Insets left="12.0" />
                            </padding>
+                           <font>
+                              <Font size="14.0" />
+                           </font>
                         </Label>
                      </children>
                   </HBox>
                </children>
             </VBox>
-            <VBox prefHeight="200.0" prefWidth="100.0">
+            <VBox prefHeight="200.0" prefWidth="150.0">
                <children>
                   <HBox>
                      <children>
-                        <MFXRectangleToggleNode fx:id="deptToggleNode" contentDisplay="GRAPHIC_ONLY" maxHeight="36.0" maxWidth="36.0" minHeight="-Infinity" minWidth="-Infinity" prefHeight="36.0" prefWidth="36.0">
+                        <MFXRectangleToggleNode fx:id="deptToggleNode" contentDisplay="GRAPHIC_ONLY" maxHeight="48.0" maxWidth="48.0" minHeight="-Infinity" minWidth="-Infinity" prefHeight="48.0" prefWidth="48.0">
                            <HBox.margin>
                               <Insets bottom="4.0" left="4.0" right="4.0" top="4.0" />
                            </HBox.margin>
                            <font>
                               <Font size="1.0" />
                            </font>
+                           <padding>
+                              <Insets bottom="9.0" left="7.0" right="7.0" top="9.0" />
+                           </padding>
                         </MFXRectangleToggleNode>
-                        <Label contentDisplay="CENTER" maxHeight="1.7976931348623157E308" prefWidth="50.0" text="DEPT">
+                        <Label contentDisplay="CENTER" maxHeight="1.7976931348623157E308" prefWidth="100.0" text="DEPT">
                            <HBox.margin>
                               <Insets />
                            </HBox.margin>
                            <padding>
                               <Insets left="12.0" />
                            </padding>
+                           <font>
+                              <Font size="14.0" />
+                           </font>
                         </Label>
                      </children>
                   </HBox>
                   <HBox>
                      <children>
-                        <MFXRectangleToggleNode fx:id="labsToggleNode" contentDisplay="GRAPHIC_ONLY" maxHeight="36.0" maxWidth="36.0" minHeight="-Infinity" minWidth="-Infinity" prefHeight="36.0" prefWidth="36.0">
+                        <MFXRectangleToggleNode fx:id="labsToggleNode" contentDisplay="GRAPHIC_ONLY" maxHeight="48.0" maxWidth="48.0" minHeight="-Infinity" minWidth="-Infinity" prefHeight="48.0" prefWidth="48.0">
                            <HBox.margin>
                               <Insets bottom="4.0" left="4.0" right="4.0" top="4.0" />
                            </HBox.margin>
                            <font>
                               <Font size="1.0" />
                            </font>
+                           <padding>
+                              <Insets bottom="10.0" left="8.0" right="8.0" top="10.0" />
+                           </padding>
                         </MFXRectangleToggleNode>
-                        <Label contentDisplay="CENTER" maxHeight="1.7976931348623157E308" prefWidth="50.0" text="LABS">
+                        <Label contentDisplay="CENTER" maxHeight="1.7976931348623157E308" prefWidth="100.0" text="LABS">
                            <HBox.margin>
                               <Insets />
                            </HBox.margin>
                            <padding>
                               <Insets left="12.0" />
                            </padding>
+                           <font>
+                              <Font size="14.0" />
+                           </font>
                         </Label>
                      </children>
                   </HBox>
                   <HBox>
                      <children>
-                        <MFXRectangleToggleNode fx:id="infoToggleNode" contentDisplay="GRAPHIC_ONLY" maxHeight="36.0" maxWidth="36.0" minHeight="-Infinity" minWidth="-Infinity" prefHeight="36.0" prefWidth="36.0">
+                        <MFXRectangleToggleNode fx:id="infoToggleNode" contentDisplay="GRAPHIC_ONLY" maxHeight="48.0" maxWidth="48.0" minHeight="-Infinity" minWidth="-Infinity" prefHeight="48.0" prefWidth="48.0">
                            <HBox.margin>
                               <Insets bottom="4.0" left="4.0" right="4.0" top="4.0" />
                            </HBox.margin>
                            <font>
                               <Font size="1.0" />
                            </font>
+                           <padding>
+                              <Insets bottom="8.0" left="5.0" right="5.0" top="8.0" />
+                           </padding>
                         </MFXRectangleToggleNode>
-                        <Label contentDisplay="CENTER" maxHeight="1.7976931348623157E308" prefWidth="50.0" text="INFO">
+                        <Label contentDisplay="CENTER" maxHeight="1.7976931348623157E308" prefWidth="100.0" text="INFO">
                            <HBox.margin>
                               <Insets />
                            </HBox.margin>
                            <padding>
                               <Insets left="12.0" />
                            </padding>
+                           <font>
+                              <Font size="14.0" />
+                           </font>
                         </Label>
                      </children>
                   </HBox>
                   <HBox>
                      <children>
-                        <MFXRectangleToggleNode fx:id="confToggleNode" contentDisplay="GRAPHIC_ONLY" maxHeight="36.0" maxWidth="36.0" minHeight="-Infinity" minWidth="-Infinity" prefHeight="36.0" prefWidth="36.0">
+                        <MFXRectangleToggleNode fx:id="confToggleNode" contentDisplay="GRAPHIC_ONLY" maxHeight="48.0" maxWidth="48.0" minHeight="-Infinity" minWidth="-Infinity" prefHeight="48.0" prefWidth="48.0">
                            <HBox.margin>
                               <Insets bottom="4.0" left="4.0" right="4.0" top="4.0" />
                            </HBox.margin>
                            <font>
                               <Font size="1.0" />
                            </font>
+                           <padding>
+                              <Insets bottom="9.0" left="9.0" right="9.0" top="9.0" />
+                           </padding>
                         </MFXRectangleToggleNode>
-                        <Label contentDisplay="CENTER" maxHeight="1.7976931348623157E308" prefWidth="50.0" text="CONF">
+                        <Label contentDisplay="CENTER" maxHeight="1.7976931348623157E308" prefWidth="100.0" text="CONF">
                            <HBox.margin>
                               <Insets />
                            </HBox.margin>
                            <padding>
                               <Insets left="12.0" />
                            </padding>
+                           <font>
+                              <Font size="14.0" />
+                           </font>
                         </Label>
                      </children>
                   </HBox>
                   <HBox>
                      <children>
-                        <MFXRectangleToggleNode fx:id="exitToggleNode" contentDisplay="GRAPHIC_ONLY" maxHeight="36.0" maxWidth="36.0" minHeight="-Infinity" minWidth="-Infinity" prefHeight="36.0" prefWidth="36.0">
+                        <MFXRectangleToggleNode fx:id="exitToggleNode" contentDisplay="GRAPHIC_ONLY" maxHeight="48.0" maxWidth="48.0" minHeight="-Infinity" minWidth="-Infinity" prefHeight="48.0" prefWidth="48.0">
                            <HBox.margin>
                               <Insets bottom="4.0" left="4.0" right="4.0" top="4.0" />
                            </HBox.margin>
                            <font>
                               <Font size="1.0" />
                            </font>
+                           <padding>
+                              <Insets bottom="8.0" left="4.0" right="4.0" top="8.0" />
+                           </padding>
                         </MFXRectangleToggleNode>
-                        <Label contentDisplay="CENTER" maxHeight="1.7976931348623157E308" prefWidth="50.0" text="EXIT">
+                        <Label contentDisplay="CENTER" maxHeight="1.7976931348623157E308" prefWidth="100.0" text="EXIT">
                            <HBox.margin>
                               <Insets />
                            </HBox.margin>
                            <padding>
                               <Insets left="12.0" />
                            </padding>
+                           <font>
+                              <Font size="14.0" />
+                           </font>
                         </Label>
                      </children>
                   </HBox>
                   <HBox>
                      <children>
-                        <MFXRectangleToggleNode fx:id="retlToggleNode" contentDisplay="GRAPHIC_ONLY" maxHeight="36.0" maxWidth="36.0" minHeight="-Infinity" minWidth="-Infinity" prefHeight="36.0" prefWidth="36.0">
+                        <MFXRectangleToggleNode fx:id="retlToggleNode" contentDisplay="GRAPHIC_ONLY" maxHeight="48.0" maxWidth="48.0" minHeight="-Infinity" minWidth="-Infinity" prefHeight="48.0" prefWidth="48.0">
                            <HBox.margin>
                               <Insets bottom="4.0" left="4.0" right="4.0" top="4.0" />
                            </HBox.margin>
                            <font>
                               <Font size="1.0" />
                            </font>
+                           <padding>
+                              <Insets bottom="8.0" left="6.0" right="6.0" top="8.0" />
+                           </padding>
                         </MFXRectangleToggleNode>
-                        <Label contentDisplay="CENTER" maxHeight="1.7976931348623157E308" prefWidth="50.0" text="RETL">
+                        <Label contentDisplay="CENTER" maxHeight="1.7976931348623157E308" prefWidth="100.0" text="RETL">
                            <HBox.margin>
                               <Insets />
                            </HBox.margin>
                            <padding>
                               <Insets left="12.0" />
                            </padding>
+                           <font>
+                              <Font size="14.0" />
+                           </font>
                         </Label>
                      </children>
                   </HBox>
                   <HBox>
                      <children>
-                        <MFXRectangleToggleNode fx:id="servToggleNode" contentDisplay="GRAPHIC_ONLY" maxHeight="36.0" maxWidth="36.0" minHeight="-Infinity" minWidth="-Infinity" prefHeight="36.0" prefWidth="36.0">
+                        <MFXRectangleToggleNode fx:id="servToggleNode" contentDisplay="GRAPHIC_ONLY" maxHeight="48.0" maxWidth="48.0" minHeight="-Infinity" minWidth="-Infinity" prefHeight="48.0" prefWidth="48.0">
                            <HBox.margin>
                               <Insets bottom="4.0" left="4.0" right="4.0" top="4.0" />
                            </HBox.margin>
                            <font>
                               <Font size="1.0" />
                            </font>
+                           <padding>
+                              <Insets bottom="10.0" left="6.0" right="6.0" top="10.0" />
+                           </padding>
                         </MFXRectangleToggleNode>
-                        <Label contentDisplay="CENTER" maxHeight="1.7976931348623157E308" prefWidth="50.0" text="SERV">
+                        <Label contentDisplay="CENTER" maxHeight="1.7976931348623157E308" prefWidth="100.0" text="SERV">
                            <HBox.margin>
                               <Insets />
                            </HBox.margin>
                            <padding>
                               <Insets left="12.0" />
                            </padding>
+                           <font>
+                              <Font size="14.0" />
+                           </font>
                         </Label>
                      </children>
                   </HBox>
