@@ -17,7 +17,7 @@
                <children>
                   <HBox>
                      <children>
-                        <MFXRectangleToggleNode fx:id="patiToggleNode" contentDisplay="GRAPHIC_ONLY" graphicTextGap="0.0" maxHeight="36.0" maxWidth="36.0" minHeight="-Infinity" minWidth="-Infinity" prefHeight="36.0" prefWidth="36.0">
+                        <MFXRectangleToggleNode fx:id="patiToggleNode" contentDisplay="GRAPHIC_ONLY" graphicTextGap="0.0" maxHeight="36.0" maxWidth="36.0" minHeight="-Infinity" minWidth="-Infinity" onAction="#onToggleNodePressed" prefHeight="36.0" prefWidth="36.0">
                            <HBox.margin>
                               <Insets bottom="4.0" left="4.0" right="4.0" top="4.0" />
                            </HBox.margin>
@@ -37,7 +37,7 @@
                   </HBox>
                   <HBox>
                      <children>
-                        <MFXRectangleToggleNode fx:id="storToggleNode" contentDisplay="GRAPHIC_ONLY" graphicTextGap="0.0" maxHeight="36.0" maxWidth="36.0" minHeight="-Infinity" minWidth="-Infinity" prefHeight="36.0" prefWidth="36.0">
+                        <MFXRectangleToggleNode fx:id="storToggleNode" contentDisplay="GRAPHIC_ONLY" graphicTextGap="0.0" maxHeight="36.0" maxWidth="36.0" minHeight="-Infinity" minWidth="-Infinity" onAction="#onToggleNodePressed" prefHeight="36.0" prefWidth="36.0">
                            <HBox.margin>
                               <Insets bottom="4.0" left="4.0" right="4.0" top="4.0" />
                            </HBox.margin>
@@ -57,7 +57,7 @@
                   </HBox>
                   <HBox>
                      <children>
-                        <MFXRectangleToggleNode fx:id="dirtToggleNode" contentDisplay="GRAPHIC_ONLY" graphicTextGap="0.0" maxHeight="36.0" maxWidth="36.0" minHeight="-Infinity" minWidth="-Infinity" pickOnBounds="false" prefHeight="36.0" prefWidth="36.0">
+                        <MFXRectangleToggleNode fx:id="dirtToggleNode" contentDisplay="GRAPHIC_ONLY" graphicTextGap="0.0" maxHeight="36.0" maxWidth="36.0" minHeight="-Infinity" minWidth="-Infinity" onAction="#onToggleNodePressed" pickOnBounds="false" prefHeight="36.0" prefWidth="36.0">
                            <HBox.margin>
                               <Insets bottom="4.0" left="4.0" right="4.0" top="4.0" />
                            </HBox.margin>
@@ -77,7 +77,7 @@
                   </HBox>
                   <HBox>
                      <children>
-                        <MFXRectangleToggleNode fx:id="hallToggleNode" contentDisplay="GRAPHIC_ONLY" graphicTextGap="0.0" maxHeight="36.0" maxWidth="36.0" minHeight="-Infinity" minWidth="-Infinity" prefHeight="36.0" prefWidth="36.0">
+                        <MFXRectangleToggleNode fx:id="hallToggleNode" contentDisplay="GRAPHIC_ONLY" graphicTextGap="0.0" maxHeight="36.0" maxWidth="36.0" minHeight="-Infinity" minWidth="-Infinity" onAction="#onToggleNodePressed" prefHeight="36.0" prefWidth="36.0">
                            <HBox.margin>
                               <Insets bottom="4.0" left="4.0" right="4.0" top="4.0" />
                            </HBox.margin>
@@ -97,7 +97,7 @@
                   </HBox>
                   <HBox>
                      <children>
-                        <MFXRectangleToggleNode fx:id="elevToggleNode" contentDisplay="GRAPHIC_ONLY" graphicTextGap="0.0" maxHeight="36.0" maxWidth="36.0" minHeight="-Infinity" minWidth="-Infinity" prefHeight="36.0" prefWidth="36.0">
+                        <MFXRectangleToggleNode fx:id="elevToggleNode" contentDisplay="GRAPHIC_ONLY" graphicTextGap="0.0" maxHeight="36.0" maxWidth="36.0" minHeight="-Infinity" minWidth="-Infinity" onAction="#onToggleNodePressed" prefHeight="36.0" prefWidth="36.0">
                            <HBox.margin>
                               <Insets bottom="4.0" left="4.0" right="4.0" top="4.0" />
                            </HBox.margin>
@@ -117,7 +117,7 @@
                   </HBox>
                   <HBox>
                      <children>
-                        <MFXRectangleToggleNode fx:id="restToggleNode" contentDisplay="GRAPHIC_ONLY" graphicTextGap="0.0" maxHeight="36.0" maxWidth="36.0" minHeight="-Infinity" minWidth="-Infinity" prefHeight="36.0" prefWidth="36.0">
+                        <MFXRectangleToggleNode fx:id="restToggleNode" contentDisplay="GRAPHIC_ONLY" graphicTextGap="0.0" maxHeight="36.0" maxWidth="36.0" minHeight="-Infinity" minWidth="-Infinity" onAction="#onToggleNodePressed" prefHeight="36.0" prefWidth="36.0">
                            <HBox.margin>
                               <Insets bottom="4.0" left="4.0" right="4.0" top="4.0" />
                            </HBox.margin>
@@ -137,7 +137,7 @@
                   </HBox>
                   <HBox>
                      <children>
-                        <MFXRectangleToggleNode fx:id="staiToggleNode" contentDisplay="GRAPHIC_ONLY" graphicTextGap="0.0" maxHeight="36.0" maxWidth="36.0" minHeight="-Infinity" minWidth="-Infinity" prefHeight="36.0" prefWidth="36.0">
+                        <MFXRectangleToggleNode fx:id="staiToggleNode" contentDisplay="GRAPHIC_ONLY" graphicTextGap="0.0" maxHeight="36.0" maxWidth="36.0" minHeight="-Infinity" minWidth="-Infinity" onAction="#onToggleNodePressed" prefHeight="36.0" prefWidth="36.0">
                            <HBox.margin>
                               <Insets bottom="4.0" left="4.0" right="4.0" top="4.0" />
                            </HBox.margin>
@@ -161,7 +161,7 @@
                <children>
                   <HBox>
                      <children>
-                        <MFXRectangleToggleNode fx:id="deptToggleNode" contentDisplay="GRAPHIC_ONLY" graphicTextGap="0.0" maxHeight="36.0" maxWidth="36.0" minHeight="-Infinity" minWidth="-Infinity" prefHeight="36.0" prefWidth="36.0">
+                        <MFXRectangleToggleNode fx:id="deptToggleNode" contentDisplay="GRAPHIC_ONLY" graphicTextGap="0.0" maxHeight="36.0" maxWidth="36.0" minHeight="-Infinity" minWidth="-Infinity" onAction="#onToggleNodePressed" prefHeight="36.0" prefWidth="36.0">
                            <HBox.margin>
                               <Insets bottom="4.0" left="4.0" right="4.0" top="4.0" />
                            </HBox.margin>
@@ -181,7 +181,7 @@
                   </HBox>
                   <HBox>
                      <children>
-                        <MFXRectangleToggleNode fx:id="labsToggleNode" contentDisplay="GRAPHIC_ONLY" graphicTextGap="0.0" maxHeight="36.0" maxWidth="36.0" minHeight="-Infinity" minWidth="-Infinity" prefHeight="36.0" prefWidth="36.0">
+                        <MFXRectangleToggleNode fx:id="labsToggleNode" contentDisplay="GRAPHIC_ONLY" graphicTextGap="0.0" maxHeight="36.0" maxWidth="36.0" minHeight="-Infinity" minWidth="-Infinity" onAction="#onToggleNodePressed" prefHeight="36.0" prefWidth="36.0">
                            <HBox.margin>
                               <Insets bottom="4.0" left="4.0" right="4.0" top="4.0" />
                            </HBox.margin>
@@ -201,7 +201,7 @@
                   </HBox>
                   <HBox>
                      <children>
-                        <MFXRectangleToggleNode fx:id="infoToggleNode" contentDisplay="GRAPHIC_ONLY" graphicTextGap="0.0" maxHeight="36.0" maxWidth="36.0" minHeight="-Infinity" minWidth="-Infinity" prefHeight="36.0" prefWidth="36.0">
+                        <MFXRectangleToggleNode fx:id="infoToggleNode" contentDisplay="GRAPHIC_ONLY" graphicTextGap="0.0" maxHeight="36.0" maxWidth="36.0" minHeight="-Infinity" minWidth="-Infinity" onAction="#onToggleNodePressed" prefHeight="36.0" prefWidth="36.0">
                            <HBox.margin>
                               <Insets bottom="4.0" left="4.0" right="4.0" top="4.0" />
                            </HBox.margin>
@@ -221,7 +221,7 @@
                   </HBox>
                   <HBox>
                      <children>
-                        <MFXRectangleToggleNode fx:id="confToggleNode" contentDisplay="GRAPHIC_ONLY" graphicTextGap="0.0" maxHeight="36.0" maxWidth="36.0" minHeight="-Infinity" minWidth="-Infinity" prefHeight="36.0" prefWidth="36.0">
+                        <MFXRectangleToggleNode fx:id="confToggleNode" contentDisplay="GRAPHIC_ONLY" graphicTextGap="0.0" maxHeight="36.0" maxWidth="36.0" minHeight="-Infinity" minWidth="-Infinity" onAction="#onToggleNodePressed" prefHeight="36.0" prefWidth="36.0">
                            <HBox.margin>
                               <Insets bottom="4.0" left="4.0" right="4.0" top="4.0" />
                            </HBox.margin>
@@ -241,7 +241,7 @@
                   </HBox>
                   <HBox>
                      <children>
-                        <MFXRectangleToggleNode fx:id="exitToggleNode" contentDisplay="GRAPHIC_ONLY" graphicTextGap="0.0" maxHeight="36.0" maxWidth="36.0" minHeight="-Infinity" minWidth="-Infinity" prefHeight="36.0" prefWidth="36.0">
+                        <MFXRectangleToggleNode fx:id="exitToggleNode" contentDisplay="GRAPHIC_ONLY" graphicTextGap="0.0" maxHeight="36.0" maxWidth="36.0" minHeight="-Infinity" minWidth="-Infinity" onAction="#onToggleNodePressed" prefHeight="36.0" prefWidth="36.0">
                            <HBox.margin>
                               <Insets bottom="4.0" left="4.0" right="4.0" top="4.0" />
                            </HBox.margin>
@@ -261,7 +261,7 @@
                   </HBox>
                   <HBox>
                      <children>
-                        <MFXRectangleToggleNode fx:id="retlToggleNode" contentDisplay="GRAPHIC_ONLY" graphicTextGap="0.0" maxHeight="36.0" maxWidth="36.0" minHeight="-Infinity" minWidth="-Infinity" prefHeight="36.0" prefWidth="36.0">
+                        <MFXRectangleToggleNode fx:id="retlToggleNode" contentDisplay="GRAPHIC_ONLY" graphicTextGap="0.0" maxHeight="36.0" maxWidth="36.0" minHeight="-Infinity" minWidth="-Infinity" onAction="#onToggleNodePressed" prefHeight="36.0" prefWidth="36.0">
                            <HBox.margin>
                               <Insets bottom="4.0" left="4.0" right="4.0" top="4.0" />
                            </HBox.margin>
@@ -281,7 +281,7 @@
                   </HBox>
                   <HBox>
                      <children>
-                        <MFXRectangleToggleNode fx:id="servToggleNode" contentDisplay="GRAPHIC_ONLY" graphicTextGap="0.0" maxHeight="36.0" maxWidth="36.0" minHeight="-Infinity" minWidth="-Infinity" prefHeight="36.0" prefWidth="36.0">
+                        <MFXRectangleToggleNode fx:id="servToggleNode" contentDisplay="GRAPHIC_ONLY" graphicTextGap="0.0" maxHeight="36.0" maxWidth="36.0" minHeight="-Infinity" minWidth="-Infinity" onAction="#onToggleNodePressed" prefHeight="36.0" prefWidth="36.0">
                            <HBox.margin>
                               <Insets bottom="4.0" left="4.0" right="4.0" top="4.0" />
                            </HBox.margin>

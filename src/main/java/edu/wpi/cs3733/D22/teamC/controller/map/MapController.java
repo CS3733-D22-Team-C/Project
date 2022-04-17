@@ -2,6 +2,7 @@ package edu.wpi.cs3733.D22.teamC.controller.map;
 
 
 import edu.wpi.cs3733.D22.teamC.App;
+import edu.wpi.cs3733.D22.teamC.controller.map.panel.LegendController;
 import edu.wpi.cs3733.D22.teamC.entity.floor.Floor;
 import edu.wpi.cs3733.D22.teamC.entity.location.Location;
 import javafx.fxml.FXML;
@@ -50,11 +51,13 @@ public class MapController implements Initializable {
     //#region External Events
         @Override
         public void initialize(URL location, ResourceBundle resources) {
-            App.View legendView = App.instance.loadView("view/map/panel/legend.fxml");
+            App.View<LegendController> legendView = App.instance.loadView("view/map/panel/legend.fxml");
 
             PopOver popOver = new PopOver(legendView.getNode());
             popOver.arrowLocationProperty().setValue(PopOver.ArrowLocation.TOP_RIGHT);
             popOver.setTitle("Legend");
+
+            legendView.getController().setup(this);
 
             legendButton.setOnAction(e -> popOver.show(legendButton));
         }
@@ -138,6 +141,10 @@ public class MapController implements Initializable {
 
         public HBox getBottomOverlay() {
             return bottomOverlay;
+        }
+        
+        public MapViewController getMapViewController() {
+            return mapViewController;
         }
     //#endregion
 }

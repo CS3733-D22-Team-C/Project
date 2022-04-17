@@ -11,6 +11,7 @@ import edu.wpi.cs3733.D22.teamC.entity.location.LocationDAO;
 import javafx.scene.Group;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.function.BiConsumer;
 import java.util.function.Consumer;
@@ -22,6 +23,7 @@ import java.util.stream.Collectors;
 public class LocationManager extends ManagerMapNodes<Location> {
     // Variables
     private boolean isEditMode;
+    private boolean[] filteredNodeTypes = new boolean[Location.NodeType.values().length];
 
     // Events
     public List<Consumer<Location>> onPreviewLocationEvents = new ArrayList<>();
@@ -29,6 +31,8 @@ public class LocationManager extends ManagerMapNodes<Location> {
 
     public LocationManager(MapViewController mapViewController) {
         super(mapViewController);
+
+        Arrays.fill(filteredNodeTypes, true);
     }
 
     //#region Object Manipulation
@@ -113,6 +117,7 @@ public class LocationManager extends ManagerMapNodes<Location> {
             nodes.forEach(this::removeNode);
             nodes = new ArrayList<>();
 
+            // Floor Filtering
             List<Location> renderLocations;
             if (!isEditMode) {
                 all = new FloorDAO().getAllLocations(floor.getID());
@@ -120,7 +125,16 @@ public class LocationManager extends ManagerMapNodes<Location> {
             } else {
                 renderLocations = all.stream().filter(location -> location.getFloor().equals(floor.getID())).collect(Collectors.toList());
             }
+
+            // Node Type Filtering
+            renderLocations = renderLocations.stream().filter(location -> filteredNodeTypes[location.getNodeType().ordinal()]).collect(Collectors.toList());
+
             renderLocations.forEach(location -> nodes.add(new LocationMapNode(this, location)));
+        }
+
+        public void changeFilters(boolean[] filteredNodeTypes) {
+            this.filteredNodeTypes = filteredNodeTypes;
+            renderFloor(getMapViewController().getFloorManager().getCurrent());
         }
     //#endregion
 

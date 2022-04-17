@@ -1,6 +1,4 @@
 /* Map - Legend Styling */
-@import "base.css";
-
 .mfx-rectangle-toggle-node {
     -fx-cursor: hand;
 }
