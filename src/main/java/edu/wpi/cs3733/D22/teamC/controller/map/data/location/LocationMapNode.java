@@ -4,14 +4,18 @@ import com.jfoenix.svg.SVGGlyph;
 import edu.wpi.cs3733.D22.teamC.App;
 import edu.wpi.cs3733.D22.teamC.controller.map.data.MapNode;
 import edu.wpi.cs3733.D22.teamC.entity.location.Location;
+import edu.wpi.cs3733.D22.teamC.fileio.svg.SVGParser;
 import javafx.fxml.FXML;
 import javafx.scene.Group;
 import javafx.scene.Parent;
+import javafx.scene.control.Label;
 import javafx.scene.input.MouseButton;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.shape.Circle;
+import javafx.scene.shape.SVGPath;
 
 import java.util.ArrayList;
+import java.util.Locale;
 
 public class LocationMapNode extends MapNode<Location> {
     // Constants
@@ -20,7 +24,7 @@ public class LocationMapNode extends MapNode<Location> {
     // FXML
     @FXML private Group contextGroup;
     @FXML private Circle locationCircle;
-    @FXML private SVGGlyph icon;
+    @FXML private Label iconLabel;
 
     public LocationMapNode(LocationManager manager, Location location) {
         super(manager, location);
@@ -33,6 +37,9 @@ public class LocationMapNode extends MapNode<Location> {
         // Initialize Location
         manager.getMapController().getMap().getChildren().add(node);
         setPosition(location.getX(), location.getY());
+
+        //Initialize Icon
+        updateIcon();
     }
 
     //#region Rendering
@@ -59,6 +66,23 @@ public class LocationMapNode extends MapNode<Location> {
 
             setPosition(x, y);
         }
+
+        /**
+         * updates icon based on location node type
+         */
+        public void updateIcon(){
+
+            String nodeType = location.getNodeType().toString();
+
+            SVGParser svgParser = new SVGParser();
+            String content = svgParser.getPath("static/icons/" + nodeType.toUpperCase(Locale.ROOT) + ".svg");
+
+
+            SVGGlyph glyph = new SVGGlyph(content);
+            glyph.getStyleClass().add(nodeType.toLowerCase(Locale.ROOT) + "-icon");
+            iconLabel.setGraphic(glyph);
+        }
+
     //#endregion
 
     //#region State Updating
