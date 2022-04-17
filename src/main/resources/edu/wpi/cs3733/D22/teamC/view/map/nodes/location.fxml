@@ -1,11 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import com.jfoenix.svg.SVGGlyph?>
 <?import javafx.scene.Group?>
 <?import javafx.scene.shape.Circle?>
 
 <Group fx:id="rootGroup" stylesheets="@../../../css/map/location_node.css" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1">
    <children>
-      <Group fx:id="contextGroup" />
+      <Group fx:id="contextGroup">
+         <children>
+            <SVGGlyph fx:id="icon" layoutX="-32.5" layoutY="-32.5" scaleX="0.25" scaleY="0.25" />
+         </children>
+      </Group>
       <Circle fx:id="locationCircle" fill="#005a9b" onMouseClicked="#onMouseClickedNode" onMouseDragged="#onMouseDraggedNode" onMouseEntered="#onMouseEnterNode" onMouseExited="#onMouseExitNode" radius="12.5" stroke="BLACK" strokeType="INSIDE" styleClass="location-node" />
    </children>
 </Group>

@@ -1,5 +1,6 @@
 package edu.wpi.cs3733.D22.teamC.controller.map.data.location;
 
+import com.jfoenix.svg.SVGGlyph;
 import edu.wpi.cs3733.D22.teamC.App;
 import edu.wpi.cs3733.D22.teamC.controller.map.data.MapNode;
 import edu.wpi.cs3733.D22.teamC.entity.location.Location;
@@ -19,6 +20,7 @@ public class LocationMapNode extends MapNode<Location> {
     // FXML
     @FXML private Group contextGroup;
     @FXML private Circle locationCircle;
+    @FXML private SVGGlyph icon;
 
     public LocationMapNode(LocationManager manager, Location location) {
         super(manager, location);
