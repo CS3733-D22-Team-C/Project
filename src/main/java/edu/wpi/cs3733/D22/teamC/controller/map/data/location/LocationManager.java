@@ -42,7 +42,9 @@ public class LocationManager extends ManagerMapNodes<Location> {
 
             if (original != null) {
                 location.Copy(original);
-                ((LocationMapNode) getByLocation(location)).updatePosition();
+                LocationMapNode locationMapNode = ((LocationMapNode) getByLocation(location));
+                locationMapNode.updatePosition();
+                locationMapNode.updateIcon();
                 changeCurrent(current);
             } else {
                 removeObject(location);

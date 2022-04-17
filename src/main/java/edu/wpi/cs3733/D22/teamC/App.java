@@ -144,8 +144,6 @@ public class App extends Application {
         stage.setFullScreen(true);
 
         setViewStatic(LOGIN_PATH);
-        //setViewStatic(MAP_PATH);
-        // TODO: Hook up via sidebar
     }
 
     @Override

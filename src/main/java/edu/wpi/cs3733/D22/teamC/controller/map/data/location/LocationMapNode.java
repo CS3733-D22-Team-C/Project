@@ -68,15 +68,13 @@ public class LocationMapNode extends MapNode<Location> {
         }
 
         /**
-         * updates icon based on location node type
+         * Updates icon based on location node type.
          */
         public void updateIcon(){
-
             String nodeType = location.getNodeType().toString();
 
             SVGParser svgParser = new SVGParser();
             String content = svgParser.getPath("static/icons/" + nodeType.toUpperCase(Locale.ROOT) + ".svg");
-
 
             SVGGlyph glyph = new SVGGlyph(content);
             glyph.getStyleClass().add(nodeType.toLowerCase(Locale.ROOT) + "-icon");
