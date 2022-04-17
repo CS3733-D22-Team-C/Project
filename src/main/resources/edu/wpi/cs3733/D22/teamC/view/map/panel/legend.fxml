@@ -5,6 +5,7 @@
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.Group?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Tooltip?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
@@ -32,6 +33,9 @@
                            <padding>
                               <Insets left="12.0" />
                            </padding>
+                           <tooltip>
+                              <Tooltip text="Patient Room" />
+                           </tooltip>
                         </Label>
                      </children>
                   </HBox>
@@ -52,6 +56,9 @@
                            <padding>
                               <Insets left="12.0" />
                            </padding>
+                           <tooltip>
+                              <Tooltip text="Equipment Storage Room" />
+                           </tooltip>
                         </Label>
                      </children>
                   </HBox>
@@ -72,6 +79,9 @@
                            <padding>
                               <Insets left="12.0" />
                            </padding>
+                           <tooltip>
+                              <Tooltip text="Dirty Equipment Pickup Location" />
+                           </tooltip>
                         </Label>
                      </children>
                   </HBox>
@@ -92,6 +102,9 @@
                            <padding>
                               <Insets left="12.0" />
                            </padding>
+                           <tooltip>
+                              <Tooltip text="Hallway" />
+                           </tooltip>
                         </Label>
                      </children>
                   </HBox>
@@ -112,6 +125,9 @@
                            <padding>
                               <Insets left="12.0" />
                            </padding>
+                           <tooltip>
+                              <Tooltip text="Elevator" />
+                           </tooltip>
                         </Label>
                      </children>
                   </HBox>
@@ -132,6 +148,9 @@
                            <padding>
                               <Insets left="12.0" />
                            </padding>
+                           <tooltip>
+                              <Tooltip text="Restroom" />
+                           </tooltip>
                         </Label>
                      </children>
                   </HBox>
@@ -152,6 +171,9 @@
                            <padding>
                               <Insets left="12.0" />
                            </padding>
+                           <tooltip>
+                              <Tooltip text="Staircase" />
+                           </tooltip>
                         </Label>
                      </children>
                   </HBox>
@@ -176,6 +198,9 @@
                            <padding>
                               <Insets left="12.0" />
                            </padding>
+                           <tooltip>
+                              <Tooltip text="Medical Departments, clinics, waiting rooms" />
+                           </tooltip>
                         </Label>
                      </children>
                   </HBox>
@@ -196,6 +221,9 @@
                            <padding>
                               <Insets left="12.0" />
                            </padding>
+                           <tooltip>
+                              <Tooltip text="Labs, Imaging Centers, Medical Testing Areas" />
+                           </tooltip>
                         </Label>
                      </children>
                   </HBox>
@@ -216,6 +244,9 @@
                            <padding>
                               <Insets left="12.0" />
                            </padding>
+                           <tooltip>
+                              <Tooltip text="Information Desks, Security Desks, Lost &amp; Found" />
+                           </tooltip>
                         </Label>
                      </children>
                   </HBox>
@@ -236,6 +267,9 @@
                            <padding>
                               <Insets left="12.0" />
                            </padding>
+                           <tooltip>
+                              <Tooltip text="Conference Room" />
+                           </tooltip>
                         </Label>
                      </children>
                   </HBox>
@@ -256,6 +290,9 @@
                            <padding>
                               <Insets left="12.0" />
                            </padding>
+                           <tooltip>
+                              <Tooltip text="Exit/Entrance" />
+                           </tooltip>
                         </Label>
                      </children>
                   </HBox>
@@ -276,6 +313,9 @@
                            <padding>
                               <Insets left="12.0" />
                            </padding>
+                           <tooltip>
+                              <Tooltip text="shops, food, pay phone, areas that provide non-medical services forimmediate payment" />
+                           </tooltip>
                         </Label>
                      </children>
                   </HBox>
@@ -296,6 +336,9 @@
                            <padding>
                               <Insets left="12.0" />
                            </padding>
+                           <tooltip>
+                              <Tooltip text="hospital non-medical services, interpreters, shuttles, spiritual,library, patient financial, etc." />
+                           </tooltip>
                         </Label>
                      </children>
                   </HBox>
