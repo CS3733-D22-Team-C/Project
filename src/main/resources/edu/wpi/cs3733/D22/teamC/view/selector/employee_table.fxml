@@ -7,7 +7,7 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 
-<VBox alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="561.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1">
+<VBox alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="561.0" prefWidth="600.0" styleClass="p" stylesheets="@../../css/default.css" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1">
    <children>
       <HBox alignment="CENTER_LEFT" prefHeight="52.0" prefWidth="600.0">
          <children>
@@ -19,7 +19,7 @@
       </HBox>
       <VBox>
          <children>
-            <JFXTreeTableView fx:id="table" prefHeight="495.0" prefWidth="600.0" />
+            <JFXTreeTableView fx:id="table" prefHeight="495.0" prefWidth="600.0" styleClass="table-view" />
          </children>
          <padding>
             <Insets left="35.0" right="35.0" />

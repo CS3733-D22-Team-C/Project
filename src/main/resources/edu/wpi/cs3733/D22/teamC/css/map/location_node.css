@@ -2,16 +2,16 @@
 
 /* Node Type Icons */
 .location-node {
-    -fx-fill: -color-primary;
+    -fx-fill: -color-secondary;
     -fx-cursor: hand;
 }
 
 .location-node:hover {
-    -fx-fill: -color-primary-light;
+    -fx-fill: -color-secondary-light;
 }
 
 .location-node.active {
-    -fx-fill: -color-primary-dark;
+    -fx-fill: -color-secondary-dark;
 }
 
 .medical-equipment-node {

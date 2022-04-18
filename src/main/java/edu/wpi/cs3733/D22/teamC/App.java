@@ -22,7 +22,6 @@ import javafx.stage.Stage;
 import lombok.extern.slf4j.Slf4j;
 
 import java.io.IOException;
-import java.util.List;
 
 import static edu.wpi.cs3733.D22.teamC.fileio.csv.CSVFacade.read;
 import static edu.wpi.cs3733.D22.teamC.fileio.csv.CSVFacade.write;
@@ -49,8 +48,8 @@ public class App extends Application {
 
     // Constants
     public static final String BASE_COMPONENT_PATH = "view/component/base.fxml";
-    public static final String MENU_BAR_COMPONENT_PATH = "view/component/menu_bar.fxml";
-    public static final String SIDEBAR_PATH = "view/component/sidebar_menu.fxml";
+    public static final String TITLE_BAR_COMPONENT_PATH = "view/component/title_bar.fxml";
+    public static final String DRAWER_PATH = "view/component/drawer.fxml";
     public static final String DRAWER_CONTENT_PATH = "view/component/drawer_content.fxml";
     public static final String LOGIN_PATH = "view/general/login.fxml";
     public static final String DASHBOARD_PATH = "view/general/dashboard.fxml";
@@ -59,7 +58,7 @@ public class App extends Application {
     public static final String SERVICE_REQUEST_LANDING_PAGE = "view/service_request/service_request_landing_page.fxml";
     public static final String MAP_DASHBOARD_PATH = "view/location/map/base_side_map_view.fxml";
     public static final String DATABASE_PAGE_PATH = "view/general/edit_databases_page.fxml";
-    public static final String MAP_PATH = "view/location/map/base_map_view.fxml";
+    public static final String MAP_PATH = "view/map/floor_map.fxml";
     public static final String BASE_CSS_PATH = "css/base.css";
     //public static final String IMAGE_PATH = "static/images/BrighamAndWomensHospital.png";
 
@@ -145,7 +144,6 @@ public class App extends Application {
         stage.setFullScreen(true);
 
         setViewStatic(LOGIN_PATH);
-        // TODO: Hook up via sidebar
     }
 
     @Override
@@ -235,17 +233,15 @@ public class App extends Application {
         // Load Base Node
         BorderPane baseNode = (BorderPane) loadView(BASE_COMPONENT_PATH).getNode();
 
-        // Load Menu Bar
         // TODO: Find a way to only change the center of the baseNode, nothing else
-        Node menuBarNode = loadView(MENU_BAR_COMPONENT_PATH).getNode();
 
-        // Load Sidebar Menu
-        Node sidebarNode = loadView(SIDEBAR_PATH).getNode();
+        // Load drawer Menu
+        Node drawerNode = loadView(DRAWER_PATH).getNode();
 
         // Embed views and components
         //baseNode.setTop(menuBarNode);
         baseNode.setCenter(viewNode);
-        baseNode.setLeft(sidebarNode);
+        baseNode.setLeft(drawerNode);
         baseNode.autosize();
 
         if (scene != null) scene.setRoot(baseNode);
@@ -258,10 +254,6 @@ public class App extends Application {
     {
         // Load Base Node
         BorderPane baseNode = (BorderPane) loadView(BASE_COMPONENT_PATH).getNode();
-
-        // Load Menu Bar
-        // TODO: Find a way to only change the center of the baseNode, nothing else
-        Node menuBarNode = loadView(MENU_BAR_COMPONENT_PATH).getNode();
 
         // Embed views and components
         //baseNode.setTop(menuBarNode);
@@ -297,7 +289,7 @@ public class App extends Application {
      * @param controller Controller to be attached to the FXML file.
      * @return Loaded FXML file wrapped in a View as a Node and Controller.
      */
-    public View loadView(String viewFile, Object controller) {
+    public <T> View<T> loadView(String viewFile, T controller) {
         try {
             FXMLLoader loader = new FXMLLoader();
             loader.setLocation(App.class.getResource(viewFile));

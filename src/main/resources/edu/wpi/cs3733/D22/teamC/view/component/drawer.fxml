@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXDrawer?>
+<?import io.github.palexdev.materialfx.controls.MFXButton?>
+<?import javafx.scene.effect.DropShadow?>
+<?import javafx.scene.shape.SVGPath?>
+
+<JFXDrawer fx:id="sidebarDrawer" defaultDrawerSize="256.0" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" miniDrawerSize="52.0" onDrawerClosed="#drawerClosed" onDrawerOpened="#drawerOpened" onMouseEntered="#drawerOnMouseEnter" onMouseExited="#drawerOnMouseExit" overLayVisible="false" resizeContent="true" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.wpi.cs3733.D22.teamC.controller.component.sidebar.SidebarMenuController">
+   <effect>
+      <DropShadow />
+   </effect>
+   <children>
+      <MFXButton fx:id="lockButton" contentDisplay="GRAPHIC_ONLY" onAction="#onLockButtonPressed">
+         <graphic>
+            <SVGPath fx:id="lockArrow" content="M12 8l-6 6 1.41 1.41L12 10.83l4.59 4.58L18 14l-6-6z" />
+         </graphic></MFXButton>
+   </children>
+</JFXDrawer>
