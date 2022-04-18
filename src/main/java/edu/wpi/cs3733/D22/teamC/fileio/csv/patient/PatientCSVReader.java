@@ -12,34 +12,33 @@ public class PatientCSVReader extends CSVReader<Patient> {
 
     @Override
     protected Patient parseAttribute(Patient patient, String header, String value) {
- //       try {
             switch (header) {
                 case "ID":
-                    //patient.setID(value);
+                    patient.setID(value);
                     break;
                 case "FirstName":
-                    //patient.setFirstName(value);
+                    patient.setFirstName(value);
                     break;
                 case "LastName":
-                    //patient.setLastName(value);
+                    patient.setLastName(value);
                     break;
                 case "DOB":
-                    //patient.setDOB(new SimpleDateFormat("mm/dd/yyyy").parse(value));
+                    try {
+                        patient.setDOB(new SimpleDateFormat("mm/dd/yyyy").parse(value));
+                    } catch (ParseException e) {
+                        e.printStackTrace();
+                    }
                     break;
                 case "Location":
-                    //patient.setLocationID(value);
+                    patient.setLocationID(value);
                     break;
                 case "Phone":
-                    //patient.setPhone(value);
+                    patient.setPhone(value);
                     break;
                 case "EmergencyContact":
-                    //patient.setEmergencyContact(value);
+                    patient.setEmergencyContact(value);
                     break;
             }
-
-//        } catch (ParseException e) {
-//            e.printStackTrace();
-//        }
 
         return patient;
     }
