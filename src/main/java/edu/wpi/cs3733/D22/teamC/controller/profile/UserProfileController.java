@@ -34,6 +34,8 @@ public class UserProfileController implements Initializable {
     @FXML MFXPasswordField newPass;
     @FXML MFXPasswordField newPassConfirm;
 
+    @FXML ImageView image;
+
 
     //ones made in the whatever
     @FXML VBox mainNode;

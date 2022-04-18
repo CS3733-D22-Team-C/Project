@@ -4,12 +4,14 @@
 <?import io.github.palexdev.materialfx.controls.MFXPasswordField?>
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
 <VBox alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="1186.0" prefWidth="1785.0" styleClass="top_node" stylesheets="@../../../css/profile.css" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.wpi.cs3733.D22.teamC.controller.profile.UserProfileController">
    <children>
+      <ImageView fx:id="image" fitHeight="201.0" fitWidth="230.0" pickOnBounds="true" preserveRatio="true" />
       <Label fx:id="name" alignment="CENTER" contentDisplay="CENTER" prefHeight="72.0" prefWidth="1852.0" text="Test Value">
          <font>
             <Font size="36.0" />

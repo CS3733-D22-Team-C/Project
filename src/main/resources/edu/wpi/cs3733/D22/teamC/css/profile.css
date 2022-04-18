@@ -2,9 +2,6 @@
 @import "fonts.css";
 
 
-
-VBox{
-}
 .top_node{
     -fx-background-color: white;
 }
@@ -12,12 +9,12 @@ VBox{
     -fx-background-color: -color-textarea;
     -fx-border-radius: 15px;
     -fx-border-style: solid;
-
 }
-
 .back_button{
-
     -fx-background-color:-color-textarea;
     -fx-border-radius: 15px;
     -fx-border-style: solid;
+}
+.image-view{
+    -fx-border-radius: 50px;
 }
