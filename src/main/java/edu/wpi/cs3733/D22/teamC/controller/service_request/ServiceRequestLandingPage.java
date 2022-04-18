@@ -11,7 +11,7 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.GridPane;
-
+import edu.wpi.cs3733.D22.teamC.API;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.net.URL;
@@ -21,6 +21,7 @@ import static edu.wpi.cs3733.D22.teamC.controller.service_request.ServiceRequest
 
 public class ServiceRequestLandingPage implements Initializable {
 
+    App app = new App();
     //Name labels
     @FXML private Label brandon;
     @FXML private Label brian;
@@ -94,7 +95,8 @@ public class ServiceRequestLandingPage implements Initializable {
 
     @FXML
     void clickDeliverySystem(ActionEvent event) {
-        goToSRPage(ServiceRequest.RequestType.Delivery_System);
+        //goToSRPage(ServiceRequest.RequestType.Delivery_System);
+
     }
 
     private void changeNameVisibility(boolean canSee) {//throws FileNotFoundException {
