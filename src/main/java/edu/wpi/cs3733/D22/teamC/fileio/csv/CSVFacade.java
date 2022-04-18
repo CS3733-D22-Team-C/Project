@@ -91,6 +91,7 @@ public class CSVFacade {
         }
         else if(classType == PatientTransportSR.class) {
             csvReader = (CSVReader<T>) new PatientTransportSRCSVReader();
+        }
         else if(classType == LaundrySR.class) {
             csvReader = (CSVReader<T>) new LaundrySRCSVReader();
         }
@@ -144,6 +145,7 @@ public class CSVFacade {
         }
         else if(classType == PatientTransportSR.class) {
             csvReader = (CSVReader<T>) new PatientTransportSRCSVReader();
+        }
         else if(classType == LaundrySR.class) {
             csvReader = (CSVReader<T>) new LaundrySRCSVReader();
         }
@@ -198,6 +200,7 @@ public class CSVFacade {
         }
         else if(classType == PatientTransportSR.class) {
             csvWriter = (CSVWriter<T>) new PatientTransportSRCSVWriter();
+        }
         else if(classType == LaundrySR.class) {
             csvWriter = (CSVWriter<T>) new LaundrySRCSVWriter();
         }
@@ -253,6 +256,7 @@ public class CSVFacade {
         }
         else if(classType == PatientTransportSR.class) {
             csvWriter = (CSVWriter<T>) new PatientTransportSRCSVWriter();
+        }
         else if(classType == LaundrySR.class) {
             csvWriter = (CSVWriter<T>) new LaundrySRCSVWriter();
         }

@@ -185,11 +185,12 @@ public class CSVComponent {
                 PatientTransportSRDAO patientTransportSRDAO = new PatientTransportSRDAO();
                 List<PatientTransportSR> patientTransportSRS = patientTransportSRDAO.getAll();
                 CSVFacade.write(PatientTransportSR.class, savedFile.getPath() + "\\" + PATIENT_TRANSPORT_CSV, patientTransportSRS);
+            }
             if(laundryExport.isSelected()) {
                 LaundrySRDAO laundrySRDAO = new LaundrySRDAO();
                 List<LaundrySR> laundrySRS = laundrySRDAO.getAll();
                 CSVFacade.write(LaundrySR.class, savedFile.getPath() + "\\" + LAUNDRY_CSV, laundrySRS);
-s            }
+            }
 
             //Employee
             if(employeesExport.isSelected()) {
@@ -284,6 +285,7 @@ s            }
                 PatientTransportSRDAO patientTransportSRDAO = new PatientTransportSRDAO();
                 patientTransportSRDAO.deleteAllFromTable();
                 patientTransportSRS.forEach(patientTransportSRDAO::insert);
+            }
             if(laundryImport.isSelected()) {
                 List<LaundrySR> laundrySRS = CSVFacade.read(LaundrySR.class, savedFile.getPath() + "\\" + LAUNDRY_CSV);
                 LaundrySRDAO laundrySRDAO = new LaundrySRDAO();
