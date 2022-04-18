@@ -48,7 +48,7 @@ public class TranslatorSRCVSWriter extends CSVWriter<TranslatorSR> {
                 Employee assignee = serviceRequest.getAssignee();
                 output = (assignee != null) ? assignee.getID() : "";
                 break;
-            case "location":
+            case "locationID":
                 output = serviceRequest.getLocation();
                 break;
             case "creationTimestamp":
