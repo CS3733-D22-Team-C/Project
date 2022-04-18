@@ -1,18 +1,16 @@
 package edu.wpi.cs3733.D22.teamC.entity.floor;
 
-import org.hibernate.annotations.GenericGenerator;
+import edu.wpi.cs3733.D22.teamC.entity.generic.IDEntity;
 
 import javax.persistence.*;
-import java.sql.Blob;
-import java.util.Objects;
 import java.util.UUID;
 
 @Entity
 @Table(name = "FLOOR")
-public class Floor {
+public class Floor implements IDEntity {
     @Id
     @Column(name = "ID")
-    private String floorID;
+    private String ID;
     
     @Column(name = "FloorOrder")
     private int order;
@@ -34,25 +32,25 @@ public class Floor {
     private byte[] image;
 
     public Floor(){
-        this.floorID = UUID.randomUUID().toString();
+        this.ID = UUID.randomUUID().toString();
     }
 
     public Floor(int order, String longName, String shortName) {
-        this.floorID = UUID.randomUUID().toString();
+        this.ID = UUID.randomUUID().toString();
         this.order = order;
         this.longName = longName;
         this.shortName = shortName;
     }
-    public Floor(String floorID){
-        this.floorID = floorID;
+    public Floor(String ID){
+        this.ID = ID;
     }
 
-    public String getFloorID() {
-        return floorID;
+    public String getID() {
+        return ID;
     }
 
-    public void setFloorID(String floorID) {
-        this.floorID = floorID;
+    public void setID(String floorID) {
+        this.ID = floorID;
     }
 
     public int getOrder() {
@@ -108,10 +106,15 @@ public class Floor {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Floor floor = (Floor) o;
-        return floorID.equals(floor.floorID)
+        return ID.equals(floor.ID)
                 && order == floor.order
                 && longName.equals(floor.longName)
                 && shortName.equals(floor.shortName)
                 && description.equals(floor.description);
+    }
+
+    @Override
+    public String toString() {
+        return getShortName();
     }
 }

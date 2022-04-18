@@ -1,0 +1,11 @@
+@import "../colors.css";
+@import "../default.css";
+
+.hbox {
+    -fx-background-color: -color-primary-dark;
+    -fx-max-height: 50px;
+}
+
+#title {
+    -fx-text-fill: -color-primary-text;
+}

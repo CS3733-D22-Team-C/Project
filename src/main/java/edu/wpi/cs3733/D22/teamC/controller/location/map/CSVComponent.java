@@ -1,7 +1,6 @@
 package edu.wpi.cs3733.D22.teamC.controller.location.map;
 import com.jfoenix.controls.JFXButton;
 import edu.wpi.cs3733.D22.teamC.App;
-import edu.wpi.cs3733.D22.teamC.controller.location.map.controls.EditMapControlsController;
 import edu.wpi.cs3733.D22.teamC.entity.employee.Employee;
 import edu.wpi.cs3733.D22.teamC.entity.employee.EmployeeDAO;
 import edu.wpi.cs3733.D22.teamC.entity.floor.Floor;
@@ -10,6 +9,8 @@ import edu.wpi.cs3733.D22.teamC.entity.location.Location;
 import edu.wpi.cs3733.D22.teamC.entity.location.LocationDAO;
 import edu.wpi.cs3733.D22.teamC.entity.medical_equipment.MedicalEquipment;
 import edu.wpi.cs3733.D22.teamC.entity.medical_equipment.MedicalEquipmentDAO;
+import edu.wpi.cs3733.D22.teamC.entity.service_request.delivery_system.DeliverySystemSR;
+import edu.wpi.cs3733.D22.teamC.entity.service_request.delivery_system.DeliverySystemSRDAO;
 import edu.wpi.cs3733.D22.teamC.entity.service_request.facility_maintenance.FacilityMaintenanceSR;
 import edu.wpi.cs3733.D22.teamC.entity.service_request.facility_maintenance.FacilityMaintenanceSRDAO;
 import edu.wpi.cs3733.D22.teamC.entity.service_request.lab_system.LabSystemSR;
@@ -27,7 +28,6 @@ import io.github.palexdev.materialfx.controls.MFXCheckbox;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.TextField;
-import javafx.scene.paint.Color;
 import javafx.stage.DirectoryChooser;
 import javafx.stage.FileChooser;
 import org.controlsfx.glyphfont.FontAwesome;
@@ -61,7 +61,8 @@ public class CSVComponent {
     @FXML private MFXCheckbox labSystemImport;
     @FXML private MFXCheckbox medicalEquipmentEntityExport;
     @FXML private MFXCheckbox medicalEquipmentEntityImport;
-    @FXML private JFXButton importButton;
+    @FXML private MFXCheckbox deliveryImport;
+    @FXML private MFXCheckbox deliveryExport;
 
 
 
@@ -70,7 +71,6 @@ public class CSVComponent {
     @FXML private TextField importText;
 
     File savedFile;
-    private BaseMapViewController parentController;
 
     public static final String FLOOR_CSV = "TowerFloors.csv";
     public static final String LOCATION_CSV = "TowerLocations.csv";
@@ -80,16 +80,10 @@ public class CSVComponent {
     public static final String LAB_SYSTEM_CSV = "LabReq.csv";
     public static final String FACILITY_MAINTENANCE_CSV = "FacilityReq.csv";
     public static final String SECURITY_CSV = "SecurityReq.csv";
-    public static final String  EMPLOYEE_CSV = "Employees.csv";
+    public static final String EMPLOYEE_CSV = "Employees.csv";
     public static final String MEDICAL_EQUIPMENT_ENTITY_CSV = "MedicalEquip.csv";
+    public static final String DELIVERY_SYSTEM_CSV = "DeliverySysReq.csv";
 
-    GlyphFont fontAwesome = GlyphFontRegistry.font("FontAwesome");
-    Glyph importIcon = fontAwesome.create('\uf07b').size(15);
-
-    public void setup(BaseMapViewController baseMapViewController) {
-        this.parentController = baseMapViewController;
-        importButton.setGraphic(fontAwesome.create(FontAwesome.Glyph.FOLDER_OPEN));
-    }
 
     @FXML
     void chooseExportCSV(ActionEvent event) {
@@ -172,6 +166,11 @@ public class CSVComponent {
                 SecuritySRDAO securitySRDAO = new SecuritySRDAO();
                 List<SecuritySR> securitySRS = securitySRDAO.getAll();
                 CSVFacade.write(SecuritySR.class, savedFile.getPath() + "\\" + SECURITY_CSV, securitySRS);
+            }
+            if(deliveryExport.isSelected()) {
+                DeliverySystemSRDAO deliverySystemSRDAO = new DeliverySystemSRDAO();
+                List<DeliverySystemSR> deliverySystemSRS = deliverySystemSRDAO.getAll();
+                CSVFacade.write(DeliverySystemSR.class, savedFile.getPath() + "\\" + DELIVERY_SYSTEM_CSV, deliverySystemSRS);
             }
 
             //Employee
@@ -257,6 +256,12 @@ public class CSVComponent {
                 securitySRDAO.deleteAllFromTable();
                 securitySRS.forEach(securitySRDAO::insert);
             }
+            if(deliveryImport.isSelected()) {
+                List<DeliverySystemSR> deliverySystemSRS = CSVFacade.read(DeliverySystemSR.class, savedFile.getPath() + "\\" + DELIVERY_SYSTEM_CSV);
+                DeliverySystemSRDAO deliverySystemSRDAO = new DeliverySystemSRDAO();
+                deliverySystemSRDAO.deleteAllFromTable();
+                deliverySystemSRS.forEach(deliverySystemSRDAO::insert);
+            }
         }
     }
 
@@ -281,7 +286,8 @@ public class CSVComponent {
         securityImport.setSelected(false);
         labSystemExport.setSelected(false);
         labSystemImport.setSelected(false);
-
+        deliveryExport.setSelected(false);
+        deliveryImport.setSelected(false);
 
         medicalEquipmentEntityImport.setSelected(false);
         medicalEquipmentEntityExport.setSelected(false);

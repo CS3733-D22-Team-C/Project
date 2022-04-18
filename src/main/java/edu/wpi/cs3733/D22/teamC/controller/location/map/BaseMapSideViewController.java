@@ -3,6 +3,7 @@ package edu.wpi.cs3733.D22.teamC.controller.location.map;
 import com.jfoenix.controls.JFXTreeTableView;
 import com.jfoenix.controls.datamodels.treetable.RecursiveTreeObject;
 import edu.wpi.cs3733.D22.teamC.App;
+import edu.wpi.cs3733.D22.teamC.controller.map.MapViewController;
 import edu.wpi.cs3733.D22.teamC.entity.floor.Floor;
 import edu.wpi.cs3733.D22.teamC.entity.floor.FloorDAO;
 import edu.wpi.cs3733.D22.teamC.entity.medical_equipment.MedicalEquipment;
@@ -15,7 +16,6 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.VBox;
-import javafx.scene.text.Text;
 
 import java.net.URL;
 import java.util.ArrayList;
@@ -107,8 +107,8 @@ public class BaseMapSideViewController implements Initializable {
 
     @FXML
     void onGoToClicked(ActionEvent event) {
-        App.View<BaseMapViewController> view = App.instance.loadView(App.MAP_PATH);
-        view.getController().changeCurrentFloor(selectedFloor);
+        App.View<MapViewController> view = App.instance.loadView(App.MAP_PATH);
+        view.getController().getFloorManager().changeCurrent(selectedFloor);
         App.instance.setView(view.getNode());
     }
 
@@ -128,7 +128,7 @@ public class BaseMapSideViewController implements Initializable {
 
     private void loadEquipment() {
         MedicalEquipmentDAO MEL = new MedicalEquipmentDAO();
-        List<MedicalEquipment> medicalEquipmentPerFloor = MEL.getEquipmentByFloor(selectedFloor.getFloorID());
+        List<MedicalEquipment> medicalEquipmentPerFloor = MEL.getEquipmentByFloor(selectedFloor.getID());
 
         List<MedicalEquipment> floorXDirty = new ArrayList<>();
         List<MedicalEquipment> floorXClean = new ArrayList<>();

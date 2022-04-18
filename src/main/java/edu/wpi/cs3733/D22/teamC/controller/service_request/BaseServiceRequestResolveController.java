@@ -13,13 +13,10 @@ import edu.wpi.cs3733.D22.teamC.models.employee.EmployeeSelectorWindow;
 import edu.wpi.cs3733.D22.teamC.models.location.MapSelectorWindow;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.VBox;
-import javafx.stage.Modality;
-import javafx.stage.Stage;
 
 import java.sql.Timestamp;
 import java.util.Locale;
@@ -74,7 +71,7 @@ public class BaseServiceRequestResolveController<T extends ServiceRequest> imple
         setInsert(requestType);
 
         DAO<T> serviceRequestDAO = insertController.createServiceRequestDAO();
-        this.serviceRequest = serviceRequestDAO.getByID(serviceRequest.getRequestID());
+        this.serviceRequest = serviceRequestDAO.getByID(serviceRequest.getID());
 
         if (serviceRequest.getLocation() != null) location = new LocationDAO().getByID(serviceRequest.getLocation());
 
@@ -88,7 +85,7 @@ public class BaseServiceRequestResolveController<T extends ServiceRequest> imple
         description.setText(serviceRequest.getDescription());
 
         // Set labels
-        requestID.setText(serviceRequest.getRequestID()); //TODO print something else here or don't print maybe
+        requestID.setText(serviceRequest.getID()); //TODO print something else here or don't print maybe
         assigneeID.setEditable(false);
         locationID.setEditable(false);
 
@@ -139,7 +136,7 @@ public class BaseServiceRequestResolveController<T extends ServiceRequest> imple
             //Assignee ID
             serviceRequest.setAssignee(this.serviceRequest.getAssignee());
             //Location
-            serviceRequest.setLocation(location.getNodeID());
+            serviceRequest.setLocation(location.getID());
             //Status
             if(requiredFieldsPresent())
                 serviceRequest.setStatus(ServiceRequest.Status.Processing);

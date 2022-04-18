@@ -15,14 +15,10 @@ import edu.wpi.cs3733.D22.teamC.models.employee.EmployeeSelectorWindow;
 import edu.wpi.cs3733.D22.teamC.models.location.MapSelectorWindow;
 import edu.wpi.cs3733.D22.teamC.models.service_request.ServiceRequestTableDisplay;
 import edu.wpi.cs3733.D22.teamC.models.utils.ComponentWrapper;
-import javafx.beans.value.ChangeListener;
-import javafx.beans.value.ObservableValue;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
-import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.VBox;
 import javafx.stage.Modality;
@@ -116,6 +112,13 @@ public class BaseServiceRequestCreateController<T extends ServiceRequest> implem
             case Sanitation:
                 title.setText("Create Sanitation Service Request");
                 break;
+
+            case Laundry:
+                title.setText("Create Laundry Service Request");
+
+            case Delivery_System:
+                title.setText("Create Delivery System Service Request");
+
             default:
         }
 
@@ -205,7 +208,7 @@ public class BaseServiceRequestCreateController<T extends ServiceRequest> implem
         T serviceRequest = insertController.createServiceRequest();
 
         serviceRequest.setAssignee(employeeComboBox.getValue());
-        serviceRequest.setLocation(location.getNodeID());
+        serviceRequest.setLocation(location.getID());
         serviceRequest.setDescription(description.getText());
         serviceRequest.setPriority(ServiceRequest.Priority.valueOf(priority.getValue()));
 
@@ -221,7 +224,7 @@ public class BaseServiceRequestCreateController<T extends ServiceRequest> implem
 
         // Insert to DB
         DAO<T> serviceRequestDAO = insertController.createServiceRequestDAO();
-        serviceRequest.setRequestID(serviceRequestDAO.insert(serviceRequest));
+        serviceRequest.setID(serviceRequestDAO.insert(serviceRequest));
 
         // Add to TableDisplay
         tableDisplay.addObject(serviceRequest);

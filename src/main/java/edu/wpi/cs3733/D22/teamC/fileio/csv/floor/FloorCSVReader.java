@@ -24,7 +24,7 @@ public class FloorCSVReader extends CSVReader<Floor> {
     protected Floor parseAttribute(Floor object, String header, String value) {
         switch (header) {
             case "id":
-                object.setFloorID(value);
+                object.setID(value);
                 break;
             case "order":
                 object.setOrder(Integer.parseInt(value));

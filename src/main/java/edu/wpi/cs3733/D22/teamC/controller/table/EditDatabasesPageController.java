@@ -2,10 +2,7 @@ package edu.wpi.cs3733.D22.teamC.controller.table;
 
 import com.jfoenix.controls.JFXButton;
 import edu.wpi.cs3733.D22.teamC.App;
-import edu.wpi.cs3733.D22.teamC.controller.location.LocationsViewController;
 import edu.wpi.cs3733.D22.teamC.controller.location.map.CSVComponent;
-import edu.wpi.cs3733.D22.teamC.controller.service_request.InsertServiceRequestCreateController;
-import edu.wpi.cs3733.D22.teamC.entity.service_request.ServiceRequest;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;

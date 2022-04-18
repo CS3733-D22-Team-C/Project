@@ -4,7 +4,6 @@ import com.jfoenix.controls.JFXTreeTableView;
 import edu.wpi.cs3733.D22.teamC.entity.location.LocationDAO;
 import edu.wpi.cs3733.D22.teamC.entity.medical_equipment.MedicalEquipment;
 import edu.wpi.cs3733.D22.teamC.models.generic.TableDisplay;
-import edu.wpi.cs3733.D22.teamC.models.service_request.ServiceRequestTableDisplay;
 import javafx.beans.property.*;
 
 public class MedicalEquipmentTableDisplay extends TableDisplay<MedicalEquipment> {
@@ -19,7 +18,7 @@ public class MedicalEquipmentTableDisplay extends TableDisplay<MedicalEquipment>
         public MedicalEquipmentTableEntry(MedicalEquipment medicalEquipment) {
             super(medicalEquipment);
 
-            this.idProperty             = new SimpleStringProperty(medicalEquipment.getEquipID());
+            this.idProperty             = new SimpleStringProperty(medicalEquipment.getID());
             this.locationNameProperty   = new SimpleStringProperty(new LocationDAO().getByID(medicalEquipment.getLocationID()).getShortName());
             this.typeProperty           = new SimpleStringProperty(medicalEquipment.getEquipmentType().toString());
             this.typeNumberProperty     = new SimpleIntegerProperty(medicalEquipment.getTypeNumber());
@@ -28,7 +27,7 @@ public class MedicalEquipmentTableDisplay extends TableDisplay<MedicalEquipment>
 
         @Override
         public void RefreshEntry() {
-            idProperty.setValue(object.getEquipID());
+            idProperty.setValue(object.getID());
             locationNameProperty.setValue(object.getLocationID());
             typeNumberProperty.setValue(object.getTypeNumber());
             statusProperty.setValue(object.getStatus().toString());
