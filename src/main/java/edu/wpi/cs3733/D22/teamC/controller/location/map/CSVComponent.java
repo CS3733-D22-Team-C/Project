@@ -59,6 +59,7 @@ public class CSVComponent {
     @FXML private MFXCheckbox medicalEquipmentEntityImport;
     @FXML private MFXCheckbox deliveryImport;
     @FXML private MFXCheckbox deliveryExport;
+    
 
 
 
