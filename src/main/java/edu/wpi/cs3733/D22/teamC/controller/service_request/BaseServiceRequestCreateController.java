@@ -1,9 +1,9 @@
 package edu.wpi.cs3733.D22.teamC.controller.service_request;
 
 import com.jfoenix.controls.JFXButton;
-import com.jfoenix.controls.JFXComboBox;
 import com.jfoenix.controls.JFXTextArea;
 import com.jfoenix.controls.JFXTreeTableView;
+import com.jfoenix.svg.SVGGlyph;
 import edu.wpi.cs3733.D22.teamC.App;
 import edu.wpi.cs3733.D22.teamC.entity.employee.Employee;
 import edu.wpi.cs3733.D22.teamC.entity.employee.EmployeeDAO;
@@ -11,6 +11,7 @@ import edu.wpi.cs3733.D22.teamC.entity.generic.DAO;
 import edu.wpi.cs3733.D22.teamC.entity.location.Location;
 import edu.wpi.cs3733.D22.teamC.entity.location.LocationDAO;
 import edu.wpi.cs3733.D22.teamC.entity.service_request.ServiceRequest;
+import edu.wpi.cs3733.D22.teamC.fileio.svg.SVGParser;
 import edu.wpi.cs3733.D22.teamC.models.employee.EmployeeSelectorWindow;
 import edu.wpi.cs3733.D22.teamC.models.location.MapSelectorWindow;
 import edu.wpi.cs3733.D22.teamC.models.service_request.ServiceRequestTableDisplay;
@@ -21,11 +22,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.VBox;
-import javafx.stage.Modality;
-import javafx.stage.Stage;
 import org.controlsfx.control.SearchableComboBox;
-import org.controlsfx.control.action.ActionProxy;
-import org.controlsfx.glyphfont.FontAwesome;
 import org.controlsfx.glyphfont.Glyph;
 import org.controlsfx.glyphfont.GlyphFont;
 import org.controlsfx.glyphfont.GlyphFontRegistry;
@@ -79,18 +76,19 @@ public class BaseServiceRequestCreateController<T extends ServiceRequest> implem
     private ServiceRequestTableDisplay<T> tableDisplay;
     private ServiceRequest.RequestType requestType;
     private EmployeeSelectorWindow employeeSelectorWindow;
-
     private Location location;
-    //FontAwesome
-    //@ActionProxy(text = "Hello", graphic = "")
-    GlyphFont fontAwesome = GlyphFontRegistry.font("FontAwesome");
-    Glyph employeeIcon = fontAwesome.create('\uf2b9').size(15);
-    Glyph locationIcon = fontAwesome.create('\uf041').size(15);
 
-    //@ActionProxy(text="Test", graphic="font><FontAwesomeIcon icon=\"fa-solid fa-location-crosshairs\" />")
     public void setup(ServiceRequest.RequestType requestType) {
-        mapViewButton.setGraphic(locationIcon);
-        employeeTableButton.setGraphic(employeeIcon);
+        SVGParser svgParser = new SVGParser();
+        String employeeIcon = svgParser.getPath("static/icons/employee_icon.svg");
+        String locationIcon = svgParser.getPath("static/icons/location_icon.svg");
+
+        SVGGlyph employeeContent = new SVGGlyph(employeeIcon);
+        SVGGlyph locationContent = new SVGGlyph(locationIcon);
+        employeeContent.setSize(20);
+        locationContent.setSize(20);
+        mapViewButton.setGraphic(employeeContent);
+        employeeTableButton.setGraphic(locationContent);
         this.requestType = requestType;
         switch (requestType)
         {

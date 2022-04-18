@@ -1,5 +1,6 @@
 package edu.wpi.cs3733.D22.teamC.controller.location.map;
 import com.jfoenix.controls.JFXButton;
+import com.jfoenix.svg.SVGGlyph;
 import edu.wpi.cs3733.D22.teamC.App;
 import edu.wpi.cs3733.D22.teamC.entity.employee.Employee;
 import edu.wpi.cs3733.D22.teamC.entity.employee.EmployeeDAO;
@@ -24,21 +25,21 @@ import edu.wpi.cs3733.D22.teamC.entity.service_request.sanitation.SanitationSRDA
 import edu.wpi.cs3733.D22.teamC.entity.service_request.security.SecuritySR;
 import edu.wpi.cs3733.D22.teamC.entity.service_request.security.SecuritySRDAO;
 import edu.wpi.cs3733.D22.teamC.fileio.csv.CSVFacade;
+import edu.wpi.cs3733.D22.teamC.fileio.svg.SVGParser;
 import io.github.palexdev.materialfx.controls.MFXCheckbox;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.Initializable;
 import javafx.scene.control.TextField;
 import javafx.stage.DirectoryChooser;
 import javafx.stage.FileChooser;
-import org.controlsfx.glyphfont.FontAwesome;
-import org.controlsfx.glyphfont.Glyph;
-import org.controlsfx.glyphfont.GlyphFont;
-import org.controlsfx.glyphfont.GlyphFontRegistry;
 
 import java.io.File;
+import java.net.URL;
 import java.util.List;
+import java.util.ResourceBundle;
 
-public class CSVComponent {
+public class CSVComponent implements Initializable {
 
     //Checkboxes
     @FXML private MFXCheckbox employeesExport;
@@ -63,6 +64,8 @@ public class CSVComponent {
     @FXML private MFXCheckbox medicalEquipmentEntityImport;
     @FXML private MFXCheckbox deliveryImport;
     @FXML private MFXCheckbox deliveryExport;
+    @FXML private JFXButton importButton;
+    @FXML private JFXButton exportButton;
 
 
 
@@ -83,6 +86,19 @@ public class CSVComponent {
     public static final String EMPLOYEE_CSV = "Employees.csv";
     public static final String MEDICAL_EQUIPMENT_ENTITY_CSV = "MedicalEquip.csv";
     public static final String DELIVERY_SYSTEM_CSV = "DeliverySysReq.csv";
+
+    @Override
+    public void initialize(URL location, ResourceBundle resources) {
+        SVGParser svgParser = new SVGParser();
+        String folderIcon = svgParser.getPath("static/icons/folder_icon.svg");
+
+        SVGGlyph folderContent = new SVGGlyph(folderIcon);
+        SVGGlyph folderContent2 = new SVGGlyph(folderIcon);
+        folderContent.setSize(20);
+        folderContent2.setSize(20);
+        importButton.setGraphic(folderContent);
+        exportButton.setGraphic(folderContent2);
+    }
 
 
     @FXML

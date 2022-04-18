@@ -2,7 +2,6 @@
 
 <?import com.jfoenix.controls.JFXButton?>
 <?import io.github.palexdev.materialfx.controls.MFXCheckbox?>
-<?import java.net.URL?>
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.Tab?>
@@ -256,7 +255,7 @@
                               <HBox alignment="CENTER_LEFT" maxHeight="1.7976931348623157E308" prefHeight="32.0" prefWidth="435.0" spacing="1.5" HBox.hgrow="NEVER">
                                  <children>
                                     <TextField fx:id="importText" editable="false" prefHeight="26.0" prefWidth="162.0" promptText="Select a Folder" />
-                                    <JFXButton onAction="#chooseImportCSV" styleClass="button-file-select" text=". . ." />
+                                    <JFXButton fx:id="importButton" onAction="#chooseImportCSV" styleClass="button-file-select" />
                                  </children>
                                  <padding>
                                     <Insets left="10.0" />
@@ -387,10 +386,10 @@
                               <Label id="title" styleClass="page-title" text="Select a Folder to Export" />
                            </children>
                         </HBox>
-                        <HBox alignment="CENTER_LEFT" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="33.0" prefWidth="434.0" spacing="1.5" VBox.vgrow="NEVER">
+                        <HBox alignment="CENTER_LEFT" maxHeight="1.7976931348623157E308" prefHeight="33.0" prefWidth="434.0" spacing="1.5" VBox.vgrow="NEVER">
                            <children>
                               <TextField fx:id="exportText" editable="false" prefHeight="26.0" prefWidth="162.0" promptText="Select a Folder" />
-                              <JFXButton onAction="#chooseExportCSV" styleClass="button-file-select" text=". . ." />
+                              <JFXButton fx:id="exportButton" onAction="#chooseExportCSV" styleClass="button-file-select" />
                            </children>
                            <padding>
                               <Insets left="10.0" />
