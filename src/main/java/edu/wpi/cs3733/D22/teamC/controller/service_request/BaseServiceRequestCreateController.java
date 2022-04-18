@@ -104,6 +104,9 @@ public class BaseServiceRequestCreateController<T extends ServiceRequest> implem
             case Delivery_System:
                 title.setText("Create Delivery System Service Request");
                 break;
+            case Translator:
+                title.setText("Create Translator Service Request");
+                break;
             default:
         }
 
@@ -245,7 +248,7 @@ public class BaseServiceRequestCreateController<T extends ServiceRequest> implem
         }
 
 
-    @FXML
+        @FXML
         void goToMapView(ActionEvent event) {
             new MapSelectorWindow(this::setLocation);
         }

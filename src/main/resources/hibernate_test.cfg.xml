@@ -39,7 +39,7 @@
         <mapping class="edu.wpi.cs3733.D22.teamC.entity.service_request.patient_transport.PatientTransportSR" />
         <mapping class="edu.wpi.cs3733.D22.teamC.entity.service_request.laundry.LaundrySR" />
         <mapping class="edu.wpi.cs3733.D22.teamC.entity.service_request.delivery_system.DeliverySystemSR" />
-
+        <mapping class="edu.wpi.cs3733.D22.teamC.entity.service_request.translator.TranslatorSR" />
 
 
     </session-factory>

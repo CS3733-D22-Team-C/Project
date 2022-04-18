@@ -71,6 +71,7 @@ public class ServiceRequest implements IDEntity {
         Medicine_Delivery,
         Sanitation,
         Security,
+        Translator,
         Patient_Transport,
         Laundry,
         Delivery_System

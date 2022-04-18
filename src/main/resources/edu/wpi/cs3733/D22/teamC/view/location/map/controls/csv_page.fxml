@@ -112,6 +112,7 @@
                                           <MFXCheckbox fx:id="facilityMaintenanceImport" text="Facility Maintenance" GridPane.columnIndex="1" GridPane.rowIndex="1" />
                                           <MFXCheckbox fx:id="securityImport" text="Security" GridPane.columnIndex="1" GridPane.rowIndex="2" />
                                           <MFXCheckbox fx:id="deliveryImport" text="Delivery System" GridPane.rowIndex="3" />
+                                          <MFXCheckbox fx:id="translatorImport" text="Translator" GridPane.rowIndex="4" />
                                           <MFXCheckbox fx:id="patientTransportImport" text="Patient Transport" GridPane.columnIndex="1" GridPane.rowIndex="3" />
                                        </children>
                                     </GridPane>
@@ -207,6 +208,7 @@
                                     <MFXCheckbox fx:id="deliveryImport" text="Delivery System" GridPane.rowIndex="3" />
                                     <MFXCheckbox fx:id="patientTransportImport" text="Patient Transport" GridPane.columnIndex="1" GridPane.rowIndex="3" />
                                     <MFXCheckbox fx:id="laundryImport" text="Laundry" GridPane.columnIndex="1" GridPane.rowIndex="4" />
+                                    <MFXCheckbox fx:id="translatorImport" text="Translator" GridPane.rowIndex="4" />
                                  </children>
                               </GridPane>
                            </children>
@@ -340,6 +342,7 @@
                                           <MFXCheckbox fx:id="facilityMaintenanceExport" text="Facility Maintenance" GridPane.columnIndex="1" GridPane.rowIndex="1" />
                                           <MFXCheckbox fx:id="securityExport" text="Security" GridPane.columnIndex="1" GridPane.rowIndex="2" />
                                           <MFXCheckbox fx:id="deliveryExport" text="Delivery System" GridPane.rowIndex="3" />
+                                          <MFXCheckbox fx:id="translatorExport" text="Translator" GridPane.rowIndex="4" />
                                           <MFXCheckbox fx:id="patientTransportExport" text="Patient Transport" GridPane.columnIndex="1" GridPane.rowIndex="3" />
                                           <MFXCheckbox fx:id="laundryExport" text="Laundry" GridPane.columnIndex="1" GridPane.rowIndex="4" />
                                        </children>

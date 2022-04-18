@@ -13,6 +13,7 @@ import edu.wpi.cs3733.D22.teamC.entity.service_request.medicine_delivery.Medicin
 import edu.wpi.cs3733.D22.teamC.entity.service_request.patient_transport.PatientTransportSR;
 import edu.wpi.cs3733.D22.teamC.entity.service_request.sanitation.SanitationSR;
 import edu.wpi.cs3733.D22.teamC.entity.service_request.security.SecuritySR;
+import edu.wpi.cs3733.D22.teamC.entity.service_request.translator.TranslatorSR;
 import edu.wpi.cs3733.D22.teamC.fileio.csv.employee.EmployeeCSVReader;
 import edu.wpi.cs3733.D22.teamC.fileio.csv.employee.EmployeeCSVWriter;
 import edu.wpi.cs3733.D22.teamC.fileio.csv.floor.FloorCSVReader;
@@ -39,6 +40,8 @@ import edu.wpi.cs3733.D22.teamC.fileio.csv.service_request.sanitation.Sanitation
 import edu.wpi.cs3733.D22.teamC.fileio.csv.service_request.sanitation.SanitationSRCSVWriter;
 import edu.wpi.cs3733.D22.teamC.fileio.csv.service_request.security.SecuritySRCSVReader;
 import edu.wpi.cs3733.D22.teamC.fileio.csv.service_request.security.SecuritySRCSVWriter;
+import edu.wpi.cs3733.D22.teamC.fileio.csv.service_request.translator.TranslatorSRCSVReader;
+import edu.wpi.cs3733.D22.teamC.fileio.csv.service_request.translator.TranslatorSRCVSWriter;
 
 import java.io.File;
 import java.util.List;
@@ -95,6 +98,9 @@ public class CSVFacade {
         else if(classType == LaundrySR.class) {
             csvReader = (CSVReader<T>) new LaundrySRCSVReader();
         }
+        else if(classType == TranslatorSR.class) {
+            csvReader = (CSVReader<T>) new TranslatorSRCSVReader();
+        }
 
         return csvReader.readFile(fileName);
     }
@@ -148,6 +154,9 @@ public class CSVFacade {
         }
         else if(classType == LaundrySR.class) {
             csvReader = (CSVReader<T>) new LaundrySRCSVReader();
+        }
+        else if(classType == TranslatorSR.class) {
+            csvReader = (CSVReader<T>) new TranslatorSRCSVReader();
         }
 
         return csvReader.readFile(file);
@@ -204,7 +213,10 @@ public class CSVFacade {
         else if(classType == LaundrySR.class) {
             csvWriter = (CSVWriter<T>) new LaundrySRCSVWriter();
         }
-
+        else if(classType == TranslatorSR.class) {
+            csvWriter = (CSVWriter<T>) new TranslatorSRCVSWriter();
+        }
+        
         return csvWriter.writeFile(fileName, data);
 
     }
@@ -260,7 +272,10 @@ public class CSVFacade {
         else if(classType == LaundrySR.class) {
             csvWriter = (CSVWriter<T>) new LaundrySRCSVWriter();
         }
-
+        else if(classType == TranslatorSR.class) {
+            csvWriter = (CSVWriter<T>) new TranslatorSRCVSWriter();
+        }
+      
         return csvWriter.writeFile(file, data);
     }
 
