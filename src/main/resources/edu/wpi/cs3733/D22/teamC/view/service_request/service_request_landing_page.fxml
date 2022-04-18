@@ -51,8 +51,8 @@
       </VBox>
       <VBox alignment="BOTTOM_CENTER" GridPane.columnIndex="1">
          <children>
-            <Label prefHeight="32.0" prefWidth="180.0" styleClass="label-service-names" stylesheets="@../../css/service_request_landing_page.css" text="Translator" />
-            <JFXButton onAction="#clickTranslator" opacity="0.5" prefHeight="134.0" prefWidth="131.0" styleClass="button-requests" stylesheets="@../../css/service_request_landing_page.css">
+            <Label prefHeight="37.0" prefWidth="160.0" styleClass="label-service-names" stylesheets="@../../css/component/service_request_landing_page.css" text="Translator" />
+            <JFXButton onAction="#clickTranslator" opacity="0.5" prefHeight="134.0" prefWidth="131.0" styleClass="button-requests" stylesheets="@../../css/component/service_request_landing_page.css">
                <effect>
                   <DropShadow height="3.51" offsetY="10.0" radius="0.37749999999999995" width="0.0" />
                </effect>
@@ -60,16 +60,7 @@
                   <Cursor fx:constant="HAND" />
                </cursor>
             </JFXButton>
-            <Label prefHeight="92.0" prefWidth="218.0" styleClass="label-service-names" stylesheets="@../../css/component/service_request_landing_page.css" text="Label" visible="false" />
-            <JFXButton opacity="0.5" prefHeight="134.0" prefWidth="131.0" styleClass="button-requests" stylesheets="@../../css/component/service_request_landing_page.css" visible="false">
-               <effect>
-                  <DropShadow height="3.51" offsetY="10.0" radius="0.37749999999999995" width="0.0" />
-               </effect>
-               <cursor>
-                  <Cursor fx:constant="HAND" />
-               </cursor>
-            </JFXButton>
-            <Label fx:id="vishu" styleClass="label-our-names" stylesheets="@../../css/component/service_request_landing_page.css" text="Vishnu Dendukuri" visible="false" />
+            <Label fx:id="vishu" styleClass="label-our-names" stylesheets="@../../css/component/service_request_landing_page.css" text="Vishnu Dendukuri" />
          </children>
          <padding>
             <Insets bottom="50.0" />

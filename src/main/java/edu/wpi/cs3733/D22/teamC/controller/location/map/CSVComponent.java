@@ -24,6 +24,8 @@ import edu.wpi.cs3733.D22.teamC.entity.service_request.sanitation.SanitationSR;
 import edu.wpi.cs3733.D22.teamC.entity.service_request.sanitation.SanitationSRDAO;
 import edu.wpi.cs3733.D22.teamC.entity.service_request.security.SecuritySR;
 import edu.wpi.cs3733.D22.teamC.entity.service_request.security.SecuritySRDAO;
+import edu.wpi.cs3733.D22.teamC.entity.service_request.translator.TranslatorSR;
+import edu.wpi.cs3733.D22.teamC.entity.service_request.translator.TranslatorSRDAO;
 import edu.wpi.cs3733.D22.teamC.fileio.csv.CSVFacade;
 import io.github.palexdev.materialfx.controls.MFXCheckbox;
 import javafx.event.ActionEvent;
@@ -62,8 +64,8 @@ public class CSVComponent {
     @FXML private MFXCheckbox deliveryExport;
     @FXML private MFXCheckbox laundryImport;
     @FXML private MFXCheckbox laundryExport;
-
-
+    @FXML private MFXCheckbox translatorImport;
+    @FXML private MFXCheckbox translatorExport;
 
     //Textfields
     @FXML private TextField exportText;
@@ -83,6 +85,7 @@ public class CSVComponent {
     public static final String MEDICAL_EQUIPMENT_ENTITY_CSV = "MedicalEquip.csv";
     public static final String DELIVERY_SYSTEM_CSV = "DeliverySysReq.csv";
     public static final String LAUNDRY_CSV = "LaundryReq.csv";
+    public static final String TRANSLATOR_CSV = "TranslatorReq.csv";
 
 
     @FXML
@@ -176,6 +179,11 @@ public class CSVComponent {
                 LaundrySRDAO laundrySRDAO = new LaundrySRDAO();
                 List<LaundrySR> laundrySRS = laundrySRDAO.getAll();
                 CSVFacade.write(LaundrySR.class, savedFile.getPath() + "\\" + LAUNDRY_CSV, laundrySRS);
+            }
+            if(translatorExport.isSelected()) {
+                TranslatorSRDAO translatorSRDAO = new TranslatorSRDAO();
+                List<TranslatorSR> translatorSRS = translatorSRDAO.getAll();
+                CSVFacade.write(TranslatorSR.class, savedFile.getPath() + "\\" + TRANSLATOR_CSV, translatorSRS);
             }
 
             //Employee
@@ -273,6 +281,12 @@ public class CSVComponent {
                 laundrySRDAO.deleteAllFromTable();
                 laundrySRS.forEach(laundrySRDAO::insert);
             }
+            if(translatorImport.isSelected()) {
+                List<TranslatorSR> translatorSRS = CSVFacade.read(TranslatorSR.class, savedFile.getPath() + "\\" + TRANSLATOR_CSV);
+                TranslatorSRDAO translatorSRDAO = new TranslatorSRDAO();
+                translatorSRDAO.deleteAllFromTable();
+                translatorSRS.forEach(translatorSRDAO::insert);
+            }
         }
     }
 
@@ -301,6 +315,8 @@ public class CSVComponent {
         deliveryImport.setSelected(false);
         laundryExport.setSelected(false);
         laundryImport.setSelected(false);
+        translatorImport.setSelected(false);
+        translatorExport.setSelected(false);
         
         medicalEquipmentEntityImport.setSelected(false);
         medicalEquipmentEntityExport.setSelected(false);

@@ -24,7 +24,7 @@ public class ServiceRequestTableDisplay<T extends ServiceRequest> extends TableD
             this.id           = new SimpleStringProperty(serviceRequest.getID());
             this.type         = new SimpleStringProperty(serviceRequest.getRequestType().toString());
             this.assigneeID   = new SimpleStringProperty(serviceRequest.getAssignee() == null ? "" : serviceRequest.getAssignee().getLastName() + ", " + serviceRequest.getAssignee().getFirstName());
-            this.location     = new SimpleStringProperty(new LocationDAO().getByID(serviceRequest.getLocation()).getShortName());
+            this.location     = new SimpleStringProperty(serviceRequest.getLocation() == ""? "" : new LocationDAO().getByID(serviceRequest.getLocation()).getShortName());
             this.status       = new SimpleStringProperty(serviceRequest.getStatus().toString());
             this.priority     = new SimpleStringProperty(serviceRequest.getPriority().toString());
             this.createTime   = new SimpleStringProperty(serviceRequest.getCreationTimestamp().toString());
