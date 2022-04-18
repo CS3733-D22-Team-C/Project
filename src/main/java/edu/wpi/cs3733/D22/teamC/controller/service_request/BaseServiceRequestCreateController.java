@@ -146,11 +146,11 @@ public class BaseServiceRequestCreateController<T extends ServiceRequest> implem
         // Setup Combobox
         List<Employee> employees = new EmployeeDAO().getAll();
 
-        ComponentWrapper.initializeComboBox(employeeComboBox, Employee::getFirstName);
+        ComponentWrapper.initializeComboBox(employeeComboBox, Employee::toString);
         employeeComboBox.getItems().setAll(employees);
 
         List<Location> locations = new LocationDAO().getAll();
-        ComponentWrapper.initializeComboBox(locationID, Location::getShortName);
+        ComponentWrapper.initializeComboBox(locationID, Location::toString);
         locationID.getItems().setAll(locations);
 
     }

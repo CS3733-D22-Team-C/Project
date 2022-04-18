@@ -152,4 +152,9 @@ public class Employee {
                 && password.equals(employee.password);
     }
 
+    @Override
+    public String toString(){
+        return this.firstName + " " + this.lastName;
+    }
+
 }
