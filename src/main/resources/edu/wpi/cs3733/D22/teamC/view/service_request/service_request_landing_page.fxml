@@ -219,13 +219,17 @@
       </VBox>
       <VBox alignment="BOTTOM_CENTER" GridPane.columnIndex="1" GridPane.rowIndex="1">
          <children>
-            <Label styleClass="label-service-names" stylesheets="@../../css/service_request_landing_page.css" text="Laundry" />
-            <JFXButton onAction="#clickLaundry" opacity="0.5" prefHeight="134.0" prefWidth="131.0" styleClass="button-requests" stylesheets="@../../css/service_request_landing_page.css">
+            <Label styleClass="label-service-names" stylesheets="@../../css/component/service_request_landing_page.css" text="Laundry" translateY="-9.0" />
+            <JFXButton onAction="#clickLaundry" opacity="0.5" prefHeight="134.0" prefWidth="131.0" styleClass="button-requests" stylesheets="@../../css/component/service_request_landing_page.css" translateY="-8.0">
                <effect>
                   <DropShadow height="3.51" offsetY="10.0" radius="0.37749999999999995" width="0.0" />
                </effect>
                <graphic>
-                  <ImageView fitHeight="75.13" fitWidth="71.0" />
+                  <ImageView fitHeight="75.13" fitWidth="71.0">
+                     <image>
+                        <Image url="@../../static/images/Sercurity(shield).png" />
+                     </image>
+                  </ImageView>
                </graphic>
                <cursor>
                   <Cursor fx:constant="HAND" />
