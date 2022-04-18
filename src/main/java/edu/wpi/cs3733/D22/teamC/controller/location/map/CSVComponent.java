@@ -1,4 +1,6 @@
 package edu.wpi.cs3733.D22.teamC.controller.location.map;
+import com.jfoenix.controls.JFXButton;
+import com.jfoenix.svg.SVGGlyph;
 import edu.wpi.cs3733.D22.teamC.App;
 import edu.wpi.cs3733.D22.teamC.entity.employee.Employee;
 import edu.wpi.cs3733.D22.teamC.entity.employee.EmployeeDAO;
@@ -30,17 +32,21 @@ import edu.wpi.cs3733.D22.teamC.entity.service_request.security.SecuritySRDAO;
 import edu.wpi.cs3733.D22.teamC.entity.service_request.translator.TranslatorSR;
 import edu.wpi.cs3733.D22.teamC.entity.service_request.translator.TranslatorSRDAO;
 import edu.wpi.cs3733.D22.teamC.fileio.csv.CSVFacade;
+import edu.wpi.cs3733.D22.teamC.fileio.svg.SVGParser;
 import io.github.palexdev.materialfx.controls.MFXCheckbox;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.Initializable;
 import javafx.scene.control.TextField;
 import javafx.stage.DirectoryChooser;
 import javafx.stage.FileChooser;
 
 import java.io.File;
+import java.net.URL;
 import java.util.List;
+import java.util.ResourceBundle;
 
-public class CSVComponent {
+public class CSVComponent implements Initializable {
 
     //Checkboxes
     @FXML private MFXCheckbox employeesExport;
@@ -71,6 +77,10 @@ public class CSVComponent {
     @FXML private MFXCheckbox laundryExport;
     @FXML private MFXCheckbox translatorImport;
     @FXML private MFXCheckbox translatorExport;
+    @FXML private JFXButton importButton;
+    @FXML private JFXButton exportButton;
+
+
 
     //Textfields
     @FXML private TextField exportText;
@@ -92,6 +102,20 @@ public class CSVComponent {
     public static final String PATIENT_TRANSPORT_CSV = "PatientTransportReq.csv";
     public static final String LAUNDRY_CSV = "LaundryReq.csv";
     public static final String TRANSLATOR_CSV = "TranslatorReq.csv";
+
+    @Override
+    public void initialize(URL location, ResourceBundle resources) {
+        SVGParser svgParser = new SVGParser();
+        String folderIcon = svgParser.getPath("static/icons/folder_icon.svg");
+
+        SVGGlyph folderContent = new SVGGlyph(folderIcon);
+        SVGGlyph folderContent2 = new SVGGlyph(folderIcon);
+        folderContent.setSize(20);
+        folderContent2.setSize(20);
+        importButton.setGraphic(folderContent);
+        exportButton.setGraphic(folderContent2);
+    }
+
 
     @FXML
     void chooseExportCSV(ActionEvent event) {
@@ -338,7 +362,7 @@ public class CSVComponent {
         translatorExport.setSelected(false);
         patientTransportExport.setSelected(false);
         patientTransportImport.setSelected(false);
-    
+
         medicalEquipmentEntityImport.setSelected(false);
         medicalEquipmentEntityExport.setSelected(false);
 

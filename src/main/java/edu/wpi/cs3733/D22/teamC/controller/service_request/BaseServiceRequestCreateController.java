@@ -1,15 +1,18 @@
 package edu.wpi.cs3733.D22.teamC.controller.service_request;
 
 import com.jfoenix.controls.JFXButton;
-import com.jfoenix.controls.JFXComboBox;
 import com.jfoenix.controls.JFXTextArea;
 import com.jfoenix.controls.JFXTreeTableView;
+import com.jfoenix.svg.SVGGlyph;
 import edu.wpi.cs3733.D22.teamC.App;
 import edu.wpi.cs3733.D22.teamC.entity.employee.Employee;
+import edu.wpi.cs3733.D22.teamC.entity.employee.EmployeeDAO;
 import edu.wpi.cs3733.D22.teamC.entity.generic.DAO;
 import edu.wpi.cs3733.D22.teamC.entity.location.Location;
 import edu.wpi.cs3733.D22.teamC.entity.patient.Patient;
+import edu.wpi.cs3733.D22.teamC.entity.location.LocationDAO;
 import edu.wpi.cs3733.D22.teamC.entity.service_request.ServiceRequest;
+import edu.wpi.cs3733.D22.teamC.fileio.svg.SVGParser;
 import edu.wpi.cs3733.D22.teamC.models.employee.EmployeeSelectorWindow;
 import edu.wpi.cs3733.D22.teamC.models.location.MapSelectorWindow;
 import edu.wpi.cs3733.D22.teamC.models.patient.PatientSelectorWindow;
@@ -21,18 +24,24 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.VBox;
+import org.controlsfx.control.SearchableComboBox;
+import org.controlsfx.glyphfont.Glyph;
+import org.controlsfx.glyphfont.GlyphFont;
+import org.controlsfx.glyphfont.GlyphFontRegistry;
 
 import java.io.IOException;
 import java.sql.Timestamp;
+import java.util.List;
 import java.util.Locale;
 
 public class BaseServiceRequestCreateController<T extends ServiceRequest> implements ServiceRequestController {
     // FXML
     @FXML
+    private SearchableComboBox<Employee> employeeComboBox;
     private TextField assigneeID;
 
     @FXML
-    private TextField locationID;
+    private SearchableComboBox<Location> locationID;
 
     @FXML
     private JFXTextArea description;
@@ -44,7 +53,7 @@ public class BaseServiceRequestCreateController<T extends ServiceRequest> implem
     private Label title;
 
     @FXML
-    private JFXComboBox<String> priority;
+    private SearchableComboBox<String> priority;
 
     @FXML
     private Button resetButton;
@@ -60,6 +69,7 @@ public class BaseServiceRequestCreateController<T extends ServiceRequest> implem
 
     @FXML
     private JFXButton employeeTableButton;
+    @FXML private JFXButton mapViewButton;
 
     // References
     private InsertServiceRequestCreateController<T> insertController;
@@ -68,12 +78,21 @@ public class BaseServiceRequestCreateController<T extends ServiceRequest> implem
     private ServiceRequestTableDisplay<T> tableDisplay;
     private ServiceRequest.RequestType requestType;
     private EmployeeSelectorWindow employeeSelectorWindow;
-
     private Location location;
     private Employee assignee;
 
 
     public void setup(ServiceRequest.RequestType requestType) {
+        SVGParser svgParser = new SVGParser();
+        String employeeIcon = svgParser.getPath("static/icons/employee_icon.svg");
+        String locationIcon = svgParser.getPath("static/icons/location_icon.svg");
+
+        SVGGlyph employeeContent = new SVGGlyph(employeeIcon);
+        SVGGlyph locationContent = new SVGGlyph(locationIcon);
+        employeeContent.setSize(20);
+        locationContent.setSize(20);
+        mapViewButton.setGraphic(employeeContent);
+        employeeTableButton.setGraphic(locationContent);
         this.requestType = requestType;
         switch (requestType)
         {
@@ -123,7 +142,7 @@ public class BaseServiceRequestCreateController<T extends ServiceRequest> implem
         //ComponentWrapper.setIDFieldToNumeric(locationField);
 
         // Limit the length of TextFields and TextAreas so that users can input a limited number of characters:
-        ComponentWrapper.setTextLengthLimiter(assigneeID, 10);
+        //ComponentWrapper.setTextLengthLimiter(assigneeID, 10);
         //ComponentWrapper.setTextLengthLimiter(locationField, 10);
         // Limit the length of TextFields and TextAreas so that users can input a limited number of characters:
         ComponentWrapper.setTextLengthLimiter(description, 100);
@@ -136,15 +155,26 @@ public class BaseServiceRequestCreateController<T extends ServiceRequest> implem
         for (T serviceRequest : serviceRequestDAO.getAll()) {
             tableDisplay.addObject(serviceRequest);
         }
+
+        // Setup Combobox
+        List<Employee> employees = new EmployeeDAO().getAll();
+
+        ComponentWrapper.initializeComboBox(employeeComboBox, Employee::toString);
+        employeeComboBox.getItems().setAll(employees);
+
+        List<Location> locations = new LocationDAO().getAll();
+        ComponentWrapper.initializeComboBox(locationID, Location::toString);
+        locationID.getItems().setAll(locations);
+
     }
 
 
     boolean requiredFieldsPresent(){
         if (priority.getValue() == null && priority.getPromptText().equals(""))
             return false;
-        if (assigneeID.getText().equals(""))
+        if (employeeComboBox.getValue() == null)
             return false;
-        if (locationID.getText().equals(""))
+        if (locationID.getValue() == null)
             return false;
         return insertController.requiredFieldsPresent();
     }
@@ -160,9 +190,8 @@ public class BaseServiceRequestCreateController<T extends ServiceRequest> implem
 
     private void clearFields() {
         // Clearing Fields
-        assigneeID.clear();
-        assignee = null;
-        locationID.clear();
+        employeeComboBox.setValue(null);
+        locationID.setValue(null);
         location = null;
         description.setText("");
 
@@ -173,26 +202,14 @@ public class BaseServiceRequestCreateController<T extends ServiceRequest> implem
     }
 
     //#region Selector Window Updaters
-        public void setEmployee(Employee employee){
-            assignee = employee;
-
-            String employeeName = "";
-            if (employee != null) {
-                employeeName = employee.getLastName() + ", " + employee.getFirstName();
-            }
-
-            assigneeID.setText(employeeName);
+        public void setEmployee(Employee employee) {
+            employeeComboBox.setValue(employee);
         }
 
         public void setLocation(Location location) {
             this.location = location;
 
-            String locationName = "";
-            if (location != null) {
-                locationName = location.getShortName();
-            }
-
-            locationID.setText(locationName);
+            locationID.setValue(location);
         }
     //#endregion
 
@@ -200,7 +217,7 @@ public class BaseServiceRequestCreateController<T extends ServiceRequest> implem
         // Create Service Request
         T serviceRequest = insertController.createServiceRequest();
 
-        serviceRequest.setAssignee(assignee);
+        serviceRequest.setAssignee(employeeComboBox.getValue());
         serviceRequest.setLocation(location.getID());
         serviceRequest.setDescription(description.getText());
         serviceRequest.setPriority(ServiceRequest.Priority.valueOf(priority.getValue()));
