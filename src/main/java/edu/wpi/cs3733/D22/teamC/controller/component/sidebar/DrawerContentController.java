@@ -143,8 +143,7 @@ public class DrawerContentController implements Initializable {
 
     @FXML
     void userProfileButtonPress(ActionEvent event) {
-        // TODO: Path to user profile page
-        App.instance.setView("");
+        App.instance.setView(App.USER_PROFILE);
     }
 
     // TODO: Bug when entering and exiting the drawer too fast, will overlay both mini and expanded onto the scene
