@@ -95,7 +95,9 @@ public class SidebarMenuController implements Initializable {
             button.setContentDisplay(ContentDisplay.LEFT);
             button.setAlignment(Pos.CENTER_LEFT);
         }
-    }
+        childController.getExpandedView().setVisible(true);
+        childController.getMiniView().setVisible(false);
+        }
 
     @FXML
     private void drawerClosed() {
@@ -103,6 +105,8 @@ public class SidebarMenuController implements Initializable {
             button.setAlignment(Pos.CENTER);
             button.setContentDisplay(ContentDisplay.GRAPHIC_ONLY);
         }
+        childController.getExpandedView().setVisible(false);
+        childController.getMiniView().setVisible(true);
     }
 
     /**
