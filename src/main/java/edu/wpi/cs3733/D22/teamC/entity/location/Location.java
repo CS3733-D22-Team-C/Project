@@ -48,8 +48,7 @@ public class Location implements IDEntity {
         CONF,
         EXIT,
         RETL,
-        SERV,
-        BATH
+        SERV
     }
     
     public Location() {

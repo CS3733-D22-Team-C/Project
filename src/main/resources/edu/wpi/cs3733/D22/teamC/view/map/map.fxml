@@ -10,7 +10,7 @@
 <?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.layout.VBox?>
 
-<StackPane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" prefHeight="449.0" prefWidth="437.0" styleClass="page-container" stylesheets="@../../../../css/base.css" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.wpi.cs3733.D22.teamC.controller.map.MapController">
+<StackPane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" prefHeight="449.0" prefWidth="437.0" styleClass="page-container" stylesheets="@../../css/base.css" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.wpi.cs3733.D22.teamC.controller.map.MapController">
    <children>
       <MFXScrollPane fx:id="scrollPane" fitToHeight="true" fitToWidth="true" hbarPolicy="NEVER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" vbarPolicy="NEVER">
          <content>
@@ -25,18 +25,18 @@
             </StackPane>
          </content>
       </MFXScrollPane>
-      <VBox mouseTransparent="true" prefHeight="200.0" prefWidth="100.0">
+      <VBox pickOnBounds="false" prefHeight="200.0" prefWidth="100.0">
          <children>
-            <HBox alignment="TOP_RIGHT" mouseTransparent="true" prefHeight="100.0" prefWidth="200.0">
+            <HBox fx:id="topOverlay" alignment="TOP_RIGHT" pickOnBounds="false" prefHeight="100.0" prefWidth="200.0">
                <padding>
                   <Insets bottom="15.0" left="15.0" right="15.0" top="15.0" />
                </padding>
                <children>
-                  <Button disable="true" mnemonicParsing="false" prefHeight="26.0" prefWidth="99.0" styleClass="button-create" text="Legend" />
+                  <Button fx:id="legendButton" mnemonicParsing="false" prefHeight="26.0" prefWidth="99.0" styleClass="button-confirm" text="Legend" />
                </children>
             </HBox>
-            <HBox mouseTransparent="true" prefHeight="100.0" prefWidth="200.0" VBox.vgrow="ALWAYS" />
-            <HBox fx:id="bottomOverlay" alignment="BOTTOM_RIGHT" mouseTransparent="true" prefHeight="100.0" prefWidth="200.0">
+            <HBox fx:id="centerOverlay" pickOnBounds="false" prefHeight="100.0" prefWidth="200.0" VBox.vgrow="ALWAYS" />
+            <HBox fx:id="bottomOverlay" alignment="BOTTOM_RIGHT" pickOnBounds="false" prefHeight="100.0" prefWidth="200.0">
                <padding>
                   <Insets bottom="15.0" left="15.0" right="15.0" top="15.0" />
                </padding>
