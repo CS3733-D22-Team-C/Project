@@ -1,0 +1,23 @@
+@import "colors.css";
+@import "fonts.css";
+
+
+
+VBox{
+}
+.top_node{
+    -fx-background-color: white;
+}
+.vb_class {
+    -fx-background-color: -color-textarea;
+    -fx-border-radius: 15px;
+    -fx-border-style: solid;
+
+}
+
+.back_button{
+
+    -fx-background-color:-color-textarea;
+    -fx-border-radius: 15px;
+    -fx-border-style: solid;
+}

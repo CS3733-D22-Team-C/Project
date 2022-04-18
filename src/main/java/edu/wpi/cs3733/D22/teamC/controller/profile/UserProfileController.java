@@ -3,10 +3,12 @@ package edu.wpi.cs3733.D22.teamC.controller.profile;
 import edu.wpi.cs3733.D22.teamC.App;
 import edu.wpi.cs3733.D22.teamC.controller.service_request.InsertServiceRequestCreateController;
 import edu.wpi.cs3733.D22.teamC.entity.employee.Employee;
+import io.github.palexdev.materialfx.controls.MFXButton;
 import io.github.palexdev.materialfx.controls.MFXPasswordField;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.geometry.Pos;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
@@ -22,10 +24,11 @@ public class UserProfileController implements Initializable {
     @FXML Label position;
     @FXML Label contact;
     @FXML Label address;
-    @FXML Button back;
-    @FXML Button changePassword;
+    @FXML Label username;
+    @FXML MFXButton back;
+    @FXML MFXButton changePassword;
     @FXML VBox topNode;
-    @FXML Button submitChange;
+    @FXML MFXButton submitChange;
 
     @FXML MFXPasswordField beforePassword;
     @FXML MFXPasswordField newPass;
@@ -49,6 +52,8 @@ public class UserProfileController implements Initializable {
         position.setText(currentEmploy.getRole().toString());
         contact.setText(currentEmploy.getAddress());
         address.setText(currentEmploy.getAddress());
+        username.setText(currentEmploy.getUsername());
+        topNode.setAlignment(Pos.TOP_CENTER);
         topNode.getChildren().remove(passwordNode);
 
     }
@@ -58,6 +63,7 @@ public class UserProfileController implements Initializable {
     public void changePasswordAction(){
         topNode.getChildren().remove(mainNode);
         topNode.getChildren().add(passwordNode);
+        topNode.setAlignment(Pos.CENTER);
     }
 
     public void changePassword(){
@@ -69,6 +75,15 @@ public class UserProfileController implements Initializable {
             beforePassword.setText("");
             newPass.setText("");
             newPassConfirm.setText("");
+            //return the old node
+            topNode.setAlignment(Pos.TOP_CENTER);
+            topNode.getChildren().remove(passwordNode);
+            topNode.getChildren().add(mainNode);
+        } else {
+            beforePassword.setText("");
+            newPass.setText("");
+            newPassConfirm.setText("");
+            submitChange.setText("try again");
         }
     }
 
