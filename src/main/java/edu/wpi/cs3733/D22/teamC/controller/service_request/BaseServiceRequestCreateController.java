@@ -113,9 +113,11 @@ public class BaseServiceRequestCreateController<T extends ServiceRequest> implem
 
             case Laundry:
                 title.setText("Create Laundry Service Request");
+                break;
 
             case Delivery_System:
                 title.setText("Create Delivery System Service Request");
+                break;
 
             default:
         }
