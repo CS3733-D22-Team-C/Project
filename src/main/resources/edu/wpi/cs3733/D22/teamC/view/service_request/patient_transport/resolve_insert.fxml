@@ -14,8 +14,8 @@
             <Label prefHeight="18.0" prefWidth="134.0" styleClass="service-field-label" text="Patient" />
             <HBox maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308">
                <children>
-                  <SearchableComboBox fx:id="patient" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" onAction="#statusUpdated" />
-                  <JFXButton fx:id="patientTableButton" ellipsisString="" maxHeight="-Infinity" maxWidth="-Infinity" onAction="#goToPatientTable" prefHeight="26.0" prefWidth="34.0" style="-fx-background-color: -color-secondary;" stylesheets="@../../../css/colors.css" text="-&gt;" />
+                  <SearchableComboBox fx:id="patient" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" onAction="#statusUpdated" HBox.hgrow="ALWAYS" />
+                  <JFXButton fx:id="patientTableButton" ellipsisString="" maxHeight="-Infinity" maxWidth="-Infinity" onAction="#goToPatientTable" prefHeight="26.0" prefWidth="30.0" style="-fx-background-color: -color-secondary;" stylesheets="@../../../css/colors.css" text="-&gt;" HBox.hgrow="ALWAYS" />
                </children>
             </HBox>
          </children>
