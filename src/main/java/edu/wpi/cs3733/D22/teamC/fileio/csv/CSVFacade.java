@@ -10,8 +10,10 @@ import edu.wpi.cs3733.D22.teamC.entity.service_request.lab_system.LabSystemSR;
 import edu.wpi.cs3733.D22.teamC.entity.service_request.laundry.LaundrySR;
 import edu.wpi.cs3733.D22.teamC.entity.service_request.medical_equipment.MedicalEquipmentSR;
 import edu.wpi.cs3733.D22.teamC.entity.service_request.medicine_delivery.MedicineDeliverySR;
+import edu.wpi.cs3733.D22.teamC.entity.service_request.patient_transport.PatientTransportSR;
 import edu.wpi.cs3733.D22.teamC.entity.service_request.sanitation.SanitationSR;
 import edu.wpi.cs3733.D22.teamC.entity.service_request.security.SecuritySR;
+import edu.wpi.cs3733.D22.teamC.entity.service_request.translator.TranslatorSR;
 import edu.wpi.cs3733.D22.teamC.fileio.csv.employee.EmployeeCSVReader;
 import edu.wpi.cs3733.D22.teamC.fileio.csv.employee.EmployeeCSVWriter;
 import edu.wpi.cs3733.D22.teamC.fileio.csv.floor.FloorCSVReader;
@@ -32,10 +34,14 @@ import edu.wpi.cs3733.D22.teamC.fileio.csv.service_request.medical_equipment.Med
 import edu.wpi.cs3733.D22.teamC.fileio.csv.service_request.medical_equipment.MedicalEquipmentSRCSVWriter;
 import edu.wpi.cs3733.D22.teamC.fileio.csv.service_request.medicine_delivery.MedicineDeliverySRCSVReader;
 import edu.wpi.cs3733.D22.teamC.fileio.csv.service_request.medicine_delivery.MedicineDeliverySRCSVWriter;
+import edu.wpi.cs3733.D22.teamC.fileio.csv.service_request.patient_transport.PatientTransportSRCSVReader;
+import edu.wpi.cs3733.D22.teamC.fileio.csv.service_request.patient_transport.PatientTransportSRCSVWriter;
 import edu.wpi.cs3733.D22.teamC.fileio.csv.service_request.sanitation.SanitationSRCSVReader;
 import edu.wpi.cs3733.D22.teamC.fileio.csv.service_request.sanitation.SanitationSRCSVWriter;
 import edu.wpi.cs3733.D22.teamC.fileio.csv.service_request.security.SecuritySRCSVReader;
 import edu.wpi.cs3733.D22.teamC.fileio.csv.service_request.security.SecuritySRCSVWriter;
+import edu.wpi.cs3733.D22.teamC.fileio.csv.service_request.translator.TranslatorSRCSVReader;
+import edu.wpi.cs3733.D22.teamC.fileio.csv.service_request.translator.TranslatorSRCVSWriter;
 
 import java.io.File;
 import java.util.List;
@@ -82,12 +88,18 @@ public class CSVFacade {
         }
         else if(classType == SecuritySR.class){
             csvReader = (CSVReader<T>) new SecuritySRCSVReader();
-        } 
+        }
         else if(classType == DeliverySystemSR.class) {
             csvReader = (CSVReader<T>) new DeliverySystemSRCSVReader();
         }
+        else if(classType == PatientTransportSR.class) {
+            csvReader = (CSVReader<T>) new PatientTransportSRCSVReader();
+        }
         else if(classType == LaundrySR.class) {
             csvReader = (CSVReader<T>) new LaundrySRCSVReader();
+        }
+        else if(classType == TranslatorSR.class) {
+            csvReader = (CSVReader<T>) new TranslatorSRCSVReader();
         }
 
         return csvReader.readFile(fileName);
@@ -137,10 +149,16 @@ public class CSVFacade {
         else if(classType == DeliverySystemSR.class) {
             csvReader = (CSVReader<T>) new DeliverySystemSRCSVReader();
         }
+        else if(classType == PatientTransportSR.class) {
+            csvReader = (CSVReader<T>) new PatientTransportSRCSVReader();
+        }
         else if(classType == LaundrySR.class) {
             csvReader = (CSVReader<T>) new LaundrySRCSVReader();
         }
-        
+        else if(classType == TranslatorSR.class) {
+            csvReader = (CSVReader<T>) new TranslatorSRCSVReader();
+        }
+
         return csvReader.readFile(file);
     }
 
@@ -189,8 +207,14 @@ public class CSVFacade {
         else if(classType == DeliverySystemSR.class) {
             csvWriter = (CSVWriter<T>) new DeliverySystemSRCSVWriter();
         }
+        else if(classType == PatientTransportSR.class) {
+            csvWriter = (CSVWriter<T>) new PatientTransportSRCSVWriter();
+        }
         else if(classType == LaundrySR.class) {
             csvWriter = (CSVWriter<T>) new LaundrySRCSVWriter();
+        }
+        else if(classType == TranslatorSR.class) {
+            csvWriter = (CSVWriter<T>) new TranslatorSRCVSWriter();
         }
         
         return csvWriter.writeFile(fileName, data);
@@ -242,10 +266,16 @@ public class CSVFacade {
         else if(classType == DeliverySystemSR.class) {
             csvWriter = (CSVWriter<T>) new DeliverySystemSRCSVWriter();
         }
+        else if(classType == PatientTransportSR.class) {
+            csvWriter = (CSVWriter<T>) new PatientTransportSRCSVWriter();
+        }
         else if(classType == LaundrySR.class) {
             csvWriter = (CSVWriter<T>) new LaundrySRCSVWriter();
         }
-        
+        else if(classType == TranslatorSR.class) {
+            csvWriter = (CSVWriter<T>) new TranslatorSRCVSWriter();
+        }
+      
         return csvWriter.writeFile(file, data);
     }
 

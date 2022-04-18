@@ -9,11 +9,13 @@ import edu.wpi.cs3733.D22.teamC.entity.employee.Employee;
 import edu.wpi.cs3733.D22.teamC.entity.employee.EmployeeDAO;
 import edu.wpi.cs3733.D22.teamC.entity.generic.DAO;
 import edu.wpi.cs3733.D22.teamC.entity.location.Location;
+import edu.wpi.cs3733.D22.teamC.entity.patient.Patient;
 import edu.wpi.cs3733.D22.teamC.entity.location.LocationDAO;
 import edu.wpi.cs3733.D22.teamC.entity.service_request.ServiceRequest;
 import edu.wpi.cs3733.D22.teamC.fileio.svg.SVGParser;
 import edu.wpi.cs3733.D22.teamC.models.employee.EmployeeSelectorWindow;
 import edu.wpi.cs3733.D22.teamC.models.location.MapSelectorWindow;
+import edu.wpi.cs3733.D22.teamC.models.patient.PatientSelectorWindow;
 import edu.wpi.cs3733.D22.teamC.models.service_request.ServiceRequestTableDisplay;
 import edu.wpi.cs3733.D22.teamC.models.utils.ComponentWrapper;
 import javafx.event.ActionEvent;
@@ -77,6 +79,8 @@ public class BaseServiceRequestCreateController<T extends ServiceRequest> implem
     private ServiceRequest.RequestType requestType;
     private EmployeeSelectorWindow employeeSelectorWindow;
     private Location location;
+    private Employee assignee;
+
 
     public void setup(ServiceRequest.RequestType requestType) {
         SVGParser svgParser = new SVGParser();
@@ -110,15 +114,18 @@ public class BaseServiceRequestCreateController<T extends ServiceRequest> implem
             case Sanitation:
                 title.setText("Create Sanitation Service Request");
                 break;
-
+            case Patient_Transport:
+                title.setText("Create Patient Transport Service Request");
+                break;
             case Laundry:
                 title.setText("Create Laundry Service Request");
                 break;
-
             case Delivery_System:
                 title.setText("Create Delivery System Service Request");
                 break;
-
+            case Translator:
+                title.setText("Create Translator Service Request");
+                break;
             default:
         }
 
@@ -134,6 +141,9 @@ public class BaseServiceRequestCreateController<T extends ServiceRequest> implem
         //setIDFieldToNumeric(assigneeID);
         //ComponentWrapper.setIDFieldToNumeric(locationField);
 
+        // Limit the length of TextFields and TextAreas so that users can input a limited number of characters:
+        ComponentWrapper.setTextLengthLimiter(assigneeID, 10);
+        //ComponentWrapper.setTextLengthLimiter(locationField, 10);
         // Limit the length of TextFields and TextAreas so that users can input a limited number of characters:
         ComponentWrapper.setTextLengthLimiter(description, 100);
 

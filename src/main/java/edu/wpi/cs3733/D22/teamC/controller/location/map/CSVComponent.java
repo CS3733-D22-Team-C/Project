@@ -10,6 +10,7 @@ import edu.wpi.cs3733.D22.teamC.entity.location.Location;
 import edu.wpi.cs3733.D22.teamC.entity.location.LocationDAO;
 import edu.wpi.cs3733.D22.teamC.entity.medical_equipment.MedicalEquipment;
 import edu.wpi.cs3733.D22.teamC.entity.medical_equipment.MedicalEquipmentDAO;
+import edu.wpi.cs3733.D22.teamC.entity.patient.Patient;
 import edu.wpi.cs3733.D22.teamC.entity.service_request.delivery_system.DeliverySystemSR;
 import edu.wpi.cs3733.D22.teamC.entity.service_request.delivery_system.DeliverySystemSRDAO;
 import edu.wpi.cs3733.D22.teamC.entity.service_request.facility_maintenance.FacilityMaintenanceSR;
@@ -22,10 +23,14 @@ import edu.wpi.cs3733.D22.teamC.entity.service_request.medical_equipment.Medical
 import edu.wpi.cs3733.D22.teamC.entity.service_request.medical_equipment.MedicalEquipmentSRDAO;
 import edu.wpi.cs3733.D22.teamC.entity.service_request.medicine_delivery.MedicineDeliverySR;
 import edu.wpi.cs3733.D22.teamC.entity.service_request.medicine_delivery.MedicineDeliverySRDAO;
+import edu.wpi.cs3733.D22.teamC.entity.service_request.patient_transport.PatientTransportSR;
+import edu.wpi.cs3733.D22.teamC.entity.service_request.patient_transport.PatientTransportSRDAO;
 import edu.wpi.cs3733.D22.teamC.entity.service_request.sanitation.SanitationSR;
 import edu.wpi.cs3733.D22.teamC.entity.service_request.sanitation.SanitationSRDAO;
 import edu.wpi.cs3733.D22.teamC.entity.service_request.security.SecuritySR;
 import edu.wpi.cs3733.D22.teamC.entity.service_request.security.SecuritySRDAO;
+import edu.wpi.cs3733.D22.teamC.entity.service_request.translator.TranslatorSR;
+import edu.wpi.cs3733.D22.teamC.entity.service_request.translator.TranslatorSRDAO;
 import edu.wpi.cs3733.D22.teamC.fileio.csv.CSVFacade;
 import edu.wpi.cs3733.D22.teamC.fileio.svg.SVGParser;
 import io.github.palexdev.materialfx.controls.MFXCheckbox;
@@ -66,8 +71,12 @@ public class CSVComponent implements Initializable {
     @FXML private MFXCheckbox medicalEquipmentEntityImport;
     @FXML private MFXCheckbox deliveryImport;
     @FXML private MFXCheckbox deliveryExport;
+    @FXML private MFXCheckbox patientTransportImport;
+    @FXML private MFXCheckbox patientTransportExport;
     @FXML private MFXCheckbox laundryImport;
     @FXML private MFXCheckbox laundryExport;
+    @FXML private MFXCheckbox translatorImport;
+    @FXML private MFXCheckbox translatorExport;
     @FXML private JFXButton importButton;
     @FXML private JFXButton exportButton;
 
@@ -90,7 +99,9 @@ public class CSVComponent implements Initializable {
     public static final String EMPLOYEE_CSV = "Employees.csv";
     public static final String MEDICAL_EQUIPMENT_ENTITY_CSV = "MedicalEquip.csv";
     public static final String DELIVERY_SYSTEM_CSV = "DeliverySysReq.csv";
+    public static final String PATIENT_TRANSPORT_CSV = "PatientTransportReq.csv";
     public static final String LAUNDRY_CSV = "LaundryReq.csv";
+    public static final String TRANSLATOR_CSV = "TranslatorReq.csv";
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
@@ -118,14 +129,18 @@ public class CSVComponent implements Initializable {
 
     @FXML
     void clickExportFiles(ActionEvent event) {
-        entitiesChecked(true);
-        resetFields();
+        if(!exportText.getText().equals("")) {
+            entitiesChecked(true);
+            resetFields();
+        }
     }
 
     @FXML
     void clickImportFiles(ActionEvent event) {
-        entitiesChecked(false);
-        resetFields();
+        if(!importText.getText().equals("")) {
+            entitiesChecked(false);
+            resetFields();
+        }
 
     }
 
@@ -193,10 +208,20 @@ public class CSVComponent implements Initializable {
                 List<DeliverySystemSR> deliverySystemSRS = deliverySystemSRDAO.getAll();
                 CSVFacade.write(DeliverySystemSR.class, savedFile.getPath() + "\\" + DELIVERY_SYSTEM_CSV, deliverySystemSRS);
             }
+            if(patientTransportExport.isSelected()) {
+                PatientTransportSRDAO patientTransportSRDAO = new PatientTransportSRDAO();
+                List<PatientTransportSR> patientTransportSRS = patientTransportSRDAO.getAll();
+                CSVFacade.write(PatientTransportSR.class, savedFile.getPath() + "\\" + PATIENT_TRANSPORT_CSV, patientTransportSRS);
+            }
             if(laundryExport.isSelected()) {
                 LaundrySRDAO laundrySRDAO = new LaundrySRDAO();
                 List<LaundrySR> laundrySRS = laundrySRDAO.getAll();
                 CSVFacade.write(LaundrySR.class, savedFile.getPath() + "\\" + LAUNDRY_CSV, laundrySRS);
+            }
+            if(translatorExport.isSelected()) {
+                TranslatorSRDAO translatorSRDAO = new TranslatorSRDAO();
+                List<TranslatorSR> translatorSRS = translatorSRDAO.getAll();
+                CSVFacade.write(TranslatorSR.class, savedFile.getPath() + "\\" + TRANSLATOR_CSV, translatorSRS);
             }
 
             //Employee
@@ -227,7 +252,6 @@ public class CSVComponent implements Initializable {
                 locationDAO.deleteAllFromTable();
                 locations.forEach(locationDAO::insert);
             }
-
 
             //Employee
             if(employeesImport.isSelected()) {
@@ -288,11 +312,23 @@ public class CSVComponent implements Initializable {
                 deliverySystemSRDAO.deleteAllFromTable();
                 deliverySystemSRS.forEach(deliverySystemSRDAO::insert);
             }
+            if(patientTransportImport.isSelected()) {
+                List<PatientTransportSR> patientTransportSRS = CSVFacade.read(PatientTransportSR.class, savedFile.getPath() + "\\" + PATIENT_TRANSPORT_CSV);
+                PatientTransportSRDAO patientTransportSRDAO = new PatientTransportSRDAO();
+                patientTransportSRDAO.deleteAllFromTable();
+                patientTransportSRS.forEach(patientTransportSRDAO::insert);
+            }
             if(laundryImport.isSelected()) {
                 List<LaundrySR> laundrySRS = CSVFacade.read(LaundrySR.class, savedFile.getPath() + "\\" + LAUNDRY_CSV);
                 LaundrySRDAO laundrySRDAO = new LaundrySRDAO();
                 laundrySRDAO.deleteAllFromTable();
                 laundrySRS.forEach(laundrySRDAO::insert);
+            }
+            if(translatorImport.isSelected()) {
+                List<TranslatorSR> translatorSRS = CSVFacade.read(TranslatorSR.class, savedFile.getPath() + "\\" + TRANSLATOR_CSV);
+                TranslatorSRDAO translatorSRDAO = new TranslatorSRDAO();
+                translatorSRDAO.deleteAllFromTable();
+                translatorSRS.forEach(translatorSRDAO::insert);
             }
         }
     }
@@ -322,6 +358,10 @@ public class CSVComponent implements Initializable {
         deliveryImport.setSelected(false);
         laundryExport.setSelected(false);
         laundryImport.setSelected(false);
+        translatorImport.setSelected(false);
+        translatorExport.setSelected(false);
+        patientTransportExport.setSelected(false);
+        patientTransportImport.setSelected(false);
 
         medicalEquipmentEntityImport.setSelected(false);
         medicalEquipmentEntityExport.setSelected(false);
