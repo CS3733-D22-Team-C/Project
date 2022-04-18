@@ -11,7 +11,7 @@
 
 <VBox alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="1186.0" prefWidth="1785.0" styleClass="top_node" stylesheets="@../../../css/profile.css" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.wpi.cs3733.D22.teamC.controller.profile.UserProfileController">
    <children>
-      <ImageView fx:id="image" fitHeight="201.0" fitWidth="230.0" pickOnBounds="true" preserveRatio="true" />
+      <ImageView fitHeight="188.0" fitWidth="223.0" pickOnBounds="true" preserveRatio="true" />
       <Label fx:id="name" alignment="CENTER" contentDisplay="CENTER" prefHeight="72.0" prefWidth="1852.0" text="Test Value">
          <font>
             <Font size="36.0" />
@@ -108,8 +108,7 @@
                      <children>
                         <HBox alignment="CENTER" prefHeight="51.0" prefWidth="702.0">
                            <children>
-                              <Label prefHeight="17.0" prefWidth="92.0" text="Password" />
-                              <MFXPasswordField fx:id="beforePassword" prefHeight="51.0" prefWidth="470.0" style="-fx-background-color: clear;" />
+                              <MFXPasswordField fx:id="beforePassword" floatingText="Password" prefHeight="51.0" prefWidth="470.0" style="-fx-background-color: clear;" />
                            </children>
                            <VBox.margin>
                               <Insets top="5.0" />
@@ -117,8 +116,7 @@
                         </HBox>
                         <HBox alignment="CENTER" prefHeight="51.0" prefWidth="691.0">
                            <children>
-                              <Label prefHeight="17.0" prefWidth="89.0" text="New Password" />
-                              <MFXPasswordField fx:id="newPass" prefHeight="51.0" prefWidth="470.0" style="-fx-background-color: clear;" />
+                              <MFXPasswordField fx:id="newPass" floatingText="New Password" prefHeight="51.0" prefWidth="470.0" style="-fx-background-color: clear;" />
                            </children>
                            <VBox.margin>
                               <Insets top="5.0" />
@@ -126,8 +124,7 @@
                         </HBox>
                         <HBox alignment="CENTER" prefHeight="51.0" prefWidth="719.0">
                            <children>
-                              <Label prefHeight="17.0" prefWidth="92.0" text="Confirm" />
-                              <MFXPasswordField fx:id="newPassConfirm" prefHeight="51.0" prefWidth="470.0" style="-fx-background-color: clear;" />
+                              <MFXPasswordField fx:id="newPassConfirm" floatingText="Confirm" prefHeight="51.0" prefWidth="470.0" style="-fx-background-color: clear;" />
                            </children>
                            <VBox.margin>
                               <Insets top="5.0" />

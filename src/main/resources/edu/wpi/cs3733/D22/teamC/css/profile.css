@@ -20,3 +20,8 @@
 .image-view{
     -fx-border-radius: 50px;
 }
+
+.mfx-password-field .text-field {
+    -fx-background-color: transparent;
+}
+

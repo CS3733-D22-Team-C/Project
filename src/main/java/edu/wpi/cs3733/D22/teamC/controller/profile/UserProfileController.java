@@ -46,9 +46,6 @@ public class UserProfileController implements Initializable {
     @Override
     public void initialize(URL location, ResourceBundle resources)
     {
-//        App.View passWordPage = App.instance.loadView(PWnode);
-//        App.View mainNodePage = App.instance.loadView(Mnode);
-
         currentEmploy = App.instance.getUserAccount();
         name.setText(currentEmploy.getLastName() + " " + currentEmploy.getLastName());
         position.setText(currentEmploy.getRole().toString());
