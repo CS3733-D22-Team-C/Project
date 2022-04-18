@@ -72,9 +72,9 @@ public class ServiceRequest implements IDEntity {
         Sanitation,
         Security,
         Translator,
+        Patient_Transport,
         Laundry,
         Delivery_System
-
     }
     
     public ServiceRequest(){
