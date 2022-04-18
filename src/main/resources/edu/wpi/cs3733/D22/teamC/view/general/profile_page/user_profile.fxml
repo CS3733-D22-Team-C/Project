@@ -1,0 +1,150 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import io.github.palexdev.materialfx.controls.MFXPasswordField?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<VBox alignment="TOP_CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="591.0" prefWidth="1208.0" styleClass="top_node" stylesheets="@../../../css/profile.css" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.wpi.cs3733.D22.teamC.controller.profile.UserProfileController">
+   <children>
+      <Label fx:id="name" prefHeight="89.0" prefWidth="335.0" text="Bob Jones">
+         <font>
+            <Font size="72.0" />
+         </font>
+         <opaqueInsets>
+            <Insets />
+         </opaqueInsets>
+         <VBox.margin>
+            <Insets bottom="25.0" top="10.0" />
+         </VBox.margin>
+      </Label>
+      <Label fx:id="position" text="Nurse">
+         <font>
+            <Font size="64.0" />
+         </font>
+         <VBox.margin>
+            <Insets bottom="10.0" top="10.0" />
+         </VBox.margin>
+      </Label>
+      <HBox alignment="BOTTOM_CENTER" prefHeight="13.0" prefWidth="600.0">
+         <children>
+            <Label text="Contact:">
+               <HBox.margin>
+                  <Insets right="10.0" />
+               </HBox.margin>
+               <font>
+                  <Font size="24.0" />
+               </font>
+            </Label>
+            <Label fx:id="contact" text="Label">
+               <font>
+                  <Font size="24.0" />
+               </font></Label>
+         </children>
+         <VBox.margin>
+            <Insets bottom="10.0" top="10.0" />
+         </VBox.margin>
+      </HBox>
+      <HBox alignment="CENTER" prefHeight="18.0" prefWidth="600.0">
+         <children>
+            <Label text="Address">
+               <HBox.margin>
+                  <Insets right="10.0" />
+               </HBox.margin>
+               <font>
+                  <Font size="24.0" />
+               </font>
+            </Label>
+            <Label fx:id="address" text="Label">
+               <font>
+                  <Font size="24.0" />
+               </font></Label>
+         </children>
+         <VBox.margin>
+            <Insets bottom="10.0" top="10.0" />
+         </VBox.margin>
+      </HBox>
+      <HBox alignment="TOP_CENTER" prefHeight="20.0" prefWidth="600.0">
+         <VBox.margin>
+            <Insets bottom="10.0" top="10.0" />
+         </VBox.margin>
+         <children>
+            <Label text="Username">
+               <HBox.margin>
+                  <Insets right="10.0" />
+               </HBox.margin>
+               <font>
+                  <Font size="24.0" />
+               </font>
+            </Label>
+            <Label text="Label">
+               <font>
+                  <Font size="24.0" />
+               </font></Label>
+         </children>
+      </HBox>
+      <HBox alignment="CENTER" prefHeight="249.0" prefWidth="937.0">
+         <children>
+            <VBox alignment="CENTER" prefHeight="249.0" prefWidth="310.0">
+               <children>
+                  <Button fx:id="back" mnemonicParsing="false" onAction="#backButton" prefHeight="53.0" prefWidth="131.0" styleClass="button-back" stylesheets="@../../../css/base.css" text="Back">
+                     <font>
+                        <Font size="48.0" />
+                     </font></Button>
+               </children>
+            </VBox>
+            <VBox fx:id="topNode" prefHeight="249.0" prefWidth="520.0" styleClass="vb_class" stylesheets="@../../../css/profile.css">
+               <children>
+                  <VBox fx:id="mainNode" alignment="CENTER" prefHeight="109.0" prefWidth="624.0">
+                     <children>
+                        <Button fx:id="changePassword" mnemonicParsing="false" onAction="#changePasswordAction" prefHeight="30.0" prefWidth="141.0" text="Button" />
+                     </children>
+                     <VBox.margin>
+                        <Insets top="20.0" />
+                     </VBox.margin>
+                  </VBox>
+                  <VBox fx:id="passwordNode" alignment="CENTER" prefHeight="103.0" prefWidth="624.0">
+                     <children>
+                        <HBox alignment="CENTER" prefHeight="37.0" prefWidth="186.0">
+                           <children>
+                              <Label prefHeight="17.0" prefWidth="92.0" text="Password" />
+                              <MFXPasswordField fx:id="beforePassword" prefHeight="51.0" prefWidth="320.0" style="-fx-background-color: clear;" />
+                           </children>
+                           <VBox.margin>
+                              <Insets top="5.0" />
+                           </VBox.margin>
+                        </HBox>
+                        <HBox alignment="CENTER" prefHeight="20.0" prefWidth="197.0">
+                           <children>
+                              <Label prefHeight="17.0" prefWidth="89.0" text="New Password" />
+                              <MFXPasswordField fx:id="newPass" prefHeight="51.0" prefWidth="319.0" style="-fx-background-color: clear;" />
+                           </children>
+                           <VBox.margin>
+                              <Insets top="5.0" />
+                           </VBox.margin>
+                        </HBox>
+                        <HBox alignment="CENTER" prefHeight="14.0" prefWidth="569.0">
+                           <children>
+                              <Label prefHeight="17.0" prefWidth="92.0" text="Confirm" />
+                              <MFXPasswordField fx:id="newPassConfirm" prefHeight="19.0" prefWidth="320.0" style="-fx-background-color: clear;" />
+                           </children>
+                           <VBox.margin>
+                              <Insets top="5.0" />
+                           </VBox.margin>
+                        </HBox>
+                        <Button fx:id="submitChange" mnemonicParsing="false" onAction="#changePassword" text="Submit">
+                           <VBox.margin>
+                              <Insets top="10.0" />
+                           </VBox.margin>
+                        </Button>
+                     </children>
+                  </VBox>
+               </children></VBox>
+            <VBox prefHeight="249.0" prefWidth="310.0" />
+         </children>
+      </HBox>
+   </children>
+</VBox>
