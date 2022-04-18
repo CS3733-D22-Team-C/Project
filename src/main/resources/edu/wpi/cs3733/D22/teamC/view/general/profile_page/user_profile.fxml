@@ -8,25 +8,25 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<VBox alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="799.0" prefWidth="1289.0" styleClass="top_node" stylesheets="@../../../css/profile.css" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.wpi.cs3733.D22.teamC.controller.profile.UserProfileController">
+<VBox alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="1186.0" prefWidth="1785.0" styleClass="top_node" stylesheets="@../../../css/profile.css" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.wpi.cs3733.D22.teamC.controller.profile.UserProfileController">
    <children>
       <Label fx:id="name" alignment="CENTER" contentDisplay="CENTER" prefHeight="72.0" prefWidth="1852.0" text="Test Value">
          <font>
-            <Font size="96.0" />
+            <Font size="36.0" />
          </font>
          <opaqueInsets>
             <Insets />
          </opaqueInsets>
          <VBox.margin>
-            <Insets bottom="25.0" top="10.0" />
+            <Insets top="10.0" />
          </VBox.margin>
       </Label>
       <Label fx:id="position" alignment="CENTER" prefHeight="79.0" prefWidth="1849.0" text="Nurse">
          <font>
-            <Font size="64.0" />
+            <Font size="36.0" />
          </font>
          <VBox.margin>
-            <Insets bottom="10.0" top="10.0" />
+            <Insets bottom="10.0" />
          </VBox.margin>
       </Label>
       <HBox alignment="BOTTOM_CENTER" prefHeight="13.0" prefWidth="600.0">
@@ -39,7 +39,7 @@
                   <Font size="24.0" />
                </font>
             </Label>
-            <Label fx:id="contact" style="-fx-font-weight: bold;" text="Label">
+            <Label fx:id="contact" text="Label">
                <font>
                   <Font size="24.0" />
                </font></Label>
@@ -58,7 +58,7 @@
                   <Font size="24.0" />
                </font>
             </Label>
-            <Label fx:id="address" style="-fx-font-weight: bold;" text="Label">
+            <Label fx:id="address" text="Label">
                <font>
                   <Font size="24.0" />
                </font></Label>
@@ -80,7 +80,7 @@
                   <Font size="24.0" />
                </font>
             </Label>
-            <Label fx:id="username" style="-fx-font-weight: bold;" text="Label">
+            <Label fx:id="username" text="Label">
                <font>
                   <Font size="24.0" />
                </font></Label>
@@ -144,7 +144,7 @@
                </children></VBox>
          </children>
       </HBox>
-      <HBox prefHeight="300.0" prefWidth="1289.0">
+      <HBox prefHeight="149.0" prefWidth="1606.0">
          <children>
             <VBox alignment="CENTER" prefHeight="303.0" prefWidth="390.0">
                <children>
