@@ -3,16 +3,20 @@ package edu.wpi.cs3733.D22.teamC.entity.service_request.translator;
 import edu.wpi.cs3733.D22.teamC.entity.service_request.ServiceRequest;
 
 import javax.persistence.*;
+import java.security.SecureRandom;
+import java.sql.Timestamp;
+import java.util.Objects;
+
 
 @Entity
 @Table(name = "TRANSLATOR_SR")
 public class TranslatorSR extends ServiceRequest {
 
     @Enumerated(EnumType.STRING)
-    @Column(name = "Language")
+    @Column(name = "language")
     private Language language;
 
-    @Column(name ="PatientID") //TODO: change this to a patient object
+    @Column(name ="patientID") //TODO: change this to a patient object
     private String patientID;
 
 
