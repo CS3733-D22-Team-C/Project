@@ -41,11 +41,12 @@
 
 /* Sets all spacing between components within all vboxes */
 .vbox {
-    -fx-spacing: 5px;
+    -fx-spacing: 6px;
     -fx-padding: 5px;
 }
 
 /* Sets the background color of the drawer */
 .jfx-drawer {
-    -fx-background-color: -color-surface;
+    -fx-background-color: -color-background;
+
 }
