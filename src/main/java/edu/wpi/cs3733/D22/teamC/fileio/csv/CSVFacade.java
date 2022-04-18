@@ -7,6 +7,7 @@ import edu.wpi.cs3733.D22.teamC.entity.medical_equipment.MedicalEquipment;
 import edu.wpi.cs3733.D22.teamC.entity.service_request.delivery_system.DeliverySystemSR;
 import edu.wpi.cs3733.D22.teamC.entity.service_request.facility_maintenance.FacilityMaintenanceSR;
 import edu.wpi.cs3733.D22.teamC.entity.service_request.lab_system.LabSystemSR;
+import edu.wpi.cs3733.D22.teamC.entity.service_request.laundry.LaundrySR;
 import edu.wpi.cs3733.D22.teamC.entity.service_request.medical_equipment.MedicalEquipmentSR;
 import edu.wpi.cs3733.D22.teamC.entity.service_request.medicine_delivery.MedicineDeliverySR;
 import edu.wpi.cs3733.D22.teamC.entity.service_request.patient_transport.PatientTransportSR;
@@ -26,6 +27,8 @@ import edu.wpi.cs3733.D22.teamC.fileio.csv.service_request.facility_maintenance.
 import edu.wpi.cs3733.D22.teamC.fileio.csv.service_request.facility_maintenance.FacilityMaintenanceSRCSVWriter;
 import edu.wpi.cs3733.D22.teamC.fileio.csv.service_request.lab_system.LabSystemSRCSVReader;
 import edu.wpi.cs3733.D22.teamC.fileio.csv.service_request.lab_system.LabSystemSRCSVWriter;
+import edu.wpi.cs3733.D22.teamC.fileio.csv.service_request.laundry.LaundrySRCSVReader;
+import edu.wpi.cs3733.D22.teamC.fileio.csv.service_request.laundry.LaundrySRCSVWriter;
 import edu.wpi.cs3733.D22.teamC.fileio.csv.service_request.medical_equipment.MedicalEquipmentSRCSVReader;
 import edu.wpi.cs3733.D22.teamC.fileio.csv.service_request.medical_equipment.MedicalEquipmentSRCSVWriter;
 import edu.wpi.cs3733.D22.teamC.fileio.csv.service_request.medicine_delivery.MedicineDeliverySRCSVReader;
@@ -82,12 +85,14 @@ public class CSVFacade {
         }
         else if(classType == SecuritySR.class){
             csvReader = (CSVReader<T>) new SecuritySRCSVReader();
-        } 
+        }
         else if(classType == DeliverySystemSR.class) {
             csvReader = (CSVReader<T>) new DeliverySystemSRCSVReader();
         }
         else if(classType == PatientTransportSR.class) {
             csvReader = (CSVReader<T>) new PatientTransportSRCSVReader();
+        else if(classType == LaundrySR.class) {
+            csvReader = (CSVReader<T>) new LaundrySRCSVReader();
         }
 
         return csvReader.readFile(fileName);
@@ -139,8 +144,10 @@ public class CSVFacade {
         }
         else if(classType == PatientTransportSR.class) {
             csvReader = (CSVReader<T>) new PatientTransportSRCSVReader();
+        else if(classType == LaundrySR.class) {
+            csvReader = (CSVReader<T>) new LaundrySRCSVReader();
         }
-        
+
         return csvReader.readFile(file);
     }
 
@@ -191,8 +198,10 @@ public class CSVFacade {
         }
         else if(classType == PatientTransportSR.class) {
             csvWriter = (CSVWriter<T>) new PatientTransportSRCSVWriter();
+        else if(classType == LaundrySR.class) {
+            csvWriter = (CSVWriter<T>) new LaundrySRCSVWriter();
         }
-        
+
         return csvWriter.writeFile(fileName, data);
 
     }
@@ -244,8 +253,10 @@ public class CSVFacade {
         }
         else if(classType == PatientTransportSR.class) {
             csvWriter = (CSVWriter<T>) new PatientTransportSRCSVWriter();
+        else if(classType == LaundrySR.class) {
+            csvWriter = (CSVWriter<T>) new LaundrySRCSVWriter();
         }
-        
+
         return csvWriter.writeFile(file, data);
     }
 
