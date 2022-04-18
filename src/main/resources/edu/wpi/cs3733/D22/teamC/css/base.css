@@ -110,11 +110,6 @@ padding goes top, right, bottom, left
     -fx-background-color: -color-dropdown-menu;
 }
 
-.service-field-label {
-    -fx-font-family: -font-field-label;
-    -fx-font-size: 15;
-}
-
 .page-title {
     -fx-font-family: -font-field-label;
     -fx-font-weight: bold;
@@ -149,100 +144,11 @@ padding goes top, right, bottom, left
     -fx-font-size: 20;
 }
 
-.home-page-button {
-    -fx-background-color: -color-button-text;
-    -fx-font-family: Inter;
-    -fx-font-size: 17;
-    -fx-opacity: .83;
-}
-
 .button-confirm {
     -fx-text-fill: -color-button-text;
     -fx-background-color: -color-button-confirm;
     -fx-font-size: 15;
     -fx-spacing: 5px;
-}
-
-/* Table Styling */
-/**/
-.tree-table-view {
-    -fx-background-color: transparent;
-}
-/* Top right part of the table */
-.table-view .column-header-background .filler {
-    -fx-background-color: transparent;
-}
-
-.table-view .corner {
-    -fx-background-color: transparent;
-}
-
-.table-view .label {
-    -fx-text-fill: -color-primary-text;
-}
-
-.tree-table-view .column-header-background{
-    -fx-background-color: linear-gradient(to bottom, -color-primary, -color-primary-light);
-    -fx-background-radius: 7px 7px 0px 0px;
-    /* Insets header to the width of the scrollbar */
-    /*-fx-background-insets: 0 11px 0 0;*/
-    -fx-padding: 0 0 5px 0;
-}
-.table-view .column-header {
-    -fx-background-color: transparent;
-    -fx-border-style: none;
-}
-.table-view .table-column {
-    -fx-alignment: center;
-    -fx-border-color: transparent;
-    -fx-wrap-text: true;
-    -fx-padding: 10px;
-}
-.table-view .table-cell{
-    -fx-border-color: transparent;
-    -fx-padding: 2 0 2 10px;
-}
-.tree-table-row-cell:hover {
-    -fx-background-color: #93f9b911;
-    -fx-text-background-color: -color-primary-light;
-}
-.tree-table-row-cell:odd{
-    -fx-background-color: -color-background;
-    -fx-background-insets: 0, 0 0 1 0;
-    -fx-padding: 0.0em;
-}
-.tree-table-row-cell:even{
-    -fx-background-color: -color-surface;
-    -fx-background-insets: 0, 0 0 1 0;
-    -fx-padding: 0.0em;
-}
-.tree-table-row-cell:selected {
-    -fx-background-color: -color-primary-dark;
-}
-.tree-table-row-cell:selected .text {
-    -fx-fill: -color-primary-text;
-}
-
-
-/* Table Scrollbar Styling */
-.table-view .virtual-flow .scroll-bar:vertical,
-.table-view .virtual-flow .scroll-bar:vertical .track,
-.table-view .virtual-flow .scroll-bar:vertical .track-background,
-.table-view .virtual-flow .scroll-bar:horizontal,
-.table-view .virtual-flow .scroll-bar:horizontal .track,
-.table-view .virtual-flow .scroll-bar:horizontal .track-background {
-    -fx-background-color: transparent;
-}
-.table-view .virtual-flow .scroll-bar .increment-button,
-.table-view .virtual-flow .scroll-bar .decrement-button {
-    -fx-opacity: 0;
-    -fx-padding: 2;
-}
-.table-view .virtual-flow .scroll-bar:vertical .thumb{
-    -fx-background-color:  linear-gradient(to bottom, #1dbbdd44, #93f9b944);
-}
-.table-view .virtual-flow .scroll-bar:horizontal .thumb {
-    -fx-background-color: transparent;
 }
 
     /** Default Components **/
@@ -271,17 +177,4 @@ padding goes top, right, bottom, left
     -fx-spacing: 5px;
 }
 
-.container {
-    -fx-background-color: -color-surface !important;
-    -fx-max-width: 800px !important;
-    -fx-max-height: 800px;
-    /*-fx-hgap: 20px;*/
-    /*-fx-padding: 40px;*/
-
-    -fx-background-radius: 50px;
-
-    /*-fx-border-radius: 5px;*/
-    /*-fx-border-width: 5px;*/
-    -fx-effect: dropshadow(three-pass-box, rgba(0, 0, 0, 0.8), 10, 0, 0, 0);
-}
 

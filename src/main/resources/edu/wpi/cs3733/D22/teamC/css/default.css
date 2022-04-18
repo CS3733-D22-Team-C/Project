@@ -1,0 +1,242 @@
+@import "colors.css";
+
+/* These rules will apply to ALL COMPONENTS */
+/* YOU MUST OVERRIDE THEM BY APPLYING OTHER STYLE CLASSES OR THEY WILL DEFAULT TO THESE */
+.root * {
+    /* Default text font size */
+    /*-fx-font-size: 12pt;*/
+
+    /* Font Style */
+    -fx-font-family: "Roboto";
+
+    /* Removes the focus box on all components */
+    -fx-focus-color: transparent;
+    -fx-faint-focus-color: transparent;
+
+    /* Allows for all MFX buttons to have their ripple generators generate the ripples to the correct shape */
+    -mfx-auto-clip: true;
+
+    /* This allows all components to be resized down to 0 pixels */
+    /* If labels or anything is not showing up its due to this, must beware what this entails */
+    /* I wish I read my own comments before wanting to pull my hair out */
+    /* TODO: There has to be a different way other than setting min width/height to 0 */
+    /*-fx-min-height: 10px;*/
+    /*-fx-min-width: 10px;*/
+
+    -mfx-caret-visible: false;
+}
+
+/* CUSTOM */
+
+/* Within SceneBuilder give every thing that is a title the title ID */
+#title {
+    -fx-font-size: 18pt !important;
+    -fx-font-weight: bold;
+}
+
+/* This class will be the base container that holds virtually every page */
+.page-container {
+    -fx-background-color: -color-surface !important;
+    -fx-max-width: 800px;
+    -fx-max-height: 800px;
+    -fx-background-radius: 20px;
+    -fx-effect: dropshadow(three-pass-box, rgba(0, 0, 0, 0.8), 10, 0, 0, 0);
+    /*-fx-border-insets: 0px;*/
+}
+
+/* Used for validation fields */
+.invalid-label {
+    -fx-text-fill: -color-black;
+    -fx-background-color: rgba(255, 174, 174, 0.5);
+    -fx-border-radius: 11px;
+}
+
+/* These cards should be used for aligning the title header with the card itself */
+/* Card is the base container for everything that isn't a page container (essentially sub-containers) */
+/* This should be abstracted but for now it isn't :) */
+.card {
+    -fx-background-radius: 10px;
+    -fx-effect: dropshadow(three-pass-box, rgba(0, 0, 0, 0.8), 10, 0, 0, 0);
+    -fx-background-color: -color-surface;
+}
+
+.card-content-header {
+    -fx-background-color: -color-primary;
+    -fx-text-fill: -color-primary-text;
+    -fx-font-size: 18px;
+    -fx-background-radius: 10px 10px 0px 0px;
+}
+
+.service-field-label {
+    -fx-font-family: -font-field-label;
+    -fx-font-size: 15;
+}
+
+/* DEFAULT OVERRIDES */
+
+/* Going to assume that all buttons are primary unless overwritten */
+.button {
+    -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.5), 1, 0, 0, 0);
+    -fx-cursor: hand;
+    -mfx-button-type: RAISED;
+    -fx-background-color: -color-primary;
+    -fx-text-fill: -color-primary-text;
+}
+
+/* Uses secondary color as style */
+.button-secondary {
+    -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.5), 1, 0, 0, 0);
+    -fx-cursor: hand;
+    -mfx-button-type: RAISED;
+}
+
+.failure-button {
+    -fx-background-color: -color-red-contrast ;
+}
+
+.button-file-select {
+    -fx-max-width: 30px !important;
+    -fx-max-height: 24px !important;
+    -fx-background-color: -color-secondary !important;
+    -fx-font-size: 12px !important;
+}
+
+.text-field {
+    -fx-background-color: -color-primary-text;
+    -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.8), 2, 0, 0, 0);
+}
+
+.combo-box {
+    -fx-background-color: -color-primary-text;
+    -fx-cursor: hand;
+    -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.5), 1, 0, 0, 0);
+}
+
+/* Tab Pane Overrides */
+.tab-pane {
+    -fx-padding: 20px;
+    -fx-alignment: right;
+    -fx-border-radius: 10px;
+    -fx-border-width:5px;
+    -fx-background-color: transparent;
+    -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.5), 1, 0, 0, 0);
+}
+
+.tab-pane .tab-content-area {
+    -fx-padding: 20px;
+    -fx-background-radius: 20px;
+    -fx-background-color: -color-surface;
+}
+
+.tab-pane:top *.tab-header-area {
+    -fx-background-insets: 0, 0 0 1 0;
+    -fx-padding: 0.416667em 0.166667em 0.0em 0.0em; /* overridden as 5 2 0 0 */
+    -fx-translate-x: 30px;
+}
+
+/* Stylizes unselected tabs */
+.tab-pane .tab {
+    -fx-background-color: -color-unselected-tab;
+    -fx-font-size: 14px;
+}
+
+/* Stylizes selected tab */
+.tab-pane .tab:selected {
+    -fx-background-color: -color-primary;
+}
+
+/* Stylizes tab labels */
+.tab .tab-label {
+    -fx-text-fill: black;
+}
+
+.tab:selected .tab-label {
+    -fx-text-fill: white;
+}
+
+/* Stylizes the space behind the tabs */
+.tab-pane .tab-header-area .tab-header-background {
+    -fx-background-color: transparent;
+    -fx-border-radius: 4px;
+}
+
+/* Table Styling */
+.tree-table-view {
+    -fx-background-color: transparent;
+}
+
+/* Top right part of the table */
+.table-view .column-header-background .filler {
+    -fx-background-color: transparent;
+}
+
+.table-view .corner {
+    -fx-background-color: transparent;
+}
+
+.table-view .label {
+    -fx-text-fill: -color-primary-text;
+}
+
+.tree-table-view .column-header-background{
+    -fx-background-color: linear-gradient(to bottom, -color-primary, -color-primary-light);
+    -fx-background-radius: 7px 7px 0px 0px;
+    /* Insets header to the width of the scrollbar */
+    /*-fx-background-insets: 0 11px 0 0;*/
+    -fx-padding: 0 0 5px 0;
+}
+.table-view .column-header {
+    -fx-background-color: transparent;
+    -fx-border-style: none;
+}
+.table-view .table-column {
+    -fx-alignment: center;
+    -fx-border-color: transparent;
+    -fx-wrap-text: true;
+    -fx-padding: 10px;
+}
+.table-view .table-cell{
+    -fx-border-color: transparent;
+    -fx-padding: 2 0 2 10px;
+}
+.tree-table-row-cell:hover {
+    -fx-background-color: #93f9b911;
+    -fx-text-background-color: -color-primary-light;
+}
+.tree-table-row-cell:odd{
+    -fx-background-color: -color-background;
+    -fx-background-insets: 0, 0 0 1 0;
+    -fx-padding: 0.0em;
+}
+.tree-table-row-cell:even{
+    -fx-background-color: -color-surface;
+    -fx-background-insets: 0, 0 0 1 0;
+    -fx-padding: 0.0em;
+}
+.tree-table-row-cell:selected {
+    -fx-background-color: -color-primary-dark;
+}
+.tree-table-row-cell:selected .text {
+    -fx-fill: -color-primary-text;
+}
+
+/* Table Scrollbar Styling */
+.table-view .virtual-flow .scroll-bar:vertical,
+.table-view .virtual-flow .scroll-bar:vertical .track,
+.table-view .virtual-flow .scroll-bar:vertical .track-background,
+.table-view .virtual-flow .scroll-bar:horizontal,
+.table-view .virtual-flow .scroll-bar:horizontal .track,
+.table-view .virtual-flow .scroll-bar:horizontal .track-background {
+    -fx-background-color: transparent;
+}
+.table-view .virtual-flow .scroll-bar .increment-button,
+.table-view .virtual-flow .scroll-bar .decrement-button {
+    -fx-opacity: 0;
+    -fx-padding: 2;
+}
+.table-view .virtual-flow .scroll-bar:vertical .thumb{
+    -fx-background-color:  linear-gradient(to bottom, #1dbbdd44, #93f9b944);
+}
+.table-view .virtual-flow .scroll-bar:horizontal .thumb {
+    -fx-background-color: transparent;
+}

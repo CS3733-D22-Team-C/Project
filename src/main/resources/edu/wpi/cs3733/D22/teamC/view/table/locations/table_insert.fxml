@@ -10,11 +10,11 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<VBox stylesheets="@../../../css/base.css" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.wpi.cs3733.D22.teamC.controller.table.LocationTableViewInsertController">
+<VBox styleClass="page-container" stylesheets="@../../../css/component/table_insert.css" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.wpi.cs3733.D22.teamC.controller.table.LocationTableViewInsertController">
    <children>
       <ScrollPane fitToHeight="true" fitToWidth="true" prefHeight="550.0" prefWidth="421.0">
          <content>
-            <VBox spacing="15.0">
+            <VBox spacing="15.0" styleClass="scroll-pane">
                <children>
                   <VBox alignment="CENTER_LEFT" prefWidth="419.0" VBox.vgrow="ALWAYS">
                      <children>

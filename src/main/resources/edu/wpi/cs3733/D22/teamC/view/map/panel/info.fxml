@@ -1,0 +1,212 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXTreeTableView?>
+<?import java.net.URL?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.Cursor?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Tab?>
+<?import javafx.scene.control.TabPane?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<VBox fx:id="containerVBox" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.wpi.cs3733.D22.teamC.controller.map.panel.LocationInfoController">
+   <children>
+      <TabPane fx:id="tabPane" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" side="LEFT" stylesheets="@../../../css/map/info_pane.css" tabClosingPolicy="UNAVAILABLE" tabMaxHeight="50.0" tabMaxWidth="115.0" tabMinHeight="50.0" tabMinWidth="115.0">
+        <tabs>
+            <Tab fx:id="locationTab" text="Location">
+               <content>
+                  <StackPane prefWidth="200.0">
+                     <children>
+                        <VBox maxWidth="1.7976931348623157E308" prefHeight="394.0" prefWidth="314.0">
+                           <children>
+                              <Label alignment="CENTER" maxHeight="92.0" maxWidth="1.7976931348623157E308" minHeight="50.0" prefHeight="58.0" prefWidth="200.0" styleClass="card-content-header" text="Location Info" VBox.vgrow="ALWAYS">
+                                 <padding>
+                                    <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                                 </padding>
+                                 <font>
+                                    <Font size="20.0" />
+                                 </font>
+                              </Label>
+                              <HBox prefHeight="0.0" prefWidth="200.0" VBox.vgrow="SOMETIMES" />
+                              <HBox minHeight="200.0" prefHeight="350.0" prefWidth="200.0" VBox.vgrow="NEVER">
+                                 <children>
+                                    <GridPane prefHeight="289.0" prefWidth="290.0" HBox.hgrow="ALWAYS">
+                                      <columnConstraints>
+                                        <ColumnConstraints hgrow="ALWAYS" maxWidth="1.7976931348623157E308" minWidth="10.0" prefWidth="100.0" />
+                                        <ColumnConstraints hgrow="ALWAYS" maxWidth="1.7976931348623157E308" minWidth="10.0" prefWidth="100.0" />
+                                      </columnConstraints>
+                                      <rowConstraints>
+                                        <RowConstraints maxHeight="1.7976931348623157E308" minHeight="10.0" prefHeight="30.0" vgrow="ALWAYS" />
+                                        <RowConstraints maxHeight="1.7976931348623157E308" minHeight="10.0" prefHeight="30.0" vgrow="ALWAYS" />
+                                        <RowConstraints maxHeight="1.7976931348623157E308" minHeight="10.0" prefHeight="30.0" vgrow="ALWAYS" />
+                                          <RowConstraints maxHeight="1.7976931348623157E308" minHeight="10.0" prefHeight="30.0" vgrow="ALWAYS" />
+                                          <RowConstraints maxHeight="1.7976931348623157E308" minHeight="10.0" prefHeight="30.0" vgrow="ALWAYS" />
+                                      </rowConstraints>
+                                       <children>
+                                          <Label text="Short Name:">
+                                             <padding>
+                                                <Insets left="25.0" />
+                                             </padding>
+                                          </Label>
+                                          <TextField fx:id="shortNameField" onKeyTyped="#updateLocation" GridPane.columnIndex="1">
+                                             <GridPane.margin>
+                                                <Insets left="20.0" right="20.0" />
+                                             </GridPane.margin>
+                                          </TextField>
+                                          <TextField fx:id="longNameField" onKeyTyped="#updateLocation" GridPane.columnIndex="1" GridPane.rowIndex="1">
+                                             <GridPane.margin>
+                                                <Insets left="20.0" right="20.0" />
+                                             </GridPane.margin>
+                                          </TextField>
+                                          <Label text="Long Name:" GridPane.rowIndex="1">
+                                             <padding>
+                                                <Insets left="25.0" />
+                                             </padding>
+                                          </Label>
+                                          <TextField fx:id="buildingField" onKeyTyped="#updateLocation" GridPane.columnIndex="1" GridPane.rowIndex="2">
+                                             <GridPane.margin>
+                                                <Insets left="20.0" right="20.0" />
+                                             </GridPane.margin>
+                                          </TextField>
+                                          <Label text="Building:" GridPane.rowIndex="2">
+                                             <padding>
+                                                <Insets left="25.0" />
+                                             </padding>
+                                          </Label>
+                                          <ComboBox fx:id="floorComboBox" maxWidth="1.7976931348623157E308" onAction="#updateLocation" GridPane.columnIndex="1" GridPane.rowIndex="3">
+                                             <cursor>
+                                                <Cursor fx:constant="HAND" />
+                                             </cursor>
+                                             <GridPane.margin>
+                                                <Insets left="20.0" right="20.0" />
+                                             </GridPane.margin>
+                                          </ComboBox>
+                                          <ComboBox fx:id="nodeComboBox" maxWidth="1.7976931348623157E308" onAction="#updateLocation" GridPane.columnIndex="1" GridPane.rowIndex="4">
+                                             <cursor>
+                                                <Cursor fx:constant="HAND" />
+                                             </cursor>
+                                             <GridPane.margin>
+                                                <Insets left="20.0" right="20.0" />
+                                             </GridPane.margin>
+                                          </ComboBox>
+                                          <Label text="Node Type:" GridPane.rowIndex="4">
+                                             <padding>
+                                                <Insets left="25.0" />
+                                             </padding>
+                                          </Label>
+                                          <Label text="Floor:" GridPane.rowIndex="3">
+                                             <padding>
+                                                <Insets left="25.0" />
+                                             </padding>
+                                          </Label>
+                                       </children>
+                                    </GridPane>
+                                 </children>
+                              </HBox>
+                              <HBox alignment="CENTER" prefHeight="134.0" prefWidth="290.0" style="-fx-spacing: 10;" styleClass="HBox">
+                                 <children>
+                                    <Button fx:id="deselectButton" mnemonicParsing="false" onAction="#onDeselectButtonPressed" styleClass="button-confirm" text="Deselect">
+                                       <cursor>
+                                          <Cursor fx:constant="HAND" />
+                                       </cursor>
+                                       <opaqueInsets>
+                                          <Insets />
+                                       </opaqueInsets>
+                                    </Button>
+                                    <Button fx:id="revertButton" disable="true" mnemonicParsing="false" onAction="#onRevertButtonPressed" styleClass="button-confirm" text="Revert">
+                                       <cursor>
+                                          <Cursor fx:constant="HAND" />
+                                       </cursor>
+                                       <opaqueInsets>
+                                          <Insets />
+                                       </opaqueInsets>
+                                    </Button>
+                                    <Button fx:id="deleteButton" mnemonicParsing="false" onAction="#onDeleteButtonPressed" styleClass="failure-button" text="Delete" textAlignment="CENTER">
+                                       <cursor>
+                                          <Cursor fx:constant="HAND" />
+                                       </cursor>
+                                       <opaqueInsets>
+                                          <Insets />
+                                       </opaqueInsets>
+                                    </Button>
+                                 </children>
+                                 <opaqueInsets>
+                                    <Insets />
+                                 </opaqueInsets>
+                              </HBox>
+                           </children>
+                        </VBox>
+                     </children>
+                  </StackPane>
+               </content>
+            </Tab>
+          <Tab fx:id="medicalEquipmentTab" text="Medical Equipment">
+               <content>
+                  <StackPane prefWidth="200.0" styleClass="info-inner-card">
+                     <children>
+                        <VBox prefHeight="200.0" prefWidth="100.0">
+                           <children>
+                              <Label alignment="CENTER" maxHeight="78.0" maxWidth="1.7976931348623157E308" minHeight="50.0" prefWidth="290.0" styleClass="card-content-header" text="Medical Equipment">
+                                 <padding>
+                                    <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                                 </padding>
+                                 <font>
+                                    <Font size="20.0" />
+                                 </font>
+                              </Label>
+                              <JFXTreeTableView fx:id="medicalEquipmentTable" styleClass="table-view" VBox.vgrow="ALWAYS">
+                                 <VBox.margin>
+                                    <Insets bottom="25.0" left="25.0" right="25.0" top="25.0" />
+                                 </VBox.margin>
+                              </JFXTreeTableView>
+                           </children>
+                        </VBox>
+                     </children>
+                  </StackPane>
+               </content>
+          </Tab>
+            <Tab fx:id="serviceRequestTab" text="Service Requests">
+               <content>
+                  <StackPane prefWidth="200.0" styleClass="info-inner-card">
+                     <children>
+                        <VBox prefHeight="200.0" prefWidth="100.0">
+                           <children>
+                              <Label alignment="CENTER" maxHeight="75.0" maxWidth="1.7976931348623157E308" minHeight="50.0" styleClass="card-content-header" text="Service Requests">
+                                 <padding>
+                                    <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                                 </padding>
+                                 <font>
+                                    <Font size="20.0" />
+                                 </font>
+                              </Label>
+                              <JFXTreeTableView fx:id="serviceRequestTable" styleClass="table-view" VBox.vgrow="ALWAYS">
+                                 <VBox.margin>
+                                    <Insets bottom="25.0" left="25.0" right="25.0" top="25.0" />
+                                 </VBox.margin>
+                              </JFXTreeTableView>
+                           </children>
+                        </VBox>
+                     </children>
+                  </StackPane>
+               </content>
+            </Tab>
+        </tabs>
+         <cursor>
+            <Cursor fx:constant="DEFAULT" />
+         </cursor>
+      </TabPane>
+   </children>
+   <stylesheets>
+      <URL value="@../../../css/map/base.css" />
+      <URL value="@../../../css/map/info_pane.css" />
+   </stylesheets>
+</VBox>

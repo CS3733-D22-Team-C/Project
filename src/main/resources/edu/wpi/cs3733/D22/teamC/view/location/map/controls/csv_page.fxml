@@ -2,7 +2,6 @@
 
 <?import com.jfoenix.controls.JFXButton?>
 <?import io.github.palexdev.materialfx.controls.MFXCheckbox?>
-<?import java.net.URL?>
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.Tab?>
@@ -13,149 +12,250 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
 
-<TabPane maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="650.0" prefWidth="487.0" stylesheets="@../../../../css/map/csv_page.css" tabClosingPolicy="UNAVAILABLE" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.wpi.cs3733.D22.teamC.controller.location.map.CSVComponent">
+<TabPane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" stylesheets="@../../../../css/component/csv_page.css" tabClosingPolicy="UNAVAILABLE" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.wpi.cs3733.D22.teamC.controller.location.map.CSVComponent">
   <tabs>
     <Tab text="Import">
          <content>
-            <VBox alignment="CENTER" prefHeight="476.0" prefWidth="483.0" spacing="10.0">
+            <VBox alignment="CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefWidth="483.0">
                <children>
-                  <VBox prefHeight="365.0" prefWidth="466.0">
+                  <HBox>
                      <children>
+                        <Label id="title" stylesheets="@../../../../css/default.css" text="Select Entities to Import">
+                           <font>
+                              <Font size="18.0" />
+                           </font>
+                        </Label>
+                     </children>
+                  </HBox>
+                  <VBox prefHeight="347.0" prefWidth="466.0" spacing="10.0">
+                     <children>
+                        <VBox prefHeight="56.0" prefWidth="424.0" spacing="5.0">
+                           <children>
+                              <Label styleClass="service-field-label" text="Maps" underline="true" />
+                              <GridPane>
+                                <columnConstraints>
+                                  <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                  <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                </columnConstraints>
+                                <rowConstraints>
+                                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                </rowConstraints>
+                                 <children>
+                                    <MFXCheckbox fx:id="floorsImport" text="Floors" />
+                                    <MFXCheckbox fx:id="locationsImport" text="Locations" GridPane.columnIndex="1" />
+                                 </children>
+                              </GridPane>
+                           </children>
+                        </VBox>
+                        <VBox prefHeight="159.0" prefWidth="453.0" spacing="5.0">
+                           <children>
+                              <Label styleClass="service-field-label" text="Service Request" underline="true" />
+                              <GridPane prefHeight="130.0" prefWidth="453.0">
+                                 <columnConstraints>
+                                    <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                    <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                 </columnConstraints>
+                                 <rowConstraints>
+                                    <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                    <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                    <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                    <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                    <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                 </rowConstraints>
+                                 <children>
+                                    <MFXCheckbox fx:id="medicalEquipmentImport" text="Medical Equipment" />
+                                    <MFXCheckbox fx:id="labSystemImport" text="Lab System" GridPane.columnIndex="1" />
+                                    <MFXCheckbox fx:id="medicineDeliveryImport" text="Medicine Delivery" GridPane.rowIndex="1" />
+                                    <MFXCheckbox fx:id="sanitationImport" text="Sanitation" GridPane.rowIndex="2" />
+                                    <MFXCheckbox fx:id="facilityMaintenanceImport" text="Facility Maintenance" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                                    <MFXCheckbox fx:id="securityImport" text="Security" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                                    <MFXCheckbox fx:id="deliveryImport" text="Delivery System" GridPane.rowIndex="3" />
+                                 </children>
+                              </GridPane>
+                           </children>
+                        </VBox>
                         <HBox>
                            <children>
-                              <Label styleClass="page-title" stylesheets="@../../../../css/base.css" text="Select Entities to Import" />
-                           </children>
-                        </HBox>
-                        <VBox prefHeight="347.0" prefWidth="466.0" spacing="10.0">
-                           <children>
-                              <VBox prefHeight="56.0" prefWidth="424.0" spacing="5.0">
+                              <VBox prefHeight="55.0" prefWidth="424.0" spacing="5.0">
                                  <children>
-                                    <Label styleClass="service-field-label" stylesheets="@../../../../css/base.css" text="Maps" underline="true" />
+                                    <Label styleClass="service-field-label" text="Employees" underline="true" />
                                     <GridPane>
-                                      <columnConstraints>
-                                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                                      </columnConstraints>
-                                      <rowConstraints>
-                                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                                      </rowConstraints>
-                                       <children>
-                                          <MFXCheckbox fx:id="floorsImport" text="Floors" />
-                                          <MFXCheckbox fx:id="locationsImport" text="Locations" GridPane.columnIndex="1" />
-                                       </children>
-                                    </GridPane>
-                                 </children>
-                              </VBox>
-                              <VBox prefHeight="159.0" prefWidth="453.0" spacing="5.0">
-                                 <children>
-                                    <Label styleClass="service-field-label" stylesheets="@../../../../css/base.css" text="Service Request" underline="true" />
-                                    <GridPane prefHeight="130.0" prefWidth="453.0">
                                        <columnConstraints>
-                                          <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
                                           <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
                                        </columnConstraints>
                                        <rowConstraints>
                                           <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                                          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                                          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                                          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                                          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                                        </rowConstraints>
                                        <children>
-                                          <MFXCheckbox fx:id="medicalEquipmentImport" text="Medical Equipment" />
-                                          <MFXCheckbox fx:id="labSystemImport" text="Lab System" GridPane.columnIndex="1" />
-                                          <MFXCheckbox fx:id="medicineDeliveryImport" text="Medicine Delivery" GridPane.rowIndex="1" />
-                                          <MFXCheckbox fx:id="sanitationImport" text="Sanitation" GridPane.rowIndex="2" />
-                                          <MFXCheckbox fx:id="facilityMaintenanceImport" text="Facility Maintenance" GridPane.columnIndex="1" GridPane.rowIndex="1" />
-                                          <MFXCheckbox fx:id="securityImport" text="Security" GridPane.columnIndex="1" GridPane.rowIndex="2" />
-                                          <MFXCheckbox fx:id="deliveryImport" text="Delivery System" GridPane.rowIndex="3" />
+                                          <MFXCheckbox fx:id="employeesImport" text="Employees" />
                                        </children>
                                     </GridPane>
                                  </children>
                               </VBox>
-                              <HBox>
+                              <VBox prefHeight="55.0" prefWidth="424.0" spacing="5.0">
                                  <children>
-                                    <VBox prefHeight="55.0" prefWidth="424.0" spacing="5.0">
+                                    <Label styleClass="service-field-label" text="Medical Equipment" underline="true" />
+                                    <GridPane>
+                                       <columnConstraints>
+                                          <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                       </columnConstraints>
+                                       <rowConstraints>
+                                          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                       </rowConstraints>
                                        <children>
-                                          <Label styleClass="service-field-label" stylesheets="@../../../../css/base.css" text="Employees" underline="true" />
-                                          <GridPane>
-                                             <columnConstraints>
-                                                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                                             </columnConstraints>
-                                             <rowConstraints>
-                                                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                                             </rowConstraints>
-                                             <children>
-                                                <MFXCheckbox fx:id="employeesImport" text="Employees" />
-                                             </children>
-                                          </GridPane>
+                                          <MFXCheckbox fx:id="medicalEquipmentEntityImport" text="Medical Equipment" />
                                        </children>
-                                    </VBox>
-                                    <VBox prefHeight="55.0" prefWidth="424.0" spacing="5.0">
-                                       <children>
-                                          <Label styleClass="service-field-label" stylesheets="@../../../../css/base.css" text="Medical Equipment" underline="true" />
-                                          <GridPane>
-                                             <columnConstraints>
-                                                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                                             </columnConstraints>
-                                             <rowConstraints>
-                                                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                                             </rowConstraints>
-                                             <children>
-                                                <MFXCheckbox fx:id="medicalEquipmentEntityImport" text="Medical Equipment" />
-                                             </children>
-                                          </GridPane>
-                                       </children>
-                                    </VBox>
+                                    </GridPane>
                                  </children>
-                              </HBox>
-                              <HBox prefHeight="64.0" prefWidth="454.0">
-                                 <children>
-                                    <VBox prefHeight="56.0" prefWidth="454.0" spacing="5.0">
-                                       <children>
-                                          <Label styleClass="service-field-label" stylesheets="@../../../../css/base.css" text="Patients" underline="true" />
-                                          <GridPane>
-                                             <columnConstraints>
-                                                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                                             </columnConstraints>
-                                             <rowConstraints>
-                                                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                                             </rowConstraints>
-                                             <children>
-                                                <MFXCheckbox fx:id="patientImport" text="Patients" />
-                                             </children>
-                                          </GridPane>
-                                       </children>
-                                    </VBox>
-                                 </children>
-                              </HBox>
+                              </VBox>
                            </children>
-                           <padding>
-                              <Insets bottom="3.0" left="10.0" right="3.0" top="3.0" />
-                           </padding>
-                        </VBox>
+                        </HBox>
                      </children>
+                     <padding>
+                        <Insets bottom="3.0" left="10.0" right="3.0" top="3.0" />
+                     </padding>
                   </VBox>
                   <VBox spacing="10.0">
                      <children>
-                        <HBox alignment="CENTER_LEFT" prefHeight="29.0" prefWidth="600.0">
+                        <HBox alignment="CENTER_LEFT" prefHeight="36.0" prefWidth="387.0">
                            <children>
-                              <Label styleClass="page-title" stylesheets="@../../../../css/base.css" text="Select a Folder to Import" />
+                              <Label id="title" text="Select a Folder to Import" />
                            </children>
                         </HBox>
                         <HBox alignment="CENTER_LEFT" prefHeight="34.0" prefWidth="434.0">
                            <children>
-                              <HBox alignment="CENTER_LEFT" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="32.0" prefWidth="435.0" spacing="1.5">
+                              <TextField fx:id="importText" editable="false" prefHeight="26.0" prefWidth="162.0" promptText="Select a Folder" />
+                              <JFXButton maxHeight="26.0" maxWidth="30.0" minHeight="-Infinity" minWidth="-Infinity" onAction="#chooseImportCSV" prefHeight="26.0" prefWidth="30.0" styleClass="button-file-select" text=". . ." textAlignment="CENTER" textFill="WHITE" HBox.hgrow="NEVER" />
+                           </children>
+                        </HBox>
+                     </children>
+                  </VBox>
+                  <HBox alignment="CENTER_RIGHT" prefHeight="54.0" prefWidth="434.0">
+                     <children>
+                        <JFXButton onAction="#clickImportFiles" prefHeight="31.0" prefWidth="72.0" styleClass="button-import" text="Import" />
+                     </children>
+                     <padding>
+                        <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                     </padding>
+                  </HBox>
+               </children>
+            </VBox>
+         </content>
+         <content>
+            <VBox alignment="CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefWidth="483.0">
+               <children>
+                  <HBox>
+                     <children>
+                        <Label id="title" stylesheets="@../../../../css/default.css" text="Select Entities to Import">
+                           <font>
+                              <Font size="18.0" />
+                           </font>
+                        </Label>
+                     </children>
+                  </HBox>
+                  <VBox prefHeight="347.0" prefWidth="466.0" spacing="10.0">
+                     <children>
+                        <VBox prefHeight="56.0" prefWidth="424.0" spacing="5.0">
+                           <children>
+                              <Label styleClass="service-field-label" text="Maps" underline="true" />
+                              <GridPane>
+                                 <columnConstraints>
+                                    <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                    <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                 </columnConstraints>
+                                 <rowConstraints>
+                                    <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                 </rowConstraints>
                                  <children>
-                                    <TextField fx:id="importText" editable="false" prefHeight="26.0" prefWidth="162.0" promptText="Select a Folder" stylesheets="@../../../../css/map/controls.css" />
-                                    <JFXButton onAction="#chooseImportCSV" prefHeight="26.0" prefWidth="30.0" style="-fx-background-color: -color-secondary-dark;" text=". . ." textAlignment="CENTER" textFill="WHITE">
-                                       <stylesheets>
-                                          <URL value="@../../../../css/map/base.css" />
-                                          <URL value="@../../../../css/colors.css" />
-                                          <URL value="@../../../../css/map/info_pane.css" />
-                                       </stylesheets>
-                                    </JFXButton>
+                                    <MFXCheckbox fx:id="floorsImport" text="Floors" />
+                                    <MFXCheckbox fx:id="locationsImport" text="Locations" GridPane.columnIndex="1" />
+                                 </children>
+                              </GridPane>
+                           </children>
+                        </VBox>
+                        <VBox prefHeight="159.0" prefWidth="453.0" spacing="5.0">
+                           <children>
+                              <Label styleClass="service-field-label" text="Service Request" underline="true" />
+                              <GridPane prefHeight="130.0" prefWidth="453.0">
+                                 <columnConstraints>
+                                    <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                    <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                 </columnConstraints>
+                                 <rowConstraints>
+                                    <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                    <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                    <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                    <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                    <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                 </rowConstraints>
+                                 <children>
+                                    <MFXCheckbox fx:id="medicalEquipmentImport" text="Medical Equipment" />
+                                    <MFXCheckbox fx:id="labSystemImport" text="Lab System" GridPane.columnIndex="1" />
+                                    <MFXCheckbox fx:id="medicineDeliveryImport" text="Medicine Delivery" GridPane.rowIndex="1" />
+                                    <MFXCheckbox fx:id="sanitationImport" text="Sanitation" GridPane.rowIndex="2" />
+                                    <MFXCheckbox fx:id="facilityMaintenanceImport" text="Facility Maintenance" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                                    <MFXCheckbox fx:id="securityImport" text="Security" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                                    <MFXCheckbox fx:id="deliveryImport" text="Delivery System" GridPane.rowIndex="3" />
+                                 </children>
+                              </GridPane>
+                           </children>
+                        </VBox>
+                        <HBox>
+                           <children>
+                              <VBox prefHeight="55.0" prefWidth="424.0" spacing="5.0">
+                                 <children>
+                                    <Label styleClass="service-field-label" text="Employees" underline="true" />
+                                    <GridPane>
+                                       <columnConstraints>
+                                          <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                       </columnConstraints>
+                                       <rowConstraints>
+                                          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                       </rowConstraints>
+                                       <children>
+                                          <MFXCheckbox fx:id="employeesImport" text="Employees" />
+                                       </children>
+                                    </GridPane>
+                                 </children>
+                              </VBox>
+                              <VBox prefHeight="55.0" prefWidth="424.0" spacing="5.0">
+                                 <children>
+                                    <Label styleClass="service-field-label" text="Medical Equipment" underline="true" />
+                                    <GridPane>
+                                       <columnConstraints>
+                                          <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                       </columnConstraints>
+                                       <rowConstraints>
+                                          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                       </rowConstraints>
+                                       <children>
+                                          <MFXCheckbox fx:id="medicalEquipmentEntityImport" text="Medical Equipment" />
+                                       </children>
+                                    </GridPane>
+                                 </children>
+                              </VBox>
+                           </children>
+                        </HBox>
+                     </children>
+                     <padding>
+                        <Insets bottom="3.0" left="10.0" right="3.0" top="3.0" />
+                     </padding>
+                  </VBox>
+                  <VBox maxHeight="-Infinity" prefHeight="44.0" prefWidth="483.0" spacing="10.0" VBox.vgrow="NEVER">
+                     <children>
+                        <HBox alignment="CENTER_LEFT" prefHeight="36.0" prefWidth="387.0">
+                           <children>
+                              <Label id="title" text="Select a Folder to Import" />
+                           </children>
+                        </HBox>
+                        <HBox alignment="CENTER_LEFT" prefHeight="34.0" prefWidth="434.0">
+                           <children>
+                              <HBox alignment="CENTER_LEFT" maxHeight="1.7976931348623157E308" prefHeight="32.0" prefWidth="435.0" spacing="1.5" HBox.hgrow="NEVER">
+                                 <children>
+                                    <TextField fx:id="importText" editable="false" prefHeight="26.0" prefWidth="162.0" promptText="Select a Folder" />
+                                    <JFXButton onAction="#chooseImportCSV" styleClass="button-file-select" text=". . ." />
                                  </children>
                                  <padding>
                                     <Insets left="10.0" />
@@ -167,35 +267,32 @@
                   </VBox>
                   <HBox alignment="CENTER_RIGHT" prefHeight="54.0" prefWidth="434.0">
                      <children>
-                        <JFXButton onAction="#clickImportFiles" prefHeight="31.0" prefWidth="72.0" style="-fx-background-color: -color-primary-light;" styleClass="button-import" text="Import" />
+                        <JFXButton onAction="#clickImportFiles" prefHeight="31.0" prefWidth="72.0" styleClass="button-import" text="Import" />
                      </children>
                      <padding>
                         <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
                      </padding>
                   </HBox>
                </children>
-               <padding>
-                  <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
-               </padding>
             </VBox>
          </content>
     </Tab>
     <Tab text="Export">
          <content>
-            <VBox alignment="CENTER_LEFT" prefHeight="200.0" prefWidth="100.0" spacing="10.0">
+            <VBox alignment="CENTER_LEFT" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="200.0" prefWidth="100.0" spacing="10.0">
                <children>
                   <VBox prefHeight="359.0" prefWidth="466.0">
                      <children>
                         <HBox>
                            <children>
-                              <Label styleClass="page-title" stylesheets="@../../../../css/base.css" text="Select Entities to Export" />
+                              <Label id="title" text="Select Entities to Export" />
                            </children>
                         </HBox>
                         <VBox prefHeight="294.0" prefWidth="466.0" spacing="10.0">
                            <children>
                               <VBox prefHeight="89.0" prefWidth="453.0" spacing="5.0">
                                  <children>
-                                    <Label styleClass="service-field-label" stylesheets="@../../../../css/base.css" text="Maps" underline="true" />
+                                    <Label styleClass="service-field-label" text="Maps" underline="true" />
                                     <GridPane>
                                        <columnConstraints>
                                           <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
@@ -275,26 +372,6 @@
                                     </VBox>
                                  </children>
                               </HBox>
-                              <HBox>
-                                 <children>
-                                    <VBox prefHeight="41.0" prefWidth="430.0" spacing="5.0">
-                                       <children>
-                                          <Label styleClass="service-field-label" stylesheets="@../../../../css/base.css" text="Patients" underline="true" />
-                                          <GridPane>
-                                             <columnConstraints>
-                                                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                                             </columnConstraints>
-                                             <rowConstraints>
-                                                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                                             </rowConstraints>
-                                             <children>
-                                                <MFXCheckbox fx:id="patientExport" text="Patients" />
-                                             </children>
-                                          </GridPane>
-                                       </children>
-                                    </VBox>
-                                 </children>
-                              </HBox>
                            </children>
                            <padding>
                               <Insets bottom="3.0" left="10.0" right="3.0" top="3.0" />
@@ -306,13 +383,13 @@
                      <children>
                         <HBox prefHeight="31.0" prefWidth="434.0">
                            <children>
-                              <Label styleClass="page-title" stylesheets="@../../../../css/base.css" text="Select a Folder to Export" />
+                              <Label id="title" styleClass="page-title" text="Select a Folder to Export" />
                            </children>
                         </HBox>
-                        <HBox alignment="CENTER_LEFT" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="33.0" prefWidth="434.0" spacing="1.5">
+                        <HBox alignment="CENTER_LEFT" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="33.0" prefWidth="434.0" spacing="1.5" VBox.vgrow="NEVER">
                            <children>
-                              <TextField fx:id="exportText" editable="false" prefHeight="26.0" prefWidth="162.0" promptText="Select a Folder" stylesheets="@../../../../css/map/controls.css" />
-                              <JFXButton onAction="#chooseExportCSV" prefHeight="26.0" prefWidth="30.0" style="-fx-background-color: -color-secondary-dark;" stylesheets="@../../../../css/map/base.css" text=". . ." />
+                              <TextField fx:id="exportText" editable="false" prefHeight="26.0" prefWidth="162.0" promptText="Select a Folder" />
+                              <JFXButton onAction="#chooseExportCSV" styleClass="button-file-select" text=". . ." />
                            </children>
                            <padding>
                               <Insets left="10.0" />
@@ -322,7 +399,7 @@
                   </VBox>
                   <HBox alignment="CENTER_RIGHT" prefHeight="54.0" prefWidth="434.0">
                      <children>
-                        <JFXButton onAction="#clickExportFiles" prefHeight="29.0" prefWidth="72.0" style="-fx-background-color: -color-primary-light;" styleClass="button-import" stylesheets="@../../../../css/base.css" text="Export" />
+                        <JFXButton onAction="#clickExportFiles" prefHeight="29.0" prefWidth="72.0" styleClass="button-import" text="Export" />
                      </children>
                      <padding>
                         <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
@@ -330,7 +407,7 @@
                   </HBox>
                </children>
                <padding>
-                  <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                  <Insets left="10.0" />
                </padding></VBox>
          </content>
     </Tab>

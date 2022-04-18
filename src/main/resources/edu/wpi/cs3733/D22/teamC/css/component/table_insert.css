@@ -1,0 +1,6 @@
+@import "../default.css";
+
+.scroll-pane {
+    -fx-background-color: -color-surface;
+}
+
