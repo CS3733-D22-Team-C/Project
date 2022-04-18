@@ -5,7 +5,6 @@
 <?import com.jfoenix.controls.JFXTextArea?>
 <?import com.jfoenix.controls.JFXTreeTableView?>
 <?import java.lang.String?>
-<?import java.net.URL?>
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
@@ -16,7 +15,7 @@
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.layout.VBox?>
 
-<GridPane alignment="CENTER" maxWidth="1.7976931348623157E308" prefHeight="683.0" prefWidth="458.0" styleClass="container" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.wpi.cs3733.D22.teamC.controller.service_request.BaseServiceRequestCreateController">
+<GridPane alignment="CENTER" maxWidth="1.7976931348623157E308" prefHeight="800.0" prefWidth="800.0" styleClass="page-container" stylesheets="@../../../css/component/request_page.css" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.wpi.cs3733.D22.teamC.controller.service_request.BaseServiceRequestCreateController">
     <columnConstraints>
       <ColumnConstraints hgrow="ALWAYS" maxWidth="1.7976931348623157E308" minWidth="10.0" prefWidth="272.79998779296875" />
     </columnConstraints>
@@ -27,23 +26,23 @@
         <RowConstraints maxHeight="1.7976931348623157E308" vgrow="ALWAYS" />
     </rowConstraints>
     <children>
-        <Label fx:id="title" alignment="CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="0.0" prefWidth="442.0" styleClass="page-title" text="Generic Service Request " GridPane.hgrow="ALWAYS" GridPane.vgrow="ALWAYS" />
-      <VBox fx:id="fieldsBox" prefHeight="200.0" prefWidth="100.0" GridPane.rowIndex="1">
+        <Label fx:id="title" alignment="CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="0.0" prefWidth="442.0" styleClass="card-content-header" text="Generic Service Request " GridPane.hgrow="ALWAYS" GridPane.vgrow="ALWAYS" />
+      <VBox fx:id="fieldsBox" prefHeight="200.0" prefWidth="100.0" styleClass="fields-padding" GridPane.rowIndex="1">
          <children>
             <HBox maxHeight="-Infinity" prefHeight="124.0" prefWidth="490.0" VBox.vgrow="NEVER">
                <children>
-                  <VBox alignment="CENTER_LEFT" prefHeight="200.0" prefWidth="100.0" styleClass="box-margin" HBox.hgrow="ALWAYS">
+                  <VBox alignment="CENTER_LEFT" prefHeight="200.0" prefWidth="100.0" styleClass="fields-padding" HBox.hgrow="ALWAYS">
                      <children>
                         <Label styleClass="service-field-label" text="Assign To:" />
                         <HBox spacing="1.5">
                            <children>
                               <TextField fx:id="assigneeID" editable="false" prefHeight="26.0" prefWidth="96.0" HBox.hgrow="ALWAYS" />
-                              <JFXButton fx:id="employeeTableButton" ellipsisString="" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" onAction="#goToEmployeeTable" prefHeight="26.0" style="-fx-background-color: -color-secondary;" stylesheets="@../../../css/colors.css" text="-&gt;" />
+                              <JFXButton fx:id="employeeTableButton" ellipsisString="" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" onAction="#goToEmployeeTable" prefHeight="8.0" prefWidth="37.0" style="-fx-background-color: -color-secondary;" stylesheets="@../../../css/colors.css" text="-&gt;" />
                            </children>
                         </HBox>
                      </children>
                   </VBox>
-                  <VBox alignment="CENTER_LEFT" prefHeight="200.0" prefWidth="100.0" styleClass="box-margin" HBox.hgrow="ALWAYS">
+                  <VBox alignment="CENTER_LEFT" prefHeight="200.0" prefWidth="100.0" styleClass="fields-padding" HBox.hgrow="ALWAYS">
                      <children>
                         <Label styleClass="service-field-label" text="Location:" />
                         <HBox>
@@ -54,7 +53,7 @@
                         </HBox>
                      </children>
                   </VBox>
-                  <VBox alignment="CENTER_LEFT" prefHeight="200.0" prefWidth="100.0" styleClass="box-margin" HBox.hgrow="ALWAYS">
+                  <VBox alignment="CENTER_LEFT" prefHeight="200.0" prefWidth="100.0" styleClass="fields-padding" HBox.hgrow="ALWAYS">
                      <children>
                         <Label styleClass="service-field-label" text="Priority:" />
                         <JFXComboBox fx:id="priority" maxWidth="1.7976931348623157E308" styleClass="dropdown" />
@@ -64,38 +63,29 @@
             </HBox>
          </children>
       </VBox>
-        <VBox maxWidth="1.7976931348623157E308" prefHeight="0.0" prefWidth="600.0" styleClass="box-margin" GridPane.rowIndex="2">
+        <VBox maxWidth="1.7976931348623157E308" prefHeight="0.0" prefWidth="600.0" styleClass="fields-padding" GridPane.rowIndex="2">
             <children>
-            <VBox>
+            <VBox styleClass="fields-padding">
                <children>
                       <Label maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" styleClass="service-field-label" text="Additional Notes:" />
                       <JFXTextArea fx:id="description" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="190.0" prefWidth="422.0" />
                </children>
             </VBox>
-            <HBox prefHeight="100.0" prefWidth="200.0" styleClass="box-margin">
+            <HBox prefHeight="100.0" prefWidth="200.0" styleClass="fields-padding">
                <children>
                   <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="200.0" HBox.hgrow="ALWAYS">
                      <children>
-                        <Button fx:id="goBackButton" mnemonicParsing="false" onAction="#clickGoBack" styleClass="button-back" text="Go Back" />
+                        <Button fx:id="goBackButton" mnemonicParsing="false" onAction="#clickGoBack" styleClass="button-secondary" text="Go Back" />
                      </children>
                   </HBox>
-                  <HBox alignment="CENTER_RIGHT" prefHeight="100.0" prefWidth="200.0" styleClass="button-alignment" HBox.hgrow="ALWAYS">
+                  <HBox alignment="CENTER_RIGHT" prefHeight="100.0" prefWidth="200.0" styleClass="fields-padding" HBox.hgrow="ALWAYS">
                      <children>
-                        <Button fx:id="resetButton" mnemonicParsing="false" onAction="#clickReset" text="Reset">
-                           <styleClass>
-                              <String fx:value="button-alignment" />
-                              <String fx:value="button-failure" />
-                           </styleClass>
+                        <Button fx:id="resetButton" mnemonicParsing="false" onAction="#clickReset" styleClass="failure-button" text="Reset">
                            <HBox.margin>
                               <Insets />
                            </HBox.margin>
                         </Button>
-                        <Button fx:id="submitButton" mnemonicParsing="false" onAction="#clickSubmit" text="Submit">
-                           <styleClass>
-                              <String fx:value="button-alignment" />
-                              <String fx:value="button-success" />
-                           </styleClass>
-                        </Button>
+                        <Button fx:id="submitButton" mnemonicParsing="false" onAction="#clickSubmit" text="Submit" />
                      </children>
                      <opaqueInsets>
                         <Insets />
@@ -108,13 +98,10 @@
             </HBox>
             </children>
         </VBox>
-      <JFXTreeTableView fx:id="table" maxWidth="1.7976931348623157E308" prefHeight="262.0" prefWidth="442.0" styleClass="table-view" GridPane.rowIndex="3" />
+      <JFXTreeTableView fx:id="table" maxWidth="1.7976931348623157E308" prefHeight="262.0" prefWidth="442.0" GridPane.rowIndex="3">
+         <styleClass>
+            <String fx:value="table-view" />
+            <String fx:value="fields-padding" />
+         </styleClass></JFXTreeTableView>
     </children>
-    <stylesheets>
-        <URL value="@../../../css/request_page.css" />
-        <URL value="@../../../css/base.css" />
-    </stylesheets>
-   <padding>
-      <Insets bottom="8.0" left="8.0" right="8.0" top="8.0" />
-   </padding>
 </GridPane>
