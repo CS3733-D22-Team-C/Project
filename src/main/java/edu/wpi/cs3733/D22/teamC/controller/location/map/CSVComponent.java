@@ -98,14 +98,18 @@ public class CSVComponent {
 
     @FXML
     void clickExportFiles(ActionEvent event) {
-        entitiesChecked(true);
-        resetFields();
+        if(!exportText.getText().equals("")) {
+            entitiesChecked(true);
+            resetFields();
+        }
     }
 
     @FXML
     void clickImportFiles(ActionEvent event) {
-        entitiesChecked(false);
-        resetFields();
+        if(!importText.getText().equals("")) {
+            entitiesChecked(false);
+            resetFields();
+        }
 
     }
 
