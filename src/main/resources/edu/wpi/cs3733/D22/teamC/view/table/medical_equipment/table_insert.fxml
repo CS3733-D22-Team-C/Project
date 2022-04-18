@@ -10,11 +10,11 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<VBox xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.wpi.cs3733.D22.teamC.controller.table.MedicalEquipmentViewController">
+<VBox styleClass="page-container" stylesheets="@../../../css/component/table_insert.css" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.wpi.cs3733.D22.teamC.controller.table.MedicalEquipmentViewController">
    <children>
       <ScrollPane fitToHeight="true" fitToWidth="true" prefHeight="524.0" prefWidth="421.0">
          <content>
-            <VBox>
+            <VBox prefHeight="338.0" prefWidth="279.0" style="-fx-background-color: white;">
                <children>
                   <VBox alignment="CENTER_LEFT" prefHeight="115.0" prefWidth="419.0">
                      <children>

@@ -8,20 +8,16 @@
 <?import javafx.scene.effect.DropShadow?>
 <?import javafx.scene.layout.VBox?>
 
-<VBox alignment="CENTER" styleClass="container" stylesheets="@../../css/dashboard.css" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.wpi.cs3733.D22.teamC.controller.dashboard.DashboardController">
+<VBox alignment="CENTER" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.wpi.cs3733.D22.teamC.controller.dashboard.DashboardController">
    <children>
       <VBox alignment="CENTER" VBox.vgrow="ALWAYS">
          <children>
-            <Label fx:id="greetingLabel" styleClass="page-title" text="Hello, ________!" VBox.vgrow="ALWAYS" />
-            <TabPane maxHeight="1.7976931348623157E308" maxWidth="750.0" minHeight="-Infinity" minWidth="-Infinity" tabClosingPolicy="UNAVAILABLE" VBox.vgrow="ALWAYS">
-               <stylesheets>
-                  <URL value="@../../css/base.css" />
-                  <URL value="@../../css/dashboard.css" />
-               </stylesheets>
+            <Label id="title" fx:id="greetingLabel" text="Hello, ________!" VBox.vgrow="ALWAYS" />
+            <TabPane maxHeight="1.7976931348623157E308" maxWidth="750.0" minHeight="-Infinity" minWidth="-Infinity" prefHeight="510.0" prefWidth="448.0" stylesheets="@../../css/default.css" tabClosingPolicy="UNAVAILABLE" VBox.vgrow="ALWAYS">
                <tabs>
                   <Tab closable="false" text="Assigned Service Requests">
                      <content>
-                        <JFXTreeTableView fx:id="assignedTable" styleClass="table-view" />
+                        <JFXTreeTableView fx:id="assignedTable" prefHeight="233.0" prefWidth="225.0" styleClass="table-view" />
                      </content>
                   </Tab>
                   <Tab closable="false" text="Created Service Requests">
@@ -37,4 +33,8 @@
          </children>
       </VBox>
    </children>
+   <stylesheets>
+      <URL value="@../../css/default.css" />
+      <URL value="@../../css/component/dashboard.css" />
+   </stylesheets>
 </VBox>

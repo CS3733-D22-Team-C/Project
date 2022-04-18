@@ -1,6 +1,5 @@
 package edu.wpi.cs3733.D22.teamC.controller.location.map;
 import edu.wpi.cs3733.D22.teamC.App;
-import edu.wpi.cs3733.D22.teamC.controller.location.map.controls.EditMapControlsController;
 import edu.wpi.cs3733.D22.teamC.entity.employee.Employee;
 import edu.wpi.cs3733.D22.teamC.entity.employee.EmployeeDAO;
 import edu.wpi.cs3733.D22.teamC.entity.floor.Floor;
@@ -72,7 +71,6 @@ public class CSVComponent {
     @FXML private TextField importText;
 
     File savedFile;
-    private BaseMapViewController parentController;
 
     public static final String FLOOR_CSV = "TowerFloors.csv";
     public static final String LOCATION_CSV = "TowerLocations.csv";
@@ -87,10 +85,6 @@ public class CSVComponent {
     public static final String DELIVERY_SYSTEM_CSV = "DeliverySysReq.csv";
     public static final String PATIENT_TRANSPORT_CSV = "PatientTransportReq.csv";
     
-    
-    public void setup(BaseMapViewController baseMapViewController) {
-        this.parentController = baseMapViewController;
-    }
 
     @FXML
     void chooseExportCSV(ActionEvent event) {

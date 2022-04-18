@@ -5,21 +5,21 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 
-<HBox prefHeight="46.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.wpi.cs3733.D22.teamC.controller.service_request.medicine_delivery.MedicineDeliverySRInsertResolveController">
+<HBox stylesheets="@../../../css/component/request_page.css" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.wpi.cs3733.D22.teamC.controller.service_request.medicine_delivery.MedicineDeliverySRInsertResolveController">
    <children>
-      <VBox alignment="CENTER_LEFT" prefWidth="227.0" styleClass="box-margin">
+      <VBox alignment="CENTER_LEFT" prefWidth="227.0" styleClass="fields-padding">
          <children>
             <Label styleClass="service-field-label" text="Patient ID" />
             <TextField fx:id="patientID" onAction="#statusUpdated" onKeyPressed="#statusUpdatedKeyEvent" />
          </children>
       </VBox>
-      <VBox alignment="CENTER_LEFT" prefWidth="227.0" styleClass="box-margin">
+      <VBox alignment="CENTER_LEFT" prefWidth="227.0" styleClass="fields-padding">
          <children>
             <Label styleClass="service-field-label" text="Medicine" />
             <TextField fx:id="medicine" onAction="#statusUpdated" onKeyPressed="#statusUpdatedKeyEvent" />
          </children>
       </VBox>
-      <VBox alignment="CENTER_LEFT" prefWidth="227.0" styleClass="box-margin">
+      <VBox alignment="CENTER_LEFT" prefWidth="227.0" styleClass="fields-padding">
          <children>
             <Label styleClass="service-field-label" text="Dosage" />
             <TextField fx:id="dosage" onAction="#statusUpdated" onKeyPressed="#statusUpdatedKeyEvent" />
