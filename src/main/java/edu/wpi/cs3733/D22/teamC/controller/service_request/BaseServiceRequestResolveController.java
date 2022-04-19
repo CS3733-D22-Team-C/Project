@@ -61,6 +61,8 @@ public class BaseServiceRequestResolveController<T extends ServiceRequest> imple
 
     private Employee employee;
     private Location location;
+    
+    private String srUUID;
 
     @FXML
     public void setup(ServiceRequest serviceRequest, boolean isEditMode) {
@@ -72,6 +74,7 @@ public class BaseServiceRequestResolveController<T extends ServiceRequest> imple
 
         DAO<T> serviceRequestDAO = insertController.createServiceRequestDAO();
         this.serviceRequest = serviceRequestDAO.getByID(serviceRequest.getID());
+        srUUID = this.serviceRequest.getID();
 
         if (serviceRequest.getLocation() != null) location = new LocationDAO().getByID(serviceRequest.getLocation());
 
@@ -85,7 +88,7 @@ public class BaseServiceRequestResolveController<T extends ServiceRequest> imple
         description.setText(serviceRequest.getDescription());
 
         // Set labels
-        requestID.setText(serviceRequest.getID()); //TODO print something else here or don't print maybe
+        requestID.setText(Integer.toString(serviceRequest.getNumber()));
         assigneeID.setEditable(false);
         locationID.setEditable(false);
 
@@ -126,7 +129,7 @@ public class BaseServiceRequestResolveController<T extends ServiceRequest> imple
     void clickConfirm(ActionEvent event) {
         //Accessing Service Request in Database
         DAO<T> serviceRequestDAO = insertController.createServiceRequestDAO();
-        T serviceRequest = serviceRequestDAO.getByID(requestID.getText());
+        T serviceRequest = serviceRequestDAO.getByID(srUUID);
 
         if(isEditMode)
         {

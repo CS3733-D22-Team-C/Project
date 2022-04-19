@@ -19,7 +19,7 @@ public class ServiceRequest implements IDEntity {
     protected String ID;
     
     @Column(name = "Number", columnDefinition = "int NOT NULL GENERATED ALWAYS AS IDENTITY(START WITH 1, INCREMENT BY 1)")
-    @Generated(GenerationTime.INSERT)
+    @Generated(GenerationTime.ALWAYS)
     protected int number;
     
     @ManyToOne
