@@ -28,7 +28,6 @@ import java.net.URL;
 import java.util.List;
 import java.util.ResourceBundle;
 
-import static edu.wpi.cs3733.D22.teamC.controller.service_request.ServiceRequestsViewController.CREATE_FORM;
 import static edu.wpi.cs3733.D22.teamC.entity.service_request.ServiceRequest.Status.*;
 
 public class ServiceRequestLandingPage implements Initializable {
