@@ -83,9 +83,6 @@ public class CSVComponent implements Initializable {
     @FXML private JFXButton importButton;
     @FXML private JFXButton exportButton;
 
-
-
-
     //Textfields
     @FXML private TextField exportText;
     @FXML private TextField importText;
@@ -120,7 +117,6 @@ public class CSVComponent implements Initializable {
         importButton.setGraphic(folderContent);
         exportButton.setGraphic(folderContent2);
     }
-
 
     @FXML
     void chooseExportCSV(ActionEvent event) {
@@ -381,7 +377,7 @@ public class CSVComponent implements Initializable {
         translatorExport.setSelected(false);
         patientTransportExport.setSelected(false);
         patientTransportImport.setSelected(false);
-
+    
         medicalEquipmentEntityImport.setSelected(false);
         medicalEquipmentEntityExport.setSelected(false);
 
