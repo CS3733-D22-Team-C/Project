@@ -25,6 +25,11 @@ public class MedicalEquipmentNode extends MapNode<MedicalEquipment> {
     // References
     Group contextGroup;
 
+
+
+    //Variables
+    List<MedicalEquipment> medicalEquipments;
+
     // References
     private MedicalEquipmentCounter[] counters = new MedicalEquipmentCounter[MedicalEquipment.EquipmentType.values().length];
 
@@ -52,9 +57,10 @@ public class MedicalEquipmentNode extends MapNode<MedicalEquipment> {
         updateValues();
     }
 
+
     public void updateValues() {
         MedicalEquipmentDAO dao = new MedicalEquipmentDAO();
-        List<MedicalEquipment> medicalEquipments = dao.getEquipmentByLocation(location.getID());
+        medicalEquipments = dao.getEquipmentByLocation(location.getID());
 
         for (MedicalEquipment.EquipmentType equipmentType : MedicalEquipment.EquipmentType.values()) {
             List<MedicalEquipment> medicalEquipmentsByType = medicalEquipments.stream().filter(medicalEquipment -> medicalEquipment.getEquipmentType() == equipmentType).collect(Collectors.toList());
@@ -85,4 +91,12 @@ public class MedicalEquipmentNode extends MapNode<MedicalEquipment> {
             }
         }
     //#endregion
+
+    //#region Getters
+
+    public List<MedicalEquipment> getMedicalEquipments() {
+        return medicalEquipments;
+    }
+    //#endregion
+
 }

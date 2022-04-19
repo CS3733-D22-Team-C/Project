@@ -1,11 +1,16 @@
 package edu.wpi.cs3733.D22.teamC.controller.map.panel;
 
+import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXTreeTableView;
+import edu.wpi.cs3733.D22.teamC.controller.map.FloorMapViewController;
 import edu.wpi.cs3733.D22.teamC.controller.map.MapViewController;
 import edu.wpi.cs3733.D22.teamC.controller.map.data.location.LocationMapNode;
+import edu.wpi.cs3733.D22.teamC.controller.map.data.medical_equipment.MedicalEquipmentManager;
+import edu.wpi.cs3733.D22.teamC.controller.map.data.medical_equipment.MedicalEquipmentNode;
 import edu.wpi.cs3733.D22.teamC.entity.floor.Floor;
 import edu.wpi.cs3733.D22.teamC.entity.location.Location;
 import edu.wpi.cs3733.D22.teamC.entity.location.LocationDAO;
+import edu.wpi.cs3733.D22.teamC.entity.medical_equipment.MedicalEquipment;
 import edu.wpi.cs3733.D22.teamC.entity.medical_equipment.MedicalEquipmentDAO;
 import edu.wpi.cs3733.D22.teamC.entity.service_request.ServiceRequest;
 import edu.wpi.cs3733.D22.teamC.entity.service_request.ServiceRequestDAO;
@@ -16,10 +21,16 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
+import javafx.scene.input.MouseButton;
 import javafx.scene.shape.SVGPath;
 
+import javax.persistence.TemporalType;
+import javax.swing.*;
 import java.net.URL;
 import java.util.ResourceBundle;
+
+import static edu.wpi.cs3733.D22.teamC.entity.medical_equipment.MedicalEquipment.EquipmentStatus.*;
+import static edu.wpi.cs3733.D22.teamC.entity.service_request.ServiceRequest.Status.*;
 
 public class LocationInfoController implements Initializable {
     // Constants
@@ -42,7 +53,9 @@ public class LocationInfoController implements Initializable {
 
     // Medical Equipment - Table
     @FXML JFXTreeTableView medicalEquipmentTable;
+
     MedicalEquipmentTableDisplay medicalEquipmentTableDisplay;
+    private MedicalEquipment activeMedicalEquipment;
 
     // Service Requests - Table
     @FXML JFXTreeTableView serviceRequestTable;
@@ -53,8 +66,15 @@ public class LocationInfoController implements Initializable {
     @FXML private Button revertButton;
     @FXML private Button deleteButton;
 
+    //Medical Equipment - Update Buttons
+    @FXML private JFXButton updateStatus;
+    @FXML private JFXButton updateLocation;
+    @FXML private ComboBox<MedicalEquipment.EquipmentStatus>  statusComboBox;
+
+
     // References
-    MapViewController mapViewController;
+    FloorMapViewController mapViewController;
+
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
@@ -68,13 +88,16 @@ public class LocationInfoController implements Initializable {
 
         // Initialize Medical Equipment Info
         medicalEquipmentTableDisplay = new MedicalEquipmentTableDisplay(medicalEquipmentTable);
+
+        setRowInteraction();
+        setActiveMedicalEquipment(null);
     }
 
     /**
      * Setup the LocationInfoController and view with external data and references.
      * @param mapViewController The parent controller to communicate with.
      */
-    public void setup(MapViewController mapViewController) {
+    public void setup(FloorMapViewController mapViewController) {
         this.mapViewController = mapViewController;
 
         // Select default tab
@@ -83,6 +106,7 @@ public class LocationInfoController implements Initializable {
         // Set Combo Box values
         floorComboBox.getItems().setAll(mapViewController.getFloorManager().getAll());
         nodeComboBox.getItems().setAll(Location.NodeType.values());
+        statusComboBox.getItems().setAll(MedicalEquipment.EquipmentStatus.values());
 
         // Hide when inactive
         setEditable(false);
@@ -101,6 +125,38 @@ public class LocationInfoController implements Initializable {
         tab.setGraphic(svg);
         tab.setText(null);
     }
+
+
+    /**
+     *
+     */
+    protected void setRowInteraction() {
+        medicalEquipmentTable.setRowFactory(tv -> {
+            TreeTableRow<MedicalEquipmentTableDisplay.MedicalEquipmentTableEntry> row = new TreeTableRow<MedicalEquipmentTableDisplay.MedicalEquipmentTableEntry>();
+
+            row.setOnMouseClicked(event -> {
+                if (!row.isEmpty() && event.getButton() == MouseButton.PRIMARY) {
+                    setActiveMedicalEquipment(((MedicalEquipment) row.getItem().object));
+                }
+            });
+
+            return row ;
+        });
+    }
+
+
+
+    /**
+     * Sets the currently active Service Request (will have its information passed to edit/resolve pages).
+     * @param medicalEquipment The Medical Equipment to be set as active.
+     */
+    private void setActiveMedicalEquipment(MedicalEquipment medicalEquipment) {
+        activeMedicalEquipment = medicalEquipment;
+        updateStatus.setDisable(activeMedicalEquipment == null);
+        updateLocation.setDisable(activeMedicalEquipment == null);
+    }
+
+
 
     //#region Pane Interaction
         /**
@@ -125,6 +181,8 @@ public class LocationInfoController implements Initializable {
         public void setVisible(boolean visible) {
             tabPane.setVisible(visible);
         }
+
+
     //#endregion
 
     //#region Location Interaction
@@ -146,12 +204,15 @@ public class LocationInfoController implements Initializable {
 
             // Medical Equipment
             populateMedicalEquipmentTable(location);
+            ComponentWrapper.setValueSilently(statusComboBox, MedicalEquipment.getStatus());
 
             // Service Requests
             serviceRequestTableDisplay.emptyTable();
             new ServiceRequestDAO().getAllSRByLocation(location.getID()).forEach(serviceRequestTableDisplay::addObject);
 
             revertButton.setDisable(location.equals(new LocationDAO().getByID(location.getID())));
+
+            setActiveMedicalEquipment(null);
         }
 
         /**
@@ -181,10 +242,12 @@ public class LocationInfoController implements Initializable {
             }
         }
 
-        public void populateMedicalEquipmentTable(Location location) {
+        public void populateMedicalEquipmentTable(Location location) {    //TODO Update Values on MedicalEquipment Node when changes are made to this Medical Equipment
             medicalEquipmentTableDisplay.emptyTable();
-            new MedicalEquipmentDAO().getEquipmentByLocation(location.getID()).forEach(medicalEquipmentTableDisplay::addObject);
-        }
+              new MedicalEquipmentDAO().getEquipmentByLocation(location.getID()).forEach(medicalEquipmentTableDisplay::addObject);
+            }
+
+    
     //#endregion
 
     //#region FXML Events
@@ -204,5 +267,17 @@ public class LocationInfoController implements Initializable {
             mapViewController.getLocationManager().removeObject(mapViewController.getLocationManager().getCurrent());
             setVisible(false);
         }
+
+        @FXML
+        void onUpdateStatusButtonPressed(ActionEvent event){
+            if(activeMedicalEquipment != null && statusComboBox != null){
+            activeMedicalEquipment.setStatus(statusComboBox.getValue());}
+        }
+        @FXML
+        public void onUpdateLocationButtonPressed(ActionEvent actionEvent) {
+        }
+
+
     //#endregion
+
 }
