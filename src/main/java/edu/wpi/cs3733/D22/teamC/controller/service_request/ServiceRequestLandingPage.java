@@ -93,6 +93,16 @@ public class ServiceRequestLandingPage implements Initializable {
     }
 
     @FXML
+    void clickTranslator(ActionEvent event) {
+        goToSRPage(ServiceRequest.RequestType.Translator);
+    }
+  
+    @FXML
+    void clickPatientTransport(ActionEvent event) {
+        goToSRPage(ServiceRequest.RequestType.Patient_Transport);
+    }
+
+    @FXML
     void clickDeliverySystem(ActionEvent event) {
         goToSRPage(ServiceRequest.RequestType.Delivery_System);
     }
@@ -115,8 +125,7 @@ public class ServiceRequestLandingPage implements Initializable {
             view.getController().setup(type);
             App.instance.setView(view.getNode());
     }
-
-
+    
     @FXML
     void clickBackToTable(ActionEvent event) {
         App.instance.setView(App.VIEW_SERVICE_REQUESTS_PATH);

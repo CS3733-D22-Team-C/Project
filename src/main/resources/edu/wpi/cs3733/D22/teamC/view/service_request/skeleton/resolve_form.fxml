@@ -1,16 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import com.jfoenix.controls.JFXButton?>
-<?import com.jfoenix.controls.JFXComboBox?>
 <?import com.jfoenix.controls.JFXTextArea?>
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Label?>
-<?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.ColumnConstraints?>
 <?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.layout.VBox?>
+<?import org.controlsfx.control.SearchableComboBox?>
 
 <GridPane alignment="CENTER" maxHeight="1.7976931348623157E308" maxWidth="838.0" prefHeight="683.0" prefWidth="606.0" styleClass="page-container" stylesheets="@../../../css/component/request_page.css" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.wpi.cs3733.D22.teamC.controller.service_request.BaseServiceRequestResolveController">
    <columnConstraints>
@@ -93,8 +92,8 @@
                         <Label styleClass="service-field-label" text="Assign To:" />
                         <HBox>
                            <children>
-                              <TextField fx:id="assigneeID" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" onAction="#statusUpdated" onKeyPressed="#statusKeyPressedUpdated" prefHeight="26.0" prefWidth="110.0" HBox.hgrow="ALWAYS" />
-                              <JFXButton fx:id="employeeTableButton" onAction="#goToEmployeeTable" prefHeight="26.0" style="-fx-background-color: -color-secondary;" stylesheets="@../../../css/colors.css" text="-&gt;" />
+                              <SearchableComboBox fx:id="assigneeID" onAction="#statusUpdated" HBox.hgrow="ALWAYS" />
+                              <JFXButton fx:id="employeeTableButton" onAction="#goToEmployeeTable" prefHeight="26.0" style="-fx-background-color: -color-secondary;" stylesheets="@../../../css/colors.css" />
                            </children>
                         </HBox>
                      </children>
@@ -104,8 +103,8 @@
                         <Label styleClass="service-field-label" text="Location:" />
                         <HBox>
                            <children>
-                              <TextField fx:id="locationID" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" onAction="#statusUpdated" onKeyPressed="#statusKeyPressedUpdated" prefHeight="26.0" prefWidth="110.0" HBox.hgrow="ALWAYS" />
-                              <JFXButton fx:id="mapViewButton" onAction="#goToMapView" prefHeight="26.0" style="-fx-background-color: -color-secondary;" stylesheets="@../../../css/colors.css" text="-&gt;" />
+                              <SearchableComboBox fx:id="locationID" onAction="#statusUpdated" HBox.hgrow="ALWAYS" />
+                              <JFXButton fx:id="mapViewButton" onAction="#goToMapView" prefHeight="26.0" style="-fx-background-color: -color-secondary;" stylesheets="@../../../css/colors.css" />
                            </children>
                         </HBox>
                      </children>
@@ -113,7 +112,7 @@
                   <VBox alignment="CENTER_LEFT" prefHeight="200.0" prefWidth="100.0" styleClass="fields-padding" HBox.hgrow="ALWAYS">
                      <children>
                         <Label styleClass="service-field-label" text="Priority:" />
-                        <JFXComboBox fx:id="priority" maxWidth="1.7976931348623157E308" onAction="#statusUpdated" styleClass="dropdown" />
+                        <SearchableComboBox fx:id="priority" onAction="#statusUpdated" />
                      </children>
                   </VBox>
                </children>

@@ -1,7 +1,7 @@
 package edu.wpi.cs3733.D22.teamC.controller.table;
 
 import edu.wpi.cs3733.D22.teamC.App;
-import edu.wpi.cs3733.D22.teamC.controller.location.map.CSVComponent;
+import edu.wpi.cs3733.D22.teamC.controller.csv_io.CSVComponent;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -13,6 +13,7 @@ import java.util.ResourceBundle;
 public class EditDatabasesPageController implements Initializable {
 
     @FXML private VBox insertVbox;
+
 
     CSVComponent insertController;
 

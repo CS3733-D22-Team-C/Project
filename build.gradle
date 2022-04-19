@@ -30,6 +30,7 @@ dependencies {
             // MaterialFX
             'io.github.palexdev:materialfx:11.13.4',
 
+            // ControlsFX
             'org.controlsfx:controlsfx:11.1.1',
 
             // Database
