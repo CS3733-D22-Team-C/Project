@@ -16,10 +16,12 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.ComboBox;
+import javafx.scene.control.DatePicker;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 
 import java.net.URL;
+import java.util.Date;
 import java.util.List;
 import java.util.ResourceBundle;
 
@@ -33,6 +35,7 @@ public class PatientViewController extends InsertTableViewController<Patient> im
     @FXML private TextField number;
     @FXML private TextField location;
     @FXML private JFXButton locationButton;
+    @FXML private DatePicker date;
     Location a_location;
 
 
@@ -59,12 +62,17 @@ public class PatientViewController extends InsertTableViewController<Patient> im
      * @param object The object to have its values overwritten.
      * @return The modified object.
      */
-    public MedicalEquipment setValues(MedicalEquipment object) {
-        //fields in table
-//        object.setStatus(statusComboBox.getValue());
-//        object.setLocationID(location.getID());
-//        object.setEquipmentType(typeComboBox.getValue());
-//        object.setTypeNumber(Integer.parseInt(number.getText()));
+    public Patient setValues(Patient object) {
+
+
+//        object.setLocationID();
+//        object.setDOB(date.getValue());
+
+        object.setPhone(number.getText());
+        object.setFirstName(firstName.getText());
+        object.setLastName(lastName.getText());
+        object.setEmergencyContact(null);
+        //ID set automatically
         return object;
     }
 
@@ -127,12 +135,8 @@ public class PatientViewController extends InsertTableViewController<Patient> im
     public PatientDAO createDAO() { return new PatientDAO();}
 
     @Override
-    public Patient setValues(Patient object) {
-        return null;
-    }
-
-    @Override
-    public void setFields(Patient object) {
+    public void setFields(Patient object)
+    {
 
     }
 
