@@ -16,6 +16,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.VBox;
+import org.controlsfx.control.tableview2.TableView2;
 
 import java.net.URL;
 import java.util.ArrayList;
@@ -39,7 +40,7 @@ public class BaseMapSideViewController implements Initializable {
     private Floor selectedFloor;
 
     // Table
-    @FXML private JFXTreeTableView table;
+    @FXML private TableView2 table;
     private EquipmentTableDisplay tableDisplay;
 
     // Floor Descriptors
@@ -66,7 +67,7 @@ public class BaseMapSideViewController implements Initializable {
             floorNode.getGroup().getChildren().get(0).setOnMouseClicked(e -> onFloorClicked(e, floorNode));
         }
 
-        tableDisplay = new EquipmentTableDisplay(table);
+        //tableDisplay = new EquipmentTableDisplay(table);
 
     }
 
