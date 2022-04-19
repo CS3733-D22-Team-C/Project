@@ -1,36 +1,56 @@
 package edu.wpi.cs3733.D22.teamC.controller.service_request.medicine_delivery;
 
+import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXComboBox;
 import com.jfoenix.controls.JFXTreeTableView;
 import edu.wpi.cs3733.D22.teamC.controller.service_request.InsertServiceRequestCreateController;
 import edu.wpi.cs3733.D22.teamC.entity.generic.DAO;
+import edu.wpi.cs3733.D22.teamC.entity.patient.Patient;
+import edu.wpi.cs3733.D22.teamC.entity.patient.PatientDAO;
 import edu.wpi.cs3733.D22.teamC.entity.service_request.ServiceRequestDAO;
 import edu.wpi.cs3733.D22.teamC.entity.service_request.lab_system.LabSystemSR;
 import edu.wpi.cs3733.D22.teamC.entity.service_request.medicine_delivery.MedicineDeliverySR;
 import edu.wpi.cs3733.D22.teamC.entity.service_request.medicine_delivery.MedicineDeliverySRDAO;
+import edu.wpi.cs3733.D22.teamC.models.patient.PatientSelectorWindow;
 import edu.wpi.cs3733.D22.teamC.models.service_request.ServiceRequestTableDisplay;
 import edu.wpi.cs3733.D22.teamC.models.service_request.medicine_delivery.MedicineDeliverySRTableDisplay;
+import edu.wpi.cs3733.D22.teamC.models.utils.ComponentWrapper;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.TextField;
+import org.controlsfx.control.SearchableComboBox;
 
 import java.net.URL;
+import java.util.List;
 import java.util.ResourceBundle;
 
 public class MedicineDeliverySRInsertCreateController implements InsertServiceRequestCreateController<MedicineDeliverySR>, Initializable {
     @FXML private TextField medicine;
     @FXML private TextField dosage;
-    @FXML private TextField patientID;
+    @FXML private JFXButton patientButton;
+    @FXML private SearchableComboBox<Patient> patientSComboBox;
+
+    public void setPatient(Patient patient){
+        patientSComboBox.setValue(patient);
+    }
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
+        //Patient ComboBox
+        //Query DB
+        PatientDAO patientDAO = new PatientDAO();
+        List<Patient> patients = patientDAO.getAll();
+
+        ComponentWrapper.initializeComboBox(patientSComboBox, Patient::toString);
+
+        patientSComboBox.getItems().setAll(patients);
     }
 
     @Override
     public void clearFields() {
         medicine.setText(null);
         dosage.setText(null);
-        patientID.setText(null);
+        patientSComboBox.valueProperty().setValue(null);
     }
 
     @Override
@@ -39,7 +59,7 @@ public class MedicineDeliverySRInsertCreateController implements InsertServiceRe
 
         medicineDeliverySR.setMedicine(medicine.getText());
         medicineDeliverySR.setDosage(dosage.getText());
-        medicineDeliverySR.setPatientID(patientID.getText());
+        medicineDeliverySR.setPatientID(patientSComboBox.getId());
 
         return medicineDeliverySR;
     }
@@ -59,11 +79,16 @@ public class MedicineDeliverySRInsertCreateController implements InsertServiceRe
             return false;
         if(dosage.getText().equals(""))
             return false;
-        if(patientID.getText().equals(""))
+        if(patientSComboBox.getValue() == null){
             return false;
+        }
         return true;
     }
 
+    @FXML
+    public void goToPatientTable(){
+        new PatientSelectorWindow(patient -> this.setPatient(patient));
+    }
 
     public MedicineDeliverySR createNewServiceRequest(){
         return new MedicineDeliverySR();
