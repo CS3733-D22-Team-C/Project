@@ -21,6 +21,7 @@ public class EditDatabasesPageController implements Initializable {
     final static String TABLE_EMPLOYEE = "view/table/employee/table_insert.fxml";
     final static String TABLE_LOCATION = "view/table/locations/table_insert.fxml";
     final static String TABLE_MEDICAL_EQUIPMENT = "view/table/medical_equipment/table_insert.fxml";
+    final static String TABLE_PATIENT = "view/table/patient/table_insert.fxml";
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
@@ -28,7 +29,7 @@ public class EditDatabasesPageController implements Initializable {
     }
     @FXML
     void clickEmployee(ActionEvent event) {
-        App.instance.setSkeletonView(TABLE_SKELETON, TABLE_EMPLOYEE);
+        App.instance.setSkeletonView(TABLE_SKELETON, TABLE_PATIENT);
 
     }
 
