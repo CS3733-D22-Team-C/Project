@@ -91,8 +91,8 @@ public class BaseServiceRequestCreateController<T extends ServiceRequest> implem
         SVGGlyph locationContent = new SVGGlyph(locationIcon);
         employeeContent.setSize(20);
         locationContent.setSize(20);
-        mapViewButton.setGraphic(employeeContent);
-        employeeTableButton.setGraphic(locationContent);
+        mapViewButton.setGraphic(locationContent);
+        employeeTableButton.setGraphic(employeeContent);
         this.requestType = requestType;
         switch (requestType)
         {
@@ -158,7 +158,6 @@ public class BaseServiceRequestCreateController<T extends ServiceRequest> implem
 
         // Setup Combobox
         List<Employee> employees = new EmployeeDAO().getAll();
-
         ComponentWrapper.initializeComboBox(employeeComboBox, Employee::toString);
         employeeComboBox.getItems().setAll(employees);
 
@@ -218,7 +217,7 @@ public class BaseServiceRequestCreateController<T extends ServiceRequest> implem
         T serviceRequest = insertController.createServiceRequest();
 
         serviceRequest.setAssignee(employeeComboBox.getValue());
-        serviceRequest.setLocation(location.getID());
+        serviceRequest.setLocation(locationID.getValue().getID());
         serviceRequest.setDescription(description.getText());
         serviceRequest.setPriority(ServiceRequest.Priority.valueOf(priority.getValue()));
 
