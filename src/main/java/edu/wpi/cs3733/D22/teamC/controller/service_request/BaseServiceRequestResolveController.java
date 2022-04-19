@@ -103,10 +103,13 @@ public class BaseServiceRequestResolveController<T extends ServiceRequest> imple
         locationID.getItems().setAll(locations);
 
         priority.setPromptText(serviceRequest.getPriority().toString());
-        assigneeID.setPromptText(serviceRequest.getAssignee() == null ? "" : serviceRequest.getAssignee().getLastName() + ", " + serviceRequest.getAssignee().getFirstName());
-        locationID.setPromptText(location == null ? "" : location.getShortName());
+        //assigneeID.setPromptText(serviceRequest.getAssignee() == null ? "" : serviceRequest.getAssignee().getLastName() + ", " + serviceRequest.getAssignee().getFirstName());
+        //locationID.setPromptText(location == null ? "" : location.getShortName());
         creationTime.setText(serviceRequest.getCreationTimestamp().toString());
         description.setText(serviceRequest.getDescription());
+
+        assigneeID.setValue(serviceRequest.getAssignee());
+        locationID.setValue(location);
 
         // Set labels
         requestID.setText(serviceRequest.getID()); //TODO print something else here or don't print maybe
