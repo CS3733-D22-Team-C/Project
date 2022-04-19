@@ -52,7 +52,7 @@ public class TranslatorSRInsertCreateController implements InsertServiceRequestC
         PatientDAO patientDAO = new PatientDAO();
         List<Patient> patients = patientDAO.getAll();
 
-        ComponentWrapper.initializeComboBox(patientSComboBox, Patient::getFirstName);
+        ComponentWrapper.initializeComboBox(patientSComboBox, Patient::toString);
 
         patientSComboBox.getItems().setAll(patients);
     }
