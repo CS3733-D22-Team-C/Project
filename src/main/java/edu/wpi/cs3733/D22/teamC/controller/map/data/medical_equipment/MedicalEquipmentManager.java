@@ -139,4 +139,8 @@ public class MedicalEquipmentManager extends ManagerMapNodes<MedicalEquipment> {
             counter.addMedicalEquipment(medicalEquipment);
         }
     //#endregion
+
+    //#region Medical Equipment Manipulation
+
+    //#endregion
 }

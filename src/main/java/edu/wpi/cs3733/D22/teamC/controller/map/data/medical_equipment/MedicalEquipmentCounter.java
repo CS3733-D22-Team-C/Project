@@ -3,14 +3,16 @@ package edu.wpi.cs3733.D22.teamC.controller.map.data.medical_equipment;
 import edu.wpi.cs3733.D22.teamC.entity.location.Location;
 import edu.wpi.cs3733.D22.teamC.entity.medical_equipment.MedicalEquipment;
 import edu.wpi.cs3733.D22.teamC.entity.medical_equipment.MedicalEquipmentDAO;
-import edu.wpi.cs3733.D22.teamC.models.notifications.NotificationBuilder;
+import edu.wpi.cs3733.D22.teamC.models.builders.DialogBuilder;
+import edu.wpi.cs3733.D22.teamC.models.builders.NotificationBuilder;
 import javafx.fxml.FXML;
 import javafx.scene.Group;
-import javafx.scene.control.Label;
+import javafx.scene.control.*;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.shape.SVGPath;
 
 import java.util.List;
+import java.util.concurrent.atomic.AtomicBoolean;
 
 public class MedicalEquipmentCounter {
     // General Components
@@ -94,20 +96,39 @@ public class MedicalEquipmentCounter {
 
             // Send Notification
             String notification = medicalEquipment.getEquipmentType().toString() + " #" + medicalEquipment.getTypeNumber() + " moved to " + parentNode.getLocation().getShortName() + ".";
+            NotificationBuilder.createNotification("Medical Equipment Moved", notification);
+
+            String prompt = "";
             if (parentNode.getLocation().getNodeType().equals(Location.NodeType.DIRT)) {
                 if (!medicalEquipment.getStatus().equals(MedicalEquipment.EquipmentStatus.Dirty)) {
-                    notification += " This is a DIRT location, mark this equipment as Dirty?";
+                    prompt = "This is a DIRT location, mark this equipment as Dirty and create a Service Request?";
                 }
             } else if (parentNode.getLocation().getNodeType().equals(Location.NodeType.STOR)) {
                 if (!medicalEquipment.getStatus().equals(MedicalEquipment.EquipmentStatus.Available)) {
-                    notification += " This is a STOR location, mark this equipment as Available?";
+                    prompt = "This is a STOR location, mark this equipment as Available?";
                 }
             } else {
                 if (!medicalEquipment.getStatus().equals(MedicalEquipment.EquipmentStatus.Unavailable)) {
-                    notification += " Mark this equipment as Unavailable?";
+                    prompt = "Mark this equipment as Unavailable?";
                 }
             }
-            NotificationBuilder.createNotification("Medical Equipment Moved", notification, parentNode.getManager().getMapController().getMap());
+            if (!prompt.equals("")) {
+                AtomicBoolean checkbox = new AtomicBoolean(false);
+                Alert alert = DialogBuilder.createAlertWithOptOut(Alert.AlertType.CONFIRMATION, "Medical Equipment Automation",
+                        null, prompt, "Do not ask again",
+                        param -> {checkbox.set(param);}, ButtonType.YES, ButtonType.NO);
+                alert.showAndWait().ifPresent(btnType -> {
+                    if (btnType.getButtonData() == ButtonBar.ButtonData.YES) {
+                        System.out.println("Yes!");
+                        System.out.println("Checkbox: " + checkbox.get());
+                    } else if (btnType.getButtonData() == ButtonBar.ButtonData.NO) {
+                        System.out.println("No!");
+                        System.out.println("Checkbox: " + checkbox.get());
+                    }
+                });
+            }
+
+
 
             updateCounter();
 

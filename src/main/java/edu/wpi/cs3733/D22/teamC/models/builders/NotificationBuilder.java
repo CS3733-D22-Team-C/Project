@@ -1,18 +1,15 @@
-package edu.wpi.cs3733.D22.teamC.models.notifications;
+package edu.wpi.cs3733.D22.teamC.models.builders;
 
+import edu.wpi.cs3733.D22.teamC.App;
 import javafx.geometry.Pos;
 import javafx.scene.Node;
-import javafx.scene.shape.Circle;
 import org.controlsfx.control.Notifications;
 
-import java.util.ArrayList;
-import java.util.List;
-
 public class NotificationBuilder {
-    public static void createNotification(String title, String message, Node owner) {
+    public static void createNotification(String title, String message) {
         Notifications
                 .create()
-                .owner(owner)
+                .owner(App.instance.getStage())
                 .title(title)
                 .text(message)
                 .position(Pos.BOTTOM_RIGHT)
