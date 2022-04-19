@@ -76,20 +76,24 @@ public class SessionManager {
         SessionManager.serverDatabase = (mode == DBMode.EMBEDDED) ? DBMode.EMBEDDED : DBMode.SERVER;
         killSessionFactory();
         sf = createSessionFactory(serverDatabase);
-
+        
         addStaticAccounts();
     }
-
+    
+    // Backdoor... don't judge me.
     private static void addStaticAccounts() {
         EmployeeDAO dao = new EmployeeDAO();
         String[] accounts = new String[] {"admin", "staff"};
         Arrays.stream(accounts).forEach(accountName -> {
             if (dao.getEmployeeByUsername(accountName) == null) {
                 Employee employee = new Employee();
-                employee.setRole(Employee.Role.Doctor);
                 if (accountName.equals("admin")) employee.setAdmin(true);
                 employee.setUsername(accountName);
                 employee.setPassword(accountName);
+                employee.setRole(Employee.Role.Doctor);
+                employee.setFirstName(accountName.toUpperCase());
+                employee.setLastName(accountName.toUpperCase());
+                employee.setPhone("N/A");
                 dao.insert(employee);
             }
         });
