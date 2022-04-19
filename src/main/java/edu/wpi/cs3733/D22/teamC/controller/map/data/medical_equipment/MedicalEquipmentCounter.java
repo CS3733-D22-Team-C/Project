@@ -1,7 +1,9 @@
 package edu.wpi.cs3733.D22.teamC.controller.map.data.medical_equipment;
 
+import edu.wpi.cs3733.D22.teamC.entity.location.Location;
 import edu.wpi.cs3733.D22.teamC.entity.medical_equipment.MedicalEquipment;
 import edu.wpi.cs3733.D22.teamC.entity.medical_equipment.MedicalEquipmentDAO;
+import edu.wpi.cs3733.D22.teamC.models.notifications.NotificationBuilder;
 import javafx.fxml.FXML;
 import javafx.scene.Group;
 import javafx.scene.control.Label;
@@ -90,6 +92,25 @@ public class MedicalEquipmentCounter {
             new MedicalEquipmentDAO().update(medicalEquipment);
             parentNode.getManager().onUpdateDataEvents.forEach(Runnable::run);
 
+            // Send Notification
+            String notification = medicalEquipment.getEquipmentType().toString() + " #" + medicalEquipment.getTypeNumber() + " moved to " + parentNode.getLocation().getShortName() + ".";
+            if (parentNode.getLocation().getNodeType().equals(Location.NodeType.DIRT)) {
+                if (!medicalEquipment.getStatus().equals(MedicalEquipment.EquipmentStatus.Dirty)) {
+                    notification += " This is a DIRT location, mark this equipment as Dirty?";
+                }
+            } else if (parentNode.getLocation().getNodeType().equals(Location.NodeType.STOR)) {
+                if (!medicalEquipment.getStatus().equals(MedicalEquipment.EquipmentStatus.Available)) {
+                    notification += " This is a STOR location, mark this equipment as Available?";
+                }
+            } else {
+                if (!medicalEquipment.getStatus().equals(MedicalEquipment.EquipmentStatus.Unavailable)) {
+                    notification += " Mark this equipment as Unavailable?";
+                }
+            }
+            NotificationBuilder.createNotification("Medical Equipment Moved", notification, parentNode.getManager().getMapController().getMap());
+
+            updateCounter();
+
             event.consume();
         }
 
@@ -101,6 +122,8 @@ public class MedicalEquipmentCounter {
             medicalEquipment.setLocationID("");
             new MedicalEquipmentDAO().update(medicalEquipment);
             parentNode.getManager().onUpdateDataEvents.forEach(Runnable::run);
+
+            updateCounter();
 
             event.consume();
         }
