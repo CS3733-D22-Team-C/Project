@@ -3,15 +3,23 @@ package edu.wpi.cs3733.D22.teamC.controller.service_request.medicine_delivery;
 import edu.wpi.cs3733.D22.teamC.controller.service_request.BaseServiceRequestResolveController;
 import edu.wpi.cs3733.D22.teamC.controller.service_request.InsertServiceRequestResolveController;
 import edu.wpi.cs3733.D22.teamC.entity.generic.DAO;
+import edu.wpi.cs3733.D22.teamC.entity.patient.Patient;
+import edu.wpi.cs3733.D22.teamC.entity.patient.PatientDAO;
 import edu.wpi.cs3733.D22.teamC.entity.service_request.ServiceRequestDAO;
 import edu.wpi.cs3733.D22.teamC.entity.service_request.medicine_delivery.MedicineDeliverySR;
 import edu.wpi.cs3733.D22.teamC.entity.service_request.medicine_delivery.MedicineDeliverySRDAO;
+import edu.wpi.cs3733.D22.teamC.models.patient.PatientSelectorWindow;
+import edu.wpi.cs3733.D22.teamC.models.utils.ComponentWrapper;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.TextField;
 import javafx.scene.input.KeyEvent;
+import org.controlsfx.control.SearchableComboBox;
 
+import java.io.IOException;
 import java.net.URL;
+import java.util.List;
 import java.util.ResourceBundle;
 
 public class MedicineDeliverySRInsertResolveController extends InsertServiceRequestResolveController<MedicineDeliverySR> implements Initializable {
@@ -24,11 +32,19 @@ public class MedicineDeliverySRInsertResolveController extends InsertServiceRequ
     private TextField medicine;
 
     @FXML
-    private TextField patientID;
+    private SearchableComboBox<Patient> patientSComboBox;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
 
+        //Patient ComboBox
+        //Query DB
+        PatientDAO patientDAO = new PatientDAO();
+        List<Patient> patients = patientDAO.getAll();
+
+        ComponentWrapper.initializeComboBox(patientSComboBox, Patient::getFirstName);
+
+        patientSComboBox.getItems().setAll(patients);
     }
 
     @Override
@@ -36,11 +52,13 @@ public class MedicineDeliverySRInsertResolveController extends InsertServiceRequ
         super.setup(baseServiceRequestResolveController, serviceRequest, isEditMode);
         dosage.setEditable(isEditMode);
         medicine.setEditable(isEditMode);
-        patientID.setEditable(isEditMode);
+        patientSComboBox.setEditable(isEditMode);
+
+        PatientDAO patientDAO = new PatientDAO();
 
         dosage.setText(serviceRequest.getDosage());
         medicine.setText(serviceRequest.getMedicine());
-        patientID.setText(serviceRequest.getPatientID());
+        patientSComboBox.setValue(patientDAO.getByID(serviceRequest.getPatientID()));
     }
 
     public boolean requiredFieldsPresent(){
@@ -48,7 +66,7 @@ public class MedicineDeliverySRInsertResolveController extends InsertServiceRequ
             return false;
         if(medicine.getText().equals(""))
             return false;
-        if(patientID.getText().equals(""))
+        if(patientSComboBox.getValue() == null)
             return false;
         return true;
     }
@@ -58,7 +76,8 @@ public class MedicineDeliverySRInsertResolveController extends InsertServiceRequ
         if(isEditMode){
                 serviceRequest.setMedicine(medicine.getText());
                 serviceRequest.setDosage(dosage.getText());
-                serviceRequest.setPatientID(patientID.getText());
+                if(patientSComboBox.getValue() != null)
+                    serviceRequest.setPatientID(patientSComboBox.getId());
         }
     }
 
@@ -76,4 +95,14 @@ public class MedicineDeliverySRInsertResolveController extends InsertServiceRequ
     void statusUpdatedKeyEvent(KeyEvent event) {
         statusUpdated();
     }
+
+    @FXML
+    void goToPatientTable(ActionEvent event) throws IOException {
+        new PatientSelectorWindow((patient -> this.setPatient(patient)));
+    }
+
+    private void setPatient(Patient patient){
+        this.patientSComboBox.setValue(patient);
+    }
+
 }
