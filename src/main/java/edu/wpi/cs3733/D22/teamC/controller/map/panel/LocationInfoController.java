@@ -1,15 +1,19 @@
 package edu.wpi.cs3733.D22.teamC.controller.map.panel;
 
 import com.jfoenix.controls.JFXTreeTableView;
+import com.jfoenix.svg.SVGGlyph;
 import edu.wpi.cs3733.D22.teamC.controller.map.MapViewController;
 import edu.wpi.cs3733.D22.teamC.controller.map.data.location.LocationMapNode;
 import edu.wpi.cs3733.D22.teamC.entity.floor.Floor;
 import edu.wpi.cs3733.D22.teamC.entity.location.Location;
 import edu.wpi.cs3733.D22.teamC.entity.location.LocationDAO;
 import edu.wpi.cs3733.D22.teamC.entity.medical_equipment.MedicalEquipmentDAO;
+import edu.wpi.cs3733.D22.teamC.entity.patient.PatientDAO;
 import edu.wpi.cs3733.D22.teamC.entity.service_request.ServiceRequest;
 import edu.wpi.cs3733.D22.teamC.entity.service_request.ServiceRequestDAO;
+import edu.wpi.cs3733.D22.teamC.fileio.svg.SVGParser;
 import edu.wpi.cs3733.D22.teamC.models.medical_equipment.MedicalEquipmentTableDisplay;
+import edu.wpi.cs3733.D22.teamC.models.patient.PatientTableDisplay;
 import edu.wpi.cs3733.D22.teamC.models.service_request.ServiceRequestTableDisplay;
 import edu.wpi.cs3733.D22.teamC.models.utils.ComponentWrapper;
 import javafx.event.ActionEvent;
@@ -32,6 +36,9 @@ public class LocationInfoController implements Initializable {
     @FXML private Tab locationTab;
     @FXML private Tab medicalEquipmentTab;
     @FXML private Tab serviceRequestTab;
+    @FXML private Tab patientsTab;
+
+
 
     // Location Info - Form Fields
     @FXML private TextField shortNameField;
@@ -48,6 +55,11 @@ public class LocationInfoController implements Initializable {
     @FXML JFXTreeTableView serviceRequestTable;
     ServiceRequestTableDisplay<ServiceRequest> serviceRequestTableDisplay;
 
+    //Patients - Table
+    @FXML
+    private JFXTreeTableView patientsTable;
+    PatientTableDisplay patientTableDisplay;
+
     // Location Info - Form Buttons
     @FXML private Button deselectButton;
     @FXML private Button revertButton;
@@ -58,16 +70,25 @@ public class LocationInfoController implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
+        SVGParser svgParser = new SVGParser();
+        String patientIcon = svgParser.getPath("static/icons/employee_icon.svg");
+        SVGGlyph patientContent = new SVGGlyph(patientIcon);
+        patientContent.setSize(20);
+
         // Initialize Tabs
         setTabIcon(locationTab, LOCATION_ICON);
         setTabIcon(medicalEquipmentTab, MEDICAL_EQUIPMENT_ICON);
         setTabIcon(serviceRequestTab, SERVICE_REQUEST_ICON);
+        //setTabIcon(patientsTab,); //TODO
 
         // Initialize Service Request Info
         serviceRequestTableDisplay = new ServiceRequestTableDisplay<>(serviceRequestTable);
 
         // Initialize Medical Equipment Info
         medicalEquipmentTableDisplay = new MedicalEquipmentTableDisplay(medicalEquipmentTable);
+
+        //Initialize Patients Info
+        patientTableDisplay = new PatientTableDisplay(patientsTable);
     }
 
     /**
@@ -150,6 +171,10 @@ public class LocationInfoController implements Initializable {
             // Service Requests
             serviceRequestTableDisplay.emptyTable();
             new ServiceRequestDAO().getAllSRByLocation(location.getID()).forEach(serviceRequestTableDisplay::addObject);
+
+            // Patient
+            patientTableDisplay.emptyTable();
+            new PatientDAO().getPatientByLocation(location.getID()).forEach(patientTableDisplay::addObject);
 
             revertButton.setDisable(location.equals(new LocationDAO().getByID(location.getID())));
         }
