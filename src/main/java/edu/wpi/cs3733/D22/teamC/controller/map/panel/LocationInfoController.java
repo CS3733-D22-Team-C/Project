@@ -174,6 +174,10 @@ public class LocationInfoController implements Initializable {
             if (!original.equals(location)) {
                 revertButton.setDisable(false);
                 mapViewController.getLocationManager().updatesOccured();
+
+                if (!original.getNodeType().equals(location.getNodeType())) {
+                    ((LocationMapNode) mapViewController.getLocationManager().getByLocation(location)).updateIcon();
+                }
             }
         }
 

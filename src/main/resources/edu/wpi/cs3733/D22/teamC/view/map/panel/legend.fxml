@@ -1,0 +1,354 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import io.github.palexdev.materialfx.controls.MFXRectangleToggleNode?>
+<?import java.net.URL?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.Group?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Tooltip?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<Group fx:id="root" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.wpi.cs3733.D22.teamC.controller.map.panel.LegendController">
+   <children>
+      <HBox prefHeight="100.0" prefWidth="225.0">
+         <children>
+            <VBox prefHeight="200.0" prefWidth="150.0">
+               <children>
+                  <HBox>
+                     <children>
+                        <MFXRectangleToggleNode fx:id="patiToggleNode" contentDisplay="GRAPHIC_ONLY" graphicTextGap="0.0" maxHeight="36.0" maxWidth="36.0" minHeight="-Infinity" minWidth="-Infinity" onAction="#onToggleNodePressed" prefHeight="36.0" prefWidth="36.0">
+                           <HBox.margin>
+                              <Insets bottom="4.0" left="4.0" right="4.0" top="4.0" />
+                           </HBox.margin>
+                           <font>
+                              <Font size="1.0" />
+                           </font>
+                        </MFXRectangleToggleNode>
+                        <Label contentDisplay="CENTER" maxHeight="1.7976931348623157E308" prefWidth="100.0" text="PATI">
+                           <HBox.margin>
+                              <Insets />
+                           </HBox.margin>
+                           <padding>
+                              <Insets left="12.0" />
+                           </padding>
+                           <tooltip>
+                              <Tooltip text="Patient Room" />
+                           </tooltip>
+                        </Label>
+                     </children>
+                  </HBox>
+                  <HBox>
+                     <children>
+                        <MFXRectangleToggleNode fx:id="storToggleNode" contentDisplay="GRAPHIC_ONLY" graphicTextGap="0.0" maxHeight="36.0" maxWidth="36.0" minHeight="-Infinity" minWidth="-Infinity" onAction="#onToggleNodePressed" prefHeight="36.0" prefWidth="36.0">
+                           <HBox.margin>
+                              <Insets bottom="4.0" left="4.0" right="4.0" top="4.0" />
+                           </HBox.margin>
+                           <font>
+                              <Font size="1.0" />
+                           </font>
+                        </MFXRectangleToggleNode>
+                        <Label contentDisplay="CENTER" maxHeight="1.7976931348623157E308" prefWidth="100.0" text="STOR">
+                           <HBox.margin>
+                              <Insets />
+                           </HBox.margin>
+                           <padding>
+                              <Insets left="12.0" />
+                           </padding>
+                           <tooltip>
+                              <Tooltip text="Equipment Storage Room" />
+                           </tooltip>
+                        </Label>
+                     </children>
+                  </HBox>
+                  <HBox>
+                     <children>
+                        <MFXRectangleToggleNode fx:id="dirtToggleNode" contentDisplay="GRAPHIC_ONLY" graphicTextGap="0.0" maxHeight="36.0" maxWidth="36.0" minHeight="-Infinity" minWidth="-Infinity" onAction="#onToggleNodePressed" pickOnBounds="false" prefHeight="36.0" prefWidth="36.0">
+                           <HBox.margin>
+                              <Insets bottom="4.0" left="4.0" right="4.0" top="4.0" />
+                           </HBox.margin>
+                           <font>
+                              <Font size="1.0" />
+                           </font>
+                        </MFXRectangleToggleNode>
+                        <Label contentDisplay="CENTER" maxHeight="1.7976931348623157E308" prefWidth="100.0" text="DIRT">
+                           <HBox.margin>
+                              <Insets />
+                           </HBox.margin>
+                           <padding>
+                              <Insets left="12.0" />
+                           </padding>
+                           <tooltip>
+                              <Tooltip text="Dirty Equipment Pickup Location" />
+                           </tooltip>
+                        </Label>
+                     </children>
+                  </HBox>
+                  <HBox>
+                     <children>
+                        <MFXRectangleToggleNode fx:id="hallToggleNode" contentDisplay="GRAPHIC_ONLY" graphicTextGap="0.0" maxHeight="36.0" maxWidth="36.0" minHeight="-Infinity" minWidth="-Infinity" onAction="#onToggleNodePressed" prefHeight="36.0" prefWidth="36.0">
+                           <HBox.margin>
+                              <Insets bottom="4.0" left="4.0" right="4.0" top="4.0" />
+                           </HBox.margin>
+                           <font>
+                              <Font size="1.0" />
+                           </font>
+                        </MFXRectangleToggleNode>
+                        <Label contentDisplay="CENTER" maxHeight="1.7976931348623157E308" prefWidth="100.0" text="HALL">
+                           <HBox.margin>
+                              <Insets />
+                           </HBox.margin>
+                           <padding>
+                              <Insets left="12.0" />
+                           </padding>
+                           <tooltip>
+                              <Tooltip text="Hallway" />
+                           </tooltip>
+                        </Label>
+                     </children>
+                  </HBox>
+                  <HBox>
+                     <children>
+                        <MFXRectangleToggleNode fx:id="elevToggleNode" contentDisplay="GRAPHIC_ONLY" graphicTextGap="0.0" maxHeight="36.0" maxWidth="36.0" minHeight="-Infinity" minWidth="-Infinity" onAction="#onToggleNodePressed" prefHeight="36.0" prefWidth="36.0">
+                           <HBox.margin>
+                              <Insets bottom="4.0" left="4.0" right="4.0" top="4.0" />
+                           </HBox.margin>
+                           <font>
+                              <Font size="1.0" />
+                           </font>
+                        </MFXRectangleToggleNode>
+                        <Label contentDisplay="CENTER" maxHeight="1.7976931348623157E308" prefWidth="100.0" text="ELEV">
+                           <HBox.margin>
+                              <Insets />
+                           </HBox.margin>
+                           <padding>
+                              <Insets left="12.0" />
+                           </padding>
+                           <tooltip>
+                              <Tooltip text="Elevator" />
+                           </tooltip>
+                        </Label>
+                     </children>
+                  </HBox>
+                  <HBox>
+                     <children>
+                        <MFXRectangleToggleNode fx:id="restToggleNode" contentDisplay="GRAPHIC_ONLY" graphicTextGap="0.0" maxHeight="36.0" maxWidth="36.0" minHeight="-Infinity" minWidth="-Infinity" onAction="#onToggleNodePressed" prefHeight="36.0" prefWidth="36.0">
+                           <HBox.margin>
+                              <Insets bottom="4.0" left="4.0" right="4.0" top="4.0" />
+                           </HBox.margin>
+                           <font>
+                              <Font size="1.0" />
+                           </font>
+                        </MFXRectangleToggleNode>
+                        <Label contentDisplay="CENTER" maxHeight="1.7976931348623157E308" prefWidth="100.0" text="REST">
+                           <HBox.margin>
+                              <Insets />
+                           </HBox.margin>
+                           <padding>
+                              <Insets left="12.0" />
+                           </padding>
+                           <tooltip>
+                              <Tooltip text="Restroom" />
+                           </tooltip>
+                        </Label>
+                     </children>
+                  </HBox>
+                  <HBox>
+                     <children>
+                        <MFXRectangleToggleNode fx:id="staiToggleNode" contentDisplay="GRAPHIC_ONLY" graphicTextGap="0.0" maxHeight="36.0" maxWidth="36.0" minHeight="-Infinity" minWidth="-Infinity" onAction="#onToggleNodePressed" prefHeight="36.0" prefWidth="36.0">
+                           <HBox.margin>
+                              <Insets bottom="4.0" left="4.0" right="4.0" top="4.0" />
+                           </HBox.margin>
+                           <font>
+                              <Font size="1.0" />
+                           </font>
+                        </MFXRectangleToggleNode>
+                        <Label contentDisplay="CENTER" maxHeight="1.7976931348623157E308" prefWidth="100.0" text="STAI">
+                           <HBox.margin>
+                              <Insets />
+                           </HBox.margin>
+                           <padding>
+                              <Insets left="12.0" />
+                           </padding>
+                           <tooltip>
+                              <Tooltip text="Staircase" />
+                           </tooltip>
+                        </Label>
+                     </children>
+                  </HBox>
+               </children>
+            </VBox>
+            <VBox prefHeight="200.0" prefWidth="150.0">
+               <children>
+                  <HBox>
+                     <children>
+                        <MFXRectangleToggleNode fx:id="deptToggleNode" contentDisplay="GRAPHIC_ONLY" graphicTextGap="0.0" maxHeight="36.0" maxWidth="36.0" minHeight="-Infinity" minWidth="-Infinity" onAction="#onToggleNodePressed" prefHeight="36.0" prefWidth="36.0">
+                           <HBox.margin>
+                              <Insets bottom="4.0" left="4.0" right="4.0" top="4.0" />
+                           </HBox.margin>
+                           <font>
+                              <Font size="1.0" />
+                           </font>
+                        </MFXRectangleToggleNode>
+                        <Label contentDisplay="CENTER" maxHeight="1.7976931348623157E308" prefWidth="100.0" text="DEPT">
+                           <HBox.margin>
+                              <Insets />
+                           </HBox.margin>
+                           <padding>
+                              <Insets left="12.0" />
+                           </padding>
+                           <tooltip>
+                              <Tooltip text="Medical Departments, Clinics, Waiting Rooms" />
+                           </tooltip>
+                        </Label>
+                     </children>
+                  </HBox>
+                  <HBox>
+                     <children>
+                        <MFXRectangleToggleNode fx:id="labsToggleNode" contentDisplay="GRAPHIC_ONLY" graphicTextGap="0.0" maxHeight="36.0" maxWidth="36.0" minHeight="-Infinity" minWidth="-Infinity" onAction="#onToggleNodePressed" prefHeight="36.0" prefWidth="36.0">
+                           <HBox.margin>
+                              <Insets bottom="4.0" left="4.0" right="4.0" top="4.0" />
+                           </HBox.margin>
+                           <font>
+                              <Font size="1.0" />
+                           </font>
+                        </MFXRectangleToggleNode>
+                        <Label contentDisplay="CENTER" maxHeight="1.7976931348623157E308" prefWidth="100.0" text="LABS">
+                           <HBox.margin>
+                              <Insets />
+                           </HBox.margin>
+                           <padding>
+                              <Insets left="12.0" />
+                           </padding>
+                           <tooltip>
+                              <Tooltip text="Labs, Imaging Centers, Medical Testing Areas" />
+                           </tooltip>
+                        </Label>
+                     </children>
+                  </HBox>
+                  <HBox>
+                     <children>
+                        <MFXRectangleToggleNode fx:id="infoToggleNode" contentDisplay="GRAPHIC_ONLY" graphicTextGap="0.0" maxHeight="36.0" maxWidth="36.0" minHeight="-Infinity" minWidth="-Infinity" onAction="#onToggleNodePressed" prefHeight="36.0" prefWidth="36.0">
+                           <HBox.margin>
+                              <Insets bottom="4.0" left="4.0" right="4.0" top="4.0" />
+                           </HBox.margin>
+                           <font>
+                              <Font size="1.0" />
+                           </font>
+                        </MFXRectangleToggleNode>
+                        <Label contentDisplay="CENTER" maxHeight="1.7976931348623157E308" prefWidth="100.0" text="INFO">
+                           <HBox.margin>
+                              <Insets />
+                           </HBox.margin>
+                           <padding>
+                              <Insets left="12.0" />
+                           </padding>
+                           <tooltip>
+                              <Tooltip text="Information Desks, Security Desks, Lost &amp; Found" />
+                           </tooltip>
+                        </Label>
+                     </children>
+                  </HBox>
+                  <HBox>
+                     <children>
+                        <MFXRectangleToggleNode fx:id="confToggleNode" contentDisplay="GRAPHIC_ONLY" graphicTextGap="0.0" maxHeight="36.0" maxWidth="36.0" minHeight="-Infinity" minWidth="-Infinity" onAction="#onToggleNodePressed" prefHeight="36.0" prefWidth="36.0">
+                           <HBox.margin>
+                              <Insets bottom="4.0" left="4.0" right="4.0" top="4.0" />
+                           </HBox.margin>
+                           <font>
+                              <Font size="1.0" />
+                           </font>
+                        </MFXRectangleToggleNode>
+                        <Label contentDisplay="CENTER" maxHeight="1.7976931348623157E308" prefWidth="100.0" text="CONF">
+                           <HBox.margin>
+                              <Insets />
+                           </HBox.margin>
+                           <padding>
+                              <Insets left="12.0" />
+                           </padding>
+                           <tooltip>
+                              <Tooltip text="Conference Room" />
+                           </tooltip>
+                        </Label>
+                     </children>
+                  </HBox>
+                  <HBox>
+                     <children>
+                        <MFXRectangleToggleNode fx:id="exitToggleNode" contentDisplay="GRAPHIC_ONLY" graphicTextGap="0.0" maxHeight="36.0" maxWidth="36.0" minHeight="-Infinity" minWidth="-Infinity" onAction="#onToggleNodePressed" prefHeight="36.0" prefWidth="36.0">
+                           <HBox.margin>
+                              <Insets bottom="4.0" left="4.0" right="4.0" top="4.0" />
+                           </HBox.margin>
+                           <font>
+                              <Font size="1.0" />
+                           </font>
+                        </MFXRectangleToggleNode>
+                        <Label contentDisplay="CENTER" maxHeight="1.7976931348623157E308" prefWidth="100.0" text="EXIT">
+                           <HBox.margin>
+                              <Insets />
+                           </HBox.margin>
+                           <padding>
+                              <Insets left="12.0" />
+                           </padding>
+                           <tooltip>
+                              <Tooltip text="Exit/Entrance" />
+                           </tooltip>
+                        </Label>
+                     </children>
+                  </HBox>
+                  <HBox>
+                     <children>
+                        <MFXRectangleToggleNode fx:id="retlToggleNode" contentDisplay="GRAPHIC_ONLY" graphicTextGap="0.0" maxHeight="36.0" maxWidth="36.0" minHeight="-Infinity" minWidth="-Infinity" onAction="#onToggleNodePressed" prefHeight="36.0" prefWidth="36.0">
+                           <HBox.margin>
+                              <Insets bottom="4.0" left="4.0" right="4.0" top="4.0" />
+                           </HBox.margin>
+                           <font>
+                              <Font size="1.0" />
+                           </font>
+                        </MFXRectangleToggleNode>
+                        <Label contentDisplay="CENTER" maxHeight="1.7976931348623157E308" prefWidth="100.0" text="RETL">
+                           <HBox.margin>
+                              <Insets />
+                           </HBox.margin>
+                           <padding>
+                              <Insets left="12.0" />
+                           </padding>
+                           <tooltip>
+                              <Tooltip text="Shops, Food, Pay Phone, Areas that provide non-medical services for immediate payment" />
+                           </tooltip>
+                        </Label>
+                     </children>
+                  </HBox>
+                  <HBox>
+                     <children>
+                        <MFXRectangleToggleNode fx:id="servToggleNode" contentDisplay="GRAPHIC_ONLY" graphicTextGap="0.0" maxHeight="36.0" maxWidth="36.0" minHeight="-Infinity" minWidth="-Infinity" onAction="#onToggleNodePressed" prefHeight="36.0" prefWidth="36.0">
+                           <HBox.margin>
+                              <Insets bottom="4.0" left="4.0" right="4.0" top="4.0" />
+                           </HBox.margin>
+                           <font>
+                              <Font size="1.0" />
+                           </font>
+                        </MFXRectangleToggleNode>
+                        <Label contentDisplay="CENTER" maxHeight="1.7976931348623157E308" prefWidth="100.0" text="SERV">
+                           <HBox.margin>
+                              <Insets />
+                           </HBox.margin>
+                           <padding>
+                              <Insets left="12.0" />
+                           </padding>
+                           <tooltip>
+                              <Tooltip text="Hospital Non-Medical Services, Interpreters, Shuttles, Spiritual,Library, Patient Financial, etc." />
+                           </tooltip>
+                        </Label>
+                     </children>
+                  </HBox>
+               </children>
+            </VBox>
+         </children>
+      </HBox>
+   </children>
+   <stylesheets>
+      <URL value="@../../../css/map/legend.css" />
+      <URL value="@../../../css/map/icons.css" />
+   </stylesheets>
+</Group>

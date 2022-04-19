@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import org.controlsfx.control.SearchableComboBox?>
+
+<HBox maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="46.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.wpi.cs3733.D22.teamC.controller.service_request.translator.TranslatorSRInsertCreateController">
+   <children>
+      <VBox alignment="CENTER_LEFT" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefWidth="227.0" styleClass="box-margin" HBox.hgrow="ALWAYS">
+         <children>
+            <Label styleClass="service-field-label" stylesheets="@../../../css/base.css" text="Patient:" />
+            <HBox maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="26.0" prefWidth="198.0">
+               <children>
+                  <SearchableComboBox fx:id="patientSComboBox" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" HBox.hgrow="ALWAYS" />
+                  <JFXButton fx:id="patientButton" onAction="#goToPatientTable" prefHeight="26.0" prefWidth="37.0" style="-fx-background-color: -color-secondary;" stylesheets="@../../../css/colors.css" text="-&gt;" HBox.hgrow="ALWAYS" />
+               </children>
+            </HBox>
+         </children>
+      </VBox>
+      <VBox alignment="CENTER_LEFT" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefWidth="227.0" styleClass="box-margin" HBox.hgrow="ALWAYS">
+         <children>
+            <Label prefHeight="17.0" prefWidth="90.0" styleClass="service-field-label" stylesheets="@../../../css/base.css" text="Language:" />
+            <SearchableComboBox fx:id="languageSComboBox" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" />
+         </children>
+      </VBox>
+      <VBox alignment="CENTER_LEFT" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefWidth="227.0" styleClass="box-margin" />
+   </children>
+</HBox>

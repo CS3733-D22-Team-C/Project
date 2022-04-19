@@ -14,6 +14,7 @@ public class EditDatabasesPageController implements Initializable {
 
     @FXML private VBox insertVbox;
 
+
     CSVComponent insertController;
 
     final static String TABLE_SKELETON = "view/table/base_view.fxml";

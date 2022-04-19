@@ -48,8 +48,7 @@ public class Location implements IDEntity {
         CONF,
         EXIT,
         RETL,
-        SERV,
-        BATH
+        SERV
     }
     
     public Location() {
@@ -166,5 +165,10 @@ public class Location implements IDEntity {
                 && nodeType == location.nodeType
                 && longName.equals(location.longName)
                 && shortName.equals(location.shortName);
+    }
+
+    @Override
+    public String toString(){
+        return this.longName;
     }
 }

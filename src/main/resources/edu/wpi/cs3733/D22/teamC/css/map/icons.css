@@ -1,0 +1,69 @@
+.conf-icon {
+    -fx-scale-x: .575;
+    -fx-scale-y: .5;
+}
+
+.dept-icon {
+    -fx-scale-x: .6;
+    -fx-scale-y: .5;
+}
+
+.dirt-icon {
+    -fx-scale-x: .45;
+    -fx-scale-y: .475;
+}
+
+.elev-icon {
+    -fx-scale-x: .55;
+    -fx-scale-y: .55;
+}
+
+.exit-icon {
+    -fx-scale-x: .675;
+    -fx-scale-y: .55;
+}
+
+.hall-icon {
+    -fx-scale-x: .475;
+    -fx-scale-y: .575;
+}
+
+.info-icon {
+    -fx-scale-x: .6;
+    -fx-scale-y: .55;
+}
+
+.labs-icon {
+    -fx-scale-x: .55;
+    -fx-scale-y: .5;
+}
+
+.pati-icon {
+    -fx-scale-x: .575;
+    -fx-scale-y: .575;
+}
+
+.rest-icon {
+    -fx-scale-x: .625;
+    -fx-scale-y: .525;
+}
+
+.retl-icon {
+    -fx-scale-x: .65;
+    -fx-scale-y: .55;
+}
+
+.serv-icon {
+    -fx-scale-x: .6;
+    -fx-scale-y: .45;
+}
+
+.stai-icon {
+    -fx-scale-x: .625;
+    -fx-scale-y: .525;
+}
+
+.stor-icon {
+    -fx-scale-x: .55;
+    -fx-scale-y: .475;
+}

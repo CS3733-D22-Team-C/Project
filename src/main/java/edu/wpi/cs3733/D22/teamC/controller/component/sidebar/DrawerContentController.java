@@ -60,55 +60,18 @@ public class DrawerContentController implements Initializable {
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         allButtons = new MFXButton[]{dashboardButton, exitButton, logOutButton, databaseButton, viewProfileButton, mapsButton, serviceRequestsButton};
-        initializeSVG();
+        //initializeSVG();
+
+        // Hide the database button if the user is not an admin
         databaseButton.setVisible(App.instance.getUserAccount().getAdmin());
-    }
 
-    /**
-     * Initialize all drawer buttons to their respective SVGs
-     */
-    // TODO: Figure out a better way to store SVGs without needing to put the entire path, I assume we just use CSS
-    // TODO: If possible I want to find a way to abstract this all so all buttons can be changed at once
-    protected void initializeSVG() {
-        // For all buttons we use setContentDisplay to hide the text, keeping only the SVG for the mini-drawer
-        for (MFXButton button : allButtons) {
-            button.setContentDisplay(ContentDisplay.GRAPHIC_ONLY);
-        }
-    }
-
-    /**
-     * When the mouse enters the drawer, start an animation then align the content within the button
-     */
-    @FXML
-    protected void contentPaneOnMouseEntered() {
-        fadeTransition(expandedView, 1, miniView, .5);
         for (MFXButton button : allButtons) {
             button.setContentDisplay(ContentDisplay.LEFT);
             button.setAlignment(Pos.CENTER_LEFT);
         }
-        expandedView.setOpacity(1);
-        miniView.setOpacity(0);
     }
 
-    /**
-     * When the mouse enters the drawer, start an animation then align the content within the button
-     */
-    @FXML
-    protected void contentPaneOnMouseExited() throws InterruptedException {
-        fadeTransition(miniView, .8, expandedView, .25);
-        for (MFXButton button : allButtons) {
-            // Make it so the button only displays the graphic
-            button.setContentDisplay(ContentDisplay.GRAPHIC_ONLY);
-        }
-        TimeUnit.SECONDS.sleep(1);
-        for (MFXButton button : allButtons) {
-            // Make it so the button only displays the graphic
-            button.setAlignment(Pos.CENTER);
-            }
-        expandedView.setOpacity(0);
-        miniView.setOpacity(1);
-        }
-
+    //#region Button Events
     @FXML
     void dashboardButtonPress(ActionEvent event) {
         App.instance.setView(App.DASHBOARD_PATH);
@@ -146,27 +109,14 @@ public class DrawerContentController implements Initializable {
         // TODO: Path to user profile page
         App.instance.setView("");
     }
+    //#endregion
 
-    // TODO: Bug when entering and exiting the drawer too fast, will overlay both mini and expanded onto the scene
-    // Use semaphores/mutexes? 
-    /**
-     * Function to control the animation to fade in and fade out a node
-     * @param fadeInNode The node you want to fade in
-     * @param fadeInTime The amount of time the node takes to fade in seconds
-     * @param fadeOutNode The node you want to fade out
-     * @param fadeOutTime The amount of time the node takes to fade out in seconds
-     */
-    private void fadeTransition(Node fadeInNode, double fadeInTime, Node fadeOutNode, double fadeOutTime) {
-        FadeTransition fadeOut = new FadeTransition(Duration.seconds(fadeOutTime), fadeOutNode);
-        fadeOut.setFromValue(1.0);
-        fadeOut.setToValue(0.0);
-        FadeTransition fadeIn = new FadeTransition(Duration.seconds(fadeInTime), fadeInNode);
-        fadeIn.setFromValue(0.0);
-        fadeIn.setToValue(1.0);
-        fadeOut.play();
-        fadeIn.play();
-        fadeInNode.setVisible(true);
-        fadeOutNode.setVisible(false);
+    public SVGPath getExpandedView() {
+        return expandedView;
+    }
+
+    public VBox getMiniView() {
+        return miniView;
     }
 }
 
