@@ -4,6 +4,7 @@ import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
+import java.nio.charset.Charset;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.nio.file.Path;
@@ -24,7 +25,7 @@ public abstract class CSVReader<T> {
         try {
             // Open buffered reader from filepath
             Path filePath = Paths.get(fileName);
-            BufferedReader br = Files.newBufferedReader(filePath, StandardCharsets.US_ASCII);
+            BufferedReader br = Files.newBufferedReader(filePath, Charset.forName("UTF-8"));
             return readFileInternal(br);
         } catch (IOException ioe) {
             System.out.println("Failed to read file " + fileName + ".");

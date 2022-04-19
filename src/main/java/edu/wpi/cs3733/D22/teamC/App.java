@@ -2,6 +2,19 @@ package edu.wpi.cs3733.D22.teamC;
 
 import edu.wpi.cs3733.D22.teamC.controller.SkeletonController;
 import edu.wpi.cs3733.D22.teamC.entity.employee.Employee;
+import edu.wpi.cs3733.D22.teamC.entity.employee.EmployeeDAO;
+import edu.wpi.cs3733.D22.teamC.entity.floor.Floor;
+import edu.wpi.cs3733.D22.teamC.entity.floor.FloorDAO;
+import edu.wpi.cs3733.D22.teamC.entity.location.Location;
+import edu.wpi.cs3733.D22.teamC.entity.location.LocationDAO;
+import edu.wpi.cs3733.D22.teamC.entity.medical_equipment.MedicalEquipment;
+import edu.wpi.cs3733.D22.teamC.entity.medical_equipment.MedicalEquipmentDAO;
+import edu.wpi.cs3733.D22.teamC.entity.patient.Patient;
+import edu.wpi.cs3733.D22.teamC.entity.patient.PatientDAO;
+import edu.wpi.cs3733.D22.teamC.entity.service_request.medical_equipment.MedicalEquipmentSR;
+import edu.wpi.cs3733.D22.teamC.entity.service_request.medical_equipment.MedicalEquipmentSRDAO;
+import edu.wpi.cs3733.D22.teamC.fileio.csv.CSVFacade;
+import edu.wpi.cs3733.D22.teamC.models.patient.PatientSelectorWindow;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
@@ -61,7 +74,6 @@ public class App extends Application {
     @Override
     public void init() {
         SessionManager.switchDatabase(SessionManager.DBMode.EMBEDDED);
-
         log.info("Starting Up");
     }
 
@@ -78,7 +90,6 @@ public class App extends Application {
 
     @Override
     public void stop() {
-
         log.info("Shutting Down");
     }
 
