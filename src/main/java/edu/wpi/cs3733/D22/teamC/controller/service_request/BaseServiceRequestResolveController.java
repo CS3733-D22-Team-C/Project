@@ -115,7 +115,7 @@ public class BaseServiceRequestResolveController<T extends ServiceRequest> imple
 
         if (isEditMode) {
             // Set generic title (overridden in children)
-            title.setText("Edit Medical Equipment Request");
+            title.setText("Edit Service Request Request");
 
             // Priority Dropdown
             for (ServiceRequest.Priority pri : ServiceRequest.Priority.values()) {
@@ -130,6 +130,8 @@ public class BaseServiceRequestResolveController<T extends ServiceRequest> imple
             priority.setDisable(false);
             employeeTableButton.setDisable(false);
             mapViewButton.setDisable(false);
+            locationID.setDisable(false);
+            assigneeID.setDisable(false);
 
         } else {
             // Set generic title (overridden in children)
@@ -160,9 +162,9 @@ public class BaseServiceRequestResolveController<T extends ServiceRequest> imple
                 serviceRequest.setPriority(ServiceRequest.Priority.valueOf(priority.getValue()));
             }
             //Assignee ID
-            serviceRequest.setAssignee(this.serviceRequest.getAssignee());
+            serviceRequest.setAssignee(assigneeID.getValue());
             //Location
-            serviceRequest.setLocation(location.getID());
+            serviceRequest.setLocation(locationID.getValue().getID());
             //Status
             if(requiredFieldsPresent())
                 serviceRequest.setStatus(ServiceRequest.Status.Processing);
