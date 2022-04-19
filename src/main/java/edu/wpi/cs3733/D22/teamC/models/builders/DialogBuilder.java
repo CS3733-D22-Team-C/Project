@@ -5,6 +5,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Group;
 import javafx.scene.Node;
 import javafx.scene.control.*;
+import javafx.scene.layout.Region;
 
 import java.util.function.Consumer;
 
@@ -31,18 +32,7 @@ public class DialogBuilder {
 
         dialog.getDialogPane().getButtonTypes().setAll(yesButton, noButton);
 
-        // CSS Classes
-        dialog.getDialogPane().getChildren().forEach(node -> {
-            if (node instanceof ButtonBar) {
-                ButtonBar buttonBar = (ButtonBar) node;
-                buttonBar.getButtons().forEach(possibleButtons -> {
-                    if (possibleButtons instanceof Button) {
-                        Button b = (Button) possibleButtons;
-                        b.getStyleClass().add("button-confirm");
-                    }
-                });
-            }
-        });
+
 
         return dialog;
     }
@@ -70,10 +60,11 @@ public class DialogBuilder {
                 return optOut;
             }
         });
+        alert.getDialogPane().setMinHeight(Region.USE_PREF_SIZE);
 
-        alert.getDialogPane().getStylesheets().add(App.class.getResource("css/base.css").toExternalForm());
-
+        alert.getDialogPane().getStylesheets().add(App.class.getResource("css/default.css").toExternalForm());
         alert.getDialogPane().getButtonTypes().addAll(buttonTypes);
+
         alert.getDialogPane().setExpandableContent(new Group());
         alert.getDialogPane().setExpanded(true);
 

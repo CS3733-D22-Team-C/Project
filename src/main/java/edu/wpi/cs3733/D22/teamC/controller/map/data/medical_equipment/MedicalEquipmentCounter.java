@@ -90,45 +90,7 @@ public class MedicalEquipmentCounter {
             MedicalEquipment medicalEquipment = ((MedicalEquipmentManager) parentNode.getManager()).removeFree(equipmentType);
             addMedicalEquipment(medicalEquipment);
 
-            medicalEquipment.setLocationID(parentNode.getLocation().getID());
-            new MedicalEquipmentDAO().update(medicalEquipment);
-            parentNode.getManager().onUpdateDataEvents.forEach(Runnable::run);
-
-            // Send Notification
-            String notification = medicalEquipment.getEquipmentType().toString() + " #" + medicalEquipment.getTypeNumber() + " moved to " + parentNode.getLocation().getShortName() + ".";
-            NotificationBuilder.createNotification("Medical Equipment Moved", notification);
-
-            String prompt = "";
-            if (parentNode.getLocation().getNodeType().equals(Location.NodeType.DIRT)) {
-                if (!medicalEquipment.getStatus().equals(MedicalEquipment.EquipmentStatus.Dirty)) {
-                    prompt = "This is a DIRT location, mark this equipment as Dirty and create a Service Request?";
-                }
-            } else if (parentNode.getLocation().getNodeType().equals(Location.NodeType.STOR)) {
-                if (!medicalEquipment.getStatus().equals(MedicalEquipment.EquipmentStatus.Available)) {
-                    prompt = "This is a STOR location, mark this equipment as Available?";
-                }
-            } else {
-                if (!medicalEquipment.getStatus().equals(MedicalEquipment.EquipmentStatus.Unavailable)) {
-                    prompt = "Mark this equipment as Unavailable?";
-                }
-            }
-            if (!prompt.equals("")) {
-                AtomicBoolean checkbox = new AtomicBoolean(false);
-                Alert alert = DialogBuilder.createAlertWithOptOut(Alert.AlertType.CONFIRMATION, "Medical Equipment Automation",
-                        null, prompt, "Do not ask again",
-                        param -> {checkbox.set(param);}, ButtonType.YES, ButtonType.NO);
-                alert.showAndWait().ifPresent(btnType -> {
-                    if (btnType.getButtonData() == ButtonBar.ButtonData.YES) {
-                        System.out.println("Yes!");
-                        System.out.println("Checkbox: " + checkbox.get());
-                    } else if (btnType.getButtonData() == ButtonBar.ButtonData.NO) {
-                        System.out.println("No!");
-                        System.out.println("Checkbox: " + checkbox.get());
-                    }
-                });
-            }
-
-
+            ((MedicalEquipmentManager) parentNode.getManager()).moveMedicalEquipment(medicalEquipment, parentNode.getLocation());
 
             updateCounter();
 
@@ -140,9 +102,7 @@ public class MedicalEquipmentCounter {
             MedicalEquipment medicalEquipment = removeMedicalEquipment();
             ((MedicalEquipmentManager) parentNode.getManager()).addFree(medicalEquipment);
 
-            medicalEquipment.setLocationID("");
-            new MedicalEquipmentDAO().update(medicalEquipment);
-            parentNode.getManager().onUpdateDataEvents.forEach(Runnable::run);
+            ((MedicalEquipmentManager) parentNode.getManager()).moveMedicalEquipment(medicalEquipment, null);
 
             updateCounter();
 

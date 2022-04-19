@@ -95,6 +95,11 @@ public class MedicalEquipment implements IDEntity {
                 && equipmentStatus == equipment.equipmentStatus 
                 && typeNumber == equipment.typeNumber;
     }
+
+    @Override
+    public String toString() {
+        return equipmentType.toString() + " #" + typeNumber;
+    }
 }
 
 

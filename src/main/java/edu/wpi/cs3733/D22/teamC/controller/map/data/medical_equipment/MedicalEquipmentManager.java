@@ -10,10 +10,16 @@ import edu.wpi.cs3733.D22.teamC.entity.location.Location;
 import edu.wpi.cs3733.D22.teamC.entity.location.LocationDAO;
 import edu.wpi.cs3733.D22.teamC.entity.medical_equipment.MedicalEquipment;
 import edu.wpi.cs3733.D22.teamC.entity.medical_equipment.MedicalEquipmentDAO;
+import edu.wpi.cs3733.D22.teamC.models.builders.DialogBuilder;
+import edu.wpi.cs3733.D22.teamC.models.builders.NotificationBuilder;
 import javafx.scene.Group;
+import javafx.scene.control.Alert;
+import javafx.scene.control.ButtonBar;
+import javafx.scene.control.ButtonType;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.concurrent.atomic.AtomicBoolean;
 import java.util.function.Consumer;
 import java.util.stream.Collectors;
 
@@ -33,6 +39,9 @@ public class MedicalEquipmentManager extends ManagerMapNodes<MedicalEquipment> {
     Consumer<Location> onPreviewLocationEvent = this::previewLocation;
     Consumer<Location> onFocusLocationEvent = this::focusLocation;
     private final MedicalEquipmentCounter[] counters = new MedicalEquipmentCounter[MedicalEquipment.EquipmentType.values().length];
+
+    AtomicBoolean updateAutomation = new AtomicBoolean(false);
+    AtomicBoolean askUpdateAutomation = new AtomicBoolean(true);
 
     public MedicalEquipmentManager(MapViewController mapViewController) {
         super(mapViewController);
@@ -141,6 +150,80 @@ public class MedicalEquipmentManager extends ManagerMapNodes<MedicalEquipment> {
     //#endregion
 
     //#region Medical Equipment Manipulation
+        public void moveMedicalEquipment(MedicalEquipment medicalEquipment, Location location) {
+            if (location != null) {
+                String movementMessage = medicalEquipment + " moved to " + location.getLongName() + "";
 
+                // Alert Prompt - Update Medical Equipment
+                if (askUpdateAutomation.get()) {
+                    boolean updateable = false;
+                    String prompt = movementMessage;
+                    movementMessage += ".";
+
+                    switch (location.getNodeType()) {
+                        case DIRT:
+                            if (!medicalEquipment.getStatus().equals(MedicalEquipment.EquipmentStatus.Dirty)) {
+                                prompt += ", which is a DIRT location. Would you like to update this equipment's status to be Dirty?";
+                                updateable = true;
+                            }
+                            break;
+                        case STOR:
+                            if (!medicalEquipment.getStatus().equals(MedicalEquipment.EquipmentStatus.Available)) {
+                                prompt += ", which is a STOR location. Would you like to update this equipment's status to be Available?";
+                                updateable = true;
+                            }
+                            break;
+                        default:
+                            if (!medicalEquipment.getStatus().equals(MedicalEquipment.EquipmentStatus.Unavailable)) {
+                                prompt += ". Would you like to update this equipment's status to be Unavailable?";
+                                updateable = true;
+                            }
+                            break;
+                    }
+
+                    if (updateable) {
+                        Alert alert = DialogBuilder.createAlertWithOptOut(Alert.AlertType.NONE, "Update Medical Equipment Status",
+                                null, prompt, "Do not ask again",
+                                param -> askUpdateAutomation.set(!param), ButtonType.YES, ButtonType.NO);
+                        alert.showAndWait().ifPresent(btnType -> {
+                            if (btnType.getButtonData() == ButtonBar.ButtonData.YES) {
+                                updateAutomation.set(true);
+                            } else if (btnType.getButtonData() == ButtonBar.ButtonData.NO) {
+                                updateAutomation.set(false);
+                            }
+                        });
+                    }
+                }
+
+                // Update Medical Equipment
+                if (updateAutomation.get()) {
+                    switch (location.getNodeType()) {
+                        case DIRT:
+                            medicalEquipment.setStatus(MedicalEquipment.EquipmentStatus.Dirty);
+                            movementMessage += " Its status has been updated to Dirty.";
+                            break;
+                        case STOR:
+                            medicalEquipment.setStatus(MedicalEquipment.EquipmentStatus.Available);
+                            movementMessage += " Its status has been updated to Available.";
+                            break;
+                        default:
+                            medicalEquipment.setStatus(MedicalEquipment.EquipmentStatus.Unavailable);
+                            movementMessage += " Its status has been updated to Unavailable.";
+                            break;
+                    }
+                }
+
+                // Push Notification
+                NotificationBuilder.createNotification("Medical Equipment Moved", movementMessage);
+
+                // Service Request Automation
+                
+            }
+
+            // Make Updates
+            medicalEquipment.setLocationID(location == null ? "" : location.getID());
+            new MedicalEquipmentDAO().update(medicalEquipment);
+            onUpdateDataEvents.forEach(Runnable::run);
+        }
     //#endregion
 }
