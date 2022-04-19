@@ -38,8 +38,6 @@ public class LocationInfoController implements Initializable {
     @FXML private Tab serviceRequestTab;
     @FXML private Tab patientsTab;
 
-
-
     // Location Info - Form Fields
     @FXML private TextField shortNameField;
     @FXML private TextField buildingField;
@@ -79,7 +77,7 @@ public class LocationInfoController implements Initializable {
         setTabIcon(locationTab, LOCATION_ICON);
         setTabIcon(medicalEquipmentTab, MEDICAL_EQUIPMENT_ICON);
         setTabIcon(serviceRequestTab, SERVICE_REQUEST_ICON);
-        //setTabIcon(patientsTab,); //TODO
+        patientsTab.setGraphic(patientContent);
 
         // Initialize Service Request Info
         serviceRequestTableDisplay = new ServiceRequestTableDisplay<>(serviceRequestTable);
