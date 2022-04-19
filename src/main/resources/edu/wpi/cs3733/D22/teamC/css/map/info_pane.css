@@ -10,6 +10,12 @@
     -fx-fill: -color-primary;
 }
 
+.tab {
+    -fx-pref-width: 80px;
+    -fx-max-width: 80px;
+    -fx-padding: 0 10 0 0;
+}
+
 .tab:selected .icon {
     -fx-fill: -color-primary-dark;
 }
