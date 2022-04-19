@@ -166,4 +166,9 @@ public class Location implements IDEntity {
                 && longName.equals(location.longName)
                 && shortName.equals(location.shortName);
     }
+
+    @Override
+    public String toString(){
+        return this.longName;
+    }
 }

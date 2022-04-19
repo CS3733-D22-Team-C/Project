@@ -3,12 +3,6 @@
 /* These rules will apply to ALL COMPONENTS */
 /* YOU MUST OVERRIDE THEM BY APPLYING OTHER STYLE CLASSES OR THEY WILL DEFAULT TO THESE */
 .root * {
-    /* Default text font size */
-    /*-fx-font-size: 12pt;*/
-
-    /* Font Style */
-    -fx-font-family: "Roboto";
-
     /* Removes the focus box on all components */
     -fx-focus-color: transparent;
     -fx-faint-focus-color: transparent;

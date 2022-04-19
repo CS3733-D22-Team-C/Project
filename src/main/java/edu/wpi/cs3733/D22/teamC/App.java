@@ -25,9 +25,6 @@ import lombok.extern.slf4j.Slf4j;
 
 import java.io.IOException;
 
-import static edu.wpi.cs3733.D22.teamC.fileio.csv.CSVFacade.read;
-import static edu.wpi.cs3733.D22.teamC.fileio.csv.CSVFacade.write;
-
 @Slf4j
 public class App extends Application {
     public static class View<T> {
@@ -77,74 +74,6 @@ public class App extends Application {
     @Override
     public void init() {
         SessionManager.switchDatabase(SessionManager.DBMode.EMBEDDED);
-
-//         // Load CSV Data - Floor
-//         {
-//             List<Floor> floors = CSVFacade.read(Floor.class,"TowerFloors.csv");
-//             if (floors != null) {
-//                 FloorDAO floorDAO = new FloorDAO();
-//                 for (Floor floor : floors) {
-//                     floorDAO.insert(floor);
-//                 }
-//             }
-//         }
-//
-//         // Load CSV Data - Location
-//         {
-//             List<Location> locations = CSVFacade.read(Location.class, "TowerLocations.csv");
-//             if (locations != null) {
-//                 LocationDAO locationDAO = new LocationDAO();
-//                 for (Location location : locations) {
-//                     locationDAO.insert(location);
-//                 }
-//             }
-//         }
-//
-//         // Load CSV Data = Employee
-//         {
-//             List<Employee> employees = CSVFacade.read(Employee.class, "Employees.csv");
-//             if(employees != null){
-//                 EmployeeDAO employeeDAO = new EmployeeDAO();
-//                 for(Employee employee : employees){
-//                     employeeDAO.insert(employee);
-//                 }
-//             }
-//         }
-//
-//         //Load CSV Data = MedicalEquipment
-//         {
-//             List<MedicalEquipment> medicalEquipments = CSVFacade.read(MedicalEquipment.class, "MedicalEquip.csv");
-//             if(medicalEquipments != null){
-//                 MedicalEquipmentDAO medicalEquipmentDAO = new MedicalEquipmentDAO();
-//                 for(MedicalEquipment medicalEquipment: medicalEquipments){
-//                     medicalEquipmentDAO.insert(medicalEquipment);
-//
-//                 }
-//             }
-//         }
-//
-//         //Load CSV Data = MedicalEquipmentSR
-//         {
-//             List<MedicalEquipmentSR> medicalEquipmentSRS = CSVFacade.read(MedicalEquipmentSR.class, "MedEquipReq.csv");
-//             if(medicalEquipmentSRS != null){
-//                 MedicalEquipmentSRDAO medicalEquipmentSRDAO = new MedicalEquipmentSRDAO();
-//                 for(MedicalEquipmentSR medicalEquipmentSR: medicalEquipmentSRS){
-//                     medicalEquipmentSRDAO.insert(medicalEquipmentSR);
-//                 }
-//             }
-//         }
-
-//        //Load CSV data = patient
-//        {
-//            List<Patient> patients = CSVFacade.read(Patient.class, "Patients.csv");
-//            if(patients!=null){
-//                PatientDAO patientDAO = new PatientDAO();
-//                for(Patient p : patients){
-//                    patientDAO.insert(p);
-//                }
-//            }
-//        }
-
         log.info("Starting Up");
     }
 
@@ -161,61 +90,6 @@ public class App extends Application {
 
     @Override
     public void stop() {
-//        // Export CSV Data - Floor
-//        {
-//            FloorDAO floorDAO = new FloorDAO();
-//            List<Floor> floors = floorDAO.getAll();
-//            if (floors != null) {
-//                CSVFacade.write(Floor.class,"TowerFloors.csv",floors);
-//            }
-//        }
-//
-//        // Export CSV Data - Location
-//        {
-//            LocationDAO locationDAO = new LocationDAO();
-//            List<Location> locations = locationDAO.getAll();
-//            if (locations != null) {
-//                CSVFacade.write(Location.class, "TowerLocations.csv", locations);
-//            }
-//        }
-//
-//        //Export CSV Data - Employee
-//        {
-//            EmployeeDAO employeeDAO = new EmployeeDAO();
-//            List<Employee> employees = employeeDAO.getAll();
-//            if(employees!=null){
-//                CSVFacade.write(Employee.class,"Employees.csv", employees);
-//            }
-//        }
-//
-//        // Export CSV Data - Medical Equipment
-//        {
-//            MedicalEquipmentDAO medicalEquipmentDAO = new MedicalEquipmentDAO();
-//            List<MedicalEquipment> medicalEquipments = medicalEquipmentDAO.getAll();
-//            if(medicalEquipments!=null){
-//                CSVFacade.write(MedicalEquipment.class,"MedicalEquip.csv", medicalEquipments);
-//            }
-//        }
-//
-//        // Export CSV Data - Medical Equipment Service Requests
-//        {
-//            MedicalEquipmentSRDAO medicalEquipmentSRDAO = new MedicalEquipmentSRDAO();
-//            List<MedicalEquipmentSR> medicalEquipmentSRS = medicalEquipmentSRDAO.getAll();
-//            if(medicalEquipmentSRS!=null){
-//                CSVFacade.write(MedicalEquipmentSR.class,"MedEquipReq.csv", medicalEquipmentSRS);
-//            }
-//        }
-
-//        //Export CSV data = patient
-//
-//        {
-//            PatientDAO patientDAO = new PatientDAO();
-//            List<Patient> patients = patientDAO.getAll();
-//            if(patients!=null){
-//                CSVFacade.write(Patient.class, "Patients.csv", patients);
-//            }
-//        }
-
         log.info("Shutting Down");
     }
 

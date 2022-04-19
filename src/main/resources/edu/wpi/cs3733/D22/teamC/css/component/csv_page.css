@@ -28,6 +28,7 @@
     -fx-background-color: white;
     -fx-border-color:grey;
     -fx-border-radius:3px;
+    -fx-cursor: hand;
 }
 
 .check-box:selected .mark {
@@ -36,6 +37,7 @@
 
 .check-box:selected .box {
     -fx-background-color: -color-secondary-dark;
+    -fx-cursor: hand;
 }
 
 .button-import {
