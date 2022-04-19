@@ -70,8 +70,77 @@
     -fx-text-fill: -color-primary-dark;
 }
 
+.scroll-bar .thumb {
+    -fx-background-color: linear-gradient(to bottom, -color-primary, -color-primary-light);;
+}
 
 /* Card Images */
-.patient-transport {
+#patient-transport {
+    -fx-background-image: url("../../static/images/card-images/patient-transport.png");
+    -fx-background-size: contain;
+    -fx-background-repeat: round;
+    -fx-background-position: top;
+}
 
+#translator {
+    -fx-background-image: url("../../static/images/card-images/translator.png");
+    -fx-background-size: contain;
+    -fx-background-repeat: round;
+    -fx-background-position: top;
+}
+
+#medicine-delivery {
+    -fx-background-image: url("../../static/images/card-images/medicine-delivery.png");
+    -fx-background-size: contain;
+    -fx-background-repeat: round;
+    -fx-background-position: top;
+}
+
+#facility-maintenance {
+    -fx-background-image: url("../../static/images/card-images/facility-maintenance.jpeg");
+    -fx-background-size: contain;
+    -fx-background-repeat: round;
+    -fx-background-position: top;
+}
+
+#medical-equipment {
+    -fx-background-image: url("../../static/images/card-images/medical-equipment.png");
+    -fx-background-size: contain;
+    -fx-background-repeat: round;
+    -fx-background-position: top;
+}
+
+#security {
+    -fx-background-image: url("../../static/images/card-images/security.png");
+    -fx-background-size: contain;
+    -fx-background-repeat: round;
+    -fx-background-position: top;
+}
+
+#laundry {
+    -fx-background-image: url("../../static/images/card-images/laundry.png");
+    -fx-background-size: contain;
+    -fx-background-repeat: round;
+    -fx-background-position: top;
+}
+
+#lab-system {
+    -fx-background-image: url("../../static/images/card-images/lab-system.png");
+    -fx-background-size: contain;
+    -fx-background-repeat: round;
+    -fx-background-position: top;
+}
+
+#delivery-system {
+    -fx-background-image: url("../../static/images/card-images/delivery-system.png");
+    -fx-background-size: contain;
+    -fx-background-repeat: round;
+    -fx-background-position: top;
+}
+
+#sanitation {
+    -fx-background-image: url("../../static/images/card-images/sanitation.png");
+    -fx-background-size: contain;
+    -fx-background-repeat: round;
+    -fx-background-position: top;
 }
