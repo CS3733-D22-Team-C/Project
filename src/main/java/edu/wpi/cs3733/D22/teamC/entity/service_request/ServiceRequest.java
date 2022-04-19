@@ -2,6 +2,8 @@ package edu.wpi.cs3733.D22.teamC.entity.service_request;
 
 import edu.wpi.cs3733.D22.teamC.entity.employee.Employee;
 import edu.wpi.cs3733.D22.teamC.entity.generic.IDEntity;
+import org.hibernate.annotations.Generated;
+import org.hibernate.annotations.GenerationTime;
 
 import javax.persistence.*;
 import java.sql.Timestamp;
@@ -15,6 +17,10 @@ public class ServiceRequest implements IDEntity {
     @Id
     @Column(name = "ID")
     protected String ID;
+    
+    @Column(name = "Number", columnDefinition = "int NOT NULL GENERATED ALWAYS AS IDENTITY(START WITH 1, INCREMENT BY 1)")
+    @Generated(GenerationTime.ALWAYS)
+    protected int number;
     
     @ManyToOne
     @JoinColumn(name = "CreatorID", referencedColumnName = "ID")
@@ -83,6 +89,7 @@ public class ServiceRequest implements IDEntity {
     
     public ServiceRequest(ServiceRequest serviceRequest) {
         this.ID = serviceRequest.getID();
+        this.number = serviceRequest.getNumber();
         this.creator = serviceRequest.getCreator();
         this.assignee = serviceRequest.getAssignee();
         this.locationID = serviceRequest.getLocation();
@@ -105,6 +112,14 @@ public class ServiceRequest implements IDEntity {
     
     public void setID(String requestID) {
         this.ID = requestID;
+    }
+    
+    public int getNumber() {
+        return number;
+    }
+    
+    public void setNumber(int number) {
+        this.number = number;
     }
     
     public Employee getCreator() {
