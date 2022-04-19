@@ -3,22 +3,28 @@ package edu.wpi.cs3733.D22.teamC.controller.service_request;
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXComboBox;
 import com.jfoenix.controls.JFXTextArea;
+import com.jfoenix.svg.SVGGlyph;
 import edu.wpi.cs3733.D22.teamC.App;
 import edu.wpi.cs3733.D22.teamC.entity.employee.Employee;
+import edu.wpi.cs3733.D22.teamC.entity.employee.EmployeeDAO;
 import edu.wpi.cs3733.D22.teamC.entity.generic.DAO;
 import edu.wpi.cs3733.D22.teamC.entity.location.Location;
 import edu.wpi.cs3733.D22.teamC.entity.location.LocationDAO;
 import edu.wpi.cs3733.D22.teamC.entity.service_request.ServiceRequest;
+import edu.wpi.cs3733.D22.teamC.fileio.svg.SVGParser;
 import edu.wpi.cs3733.D22.teamC.models.employee.EmployeeSelectorWindow;
 import edu.wpi.cs3733.D22.teamC.models.location.MapSelectorWindow;
+import edu.wpi.cs3733.D22.teamC.models.utils.ComponentWrapper;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.VBox;
+import org.controlsfx.control.SearchableComboBox;
 
 import java.sql.Timestamp;
+import java.util.List;
 import java.util.Locale;
 
 public class BaseServiceRequestResolveController<T extends ServiceRequest> implements ServiceRequestController{
@@ -26,9 +32,9 @@ public class BaseServiceRequestResolveController<T extends ServiceRequest> imple
     @FXML private VBox fieldsBox;
 
     //Generic boxes
-    @FXML private TextField assigneeID;
-    @FXML private TextField locationID;
-    @FXML private JFXComboBox<String> priority;
+    @FXML private SearchableComboBox<Employee> assigneeID;
+    @FXML private SearchableComboBox<Location> locationID;
+    @FXML private SearchableComboBox<String> priority;
     @FXML private JFXTextArea description;
 
     //Buttons
@@ -61,9 +67,21 @@ public class BaseServiceRequestResolveController<T extends ServiceRequest> imple
 
     private Employee employee;
     private Location location;
+    
+    private String srUUID;
 
     @FXML
     public void setup(ServiceRequest serviceRequest, boolean isEditMode) {
+        SVGParser svgParser = new SVGParser();
+        String employeeIcon = svgParser.getPath("static/icons/employee_icon.svg");
+        String locationIcon = svgParser.getPath("static/icons/location_icon.svg");
+
+        SVGGlyph employeeContent = new SVGGlyph(employeeIcon);
+        SVGGlyph locationContent = new SVGGlyph(locationIcon);
+        employeeContent.setSize(20);
+        locationContent.setSize(20);
+        mapViewButton.setGraphic(locationContent);
+        employeeTableButton.setGraphic(employeeContent);
         this.isEditMode = isEditMode;
         this.requestType = serviceRequest.getRequestType();
 
@@ -72,20 +90,29 @@ public class BaseServiceRequestResolveController<T extends ServiceRequest> imple
 
         DAO<T> serviceRequestDAO = insertController.createServiceRequestDAO();
         this.serviceRequest = serviceRequestDAO.getByID(serviceRequest.getID());
+        srUUID = this.serviceRequest.getID();
 
         if (serviceRequest.getLocation() != null) location = new LocationDAO().getByID(serviceRequest.getLocation());
 
         insertController.setup(this, this.serviceRequest, isEditMode);
 
         // Set initial values
+        List<Employee> employees = new EmployeeDAO().getAll();
+        ComponentWrapper.initializeComboBox(assigneeID, Employee::toString);
+        assigneeID.getItems().setAll(employees);
+
+        List<Location> locations = new LocationDAO().getAll();
+        ComponentWrapper.initializeComboBox(locationID, Location::toString);
+        locationID.getItems().setAll(locations);
+
         priority.setPromptText(serviceRequest.getPriority().toString());
-        assigneeID.setText(serviceRequest.getAssignee() == null ? "" : serviceRequest.getAssignee().getLastName() + ", " + serviceRequest.getAssignee().getFirstName());
-        locationID.setText(location == null ? "" : location.getShortName());
+        assigneeID.setPromptText(serviceRequest.getAssignee() == null ? "" : serviceRequest.getAssignee().getLastName() + ", " + serviceRequest.getAssignee().getFirstName());
+        locationID.setPromptText(location == null ? "" : location.getShortName());
         creationTime.setText(serviceRequest.getCreationTimestamp().toString());
         description.setText(serviceRequest.getDescription());
 
         // Set labels
-        requestID.setText(serviceRequest.getID()); //TODO print something else here or don't print maybe
+        requestID.setText(Integer.toString(serviceRequest.getNumber()));
         assigneeID.setEditable(false);
         locationID.setEditable(false);
 
@@ -119,6 +146,8 @@ public class BaseServiceRequestResolveController<T extends ServiceRequest> imple
             priority.setDisable(true);
             employeeTableButton.setDisable(true);
             mapViewButton.setDisable(true);
+            assigneeID.setDisable(true);
+            locationID.setDisable(true);
         }
 
     }
@@ -126,7 +155,7 @@ public class BaseServiceRequestResolveController<T extends ServiceRequest> imple
     void clickConfirm(ActionEvent event) {
         //Accessing Service Request in Database
         DAO<T> serviceRequestDAO = insertController.createServiceRequestDAO();
-        T serviceRequest = serviceRequestDAO.getByID(requestID.getText());
+        T serviceRequest = serviceRequestDAO.getByID(srUUID);
 
         if(isEditMode)
         {
@@ -178,9 +207,9 @@ public class BaseServiceRequestResolveController<T extends ServiceRequest> imple
     boolean requiredFieldsPresent(){
         if (priority.getValue() == null && priority.getPromptText().equals(""))
             return false;
-        if (assigneeID.getText().equals(""))
+        if (assigneeID.getValue() == null)
             return false;
-        if (locationID.getText().equals(""))
+        if (locationID.getValue() == null)
             return false;
         return insertController.requiredFieldsPresent();
     }
@@ -228,7 +257,7 @@ public class BaseServiceRequestResolveController<T extends ServiceRequest> imple
                 employeeName = employee.getLastName() + ", " + employee.getFirstName();
             }
 
-            assigneeID.setText(employeeName);
+            assigneeID.setValue(employee);
         }
 
         public void setLocation(Location location) {
@@ -239,7 +268,7 @@ public class BaseServiceRequestResolveController<T extends ServiceRequest> imple
                 locationName = location.getShortName();
             }
 
-            locationID.setText(locationName);
+            locationID.setValue(location);
         }
     //#endregion
 }
