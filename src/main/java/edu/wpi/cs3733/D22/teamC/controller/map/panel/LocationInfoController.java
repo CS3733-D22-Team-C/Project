@@ -78,6 +78,7 @@ public class LocationInfoController implements Initializable {
         setTabIcon(medicalEquipmentTab, MEDICAL_EQUIPMENT_ICON);
         setTabIcon(serviceRequestTab, SERVICE_REQUEST_ICON);
         patientsTab.setGraphic(patientContent);
+        patientsTab.setText(null);
 
         // Initialize Service Request Info
         serviceRequestTableDisplay = new ServiceRequestTableDisplay<>(serviceRequestTable);
