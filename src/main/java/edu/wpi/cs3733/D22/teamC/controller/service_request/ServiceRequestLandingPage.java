@@ -14,6 +14,7 @@ import javafx.scene.layout.GridPane;
 
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
@@ -63,8 +64,9 @@ public class ServiceRequestLandingPage implements Initializable {
     }
 
     @FXML
-    void clickFacilityMaintenance(ActionEvent event) {
-        goToSRPage(ServiceRequest.RequestType.Facility_Maintenance);
+    void clickFacilityMaintenance(ActionEvent event) {//throws ServiceException, IOException {
+       //API.instanceAPI.run(5,5,400,400, "", "", "");
+        //goToSRPage(ServiceRequest.RequestType.Facility_Maintenance);
     }
 
     @FXML
