@@ -50,9 +50,11 @@ public class DeliverySystemSRInsertResolveController extends InsertServiceReques
         patientSComboBox.setDisable(!isEditMode);
     
         PatientDAO patientDAO = new PatientDAO();
+        Patient currPatient = patientDAO.getByID(serviceRequest.getPatientID());
         
         deliveryType.setPromptText(serviceRequest.getDeliveryType().toString());
-        patientSComboBox.setValue(patientDAO.getByID(serviceRequest.getPatientID()));
+        patientSComboBox.setValue(currPatient);
+        patientSComboBox.setPromptText(currPatient.toString());
     }
     
     public boolean requiredFieldsPresent(){
