@@ -46,7 +46,7 @@ public class PatientTransportSRInsertCreateController implements InsertServiceRe
 
         List<Patient> patientList = patientDAO.getAll();
 
-        ComponentWrapper.initializeComboBox(patientComboBox,Patient::getFirstName);
+        ComponentWrapper.initializeComboBox(patientComboBox,Patient::toString);
 
         patientComboBox.getItems().setAll(patientList);
     }
@@ -61,7 +61,7 @@ public class PatientTransportSRInsertCreateController implements InsertServiceRe
     public PatientTransportSR createServiceRequest() {
         PatientTransportSR patientTransportSR = new PatientTransportSR();
 
-        patientTransportSR.setPatientID(patientComboBox.getId());
+        patientTransportSR.setPatientID(patientComboBox.getValue().getID());
         patientTransportSR.setTransportTime(Timestamp.valueOf(date.getValue().atStartOfDay()));
 
         return patientTransportSR;
@@ -95,10 +95,10 @@ public class PatientTransportSRInsertCreateController implements InsertServiceRe
 
     @FXML
     void goToPatientTable(ActionEvent event) throws IOException {
-        new PatientSelectorWindow(patient -> this.setPatient(patient));
+        new PatientSelectorWindow(this::setPatientComboBox);
     }
 
-    private void setPatient(Patient patient) {
-        this.patientComboBox.setValue(patient);
+    private void setPatientComboBox(Patient patientComboBox) {
+        this.patientComboBox.setValue(patientComboBox);
     }
 }
