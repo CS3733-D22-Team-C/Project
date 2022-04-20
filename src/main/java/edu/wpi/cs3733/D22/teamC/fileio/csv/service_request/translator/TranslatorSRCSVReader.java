@@ -2,6 +2,8 @@ package edu.wpi.cs3733.D22.teamC.fileio.csv.service_request.translator;
 
 import edu.wpi.cs3733.D22.teamC.entity.employee.Employee;
 import edu.wpi.cs3733.D22.teamC.entity.employee.EmployeeDAO;
+import edu.wpi.cs3733.D22.teamC.entity.patient.Patient;
+import edu.wpi.cs3733.D22.teamC.entity.patient.PatientDAO;
 import edu.wpi.cs3733.D22.teamC.entity.service_request.ServiceRequest;
 import edu.wpi.cs3733.D22.teamC.entity.service_request.translator.TranslatorSR;
 import edu.wpi.cs3733.D22.teamC.fileio.csv.CSVReader;
@@ -9,8 +11,11 @@ import edu.wpi.cs3733.D22.teamC.fileio.csv.CSVReader;
 import java.sql.Timestamp;
 
 public class TranslatorSRCSVReader extends CSVReader<TranslatorSR> {
-    private EmployeeDAO employeeDAO = new EmployeeDAO();
-
+    
+    private final EmployeeDAO employeeDAO = new EmployeeDAO();
+    private final PatientDAO patientDAO = new PatientDAO();
+    
+    
     @Override
     protected TranslatorSR parseAttribute(TranslatorSR object, String header, String value) {
         switch (header) {
@@ -47,7 +52,8 @@ public class TranslatorSRCSVReader extends CSVReader<TranslatorSR> {
                 object.setLanguage(TranslatorSR.Language.valueOf(value));
                 break;
             case "patientID":
-                object.setPatientID(value);
+                Patient patient = patientDAO.getByID(value);
+                object.setPatient(patient);
                 break;
             case "modifierID":
                 Employee modifier = employeeDAO.getByID(value);

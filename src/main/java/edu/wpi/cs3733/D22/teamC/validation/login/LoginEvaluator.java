@@ -22,6 +22,8 @@ public class LoginEvaluator {
         //Need to get current employee and set it in the app
         if (eDAO.getEmployeeByUsername(username) == null && !adminBackdoor(username, password)) {
             return LoginErrorRecord.loginUserInputValidationErrorList[0];
+        } else if (!eDAO.getEmployeeByUsername(username).getPassword().equals(password)) {
+            return LoginErrorRecord.loginUserInputValidationErrorList[0];
         }
         return null;
     }

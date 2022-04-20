@@ -1,8 +1,9 @@
 package edu.wpi.cs3733.D22.teamC.factory.service_request;
 
+import edu.wpi.cs3733.D22.teamC.entity.patient.Patient;
+import edu.wpi.cs3733.D22.teamC.entity.patient.PatientDAO;
 import edu.wpi.cs3733.D22.teamC.entity.service_request.ServiceRequest;
 import edu.wpi.cs3733.D22.teamC.entity.service_request.medicine_delivery.MedicineDeliverySR;
-import edu.wpi.cs3733.D22.teamC.factory.Factory;
 
 public class MedicineDeliverySRFactory extends ServiceRequestFactory<MedicineDeliverySR>  {
     public MedicineDeliverySR create() {
@@ -11,13 +12,16 @@ public class MedicineDeliverySRFactory extends ServiceRequestFactory<MedicineDel
 
         String medicine = "methamphetamine HCL";
         String dosage = "18mg oral";
-        String patientID = "JohnCena";
         ServiceRequest.RequestType requestType = ServiceRequest.RequestType.Medicine_Delivery;
+    
+        Patient testPatient = new Patient();
+        PatientDAO patientDAO = new PatientDAO();
+        patientDAO.insert(testPatient);
 
         serviceRequest.setRequestType(requestType);
         serviceRequest.setMedicine(medicine);
         serviceRequest.setDosage(dosage);
-        serviceRequest.setPatientID(patientID);
+        serviceRequest.setPatient(testPatient);
 
         return super.create(serviceRequest);
     }

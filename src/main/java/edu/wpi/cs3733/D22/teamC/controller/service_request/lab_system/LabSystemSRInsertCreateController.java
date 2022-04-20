@@ -6,7 +6,6 @@ import edu.wpi.cs3733.D22.teamC.controller.service_request.InsertServiceRequestC
 import edu.wpi.cs3733.D22.teamC.entity.generic.DAO;
 import edu.wpi.cs3733.D22.teamC.entity.patient.Patient;
 import edu.wpi.cs3733.D22.teamC.entity.patient.PatientDAO;
-import edu.wpi.cs3733.D22.teamC.entity.service_request.ServiceRequestDAO;
 import edu.wpi.cs3733.D22.teamC.entity.service_request.lab_system.LabSystemSR;
 import edu.wpi.cs3733.D22.teamC.entity.service_request.lab_system.LabSystemSRDAO;
 import edu.wpi.cs3733.D22.teamC.models.patient.PatientSelectorWindow;
@@ -16,7 +15,6 @@ import edu.wpi.cs3733.D22.teamC.models.utils.ComponentWrapper;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.control.TextField;
 import org.controlsfx.control.SearchableComboBox;
 
 import java.io.IOException;
@@ -58,7 +56,7 @@ public class LabSystemSRInsertCreateController implements InsertServiceRequestCr
         LabSystemSR labSR = new LabSystemSR();
 
         labSR.setLabType(LabSystemSR.LabType.valueOf(labType.getValue()));
-        labSR.setPatientID(patientSComboBox.getValue().getID());
+        labSR.setPatient(patientSComboBox.getValue());
 
         return labSR;
     }

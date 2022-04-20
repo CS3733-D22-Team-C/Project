@@ -1,25 +1,20 @@
 package edu.wpi.cs3733.D22.teamC.controller.service_request.translator;
 
 import com.jfoenix.controls.JFXButton;
-import com.jfoenix.controls.JFXComboBox;
 import com.jfoenix.controls.JFXTreeTableView;
 import edu.wpi.cs3733.D22.teamC.controller.service_request.InsertServiceRequestCreateController;
 import edu.wpi.cs3733.D22.teamC.entity.generic.DAO;
 import edu.wpi.cs3733.D22.teamC.entity.patient.Patient;
 import edu.wpi.cs3733.D22.teamC.entity.patient.PatientDAO;
-import edu.wpi.cs3733.D22.teamC.entity.service_request.medical_equipment.MedicalEquipmentSR;
-import edu.wpi.cs3733.D22.teamC.entity.service_request.medical_equipment.MedicalEquipmentSRDAO;
 import edu.wpi.cs3733.D22.teamC.entity.service_request.translator.TranslatorSR;
 import edu.wpi.cs3733.D22.teamC.entity.service_request.translator.TranslatorSRDAO;
 import edu.wpi.cs3733.D22.teamC.models.patient.PatientSelectorWindow;
 import edu.wpi.cs3733.D22.teamC.models.service_request.ServiceRequestTableDisplay;
-import edu.wpi.cs3733.D22.teamC.models.service_request.medical_equipment.MedicalEquipmentSRTableDisplay;
 import edu.wpi.cs3733.D22.teamC.models.service_request.translator.TranslatorSRTableDisplay;
 import edu.wpi.cs3733.D22.teamC.models.utils.ComponentWrapper;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.input.MouseEvent;
 import org.controlsfx.control.SearchableComboBox;
 
 import java.io.IOException;
@@ -46,13 +41,11 @@ public class TranslatorSRInsertCreateController implements InsertServiceRequestC
         for (TranslatorSR.Language language : TranslatorSR.Language.values()) {
             languageSComboBox.getItems().add(language.toString());
         }
+        
         //Patient ComboBox
-        //Query DB
         PatientDAO patientDAO = new PatientDAO();
         List<Patient> patients = patientDAO.getAll();
-
         ComponentWrapper.initializeComboBox(patientSComboBox,Patient::toString);
-
         patientSComboBox.getItems().setAll(patients);
     }
 
@@ -67,7 +60,7 @@ public class TranslatorSRInsertCreateController implements InsertServiceRequestC
     public TranslatorSR createServiceRequest() {
         TranslatorSR TSR = new TranslatorSR();
         TSR.setLanguage(TranslatorSR.Language.valueOf(languageSComboBox.getValue()));
-        TSR.setPatientID(patientSComboBox.getValue().getID());
+        TSR.setPatient(patientSComboBox.getValue());
         return TSR;
     }
 

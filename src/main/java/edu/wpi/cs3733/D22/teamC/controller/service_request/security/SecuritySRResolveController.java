@@ -66,7 +66,6 @@ public class SecuritySRResolveController extends ServiceRequestResolveController
                 securitySR.setSecurityType(SecuritySR.SecurityType.valueOf(securityType.getValue()));
             }
 
-            System.out.println(requiredFieldsPresent());
             //Status
             if(requiredFieldsPresent())
                 securitySR.setStatus(ServiceRequest.Status.Processing);

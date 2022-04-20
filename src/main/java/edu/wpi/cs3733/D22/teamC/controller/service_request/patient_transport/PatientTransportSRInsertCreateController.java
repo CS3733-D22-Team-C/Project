@@ -20,7 +20,6 @@ import org.controlsfx.control.SearchableComboBox;
 
 import java.io.IOException;
 import java.net.URL;
-import java.sql.Time;
 import java.sql.Timestamp;
 import java.util.List;
 import java.util.ResourceBundle;
@@ -61,7 +60,7 @@ public class PatientTransportSRInsertCreateController implements InsertServiceRe
     public PatientTransportSR createServiceRequest() {
         PatientTransportSR patientTransportSR = new PatientTransportSR();
 
-        patientTransportSR.setPatientID(patientComboBox.getValue().getID());
+        patientTransportSR.setPatient(patientComboBox.getValue());
         patientTransportSR.setTransportTime(Timestamp.valueOf(date.getValue().atStartOfDay()));
 
         return patientTransportSR;

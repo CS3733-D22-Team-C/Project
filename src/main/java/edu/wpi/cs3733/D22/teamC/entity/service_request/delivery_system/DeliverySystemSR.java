@@ -1,5 +1,6 @@
 package edu.wpi.cs3733.D22.teamC.entity.service_request.delivery_system;
 
+import edu.wpi.cs3733.D22.teamC.entity.patient.Patient;
 import edu.wpi.cs3733.D22.teamC.entity.service_request.ServiceRequest;
 
 import javax.persistence.*;
@@ -12,8 +13,9 @@ public class DeliverySystemSR extends ServiceRequest {
     @Column(name = "DeliveryType")
     protected DeliveryType deliveryType;
     
-    @Column(name = "PatientID")
-    protected String patientID;
+    @ManyToOne
+    @JoinColumn(name = "PatientID", referencedColumnName = "ID")
+    protected Patient patient;
     
     public enum DeliveryType {
         Food,
@@ -37,12 +39,12 @@ public class DeliverySystemSR extends ServiceRequest {
         this.deliveryType = deliveryType;
     }
     
-    public String getPatientID() {
-        return patientID;
+    public Patient getPatient() {
+        return patient;
     }
     
-    public void setPatientID(String patientID) {
-        this.patientID = patientID;
+    public void setPatient(Patient patient) {
+        this.patient = patient;
     }
     
     @Override
@@ -51,6 +53,6 @@ public class DeliverySystemSR extends ServiceRequest {
         if (o == null || getClass() != o.getClass()) return false;
         if (!super.equals(o)) return false;
         DeliverySystemSR that = (DeliverySystemSR) o;
-        return deliveryType == that.deliveryType && patientID.equals(that.patientID);
+        return deliveryType == that.deliveryType && patient.getID().equals(that.patient.getID());
     }
 }

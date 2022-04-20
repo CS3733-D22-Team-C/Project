@@ -72,7 +72,7 @@ public class DeliverySystemSRCSVWriter extends CSVWriter<DeliverySystemSR> {
                 output = serviceRequest.getDeliveryType().toString();
                 break;
             case "patientID":
-                output = serviceRequest.getPatientID();
+                output = serviceRequest.getPatient().getID();
                 break;
             case "modifierID":
                 Employee modifier = serviceRequest.getModifier();

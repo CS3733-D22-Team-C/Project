@@ -6,7 +6,6 @@ import edu.wpi.cs3733.D22.teamC.controller.service_request.InsertServiceRequestR
 import edu.wpi.cs3733.D22.teamC.entity.generic.DAO;
 import edu.wpi.cs3733.D22.teamC.entity.patient.Patient;
 import edu.wpi.cs3733.D22.teamC.entity.patient.PatientDAO;
-import edu.wpi.cs3733.D22.teamC.entity.service_request.ServiceRequestDAO;
 import edu.wpi.cs3733.D22.teamC.entity.service_request.lab_system.LabSystemSR;
 import edu.wpi.cs3733.D22.teamC.entity.service_request.lab_system.LabSystemSRDAO;
 import edu.wpi.cs3733.D22.teamC.models.patient.PatientSelectorWindow;
@@ -14,7 +13,6 @@ import edu.wpi.cs3733.D22.teamC.models.utils.ComponentWrapper;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.control.TextField;
 import javafx.scene.input.KeyEvent;
 import org.controlsfx.control.SearchableComboBox;
 
@@ -59,7 +57,8 @@ public class LabSystemSRInsertResolveController extends InsertServiceRequestReso
         PatientDAO patientDAO = new PatientDAO();
 
         labType.setPromptText(serviceRequest.getLabType().toString());
-        patientSComboBox.setValue(patientDAO.getByID(serviceRequest.getPatientID()));
+        patientSComboBox.setValue(serviceRequest.getPatient());
+        patientSComboBox.setPromptText(serviceRequest.getPatient().toString());
     }
 
     public boolean requiredFieldsPresent(){
@@ -76,7 +75,7 @@ public class LabSystemSRInsertResolveController extends InsertServiceRequestReso
             if(labType.getValue() != null)
                 serviceRequest.setLabType(LabSystemSR.LabType.valueOf(labType.getValue()));
             if(patientSComboBox.getValue() != null)
-                serviceRequest.setPatientID(patientSComboBox.getValue().getID());
+                serviceRequest.setPatient(patientSComboBox.getValue());
         }
     }
 

@@ -16,7 +16,7 @@
       <VBox alignment="CENTER_LEFT" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefWidth="227.0" styleClass="box-margin" stylesheets="@../../../css/component/request_page.css" HBox.hgrow="ALWAYS">
          <children>
             <Label styleClass="service-field-label" text="Equipment ID" />
-            <JFXComboBox fx:id="equipmentID" maxWidth="1.7976931348623157E308" onMouseClicked="#equipTypeChanged" prefWidth="190.0" styleClass="dropdown" stylesheets="@../../../css/base.css" />
+            <JFXComboBox fx:id="equipment" maxWidth="1.7976931348623157E308" onMouseClicked="#equipTypeChanged" prefWidth="190.0" styleClass="dropdown" stylesheets="@../../../css/base.css" />
          </children></VBox>
       <VBox alignment="CENTER_LEFT" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefWidth="227.0" styleClass="box-margin" stylesheets="@../../../css/component/request_page.css" HBox.hgrow="ALWAYS" />
    </children>

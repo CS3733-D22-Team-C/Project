@@ -12,10 +12,11 @@ public class MedicalEquipmentSR extends ServiceRequest {
     @Enumerated(EnumType.STRING)
     @Column(name = "EquipType")
     protected MedicalEquipment.EquipmentType equipmentType;
-
-    @Column(name = "EquipID")
-    protected String equipmentID;       // TODO: Link to Medical Equipment
-
+    
+    @ManyToOne
+    @JoinColumn(name = "EquipID", referencedColumnName = "ID")
+    protected MedicalEquipment equipment;
+    
     @Enumerated(EnumType.STRING)
     @Column(name = "EquipStatus")
     protected EquipmentStatus equipmentStatus;
@@ -39,12 +40,12 @@ public class MedicalEquipmentSR extends ServiceRequest {
 
     public void setEquipmentType(MedicalEquipment.EquipmentType equipmentType) { this.equipmentType = equipmentType; }
 
-    public String getEquipmentID() {
-        return equipmentID;
+    public MedicalEquipment getEquipment() {
+        return equipment;
     }
 
-    public void setEquipmentID(String equipmentID) {
-        this.equipmentID = equipmentID;
+    public void setEquipment(MedicalEquipment equipment) {
+        this.equipment = equipment;
     }
 
     public EquipmentStatus getEquipmentStatus(){ return equipmentStatus; }
@@ -60,7 +61,7 @@ public class MedicalEquipmentSR extends ServiceRequest {
         if (!super.equals(o)) return false;
         MedicalEquipmentSR that = (MedicalEquipmentSR) o;
         return equipmentType == that.equipmentType
-                && equipmentID.equals(that.equipmentID)
+                && equipment.getID().equals(that.equipment.getID())
                 && equipmentStatus == that.equipmentStatus;
     }
 }

@@ -75,7 +75,7 @@ public class MedicineDeliverySRCSVWriter extends CSVWriter<MedicineDeliverySR> {
                 output = serviceRequest.getDosage();
                 break;
             case "patientID":
-                output = serviceRequest.getPatientID();
+                output = serviceRequest.getPatient().getID();
                 break;
             case "modifierID":
                 Employee modifier = serviceRequest.getModifier();

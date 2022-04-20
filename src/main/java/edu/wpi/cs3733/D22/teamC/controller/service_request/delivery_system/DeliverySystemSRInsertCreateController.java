@@ -12,7 +12,6 @@ import edu.wpi.cs3733.D22.teamC.entity.service_request.delivery_system.DeliveryS
 import edu.wpi.cs3733.D22.teamC.models.patient.PatientSelectorWindow;
 import edu.wpi.cs3733.D22.teamC.models.service_request.ServiceRequestTableDisplay;
 import edu.wpi.cs3733.D22.teamC.models.service_request.delivery_system.DeliverySystemSRTableDisplay;
-import edu.wpi.cs3733.D22.teamC.models.utils.ComponentWrapper;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import org.controlsfx.control.SearchableComboBox;
@@ -60,7 +59,7 @@ public class DeliverySystemSRInsertCreateController implements InsertServiceRequ
         DeliverySystemSR deliverySR = new DeliverySystemSR();
     
         deliverySR.setDeliveryType(DeliverySystemSR.DeliveryType.valueOf(deliveryType.getValue()));
-        deliverySR.setPatientID(patientComboBox.getValue().getID());
+        deliverySR.setPatient(patientComboBox.getValue());
         
         return deliverySR;
     }

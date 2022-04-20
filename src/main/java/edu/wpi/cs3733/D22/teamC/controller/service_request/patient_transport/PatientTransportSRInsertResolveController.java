@@ -1,6 +1,5 @@
 package edu.wpi.cs3733.D22.teamC.controller.service_request.patient_transport;
 
-import com.jfoenix.controls.JFXButton;
 import edu.wpi.cs3733.D22.teamC.controller.service_request.BaseServiceRequestResolveController;
 import edu.wpi.cs3733.D22.teamC.controller.service_request.InsertServiceRequestResolveController;
 import edu.wpi.cs3733.D22.teamC.entity.generic.DAO;
@@ -29,7 +28,19 @@ public class PatientTransportSRInsertResolveController extends InsertServiceRequ
     @FXML private MFXDatePicker date;
     @FXML private MFXButton patientTableButton;
     @FXML private SearchableComboBox<Patient> patientSComboBox;
-
+    
+    @Override
+    public void initialize(URL location, ResourceBundle resources) {
+        
+        //Patient ComboBox
+        //Query DB
+        PatientDAO patientDAO = new PatientDAO();
+        List<Patient> patients = patientDAO.getAll();
+        
+        ComponentWrapper.initializeComboBox(patientSComboBox,Patient::toString);
+        patientSComboBox.getItems().setAll(patients);
+    }
+    
     @Override
     public void setup(BaseServiceRequestResolveController<PatientTransportSR> baseServiceRequestResolveController, PatientTransportSR serviceRequest, boolean isEditMode) {
         super.setup(baseServiceRequestResolveController, serviceRequest, isEditMode);
@@ -38,11 +49,10 @@ public class PatientTransportSRInsertResolveController extends InsertServiceRequ
 
         date.setDisable(!isEditMode);
         patientSComboBox.setDisable(!isEditMode);
-
-        PatientDAO patientDAO = new PatientDAO();
-
+        
         date.setText(serviceRequest.getTransportTime().toString());
-        patientSComboBox.setValue(patientDAO.getByID(serviceRequest.getPatientID()));
+        patientSComboBox.setValue(serviceRequest.getPatient());
+        patientSComboBox.setPromptText(serviceRequest.getPatient().toString());
     }
 
     public boolean requiredFieldsPresent(){
@@ -57,7 +67,7 @@ public class PatientTransportSRInsertResolveController extends InsertServiceRequ
     public void updateServiceRequest(PatientTransportSR serviceRequest) {
         if(isEditMode) {
             if(patientSComboBox.getValue() != null)
-                serviceRequest.setPatientID(patientSComboBox.getValue().getID());
+                serviceRequest.setPatient(patientSComboBox.getValue());
             if(date.getValue() != null)
                 serviceRequest.setTransportTime(Timestamp.valueOf(date.getValue().atStartOfDay()));
         }
@@ -65,18 +75,6 @@ public class PatientTransportSRInsertResolveController extends InsertServiceRequ
     @Override
     public DAO<PatientTransportSR> createServiceRequestDAO() {
         return new PatientTransportSRDAO();
-    }
-
-    @Override
-    public void initialize(URL location, ResourceBundle resources) {
-
-        //Patient ComboBox
-        //Query DB
-        PatientDAO patientDAO = new PatientDAO();
-        List<Patient> patients = patientDAO.getAll();
-
-        ComponentWrapper.initializeComboBox(patientSComboBox,Patient::toString);
-        patientSComboBox.getItems().setAll(patients);
     }
 
     @FXML

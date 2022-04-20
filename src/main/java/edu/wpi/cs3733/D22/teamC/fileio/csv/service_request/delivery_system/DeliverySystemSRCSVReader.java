@@ -2,6 +2,8 @@ package edu.wpi.cs3733.D22.teamC.fileio.csv.service_request.delivery_system;
 
 import edu.wpi.cs3733.D22.teamC.entity.employee.Employee;
 import edu.wpi.cs3733.D22.teamC.entity.employee.EmployeeDAO;
+import edu.wpi.cs3733.D22.teamC.entity.patient.Patient;
+import edu.wpi.cs3733.D22.teamC.entity.patient.PatientDAO;
 import edu.wpi.cs3733.D22.teamC.entity.service_request.ServiceRequest;
 import edu.wpi.cs3733.D22.teamC.entity.service_request.delivery_system.DeliverySystemSR;
 import edu.wpi.cs3733.D22.teamC.fileio.csv.CSVReader;
@@ -11,6 +13,7 @@ import java.sql.Timestamp;
 public class DeliverySystemSRCSVReader extends CSVReader<DeliverySystemSR> {
     
     private final EmployeeDAO employeeDAO = new EmployeeDAO();
+    private final PatientDAO patientDAO = new PatientDAO();
     
     /**
      * Maps ServiceRequest (header, value) pairs to a value to change for the object.
@@ -55,7 +58,8 @@ public class DeliverySystemSRCSVReader extends CSVReader<DeliverySystemSR> {
                 serviceRequest.setDeliveryType(DeliverySystemSR.DeliveryType.valueOf(value));
                 break;
             case "patientID":
-                serviceRequest.setPatientID(value);
+                Patient patient = patientDAO.getByID(value);
+                serviceRequest.setPatient(patient);
                 break;
             case "modifierID":
                 Employee modifier = employeeDAO.getByID(value);

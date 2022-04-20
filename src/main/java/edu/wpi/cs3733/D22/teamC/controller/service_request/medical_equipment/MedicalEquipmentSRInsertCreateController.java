@@ -6,7 +6,6 @@ import edu.wpi.cs3733.D22.teamC.controller.service_request.InsertServiceRequestC
 import edu.wpi.cs3733.D22.teamC.entity.generic.DAO;
 import edu.wpi.cs3733.D22.teamC.entity.medical_equipment.MedicalEquipment;
 import edu.wpi.cs3733.D22.teamC.entity.medical_equipment.MedicalEquipmentDAO;
-import edu.wpi.cs3733.D22.teamC.entity.service_request.ServiceRequestDAO;
 import edu.wpi.cs3733.D22.teamC.entity.service_request.medical_equipment.MedicalEquipmentSR;
 import edu.wpi.cs3733.D22.teamC.entity.service_request.medical_equipment.MedicalEquipmentSRDAO;
 import edu.wpi.cs3733.D22.teamC.models.service_request.ServiceRequestTableDisplay;
@@ -23,7 +22,7 @@ public class MedicalEquipmentSRInsertCreateController implements InsertServiceRe
     @FXML
     private JFXComboBox<MedicalEquipment.EquipmentType> equipmentType;
     @FXML
-    private JFXComboBox<MedicalEquipment> equipmentID;
+    private JFXComboBox<MedicalEquipment> equipment;
     private MedicalEquipment.EquipmentType lastType;
 
 
@@ -37,7 +36,7 @@ public class MedicalEquipmentSRInsertCreateController implements InsertServiceRe
     @Override
     public void clearFields() {
         equipmentType.setValue(null);
-        equipmentID.setValue(null);
+        equipment.setValue(null);
     }
 
     @Override
@@ -45,7 +44,7 @@ public class MedicalEquipmentSRInsertCreateController implements InsertServiceRe
         MedicalEquipmentSR MESR = new MedicalEquipmentSR();
 
         MESR.setEquipmentType(equipmentType.getValue());
-        MESR.setEquipmentID(equipmentID.getValue().getID());
+        MESR.setEquipment(equipment.getValue());
         return MESR;
     }
 
@@ -72,14 +71,14 @@ public class MedicalEquipmentSRInsertCreateController implements InsertServiceRe
             lastType = equipmentType.getValue();
 
             //Resetting the values
-            equipmentID.setValue(null);
-            equipmentID.getItems().clear();
-            equipmentID.getItems().setAll(new MedicalEquipmentDAO().getAll().stream().filter(medicalEquipment -> medicalEquipment.getEquipmentType().equals(lastType)).collect(Collectors.toList()));
+            equipment.setValue(null);
+            equipment.getItems().clear();
+            equipment.getItems().setAll(new MedicalEquipmentDAO().getAll().stream().filter(medicalEquipment -> medicalEquipment.getEquipmentType().equals(lastType)).collect(Collectors.toList()));
         }
     }
     @Override
     public boolean requiredFieldsPresent(){
-        if(equipmentID.getValue() == null)
+        if(equipment.getValue() == null)
             return false;
         if(equipmentType.getValue() == null)
             return false;

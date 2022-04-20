@@ -72,7 +72,7 @@ public class LabSystemSRCSVWriter extends CSVWriter<LabSystemSR> {
                 output = serviceRequest.getLabType().toString();
                 break;
             case "patientID":
-                output = serviceRequest.getPatientID();
+                output = serviceRequest.getPatient().getID();
                 break;
             case "modifierID":
                 Employee modifier = serviceRequest.getModifier();

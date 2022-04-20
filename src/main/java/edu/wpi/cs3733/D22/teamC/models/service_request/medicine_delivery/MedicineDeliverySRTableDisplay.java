@@ -21,8 +21,8 @@ public class MedicineDeliverySRTableDisplay extends ServiceRequestTableDisplay<M
 
             this.medicine   = new SimpleStringProperty(medicineDeliverySR.getMedicine());
             this.dosage     = new SimpleStringProperty(medicineDeliverySR.getDosage());
-            this.patientName = new SimpleStringProperty((patientDAO.getByID(medicineDeliverySR.getPatientID()) != null)
-                    ? patientDAO.getByID(medicineDeliverySR.getPatientID()).toString() : "N/A");
+            this.patientName = new SimpleStringProperty((medicineDeliverySR.getPatient() != null)
+                    ? medicineDeliverySR.getPatient().toString() : "N/A");
         }
     }
 

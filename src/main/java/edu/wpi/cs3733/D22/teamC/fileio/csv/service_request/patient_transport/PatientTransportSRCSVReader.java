@@ -6,14 +6,15 @@ import edu.wpi.cs3733.D22.teamC.entity.patient.Patient;
 import edu.wpi.cs3733.D22.teamC.entity.patient.PatientDAO;
 import edu.wpi.cs3733.D22.teamC.entity.service_request.ServiceRequest;
 import edu.wpi.cs3733.D22.teamC.entity.service_request.patient_transport.PatientTransportSR;
-import edu.wpi.cs3733.D22.teamC.entity.service_request.sanitation.SanitationSR;
 import edu.wpi.cs3733.D22.teamC.fileio.csv.CSVReader;
 
 import java.sql.Timestamp;
 
 public class PatientTransportSRCSVReader extends CSVReader<PatientTransportSR> {
-    private EmployeeDAO employeeDAO = new EmployeeDAO();
-    private PatientDAO patientDAO = new PatientDAO();
+    
+    private final EmployeeDAO employeeDAO = new EmployeeDAO();
+    private final PatientDAO patientDAO = new PatientDAO();
+   
     /**
      * Maps ServiceRequest (header, value) pairs to a value to change for the object.
      * @param serviceRequest The object to be modified.
@@ -55,7 +56,8 @@ public class PatientTransportSRCSVReader extends CSVReader<PatientTransportSR> {
                 serviceRequest.setDescription(value);
                 break;
             case "patientID":
-                serviceRequest.setPatientID(value);
+                Patient patient = patientDAO.getByID(value);
+                serviceRequest.setPatient(patient);
                 break;
             case "transportTime":
                 serviceRequest.setTransportTime(Timestamp.valueOf(value));
