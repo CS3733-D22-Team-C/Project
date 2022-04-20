@@ -3,6 +3,7 @@ package edu.wpi.cs3733.D22.teamC.controller.profile;
 import edu.wpi.cs3733.D22.teamC.App;
 import edu.wpi.cs3733.D22.teamC.controller.service_request.InsertServiceRequestCreateController;
 import edu.wpi.cs3733.D22.teamC.entity.employee.Employee;
+import edu.wpi.cs3733.D22.teamC.entity.employee.EmployeeDAO;
 import io.github.palexdev.materialfx.controls.MFXButton;
 import io.github.palexdev.materialfx.controls.MFXPasswordField;
 import javafx.fxml.FXML;
@@ -47,7 +48,7 @@ public class UserProfileController implements Initializable {
     public void initialize(URL location, ResourceBundle resources)
     {
         currentEmploy = App.instance.getUserAccount();
-        name.setText(currentEmploy.getLastName() + " " + currentEmploy.getLastName());
+        name.setText(currentEmploy.getFirstName() + " " + currentEmploy.getLastName());
         position.setText(currentEmploy.getRole().toString());
         contact.setText(currentEmploy.getAddress());
         address.setText(currentEmploy.getAddress());
@@ -70,6 +71,7 @@ public class UserProfileController implements Initializable {
         newPass.getText().equals(newPassConfirm.getText()) && isLegal(newPass.getText())){
             //set the new password
             currentEmploy.setPassword(newPass.getText());
+            new EmployeeDAO().update(currentEmploy);
             //Reset the fields
             beforePassword.setText("");
             newPass.setText("");
