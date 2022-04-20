@@ -161,10 +161,10 @@ public class LocationInfoController implements Initializable {
         MedicalEquipmentManager medicalEquipmentManager = mapViewController.getMedicalEquipmentManager();
         if (medicalEquipmentManager != null) {
             MedicalEquipmentNode medicalEquipmentNode = (MedicalEquipmentNode) medicalEquipmentManager.getByLocation(mapViewController.getLocationManager().getCurrent());
-
+            if(medicalEquipmentNode != null){
             medicalEquipmentNode.updateValues();
         }
-    }
+    }}
 
     private void setLocationClickCapture(boolean clickCapture) {
         if (clickCapture) {
