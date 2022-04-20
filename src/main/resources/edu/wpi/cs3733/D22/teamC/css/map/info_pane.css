@@ -46,6 +46,9 @@
     -fx-padding: 70 0 0 0;
 }
 
+.button:selected {
+    -fx-background-color: -color-secondary;
+}
 
 
 

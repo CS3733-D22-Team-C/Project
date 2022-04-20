@@ -1,6 +1,7 @@
 package edu.wpi.cs3733.D22.teamC.controller.map.panel;
 
 import com.jfoenix.controls.JFXButton;
+import com.jfoenix.controls.JFXToggleNode;
 import com.jfoenix.controls.JFXTreeTableView;
 import edu.wpi.cs3733.D22.teamC.App;
 import edu.wpi.cs3733.D22.teamC.controller.map.FloorMapViewController;
@@ -71,7 +72,7 @@ public class LocationInfoController implements Initializable {
 
     // Medical Equipment - Update Buttons
     @FXML private JFXButton updateStatus;
-    @FXML private JFXButton updateLocation;
+    @FXML private JFXToggleNode updateLocation;
     @FXML private ComboBox<MedicalEquipment.EquipmentStatus> statusComboBox;
 
     // References
@@ -177,10 +178,10 @@ public class LocationInfoController implements Initializable {
 
                 setLocationClickCapture(false);
             };
-            updateLocation.setVisible(false);
+            updateLocation.setSelected(true);
         } else {
             mapViewController.getLocationManager().onClickCapture = null;
-            updateLocation.setVisible(true);
+            updateLocation.setSelected(false);
         }
     }
 

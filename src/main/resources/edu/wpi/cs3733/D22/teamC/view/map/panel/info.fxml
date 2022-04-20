@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import com.jfoenix.controls.JFXButton?>
+<?import com.jfoenix.controls.JFXToggleNode?>
 <?import com.jfoenix.controls.JFXTreeTableView?>
 <?import java.net.URL?>
 <?import javafx.geometry.Insets?>
@@ -17,6 +18,7 @@
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.layout.VBox?>
+<?import javafx.scene.paint.Color?>
 <?import javafx.scene.text.Font?>
 
 <VBox fx:id="containerVBox" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefWidth="450.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.wpi.cs3733.D22.teamC.controller.map.panel.LocationInfoController">
@@ -171,15 +173,31 @@
                               </JFXTreeTableView>
                               <HBox maxWidth="1.7976931348623157E308" spacing="15.0">
                                  <children>
-                                    <VBox alignment="BOTTOM_LEFT" maxWidth="1.7976931348623157E308" HBox.hgrow="ALWAYS">
+                                    <VBox alignment="BOTTOM_CENTER" maxWidth="1.7976931348623157E308" prefHeight="58.0" prefWidth="141.0" HBox.hgrow="ALWAYS">
                                        <children>
-                                          <JFXButton fx:id="updateLocation" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" onAction="#onUpdateLocationButtonPressed" text="Update Location" />
+                                          <JFXToggleNode fx:id="updateLocation" alignment="CENTER_LEFT" contentDisplay="TOP" onAction="#onUpdateLocationButtonPressed" prefHeight="25.0" prefWidth="217.0" styleClass="button" text="Update Location">
+                                             <selectedColor>
+                                                <Color red="0.1836622804403305" green="0.2418220043182373" blue="0.8815789222717285" opacity="0.20000000298023224" />
+                                             </selectedColor>
+                                             <font>
+                                                <Font size="16.0" />
+                                             </font>
+                                             <padding>
+                                                <Insets left="10.0" />
+                                             </padding>
+                                          </JFXToggleNode>
                                        </children>
                                     </VBox>
                                     <VBox alignment="BOTTOM_LEFT" maxWidth="1.7976931348623157E308" HBox.hgrow="ALWAYS">
                                        <children>
                                           <ComboBox fx:id="statusComboBox" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" onAction="#onMedicalEquipmentStatusComboBoxChanged" />
-                                          <JFXButton fx:id="updateStatus" maxWidth="1.7976931348623157E308" onAction="#onUpdateStatusButtonPressed" text="Update Status" />
+                                          <JFXButton fx:id="updateStatus" maxWidth="1.7976931348623157E308" onAction="#onUpdateStatusButtonPressed" text="Update Status">
+                                             <font>
+                                                <Font size="16.0" />
+                                             </font>
+                                             <padding>
+                                                <Insets left="-10.0" />
+                                             </padding></JFXButton>
                                        </children>
                                     </VBox>
                                  </children>
