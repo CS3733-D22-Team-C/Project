@@ -106,16 +106,30 @@ public class BaseServiceRequestResolveController<T extends ServiceRequest> imple
         locationID.getItems().setAll(locations);
 
         priority.setPromptText(serviceRequest.getPriority().toString());
-        assigneeID.setPromptText(serviceRequest.getAssignee() == null ? "" : serviceRequest.getAssignee().getLastName() + ", " + serviceRequest.getAssignee().getFirstName());
+        assigneeID.setPromptText(serviceRequest.getAssignee() == null ? 
+                "" : serviceRequest.getAssignee().getLastName() + ", " + serviceRequest.getAssignee().getFirstName());
         locationID.setPromptText(location == null ? "" : location.getShortName());
         creationTime.setText(serviceRequest.getCreationTimestamp().toString());
         description.setText(serviceRequest.getDescription());
 
         // Set labels
-        requestID.setText(Integer.toString(serviceRequest.getNumber()));
+        requestID.setText(serviceRequest.toString()); // Output the SR number
         assigneeID.setEditable(false);
         locationID.setEditable(false);
-
+        lastUpdated.setText(serviceRequest.getModifiedTimestamp().toString());
+        
+        if(serviceRequest.getCreator() != null) {
+            createdBy.setText(serviceRequest.getCreator().getLastName() + ", " + serviceRequest.getCreator().getFirstName());
+        } else {
+            createdBy.setText("N/A");
+        }
+    
+        if(serviceRequest.getModifier() != null) {
+            updatedBy.setText(serviceRequest.getModifier().getLastName() + ", " + serviceRequest.getModifier().getFirstName());
+        } else {
+            updatedBy.setText("N/A");
+        }
+    
         if (isEditMode) {
             // Set generic title (overridden in children)
             title.setText("Edit Medical Equipment Request");
