@@ -8,17 +8,33 @@ import edu.wpi.cs3733.D22.teamC.entity.floor.Floor;
 import edu.wpi.cs3733.D22.teamC.entity.floor.FloorDAO;
 import edu.wpi.cs3733.D22.teamC.entity.medical_equipment.MedicalEquipment;
 import edu.wpi.cs3733.D22.teamC.entity.medical_equipment.MedicalEquipmentDAO;
+import edu.wpi.cs3733.D22.teamC.fileio.csv.floor.FloorCSVReader;
+import edu.wpi.cs3733.D22.teamC.fileio.csv.floor.FloorCSVWriter;
 import edu.wpi.cs3733.D22.teamC.models.location.EquipmentTableDisplay;
 import io.github.palexdev.materialfx.controls.MFXButton;
+import io.github.palexdev.materialfx.utils.SwingFXUtils;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
+import javafx.scene.control.TextArea;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
-import org.controlsfx.control.tableview2.TableView2;
+import javafx.stage.FileChooser;
+import org.controlsfx.control.InfoOverlay;
+import org.controlsfx.control.textfield.CustomTextField;
 
+import javax.imageio.ImageIO;
+import java.awt.image.BufferedImage;
+import java.io.ByteArrayInputStream;
+import java.io.File;
+import java.io.IOException;
 import java.net.URL;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.ResourceBundle;
@@ -27,6 +43,7 @@ public class BaseMapSideViewController implements Initializable {
 
     // Containers
     @FXML private VBox floorVBox;
+    @FXML private HBox imageBox;
 
     // Equipment Holders
     private Equipment readyEquip;
@@ -40,22 +57,48 @@ public class BaseMapSideViewController implements Initializable {
     private Floor selectedFloor;
 
     // Table
-    @FXML private TableView2 table;
+    @FXML private JFXTreeTableView<Equipment> table;
     private EquipmentTableDisplay tableDisplay;
 
     // Floor Descriptors
     @FXML private Label floorTitle;
-    @FXML private Label floorDescription;
+    @FXML private InfoOverlay floorDescription;
 
     // Buttons
     @FXML private MFXButton deleteButton;
     @FXML private MFXButton goToButton;
+    @FXML private MFXButton editButton;
+    @FXML private MFXButton addFloorButton;
+    @FXML private MFXButton cancelButton;
+    @FXML private MFXButton confirmButton;
+    @FXML private MFXButton addImageButton;
+
+
+    // ???
+    @FXML private ImageView floorImage;
+    private byte[] bFile;
+    private String imagePath;
+
+    // Custom Text Fields
+    @FXML private CustomTextField longName;
+    @FXML private CustomTextField shortName;
+    @FXML private TextArea description;
+    @FXML private CustomTextField image;
+
+    private boolean addFloorClicked;
 
     @Override // Load floors and buttons
     public void initialize(URL location, ResourceBundle resources) {
         this.readyEquip = new Equipment();
         this.dirtyEquip = new Equipment();
         this.inUseEquip = new Equipment();
+
+        this.addFloorClicked = false;
+        imagePath = "";
+        bFile = null;
+
+        this.floorDescription = new InfoOverlay(floorImage, "Description");
+
         floorNodeControllerList = new ArrayList<>();
         FloorDAO floorDAO = new FloorDAO();
         List<Floor> lof = floorDAO.getAll();
@@ -64,11 +107,92 @@ public class BaseMapSideViewController implements Initializable {
             floorNode.setup(floor);
             floorVBox.getChildren().add(floorNode.getGroup());
             floorNodeControllerList.add(floorNode);
-            floorNode.getGroup().getChildren().get(0).setOnMouseClicked(e -> onFloorClicked(e, floorNode));
+            floorNode.getGroup().getChildren().get(0).setOnMouseClicked(e -> {
+                try {
+                    onFloorClicked(e, floorNode);
+                } catch (IOException ex) {
+                    ex.printStackTrace();
+                }
+            });
         }
 
-        //tableDisplay = new EquipmentTableDisplay(table);
+        tableDisplay = new EquipmentTableDisplay(table);
 
+    }
+
+    public void onConfirmClicked(ActionEvent actionEvent) {
+        if(selectedFloor == null){
+            if(!requiredFieldsPresent()) return;
+            selectedFloor = new Floor();
+            selectedFloor.setLongName(longName.getText());
+            selectedFloor.setDescription(description.getText());
+            selectedFloor.setShortName(shortName.getText());
+            selectedFloor.setImage(bFile);
+            selectedFloor.setImageSrc(imagePath);
+
+            FloorDAO floorDAO = new FloorDAO();
+            floorDAO.insert(selectedFloor);
+
+            imagePath = "";
+            bFile = null;
+
+            cancelButton.setDisable(true);
+            confirmButton.setDisable(true);
+            addImageButton.setDisable(true);
+            shortName.setDisable(true);
+            longName.setDisable(true);
+            description.setDisable(true);
+            image.setDisable(true);
+
+            App.instance.setView("view/location/map/base_side_map_view.fxml");
+            return;
+        }
+        addFloorClicked = false;
+        selectedFloor.setLongName(longName.getText());
+        selectedFloor.setDescription(description.getText());
+        selectedFloor.setShortName(shortName.getText());
+        selectedFloor.setImage(bFile);
+        selectedFloor.setImageSrc(imagePath);
+
+        FloorDAO floorDAO = new FloorDAO();
+        floorDAO.update(selectedFloor);
+
+        imagePath = "";
+        bFile = null;
+
+        cancelButton.setDisable(true);
+        confirmButton.setDisable(true);
+        addImageButton.setDisable(true);
+        shortName.setDisable(true);
+        longName.setDisable(true);
+        description.setDisable(true);
+        image.setDisable(true);
+    }
+
+    private boolean requiredFieldsPresent(){
+        if(shortName.getText().equals("") || longName.getText().equals("")
+        || description.getText().equals("") || imagePath.equals("") || bFile == null){
+            return false;
+        }
+        return true;
+    }
+
+    public void onAddFloorClicked(ActionEvent actionEvent) {
+        selectedFloor = null;
+        addFloorClicked = true;
+
+        shortName.setText("");
+        longName.setText("");
+        description.setText("");
+        image.setText("");
+
+        cancelButton.setDisable(false);
+        confirmButton.setDisable(false);
+        addImageButton.setDisable(false);
+        shortName.setDisable(false);
+        longName.setDisable(false);
+        description.setDisable(false);
+        image.setDisable(false);
     }
 
     public class Equipment extends RecursiveTreeObject<Equipment> {
@@ -85,15 +209,53 @@ public class BaseMapSideViewController implements Initializable {
         }
     }
 
+    @FXML
+    void onAddImageClicked(ActionEvent event){
+        FileChooser fileChooser = new FileChooser();
+        fileChooser.setTitle("Import Image File");
+        FileChooser.ExtensionFilter extFilter = new FileChooser.ExtensionFilter("Image files (*.png, *.jpg)", "*.png","*.jpg");
+        fileChooser.getExtensionFilters().add(extFilter);
+        File file = fileChooser.showOpenDialog(App.instance.getStage());
+
+        if (file != null) {
+
+            // Load image
+            Path filePath = Paths.get(file.getPath());
+            Image image = new Image("file:" + filePath);
+            System.out.println(image.getUrl());
+            imagePath = image.getUrl();
+            bFile = new byte[(int) file.length()];
+
+            this.image.setText(imagePath);
+        }
+    }
+
 
     @FXML
-    void onFloorClicked(MouseEvent event, FloorNode floorNode) {
+    void onFloorClicked(MouseEvent event, FloorNode floorNode) throws IOException {
+        if(addFloorClicked) return;
         this.selectedFloor = floorNode.getFloor();
 
         goToButton.setDisable(false);
         deleteButton.setDisable(false);
+        editButton.setDisable(false);
+
 
         floorTitle.setText(selectedFloor.getLongName());
+
+        System.out.println(selectedFloor.getImage());
+        ByteArrayInputStream bis = new ByteArrayInputStream(selectedFloor.getImage());
+        System.out.println(bis);
+        BufferedImage img = ImageIO.read(bis);
+        System.out.println(img);
+        Image image = SwingFXUtils.toFXImage(img, null);
+
+        //floorImage.fitWidthProperty().bind(imageBox.widthProperty());
+        //floorImage.fitHeightProperty().bind(imageBox.heightProperty());
+        floorImage.setImage(image);
+
+        floorDescription.setContent(floorImage);
+        floorDescription.setShowOnHover(true);
         floorDescription.setText(selectedFloor.getDescription());
 
         loadEquipment();
@@ -104,6 +266,22 @@ public class BaseMapSideViewController implements Initializable {
         tableDisplay.addObject(inUseEquip);
         tableDisplay.addObject(readyEquip);
 
+        this.shortName.setText(floorNode.getFloor().getShortName());
+        this.longName.setText(floorNode.getFloor().getLongName());
+        this.description.setText(floorNode.getFloor().getDescription());
+        this.image.setText(floorNode.getFloor().getImageSrc());
+
+    }
+
+    @FXML
+    void onEditClicked(ActionEvent event){
+        shortName.setDisable(false);
+        longName.setDisable(false);
+        addImageButton.setDisable(false);
+        description.setDisable(false);
+        image.setDisable(false);
+        cancelButton.setDisable(false);
+        confirmButton.setDisable(false);
     }
 
     @FXML
@@ -114,6 +292,19 @@ public class BaseMapSideViewController implements Initializable {
     }
 
     @FXML
+    void onCancelClicked(ActionEvent event){
+        addFloorClicked = false;
+        cancelButton.setDisable(true);
+        confirmButton.setDisable(true);
+        addImageButton.setDisable(true);
+        shortName.setDisable(true);
+        longName.setDisable(true);
+        description.setDisable(true);
+        image.setDisable(true);
+
+    }
+
+    @FXML // TODO: Add confirm delete later. I'm too fucking lazy bro holy shit
     void onDeleteClicked(ActionEvent event){
         FloorDAO floorDAO = new FloorDAO();
         floorDAO.delete(selectedFloor);

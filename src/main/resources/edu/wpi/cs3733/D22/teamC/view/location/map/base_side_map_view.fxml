@@ -1,9 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import com.jfoenix.controls.JFXTreeTableView?>
 <?import io.github.palexdev.materialfx.controls.MFXButton?>
 <?import io.github.palexdev.materialfx.controls.MFXScrollPane?>
 <?import java.net.URL?>
 <?import javafx.geometry.Insets?>
+<?import javafx.geometry.Rectangle2D?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TextArea?>
 <?import javafx.scene.effect.DropShadow?>
@@ -16,7 +18,6 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
-<?import org.controlsfx.control.tableview2.TableView2?>
 <?import org.controlsfx.control.textfield.CustomTextField?>
 
 <GridPane minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.wpi.cs3733.D22.teamC.controller.location.map.BaseMapSideViewController">
@@ -29,12 +30,16 @@
       <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="ALWAYS" />
    </rowConstraints>
    <children>
-      <VBox alignment="CENTER" GridPane.halignment="CENTER" GridPane.hgrow="NEVER" GridPane.valignment="CENTER">
-         <GridPane.margin>
-            <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
-         </GridPane.margin>
+      <GridPane alignment="CENTER" GridPane.halignment="CENTER" GridPane.hgrow="ALWAYS" GridPane.vgrow="ALWAYS">
+         <columnConstraints>
+            <ColumnConstraints halignment="CENTER" hgrow="ALWAYS" maxWidth="1.7976931348623157E308" minWidth="10.0" />
+         </columnConstraints>
+         <rowConstraints>
+            <RowConstraints maxHeight="1.7976931348623157E308" minHeight="10.0" prefHeight="320.39996337890625" vgrow="ALWAYS" />
+            <RowConstraints maxHeight="1.7976931348623157E308" minHeight="10.0" prefHeight="58.00003662109373" valignment="BOTTOM" vgrow="SOMETIMES" />
+         </rowConstraints>
          <children>
-            <MFXScrollPane hbarPolicy="NEVER" maxHeight="500.0" maxWidth="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="190.0" styleClass="floor-box" vbarPolicy="NEVER">
+            <MFXScrollPane hbarPolicy="NEVER" maxHeight="500.0" maxWidth="1.7976931348623157E308" minWidth="-Infinity" prefHeight="500.0" styleClass="floor-box" vbarPolicy="NEVER" GridPane.halignment="CENTER" GridPane.hgrow="ALWAYS" GridPane.valignment="TOP" GridPane.vgrow="ALWAYS">
                <content>
                   <VBox fx:id="floorVBox" alignment="CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" spacing="5.0">
                      <padding>
@@ -45,23 +50,25 @@
                <effect>
                   <DropShadow />
                </effect>
+               <GridPane.margin>
+                  <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+               </GridPane.margin>
             </MFXScrollPane>
-            <HBox alignment="BOTTOM_CENTER" maxWidth="-Infinity" prefHeight="100.0" prefWidth="190.0">
+            <HBox alignment="BOTTOM_CENTER" GridPane.hgrow="ALWAYS" GridPane.rowIndex="1" GridPane.vgrow="ALWAYS">
                <children>
-                  <MFXButton fx:id="addFloorButton" onAction="#onAddFloorClicked" text="Add Floor" />
-                  <Region>
-                     <padding>
-                        <Insets left="20.0" right="20.0" />
-                     </padding>
-                  </Region>
                   <MFXButton fx:id="deleteButton" alignment="CENTER" disable="true" onAction="#onDeleteClicked" styleClass="delete" stylesheets="@../../../css/map/side_view.css" text="Delete" />
+                  <Region HBox.hgrow="ALWAYS" />
+                  <MFXButton fx:id="addFloorButton" onAction="#onAddFloorClicked" text="Add Floor" />
                </children>
-               <padding>
-                  <Insets top="20.0" />
-               </padding>
+               <GridPane.margin>
+                  <Insets bottom="10.0" />
+               </GridPane.margin>
             </HBox>
          </children>
-      </VBox>
+         <GridPane.margin>
+            <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+         </GridPane.margin>
+      </GridPane>
       <GridPane GridPane.columnIndex="1" GridPane.hgrow="ALWAYS" GridPane.valignment="CENTER" GridPane.vgrow="ALWAYS">
          <columnConstraints>
             <ColumnConstraints hgrow="ALWAYS" maxWidth="1.7976931348623157E308" minWidth="10.0" prefWidth="100.0" />
@@ -72,10 +79,7 @@
             <RowConstraints maxHeight="1.7976931348623157E308" minHeight="0.0" prefHeight="0.0" vgrow="ALWAYS" />
          </rowConstraints>
          <children>
-            <TableView2 fx:id="table" GridPane.hgrow="ALWAYS" GridPane.rowIndex="1" GridPane.vgrow="ALWAYS">
-               <GridPane.margin>
-                  <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
-               </GridPane.margin></TableView2>
+            <JFXTreeTableView fx:id="table" GridPane.rowIndex="1" />
             <VBox id="description-box" alignment="CENTER" styleClass="description-box">
                <children>
                   <Label id="floor-label" fx:id="floorTitle" alignment="CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefWidth="240.0" styleClass="floor-label" text="Floor X">
@@ -83,9 +87,20 @@
                         <Font size="32.0" />
                      </font>
                   </Label>
-                  <HBox alignment="TOP_CENTER" VBox.vgrow="ALWAYS">
+                  <HBox fx:id="imageBox" alignment="CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" VBox.vgrow="ALWAYS">
                      <children>
-                        <ImageView fx:id="floorImage" fitHeight="100.0" fitWidth="100.0" pickOnBounds="true" preserveRatio="true" />
+                        <MFXScrollPane hbarPolicy="NEVER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" vbarPolicy="NEVER" HBox.hgrow="ALWAYS">
+                           <content>
+                              <ImageView fx:id="floorImage" fitHeight="500.0" fitWidth="500.0" pickOnBounds="true" preserveRatio="true">
+                                 <viewport>
+                                    <Rectangle2D />
+                                 </viewport>
+                              </ImageView>
+                           </content>
+                           <HBox.margin>
+                              <Insets bottom="10.0" />
+                           </HBox.margin>
+                        </MFXScrollPane>
                      </children>
                      <padding>
                         <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
@@ -109,32 +124,72 @@
           <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
         </columnConstraints>
         <rowConstraints>
-          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+          <RowConstraints maxHeight="1.7976931348623157E308" minHeight="10.0" prefHeight="302.8000091552734" vgrow="ALWAYS" />
+          <RowConstraints maxHeight="194.79999389648438" minHeight="10.0" prefHeight="97.9999908447266" valignment="BOTTOM" vgrow="SOMETIMES" />
         </rowConstraints>
          <children>
-            <HBox alignment="BOTTOM_CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" GridPane.rowIndex="1">
-               <children>
-                  <MFXButton fx:id="goToButton" alignment="CENTER" contentDisplay="CENTER" disable="true" maxHeight="31.0" maxWidth="1.7976931348623157E308" onAction="#onGoToClicked" prefHeight="31.0" prefWidth="100.0" styleClass="button-confirm" text="Go To" HBox.hgrow="NEVER" />
-               </children>
+            <VBox GridPane.rowIndex="1" GridPane.valignment="BOTTOM" GridPane.vgrow="NEVER">
                <GridPane.margin>
                   <Insets bottom="20.0" />
                </GridPane.margin>
-            </HBox>
-            <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0">
+               <children>
+                  <HBox alignment="TOP_CENTER">
+                     <children>
+                        <MFXButton fx:id="editButton" alignment="TOP_CENTER" disable="true" onAction="#onEditClicked" text="Edit Floor" />
+                     </children>
+                     <VBox.margin>
+                        <Insets top="10.0" />
+                     </VBox.margin>
+                  </HBox>
+                  <Region prefHeight="200.0" prefWidth="200.0" VBox.vgrow="ALWAYS" />
+                  <HBox alignment="BOTTOM_CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308">
+                     <children>
+                        <MFXButton fx:id="goToButton" alignment="CENTER" contentDisplay="CENTER" defaultButton="true" disable="true" maxHeight="31.0" maxWidth="1.7976931348623157E308" onAction="#onGoToClicked" prefHeight="31.0" prefWidth="100.0" styleClass="button-confirm" text="Go To" HBox.hgrow="NEVER" />
+                     </children>
+                  </HBox>
+               </children>
+            </VBox>
+            <VBox alignment="CENTER" maxHeight="1.7976931348623157E308" prefHeight="200.0" prefWidth="200.0" styleClass="floor-box" GridPane.vgrow="ALWAYS">
                <children>
                   <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Long Name" />
-                  <CustomTextField fx:id="longName" />
+                  <CustomTextField fx:id="longName" disable="true">
+                     <VBox.margin>
+                        <Insets bottom="10.0" />
+                     </VBox.margin></CustomTextField>
                   <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Short Name" />
-                  <CustomTextField fx:id="shortName" />
+                  <CustomTextField fx:id="shortName" disable="true">
+                     <VBox.margin>
+                        <Insets bottom="10.0" />
+                     </VBox.margin></CustomTextField>
                   <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Description" />
-                  <TextArea fx:id="description" prefHeight="200.0" prefWidth="200.0" />
+                  <TextArea fx:id="description" disable="true" prefHeight="200.0" prefWidth="200.0" wrapText="true" VBox.vgrow="ALWAYS">
+                     <VBox.margin>
+                        <Insets bottom="10.0" />
+                     </VBox.margin></TextArea>
                   <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Image" />
-                  <CustomTextField fx:id="image" layoutX="10.0" layoutY="61.0" />
+                  <HBox>
+                     <children>
+                        <CustomTextField fx:id="image" disable="true" maxWidth="1.7976931348623157E308" prefWidth="1000.0" HBox.hgrow="ALWAYS" />
+                        <MFXButton fx:id="addImageButton" disable="true" maxHeight="-Infinity" maxWidth="-Infinity" onAction="#onAddImageClicked" prefHeight="26.0" prefWidth="24.0" HBox.hgrow="NEVER" />
+                     </children>
+                  </HBox>
+                  <HBox alignment="BOTTOM_CENTER" VBox.vgrow="ALWAYS">
+                     <VBox.margin>
+                        <Insets top="20.0" />
+                     </VBox.margin>
+                     <children>
+                        <MFXButton fx:id="cancelButton" disable="true" onAction="#onCancelClicked" styleClass="failure-button" text="Cancel" />
+                        <Region HBox.hgrow="ALWAYS" />
+                        <MFXButton fx:id="confirmButton" disable="true" layoutX="10.0" layoutY="10.0" onAction="#onConfirmClicked" text="Confirm" />
+                     </children>
+                  </HBox>
                </children>
                <padding>
                   <Insets bottom="10.0" left="10.0" right="20.0" top="10.0" />
                </padding>
+               <GridPane.margin>
+                  <Insets bottom="10.0" left="10.0" right="10.0" top="20.0" />
+               </GridPane.margin>
             </VBox>
          </children>
       </GridPane>

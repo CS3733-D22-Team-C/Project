@@ -1,14 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import io.github.palexdev.materialfx.controls.MFXButton?>
-<?import javafx.scene.Group?>
+<?import javafx.scene.layout.HBox?>
 <?import javafx.scene.text.Font?>
 
-<Group fx:id="group" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.wpi.cs3733.D22.teamC.controller.location.map.FloorNode">
+
+<HBox fx:id="group" alignment="CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.wpi.cs3733.D22.teamC.controller.location.map.FloorNode">
    <children>
-      <MFXButton id="floor" fx:id="floorButton" alignment="CENTER" maxWidth="1.7976931348623157E308" minWidth="-Infinity" prefWidth="180.0" styleClass="floor" stylesheets="@../../../css/map/side_view.css" text="Floor X">
+      <MFXButton id="floor" fx:id="floorButton" alignment="CENTER" maxHeight="35.0" prefHeight="35.0" styleClass="floor" stylesheets="@../../../css/map/side_view.css" text="Floor X" HBox.hgrow="ALWAYS">
          <font>
             <Font size="16.0" />
-         </font></MFXButton>
+         </font>
+      </MFXButton>
    </children>
-</Group>
+</HBox>
