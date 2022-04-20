@@ -56,7 +56,7 @@ public class LabSystemSRInsertCreateController implements InsertServiceRequestCr
         LabSystemSR labSR = new LabSystemSR();
 
         labSR.setLabType(LabSystemSR.LabType.valueOf(labType.getValue()));
-        labSR.setPatientID(patientSComboBox.getId());
+        labSR.setPatientID(patientSComboBox.getValue().getID());
 
         return labSR;
     }
