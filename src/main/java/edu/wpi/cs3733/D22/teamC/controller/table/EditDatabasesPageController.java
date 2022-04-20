@@ -27,11 +27,9 @@ public class EditDatabasesPageController implements Initializable {
     public void initialize(URL location, ResourceBundle resources) {
         setInsert();
     }
-    @FXML
-    void clickEmployee(ActionEvent event) {
-        App.instance.setSkeletonView(TABLE_SKELETON, TABLE_PATIENT);
 
-    }
+    @FXML
+    void clickEmployee(ActionEvent event) {App.instance.setSkeletonView(TABLE_SKELETON, TABLE_EMPLOYEE);}
 
     @FXML
     void clickLocations(ActionEvent event) {
@@ -39,10 +37,10 @@ public class EditDatabasesPageController implements Initializable {
     }
 
     @FXML
-    void clickMedicalEquipment(ActionEvent event) {
-        App.instance.setSkeletonView(TABLE_SKELETON, TABLE_MEDICAL_EQUIPMENT);
+    void clickMedicalEquipment(ActionEvent event) {App.instance.setSkeletonView(TABLE_SKELETON, TABLE_MEDICAL_EQUIPMENT);}
 
-    }
+    @FXML
+    void clickPatient(ActionEvent event){App.instance.setSkeletonView(TABLE_SKELETON, TABLE_PATIENT);}
 
     public void setInsert() {
         String viewFile = "view/location/map/controls/csv_page.fxml";

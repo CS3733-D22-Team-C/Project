@@ -73,7 +73,7 @@ public class PatientViewController extends InsertTableViewController<Patient> im
     public Patient setValues(Patient object) {
 
 
-//        object.setLocationID();
+        object.setLocationID(a_location.getID());
         object.setDOB(Timestamp.valueOf(date.getValue().atStartOfDay()));
         object.setPhone(number.getText());
         object.setFirstName(firstName.getText());
@@ -92,14 +92,6 @@ public class PatientViewController extends InsertTableViewController<Patient> im
         if (object != null){
             a_location = new LocationDAO().getByID(object.getLocationID());
         }
-//        location = new LocationDAO().getByID(object.getLocationID());
-//
-//        title.setText((object == null) ? "Add Equipment" : "Edit Equipment");
-//        locationID.setText((object == null) ? "" : location.getShortName());
-//        typeComboBox.setValue((object == null) ? null : object.getEquipmentType());
-//        number.setText(String.valueOf((object == null) ? "" : object.getTypeNumber()));
-//        statusComboBox.setValue((object == null) ? null : object.getStatus());
-
 
         title.setText((object == null) ? "Add Patient" : "Edit Patient");
         firstName.setText((object == null) ? "" : object.getFirstName());
@@ -112,7 +104,6 @@ public class PatientViewController extends InsertTableViewController<Patient> im
         }
 
         date.setValue((object == null) ? null : lD);
-        System.out.println(a_location);
         location.setText((object == null) ? "" : a_location.getShortName());
 
 
@@ -140,6 +131,7 @@ public class PatientViewController extends InsertTableViewController<Patient> im
         }
 
         this.location.setText(locationName);
+        onFieldUpdated();
     }
 
     //#region Abstraction
@@ -172,7 +164,6 @@ public class PatientViewController extends InsertTableViewController<Patient> im
 
     @FXML
     void onFieldUpdated() {
-        System.out.println(checkFieldsFilled());
         confirmButton.setDisable(!checkFieldsFilled());
     }
 
