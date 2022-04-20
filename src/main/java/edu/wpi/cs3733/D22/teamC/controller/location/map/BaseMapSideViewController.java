@@ -127,8 +127,8 @@ public class BaseMapSideViewController implements Initializable {
             selectedFloor.setLongName(longName.getText());
             selectedFloor.setDescription(description.getText());
             selectedFloor.setShortName(shortName.getText());
-            selectedFloor.setImage(bFile);
-            selectedFloor.setImageSrc(imagePath);
+            //selectedFloor.setImage(bFile);
+            //selectedFloor.setImageSrc(imagePath);
 
             FloorDAO floorDAO = new FloorDAO();
             floorDAO.insert(selectedFloor);
@@ -138,7 +138,7 @@ public class BaseMapSideViewController implements Initializable {
 
             cancelButton.setDisable(true);
             confirmButton.setDisable(true);
-            addImageButton.setDisable(true);
+            //addImageButton.setDisable(true);
             shortName.setDisable(true);
             longName.setDisable(true);
             description.setDisable(true);
@@ -147,22 +147,22 @@ public class BaseMapSideViewController implements Initializable {
             App.instance.setView("view/location/map/base_side_map_view.fxml");
             return;
         }
-        addFloorClicked = false;
+        //addFloorClicked = false;
         selectedFloor.setLongName(longName.getText());
         selectedFloor.setDescription(description.getText());
         selectedFloor.setShortName(shortName.getText());
-        selectedFloor.setImage(bFile);
-        selectedFloor.setImageSrc(imagePath);
+        //selectedFloor.setImage(bFile);
+        //selectedFloor.setImageSrc(imagePath);
 
         FloorDAO floorDAO = new FloorDAO();
         floorDAO.update(selectedFloor);
 
-        imagePath = "";
-        bFile = null;
+        //imagePath = "";
+        //bFile = null;
 
         cancelButton.setDisable(true);
         confirmButton.setDisable(true);
-        addImageButton.setDisable(true);
+        //addImageButton.setDisable(true);
         shortName.setDisable(true);
         longName.setDisable(true);
         description.setDisable(true);
@@ -188,7 +188,7 @@ public class BaseMapSideViewController implements Initializable {
 
         cancelButton.setDisable(false);
         confirmButton.setDisable(false);
-        addImageButton.setDisable(false);
+        //addImageButton.setDisable(false);
         shortName.setDisable(false);
         longName.setDisable(false);
         description.setDisable(false);
@@ -236,6 +236,8 @@ public class BaseMapSideViewController implements Initializable {
         if(addFloorClicked) return;
         this.selectedFloor = floorNode.getFloor();
 
+        System.out.println(selectedFloor.getImageSrc());
+
         goToButton.setDisable(false);
         deleteButton.setDisable(false);
         editButton.setDisable(false);
@@ -243,11 +245,8 @@ public class BaseMapSideViewController implements Initializable {
 
         floorTitle.setText(selectedFloor.getLongName());
 
-        System.out.println(selectedFloor.getImage());
         ByteArrayInputStream bis = new ByteArrayInputStream(selectedFloor.getImage());
-        System.out.println(bis);
         BufferedImage img = ImageIO.read(bis);
-        System.out.println(img);
         Image image = SwingFXUtils.toFXImage(img, null);
 
         //floorImage.fitWidthProperty().bind(imageBox.widthProperty());
@@ -277,7 +276,7 @@ public class BaseMapSideViewController implements Initializable {
     void onEditClicked(ActionEvent event){
         shortName.setDisable(false);
         longName.setDisable(false);
-        addImageButton.setDisable(false);
+        //addImageButton.setDisable(false);
         description.setDisable(false);
         image.setDisable(false);
         cancelButton.setDisable(false);
@@ -294,9 +293,9 @@ public class BaseMapSideViewController implements Initializable {
     @FXML
     void onCancelClicked(ActionEvent event){
         addFloorClicked = false;
-        cancelButton.setDisable(true);
-        confirmButton.setDisable(true);
-        addImageButton.setDisable(true);
+        //cancelButton.setDisable(true);
+        //confirmButton.setDisable(true);
+        //addImageButton.setDisable(true);
         shortName.setDisable(true);
         longName.setDisable(true);
         description.setDisable(true);
