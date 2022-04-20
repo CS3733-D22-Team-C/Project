@@ -6,6 +6,10 @@
 
 }
 
+.label {
+    -fx-opacity: 85%;
+}
+
 .page-container {
     -fx-padding: 10px;
 }
@@ -26,6 +30,11 @@
     -fx-padding: 10 10 10 10;
 }
 
+.service-request-card-name {
+    -fx-background-color: transparent;
+    -fx-padding: 10 10 10 10;
+}
+
 .service-request-container {
     -fx-padding: 10px;
     -fx-spacing: 15px;
@@ -43,69 +52,75 @@
 #patient-transport {
     -fx-background-image: url("../../static/images/card-images/patient-transport.png");
     -fx-background-size: contain;
-    -fx-background-repeat: round;
+    -fx-background-repeat: no-repeat;
     -fx-background-position: top;
+    -fx-background-color: #d5fef6;
 }
 
 #translator {
     -fx-background-image: url("../../static/images/card-images/translator.png");
     -fx-background-size: contain;
-    -fx-background-repeat: round;
+    -fx-background-repeat: no-repeat;
     -fx-background-position: top;
 }
 
 #medicine-delivery {
     -fx-background-image: url("../../static/images/card-images/medicine-delivery.png");
     -fx-background-size: contain;
-    -fx-background-repeat: round;
+    -fx-background-repeat: no-repeat;
     -fx-background-position: top;
+    -fx-background-color: white;
 }
 
 #facility-maintenance {
     -fx-background-image: url("../../static/images/card-images/facility-maintenance.jpeg");
     -fx-background-size: contain;
-    -fx-background-repeat: round;
+    -fx-background-repeat: no-repeat;
     -fx-background-position: top;
 }
 
 #medical-equipment {
     -fx-background-image: url("../../static/images/card-images/medical-equipment.png");
     -fx-background-size: contain;
-    -fx-background-repeat: round;
+    -fx-background-repeat: no-repeat;
     -fx-background-position: top;
+    -fx-background-color: #aaddf3;
 }
 
 #security {
     -fx-background-image: url("../../static/images/card-images/security.png");
     -fx-background-size: contain;
-    -fx-background-repeat: round;
+    -fx-background-repeat: no-repeat;
     -fx-background-position: top;
 }
 
 #laundry {
     -fx-background-image: url("../../static/images/card-images/laundry.png");
     -fx-background-size: contain;
-    -fx-background-repeat: round;
+    -fx-background-repeat: no-repeat;
     -fx-background-position: top;
+    -fx-background-color: linear-gradient(to bottom, #c3b8b4, #b2a7a3);
 }
 
 #lab-system {
     -fx-background-image: url("../../static/images/card-images/lab-system.png");
-    -fx-background-size: contain;
-    -fx-background-repeat: round;
+    -fx-background-size: cover;
+    -fx-background-repeat: no-repeat;
     -fx-background-position: top;
 }
 
 #delivery-system {
     -fx-background-image: url("../../static/images/card-images/delivery-system.png");
     -fx-background-size: contain;
-    -fx-background-repeat: round;
+    -fx-background-repeat: no-repeat;
     -fx-background-position: top;
+    -fx-background-color: #5795cc;
 }
 
 #sanitation {
     -fx-background-image: url("../../static/images/card-images/sanitation.png");
     -fx-background-size: contain;
-    -fx-background-repeat: round;
+    -fx-background-repeat: no-repeat;
     -fx-background-position: top;
+    -fx-background-color: white;
 }

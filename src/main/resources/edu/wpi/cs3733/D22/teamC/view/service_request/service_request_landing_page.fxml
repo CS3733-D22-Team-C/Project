@@ -65,7 +65,7 @@
                <content>
                   <VBox maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" styleClass="service-request-container">
                      <children>
-                        <HBox id="patient-transport" alignment="BOTTOM_LEFT" maxHeight="1.7976931348623157E308" onMouseClicked="#clickPatientTransport" prefHeight="140.0" prefWidth="0.0" styleClass="service-request-card">
+                        <HBox id="patient-transport" alignment="BOTTOM_LEFT" maxHeight="1.7976931348623157E308" onMouseClicked="#clickPatientTransport" prefHeight="150.0" prefWidth="0.0" styleClass="service-request-card">
                            <children>
                               <StackPane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" HBox.hgrow="ALWAYS">
                                  <children>
@@ -76,14 +76,14 @@
                                     </HBox>
                                     <HBox alignment="BOTTOM_RIGHT" prefHeight="100.0" prefWidth="200.0">
                                        <children>
-                                          <Label fx:id="vagmi" alignment="CENTER_RIGHT" prefHeight="38.0" prefWidth="134.0" styleClass="service-request-card-text" text="Vagmi Bhagavathula" />
+                                          <Label fx:id="vagmi" alignment="CENTER_RIGHT" prefHeight="38.0" prefWidth="134.0" styleClass="service-request-card-name" text="Vagmi Bhagavathula" />
                                        </children>
                                     </HBox>
                                  </children>
                               </StackPane>
                            </children>
                         </HBox>
-                        <HBox id="translator" alignment="BOTTOM_LEFT" maxHeight="1.7976931348623157E308" onMouseClicked="#clickTranslator" prefHeight="140.0" prefWidth="0.0" styleClass="service-request-card">
+                        <HBox id="translator" alignment="BOTTOM_LEFT" maxHeight="1.7976931348623157E308" onMouseClicked="#clickTranslator" prefHeight="150.0" prefWidth="0.0" styleClass="service-request-card">
                            <children>
                               <StackPane maxWidth="1.7976931348623157E308" prefHeight="140.0" HBox.hgrow="ALWAYS">
                                  <children>
@@ -94,14 +94,14 @@
                                     </HBox>
                                     <HBox alignment="BOTTOM_RIGHT" prefHeight="100.0" prefWidth="200.0">
                                        <children>
-                                          <Label fx:id="vishnu" alignment="CENTER_RIGHT" prefHeight="18.0" prefWidth="168.0" styleClass="service-request-card-text" text="Vishnu Dendukuri" />
+                                          <Label fx:id="vishnu" alignment="CENTER_RIGHT" prefHeight="18.0" prefWidth="168.0" styleClass="service-request-card-name" text="Vishnu Dendukuri" />
                                        </children>
                                     </HBox>
                                  </children>
                               </StackPane>
                            </children>
                         </HBox>
-                        <HBox id="facility-maintenance" alignment="BOTTOM_LEFT" maxHeight="1.7976931348623157E308" onMouseClicked="#clickFacilityMaintenance" prefHeight="140.0" prefWidth="0.0" styleClass="service-request-card">
+                        <HBox id="facility-maintenance" alignment="BOTTOM_LEFT" maxHeight="1.7976931348623157E308" onMouseClicked="#clickFacilityMaintenance" prefHeight="150.0" prefWidth="0.0" styleClass="service-request-card">
                            <children>
                               <StackPane maxWidth="1.7976931348623157E308" HBox.hgrow="ALWAYS">
                                  <children>
@@ -112,14 +112,14 @@
                                     </HBox>
                                     <HBox alignment="BOTTOM_RIGHT" prefHeight="100.0" prefWidth="200.0">
                                        <children>
-                                          <Label fx:id="matthew" alignment="CENTER_RIGHT" prefHeight="18.0" styleClass="service-request-card-text" text="Matthew McAlarney" />
+                                          <Label fx:id="matthew" alignment="CENTER_RIGHT" prefHeight="18.0" styleClass="service-request-card-name" text="Matthew McAlarney" />
                                        </children>
                                     </HBox>
                                  </children>
                               </StackPane>
                            </children>
                         </HBox>
-                        <HBox id="medicine-delivery" alignment="BOTTOM_LEFT" maxHeight="1.7976931348623157E308" onMouseClicked="#clickMedicineDelivery" prefHeight="140.0" prefWidth="0.0" styleClass="service-request-card">
+                        <HBox id="medicine-delivery" alignment="BOTTOM_LEFT" maxHeight="1.7976931348623157E308" onMouseClicked="#clickMedicineDelivery" prefHeight="150.0" prefWidth="0.0" styleClass="service-request-card">
                            <children>
                               <StackPane HBox.hgrow="ALWAYS">
                                  <children>
@@ -130,14 +130,14 @@
                                     </HBox>
                                     <HBox alignment="BOTTOM_RIGHT" prefHeight="100.0" prefWidth="200.0">
                                        <children>
-                                          <Label fx:id="nick" alignment="CENTER_RIGHT" prefHeight="18.0" styleClass="service-request-card-text" text="Nick Frangie" />
+                                          <Label fx:id="nick" alignment="CENTER_RIGHT" prefHeight="18.0" styleClass="service-request-card-name" text="Nick Frangie" />
                                        </children>
                                     </HBox>
                                  </children>
                               </StackPane>
                            </children>
                         </HBox>
-                        <HBox id="medical-equipment" alignment="BOTTOM_LEFT" maxHeight="1.7976931348623157E308" onMouseClicked="#clickMedicalEquipment" prefHeight="140.0" prefWidth="0.0" styleClass="service-request-card">
+                        <HBox id="medical-equipment" alignment="BOTTOM_LEFT" maxHeight="1.7976931348623157E308" onMouseClicked="#clickMedicalEquipment" prefHeight="150.0" prefWidth="0.0" styleClass="service-request-card">
                            <children>
                               <StackPane maxWidth="1.7976931348623157E308" HBox.hgrow="ALWAYS">
                                  <children>
@@ -148,14 +148,14 @@
                                     </HBox>
                                     <HBox alignment="BOTTOM_RIGHT" prefHeight="100.0" prefWidth="200.0">
                                        <children>
-                                          <Label fx:id="mia" alignment="CENTER_RIGHT" prefHeight="18.0" styleClass="service-request-card-text" text="Mia Mueting" />
+                                          <Label fx:id="mia" alignment="CENTER_RIGHT" prefHeight="18.0" styleClass="service-request-card-name" text="Mia Mueting" />
                                        </children>
                                     </HBox>
                                  </children>
                               </StackPane>
                            </children>
                         </HBox>
-                        <HBox id="security" alignment="BOTTOM_LEFT" maxHeight="1.7976931348623157E308" onMouseClicked="#clickSecurity" prefHeight="140.0" prefWidth="0.0" styleClass="service-request-card">
+                        <HBox id="security" alignment="BOTTOM_LEFT" maxHeight="1.7976931348623157E308" onMouseClicked="#clickSecurity" prefHeight="150.0" prefWidth="0.0" styleClass="service-request-card">
                            <children>
                               <StackPane HBox.hgrow="ALWAYS">
                                  <children>
@@ -166,14 +166,14 @@
                                     </HBox>
                                     <HBox alignment="BOTTOM_RIGHT" prefHeight="100.0" prefWidth="200.0">
                                        <children>
-                                          <Label fx:id="jack" alignment="CENTER_RIGHT" prefHeight="18.0" styleClass="service-request-card-text" text="Jack Muirhead" />
+                                          <Label fx:id="jack" alignment="CENTER_RIGHT" prefHeight="18.0" styleClass="service-request-card-name" text="Jack Muirhead" />
                                        </children>
                                     </HBox>
                                  </children>
                               </StackPane>
                            </children>
                         </HBox>
-                        <HBox id="laundry" alignment="BOTTOM_LEFT" maxHeight="1.7976931348623157E308" onMouseClicked="#clickLaundry" prefHeight="140.0" prefWidth="0.0" styleClass="service-request-card">
+                        <HBox id="laundry" alignment="BOTTOM_LEFT" maxHeight="1.7976931348623157E308" onMouseClicked="#clickLaundry" prefHeight="150.0" prefWidth="0.0" styleClass="service-request-card">
                            <children>
                               <StackPane maxWidth="1.7976931348623157E308" HBox.hgrow="ALWAYS">
                                  <children>
@@ -184,14 +184,14 @@
                                     </HBox>
                                     <HBox alignment="BOTTOM_RIGHT" prefHeight="100.0" prefWidth="200.0">
                                        <children>
-                                          <Label fx:id="grace" alignment="CENTER_RIGHT" prefHeight="18.0" styleClass="service-request-card-text" text="Grace O'Reilly" />
+                                          <Label fx:id="grace" alignment="CENTER_RIGHT" prefHeight="18.0" styleClass="service-request-card-name" text="Grace O'Reilly" />
                                        </children>
                                     </HBox>
                                  </children>
                               </StackPane>
                            </children>
                         </HBox>
-                        <HBox id="lab-system" alignment="BOTTOM_LEFT" maxHeight="1.7976931348623157E308" onMouseClicked="#clickLabSystem" prefHeight="140.0" prefWidth="0.0" styleClass="service-request-card">
+                        <HBox id="lab-system" alignment="BOTTOM_LEFT" maxHeight="1.7976931348623157E308" onMouseClicked="#clickLabSystem" prefHeight="150.0" prefWidth="0.0" styleClass="service-request-card">
                            <children>
                               <StackPane maxWidth="1.7976931348623157E308" HBox.hgrow="ALWAYS">
                                  <children>
@@ -202,14 +202,14 @@
                                     </HBox>
                                     <HBox alignment="BOTTOM_RIGHT" prefHeight="100.0" prefWidth="200.0">
                                        <children>
-                                          <Label fx:id="nelson" alignment="CENTER_RIGHT" prefHeight="18.0" styleClass="service-request-card-text" text="Nelson Pires" />
+                                          <Label fx:id="nelson" alignment="CENTER_RIGHT" prefHeight="18.0" styleClass="service-request-card-name" text="Nelson Pires" />
                                        </children>
                                     </HBox>
                                  </children>
                               </StackPane>
                            </children>
                         </HBox>
-                        <HBox id="delivery-system" alignment="BOTTOM_LEFT" maxHeight="1.7976931348623157E308" onMouseClicked="#clickDeliverySystem" prefHeight="140.0" prefWidth="0.0" styleClass="service-request-card">
+                        <HBox id="delivery-system" alignment="BOTTOM_LEFT" maxHeight="1.7976931348623157E308" onMouseClicked="#clickDeliverySystem" prefHeight="150.0" prefWidth="0.0" styleClass="service-request-card">
                            <children>
                               <StackPane maxWidth="1.7976931348623157E308" HBox.hgrow="ALWAYS">
                                  <children>
@@ -220,14 +220,14 @@
                                     </HBox>
                                     <HBox alignment="BOTTOM_RIGHT" prefHeight="100.0" prefWidth="200.0">
                                        <children>
-                                          <Label fx:id="brian" alignment="CENTER_RIGHT" prefHeight="18.0" styleClass="service-request-card-text" text="Brian Shin" />
+                                          <Label fx:id="brian" alignment="CENTER_RIGHT" prefHeight="18.0" styleClass="service-request-card-name" text="Brian Shin" />
                                        </children>
                                     </HBox>
                                  </children>
                               </StackPane>
                            </children>
                         </HBox>
-                        <HBox id="sanitation" alignment="BOTTOM_LEFT" maxHeight="1.7976931348623157E308" onMouseClicked="#clickSanitation" prefHeight="140.0" prefWidth="259.0" styleClass="service-request-card">
+                        <HBox id="sanitation" alignment="BOTTOM_LEFT" maxHeight="1.7976931348623157E308" onMouseClicked="#clickSanitation" prefHeight="150.0" prefWidth="259.0" styleClass="service-request-card">
                            <children>
                               <StackPane maxWidth="1.7976931348623157E308" HBox.hgrow="ALWAYS">
                                  <children>
@@ -238,7 +238,7 @@
                                     </HBox>
                                     <HBox alignment="BOTTOM_RIGHT" prefHeight="100.0" prefWidth="200.0">
                                        <children>
-                                          <Label fx:id="brandon" alignment="CENTER_RIGHT" prefHeight="18.0" styleClass="service-request-card-text" text="Brandon Vuong" />
+                                          <Label fx:id="brandon" alignment="CENTER_RIGHT" prefHeight="18.0" styleClass="service-request-card-name" text="Brandon Vuong" />
                                        </children>
                                     </HBox>
                                  </children>
