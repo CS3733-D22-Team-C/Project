@@ -2,11 +2,13 @@ package edu.wpi.cs3733.D22.teamC.controller.map.panel;
 
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXTreeTableView;
+import edu.wpi.cs3733.D22.teamC.App;
 import edu.wpi.cs3733.D22.teamC.controller.map.FloorMapViewController;
 import edu.wpi.cs3733.D22.teamC.controller.map.MapViewController;
 import edu.wpi.cs3733.D22.teamC.controller.map.data.location.LocationMapNode;
 import edu.wpi.cs3733.D22.teamC.controller.map.data.medical_equipment.MedicalEquipmentManager;
 import edu.wpi.cs3733.D22.teamC.controller.map.data.medical_equipment.MedicalEquipmentNode;
+import edu.wpi.cs3733.D22.teamC.controller.table.MedicalEquipmentViewController;
 import edu.wpi.cs3733.D22.teamC.entity.floor.Floor;
 import edu.wpi.cs3733.D22.teamC.entity.location.Location;
 import edu.wpi.cs3733.D22.teamC.entity.location.LocationDAO;
@@ -56,6 +58,7 @@ public class LocationInfoController implements Initializable {
 
     MedicalEquipmentTableDisplay medicalEquipmentTableDisplay;
     private MedicalEquipment activeMedicalEquipment;
+    MedicalEquipmentViewController equipmentView;
 
     // Service Requests - Table
     @FXML JFXTreeTableView serviceRequestTable;
@@ -111,6 +114,13 @@ public class LocationInfoController implements Initializable {
         // Hide when inactive
         setEditable(false);
         setVisible(false);
+
+        // Initialize Service Request Info
+        serviceRequestTableDisplay = new ServiceRequestTableDisplay<>(serviceRequestTable);
+
+        // Initialize Medical Equipment Info
+        //medicalEquipmentTableDisplay = new MedicalEquipmentTableDisplay(medicalEquipmentTable);
+
     }
 
     /**
@@ -151,6 +161,8 @@ public class LocationInfoController implements Initializable {
      * @param medicalEquipment The Medical Equipment to be set as active.
      */
     private void setActiveMedicalEquipment(MedicalEquipment medicalEquipment) {
+
+        setRowInteraction();
         activeMedicalEquipment = medicalEquipment;
         updateStatus.setDisable(activeMedicalEquipment == null);
         updateLocation.setDisable(activeMedicalEquipment == null);
@@ -271,10 +283,14 @@ public class LocationInfoController implements Initializable {
         @FXML
         void onUpdateStatusButtonPressed(ActionEvent event){
             if(activeMedicalEquipment != null && statusComboBox != null){
-            activeMedicalEquipment.setStatus(statusComboBox.getValue());}
+            activeMedicalEquipment.setStatus(statusComboBox.getValue());
+            equipmentView.setValues(activeMedicalEquipment);
+            //MedicalEquipmentNode.updateValues();
+            }
         }
         @FXML
         public void onUpdateLocationButtonPressed(ActionEvent actionEvent) {
+
         }
 
 
