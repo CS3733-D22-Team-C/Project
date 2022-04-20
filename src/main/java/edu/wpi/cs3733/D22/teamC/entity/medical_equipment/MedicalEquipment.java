@@ -25,7 +25,7 @@ public class MedicalEquipment implements IDEntity {
     
     @Enumerated(EnumType.STRING)
     @Column(name = "Status")
-    private static EquipmentStatus equipmentStatus;
+    private EquipmentStatus equipmentStatus;
     
     public enum EquipmentType {
         Bed,
@@ -69,7 +69,7 @@ public class MedicalEquipment implements IDEntity {
         this.equipmentType = equipmentType;
     }
     
-    public static EquipmentStatus getStatus() {
+    public EquipmentStatus getStatus() {
         return equipmentStatus;
     }
     

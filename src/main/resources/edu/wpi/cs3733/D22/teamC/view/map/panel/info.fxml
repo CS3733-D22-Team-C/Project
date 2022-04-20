@@ -19,7 +19,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<VBox fx:id="containerVBox" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.wpi.cs3733.D22.teamC.controller.map.panel.LocationInfoController">
+<VBox fx:id="containerVBox" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefWidth="450.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.wpi.cs3733.D22.teamC.controller.map.panel.LocationInfoController">
    <children>
       <TabPane fx:id="tabPane" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" side="LEFT" stylesheets="@../../../css/map/info_pane.css" tabClosingPolicy="UNAVAILABLE" tabMaxHeight="50.0" tabMaxWidth="115.0" tabMinHeight="50.0" tabMinWidth="115.0">
         <tabs>
@@ -152,7 +152,7 @@
             </Tab>
           <Tab fx:id="medicalEquipmentTab" text="Medical Equipment">
                <content>
-                  <StackPane prefWidth="200.0" styleClass="info-inner-card">
+                  <StackPane prefWidth="200.0">
                      <children>
                         <VBox alignment="CENTER" minHeight="-Infinity" minWidth="-Infinity" prefHeight="200.0" prefWidth="200.0">
                            <children>
@@ -169,12 +169,24 @@
                                     <Insets bottom="25.0" left="25.0" right="25.0" top="25.0" />
                                  </VBox.margin>
                               </JFXTreeTableView>
-                              <JFXButton fx:id="updateLocation" maxHeight="38.0" maxWidth="9.0" minHeight="-Infinity" minWidth="-Infinity" onAction="#onUpdateLocationButtonPressed" prefHeight="30.0" prefWidth="122.0" text="Update Location" VBox.vgrow="NEVER">
-                                 <VBox.margin>
-                                    <Insets />
-                                 </VBox.margin></JFXButton>
-                              <JFXButton fx:id="updateStatus" onAction="#onUpdateStatusButtonPressed" prefWidth="100.0" text="Update Status" />
-                              <ComboBox fx:id="statusComboBox" prefWidth="150.0" />
+                              <HBox maxWidth="1.7976931348623157E308" spacing="15.0">
+                                 <children>
+                                    <VBox alignment="BOTTOM_LEFT" maxWidth="1.7976931348623157E308" HBox.hgrow="ALWAYS">
+                                       <children>
+                                          <JFXButton fx:id="updateLocation" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" onAction="#onUpdateLocationButtonPressed" text="Update Location" />
+                                       </children>
+                                    </VBox>
+                                    <VBox alignment="BOTTOM_LEFT" maxWidth="1.7976931348623157E308" HBox.hgrow="ALWAYS">
+                                       <children>
+                                          <ComboBox fx:id="statusComboBox" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" onAction="#onMedicalEquipmentStatusComboBoxChanged" />
+                                          <JFXButton fx:id="updateStatus" maxWidth="1.7976931348623157E308" onAction="#onUpdateStatusButtonPressed" text="Update Status" />
+                                       </children>
+                                    </VBox>
+                                 </children>
+                                 <padding>
+                                    <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                                 </padding>
+                              </HBox>
                            </children>
                         </VBox>
                      </children>
@@ -183,7 +195,7 @@
           </Tab>
             <Tab fx:id="serviceRequestTab" text="Service Requests">
                <content>
-                  <StackPane prefWidth="200.0" styleClass="info-inner-card">
+                  <StackPane prefWidth="200.0">
                      <children>
                         <VBox prefHeight="200.0" prefWidth="100.0">
                            <children>

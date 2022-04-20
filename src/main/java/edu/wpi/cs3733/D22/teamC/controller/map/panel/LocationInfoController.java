@@ -6,6 +6,7 @@ import edu.wpi.cs3733.D22.teamC.App;
 import edu.wpi.cs3733.D22.teamC.controller.map.FloorMapViewController;
 import edu.wpi.cs3733.D22.teamC.controller.map.MapViewController;
 import edu.wpi.cs3733.D22.teamC.controller.map.data.location.LocationMapNode;
+import edu.wpi.cs3733.D22.teamC.controller.map.data.medical_equipment.MedicalEquipmentCounter;
 import edu.wpi.cs3733.D22.teamC.controller.map.data.medical_equipment.MedicalEquipmentManager;
 import edu.wpi.cs3733.D22.teamC.controller.map.data.medical_equipment.MedicalEquipmentNode;
 import edu.wpi.cs3733.D22.teamC.controller.table.MedicalEquipmentViewController;
@@ -58,7 +59,6 @@ public class LocationInfoController implements Initializable {
 
     MedicalEquipmentTableDisplay medicalEquipmentTableDisplay;
     private MedicalEquipment activeMedicalEquipment;
-    MedicalEquipmentViewController equipmentView;
 
     // Service Requests - Table
     @FXML JFXTreeTableView serviceRequestTable;
@@ -69,11 +69,10 @@ public class LocationInfoController implements Initializable {
     @FXML private Button revertButton;
     @FXML private Button deleteButton;
 
-    //Medical Equipment - Update Buttons
+    // Medical Equipment - Update Buttons
     @FXML private JFXButton updateStatus;
     @FXML private JFXButton updateLocation;
-    @FXML private ComboBox<MedicalEquipment.EquipmentStatus>  statusComboBox;
-
+    @FXML private ComboBox<MedicalEquipment.EquipmentStatus> statusComboBox;
 
     // References
     FloorMapViewController mapViewController;
@@ -114,13 +113,6 @@ public class LocationInfoController implements Initializable {
         // Hide when inactive
         setEditable(false);
         setVisible(false);
-
-        // Initialize Service Request Info
-        serviceRequestTableDisplay = new ServiceRequestTableDisplay<>(serviceRequestTable);
-
-        // Initialize Medical Equipment Info
-        //medicalEquipmentTableDisplay = new MedicalEquipmentTableDisplay(medicalEquipmentTable);
-
     }
 
     /**
@@ -136,10 +128,6 @@ public class LocationInfoController implements Initializable {
         tab.setText(null);
     }
 
-
-    /**
-     *
-     */
     protected void setRowInteraction() {
         medicalEquipmentTable.setRowFactory(tv -> {
             TreeTableRow<MedicalEquipmentTableDisplay.MedicalEquipmentTableEntry> row = new TreeTableRow<MedicalEquipmentTableDisplay.MedicalEquipmentTableEntry>();
@@ -154,21 +142,27 @@ public class LocationInfoController implements Initializable {
         });
     }
 
-
-
     /**
      * Sets the currently active Service Request (will have its information passed to edit/resolve pages).
      * @param medicalEquipment The Medical Equipment to be set as active.
      */
     private void setActiveMedicalEquipment(MedicalEquipment medicalEquipment) {
-
-        setRowInteraction();
         activeMedicalEquipment = medicalEquipment;
-        updateStatus.setDisable(activeMedicalEquipment == null);
+        updateStatus.setDisable(activeMedicalEquipment == null || statusComboBox.getValue() == null);
         updateLocation.setDisable(activeMedicalEquipment == null);
     }
 
+    private void updateMedicalEquipment() {
+        // Update Medical Equipment DB
+        new MedicalEquipmentDAO().update(activeMedicalEquipment);
 
+        // Update Medical Equipment Node Counter
+        MedicalEquipmentManager medicalEquipmentManager = mapViewController.getMedicalEquipmentManager();
+        if (medicalEquipmentManager != null) {
+            MedicalEquipmentNode medicalEquipmentNode = (MedicalEquipmentNode) medicalEquipmentManager.getByLocation(mapViewController.getLocationManager().getCurrent());
+            medicalEquipmentNode.updateValues();
+        }
+    }
 
     //#region Pane Interaction
         /**
@@ -193,8 +187,6 @@ public class LocationInfoController implements Initializable {
         public void setVisible(boolean visible) {
             tabPane.setVisible(visible);
         }
-
-
     //#endregion
 
     //#region Location Interaction
@@ -216,7 +208,7 @@ public class LocationInfoController implements Initializable {
 
             // Medical Equipment
             populateMedicalEquipmentTable(location);
-            ComponentWrapper.setValueSilently(statusComboBox, MedicalEquipment.getStatus());
+            ComponentWrapper.setValueSilently(statusComboBox, null);
 
             // Service Requests
             serviceRequestTableDisplay.emptyTable();
@@ -254,12 +246,10 @@ public class LocationInfoController implements Initializable {
             }
         }
 
-        public void populateMedicalEquipmentTable(Location location) {    //TODO Update Values on MedicalEquipment Node when changes are made to this Medical Equipment
+        public void populateMedicalEquipmentTable(Location location) {
             medicalEquipmentTableDisplay.emptyTable();
-              new MedicalEquipmentDAO().getEquipmentByLocation(location.getID()).forEach(medicalEquipmentTableDisplay::addObject);
-            }
-
-    
+            new MedicalEquipmentDAO().getEquipmentByLocation(location.getID()).forEach(medicalEquipmentTableDisplay::addObject);
+        }
     //#endregion
 
     //#region FXML Events
@@ -281,19 +271,27 @@ public class LocationInfoController implements Initializable {
         }
 
         @FXML
-        void onUpdateStatusButtonPressed(ActionEvent event){
-            if(activeMedicalEquipment != null && statusComboBox != null){
-            activeMedicalEquipment.setStatus(statusComboBox.getValue());
-            equipmentView.setValues(activeMedicalEquipment);
-            //MedicalEquipmentNode.updateValues();
+        void onUpdateStatusButtonPressed(ActionEvent event) {
+            if (activeMedicalEquipment != null && statusComboBox != null) {
+                activeMedicalEquipment.setStatus(statusComboBox.getValue());
+                medicalEquipmentTableDisplay.updateObject(activeMedicalEquipment);
+
+                updateMedicalEquipment();
+            } else {
+                System.out.println("You fucked up, dude!");
             }
         }
+
         @FXML
         public void onUpdateLocationButtonPressed(ActionEvent actionEvent) {
+            // TODO: Location Selection
 
+            updateMedicalEquipment();
         }
 
-
+        @FXML
+        public void onMedicalEquipmentStatusComboBoxChanged(ActionEvent actionEvent) {
+            updateStatus.setDisable(activeMedicalEquipment == null || statusComboBox.getValue() == null);
+        }
     //#endregion
-
 }
