@@ -11,7 +11,10 @@
 
 <VBox alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="1186.0" prefWidth="1785.0" styleClass="top_node" stylesheets="@../../../css/profile.css" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.wpi.cs3733.D22.teamC.controller.profile.UserProfileController">
    <children>
-      <ImageView fx:id="profileImage" fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true" />
+      <ImageView fx:id="profileImage" fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
+         <VBox.margin>
+            <Insets top="10.0" />
+         </VBox.margin></ImageView>
       <MFXButton fx:id="addimg" onAction="#addImage" prefWidth="84.0" styleClass="vb_class" stylesheets="@../../../css/profile.css" text="Add Image">
          <VBox.margin>
             <Insets top="10.0" />
