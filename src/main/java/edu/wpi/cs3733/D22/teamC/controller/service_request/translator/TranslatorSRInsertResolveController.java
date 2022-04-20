@@ -42,8 +42,7 @@ public class TranslatorSRInsertResolveController extends InsertServiceRequestRes
         PatientDAO patientDAO = new PatientDAO();
         List<Patient> patients = patientDAO.getAll();
 
-        ComponentWrapper.initializeComboBox(patientSComboBox, Patient::getFirstName);
-
+        ComponentWrapper.initializeComboBox(patientSComboBox,Patient::toString);
         patientSComboBox.getItems().setAll(patients);
 
     }
@@ -75,7 +74,7 @@ public class TranslatorSRInsertResolveController extends InsertServiceRequestRes
     public void updateServiceRequest(TranslatorSR serviceRequest){
         if(isEditMode){
             if(patientSComboBox.getValue() != null)
-                serviceRequest.setPatientID(patientSComboBox.getId());
+                serviceRequest.setPatientID(patientSComboBox.getValue().getID());
             if(languageSComboBox.getValue() != null)
                 serviceRequest.setLanguage(TranslatorSR.Language.valueOf(languageSComboBox.getValue()));
         }
@@ -91,12 +90,12 @@ public class TranslatorSRInsertResolveController extends InsertServiceRequestRes
     }
 
     @FXML
-    void goToPatientTable(ActionEvent event) throws IOException{
-        new PatientSelectorWindow((patient -> this.setPatient(patient)));
+    void goToPatientTable(ActionEvent event) throws IOException {
+        new PatientSelectorWindow(patient -> this.setPatientComboBox(patient));
     }
 
-    private void setPatient(Patient patient){
-        this.patientSComboBox.setValue(patient);
+    private void setPatientComboBox(Patient patientComboBox) {
+        this.patientSComboBox.setValue(patientComboBox);
     }
 
 

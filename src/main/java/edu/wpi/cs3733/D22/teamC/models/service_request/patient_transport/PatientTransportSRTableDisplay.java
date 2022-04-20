@@ -24,6 +24,7 @@ public class PatientTransportSRTableDisplay extends ServiceRequestTableDisplay<P
             this.date = new SimpleStringProperty(String.valueOf(patientTransportSR.getTransportTime()));
         }
     }
+
     public PatientTransportSRTableDisplay(JFXTreeTableView table) {
         super(table);
     }
