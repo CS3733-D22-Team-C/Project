@@ -33,7 +33,6 @@ public class PatientTableDisplay extends TableDisplay<Patient>{
             lastName = new SimpleStringProperty(patient.getLastName());
             emergencyContact = new SimpleStringProperty(patient.getEmergencyContact());
             phone = new SimpleStringProperty(patient.getPhone());
-            System.out.println(patient.getLocationID());
             location = new SimpleStringProperty((patient.getLocationID() == null) ? "" : new LocationDAO().getByID(patient.getLocationID()).getShortName());
             DOB = new SimpleStringProperty(patient.getDOB().toString().substring(0,10));
         }

@@ -24,4 +24,13 @@ public class ServiceRequestDAO extends DAO<ServiceRequest> {
                 " q where q.locationID = '" + locationID + "'");
     }
 
+    public List<ServiceRequest> getAllSRByAssignee(String assigneeID) {
+        return HibernateManager.filterQuery("select q from " + classType().getName() +
+                " q where q.assignee = '" + assigneeID + "'");
+    }
+
+    public List<ServiceRequest> getAllSRByCreator(String creatorID) {
+        return HibernateManager.filterQuery("select q from " + classType().getName() +
+                " q where q.creator = '" + creatorID + "'");
+    }
 }
