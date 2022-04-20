@@ -42,6 +42,7 @@ public class MedicalEquipment implements IDEntity {
     
     public MedicalEquipment() {
         ID = UUID.randomUUID().toString();
+
     }
     
     public String getID() {
