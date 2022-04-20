@@ -24,9 +24,9 @@ public class MedicalEquipmentManager extends ManagerMapNodes<MedicalEquipment> {
     // Constants
     public static final String[] COUNTER_PATHS = {
             "view/map/nodes/medical_equipment/bed.fxml",
-            "view/map/nodes/medical_equipment/pump.fxml",
             "view/map/nodes/medical_equipment/recliner.fxml",
-            "view/map/nodes/medical_equipment/xray.fxml"
+            "view/map/nodes/medical_equipment/xray.fxml",
+            "view/map/nodes/medical_equipment/pump.fxml"
     };
 
     // Variables
