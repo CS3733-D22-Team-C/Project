@@ -20,5 +20,5 @@
 }
 
 .mfx-date-picker .text-field {
-    -fx-effect: noneadmin;
+    -fx-effect: none;
 }
