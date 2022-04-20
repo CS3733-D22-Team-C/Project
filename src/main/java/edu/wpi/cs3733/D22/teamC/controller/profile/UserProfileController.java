@@ -19,6 +19,7 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.VBox;
 import javafx.stage.FileChooser;
+import lombok.SneakyThrows;
 
 import javax.imageio.ImageIO;
 import java.awt.image.BufferedImage;
@@ -57,10 +58,25 @@ public class UserProfileController implements Initializable {
     private byte[] bFile;
     private String imagePath;
 
+    @SneakyThrows
     @Override
     public void initialize(URL location, ResourceBundle resources)
     {
         currentEmploy = App.instance.getUserAccount();
+        if (currentEmploy.getImage() != null)
+        {
+            ByteArrayInputStream bis = new ByteArrayInputStream(currentEmploy.getImage());
+            BufferedImage img = ImageIO.read(bis);
+            Image image = SwingFXUtils.toFXImage(img, null);
+
+//                profileImage.fitWidthProperty().bind(imageBox.widthProperty());
+//                profileImage.fitHeightProperty().bind(imageBox.heightProperty());
+            profileImage.setImage(image);
+        }
+
+
+
+
         name.setText(currentEmploy.getFirstName() + " " + currentEmploy.getLastName());
         position.setText(currentEmploy.getRole().toString());
         contact.setText(currentEmploy.getAddress());
@@ -133,6 +149,10 @@ public class UserProfileController implements Initializable {
 //                profileImage.fitWidthProperty().bind(imageBox.widthProperty());
 //                profileImage.fitHeightProperty().bind(imageBox.heightProperty());
                 profileImage.setImage(image);
+
+                currentEmploy.setImage(bFile);
+                new EmployeeDAO().update(currentEmploy);
+                //new EmployeeDAO().update();
 
 
 
