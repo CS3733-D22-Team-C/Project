@@ -42,6 +42,7 @@ public class MedicalEquipment implements IDEntity {
     
     public MedicalEquipment() {
         ID = UUID.randomUUID().toString();
+
     }
     
     public String getID() {
@@ -94,6 +95,11 @@ public class MedicalEquipment implements IDEntity {
                 && equipmentType == equipment.equipmentType 
                 && equipmentStatus == equipment.equipmentStatus 
                 && typeNumber == equipment.typeNumber;
+    }
+
+    @Override
+    public String toString() {
+        return equipmentType.toString() + " #" + typeNumber;
     }
 }
 

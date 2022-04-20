@@ -2,6 +2,7 @@ package edu.wpi.cs3733.D22.teamC.fileio.csv.service_request.medical_equipment;
 
 import edu.wpi.cs3733.D22.teamC.entity.employee.Employee;
 import edu.wpi.cs3733.D22.teamC.entity.employee.EmployeeDAO;
+import edu.wpi.cs3733.D22.teamC.entity.medical_equipment.MedicalEquipment;
 import edu.wpi.cs3733.D22.teamC.entity.service_request.ServiceRequest;
 import edu.wpi.cs3733.D22.teamC.entity.service_request.medical_equipment.MedicalEquipmentSR;
 import edu.wpi.cs3733.D22.teamC.fileio.csv.CSVReader;
@@ -54,7 +55,7 @@ public class MedicalEquipmentSRCSVReader extends CSVReader<MedicalEquipmentSR> {
                 serviceRequest.setEquipmentID(value);
                 break;
             case "equipType":
-                serviceRequest.setEquipmentType(MedicalEquipmentSR.EquipmentType.valueOf(value));
+                serviceRequest.setEquipmentType(MedicalEquipment.EquipmentType.valueOf(value));
                 break;
             case "modifierID":
                 Employee modifier = employeeDAO.getByID(value);

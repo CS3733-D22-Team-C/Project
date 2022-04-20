@@ -215,4 +215,13 @@ public class ServiceRequest implements IDEntity {
                 && Objects.equals(modifier, that.modifier)
                 && modifiedTimestamp.equals(that.modifiedTimestamp);
     }
+    
+    /**
+     * Output the number attribute with proper left padding and an octothorp
+     * @return Formatted string.
+     */
+    @Override
+    public String toString() {
+        return "#" + String.format("%010d", number);
+    }
 }

@@ -1,9 +1,9 @@
 package edu.wpi.cs3733.D22.teamC.entity.service_request.medical_equipment;
 
+import edu.wpi.cs3733.D22.teamC.entity.medical_equipment.MedicalEquipment;
 import edu.wpi.cs3733.D22.teamC.entity.service_request.ServiceRequest;
 
 import javax.persistence.*;
-import java.util.Objects;
 
 @Entity
 @Table(name = "MEDICAL_EQUIPMENT_SR")
@@ -11,7 +11,7 @@ public class MedicalEquipmentSR extends ServiceRequest {
     
     @Enumerated(EnumType.STRING)
     @Column(name = "EquipType")
-    protected EquipmentType equipmentType;
+    protected MedicalEquipment.EquipmentType equipmentType;
 
     @Column(name = "EquipID")
     protected String equipmentID;       // TODO: Link to Medical Equipment
@@ -20,13 +20,6 @@ public class MedicalEquipmentSR extends ServiceRequest {
     @Column(name = "EquipStatus")
     protected EquipmentStatus equipmentStatus;
 
-
-    public enum EquipmentType {
-        Bed,
-        Recliner,
-        Portable_X_Ray,
-        Infusion_Pump
-    }
 
     public enum EquipmentStatus {
         Available,
@@ -40,11 +33,11 @@ public class MedicalEquipmentSR extends ServiceRequest {
         super(serviceRequest);
     }
 
-    public EquipmentType getEquipmentType() {
+    public MedicalEquipment.EquipmentType getEquipmentType() {
         return equipmentType;
     }
 
-    public void setEquipmentType(EquipmentType equipmentType) { this.equipmentType = equipmentType; }
+    public void setEquipmentType(MedicalEquipment.EquipmentType equipmentType) { this.equipmentType = equipmentType; }
 
     public String getEquipmentID() {
         return equipmentID;
