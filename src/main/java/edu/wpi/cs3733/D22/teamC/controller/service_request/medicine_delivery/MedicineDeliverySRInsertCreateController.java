@@ -30,10 +30,6 @@ public class MedicineDeliverySRInsertCreateController implements InsertServiceRe
     @FXML private JFXButton patientButton;
     @FXML private SearchableComboBox<Patient> patientSComboBox;
 
-    public void setPatient(Patient patient){
-        patientSComboBox.setValue(patient);
-    }
-
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         //Patient ComboBox
@@ -59,7 +55,7 @@ public class MedicineDeliverySRInsertCreateController implements InsertServiceRe
 
         medicineDeliverySR.setMedicine(medicine.getText());
         medicineDeliverySR.setDosage(dosage.getText());
-        medicineDeliverySR.setPatientID(patientSComboBox.getId());
+        medicineDeliverySR.setPatientID(patientSComboBox.getValue().getID());
 
         return medicineDeliverySR;
     }
@@ -87,7 +83,11 @@ public class MedicineDeliverySRInsertCreateController implements InsertServiceRe
 
     @FXML
     public void goToPatientTable(){
-        new PatientSelectorWindow(patient -> this.setPatient(patient));
+        new PatientSelectorWindow(this::setPatient);
+    }
+    
+    public void setPatient(Patient patient){
+        patientSComboBox.setValue(patient);
     }
 
     public MedicineDeliverySR createNewServiceRequest(){

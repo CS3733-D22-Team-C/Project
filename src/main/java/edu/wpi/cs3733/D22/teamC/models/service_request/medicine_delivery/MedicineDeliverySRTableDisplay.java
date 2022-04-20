@@ -1,6 +1,7 @@
 package edu.wpi.cs3733.D22.teamC.models.service_request.medicine_delivery;
 
 import com.jfoenix.controls.JFXTreeTableView;
+import edu.wpi.cs3733.D22.teamC.entity.patient.PatientDAO;
 import edu.wpi.cs3733.D22.teamC.entity.service_request.medicine_delivery.MedicineDeliverySR;
 import edu.wpi.cs3733.D22.teamC.models.service_request.ServiceRequestTableDisplay;
 import javafx.beans.property.SimpleStringProperty;
@@ -11,14 +12,17 @@ public class MedicineDeliverySRTableDisplay extends ServiceRequestTableDisplay<M
         // Properties
         public StringProperty medicine;
         public StringProperty dosage;
-        public StringProperty patientID;
+        public StringProperty patientName;
 
         public MedicineDeliverySRTableEntry(MedicineDeliverySR medicineDeliverySR) {
             super(medicineDeliverySR);
+            
+            PatientDAO patientDAO = new PatientDAO();
 
             this.medicine   = new SimpleStringProperty(medicineDeliverySR.getMedicine());
             this.dosage     = new SimpleStringProperty(medicineDeliverySR.getDosage());
-            this.patientID  = new SimpleStringProperty(medicineDeliverySR.getPatientID());
+            this.patientName = new SimpleStringProperty((patientDAO.getByID(medicineDeliverySR.getPatientID()) != null)
+                    ? patientDAO.getByID(medicineDeliverySR.getPatientID()).toString() : "N/A");
         }
     }
 
@@ -40,14 +44,14 @@ public class MedicineDeliverySRTableDisplay extends ServiceRequestTableDisplay<M
                 table,
                 "Medicine",
                 1f * Integer.MAX_VALUE * 16.66,
-                (MedicineDeliverySRTableEntry entry) -> {return entry.medicine;}
+                (MedicineDeliverySRTableEntry entry) -> entry.medicine
         );
 
         addColumn(
                 table,
-                "Patient ID",
+                "Patient Name",
                 1f * Integer.MAX_VALUE * 16.66,
-                (MedicineDeliverySRTableEntry entry) -> {return entry.patientID;}
+                (MedicineDeliverySRTableEntry entry) -> entry.patientName
         );
     }
 }
