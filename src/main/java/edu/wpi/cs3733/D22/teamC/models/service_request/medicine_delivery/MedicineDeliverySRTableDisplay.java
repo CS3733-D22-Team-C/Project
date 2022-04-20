@@ -46,6 +46,13 @@ public class MedicineDeliverySRTableDisplay extends ServiceRequestTableDisplay<M
                 1f * Integer.MAX_VALUE * 16.66,
                 (MedicineDeliverySRTableEntry entry) -> entry.medicine
         );
+        
+        addColumn(
+                table,
+                "Dosage",
+                1f * Integer.MAX_VALUE * 16.66,
+                (MedicineDeliverySRTableEntry entry) -> entry.dosage
+        );
 
         addColumn(
                 table,
