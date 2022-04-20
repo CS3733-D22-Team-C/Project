@@ -33,9 +33,9 @@ public class DashboardController<T extends ServiceRequest> implements Initializa
 
         // Populate Table Display
         ServiceRequestDAO serviceRequestDAO  = new ServiceRequestDAO();
-        List<ServiceRequest> serviceRequests = serviceRequestDAO.getAll();
-        serviceRequests.forEach(assignedTableDisplay::addObject);
-        serviceRequests.forEach(createdTableDisplay::addObject);
+
+        serviceRequestDAO.getAllSRByAssignee(App.instance.getUserAccount().getID()).forEach(assignedTableDisplay::addObject);
+        serviceRequestDAO.getAllSRByCreator(App.instance.getUserAccount().getID()).forEach(createdTableDisplay::addObject);
 
         setGreetingLabel(App.instance.getUserAccount().getUsername());
     }

