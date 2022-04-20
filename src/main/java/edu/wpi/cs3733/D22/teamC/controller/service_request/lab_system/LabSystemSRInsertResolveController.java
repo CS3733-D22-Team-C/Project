@@ -42,7 +42,7 @@ public class LabSystemSRInsertResolveController extends InsertServiceRequestReso
         PatientDAO patientDAO = new PatientDAO();
         List<Patient> patients = patientDAO.getAll();
 
-        ComponentWrapper.initializeComboBox(patientSComboBox, Patient::getFirstName);
+        ComponentWrapper.initializeComboBox(patientSComboBox, Patient::toString);
 
         patientSComboBox.getItems().setAll(patients);
     }
@@ -50,6 +50,9 @@ public class LabSystemSRInsertResolveController extends InsertServiceRequestReso
     @Override
     public void setup(BaseServiceRequestResolveController<LabSystemSR> baseServiceRequestResolveController, LabSystemSR serviceRequest, boolean isEditMode) {
         super.setup(baseServiceRequestResolveController, serviceRequest, isEditMode);
+        labType.setEditable(isEditMode);
+        patientSComboBox.setEditable(isEditMode);
+
         labType.setDisable(!isEditMode);
         patientSComboBox.setEditable(isEditMode);
 
@@ -60,7 +63,7 @@ public class LabSystemSRInsertResolveController extends InsertServiceRequestReso
     }
 
     public boolean requiredFieldsPresent(){
-        if(labType.getValue() == null && labType.getPromptText().equals(""))
+        if(labType.getValue() == null)
             return false;
         if(patientSComboBox.getValue() == null)
             return false;
@@ -73,7 +76,7 @@ public class LabSystemSRInsertResolveController extends InsertServiceRequestReso
             if(labType.getValue() != null)
                 serviceRequest.setLabType(LabSystemSR.LabType.valueOf(labType.getValue()));
             if(patientSComboBox.getValue() != null)
-                serviceRequest.setPatientID(patientSComboBox.getId());
+                serviceRequest.setPatientID(patientSComboBox.getValue().getID());
         }
     }
 

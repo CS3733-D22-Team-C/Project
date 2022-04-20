@@ -13,11 +13,13 @@ import edu.wpi.cs3733.D22.teamC.models.patient.PatientSelectorWindow;
 import edu.wpi.cs3733.D22.teamC.models.service_request.ServiceRequestTableDisplay;
 import edu.wpi.cs3733.D22.teamC.models.service_request.lab_system.LabSystemSRTableDisplay;
 import edu.wpi.cs3733.D22.teamC.models.utils.ComponentWrapper;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.TextField;
 import org.controlsfx.control.SearchableComboBox;
 
+import java.io.IOException;
 import java.net.URL;
 import java.util.List;
 import java.util.ResourceBundle;
@@ -40,15 +42,15 @@ public class LabSystemSRInsertCreateController implements InsertServiceRequestCr
         PatientDAO patientDAO = new PatientDAO();
         List<Patient> patients = patientDAO.getAll();
 
-        ComponentWrapper.initializeComboBox(patientSComboBox, Patient::getFirstName);
+        ComponentWrapper.initializeComboBox(patientSComboBox, Patient::toString);
 
         patientSComboBox.getItems().setAll(patients);
     }
 
     @Override
     public void clearFields() {
-        labType.valueProperty().setValue(null);
-        patientSComboBox.valueProperty().setValue(null);
+        labType.setValue(null);
+        patientSComboBox.setValue(null);
     }
 
     @Override
@@ -85,13 +87,13 @@ public class LabSystemSRInsertCreateController implements InsertServiceRequestCr
         return new LabSystemSR();
     }
 
-    public void setPatient(Patient patient){
-        patientSComboBox.setValue(patient);
+    @FXML
+    void goToPatientTable(ActionEvent event) throws IOException {
+        new PatientSelectorWindow(patient -> this.setPatientComboBox(patient));
     }
 
-    @FXML
-    public void goToPatientTable(){
-        new PatientSelectorWindow(patient -> this.setPatient(patient));
+    private void setPatientComboBox(Patient patientComboBox) {
+        this.patientSComboBox.setValue(patientComboBox);
     }
 
 }
