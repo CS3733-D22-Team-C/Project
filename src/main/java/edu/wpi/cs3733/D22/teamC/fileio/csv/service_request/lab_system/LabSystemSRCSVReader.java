@@ -2,6 +2,8 @@ package edu.wpi.cs3733.D22.teamC.fileio.csv.service_request.lab_system;
 
 import edu.wpi.cs3733.D22.teamC.entity.employee.Employee;
 import edu.wpi.cs3733.D22.teamC.entity.employee.EmployeeDAO;
+import edu.wpi.cs3733.D22.teamC.entity.patient.Patient;
+import edu.wpi.cs3733.D22.teamC.entity.patient.PatientDAO;
 import edu.wpi.cs3733.D22.teamC.entity.service_request.ServiceRequest;
 import edu.wpi.cs3733.D22.teamC.entity.service_request.lab_system.LabSystemSR;
 import edu.wpi.cs3733.D22.teamC.fileio.csv.CSVReader;
@@ -9,7 +11,9 @@ import edu.wpi.cs3733.D22.teamC.fileio.csv.CSVReader;
 import java.sql.Timestamp;
 
 public class LabSystemSRCSVReader extends CSVReader<LabSystemSR> {
-    private EmployeeDAO employeeDAO = new EmployeeDAO();
+    private final EmployeeDAO employeeDAO = new EmployeeDAO();
+    private final PatientDAO patientDAO = new PatientDAO();
+    
     /**
      * Maps ServiceRequest (header, value) pairs to a value to change for the object.
      * @param serviceRequest The object to be modified.
@@ -36,7 +40,6 @@ public class LabSystemSRCSVReader extends CSVReader<LabSystemSR> {
                 break;
             case "creationTimestamp":
                 serviceRequest.setCreationTimestamp(Timestamp.valueOf(value));
-
                 break;
             case "status":
                 serviceRequest.setStatus(ServiceRequest.Status.valueOf(value));
@@ -54,7 +57,8 @@ public class LabSystemSRCSVReader extends CSVReader<LabSystemSR> {
                 serviceRequest.setLabType(LabSystemSR.LabType.valueOf(value));
                 break;
             case "patientID":
-                serviceRequest.setPatientID(value);
+                Patient patient = patientDAO.getByID(value);
+                serviceRequest.setPatient(patient);
                 break;
             case "modifierID":
                 Employee modifier = employeeDAO.getByID(value);

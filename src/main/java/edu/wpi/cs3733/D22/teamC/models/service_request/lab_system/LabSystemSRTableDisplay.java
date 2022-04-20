@@ -4,7 +4,6 @@ import com.jfoenix.controls.JFXTreeTableView;
 import edu.wpi.cs3733.D22.teamC.entity.patient.PatientDAO;
 import edu.wpi.cs3733.D22.teamC.entity.service_request.lab_system.LabSystemSR;
 import edu.wpi.cs3733.D22.teamC.models.service_request.ServiceRequestTableDisplay;
-import edu.wpi.cs3733.D22.teamC.models.service_request.translator.TranslatorSRTableDisplay;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
 
@@ -19,8 +18,8 @@ public class LabSystemSRTableDisplay extends ServiceRequestTableDisplay<LabSyste
 
             PatientDAO patientDAO = new PatientDAO();
             this.labType = new SimpleStringProperty(labSystemSR.getLabType().toString());
-            this.patient = new SimpleStringProperty((patientDAO.getByID(labSystemSR.getPatientID()) != null)
-                    ? patientDAO.getByID(labSystemSR.getPatientID()).toString() : "N/A");
+            this.patient = new SimpleStringProperty((labSystemSR.getPatient() != null)
+                    ? labSystemSR.getPatient().toString() : "N/A");
         }
     }
 
