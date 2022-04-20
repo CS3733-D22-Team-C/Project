@@ -67,7 +67,6 @@ public class BaseMapSideViewController implements Initializable {
 
     // Buttons
     @FXML private MFXButton deleteButton;
-    @FXML private MFXButton goToButton;
     @FXML private MFXButton editButton;
     @FXML private MFXButton addFloorButton;
     @FXML private MFXButton cancelButton;
@@ -243,7 +242,7 @@ public class BaseMapSideViewController implements Initializable {
 
         System.out.println(selectedFloor.getImageSrc());
 
-        goToButton.setDisable(false);
+        //goToButton.setDisable(false);
         deleteButton.setDisable(false);
         editButton.setDisable(false);
 
@@ -257,6 +256,8 @@ public class BaseMapSideViewController implements Initializable {
         floorImage.fitWidthProperty().bind(imageBox.widthProperty());
         floorImage.fitHeightProperty().bind(imageBox.heightProperty());
         floorImage.setImage(image);
+
+        InfoOverlay overlay = new InfoOverlay(floorImage, selectedFloor.getDescription());
 
         floorDescription.setContent(floorImage);
         floorDescription.setShowOnHover(true);
@@ -286,10 +287,13 @@ public class BaseMapSideViewController implements Initializable {
         image.setDisable(false);
         cancelButton.setDisable(false);
         confirmButton.setDisable(false);
+
+        bFile = selectedFloor.getImage();
+        imagePath = selectedFloor.getImageSrc();
     }
 
     @FXML
-    void onGoToClicked(ActionEvent event) {
+    void onGoToClicked() {
         App.View<MapViewController> view = App.instance.loadView(App.MAP_PATH);
         view.getController().getFloorManager().changeCurrent(selectedFloor);
         App.instance.setView(view.getNode());
