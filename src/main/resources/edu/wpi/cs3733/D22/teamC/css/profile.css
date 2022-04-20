@@ -1,0 +1,27 @@
+@import "colors.css";
+@import "fonts.css";
+
+
+.top_node{
+    -fx-background-color: white;
+}
+.vb_class {
+    -fx-background-color: -color-textarea;
+    -fx-border-radius: 15px;
+    -fx-border-style: solid;
+    -fx-background-radius: 15px;
+}
+.back_button{
+    -fx-background-color:-color-textarea;
+    -fx-border-radius: 15px;
+    -fx-border-style: solid;
+    -fx-background-radius: 15px;
+}
+.image-view{
+    -fx-border-radius: 50px;
+}
+
+.mfx-password-field .text-field {
+    -fx-background-color: transparent;
+}
+

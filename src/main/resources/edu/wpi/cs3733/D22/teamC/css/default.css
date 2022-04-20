@@ -16,8 +16,6 @@
     /* TODO: There has to be a different way other than setting min width/height to 0 */
     /*-fx-min-height: 10px;*/
     /*-fx-min-width: 10px;*/
-
-    -mfx-caret-visible: false;
 }
 
 /* CUSTOM */
@@ -35,7 +33,7 @@
     -fx-max-height: 800px;
     -fx-background-radius: 20px;
     -fx-effect: dropshadow(three-pass-box, rgba(0, 0, 0, 0.8), 10, 0, 0, 0);
-    /*-fx-border-insets: 0px;*/
+    -fx-border-radius: 20px;
 }
 
 /* Used for validation fields */
@@ -228,8 +226,8 @@
     -fx-opacity: 0;
     -fx-padding: 2;
 }
-.table-view .virtual-flow .scroll-bar:vertical .thumb{
-    -fx-background-color:  linear-gradient(to bottom, #1dbbdd44, #93f9b944);
+.table-view .virtual-flow .scroll-bar:vertical .thumb {
+    -fx-background-color: linear-gradient(to bottom, -color-primary, -color-primary-light);
 }
 .table-view .virtual-flow .scroll-bar:horizontal .thumb {
     -fx-background-color: transparent;

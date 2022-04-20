@@ -1,25 +1,45 @@
 package edu.wpi.cs3733.D22.teamC.controller.service_request;
 
+import com.jfoenix.controls.JFXButton;
+import com.jfoenix.controls.JFXComboBox;
+import com.jfoenix.controls.JFXTreeTableView;
 import edu.wpi.cs3733.D22.teamC.App;
+import edu.wpi.cs3733.D22.teamC.controller.service_request.BaseServiceRequestCreateController;
+import edu.wpi.cs3733.D22.teamC.controller.service_request.BaseServiceRequestResolveController;
 import edu.wpi.cs3733.D22.teamC.entity.service_request.ServiceRequest;
+import edu.wpi.cs3733.D22.teamC.entity.service_request.ServiceRequestDAO;
+import edu.wpi.cs3733.D22.teamC.models.service_request.ServiceRequestTableDisplay;
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
+import javafx.scene.control.TreeTableRow;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.MouseButton;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.GridPane;
+import javafx.scene.layout.VBox;
 
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.net.URL;
+import java.util.List;
 import java.util.ResourceBundle;
 
-import static edu.wpi.cs3733.D22.teamC.controller.service_request.ServiceRequestsViewController.CREATE_FORM;
+import static edu.wpi.cs3733.D22.teamC.entity.service_request.ServiceRequest.Status.*;
 
 public class ServiceRequestLandingPage implements Initializable {
+
+    // New Paths
+    public static final String CREATE_FORM = "view/service_request/skeleton/create_form.fxml";
+    public static final String RESOLVE_FORM = "view/service_request/skeleton/resolve_form.fxml";
+
+    public static final String BASE_PATH = "view/service_request/";
+
+    private ServiceRequest activeServiceRequest;
+
 
     //Name labels
     @FXML private Label brandon;
@@ -31,20 +51,135 @@ public class ServiceRequestLandingPage implements Initializable {
     @FXML private Label nelson;
     @FXML private Label nick;
     @FXML private Label vagmi;
-    @FXML private Label vishu;
+    @FXML private Label vishnu;
     @FXML private ImageView eye;
-
-    @FXML
-    private GridPane root;
 
     private boolean canSee = false;
 
-    @Override
-    public void initialize(URL location, ResourceBundle resources) {
-        Platform.runLater( () -> root.requestFocus() );
-        changeNameVisibility(canSee);
+    @FXML
+    private VBox cardsView;
 
+    @FXML private JFXButton edit;
+    @FXML private JFXButton resolve;
+
+    // Table
+    @FXML private JFXTreeTableView table;
+
+    // Variables
+    private ServiceRequestTableDisplay<ServiceRequest> tableDisplay;
+
+    @FXML
+    public void initialize(URL url, ResourceBundle rb) {
+        // Populate Table Display
+        ServiceRequestDAO serviceRequestDAO  = new ServiceRequestDAO();
+        List<ServiceRequest> serviceRequests = serviceRequestDAO.getAll();
+        tableDisplay = new ServiceRequestTableDisplay<ServiceRequest>(table);
+        serviceRequests.forEach(tableDisplay::addObject);
+
+        // Load the cards view
+//        App.View cards = App.instance.loadView(App.SERVICE_REQUEST_CARDS);
+
+//        cardsView.getChildren().add(cards.getNode());
+
+        // Set Row Interaction with Table Display
+        setRowInteraction();
+
+        changeNameVisibility(canSee);
     }
+
+    //#region Button Events
+    @FXML
+    public void onEditButton(ActionEvent actionEvent) {
+        toEditPage(activeServiceRequest);
+    }
+
+    @FXML
+    public void onResolveButton(ActionEvent actionEvent) {
+        toResolvePage(activeServiceRequest);
+    }
+    //#endregion
+
+    /**
+     * Sets row interaction by setting the onMouseClicked events for each row.
+     */
+    protected void setRowInteraction() {
+        table.setRowFactory(tv -> {
+            TreeTableRow<ServiceRequestTableDisplay.ServiceRequestTableEntry> row = new TreeTableRow<ServiceRequestTableDisplay.ServiceRequestTableEntry>();
+
+            row.setOnMouseClicked(event -> {
+                if (!row.isEmpty() && event.getButton() == MouseButton.PRIMARY) {
+                    setActiveServiceRequest((ServiceRequest) row.getItem().object);
+
+                    if (event.getClickCount() == 2) {
+                        // Double Click shortcut to service request edit/resolve page
+                        toDefaultPage(activeServiceRequest);
+                    }
+                }
+            });
+
+            return row ;
+        });
+    }
+
+    /**
+     * Sets the currently active Service Request (will have its information passed to edit/resolve pages).
+     * @param serviceRequest The Service Request to be set as active.
+     */
+    private void setActiveServiceRequest(ServiceRequest serviceRequest) {
+        activeServiceRequest = serviceRequest;
+
+        // Update Edit/Resolve Buttons
+        if (activeServiceRequest.getStatus() == Blank) {
+            edit.setDisable(false);
+            resolve.setDisable(true);
+        } else if (activeServiceRequest.getStatus() == Processing) {
+            edit.setDisable(false);
+            resolve.setDisable(false);
+        } else if (activeServiceRequest.getStatus() == Done) {
+            edit.setDisable(true);
+            resolve.setDisable(true);
+        }
+    }
+
+    //#region Page Navigation
+    private void toDefaultPage(ServiceRequest serviceRequest) {
+        switch (serviceRequest.getStatus()) {
+            case Blank:
+                toEditPage(serviceRequest);
+                break;
+            case Processing:
+                toResolvePage(serviceRequest);
+                break;
+            case Done:
+                // "Done" Service Requests cannot be edited or resolved
+                return;
+        }
+    }
+
+    private void toEditPage(ServiceRequest serviceRequest) {
+        App.View<BaseServiceRequestResolveController> view = App.instance.loadView(RESOLVE_FORM);
+        view.getController().setup(serviceRequest, true);
+        App.instance.setView(view.getNode());
+    }
+
+    private void toResolvePage(ServiceRequest serviceRequest) {
+        App.View<BaseServiceRequestResolveController> view = App.instance.loadView(RESOLVE_FORM);
+        view.getController().setup(serviceRequest, false);
+        App.instance.setView(view.getNode());
+    }
+
+    /**
+     * Generate view for given service request resolve page and context.
+     * @param requestType The service request type for which view we are creating.
+     * @return The generated path name.
+     */
+    private String generatePath(ServiceRequest.RequestType requestType) {
+        String pathName = BASE_PATH;
+        pathName += (requestType.toString()).toLowerCase();
+        pathName += "/" + RESOLVE_FORM;
+        return pathName;
+    }
+    //#endregion
 
     @FXML
     void canViewNames() {
@@ -62,52 +197,11 @@ public class ServiceRequestLandingPage implements Initializable {
         }
     }
 
-    @FXML
-    void clickFacilityMaintenance(ActionEvent event) {
-        goToSRPage(ServiceRequest.RequestType.Facility_Maintenance);
-    }
-
-    @FXML
-    void clickLabSystem(ActionEvent event) {
-        goToSRPage(ServiceRequest.RequestType.Lab_System);
-    }
-
-    @FXML
-    void clickMedicalEquipment(ActionEvent event) {
-        goToSRPage(ServiceRequest.RequestType.Medical_Equipment);
-    }
-
-    @FXML
-    void clickMedicineDelivery(ActionEvent event) {
-        goToSRPage(ServiceRequest.RequestType.Medicine_Delivery);
-    }
-
-    @FXML
-    void clickSanitation(ActionEvent event) {
-        goToSRPage(ServiceRequest.RequestType.Sanitation);
-    }
-
-    @FXML
-    void clickSecurity(ActionEvent event) {
-        goToSRPage(ServiceRequest.RequestType.Security);
-    }
-
-    @FXML
-    void clickTranslator(ActionEvent event) {
-        goToSRPage(ServiceRequest.RequestType.Translator);
-    }
-  
-    @FXML
-    void clickPatientTransport(ActionEvent event) {
-        goToSRPage(ServiceRequest.RequestType.Patient_Transport);
-    }
-
-    @FXML
-    void clickDeliverySystem(ActionEvent event) {
-        goToSRPage(ServiceRequest.RequestType.Delivery_System);
-    }
-
-    private void changeNameVisibility(boolean canSee) {//throws FileNotFoundException {
+    /**
+     * Sets the visibility of the name labels
+     * @param canSee true if you can see the names, false if you can't see the names.
+     */
+    private void changeNameVisibility(boolean canSee) {
         brandon.setVisible(canSee);
         brian.setVisible(canSee);
         grace.setVisible(canSee);
@@ -117,21 +211,61 @@ public class ServiceRequestLandingPage implements Initializable {
         nelson.setVisible(canSee);
         nick.setVisible(canSee);
         vagmi.setVisible(canSee);
-        vishu.setVisible(canSee);
+        vishnu.setVisible(canSee);
+    }
+
+    @FXML
+    void clickFacilityMaintenance() {
+        goToSRPage(ServiceRequest.RequestType.Facility_Maintenance);
+    }
+
+    @FXML
+    void clickLabSystem() {
+        goToSRPage(ServiceRequest.RequestType.Lab_System);
+    }
+
+    @FXML
+    void clickMedicalEquipment() {
+        goToSRPage(ServiceRequest.RequestType.Medical_Equipment);
+    }
+
+    @FXML
+    void clickMedicineDelivery() {
+        goToSRPage(ServiceRequest.RequestType.Medicine_Delivery);
+    }
+
+    @FXML
+    void clickSanitation() {
+        goToSRPage(ServiceRequest.RequestType.Sanitation);
+    }
+
+    @FXML
+    void clickSecurity() {
+        goToSRPage(ServiceRequest.RequestType.Security);
+    }
+
+    @FXML
+    void clickTranslator() {
+        goToSRPage(ServiceRequest.RequestType.Translator);
+    }
+
+    @FXML
+    void clickPatientTransport() {
+        goToSRPage(ServiceRequest.RequestType.Patient_Transport);
+    }
+
+    @FXML
+    void clickDeliverySystem() {
+        goToSRPage(ServiceRequest.RequestType.Delivery_System);
+    }
+
+    @FXML
+    void clickLaundry() { goToSRPage(ServiceRequest.RequestType.Laundry);
     }
 
     private void goToSRPage(ServiceRequest.RequestType type){
-            App.View<BaseServiceRequestCreateController> view = App.instance.loadView(CREATE_FORM);
-            view.getController().setup(type);
-            App.instance.setView(view.getNode());
-    }
-    
-    @FXML
-    void clickBackToTable(ActionEvent event) {
-        App.instance.setView(App.VIEW_SERVICE_REQUESTS_PATH);
-    }
-
-    @FXML
-    void clickLaundry(ActionEvent event) { goToSRPage(ServiceRequest.RequestType.Laundry);
+        App.View<BaseServiceRequestCreateController> view = App.instance.loadView(CREATE_FORM);
+        view.getController().setup(type);
+        App.instance.setView(view.getNode());
     }
 }

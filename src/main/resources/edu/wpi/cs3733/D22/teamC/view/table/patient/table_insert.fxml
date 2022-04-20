@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.DatePicker?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<VBox styleClass="page-container" stylesheets="@../../../css/component/table_insert.css" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.wpi.cs3733.D22.teamC.controller.table.PatientViewController">
+   <children>
+      <ScrollPane fitToHeight="true" fitToWidth="true" prefHeight="524.0" prefWidth="421.0">
+         <content>
+            <VBox prefHeight="338.0" prefWidth="279.0" style="-fx-background-color: white;">
+               <children>
+                  <VBox alignment="CENTER_LEFT" prefHeight="115.0" prefWidth="419.0">
+                     <children>
+                        <Label fx:id="title" prefHeight="25.0" prefWidth="270.0" styleClass="base-insert-heeder" stylesheets="@../../../css/table_skeleton.css">
+                           <font>
+                              <Font size="24.0" />
+                           </font>
+                        </Label>
+                     </children>
+                  </VBox>
+                  <VBox>
+                     <children>
+                        <Label prefHeight="17.0" prefWidth="272.0" text="First Name" />
+                        <TextField fx:id="firstName" onKeyTyped="#onFieldUpdated" prefHeight="47.0" prefWidth="410.0" styleClass="base_view_table_text" stylesheets="@../../../css/table_skeleton.css" />
+                     </children>
+                     <VBox.margin>
+                        <Insets top="10.0" />
+                     </VBox.margin>
+                  </VBox>
+                  <VBox>
+                     <children>
+                        <Label prefHeight="17.0" prefWidth="367.0" text="Last Name" />
+                        <TextField fx:id="lastName" onKeyTyped="#onFieldUpdated" prefHeight="47.0" prefWidth="410.0" styleClass="base_view_table_text" stylesheets="@../../../css/table_skeleton.css" />
+                     </children>
+                     <VBox.margin>
+                        <Insets top="10.0" />
+                     </VBox.margin>
+                  </VBox>
+                  <VBox prefHeight="65.0" prefWidth="399.0">
+                     <children>
+                        <Label text="DOB" />
+                        <DatePicker fx:id="date" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="47.0" prefWidth="399.0" VBox.vgrow="ALWAYS" />
+                     </children>
+                     <VBox.margin>
+                        <Insets top="10.0" />
+                     </VBox.margin>
+                  </VBox>
+                  <VBox>
+                     <children>
+                        <Label prefHeight="17.0" prefWidth="421.0" text="Phone" />
+                        <TextField fx:id="number" onKeyTyped="#onFieldUpdated" prefHeight="47.0" prefWidth="399.0" styleClass="base_view_table_text" stylesheets="@../../../css/table_skeleton.css" />
+                     </children>
+                     <VBox.margin>
+                        <Insets top="10.0" />
+                     </VBox.margin>
+                  </VBox>
+                  <VBox>
+                     <VBox.margin>
+                        <Insets top="10.0" />
+                     </VBox.margin>
+                     <children>
+                        <Label prefHeight="17.0" prefWidth="421.0" text="Location">
+                           <padding>
+                              <Insets left="10.0" />
+                           </padding>
+                        </Label>
+                        <HBox prefHeight="58.0" prefWidth="399.0">
+                           <children>
+                              <TextField fx:id="location" onKeyTyped="#onFieldUpdated" prefHeight="42.0" prefWidth="338.0" styleClass="base_view_table_text" stylesheets="@../../../css/table_skeleton.css" HBox.hgrow="ALWAYS" />
+                              <JFXButton fx:id="locationButton" onAction="#goToMapView" prefHeight="42.0" prefWidth="62.0" style="-fx-background-color: -color-secondary;" stylesheets="@../../../css/colors.css" text="-&gt;" />
+                           </children>
+                        </HBox>
+                     </children>
+                  </VBox>
+                  <HBox alignment="CENTER_RIGHT" prefHeight="61.0" prefWidth="395.0">
+                     <children>
+                        <JFXButton fx:id="confirmButton" onAction="#clickConfirm" prefHeight="42.0" prefWidth="139.0" styleClass="base_view_table_confirm" stylesheets="@../../../css/table_skeleton.css" text="Confirm">
+                           <HBox.margin>
+                              <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                           </HBox.margin>
+                        </JFXButton>
+                     </children>
+                  </HBox>
+               </children>
+               <padding>
+                  <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+               </padding>
+            </VBox>
+         </content></ScrollPane>
+   </children>
+   <padding>
+      <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+   </padding>
+</VBox>
