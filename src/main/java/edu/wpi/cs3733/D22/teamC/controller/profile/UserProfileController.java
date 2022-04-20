@@ -46,7 +46,7 @@ public class UserProfileController implements Initializable {
     @FXML MFXPasswordField newPassConfirm;
 
     @FXML ImageView profileImage;
-    @FXML JFXButton addimg;
+    @FXML MFXButton addimg;
 
 
     //ones made in the whatever
