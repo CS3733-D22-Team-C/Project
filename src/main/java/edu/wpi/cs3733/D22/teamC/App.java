@@ -86,6 +86,7 @@ public class App extends Application {
         stage = primaryStage;
         stage.setFullScreen(true);
         setViewStatic(LOGIN_PATH);
+        //setViewStatic(MAP_DASHBOARD_PATH);
     }
 
     @Override

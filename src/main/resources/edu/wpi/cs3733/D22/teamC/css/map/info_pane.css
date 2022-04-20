@@ -7,13 +7,21 @@
     -fx-scale-x: 0.075;
     -fx-scale-y: 0.075;
     -fx-scale-z: 0.075;
-    -fx-fill: -color-primary;
+    -fx-fill: -color-primary-text;
 }
 
-.tab {
-    -fx-pref-width: 80px;
-    -fx-max-width: 80px;
-    -fx-padding: 0 10 0 0;
+.tab-pane {
+    -fx-tab-max-height: 50;
+    -fx-tab-min-height: 50;
+    -fx-tab-max-width: 50;
+    -fx-tab-min-width: 50;
+
+    -fx-border-insets: 0px !important;
+    /*-fx-padding: 0px;*/
+}
+
+.tab-pane .tab-content-area {
+    -fx-padding: 0px;
 }
 
 .tab:selected .icon {
@@ -44,12 +52,6 @@
 
 .tab-header-area {
     -fx-padding: 70 0 0 0;
-}
-
-.tab {
-    -fx-pref-width: 80px;
-    -fx-max-width: 80px;
-    -fx-padding: 0 10 0 0;
 }
 
 .button:selected {

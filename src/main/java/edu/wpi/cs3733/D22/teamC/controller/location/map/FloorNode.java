@@ -7,13 +7,14 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Group;
+import javafx.scene.layout.HBox;
 
 import java.io.IOException;
 
 public class FloorNode {
 
     @FXML private MFXButton floorButton;
-    @FXML private Group group;
+    @FXML private HBox group;
     private Floor floor;
 
     private boolean isSelected;
@@ -42,11 +43,11 @@ public class FloorNode {
         this.floor = floor;
     }
 
-    public Group getGroup() {
+    public HBox getGroup() {
         return group;
     }
 
-    public void setGroup(Group group) {
+    public void setGroup(HBox group) {
         this.group = group;
     }
 

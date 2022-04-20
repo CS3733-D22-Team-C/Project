@@ -1,5 +1,9 @@
 @import "base.css";
 
+.map-container {
+    -fx-cursor: hand;
+}
+
 .floor{
     -fx-background-color: #ffffff;
     -fx-background-radius: 15px;
@@ -23,11 +27,11 @@
 
 .floor-label{
     -fx-background-color: #005A9B;
-    -fx-background-radius: 44px 44px 0px 0px;
+    -fx-background-radius: 20px 20px 0px 0px;
     -fx-text-fill: #FFFFFF;
 }
 .description-box{
-    -fx-background-radius: 44px 44px 44px 44px;
+    -fx-background-radius: 20px;
     -fx-background-color: #F0F0F0;
 }
 .floor-box{

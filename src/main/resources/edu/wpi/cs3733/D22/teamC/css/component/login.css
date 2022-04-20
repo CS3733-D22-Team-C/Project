@@ -32,3 +32,7 @@
     -fx-effect: dropshadow(three-pass-box, rgb(0, 90, 155), 1 , 0.1 , 0 , 2);
     -fx-border-color: -color-primary-light;
 }
+
+.text-field {
+    -fx-effect: none !important;
+}
