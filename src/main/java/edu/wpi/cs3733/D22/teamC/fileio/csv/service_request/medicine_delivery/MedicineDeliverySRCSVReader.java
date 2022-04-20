@@ -2,6 +2,8 @@ package edu.wpi.cs3733.D22.teamC.fileio.csv.service_request.medicine_delivery;
 
 import edu.wpi.cs3733.D22.teamC.entity.employee.Employee;
 import edu.wpi.cs3733.D22.teamC.entity.employee.EmployeeDAO;
+import edu.wpi.cs3733.D22.teamC.entity.patient.Patient;
+import edu.wpi.cs3733.D22.teamC.entity.patient.PatientDAO;
 import edu.wpi.cs3733.D22.teamC.entity.service_request.ServiceRequest;
 import edu.wpi.cs3733.D22.teamC.entity.service_request.medicine_delivery.MedicineDeliverySR;
 import edu.wpi.cs3733.D22.teamC.fileio.csv.CSVReader;
@@ -9,7 +11,11 @@ import edu.wpi.cs3733.D22.teamC.fileio.csv.CSVReader;
 import java.sql.Timestamp;
 
 public class MedicineDeliverySRCSVReader extends CSVReader<MedicineDeliverySR> {
-    private EmployeeDAO employeeDAO = new EmployeeDAO();
+    
+    private final EmployeeDAO employeeDAO = new EmployeeDAO();
+    private final PatientDAO patientDAO = new PatientDAO();
+    
+    
     /**
      * Maps ServiceRequest (header, value) pairs to a value to change for the object.
      * @param serviceRequest The object to be modified.
@@ -56,7 +62,8 @@ public class MedicineDeliverySRCSVReader extends CSVReader<MedicineDeliverySR> {
                 serviceRequest.setDosage(value);
                 break;
             case "patientID":
-                serviceRequest.setPatientID(value);
+                Patient patient = patientDAO.getByID(value);
+                serviceRequest.setPatient(patient);
                 break;
             case "modifierID":
                 Employee modifier = employeeDAO.getByID(value);

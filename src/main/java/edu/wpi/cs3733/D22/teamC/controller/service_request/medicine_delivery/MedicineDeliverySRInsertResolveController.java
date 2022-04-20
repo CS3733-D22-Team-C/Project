@@ -5,7 +5,6 @@ import edu.wpi.cs3733.D22.teamC.controller.service_request.InsertServiceRequestR
 import edu.wpi.cs3733.D22.teamC.entity.generic.DAO;
 import edu.wpi.cs3733.D22.teamC.entity.patient.Patient;
 import edu.wpi.cs3733.D22.teamC.entity.patient.PatientDAO;
-import edu.wpi.cs3733.D22.teamC.entity.service_request.ServiceRequestDAO;
 import edu.wpi.cs3733.D22.teamC.entity.service_request.medicine_delivery.MedicineDeliverySR;
 import edu.wpi.cs3733.D22.teamC.entity.service_request.medicine_delivery.MedicineDeliverySRDAO;
 import edu.wpi.cs3733.D22.teamC.models.patient.PatientSelectorWindow;
@@ -54,12 +53,11 @@ public class MedicineDeliverySRInsertResolveController extends InsertServiceRequ
         medicine.setEditable(isEditMode);
         patientSComboBox.setEditable(isEditMode);
         patientSComboBox.setDisable(!isEditMode);
-
-        PatientDAO patientDAO = new PatientDAO();
-
+        
         dosage.setText(serviceRequest.getDosage());
         medicine.setText(serviceRequest.getMedicine());
-        patientSComboBox.setValue(patientDAO.getByID(serviceRequest.getPatientID()));
+        patientSComboBox.setValue(serviceRequest.getPatient());
+        patientSComboBox.setPromptText(serviceRequest.getPatient().toString());
     }
 
     public boolean requiredFieldsPresent(){
@@ -78,7 +76,7 @@ public class MedicineDeliverySRInsertResolveController extends InsertServiceRequ
                 serviceRequest.setMedicine(medicine.getText());
                 serviceRequest.setDosage(dosage.getText());
                 if(patientSComboBox.getValue() != null)
-                    serviceRequest.setPatientID(patientSComboBox.getValue().getID());
+                    serviceRequest.setPatient(patientSComboBox.getValue());
         }
     }
 

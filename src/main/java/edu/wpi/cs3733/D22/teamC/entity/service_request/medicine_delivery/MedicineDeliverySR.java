@@ -1,9 +1,9 @@
 package edu.wpi.cs3733.D22.teamC.entity.service_request.medicine_delivery;
 
+import edu.wpi.cs3733.D22.teamC.entity.patient.Patient;
 import edu.wpi.cs3733.D22.teamC.entity.service_request.ServiceRequest;
 
 import javax.persistence.*;
-import java.util.Objects;
 
 @Entity
 @Table(name = "MEDICINE_DELIVERY_SR")
@@ -14,9 +14,10 @@ public class MedicineDeliverySR extends ServiceRequest {
 
     @Column (name = "Dosage")
     protected String dosage;
-
-    @Column (name = "PatientID")
-    protected String patientID;     // TODO: Link to Patient
+    
+    @ManyToOne
+    @JoinColumn(name = "PatientID", referencedColumnName = "ID")
+    protected Patient patient;
     
     public MedicineDeliverySR() {}
     
@@ -40,12 +41,12 @@ public class MedicineDeliverySR extends ServiceRequest {
         this.dosage = dosage;
     }
 
-    public String getPatientID() {
-        return patientID;
+    public Patient getPatient() {
+        return patient;
     }
 
-    public void setPatientID(String patientID) {
-        this.patientID = patientID;
+    public void setPatient(Patient patient) {
+        this.patient = patient;
     }
 
     @Override
@@ -56,7 +57,7 @@ public class MedicineDeliverySR extends ServiceRequest {
         MedicineDeliverySR that = (MedicineDeliverySR) o;
         return medicine.equals(that.medicine)
                 && dosage.equals(that.dosage)
-                && patientID.equals(that.patientID);
+                && patient.getID().equals(that.patient.getID());
     }
 
 }
