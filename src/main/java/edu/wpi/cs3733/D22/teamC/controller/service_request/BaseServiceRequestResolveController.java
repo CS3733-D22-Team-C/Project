@@ -113,7 +113,7 @@ public class BaseServiceRequestResolveController<T extends ServiceRequest> imple
         description.setText(serviceRequest.getDescription());
 
         // Set labels
-        requestID.setText(Integer.toString(serviceRequest.getNumber()));
+        requestID.setText(serviceRequest.toString()); // Output the SR number
         assigneeID.setEditable(false);
         locationID.setEditable(false);
         lastUpdated.setText(serviceRequest.getModifiedTimestamp().toString());
