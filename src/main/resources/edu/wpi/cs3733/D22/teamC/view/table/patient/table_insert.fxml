@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import com.jfoenix.controls.JFXButton?>
-<?import com.jfoenix.controls.JFXComboBox?>
 <?import javafx.geometry.Insets?>
+<?import javafx.scene.control.DatePicker?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.ScrollPane?>
 <?import javafx.scene.control.TextField?>
@@ -43,6 +43,12 @@
                         <Insets top="10.0" />
                      </VBox.margin>
                   </VBox>
+                  <VBox prefHeight="65.0" prefWidth="399.0">
+                     <children>
+                        <Label text="Date Picker" />
+                        <DatePicker fx:id="date" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="45.0" prefWidth="399.0" VBox.vgrow="ALWAYS" />
+                     </children>
+                  </VBox>
                   <VBox>
                      <children>
                         <Label prefHeight="17.0" prefWidth="421.0" text="Phone" />
@@ -62,7 +68,12 @@
                               <Insets left="10.0" />
                            </padding>
                         </Label>
-                        <JFXComboBox fx:id="statusComboBox" maxWidth="1.7976931348623157E308" onAction="#onFieldUpdated" prefHeight="47.0" prefWidth="419.0" styleClass="dropdown" stylesheets="@../../../css/base.css" />
+                        <HBox prefHeight="58.0" prefWidth="399.0">
+                           <children>
+                              <TextField fx:id="location" onKeyTyped="#onFieldUpdated" prefHeight="47.0" prefWidth="342.0" styleClass="base_view_table_text" stylesheets="@../../../css/table_skeleton.css" HBox.hgrow="ALWAYS" />
+                              <JFXButton fx:id="locationButton" onAction="#goToMapView" prefHeight="46.0" prefWidth="64.0" />
+                           </children>
+                        </HBox>
                      </children>
                   </VBox>
                   <HBox alignment="CENTER_RIGHT" prefHeight="61.0" prefWidth="395.0">

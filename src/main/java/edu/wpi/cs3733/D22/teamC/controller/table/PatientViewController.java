@@ -1,7 +1,9 @@
 package edu.wpi.cs3733.D22.teamC.controller.table;
 
 import com.jfoenix.controls.JFXButton;
+import com.jfoenix.controls.JFXComboBox;
 import com.jfoenix.controls.JFXTreeTableView;
+import edu.wpi.cs3733.D22.teamC.entity.floor.Floor;
 import edu.wpi.cs3733.D22.teamC.entity.location.Location;
 import edu.wpi.cs3733.D22.teamC.entity.location.LocationDAO;
 import edu.wpi.cs3733.D22.teamC.entity.medical_equipment.MedicalEquipment;
@@ -21,6 +23,10 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 
 import java.net.URL;
+import java.sql.Timestamp;
+import java.time.Instant;
+import java.time.LocalDate;
+import java.time.ZoneId;
 import java.util.Date;
 import java.util.List;
 import java.util.ResourceBundle;
@@ -48,6 +54,8 @@ public class PatientViewController extends InsertTableViewController<Patient> im
 
 
     public void initialize(URL location, ResourceBundle resources) {
+
+        //this.location.getItems().setAll(MedicalEquipment.EquipmentType.values());
 //        title.setText("Add Equipment");
 //
 //        //make a list of roles from the enum and put it into the combo box
@@ -66,8 +74,7 @@ public class PatientViewController extends InsertTableViewController<Patient> im
 
 
 //        object.setLocationID();
-//        object.setDOB(date.getValue());
-
+        object.setDOB(Timestamp.valueOf(date.getValue().atStartOfDay()));
         object.setPhone(number.getText());
         object.setFirstName(firstName.getText());
         object.setLastName(lastName.getText());
@@ -80,7 +87,11 @@ public class PatientViewController extends InsertTableViewController<Patient> im
      * Set values of insert fields from the given object.
      * @param object The (nullable) object to set field values from.
      */
-    public void setFields(MedicalEquipment object) {
+    public void setFields(Patient object) {
+
+        if (object != null){
+            a_location = new LocationDAO().getByID(object.getLocationID());
+        }
 //        location = new LocationDAO().getByID(object.getLocationID());
 //
 //        title.setText((object == null) ? "Add Equipment" : "Edit Equipment");
@@ -88,29 +99,47 @@ public class PatientViewController extends InsertTableViewController<Patient> im
 //        typeComboBox.setValue((object == null) ? null : object.getEquipmentType());
 //        number.setText(String.valueOf((object == null) ? "" : object.getTypeNumber()));
 //        statusComboBox.setValue((object == null) ? null : object.getStatus());
-//
+
+
+        title.setText((object == null) ? "Add Patient" : "Edit Patient");
+        firstName.setText((object == null) ? "" : object.getFirstName());
+        lastName.setText((object == null) ? "" : object.getLastName());
+        number.setText((object == null) ? "" : object.getPhone());
+
+        LocalDate lD = null;
+        if (object != null){
+           lD = Instant.ofEpochMilli(object.getDOB().getTime()).atZone(ZoneId.systemDefault()).toLocalDate();
+        }
+
+        date.setValue((object == null) ? null : lD);
+        System.out.println(a_location);
+        location.setText((object == null) ? "" : a_location.getShortName());
+
+
 //        confirmButton.setDisable(true);
     }
     //#endregion
 
     public boolean checkFieldsFilled() {
-//        if (locationID.getText().equals("")) return false;
-//
-//        return !(typeComboBox.getValue()==null
-//                || number.getText().equals("")
-//                || statusComboBox.getValue()==null);
-        return true;
+
+        //return true if all the fields are FILLED
+        return !(firstName.getText().equals("")
+                || lastName.getText().equals("")
+                || number.getText().equals("")
+                || date.getValue() == null
+                || location.getText().equals("")
+                );
     }
 
     public void setLocation(Location location) {
-//        this.location = location;
-//
-//        String locationName = "";
-//        if (location != null) {
-//            locationName = location.getShortName();
-//        }
-//
-//        locationID.setText(locationName);
+        a_location = location;
+
+        String locationName = "";
+        if (location != null) {
+            locationName = location.getShortName();
+        }
+
+        this.location.setText(locationName);
     }
 
     //#region Abstraction
@@ -120,26 +149,16 @@ public class PatientViewController extends InsertTableViewController<Patient> im
 
     public TableDisplay<Patient> createTableDisplay(JFXTreeTableView table){
         TableDisplay<Patient> tableDisplay = new PatientTableDisplay(table);
-
         // Query Database
         PatientDAO patientDAO = new PatientDAO();
         //ISSUE HERE
         List<Patient> patients = patientDAO.getAll();
-
         // Add Table Entries
         patients.forEach(tableDisplay::addObject);
-
         return tableDisplay;
     }
 
     public PatientDAO createDAO() { return new PatientDAO();}
-
-    @Override
-    public void setFields(Patient object)
-    {
-
-    }
-
     ;
     //#endregion
 
@@ -153,6 +172,7 @@ public class PatientViewController extends InsertTableViewController<Patient> im
 
     @FXML
     void onFieldUpdated() {
+        System.out.println(checkFieldsFilled());
         confirmButton.setDisable(!checkFieldsFilled());
     }
 
