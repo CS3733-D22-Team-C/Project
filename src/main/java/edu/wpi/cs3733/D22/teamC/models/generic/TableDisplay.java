@@ -4,6 +4,8 @@ import com.jfoenix.controls.JFXTreeTableColumn;
 import com.jfoenix.controls.JFXTreeTableView;
 import com.jfoenix.controls.RecursiveTreeItem;
 import com.jfoenix.controls.datamodels.treetable.RecursiveTreeObject;
+import com.jfoenix.svg.SVGGlyph;
+import edu.wpi.cs3733.D22.teamC.fileio.svg.SVGParser;
 import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -101,6 +103,23 @@ public abstract class TableDisplay<T extends Object> {
     protected final <U extends TableDisplayEntry, V> void addColumn(JFXTreeTableView table, String header,
                                                               double maxWidth, Callback<U, ObservableValue<V>> callback) {
         JFXTreeTableColumn<U, V> col = new JFXTreeTableColumn<>(header);
+        col.setText(header);
+        col.setMaxWidth(maxWidth);
+        col.setCellValueFactory(new Callback<TreeTableColumn.CellDataFeatures<U, V>, ObservableValue<V>>() {
+            @Override
+            public ObservableValue<V> call(TreeTableColumn.CellDataFeatures<U, V> param) {
+                return callback.call(param.getValue().getValue());
+            }
+        });
+        table.getColumns().add(col);
+    }
+
+    // This table is only for winners!
+    public final <U extends TableDisplayEntry, V> void addColumn(JFXTreeTableView table, String header, SVGGlyph icon,
+                                                                    double maxWidth, Callback<U, ObservableValue<V>> callback) {
+        JFXTreeTableColumn<U, V> col = new JFXTreeTableColumn<>(header);
+        icon.setSize(20);
+        col.setGraphic(icon);
         col.setMaxWidth(maxWidth);
         col.setCellValueFactory(new Callback<TreeTableColumn.CellDataFeatures<U, V>, ObservableValue<V>>() {
             @Override
