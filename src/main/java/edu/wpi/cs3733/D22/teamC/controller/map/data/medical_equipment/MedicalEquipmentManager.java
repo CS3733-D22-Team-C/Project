@@ -230,7 +230,7 @@ public class MedicalEquipmentManager extends ManagerMapNodes<MedicalEquipment> {
                             ).collect(Collectors.toList());
                             if (dirtyBeds.size() >= 6) {
                                 createServiceRequest(medicalEquipment, new LocationDAO().getByLongName("OR Bed Park Floor L1"),
-                                        "As there are already " + dirtyBeds.size() + " dirty beds on " + mapViewController.getFloorManager().getByID(location.getFloor()).getLongName() + ",");
+                                        "As there are already " + dirtyBeds.size() + " Unavailable beds on " + mapViewController.getFloorManager().getByID(location.getFloor()).getLongName() + ",");
                             }
                         }
                         break;
@@ -242,7 +242,7 @@ public class MedicalEquipmentManager extends ManagerMapNodes<MedicalEquipment> {
                             ).collect(Collectors.toList());
                             if (dirtyPumps.size() >= 10) {
                                 createServiceRequest(medicalEquipment, new LocationDAO().getByLongName("West Plaza"),
-                                        "As there are already " + dirtyPumps.size() + " dirty beds on " + mapViewController.getFloorManager().getByID(location.getFloor()).getLongName() + ",");
+                                        "As there are already " + dirtyPumps.size() + " Unavailable beds on " + mapViewController.getFloorManager().getByID(location.getFloor()).getLongName() + ",");
                             } else {
                                 List<MedicalEquipment> cleanPumps = new MedicalEquipmentDAO().getEquipmentByFloor(location.getFloor()).stream().filter(
                                         medEq -> medEq.getEquipmentType().equals(MedicalEquipment.EquipmentType.Infusion_Pump)
@@ -250,7 +250,7 @@ public class MedicalEquipmentManager extends ManagerMapNodes<MedicalEquipment> {
                                 ).collect(Collectors.toList());
                                 if (cleanPumps.size() < 5) {
                                     createServiceRequest(medicalEquipment, new LocationDAO().getByLongName("West Plaza"),
-                                            ((cleanPumps.size() == 1) ? "As there is only 1 clean pump remaining on " : "As there are" + (cleanPumps.size() == 0 ? "" : " only") + " " + cleanPumps.size() + " clean pumps remaining on ") + mapViewController.getFloorManager().getByID(location.getFloor()).getLongName() + ",");
+                                            ((cleanPumps.size() == 1) ? "As there is only 1 Available pump remaining on " : "As there are" + (cleanPumps.size() == 0 ? "" : " only") + " " + cleanPumps.size() + " Available pumps remaining on ") + mapViewController.getFloorManager().getByID(location.getFloor()).getLongName() + ",");
                                 }
                             }
                         }
