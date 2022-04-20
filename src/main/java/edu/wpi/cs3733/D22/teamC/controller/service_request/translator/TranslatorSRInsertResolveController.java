@@ -60,6 +60,7 @@ public class TranslatorSRInsertResolveController extends InsertServiceRequestRes
 
         languageSComboBox.setValue(serviceRequest.getLanguage().toString());
         patientSComboBox.setValue(patientDAO.getByID(serviceRequest.getPatientID()));
+        patientSComboBox.setPromptText(patientDAO.getByID(serviceRequest.getPatientID()).toString());
     }
 
     public boolean requiredFieldsPresent(){
