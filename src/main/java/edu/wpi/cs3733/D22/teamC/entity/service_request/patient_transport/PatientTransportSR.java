@@ -1,21 +1,19 @@
 package edu.wpi.cs3733.D22.teamC.entity.service_request.patient_transport;
 
+import edu.wpi.cs3733.D22.teamC.entity.patient.Patient;
 import edu.wpi.cs3733.D22.teamC.entity.service_request.ServiceRequest;
-import edu.wpi.cs3733.D22.teamC.models.patient.PatientSelectorWindow;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Table;
-import java.security.SecureRandom;
+import javax.persistence.*;
 import java.sql.Timestamp;
 import java.util.Objects;
 
 @Entity
 @Table(name = "PATIENT_TRANSPORT_SR")
 public class PatientTransportSR extends ServiceRequest {
-
-    @Column(name = "PatientID")
-    protected String patientID;
+    
+    @ManyToOne
+    @JoinColumn(name = "PatientID", referencedColumnName = "ID")
+    protected Patient patient;
 
     @Column(name = "TransportTime")
     protected Timestamp transportTime;
@@ -28,12 +26,12 @@ public class PatientTransportSR extends ServiceRequest {
         super(serviceRequest);
     }
 
-    public String getPatientID() {
-        return patientID;
+    public Patient getPatient() {
+        return patient;
     }
 
-    public void setPatientID(String patientID) {
-        this.patientID = patientID;
+    public void setPatient(Patient patient) {
+        this.patient = patient;
     }
 
     public Timestamp getTransportTime() {
@@ -50,7 +48,7 @@ public class PatientTransportSR extends ServiceRequest {
         if (o == null || getClass() != o.getClass()) return false;
         if (!super.equals(o)) return false;
         PatientTransportSR that = (PatientTransportSR) o;
-        return Objects.equals(patientID, that.patientID) && Objects.equals(transportTime, that.transportTime);
+        return Objects.equals(patient.getID(), that.patient.getID()) && Objects.equals(transportTime, that.transportTime);
     }
 
 }
