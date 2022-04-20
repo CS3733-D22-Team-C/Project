@@ -1,5 +1,22 @@
 @import "colors.css";
 
+/*
+         no css styling?
+⠀⣞⢽⢪⢣⢣⢣⢫⡺⡵⣝⡮⣗⢷⢽⢽⢽⣮⡷⡽⣜⣜⢮⢺⣜⢷⢽⢝⡽⣝
+⠸⡸⠜⠕⠕⠁⢁⢇⢏⢽⢺⣪⡳⡝⣎⣏⢯⢞⡿⣟⣷⣳⢯⡷⣽⢽⢯⣳⣫⠇
+⠀⠀⢀⢀⢄⢬⢪⡪⡎⣆⡈⠚⠜⠕⠇⠗⠝⢕⢯⢫⣞⣯⣿⣻⡽⣏⢗⣗⠏⠀
+⠀⠪⡪⡪⣪⢪⢺⢸⢢⢓⢆⢤⢀⠀⠀⠀⠀⠈⢊⢞⡾⣿⡯⣏⢮⠷⠁⠀⠀
+⠀⠀⠀⠈⠊⠆⡃⠕⢕⢇⢇⢇⢇⢇⢏⢎⢎⢆⢄⠀⢑⣽⣿⢝⠲⠉⠀⠀⠀⠀
+⠀⠀⠀⠀⠀⡿⠂⠠⠀⡇⢇⠕⢈⣀⠀⠁⠡⠣⡣⡫⣂⣿⠯⢪⠰⠂⠀⠀⠀⠀
+⠀⠀⠀⠀⡦⡙⡂⢀⢤⢣⠣⡈⣾⡃⠠⠄⠀⡄⢱⣌⣶⢏⢊⠂⠀⠀⠀⠀⠀⠀
+⠀⠀⠀⠀⢝⡲⣜⡮⡏⢎⢌⢂⠙⠢⠐⢀⢘⢵⣽⣿⡿⠁⠁⠀⠀⠀⠀⠀⠀⠀
+⠀⠀⠀⠀⠨⣺⡺⡕⡕⡱⡑⡆⡕⡅⡕⡜⡼⢽⡻⠏⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+⠀⠀⠀⠀⣼⣳⣫⣾⣵⣗⡵⡱⡡⢣⢑⢕⢜⢕⡝⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+⠀⠀⠀⣴⣿⣾⣿⣿⣿⡿⡽⡑⢌⠪⡢⡣⣣⡟⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+⠀⠀⠀⡟⡾⣿⢿⢿⢵⣽⣾⣼⣘⢸⢸⣞⡟⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+⠀⠀⠀⠀⠁⠇⠡⠩⡫⢿⣝⡻⡮⣒⢽⠋⠀⠀⠀⠀⠀⠀⠀
+*/
+
 /* These rules will apply to ALL COMPONENTS */
 /* YOU MUST OVERRIDE THEM BY APPLYING OTHER STYLE CLASSES OR THEY WILL DEFAULT TO THESE */
 .root * {
@@ -16,8 +33,6 @@
     /* TODO: There has to be a different way other than setting min width/height to 0 */
     /*-fx-min-height: 10px;*/
     /*-fx-min-width: 10px;*/
-
-    -mfx-caret-visible: false;
 }
 
 /* CUSTOM */
@@ -77,6 +92,10 @@
     -fx-text-fill: -color-primary-text;
 }
 
+.button:hover {
+    -fx-background-color: -color-primary-dark;
+}
+
 /* Uses secondary color as style */
 .button-secondary {
     -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.5), 1, 0, 0, 0);
@@ -85,7 +104,11 @@
 }
 
 .failure-button {
-    -fx-background-color: -color-red-contrast ;
+    -fx-background-color: -color-red-contrast;
+}
+
+.failure-button:hover {
+    -fx-background-color: -color-red-contrast-hover;
 }
 
 .button-file-select {
@@ -98,6 +121,18 @@
 .text-field {
     -fx-background-color: -color-primary-text;
     -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.8), 2, 0, 0, 0);
+}
+
+.mfx-text-field {
+    -fx-border-color: -color-primary;
+}
+
+.mfx-text-field .text-field {
+    -fx-background-color: transparent;
+}
+
+.mfx-text-field .floating-text {
+    -fx-text-fill: -color-primary;
 }
 
 .combo-box {
