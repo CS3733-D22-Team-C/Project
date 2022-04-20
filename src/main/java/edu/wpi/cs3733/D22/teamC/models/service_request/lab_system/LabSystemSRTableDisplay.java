@@ -1,8 +1,10 @@
 package edu.wpi.cs3733.D22.teamC.models.service_request.lab_system;
 
 import com.jfoenix.controls.JFXTreeTableView;
+import edu.wpi.cs3733.D22.teamC.entity.patient.PatientDAO;
 import edu.wpi.cs3733.D22.teamC.entity.service_request.lab_system.LabSystemSR;
 import edu.wpi.cs3733.D22.teamC.models.service_request.ServiceRequestTableDisplay;
+import edu.wpi.cs3733.D22.teamC.models.service_request.translator.TranslatorSRTableDisplay;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
 
@@ -10,11 +12,15 @@ public class LabSystemSRTableDisplay extends ServiceRequestTableDisplay<LabSyste
     public class LabSystemSRTableEntry extends ServiceRequestTableEntry {
         // Properties
         public StringProperty labType;
+        public StringProperty patient;
 
         public LabSystemSRTableEntry(LabSystemSR labSystemSR) {
             super(labSystemSR);
 
+            PatientDAO patientDAO = new PatientDAO();
             this.labType = new SimpleStringProperty(labSystemSR.getLabType().toString());
+            this.patient = new SimpleStringProperty((patientDAO.getByID(labSystemSR.getPatientID()) != null)
+                    ? patientDAO.getByID(labSystemSR.getPatientID()).toString() : "N/A");
         }
     }
 
@@ -37,6 +43,13 @@ public class LabSystemSRTableDisplay extends ServiceRequestTableDisplay<LabSyste
                 "Lab Type",
                 1f * Integer.MAX_VALUE * 16.66,
                 (LabSystemSRTableEntry entry) -> {return entry.labType;}
+        );
+
+        addColumn(
+                table,
+                "Patient Name",
+                1f * Integer.MAX_VALUE * 16.66,
+                (LabSystemSRTableDisplay.LabSystemSRTableEntry entry) -> {return entry.patient;}
         );
     }
 }

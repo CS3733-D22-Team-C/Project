@@ -43,6 +43,12 @@ public class TranslatorSRCSVReader extends CSVReader<TranslatorSR> {
             case "description":
                 object.setDescription(value);
                 break;
+            case "language":
+                object.setLanguage(TranslatorSR.Language.valueOf(value));
+                break;
+            case "patientID":
+                object.setPatientID(value);
+                break;
             case "modifierID":
                 Employee modifier = employeeDAO.getByID(value);
                 object.setModifier(modifier);
@@ -50,10 +56,6 @@ public class TranslatorSRCSVReader extends CSVReader<TranslatorSR> {
             case "modifiedTimestamp":
                 object.setModifiedTimestamp(Timestamp.valueOf(value));
                 break;
-            case "language":
-                object.setLanguage(TranslatorSR.Language.valueOf(value));
-            case "patientID":
-                object.setPatientID(value);
         }
         return object;
     }
