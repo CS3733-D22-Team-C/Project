@@ -43,7 +43,6 @@ public class FloorCSVReader extends CSVReader<Floor> {
 
                 try {
                     Path filePath = Paths.get("maps/" + object.getImageSrc());
-                    //Image image = new Image("file:" + filePath);
                     File imgPath = new File(filePath.toString());
                     BufferedImage bImg = ImageIO.read(imgPath);
                     ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();

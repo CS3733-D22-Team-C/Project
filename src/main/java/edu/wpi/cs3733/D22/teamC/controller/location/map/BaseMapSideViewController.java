@@ -30,6 +30,7 @@ import org.controlsfx.control.textfield.CustomTextField;
 import javax.imageio.ImageIO;
 import java.awt.image.BufferedImage;
 import java.io.ByteArrayInputStream;
+import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.IOException;
 import java.net.URL;
@@ -127,8 +128,9 @@ public class BaseMapSideViewController implements Initializable {
             selectedFloor.setLongName(longName.getText());
             selectedFloor.setDescription(description.getText());
             selectedFloor.setShortName(shortName.getText());
-            //selectedFloor.setImage(bFile);
-            //selectedFloor.setImageSrc(imagePath);
+            selectedFloor.setImage(bFile);
+            selectedFloor.setImageSrc(imagePath);
+            selectedFloor.setOrder(100);
 
             FloorDAO floorDAO = new FloorDAO();
             floorDAO.insert(selectedFloor);
@@ -138,7 +140,7 @@ public class BaseMapSideViewController implements Initializable {
 
             cancelButton.setDisable(true);
             confirmButton.setDisable(true);
-            //addImageButton.setDisable(true);
+            addImageButton.setDisable(true);
             shortName.setDisable(true);
             longName.setDisable(true);
             description.setDisable(true);
@@ -147,22 +149,22 @@ public class BaseMapSideViewController implements Initializable {
             App.instance.setView("view/location/map/base_side_map_view.fxml");
             return;
         }
-        //addFloorClicked = false;
+        addFloorClicked = false;
         selectedFloor.setLongName(longName.getText());
         selectedFloor.setDescription(description.getText());
         selectedFloor.setShortName(shortName.getText());
-        //selectedFloor.setImage(bFile);
-        //selectedFloor.setImageSrc(imagePath);
+        selectedFloor.setImage(bFile);
+        selectedFloor.setImageSrc(imagePath);
 
         FloorDAO floorDAO = new FloorDAO();
         floorDAO.update(selectedFloor);
 
-        //imagePath = "";
-        //bFile = null;
+        imagePath = "";
+        bFile = null;
 
         cancelButton.setDisable(true);
         confirmButton.setDisable(true);
-        //addImageButton.setDisable(true);
+        addImageButton.setDisable(true);
         shortName.setDisable(true);
         longName.setDisable(true);
         description.setDisable(true);
@@ -188,7 +190,7 @@ public class BaseMapSideViewController implements Initializable {
 
         cancelButton.setDisable(false);
         confirmButton.setDisable(false);
-        //addImageButton.setDisable(false);
+        addImageButton.setDisable(false);
         shortName.setDisable(false);
         longName.setDisable(false);
         description.setDisable(false);
@@ -218,15 +220,18 @@ public class BaseMapSideViewController implements Initializable {
         File file = fileChooser.showOpenDialog(App.instance.getStage());
 
         if (file != null) {
-
             // Load image
-            Path filePath = Paths.get(file.getPath());
-            Image image = new Image("file:" + filePath);
-            System.out.println(image.getUrl());
-            imagePath = image.getUrl();
-            bFile = new byte[(int) file.length()];
+            try {
+                BufferedImage bImg = ImageIO.read(file);
+                ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
+                ImageIO.write(bImg, "png", byteArrayOutputStream);
+                bFile = byteArrayOutputStream.toByteArray();
 
-            this.image.setText(imagePath);
+                imagePath = file.getName();
+                this.image.setText(imagePath);
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
         }
     }
 
@@ -249,8 +254,8 @@ public class BaseMapSideViewController implements Initializable {
         BufferedImage img = ImageIO.read(bis);
         Image image = SwingFXUtils.toFXImage(img, null);
 
-        //floorImage.fitWidthProperty().bind(imageBox.widthProperty());
-        //floorImage.fitHeightProperty().bind(imageBox.heightProperty());
+        floorImage.fitWidthProperty().bind(imageBox.widthProperty());
+        floorImage.fitHeightProperty().bind(imageBox.heightProperty());
         floorImage.setImage(image);
 
         floorDescription.setContent(floorImage);
@@ -276,7 +281,7 @@ public class BaseMapSideViewController implements Initializable {
     void onEditClicked(ActionEvent event){
         shortName.setDisable(false);
         longName.setDisable(false);
-        //addImageButton.setDisable(false);
+        addImageButton.setDisable(false);
         description.setDisable(false);
         image.setDisable(false);
         cancelButton.setDisable(false);
@@ -293,9 +298,9 @@ public class BaseMapSideViewController implements Initializable {
     @FXML
     void onCancelClicked(ActionEvent event){
         addFloorClicked = false;
-        //cancelButton.setDisable(true);
-        //confirmButton.setDisable(true);
-        //addImageButton.setDisable(true);
+        cancelButton.setDisable(true);
+        confirmButton.setDisable(true);
+        addImageButton.setDisable(true);
         shortName.setDisable(true);
         longName.setDisable(true);
         description.setDisable(true);

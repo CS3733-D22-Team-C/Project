@@ -56,9 +56,9 @@
             </MFXScrollPane>
             <HBox alignment="BOTTOM_CENTER" GridPane.hgrow="ALWAYS" GridPane.rowIndex="1" GridPane.vgrow="ALWAYS">
                <children>
-                  <MFXButton fx:id="deleteButton" alignment="CENTER" disable="true" onAction="#onDeleteClicked" styleClass="delete" stylesheets="@../../../css/map/side_view.css" text="Delete" visible="false" />
+                  <MFXButton fx:id="deleteButton" alignment="CENTER" disable="true" onAction="#onDeleteClicked" styleClass="delete" stylesheets="@../../../css/map/side_view.css" text="Delete" />
                   <Region HBox.hgrow="ALWAYS" />
-                  <MFXButton fx:id="addFloorButton" onAction="#onAddFloorClicked" text="Add Floor" visible="false" />
+                  <MFXButton fx:id="addFloorButton" onAction="#onAddFloorClicked" text="Add Floor" />
                </children>
                <GridPane.margin>
                   <Insets bottom="10.0" />
@@ -169,7 +169,8 @@
                   <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Image" />
                   <HBox>
                      <children>
-                        <CustomTextField fx:id="image" disable="true" maxWidth="1.7976931348623157E308" prefWidth="1000.0" HBox.hgrow="ALWAYS" />
+                        <CustomTextField fx:id="image" disable="true" maxWidth="1.7976931348623157E308" HBox.hgrow="ALWAYS" />
+                        <MFXButton fx:id="addImageButton" disable="true" onAction="#onAddImageClicked" prefHeight="26.0" prefWidth="28.0" text="..." />
                      </children>
                   </HBox>
                   <HBox alignment="BOTTOM_CENTER" VBox.vgrow="ALWAYS">
