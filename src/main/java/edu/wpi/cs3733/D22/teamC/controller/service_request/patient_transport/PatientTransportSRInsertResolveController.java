@@ -9,6 +9,7 @@ import edu.wpi.cs3733.D22.teamC.entity.patient.PatientDAO;
 import edu.wpi.cs3733.D22.teamC.entity.service_request.patient_transport.PatientTransportSR;
 import edu.wpi.cs3733.D22.teamC.entity.service_request.patient_transport.PatientTransportSRDAO;
 import edu.wpi.cs3733.D22.teamC.models.patient.PatientSelectorWindow;
+import io.github.palexdev.materialfx.controls.MFXButton;
 import io.github.palexdev.materialfx.controls.MFXDatePicker;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -24,7 +25,7 @@ import java.util.ResourceBundle;
 public class PatientTransportSRInsertResolveController extends InsertServiceRequestResolveController<PatientTransportSR> implements Initializable {
 
     @FXML private MFXDatePicker date;
-    @FXML private JFXButton patientTableButton;
+    @FXML private MFXButton patientTableButton;
     @FXML private SearchableComboBox<Patient> patient;
 
     @Override
