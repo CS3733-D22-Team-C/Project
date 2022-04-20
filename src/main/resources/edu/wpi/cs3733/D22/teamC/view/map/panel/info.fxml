@@ -1,7 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import com.jfoenix.controls.JFXButton?>
-<?import com.jfoenix.controls.JFXToggleNode?>
 <?import com.jfoenix.controls.JFXTreeTableView?>
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.Cursor?>
@@ -17,16 +15,15 @@
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.layout.VBox?>
-<?import javafx.scene.paint.Color?>
 <?import javafx.scene.text.Font?>
 
-<VBox fx:id="containerVBox" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefWidth="450.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.wpi.cs3733.D22.teamC.controller.map.panel.LocationInfoController">
-   <children>
-      <TabPane fx:id="tabPane" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" side="LEFT" stylesheets="@../../../css/map/info_pane.css" tabClosingPolicy="UNAVAILABLE" tabMaxHeight="50.0" tabMaxWidth="115.0" tabMinHeight="50.0" tabMinWidth="115.0">
-        <tabs>
-            <Tab fx:id="locationTab" text="Location">
-               <content>
-                  <StackPane prefWidth="200.0">
+<TabPane fx:id="tabPane" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" prefHeight="518.0" prefWidth="353.0" side="LEFT" stylesheets="@../../../css/map/info_pane.css" tabClosingPolicy="UNAVAILABLE" tabMaxHeight="50.0" tabMaxWidth="115.0" tabMinHeight="50.0" tabMinWidth="115.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.wpi.cs3733.D22.teamC.controller.map.panel.LocationInfoController">
+  <tabs>
+      <Tab fx:id="locationTab" closable="false" text="Location">
+         <content>
+            <StackPane prefWidth="200.0">
+               <children>
+                  <VBox maxWidth="1.7976931348623157E308" prefHeight="394.0" prefWidth="314.0">
                      <children>
                         <Label alignment="CENTER" maxHeight="92.0" maxWidth="1.7976931348623157E308" minHeight="50.0" prefHeight="58.0" prefWidth="200.0" styleClass="card-content-header" text="Location Info" VBox.vgrow="ALWAYS">
                            <padding>
@@ -144,71 +141,41 @@
                            </opaqueInsets>
                         </HBox>
                      </children>
-                  </StackPane>
-               </content>
-            </Tab>
-          <Tab fx:id="medicalEquipmentTab" text="Medical Equipment">
-               <content>
-                  <StackPane prefWidth="200.0">
+                  </VBox>
+               </children>
+            </StackPane>
+         </content>
+      </Tab>
+      <Tab fx:id="serviceRequestTab" text="Service Requests">
+         <content>
+            <StackPane prefWidth="200.0">
+               <children>
+                  <VBox prefHeight="200.0" prefWidth="100.0">
                      <children>
-                        <VBox alignment="CENTER" minHeight="-Infinity" minWidth="-Infinity" prefHeight="200.0" prefWidth="200.0">
-                           <children>
-                              <Label alignment="CENTER" maxHeight="78.0" maxWidth="1.7976931348623157E308" minHeight="50.0" prefWidth="290.0" styleClass="card-content-header" text="Medical Equipment">
-                                 <padding>
-                                    <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
-                                 </padding>
-                                 <font>
-                                    <Font size="20.0" />
-                                 </font>
-                              </Label>
-                              <JFXTreeTableView fx:id="medicalEquipmentTable" prefHeight="334.0" prefWidth="250.0" styleClass="table-view" VBox.vgrow="ALWAYS">
-                                 <VBox.margin>
-                                    <Insets bottom="25.0" left="25.0" right="25.0" top="25.0" />
-                                 </VBox.margin>
-                              </JFXTreeTableView>
-                              <HBox maxWidth="1.7976931348623157E308" spacing="15.0">
-                                 <children>
-                                    <VBox alignment="BOTTOM_CENTER" maxWidth="1.7976931348623157E308" prefHeight="58.0" prefWidth="141.0" HBox.hgrow="ALWAYS">
-                                       <children>
-                                          <JFXToggleNode fx:id="updateLocation" alignment="CENTER_LEFT" contentDisplay="TOP" onAction="#onUpdateLocationButtonPressed" prefHeight="25.0" prefWidth="217.0" styleClass="button" text="Update Location">
-                                             <selectedColor>
-                                                <Color red="0.1836622804403305" green="0.2418220043182373" blue="0.8815789222717285" opacity="0.20000000298023224" />
-                                             </selectedColor>
-                                             <font>
-                                                <Font size="16.0" />
-                                             </font>
-                                             <padding>
-                                                <Insets left="10.0" />
-                                             </padding>
-                                          </JFXToggleNode>
-                                       </children>
-                                    </VBox>
-                                    <VBox alignment="BOTTOM_LEFT" maxWidth="1.7976931348623157E308" HBox.hgrow="ALWAYS">
-                                       <children>
-                                          <ComboBox fx:id="statusComboBox" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" onAction="#onMedicalEquipmentStatusComboBoxChanged" />
-                                          <JFXButton fx:id="updateStatus" maxWidth="1.7976931348623157E308" onAction="#onUpdateStatusButtonPressed" text="Update Status">
-                                             <font>
-                                                <Font size="16.0" />
-                                             </font>
-                                             <padding>
-                                                <Insets left="-10.0" />
-                                             </padding></JFXButton>
-                                       </children>
-                                    </VBox>
-                                 </children>
-                                 <padding>
-                                    <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
-                                 </padding>
-                              </HBox>
-                           </children>
-                        </VBox>
+                        <Label alignment="CENTER" maxHeight="75.0" maxWidth="1.7976931348623157E308" minHeight="50.0" styleClass="card-content-header" text="Service Requests">
+                           <padding>
+                              <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                           </padding>
+                           <font>
+                              <Font size="20.0" />
+                           </font>
+                        </Label>
+                        <JFXTreeTableView fx:id="serviceRequestTable" styleClass="table-view" VBox.vgrow="ALWAYS">
+                           <VBox.margin>
+                              <Insets bottom="25.0" left="25.0" right="25.0" top="25.0" />
+                           </VBox.margin>
+                        </JFXTreeTableView>
                      </children>
-                  </StackPane>
-               </content>
-          </Tab>
-            <Tab fx:id="serviceRequestTab" text="Service Requests">
-               <content>
-                  <StackPane prefWidth="200.0">
+                  </VBox>
+               </children>
+            </StackPane>
+         </content>
+      </Tab>
+    <Tab fx:id="medicalEquipmentTab" closable="false" text="Medical Equipment">
+         <content>
+            <StackPane prefWidth="200.0">
+               <children>
+                  <VBox prefHeight="200.0" prefWidth="100.0">
                      <children>
                         <Label alignment="CENTER" maxHeight="78.0" maxWidth="1.7976931348623157E308" minHeight="50.0" prefWidth="290.0" styleClass="card-content-header" text="Medical Equipment">
                            <padding>

@@ -28,7 +28,6 @@ public class LocationManager extends ManagerMapNodes<Location> {
     // Events
     public List<Consumer<Location>> onPreviewLocationEvents = new ArrayList<>();
     public List<Consumer<Location>> onFocusLocationEvents = new ArrayList<>();
-    public Consumer<Location> onClickCapture;
 
     public LocationManager(MapViewController mapViewController) {
         super(mapViewController);

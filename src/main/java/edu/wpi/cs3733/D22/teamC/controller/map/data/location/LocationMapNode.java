@@ -122,14 +122,10 @@ public class LocationMapNode extends MapNode<Location> {
         protected void onMouseClickedNode(MouseEvent event) {
             if (event.getButton().equals(MouseButton.PRIMARY)) {
                 // Single-Click select toggle
-                if (((LocationManager) getManager()).onClickCapture != null) {
-                    ((LocationManager) getManager()).onClickCapture.accept(location);
+                if (((LocationManager) manager).isFocused(this)) {
+                    ((LocationManager) manager).unfocus();
                 } else {
-                    if (((LocationManager) manager).isFocused(this)) {
-                        ((LocationManager) manager).unfocus();
-                    } else {
-                        ((LocationManager) manager).focus(this);
-                    }
+                    ((LocationManager) manager).focus(this);
                 }
 
                 event.consume();
