@@ -2,6 +2,18 @@
 @import "fonts.css";
 @import "default.css";
 
+.mfx-text-field {
+    -fx-border-color: -color-primary;
+}
+
+.mfx-text-field .text-field {
+    -fx-background-color: transparent;
+}
+
+.mfx-text-field .floating-text {
+    -fx-text-fill: -color-primary;
+}
+
 .button {
     -fx-text-fill: black;
 }
