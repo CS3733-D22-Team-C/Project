@@ -4,23 +4,31 @@ import com.jfoenix.controls.JFXComboBox;
 import com.jfoenix.controls.JFXTreeTableView;
 import edu.wpi.cs3733.D22.teamC.controller.service_request.InsertServiceRequestCreateController;
 import edu.wpi.cs3733.D22.teamC.entity.generic.DAO;
+import edu.wpi.cs3733.D22.teamC.entity.patient.Patient;
+import edu.wpi.cs3733.D22.teamC.entity.patient.PatientDAO;
 import edu.wpi.cs3733.D22.teamC.entity.service_request.ServiceRequestDAO;
 import edu.wpi.cs3733.D22.teamC.entity.service_request.lab_system.LabSystemSR;
 import edu.wpi.cs3733.D22.teamC.entity.service_request.lab_system.LabSystemSRDAO;
+import edu.wpi.cs3733.D22.teamC.models.patient.PatientSelectorWindow;
 import edu.wpi.cs3733.D22.teamC.models.service_request.ServiceRequestTableDisplay;
 import edu.wpi.cs3733.D22.teamC.models.service_request.lab_system.LabSystemSRTableDisplay;
+import edu.wpi.cs3733.D22.teamC.models.utils.ComponentWrapper;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.TextField;
+import org.controlsfx.control.SearchableComboBox;
 
+import java.io.IOException;
 import java.net.URL;
+import java.util.List;
 import java.util.ResourceBundle;
 
 public class LabSystemSRInsertCreateController implements InsertServiceRequestCreateController<LabSystemSR>, Initializable {
     @FXML
     private JFXComboBox<String> labType;
     @FXML
-    private TextField patientID;
+    private SearchableComboBox<Patient> patientSComboBox;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
@@ -28,12 +36,21 @@ public class LabSystemSRInsertCreateController implements InsertServiceRequestCr
         for (LabSystemSR.LabType labs : LabSystemSR.LabType.values()) {
             labType.getItems().add(labs.toString());
         }
+
+        //Patient ComboBox
+        //Query DB
+        PatientDAO patientDAO = new PatientDAO();
+        List<Patient> patients = patientDAO.getAll();
+
+        ComponentWrapper.initializeComboBox(patientSComboBox, Patient::toString);
+
+        patientSComboBox.getItems().setAll(patients);
     }
 
     @Override
     public void clearFields() {
-        labType.valueProperty().setValue(null);
-        patientID.setText(null);
+        labType.setValue(null);
+        patientSComboBox.setValue(null);
     }
 
     @Override
@@ -41,7 +58,7 @@ public class LabSystemSRInsertCreateController implements InsertServiceRequestCr
         LabSystemSR labSR = new LabSystemSR();
 
         labSR.setLabType(LabSystemSR.LabType.valueOf(labType.getValue()));
-        labSR.setPatientID(patientID.getText());
+        labSR.setPatientID(patientSComboBox.getValue().getID());
 
         return labSR;
     }
@@ -60,8 +77,9 @@ public class LabSystemSRInsertCreateController implements InsertServiceRequestCr
     public boolean requiredFieldsPresent(){
         if(labType.getValue() == null)
             return false;
-        if(patientID.getText().equals(""))
+        if(patientSComboBox.getValue() == null){
             return false;
+        }
         return true;
     }
 
@@ -69,6 +87,13 @@ public class LabSystemSRInsertCreateController implements InsertServiceRequestCr
         return new LabSystemSR();
     }
 
+    @FXML
+    void goToPatientTable(ActionEvent event) throws IOException {
+        new PatientSelectorWindow(patient -> this.setPatientComboBox(patient));
+    }
 
+    private void setPatientComboBox(Patient patientComboBox) {
+        this.patientSComboBox.setValue(patientComboBox);
+    }
 
 }

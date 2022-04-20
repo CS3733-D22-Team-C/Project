@@ -334,9 +334,9 @@ public class BaseMapSideViewController implements Initializable {
         List<MedicalEquipment> floorXClean = new ArrayList<>();
         List<MedicalEquipment> floorXPod = new ArrayList<>();
         for (MedicalEquipment medicalEquipmentFloorX : medicalEquipmentPerFloor) {
-            if (medicalEquipmentFloorX.getStatus().equals(MedicalEquipment.EquipmentStatus.Dirty))
+            medicalEquipmentFloorX.getStatus().equals(MedicalEquipment.EquipmentStatus.Dirty);
                 floorXDirty.add(medicalEquipmentFloorX);
-            if (medicalEquipmentFloorX.getStatus().equals(MedicalEquipment.EquipmentStatus.Available))
+             if (medicalEquipmentFloorX.getStatus().equals(MedicalEquipment.EquipmentStatus.Available))
                 floorXClean.add(medicalEquipmentFloorX);
             if (medicalEquipmentFloorX.getStatus().equals(MedicalEquipment.EquipmentStatus.Unavailable))
                 floorXPod.add(medicalEquipmentFloorX);

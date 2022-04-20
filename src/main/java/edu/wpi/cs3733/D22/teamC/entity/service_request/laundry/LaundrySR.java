@@ -12,7 +12,7 @@ import javax.persistence.*;
 //We use javax persistence tags to make our columns compatible with the database table for this entity
 
 @Entity
-@Table(name = "LAUNDRY")
+@Table(name = "LAUNDRY_SR")
 public class LaundrySR extends ServiceRequest {
 
     @Enumerated(EnumType.STRING)

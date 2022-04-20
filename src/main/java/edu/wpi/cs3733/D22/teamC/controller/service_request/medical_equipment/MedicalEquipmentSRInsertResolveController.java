@@ -4,6 +4,7 @@ import com.jfoenix.controls.JFXComboBox;
 import edu.wpi.cs3733.D22.teamC.controller.service_request.BaseServiceRequestResolveController;
 import edu.wpi.cs3733.D22.teamC.controller.service_request.InsertServiceRequestResolveController;
 import edu.wpi.cs3733.D22.teamC.entity.generic.DAO;
+import edu.wpi.cs3733.D22.teamC.entity.medical_equipment.MedicalEquipment;
 import edu.wpi.cs3733.D22.teamC.entity.service_request.ServiceRequestDAO;
 import edu.wpi.cs3733.D22.teamC.entity.service_request.medical_equipment.MedicalEquipmentSR;
 import edu.wpi.cs3733.D22.teamC.entity.service_request.medical_equipment.MedicalEquipmentSRDAO;
@@ -26,7 +27,7 @@ public class MedicalEquipmentSRInsertResolveController extends InsertServiceRequ
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         // Priority dropdown
-        for (MedicalEquipmentSR.EquipmentType medType : MedicalEquipmentSR.EquipmentType.values()) {
+        for (MedicalEquipment.EquipmentType medType : MedicalEquipment.EquipmentType.values()) {
             equipmentType.getItems().add(medType.toString());
         }
 
@@ -57,7 +58,7 @@ public class MedicalEquipmentSRInsertResolveController extends InsertServiceRequ
             if(equipmentID.getValue() != null)
                 serviceRequest.setEquipmentID(equipmentID.getValue());
             if(equipmentType.getValue() != null)
-                serviceRequest.setEquipmentType(MedicalEquipmentSR.EquipmentType.valueOf(equipmentType.getValue()));
+                serviceRequest.setEquipmentType(MedicalEquipment.EquipmentType.valueOf(equipmentType.getValue()));
         }
     }
 
@@ -108,16 +109,16 @@ public class MedicalEquipmentSRInsertResolveController extends InsertServiceRequ
             String type = "";
             int nums = 0;
 
-            if (lastType.equals(MedicalEquipmentSR.EquipmentType.Bed.toString())) {
+            if (lastType.equals(MedicalEquipment.EquipmentType.Bed.toString())) {
                 type = "BED";
                 nums = numBeds;
-            } else if (lastType.equals(MedicalEquipmentSR.EquipmentType.Recliner.toString())) {
+            } else if (lastType.equals(MedicalEquipment.EquipmentType.Recliner.toString())) {
                 type = "REC";
                 nums = numRecliners;
-            } else if (lastType.equals(MedicalEquipmentSR.EquipmentType.Infusion_Pump.toString())) {
+            } else if (lastType.equals(MedicalEquipment.EquipmentType.Infusion_Pump.toString())) {
                 type = "INF";
                 nums = numInfusion;
-            } else if (lastType.equals(MedicalEquipmentSR.EquipmentType.Portable_X_Ray.toString())) {
+            } else if (lastType.equals(MedicalEquipment.EquipmentType.Portable_X_Ray.toString())) {
                 type = "XRA";
                 nums = numXRay;
             }
