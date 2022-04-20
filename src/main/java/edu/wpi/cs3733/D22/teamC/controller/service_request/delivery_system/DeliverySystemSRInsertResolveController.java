@@ -13,7 +13,6 @@ import edu.wpi.cs3733.D22.teamC.models.utils.ComponentWrapper;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.control.TextField;
 import javafx.scene.input.KeyEvent;
 import org.controlsfx.control.SearchableComboBox;
 
@@ -49,8 +48,7 @@ public class DeliverySystemSRInsertResolveController extends InsertServiceReques
         patientSComboBox.setEditable(isEditMode);
         patientSComboBox.setDisable(!isEditMode);
     
-        PatientDAO patientDAO = new PatientDAO();
-        Patient currPatient = patientDAO.getByID(serviceRequest.getPatientID());
+        Patient currPatient = serviceRequest.getPatient();
         
         deliveryType.setPromptText(serviceRequest.getDeliveryType().toString());
         patientSComboBox.setValue(currPatient);
@@ -71,7 +69,7 @@ public class DeliverySystemSRInsertResolveController extends InsertServiceReques
             if(deliveryType.getValue() != null)
                 serviceRequest.setDeliveryType(DeliverySystemSR.DeliveryType.valueOf(deliveryType.getValue()));
             if(patientSComboBox.getValue() != null)
-                serviceRequest.setPatientID(patientSComboBox.getValue().getID());
+                serviceRequest.setPatient(patientSComboBox.getValue());
         }
     }
     

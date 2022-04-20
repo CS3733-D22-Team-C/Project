@@ -79,7 +79,7 @@ public class UserProfileController implements Initializable {
 
         name.setText(currentEmploy.getFirstName() + " " + currentEmploy.getLastName());
         position.setText(currentEmploy.getRole().toString());
-        contact.setText(currentEmploy.getAddress());
+        contact.setText(currentEmploy.getPhone());
         address.setText(currentEmploy.getAddress());
         username.setText(currentEmploy.getUsername());
         topNode.setAlignment(Pos.TOP_CENTER);

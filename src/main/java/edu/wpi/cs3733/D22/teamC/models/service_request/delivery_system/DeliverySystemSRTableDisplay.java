@@ -20,8 +20,8 @@ public class DeliverySystemSRTableDisplay extends ServiceRequestTableDisplay<Del
             PatientDAO patientDAO = new PatientDAO();
             
             this.deliveryType = new SimpleStringProperty(deliverySystemSR.getDeliveryType().toString());
-            this.patientName = new SimpleStringProperty((patientDAO.getByID(deliverySystemSR.getPatientID()) != null)
-                    ? patientDAO.getByID(deliverySystemSR.getPatientID()).toString() : "N/A");
+            this.patientName = new SimpleStringProperty((deliverySystemSR.getPatient() != null)
+                    ? deliverySystemSR.getPatient().toString() : "N/A");
         }
     }
     
