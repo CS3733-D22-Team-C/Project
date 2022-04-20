@@ -15,7 +15,6 @@ public abstract class InsertServiceRequestResolveController<T extends ServiceReq
         this.parentController = baseServiceRequestResolveController;
         this.isEditMode =isEditMode;
         this.serviceRequest = serviceRequest;
-        //System.out.println(isEditMode);
     }
 
    public boolean requiredFieldsPresent(){return true;}

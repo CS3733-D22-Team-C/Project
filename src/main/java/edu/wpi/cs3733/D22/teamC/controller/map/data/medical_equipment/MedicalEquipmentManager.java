@@ -4,8 +4,6 @@ import edu.wpi.cs3733.D22.teamC.App;
 import edu.wpi.cs3733.D22.teamC.controller.map.MapViewController;
 import edu.wpi.cs3733.D22.teamC.controller.map.data.ManagerMapNodes;
 import edu.wpi.cs3733.D22.teamC.controller.map.data.MapNode;
-import edu.wpi.cs3733.D22.teamC.entity.floor.Floor;
-import edu.wpi.cs3733.D22.teamC.entity.floor.FloorDAO;
 import edu.wpi.cs3733.D22.teamC.entity.location.Location;
 import edu.wpi.cs3733.D22.teamC.entity.location.LocationDAO;
 import edu.wpi.cs3733.D22.teamC.entity.medical_equipment.MedicalEquipment;
@@ -15,13 +13,11 @@ import edu.wpi.cs3733.D22.teamC.entity.service_request.medical_equipment.Medical
 import edu.wpi.cs3733.D22.teamC.entity.service_request.medical_equipment.MedicalEquipmentSRDAO;
 import edu.wpi.cs3733.D22.teamC.models.builders.DialogBuilder;
 import edu.wpi.cs3733.D22.teamC.models.builders.NotificationBuilder;
-import javafx.scene.Group;
 import javafx.scene.control.Alert;
 import javafx.scene.control.ButtonBar;
 import javafx.scene.control.ButtonType;
 
 import java.sql.Timestamp;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.atomic.AtomicBoolean;
 import java.util.function.Consumer;
@@ -280,7 +276,7 @@ public class MedicalEquipmentManager extends ManagerMapNodes<MedicalEquipment> {
             serviceRequest.setDescription("");
 
             serviceRequest.setEquipmentType(medicalEquipment.getEquipmentType());
-            serviceRequest.setEquipmentID(medicalEquipment.getID());
+            serviceRequest.setEquipment(medicalEquipment);
             serviceRequest.setEquipmentStatus(MedicalEquipmentSR.EquipmentStatus.Available);
             serviceRequest.setLocation(defaultLocation == null ? "" : defaultLocation.getID());
 
