@@ -7,6 +7,7 @@ import edu.wpi.cs3733.D22.teamC.entity.employee.Employee;
 import edu.wpi.cs3733.D22.teamC.entity.employee.EmployeeDAO;
 import io.github.palexdev.materialfx.controls.MFXButton;
 import io.github.palexdev.materialfx.controls.MFXPasswordField;
+import io.github.palexdev.materialfx.utils.SwingFXUtils;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -14,12 +15,14 @@ import javafx.geometry.Pos;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
+import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.VBox;
 import javafx.stage.FileChooser;
 
 import javax.imageio.ImageIO;
 import java.awt.image.BufferedImage;
+import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.IOException;
@@ -122,6 +125,14 @@ public class UserProfileController implements Initializable {
                 ImageIO.write(bImg, "png", byteArrayOutputStream);
                 bFile = byteArrayOutputStream.toByteArray();
                 imagePath = file.getName();
+
+                ByteArrayInputStream bis = new ByteArrayInputStream(bFile);
+                BufferedImage img = ImageIO.read(bis);
+                Image image = SwingFXUtils.toFXImage(img, null);
+
+//                profileImage.fitWidthProperty().bind(imageBox.widthProperty());
+//                profileImage.fitHeightProperty().bind(imageBox.heightProperty());
+                profileImage.setImage(image);
 
 
 
