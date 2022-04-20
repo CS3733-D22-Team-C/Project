@@ -63,6 +63,7 @@ public class PatientTransportSRCSVWriter extends CSVWriter<PatientTransportSR> {
                 break;
             case "transportTime":
                 output = serviceRequest.getTransportTime().toString();
+                break;
             case "modifierID":
                 Employee modifier = serviceRequest.getModifier();
                 output = (modifier != null) ? modifier.getID() : "";

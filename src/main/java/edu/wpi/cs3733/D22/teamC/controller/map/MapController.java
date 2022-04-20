@@ -18,6 +18,11 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
 import org.controlsfx.control.PopOver;
 
+import javax.imageio.ImageIO;
+import java.awt.image.BufferedImage;
+import java.io.ByteArrayInputStream;
+import java.io.ByteArrayOutputStream;
+import java.io.File;
 import java.net.URL;
 import java.nio.file.Path;
 import java.nio.file.Paths;
@@ -67,9 +72,7 @@ public class MapController implements Initializable {
         }
 
         public void setFloor(Floor newFloor) {
-            // TODO: Pull Image from DB
-            Path filePath = Paths.get("maps/" + newFloor.getImageSrc());
-            Image image = new Image("file:" + filePath);
+            Image image = new Image(new ByteArrayInputStream(newFloor.getImage()));
             mapImage.setImage(image);
             mapPane.setPrefWidth(image.getWidth());
             mapPane.setPrefHeight(image.getHeight());

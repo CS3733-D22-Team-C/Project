@@ -48,5 +48,4 @@
 /* Sets the background color of the drawer */
 .jfx-drawer {
     -fx-background-color: -color-background;
-
 }

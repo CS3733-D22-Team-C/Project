@@ -16,11 +16,13 @@ import edu.wpi.cs3733.D22.teamC.models.service_request.ServiceRequestTableDispla
 import edu.wpi.cs3733.D22.teamC.models.service_request.medical_equipment.MedicalEquipmentSRTableDisplay;
 import edu.wpi.cs3733.D22.teamC.models.service_request.translator.TranslatorSRTableDisplay;
 import edu.wpi.cs3733.D22.teamC.models.utils.ComponentWrapper;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.input.MouseEvent;
 import org.controlsfx.control.SearchableComboBox;
 
+import java.io.IOException;
 import java.net.URL;
 import java.util.List;
 import java.util.ResourceBundle;
@@ -37,9 +39,6 @@ public class TranslatorSRInsertCreateController implements InsertServiceRequestC
     @FXML
     private SearchableComboBox<String> languageSComboBox;
 
-    public void setPatient(Patient patient){
-        patientSComboBox.setValue(patient);
-    }
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
@@ -52,7 +51,7 @@ public class TranslatorSRInsertCreateController implements InsertServiceRequestC
         PatientDAO patientDAO = new PatientDAO();
         List<Patient> patients = patientDAO.getAll();
 
-        ComponentWrapper.initializeComboBox(patientSComboBox, Patient::toString);
+        ComponentWrapper.initializeComboBox(patientSComboBox,Patient::toString);
 
         patientSComboBox.getItems().setAll(patients);
     }
@@ -68,7 +67,7 @@ public class TranslatorSRInsertCreateController implements InsertServiceRequestC
     public TranslatorSR createServiceRequest() {
         TranslatorSR TSR = new TranslatorSR();
         TSR.setLanguage(TranslatorSR.Language.valueOf(languageSComboBox.getValue()));
-        TSR.setPatientID(patientSComboBox.getId());
+        TSR.setPatientID(patientSComboBox.getValue().getID());
         return TSR;
     }
 
@@ -88,8 +87,12 @@ public class TranslatorSRInsertCreateController implements InsertServiceRequestC
     }
 
     @FXML
-    public void goToPatientTable(){
-        new PatientSelectorWindow(patient -> this.setPatient(patient));
+    void goToPatientTable(ActionEvent event) throws IOException {
+        new PatientSelectorWindow(patient -> this.setPatientComboBox(patient));
+    }
+
+    private void setPatientComboBox(Patient patientComboBox) {
+        this.patientSComboBox.setValue(patientComboBox);
     }
 
     @Override

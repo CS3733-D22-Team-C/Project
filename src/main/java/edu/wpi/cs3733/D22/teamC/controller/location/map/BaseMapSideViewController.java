@@ -30,6 +30,7 @@ import org.controlsfx.control.textfield.CustomTextField;
 import javax.imageio.ImageIO;
 import java.awt.image.BufferedImage;
 import java.io.ByteArrayInputStream;
+import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.IOException;
 import java.net.URL;
@@ -66,7 +67,6 @@ public class BaseMapSideViewController implements Initializable {
 
     // Buttons
     @FXML private MFXButton deleteButton;
-    @FXML private MFXButton goToButton;
     @FXML private MFXButton editButton;
     @FXML private MFXButton addFloorButton;
     @FXML private MFXButton cancelButton;
@@ -129,6 +129,7 @@ public class BaseMapSideViewController implements Initializable {
             selectedFloor.setShortName(shortName.getText());
             selectedFloor.setImage(bFile);
             selectedFloor.setImageSrc(imagePath);
+            selectedFloor.setOrder(100);
 
             FloorDAO floorDAO = new FloorDAO();
             floorDAO.insert(selectedFloor);
@@ -218,15 +219,18 @@ public class BaseMapSideViewController implements Initializable {
         File file = fileChooser.showOpenDialog(App.instance.getStage());
 
         if (file != null) {
-
             // Load image
-            Path filePath = Paths.get(file.getPath());
-            Image image = new Image("file:" + filePath);
-            System.out.println(image.getUrl());
-            imagePath = image.getUrl();
-            bFile = new byte[(int) file.length()];
+            try {
+                BufferedImage bImg = ImageIO.read(file);
+                ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
+                ImageIO.write(bImg, "png", byteArrayOutputStream);
+                bFile = byteArrayOutputStream.toByteArray();
 
-            this.image.setText(imagePath);
+                imagePath = file.getName();
+                this.image.setText(imagePath);
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
         }
     }
 
@@ -236,23 +240,24 @@ public class BaseMapSideViewController implements Initializable {
         if(addFloorClicked) return;
         this.selectedFloor = floorNode.getFloor();
 
-        goToButton.setDisable(false);
+        System.out.println(selectedFloor.getImageSrc());
+
+        //goToButton.setDisable(false);
         deleteButton.setDisable(false);
         editButton.setDisable(false);
 
 
         floorTitle.setText(selectedFloor.getLongName());
 
-        System.out.println(selectedFloor.getImage());
         ByteArrayInputStream bis = new ByteArrayInputStream(selectedFloor.getImage());
-        System.out.println(bis);
         BufferedImage img = ImageIO.read(bis);
-        System.out.println(img);
         Image image = SwingFXUtils.toFXImage(img, null);
 
-        //floorImage.fitWidthProperty().bind(imageBox.widthProperty());
-        //floorImage.fitHeightProperty().bind(imageBox.heightProperty());
+        floorImage.fitWidthProperty().bind(imageBox.widthProperty());
+        floorImage.fitHeightProperty().bind(imageBox.heightProperty());
         floorImage.setImage(image);
+
+        InfoOverlay overlay = new InfoOverlay(floorImage, selectedFloor.getDescription());
 
         floorDescription.setContent(floorImage);
         floorDescription.setShowOnHover(true);
@@ -282,10 +287,13 @@ public class BaseMapSideViewController implements Initializable {
         image.setDisable(false);
         cancelButton.setDisable(false);
         confirmButton.setDisable(false);
+
+        bFile = selectedFloor.getImage();
+        imagePath = selectedFloor.getImageSrc();
     }
 
     @FXML
-    void onGoToClicked(ActionEvent event) {
+    void onGoToClicked() {
         App.View<MapViewController> view = App.instance.loadView(App.MAP_PATH);
         view.getController().getFloorManager().changeCurrent(selectedFloor);
         App.instance.setView(view.getNode());

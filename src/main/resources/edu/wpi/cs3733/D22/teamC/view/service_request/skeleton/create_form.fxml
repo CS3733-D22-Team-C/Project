@@ -26,16 +26,16 @@
     </rowConstraints>
     <children>
         <Label fx:id="title" alignment="CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="0.0" prefWidth="442.0" styleClass="card-content-header" text="Generic Service Request " GridPane.hgrow="ALWAYS" GridPane.vgrow="ALWAYS" />
-      <VBox fx:id="fieldsBox" prefHeight="200.0" prefWidth="100.0" styleClass="fields-padding" GridPane.rowIndex="1">
+      <VBox fx:id="fieldsBox" prefHeight="200.0" prefWidth="100.0" styleClass="fields-padding" GridPane.hgrow="ALWAYS" GridPane.rowIndex="1">
          <children>
-            <HBox maxHeight="-Infinity" prefHeight="124.0" prefWidth="490.0" VBox.vgrow="NEVER">
+            <HBox maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="124.0" prefWidth="490.0" VBox.vgrow="NEVER">
                <children>
                   <VBox alignment="CENTER_LEFT" prefHeight="200.0" prefWidth="100.0" styleClass="fields-padding" HBox.hgrow="ALWAYS">
                      <children>
                         <Label styleClass="service-field-label" text="Assign To:" />
                         <HBox spacing="1.5">
                            <children>
-                              <SearchableComboBox fx:id="employeeComboBox" HBox.hgrow="ALWAYS" />
+                              <SearchableComboBox fx:id="employeeComboBox" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" HBox.hgrow="ALWAYS" />
                               <JFXButton fx:id="employeeTableButton" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" onAction="#goToEmployeeTable" prefHeight="26.0" style="-fx-background-color: -color-secondary;" stylesheets="@../../../css/colors.css" />
                            </children>
                         </HBox>
@@ -46,7 +46,7 @@
                         <Label styleClass="service-field-label" text="Location:" />
                         <HBox>
                            <children>
-                              <SearchableComboBox fx:id="locationID" HBox.hgrow="ALWAYS" />
+                              <SearchableComboBox fx:id="locationID" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" HBox.hgrow="ALWAYS" />
                               <JFXButton fx:id="mapViewButton" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" onAction="#goToMapView" prefHeight="26.0" style="-fx-background-color: -color-secondary;" stylesheets="@../../../css/colors.css" />
                            </children>
                         </HBox>
@@ -55,7 +55,7 @@
                   <VBox alignment="CENTER_LEFT" prefHeight="200.0" prefWidth="100.0" styleClass="fields-padding" HBox.hgrow="ALWAYS">
                      <children>
                         <Label styleClass="service-field-label" text="Priority:" />
-                        <SearchableComboBox fx:id="priority" styleClass="dropdown" />
+                        <SearchableComboBox fx:id="priority" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" styleClass="dropdown" />
                      </children>
                   </VBox>
                </children>
