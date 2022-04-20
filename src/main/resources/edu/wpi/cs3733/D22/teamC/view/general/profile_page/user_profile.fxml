@@ -9,9 +9,18 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<VBox alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="1186.0" prefWidth="1785.0" styleClass="top_node" stylesheets="@../../../css/profile.css" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.wpi.cs3733.D22.teamC.controller.profile.UserProfileController">
+<VBox alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="1186.0" prefWidth="1785.0" stylesheets="@../../../css/profile.css" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.wpi.cs3733.D22.teamC.controller.profile.UserProfileController">
    <children>
-      <ImageView fitHeight="188.0" fitWidth="223.0" pickOnBounds="true" preserveRatio="true" />
+      <ImageView fx:id="profileImage" fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
+         <VBox.margin>
+            <Insets top="10.0" />
+         </VBox.margin>
+      </ImageView>
+      <MFXButton fx:id="addimg" onAction="#addImage" prefWidth="84.0" styleClass="vb_class" stylesheets="@../../../css/profile.css" text="Add Image">
+         <VBox.margin>
+            <Insets top="10.0" />
+         </VBox.margin>
+      </MFXButton>
       <Label fx:id="name" alignment="CENTER" contentDisplay="CENTER" prefHeight="72.0" prefWidth="1852.0" text="Test Value">
          <font>
             <Font size="36.0" />
@@ -44,7 +53,8 @@
             <Label fx:id="contact" text="Label">
                <font>
                   <Font size="24.0" />
-               </font></Label>
+               </font>
+            </Label>
          </children>
          <VBox.margin>
             <Insets bottom="10.0" top="10.0" />
@@ -63,7 +73,8 @@
             <Label fx:id="address" text="Label">
                <font>
                   <Font size="24.0" />
-               </font></Label>
+               </font>
+            </Label>
          </children>
          <VBox.margin>
             <Insets bottom="10.0" top="10.0" />
@@ -85,7 +96,8 @@
             <Label fx:id="username" text="Label">
                <font>
                   <Font size="24.0" />
-               </font></Label>
+               </font>
+            </Label>
          </children>
       </HBox>
       <HBox alignment="CENTER" prefHeight="409.0" prefWidth="1839.0">
@@ -140,7 +152,8 @@
                         <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
                      </padding>
                   </VBox>
-               </children></VBox>
+               </children>
+            </VBox>
          </children>
       </HBox>
       <HBox prefHeight="149.0" prefWidth="1606.0">

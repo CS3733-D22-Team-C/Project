@@ -1,10 +1,23 @@
 @import "colors.css";
 @import "fonts.css";
+@import "default.css";
 
-
-.top_node{
-    -fx-background-color: white;
+.mfx-text-field {
+    -fx-border-color: -color-primary;
 }
+
+.mfx-text-field .text-field {
+    -fx-background-color: transparent;
+}
+
+.mfx-text-field .floating-text {
+    -fx-text-fill: -color-primary;
+}
+
+.button {
+    -fx-text-fill: black;
+}
+
 .vb_class {
     -fx-background-color: -color-textarea;
     -fx-border-radius: 15px;
@@ -16,6 +29,7 @@
     -fx-border-radius: 15px;
     -fx-border-style: solid;
     -fx-background-radius: 15px;
+    -fx-text-fill: black;
 }
 .image-view{
     -fx-border-radius: 50px;

@@ -41,6 +41,13 @@ public class Employee implements IDEntity {
     @Column(name = "Password")
     private String password;
 
+    @Column(name = "ImageSrc")
+    private String imageSrc;
+
+    @Lob
+    @Column(name = "Image")
+    private byte[] image;
+
     public enum Role{
         Doctor,
         Nurse
@@ -132,6 +139,22 @@ public class Employee implements IDEntity {
 
     public void setPassword(String password) {
         this.password = password;
+    }
+
+    public String getImageSrc() {
+        return imageSrc;
+    }
+
+    public void setImageSrc(String imageSrc) {
+        this.imageSrc = imageSrc;
+    }
+
+    public byte[] getImage() {
+        return image;
+    }
+
+    public void setImage(byte[] image) {
+        this.image = image;
     }
 
     @Override
