@@ -11,4 +11,8 @@ public class LocationDAO extends DAO<Location> {
     protected Class<Location> classType() {
         return Location.class;
     }
+
+    public Location getByLongName(String longName) {
+        return null;
+    }
 }
