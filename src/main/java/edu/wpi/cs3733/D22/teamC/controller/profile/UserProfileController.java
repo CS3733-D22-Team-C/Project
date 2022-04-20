@@ -1,5 +1,6 @@
 package edu.wpi.cs3733.D22.teamC.controller.profile;
 
+import com.jfoenix.controls.JFXButton;
 import edu.wpi.cs3733.D22.teamC.App;
 import edu.wpi.cs3733.D22.teamC.controller.service_request.InsertServiceRequestCreateController;
 import edu.wpi.cs3733.D22.teamC.entity.employee.Employee;
@@ -15,7 +16,13 @@ import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.VBox;
+import javafx.stage.FileChooser;
 
+import javax.imageio.ImageIO;
+import java.awt.image.BufferedImage;
+import java.io.ByteArrayOutputStream;
+import java.io.File;
+import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
@@ -35,7 +42,8 @@ public class UserProfileController implements Initializable {
     @FXML MFXPasswordField newPass;
     @FXML MFXPasswordField newPassConfirm;
 
-    @FXML ImageView image;
+    @FXML ImageView profileImage;
+    @FXML JFXButton addimg;
 
 
     //ones made in the whatever
@@ -43,6 +51,8 @@ public class UserProfileController implements Initializable {
     @FXML VBox passwordNode;
 
     Employee currentEmploy;
+    private byte[] bFile;
+    private String imagePath;
 
     @Override
     public void initialize(URL location, ResourceBundle resources)
@@ -94,5 +104,30 @@ public class UserProfileController implements Initializable {
 
         //What other parameters do we need?
         return password.length() <= 20;
+    }
+
+    public void addImage()
+    {
+        FileChooser fileChooser = new FileChooser();
+        fileChooser.setTitle("Import Image File");
+        FileChooser.ExtensionFilter extFilter = new FileChooser.ExtensionFilter("Image files (*.png, *.jpg)", "*.png","*.jpg");
+        fileChooser.getExtensionFilters().add(extFilter);
+        File file = fileChooser.showOpenDialog(App.instance.getStage());
+
+        if (file != null) {
+            // Load image
+            try {
+                BufferedImage bImg = ImageIO.read(file);
+                ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
+                ImageIO.write(bImg, "png", byteArrayOutputStream);
+                bFile = byteArrayOutputStream.toByteArray();
+                imagePath = file.getName();
+
+
+
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
     }
 }

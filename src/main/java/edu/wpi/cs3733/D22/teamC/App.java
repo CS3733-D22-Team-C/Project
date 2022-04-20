@@ -85,8 +85,13 @@ public class App extends Application {
         // Store window as stage
         stage = primaryStage;
         stage.setFullScreen(true);
+<<<<<<< Updated upstream
         setViewStatic(LOGIN_PATH);
         //setViewStatic(MAP_DASHBOARD_PATH);
+=======
+
+        setViewStatic(LOGIN_PATH);
+>>>>>>> Stashed changes
     }
 
     @Override
