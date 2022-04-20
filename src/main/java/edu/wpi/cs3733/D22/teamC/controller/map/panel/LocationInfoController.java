@@ -92,7 +92,6 @@ public class LocationInfoController implements Initializable {
         medicalEquipmentTableDisplay = new MedicalEquipmentTableDisplay(medicalEquipmentTable);
 
         setRowInteraction();
-        setActiveMedicalEquipment(null);
     }
 
     /**
@@ -113,6 +112,7 @@ public class LocationInfoController implements Initializable {
         // Hide when inactive
         setEditable(false);
         setVisible(false);
+        setActiveMedicalEquipment(null);
     }
 
     /**
@@ -150,6 +150,7 @@ public class LocationInfoController implements Initializable {
         activeMedicalEquipment = medicalEquipment;
         updateStatus.setDisable(activeMedicalEquipment == null || statusComboBox.getValue() == null);
         updateLocation.setDisable(activeMedicalEquipment == null);
+        setLocationClickCapture(false);
     }
 
     private void updateMedicalEquipment() {
@@ -160,7 +161,26 @@ public class LocationInfoController implements Initializable {
         MedicalEquipmentManager medicalEquipmentManager = mapViewController.getMedicalEquipmentManager();
         if (medicalEquipmentManager != null) {
             MedicalEquipmentNode medicalEquipmentNode = (MedicalEquipmentNode) medicalEquipmentManager.getByLocation(mapViewController.getLocationManager().getCurrent());
+
             medicalEquipmentNode.updateValues();
+        }
+    }
+
+    private void setLocationClickCapture(boolean clickCapture) {
+        if (clickCapture) {
+            mapViewController.getLocationManager().onClickCapture = location -> {
+                activeMedicalEquipment.setLocationID(location.getID());
+                updateMedicalEquipment();
+
+                // Update Medical Equipment Table
+                populateMedicalEquipmentTable(mapViewController.getLocationManager().getCurrent());
+
+                setLocationClickCapture(false);
+            };
+            updateLocation.setVisible(false);
+        } else {
+            mapViewController.getLocationManager().onClickCapture = null;
+            updateLocation.setVisible(true);
         }
     }
 
@@ -196,6 +216,7 @@ public class LocationInfoController implements Initializable {
          */
         public void setLocation(Location location) {
             setVisible(location != null);
+            setLocationClickCapture(false);
 
             if (location == null) return;
 
@@ -274,6 +295,8 @@ public class LocationInfoController implements Initializable {
         void onUpdateStatusButtonPressed(ActionEvent event) {
             if (activeMedicalEquipment != null && statusComboBox != null) {
                 activeMedicalEquipment.setStatus(statusComboBox.getValue());
+
+                // Update Medical Equipment Table
                 medicalEquipmentTableDisplay.updateObject(activeMedicalEquipment);
 
                 updateMedicalEquipment();
@@ -284,9 +307,7 @@ public class LocationInfoController implements Initializable {
 
         @FXML
         public void onUpdateLocationButtonPressed(ActionEvent actionEvent) {
-            // TODO: Location Selection
-
-            updateMedicalEquipment();
+            setLocationClickCapture(true);
         }
 
         @FXML
