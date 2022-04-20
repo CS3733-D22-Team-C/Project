@@ -2,7 +2,10 @@ package edu.wpi.cs3733.D22.teamC.models.patient;
 
 import com.jfoenix.controls.JFXTreeTableView;
 import edu.wpi.cs3733.D22.teamC.entity.employee.Employee;
+import edu.wpi.cs3733.D22.teamC.entity.location.Location;
+import edu.wpi.cs3733.D22.teamC.entity.location.LocationDAO;
 import edu.wpi.cs3733.D22.teamC.entity.patient.Patient;
+import edu.wpi.cs3733.D22.teamC.entity.patient.PatientDAO;
 import edu.wpi.cs3733.D22.teamC.models.employee.EmployeeTableDisplay;
 import edu.wpi.cs3733.D22.teamC.models.generic.TableDisplay;
 import javafx.beans.property.BooleanProperty;
@@ -18,7 +21,7 @@ public class PatientTableDisplay extends TableDisplay<Patient>{
         private StringProperty lastName;
         private StringProperty emergencyContact;
         private StringProperty phone;
-        //private StringProperty DOB;
+        private StringProperty DOB;
         private StringProperty location;
 
 
@@ -30,9 +33,9 @@ public class PatientTableDisplay extends TableDisplay<Patient>{
             lastName = new SimpleStringProperty(patient.getLastName());
             emergencyContact = new SimpleStringProperty(patient.getEmergencyContact());
             phone = new SimpleStringProperty(patient.getPhone());
-            location = new SimpleStringProperty(patient.getLocationID());
-            //DOB = new SimpleStringProperty(patient.getDOB().toString());
-
+            System.out.println(patient.getLocationID());
+            location = new SimpleStringProperty((patient.getLocationID() == null) ? "" : new LocationDAO().getByID(patient.getLocationID()).getShortName());
+            DOB = new SimpleStringProperty(patient.getDOB().toString().substring(0,10));
         }
 
         @Override
@@ -41,12 +44,9 @@ public class PatientTableDisplay extends TableDisplay<Patient>{
             lastName.setValue(object.getLastName());
             phone.setValue(object.getPhone());
             patientID.setValue(object.getID());
-
             emergencyContact.setValue(object.getEmergencyContact());
-            location.setValue(object.getLocationID());
-         //   DOB.setValue(object.getDOB());
-
-
+            location.setValue((object.getLocationID() == null) ? "" : new LocationDAO().getByID(object.getLocationID()).getShortName());
+            DOB.setValue(object.getDOB().toString().substring(0,10));
         }
     }
 
@@ -65,22 +65,33 @@ public class PatientTableDisplay extends TableDisplay<Patient>{
         addColumn(
                 table,
                 "Last Name",
-                1f * Integer.MAX_VALUE * 25,
+                1f * Integer.MAX_VALUE * 20,
                 (PatientTableDisplay.PatientTableEntry entry) -> {return entry.lastName;}
         );
 
         addColumn(
                 table,
                 "First Name",
-                1f * Integer.MAX_VALUE * 25,
+                1f * Integer.MAX_VALUE * 20,
                 (PatientTableDisplay.PatientTableEntry entry) -> {return entry.firstName;}
         );
-//DOB
-//        addColumn(
-//                table,
-//                "Role",
-//                1f * Integer.MAX_VALUE * 25,
-//                (EmployeeTableDisplay.EmployeeTableEntry entry) -> {return entry.role;}
-//        );
+        addColumn(
+                table,
+                "Phone",
+                1f * Integer.MAX_VALUE * 20,
+                (PatientTableDisplay.PatientTableEntry entry) -> {return entry.phone;}
+        );
+        addColumn(
+                table,
+                "Location",
+                1f * Integer.MAX_VALUE * 20,
+                (PatientTableDisplay.PatientTableEntry entry) -> {return entry.location;}
+        );
+        addColumn(
+                table,
+                "DOB",
+                1f * Integer.MAX_VALUE * 20,
+                (PatientTableDisplay.PatientTableEntry entry) -> {return entry.DOB;}
+        );
     }
 }
