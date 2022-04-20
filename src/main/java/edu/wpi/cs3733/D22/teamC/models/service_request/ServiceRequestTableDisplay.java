@@ -9,7 +9,7 @@ import javafx.beans.property.*;
 public class ServiceRequestTableDisplay<T extends ServiceRequest> extends TableDisplay<T> {
     public class ServiceRequestTableEntry extends TableDisplayEntry {
         // Properties
-        public StringProperty id;
+        public StringProperty number;
         public StringProperty type;
         public StringProperty assigneeID;
         public StringProperty location;
@@ -21,10 +21,10 @@ public class ServiceRequestTableDisplay<T extends ServiceRequest> extends TableD
         public ServiceRequestTableEntry(T serviceRequest) {
             super(serviceRequest);
 
-            this.id           = new SimpleStringProperty(serviceRequest.getID());
+            this.number       = new SimpleStringProperty(serviceRequest.toString());
             this.type         = new SimpleStringProperty(serviceRequest.getRequestType().toString());
             this.assigneeID   = new SimpleStringProperty(serviceRequest.getAssignee() == null ? "" : serviceRequest.getAssignee().getLastName() + ", " + serviceRequest.getAssignee().getFirstName());
-            this.location     = new SimpleStringProperty(serviceRequest.getLocation() == ""? "" : new LocationDAO().getByID(serviceRequest.getLocation()).getShortName());
+            this.location     = new SimpleStringProperty(serviceRequest.getLocation().equals("") ? "" : new LocationDAO().getByID(serviceRequest.getLocation()).getShortName());
             this.status       = new SimpleStringProperty(serviceRequest.getStatus().toString());
             this.priority     = new SimpleStringProperty(serviceRequest.getPriority().toString());
             this.createTime   = new SimpleStringProperty(serviceRequest.getCreationTimestamp().toString());
@@ -46,9 +46,9 @@ public class ServiceRequestTableDisplay<T extends ServiceRequest> extends TableD
         // Insert Columns for Table
         addColumn(
                 table,
-                "ID",
+                "Number",
                 1f * Integer.MAX_VALUE * 16.66,
-                (ServiceRequestTableEntry entry) -> {return entry.id;}
+                (ServiceRequestTableEntry entry) -> {return entry.number;}
         );
 
         addColumn(
@@ -94,9 +94,9 @@ public class ServiceRequestTableDisplay<T extends ServiceRequest> extends TableD
     protected void setPartialColumns(JFXTreeTableView table) {
         addColumn(
                 table,
-                "ID",
+                "Number",
                 1f * Integer.MAX_VALUE * 16.66,
-                (ServiceRequestTableEntry entry) -> {return entry.id;}
+                (ServiceRequestTableEntry entry) -> {return entry.number;}
         );
 
         addColumn(
