@@ -21,7 +21,8 @@ public class TranslatorSRTableDisplay extends ServiceRequestTableDisplay<Transla
 
             PatientDAO patientDAO = new PatientDAO();
             this.language = new SimpleStringProperty((translatorSR.getLanguage().toString()));
-            //this.patient = new SimpleStringProperty(patientDAO.getByID(translatorSR.getPatientID()).getFirstName());
+            this.patient = new SimpleStringProperty((patientDAO.getByID(translatorSR.getPatientID()).getFirstName() == null) ?
+                    "" : patientDAO.getByID(translatorSR.getPatientID()).getFirstName());
 
         }
     }
