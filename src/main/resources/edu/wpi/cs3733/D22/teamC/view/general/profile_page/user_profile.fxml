@@ -14,7 +14,8 @@
       <ImageView fx:id="profileImage" fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
          <VBox.margin>
             <Insets top="10.0" />
-         </VBox.margin></ImageView>
+         </VBox.margin>
+      </ImageView>
       <MFXButton fx:id="addimg" onAction="#addImage" prefWidth="84.0" styleClass="vb_class" stylesheets="@../../../css/profile.css" text="Add Image">
          <VBox.margin>
             <Insets top="10.0" />
@@ -52,7 +53,8 @@
             <Label fx:id="contact" text="Label">
                <font>
                   <Font size="24.0" />
-               </font></Label>
+               </font>
+            </Label>
          </children>
          <VBox.margin>
             <Insets bottom="10.0" top="10.0" />
@@ -71,7 +73,8 @@
             <Label fx:id="address" text="Label">
                <font>
                   <Font size="24.0" />
-               </font></Label>
+               </font>
+            </Label>
          </children>
          <VBox.margin>
             <Insets bottom="10.0" top="10.0" />
@@ -93,7 +96,8 @@
             <Label fx:id="username" text="Label">
                <font>
                   <Font size="24.0" />
-               </font></Label>
+               </font>
+            </Label>
          </children>
       </HBox>
       <HBox alignment="CENTER" prefHeight="409.0" prefWidth="1839.0">
@@ -148,7 +152,8 @@
                         <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
                      </padding>
                   </VBox>
-               </children></VBox>
+               </children>
+            </VBox>
          </children>
       </HBox>
       <HBox prefHeight="149.0" prefWidth="1606.0">
