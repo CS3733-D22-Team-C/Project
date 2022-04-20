@@ -20,7 +20,7 @@
             <Label prefHeight="18.0" prefWidth="134.0" styleClass="service-field-label" text="Patient" />
             <HBox>
                <children>
-                  <SearchableComboBox fx:id="patientComboBox" />
+                  <SearchableComboBox fx:id="patientComboBox" maxWidth="1.7976931348623157E308" HBox.hgrow="ALWAYS" />
                   <JFXButton fx:id="patientTableButton" ellipsisString="" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" onAction="#goToPatientTable" prefHeight="26.0" prefWidth="38.0" style="-fx-background-color: -color-secondary;" stylesheets="@../../../css/colors.css" text="-&gt;" />
                </children>
             </HBox>
