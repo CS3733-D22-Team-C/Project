@@ -1,319 +1,259 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import com.jfoenix.controls.JFXButton?>
+<?import com.jfoenix.controls.JFXTreeTableView?>
+<?import io.github.palexdev.materialfx.controls.MFXScrollPane?>
+<?import java.lang.String?>
 <?import javafx.geometry.Insets?>
-<?import javafx.scene.Cursor?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.effect.Bloom?>
-<?import javafx.scene.effect.DropShadow?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
-<?import javafx.scene.layout.ColumnConstraints?>
-<?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.HBox?>
-<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<GridPane fx:id="root" alignment="CENTER" prefHeight="650.0" prefWidth="900.0" styleClass="page-container" stylesheets="@../../css/default.css" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.wpi.cs3733.D22.teamC.controller.service_request.ServiceRequestLandingPage">
-   <columnConstraints>
-      <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-      <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-      <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-      <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-      <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-   </columnConstraints>
-   <rowConstraints>
-      <RowConstraints maxHeight="345.79998779296875" minHeight="10.0" prefHeight="329.0" vgrow="SOMETIMES" />
-      <RowConstraints maxHeight="434.79999999999995" minHeight="10.0" prefHeight="252.2" vgrow="SOMETIMES" />
-      <RowConstraints maxHeight="212.60001220703123" minHeight="0.0" prefHeight="67.80002441406248" vgrow="SOMETIMES" />
-   </rowConstraints>
+<HBox alignment="CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" styleClass="page-padding" stylesheets="@../../css/component/service_request_landing_page.css" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.wpi.cs3733.D22.teamC.controller.service_request.ServiceRequestLandingPage">
    <children>
-      <VBox alignment="BOTTOM_CENTER" prefHeight="312.0" prefWidth="192.0">
+      <VBox alignment="CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" styleClass="page-container" HBox.hgrow="ALWAYS">
          <children>
-            <Label prefHeight="61.0" prefWidth="134.0" styleClass="label-service-names" stylesheets="@../../css/component/service_request_landing_page.css" text="Patient Transport" />
-            <JFXButton onAction="#clickPatientTransport" opacity="0.5" prefHeight="134.0" prefWidth="131.0" styleClass="button-requests" stylesheets="@../../css/component/service_request_landing_page.css">
-               <effect>
-                  <DropShadow height="3.51" offsetY="10.0" radius="0.37749999999999995" width="0.0" />
-               </effect>
-               <cursor>
-                  <Cursor fx:constant="HAND" />
-               </cursor>
-            </JFXButton>
-            <Label fx:id="vagmi" styleClass="label-our-names" stylesheets="@../../css/component/service_request_landing_page.css" text="Vagmi Bhagavathula" />
-         </children>
-         <GridPane.margin>
-            <Insets />
-         </GridPane.margin>
-         <padding>
-            <Insets bottom="50.0" />
-         </padding>
-      </VBox>
-      <VBox alignment="BOTTOM_CENTER" GridPane.columnIndex="1">
-         <children>
-            <Label prefHeight="37.0" prefWidth="160.0" styleClass="label-service-names" stylesheets="@../../css/component/service_request_landing_page.css" text="Translator" />
-            <JFXButton onAction="#clickTranslator" opacity="0.5" prefHeight="134.0" prefWidth="131.0" styleClass="button-requests" stylesheets="@../../css/component/service_request_landing_page.css">
-               <effect>
-                  <DropShadow height="3.51" offsetY="10.0" radius="0.37749999999999995" width="0.0" />
-               </effect>
-               <cursor>
-                  <Cursor fx:constant="HAND" />
-               </cursor>
-            </JFXButton>
-            <Label fx:id="vishu" styleClass="label-our-names" stylesheets="@../../css/component/service_request_landing_page.css" text="Vishnu Dendukuri" />
-         </children>
-         <padding>
-            <Insets bottom="50.0" />
-         </padding>
-      </VBox>
-      <VBox alignment="BOTTOM_CENTER" GridPane.columnIndex="2">
-         <children>
-            <Label prefHeight="57.0" prefWidth="99.0" styleClass="label-service-names" stylesheets="@../../css/component/service_request_landing_page.css" text="Medicine Delivery" textAlignment="CENTER">
-               <padding>
-                  <Insets bottom="3.0" />
-               </padding>
-            </Label>
-            <JFXButton onAction="#clickMedicineDelivery" opacity="0.5" prefHeight="134.0" prefWidth="131.0" styleClass="button-requests" stylesheets="@../../css/component/service_request_landing_page.css">
-               <effect>
-                  <DropShadow height="3.51" offsetY="10.0" radius="0.37749999999999995" width="0.0" />
-               </effect>
-               <graphic>
-                  <ImageView fitHeight="55.38" fitWidth="71.0">
-                     <image>
-                        <Image url="@../../static/images/Medicine_Delivery(pills).png" />
-                     </image>
-                  </ImageView>
-               </graphic>
-               <cursor>
-                  <Cursor fx:constant="HAND" />
-               </cursor>
-            </JFXButton>
-            <Label fx:id="nick" styleClass="label-our-names" stylesheets="@../../css/component/service_request_landing_page.css" text="Nick Frangie" />
-         </children>
-         <GridPane.margin>
-            <Insets />
-         </GridPane.margin>
-         <padding>
-            <Insets bottom="50.0" />
-         </padding>
-      </VBox>
-      <VBox alignment="BOTTOM_CENTER" GridPane.columnIndex="3">
-         <children>
-            <Label alignment="BOTTOM_CENTER" prefHeight="58.0" prefWidth="133.0" styleClass="label-service-names" stylesheets="@../../css/component/service_request_landing_page.css" text="Facility Maintenance" textAlignment="CENTER" wrapText="true" />
-            <JFXButton onAction="#clickFacilityMaintenance" opacity="0.5" prefHeight="134.0" prefWidth="131.0" styleClass="button-requests" stylesheets="@../../css/component/service_request_landing_page.css" text=" ">
-               <effect>
-                  <DropShadow height="3.51" offsetY="10.0" radius="0.37749999999999995" width="0.0" />
-               </effect>
-               <graphic>
-                  <ImageView fitHeight="53.35" fitWidth="71.0">
-                     <image>
-                        <Image url="@../../static/images/Facilities_Maintenance(faucet).png" />
-                     </image>
-                  </ImageView>
-               </graphic>
-               <cursor>
-                  <Cursor fx:constant="HAND" />
-               </cursor>
-            </JFXButton>
-            <Label fx:id="matthew" styleClass="label-our-names" stylesheets="@../../css/component/service_request_landing_page.css" text="Matthew McAlarney" />
-         </children>
-         <padding>
-            <Insets bottom="50.0" />
-         </padding>
-      </VBox>
-      <GridPane prefHeight="372.0" prefWidth="360.0" GridPane.columnIndex="4">
-         <columnConstraints>
-            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-         </columnConstraints>
-         <rowConstraints>
-            <RowConstraints maxHeight="413.6000183105469" minHeight="8.000010299682629" prefHeight="40.2666633605957" vgrow="SOMETIMES" />
-            <RowConstraints maxHeight="568.000001525879" minHeight="10.0" prefHeight="286.33333663940425" vgrow="SOMETIMES" />
-         </rowConstraints>
-         <children>
-            <VBox alignment="BOTTOM_CENTER" prefHeight="191.0" prefWidth="360.0" GridPane.rowIndex="1">
+            <Label id="title" text="Pending Service Requests" />
+            <JFXTreeTableView fx:id="table" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" styleClass="table-view" VBox.vgrow="ALWAYS" />
+            <HBox alignment="CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="100.0" prefWidth="316.0">
                <children>
-                  <Label alignment="CENTER" prefHeight="57.0" prefWidth="130.0" styleClass="label-service-names" stylesheets="@../../css/component/service_request_landing_page.css" text="Medical Equipment" textAlignment="CENTER" wrapText="true" />
-                  <JFXButton onAction="#clickMedicalEquipment" opacity="0.5" prefHeight="134.0" prefWidth="131.0" styleClass="button-requests" stylesheets="@../../css/component/service_request_landing_page.css">
-                     <effect>
-                        <DropShadow height="3.51" offsetY="10.0" radius="0.37749999999999995" width="0.0" />
-                     </effect>
-                     <graphic>
-                        <ImageView fitHeight="68.37" fitWidth="71.0">
-                           <image>
-                              <Image url="@../../static/images/Medical_Equipment(stethiscope).png" />
-                           </image>
-                        </ImageView>
-                     </graphic>
-                     <cursor>
-                        <Cursor fx:constant="HAND" />
-                     </cursor>
+                  <JFXButton fx:id="edit" disable="true" onAction="#onEditButton" prefHeight="31.0" prefWidth="72.0" styleClass="button-success" stylesheets="@../../css/base.css" text="Edit" HBox.hgrow="ALWAYS">
+                     <HBox.margin>
+                        <Insets />
+                     </HBox.margin>
                   </JFXButton>
-                  <Label fx:id="mia" styleClass="label-our-names" stylesheets="@../../css/component/service_request_landing_page.css" text="Mia Mueting" />
-               </children>
-               <opaqueInsets>
-                  <Insets bottom="20.0" />
-               </opaqueInsets>
-               <padding>
-                  <Insets bottom="50.0" />
-               </padding>
-            </VBox>
-            <VBox alignment="TOP_RIGHT" prefHeight="19.0" prefWidth="180.0">
-               <children>
-                  <JFXButton contentDisplay="RIGHT" graphicTextGap="0.0" onAction="#canViewNames" text=" ">
-                     <font>
-                        <Font size="1.0" />
-                     </font>
-                     <graphic>
-                        <ImageView fx:id="eye" accessibleRole="BUTTON" fitHeight="27.0" fitWidth="34.0">
-                           <image>
-                              <Image url="@../../static/images/Eye.png" />
-                           </image>
-                           <effect>
-                              <Bloom />
-                           </effect>
-                        </ImageView>
-                     </graphic>
+                  <JFXButton fx:id="resolve" disable="true" onAction="#onResolveButton" prefHeight="31.0" styleClass="button-confirm" stylesheets="@../../css/base.css" text="Resolve" HBox.hgrow="ALWAYS">
+                     <HBox.margin>
+                        <Insets left="20.0" />
+                     </HBox.margin>
                   </JFXButton>
                </children>
-               <opaqueInsets>
-                  <Insets />
-               </opaqueInsets>
-               <padding>
-                  <Insets left="15.0" right="15.0" top="15.0" />
-               </padding>
-            </VBox>
-         </children>
-      </GridPane>
-      <VBox alignment="BOTTOM_CENTER" GridPane.rowIndex="1">
+            </HBox>
+         </children></VBox>
+      <VBox alignment="CENTER_RIGHT" stylesheets="@../../css/component/service_request_landing_page.css">
          <children>
-            <Label styleClass="label-service-names" stylesheets="@../../css/component/service_request_landing_page.css" text="Security" />
-            <JFXButton onAction="#clickSecurity" opacity="0.5" prefHeight="134.0" prefWidth="131.0" styleClass="button-requests" stylesheets="@../../css/component/service_request_landing_page.css">
-               <effect>
-                  <DropShadow height="3.51" offsetY="10.0" radius="0.37749999999999995" width="0.0" />
-               </effect>
-               <graphic>
-                  <ImageView fitHeight="75.13" fitWidth="71.0">
-                     <image>
-                        <Image url="@../../static/images/Sercurity(shield).png" />
-                     </image>
-                  </ImageView>
-               </graphic>
-               <cursor>
-                  <Cursor fx:constant="HAND" />
-               </cursor>
-            </JFXButton>
-            <Label fx:id="jack" styleClass="label-our-names" stylesheets="@../../css/component/service_request_landing_page.css" text="Jack Muirhead" />
+            <StackPane prefHeight="0.0" prefWidth="306.0">
+               <children>
+                  <Label id="title" alignment="CENTER" maxWidth="1.7976931348623157E308" prefHeight="18.0" text="Create a Service Request" />
+                  <HBox alignment="CENTER_RIGHT" prefHeight="100.0" prefWidth="200.0">
+                     <children>
+                        <JFXButton contentDisplay="RIGHT" graphicTextGap="0.0" onAction="#canViewNames" text=" ">
+                           <font>
+                              <Font size="1.0" />
+                           </font>
+                           <graphic>
+                              <ImageView fx:id="eye" accessibleRole="BUTTON" fitHeight="27.0" fitWidth="34.0">
+                                 <image>
+                                    <Image url="@../../static/images/Eye.png" />
+                                 </image>
+                                 <effect>
+                                    <Bloom />
+                                 </effect>
+                              </ImageView>
+                           </graphic>
+                        </JFXButton>
+                     </children>
+                  </HBox>
+               </children>
+            </StackPane>
+            <MFXScrollPane hbarPolicy="NEVER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" prefHeight="494.0" prefWidth="306.0" styleClass="service-request-container" VBox.vgrow="ALWAYS">
+               <content>
+                  <VBox maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" styleClass="service-request-container">
+                     <children>
+                        <HBox id="patient-transport" alignment="BOTTOM_LEFT" maxHeight="1.7976931348623157E308" onMouseClicked="#clickPatientTransport" prefHeight="150.0" prefWidth="0.0" styleClass="service-request-card">
+                           <children>
+                              <StackPane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" HBox.hgrow="ALWAYS">
+                                 <children>
+                                    <HBox alignment="BOTTOM_LEFT" prefHeight="100.0" prefWidth="200.0">
+                                       <children>
+                                          <Label maxWidth="1.7976931348623157E308" prefHeight="38.0" prefWidth="412.0" styleClass="service-request-card-text" text="Patient Transport" HBox.hgrow="ALWAYS" />
+                                       </children>
+                                    </HBox>
+                                    <HBox alignment="BOTTOM_RIGHT" prefHeight="100.0" prefWidth="200.0">
+                                       <children>
+                                          <Label fx:id="vagmi" alignment="CENTER_RIGHT" prefHeight="38.0" prefWidth="134.0" styleClass="service-request-card-name" text="Vagmi Bhagavathula" />
+                                       </children>
+                                    </HBox>
+                                 </children>
+                              </StackPane>
+                           </children>
+                        </HBox>
+                        <HBox id="translator" alignment="BOTTOM_LEFT" maxHeight="1.7976931348623157E308" onMouseClicked="#clickTranslator" prefHeight="150.0" prefWidth="0.0" styleClass="service-request-card">
+                           <children>
+                              <StackPane maxWidth="1.7976931348623157E308" prefHeight="140.0" HBox.hgrow="ALWAYS">
+                                 <children>
+                                    <HBox alignment="BOTTOM_LEFT" prefHeight="100.0" prefWidth="200.0">
+                                       <children>
+                                          <Label maxWidth="1.7976931348623157E308" prefHeight="18.0" prefWidth="229.0" styleClass="service-request-card-text" text="Translator" HBox.hgrow="ALWAYS" />
+                                       </children>
+                                    </HBox>
+                                    <HBox alignment="BOTTOM_RIGHT" prefHeight="100.0" prefWidth="200.0">
+                                       <children>
+                                          <Label fx:id="vishnu" alignment="CENTER_RIGHT" prefHeight="18.0" prefWidth="168.0" styleClass="service-request-card-name" text="Vishnu Dendukuri" />
+                                       </children>
+                                    </HBox>
+                                 </children>
+                              </StackPane>
+                           </children>
+                        </HBox>
+                        <HBox id="facility-maintenance" alignment="BOTTOM_LEFT" maxHeight="1.7976931348623157E308" onMouseClicked="#clickFacilityMaintenance" prefHeight="150.0" prefWidth="0.0" styleClass="service-request-card">
+                           <children>
+                              <StackPane maxWidth="1.7976931348623157E308" HBox.hgrow="ALWAYS">
+                                 <children>
+                                    <HBox alignment="BOTTOM_LEFT" prefHeight="100.0" prefWidth="200.0">
+                                       <children>
+                                          <Label maxWidth="1.7976931348623157E308" prefHeight="18.0" prefWidth="229.0" styleClass="service-request-card-text" text="Facility Maintenance" HBox.hgrow="ALWAYS" />
+                                       </children>
+                                    </HBox>
+                                    <HBox alignment="BOTTOM_RIGHT" prefHeight="100.0" prefWidth="200.0">
+                                       <children>
+                                          <Label fx:id="matthew" alignment="CENTER_RIGHT" prefHeight="18.0" styleClass="service-request-card-name" text="Matthew McAlarney" />
+                                       </children>
+                                    </HBox>
+                                 </children>
+                              </StackPane>
+                           </children>
+                        </HBox>
+                        <HBox id="medicine-delivery" alignment="BOTTOM_LEFT" maxHeight="1.7976931348623157E308" onMouseClicked="#clickMedicineDelivery" prefHeight="150.0" prefWidth="0.0" styleClass="service-request-card">
+                           <children>
+                              <StackPane HBox.hgrow="ALWAYS">
+                                 <children>
+                                    <HBox alignment="BOTTOM_LEFT" prefHeight="100.0" prefWidth="200.0">
+                                       <children>
+                                          <Label maxWidth="1.7976931348623157E308" prefHeight="18.0" prefWidth="229.0" styleClass="service-request-card-text" text="Medicine Delivery" HBox.hgrow="ALWAYS" />
+                                       </children>
+                                    </HBox>
+                                    <HBox alignment="BOTTOM_RIGHT" prefHeight="100.0" prefWidth="200.0">
+                                       <children>
+                                          <Label fx:id="nick" alignment="CENTER_RIGHT" prefHeight="18.0" styleClass="service-request-card-name" text="Nick Frangie" />
+                                       </children>
+                                    </HBox>
+                                 </children>
+                              </StackPane>
+                           </children>
+                        </HBox>
+                        <HBox id="medical-equipment" alignment="BOTTOM_LEFT" maxHeight="1.7976931348623157E308" onMouseClicked="#clickMedicalEquipment" prefHeight="150.0" prefWidth="0.0" styleClass="service-request-card">
+                           <children>
+                              <StackPane maxWidth="1.7976931348623157E308" HBox.hgrow="ALWAYS">
+                                 <children>
+                                    <HBox alignment="BOTTOM_LEFT" prefHeight="100.0" prefWidth="200.0">
+                                       <children>
+                                          <Label maxWidth="1.7976931348623157E308" prefHeight="18.0" prefWidth="229.0" styleClass="service-request-card-text" text="Medical Equipment" HBox.hgrow="ALWAYS" />
+                                       </children>
+                                    </HBox>
+                                    <HBox alignment="BOTTOM_RIGHT" prefHeight="100.0" prefWidth="200.0">
+                                       <children>
+                                          <Label fx:id="mia" alignment="CENTER_RIGHT" prefHeight="18.0" styleClass="service-request-card-name" text="Mia Mueting" />
+                                       </children>
+                                    </HBox>
+                                 </children>
+                              </StackPane>
+                           </children>
+                        </HBox>
+                        <HBox id="security" alignment="BOTTOM_LEFT" maxHeight="1.7976931348623157E308" onMouseClicked="#clickSecurity" prefHeight="150.0" prefWidth="0.0" styleClass="service-request-card">
+                           <children>
+                              <StackPane HBox.hgrow="ALWAYS">
+                                 <children>
+                                    <HBox alignment="BOTTOM_LEFT" prefHeight="100.0" prefWidth="200.0">
+                                       <children>
+                                          <Label maxWidth="1.7976931348623157E308" prefHeight="18.0" styleClass="service-request-card-text" text="Security" HBox.hgrow="ALWAYS" />
+                                       </children>
+                                    </HBox>
+                                    <HBox alignment="BOTTOM_RIGHT" prefHeight="100.0" prefWidth="200.0">
+                                       <children>
+                                          <Label fx:id="jack" alignment="CENTER_RIGHT" prefHeight="18.0" styleClass="service-request-card-name" text="Jack Muirhead" />
+                                       </children>
+                                    </HBox>
+                                 </children>
+                              </StackPane>
+                           </children>
+                        </HBox>
+                        <HBox id="laundry" alignment="BOTTOM_LEFT" maxHeight="1.7976931348623157E308" onMouseClicked="#clickLaundry" prefHeight="150.0" prefWidth="0.0" styleClass="service-request-card">
+                           <children>
+                              <StackPane maxWidth="1.7976931348623157E308" HBox.hgrow="ALWAYS">
+                                 <children>
+                                    <HBox alignment="BOTTOM_LEFT" prefHeight="100.0" prefWidth="200.0">
+                                       <children>
+                                          <Label maxWidth="1.7976931348623157E308" prefHeight="18.0" prefWidth="229.0" styleClass="service-request-card-text" text="Laundry" HBox.hgrow="ALWAYS" />
+                                       </children>
+                                    </HBox>
+                                    <HBox alignment="BOTTOM_RIGHT" prefHeight="100.0" prefWidth="200.0">
+                                       <children>
+                                          <Label fx:id="grace" alignment="CENTER_RIGHT" prefHeight="18.0" styleClass="service-request-card-name" text="Grace O'Reilly" />
+                                       </children>
+                                    </HBox>
+                                 </children>
+                              </StackPane>
+                           </children>
+                        </HBox>
+                        <HBox id="lab-system" alignment="BOTTOM_LEFT" maxHeight="1.7976931348623157E308" onMouseClicked="#clickLabSystem" prefHeight="150.0" prefWidth="0.0" styleClass="service-request-card">
+                           <children>
+                              <StackPane maxWidth="1.7976931348623157E308" HBox.hgrow="ALWAYS">
+                                 <children>
+                                    <HBox alignment="BOTTOM_LEFT" prefHeight="100.0" prefWidth="200.0">
+                                       <children>
+                                          <Label maxWidth="1.7976931348623157E308" prefHeight="18.0" prefWidth="229.0" styleClass="service-request-card-text" text="Lab System" HBox.hgrow="ALWAYS" />
+                                       </children>
+                                    </HBox>
+                                    <HBox alignment="BOTTOM_RIGHT" prefHeight="100.0" prefWidth="200.0">
+                                       <children>
+                                          <Label fx:id="nelson" alignment="CENTER_RIGHT" prefHeight="18.0" styleClass="service-request-card-name" text="Nelson Pires" />
+                                       </children>
+                                    </HBox>
+                                 </children>
+                              </StackPane>
+                           </children>
+                        </HBox>
+                        <HBox id="delivery-system" alignment="BOTTOM_LEFT" maxHeight="1.7976931348623157E308" onMouseClicked="#clickDeliverySystem" prefHeight="150.0" prefWidth="0.0" styleClass="service-request-card">
+                           <children>
+                              <StackPane maxWidth="1.7976931348623157E308" HBox.hgrow="ALWAYS">
+                                 <children>
+                                    <HBox alignment="BOTTOM_LEFT" prefHeight="100.0" prefWidth="200.0">
+                                       <children>
+                                          <Label maxWidth="1.7976931348623157E308" prefHeight="18.0" prefWidth="229.0" styleClass="service-request-card-text" text="Delivery System" HBox.hgrow="ALWAYS" />
+                                       </children>
+                                    </HBox>
+                                    <HBox alignment="BOTTOM_RIGHT" prefHeight="100.0" prefWidth="200.0">
+                                       <children>
+                                          <Label fx:id="brian" alignment="CENTER_RIGHT" prefHeight="18.0" styleClass="service-request-card-name" text="Brian Shin" />
+                                       </children>
+                                    </HBox>
+                                 </children>
+                              </StackPane>
+                           </children>
+                        </HBox>
+                        <HBox id="sanitation" alignment="BOTTOM_LEFT" maxHeight="1.7976931348623157E308" onMouseClicked="#clickSanitation" prefHeight="150.0" prefWidth="259.0" styleClass="service-request-card">
+                           <children>
+                              <StackPane maxWidth="1.7976931348623157E308" HBox.hgrow="ALWAYS">
+                                 <children>
+                                    <HBox alignment="BOTTOM_LEFT" prefHeight="100.0" prefWidth="200.0">
+                                       <children>
+                                          <Label maxWidth="1.7976931348623157E308" prefHeight="18.0" prefWidth="229.0" styleClass="service-request-card-text" text="Sanitation" HBox.hgrow="ALWAYS" />
+                                       </children>
+                                    </HBox>
+                                    <HBox alignment="BOTTOM_RIGHT" prefHeight="100.0" prefWidth="200.0">
+                                       <children>
+                                          <Label fx:id="brandon" alignment="CENTER_RIGHT" prefHeight="18.0" styleClass="service-request-card-name" text="Brandon Vuong" />
+                                       </children>
+                                    </HBox>
+                                 </children>
+                              </StackPane>
+                           </children>
+                        </HBox>
+                     </children>
+                  </VBox>
+               </content>
+            </MFXScrollPane>
          </children>
-         <padding>
-            <Insets bottom="40.0" />
-         </padding>
+         <styleClass>
+            <String fx:value="page-container" />
+            <String fx:value="service-request-container" />
+         </styleClass>
       </VBox>
-      <VBox alignment="BOTTOM_CENTER" GridPane.columnIndex="1" GridPane.rowIndex="1">
-         <children>
-            <Label styleClass="label-service-names" stylesheets="@../../css/component/service_request_landing_page.css" text="Laundry" translateY="-9.0" />
-            <JFXButton onAction="#clickLaundry" opacity="0.5" prefHeight="134.0" prefWidth="131.0" styleClass="button-requests" stylesheets="@../../css/component/service_request_landing_page.css" translateY="-8.0">
-               <effect>
-                  <DropShadow height="3.51" offsetY="10.0" radius="0.37749999999999995" width="0.0" />
-               </effect>
-               <graphic>
-                  <ImageView fitHeight="75.13" fitWidth="71.0">
-                     <image>
-                        <Image url="@../../static/images/Sercurity(shield).png" />
-                     </image>
-                  </ImageView>
-               </graphic>
-               <cursor>
-                  <Cursor fx:constant="HAND" />
-               </cursor>
-            </JFXButton>
-            <Label fx:id="grace" styleClass="label-our-names" stylesheets="@../../css/component/service_request_landing_page.css" text="Grace O'Reilly" />
-         </children>
-         <padding>
-            <Insets bottom="40.0" />
-         </padding>
-      </VBox>
-      <VBox alignment="BOTTOM_CENTER" GridPane.columnIndex="2" GridPane.rowIndex="1">
-         <children>
-            <Label prefHeight="58.0" prefWidth="99.0" styleClass="label-service-names" stylesheets="@../../css/component/service_request_landing_page.css" text="Lab System" textAlignment="CENTER" />
-            <JFXButton onAction="#clickLabSystem" opacity="0.5" prefHeight="134.0" prefWidth="131.0" styleClass="button-requests" stylesheets="@../../css/component/service_request_landing_page.css" text=" ">
-               <effect>
-                  <DropShadow height="3.51" offsetY="10.0" radius="0.37749999999999995" width="0.0" />
-               </effect>
-               <graphic>
-                  <ImageView fitHeight="71.0" fitWidth="71.0">
-                     <image>
-                        <Image url="@../../static/images/Lab_Systems(vial).png" />
-                     </image>
-                  </ImageView>
-               </graphic>
-               <cursor>
-                  <Cursor fx:constant="HAND" />
-               </cursor>
-            </JFXButton>
-            <Label fx:id="nelson" styleClass="label-our-names" stylesheets="@../../css/component/service_request_landing_page.css" text="Nelson Pires" />
-         </children>
-         <padding>
-            <Insets bottom="40.0" />
-         </padding>
-      </VBox>
-      <VBox alignment="BOTTOM_CENTER" GridPane.columnIndex="3" GridPane.rowIndex="1">
-         <children>
-            <Label prefHeight="61.0" prefWidth="120.0" styleClass="label-service-names" stylesheets="@../../css/component/service_request_landing_page.css" text="Delivery System" />
-            <JFXButton onAction="#clickDeliverySystem" prefHeight="134.0" prefWidth="131.0" styleClass="button-requests" stylesheets="@../../css/component/service_request_landing_page.css" text=" ">
-               <effect>
-                  <DropShadow height="3.51" offsetY="10.0" radius="0.37749999999999995" width="0.0" />
-               </effect>
-               <font>
-                  <Font name="Arial" size="12.0" />
-               </font>
-               <cursor>
-                  <Cursor fx:constant="HAND" />
-               </cursor>
-               <graphic>
-                  <ImageView fitHeight="71.0" fitWidth="71.0">
-                     <image>
-                        <Image url="@../../static/images/Lab_Systems(vial).png" />
-                     </image>
-                  </ImageView>
-               </graphic>
-            </JFXButton>
-            <Label fx:id="brian" styleClass="label-our-names" stylesheets="@../../css/component/service_request_landing_page.css" text="Brian Shin" />
-         </children>
-         <padding>
-            <Insets bottom="40.0" />
-         </padding>
-      </VBox>
-      <VBox alignment="BOTTOM_CENTER" prefHeight="174.0" prefWidth="192.0" GridPane.columnIndex="4" GridPane.rowIndex="1">
-         <children>
-            <Label styleClass="label-service-names" stylesheets="@../../css/component/service_request_landing_page.css" text="Sanitation" />
-            <JFXButton onAction="#clickSanitation" opacity="0.5" prefHeight="134.0" prefWidth="131.0" styleClass="button-requests" stylesheets="@../../css/component/service_request_landing_page.css" text=" ">
-               <effect>
-                  <DropShadow height="3.51" offsetY="10.0" radius="0.37749999999999995" width="0.0" />
-               </effect>
-               <graphic>
-                  <ImageView fitHeight="63.45" fitWidth="71.0">
-                     <image>
-                        <Image url="@../../static/images/Sanitations(hand).png" />
-                     </image>
-                  </ImageView>
-               </graphic>
-               <cursor>
-                  <Cursor fx:constant="HAND" />
-               </cursor>
-            </JFXButton>
-            <Label fx:id="brandon" styleClass="label-our-names" stylesheets="@../../css/component/service_request_landing_page.css" text="Brandon Vuong" />
-         </children>
-         <padding>
-            <Insets bottom="40.0" />
-         </padding>
-      </VBox>
-      <HBox alignment="CENTER" maxHeight="-Infinity" prefHeight="66.0" prefWidth="180.0" GridPane.rowIndex="2" GridPane.vgrow="NEVER">
-         <children>
-            <JFXButton onAction="#clickBackToTable" prefWidth="131.0" styleClass="button-back" stylesheets="@../../css/base.css" text="Back to Table">
-               <cursor>
-                  <Cursor fx:constant="HAND" />
-               </cursor></JFXButton>
-         </children>
-      </HBox>
    </children>
-</GridPane>
+</HBox>

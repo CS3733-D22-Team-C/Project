@@ -1,6 +1,7 @@
 package edu.wpi.cs3733.D22.teamC.models.service_request.delivery_system;
 
 import com.jfoenix.controls.JFXTreeTableView;
+import edu.wpi.cs3733.D22.teamC.entity.patient.PatientDAO;
 import edu.wpi.cs3733.D22.teamC.entity.service_request.delivery_system.DeliverySystemSR;
 import edu.wpi.cs3733.D22.teamC.models.service_request.ServiceRequestTableDisplay;
 import javafx.beans.property.SimpleStringProperty;
@@ -11,13 +12,16 @@ public class DeliverySystemSRTableDisplay extends ServiceRequestTableDisplay<Del
     public class DeliverySystemSRTableEntry extends ServiceRequestTableEntry {
         // Properties
         public StringProperty deliveryType;
-        public StringProperty patientID;
+        public StringProperty patientName;
         
         public DeliverySystemSRTableEntry(DeliverySystemSR deliverySystemSR) {
             super(deliverySystemSR);
+    
+            PatientDAO patientDAO = new PatientDAO();
             
             this.deliveryType = new SimpleStringProperty(deliverySystemSR.getDeliveryType().toString());
-            this.patientID = new SimpleStringProperty(deliverySystemSR.getPatientID());
+            this.patientName = new SimpleStringProperty((patientDAO.getByID(deliverySystemSR.getPatientID()) != null)
+                    ? patientDAO.getByID(deliverySystemSR.getPatientID()).toString() : "N/A");
         }
     }
     
@@ -44,9 +48,9 @@ public class DeliverySystemSRTableDisplay extends ServiceRequestTableDisplay<Del
     
         addColumn(
                 table,
-                "Patient ID",
+                "Patient Name",
                 1f * Integer.MAX_VALUE * 16.66,
-                (DeliverySystemSRTableEntry entry) -> {return entry.patientID;}
+                (DeliverySystemSRTableEntry entry) -> {return entry.patientName;}
         );
     }
 }

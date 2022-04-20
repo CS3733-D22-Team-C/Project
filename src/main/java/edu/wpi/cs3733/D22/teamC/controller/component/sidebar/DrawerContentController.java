@@ -106,8 +106,7 @@ public class DrawerContentController implements Initializable {
 
     @FXML
     void userProfileButtonPress(ActionEvent event) {
-        // TODO: Path to user profile page
-        App.instance.setView("");
+        App.instance.setView(App.USER_PROFILE);
     }
     //#endregion
 
