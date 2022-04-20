@@ -1,20 +1,16 @@
 package edu.wpi.cs3733.D22.teamC.controller.service_request.translator;
 
-import com.jfoenix.controls.JFXComboBox;
 import edu.wpi.cs3733.D22.teamC.controller.service_request.BaseServiceRequestResolveController;
 import edu.wpi.cs3733.D22.teamC.controller.service_request.InsertServiceRequestResolveController;
 import edu.wpi.cs3733.D22.teamC.entity.generic.DAO;
 import edu.wpi.cs3733.D22.teamC.entity.patient.Patient;
 import edu.wpi.cs3733.D22.teamC.entity.patient.PatientDAO;
-import edu.wpi.cs3733.D22.teamC.entity.service_request.medical_equipment.MedicalEquipmentSR;
-import edu.wpi.cs3733.D22.teamC.entity.service_request.medical_equipment.MedicalEquipmentSRDAO;
 import edu.wpi.cs3733.D22.teamC.entity.service_request.translator.TranslatorSR;
 import edu.wpi.cs3733.D22.teamC.entity.service_request.translator.TranslatorSRDAO;
 import edu.wpi.cs3733.D22.teamC.models.patient.PatientSelectorWindow;
 import edu.wpi.cs3733.D22.teamC.models.utils.ComponentWrapper;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.input.MouseEvent;
 import org.controlsfx.control.SearchableComboBox;
 
 import javafx.event.ActionEvent;
@@ -55,12 +51,10 @@ public class TranslatorSRInsertResolveController extends InsertServiceRequestRes
 
         languageSComboBox.setDisable(!isEditMode);
         patientSComboBox.setDisable(!isEditMode);
-
-        PatientDAO patientDAO = new PatientDAO();
-
+        
         languageSComboBox.setValue(serviceRequest.getLanguage().toString());
-        patientSComboBox.setValue(patientDAO.getByID(serviceRequest.getPatientID()));
-        patientSComboBox.setPromptText(patientDAO.getByID(serviceRequest.getPatientID()).toString());
+        patientSComboBox.setValue(serviceRequest.getPatient());
+        patientSComboBox.setPromptText(serviceRequest.getPatient().toString());
     }
 
     public boolean requiredFieldsPresent(){
@@ -75,7 +69,7 @@ public class TranslatorSRInsertResolveController extends InsertServiceRequestRes
     public void updateServiceRequest(TranslatorSR serviceRequest){
         if(isEditMode){
             if(patientSComboBox.getValue() != null)
-                serviceRequest.setPatientID(patientSComboBox.getValue().getID());
+                serviceRequest.setPatient(patientSComboBox.getValue());
             if(languageSComboBox.getValue() != null)
                 serviceRequest.setLanguage(TranslatorSR.Language.valueOf(languageSComboBox.getValue()));
         }
@@ -92,7 +86,7 @@ public class TranslatorSRInsertResolveController extends InsertServiceRequestRes
 
     @FXML
     void goToPatientTable(ActionEvent event) throws IOException {
-        new PatientSelectorWindow(patient -> this.setPatientComboBox(patient));
+        new PatientSelectorWindow(this::setPatientComboBox);
     }
 
     private void setPatientComboBox(Patient patientComboBox) {

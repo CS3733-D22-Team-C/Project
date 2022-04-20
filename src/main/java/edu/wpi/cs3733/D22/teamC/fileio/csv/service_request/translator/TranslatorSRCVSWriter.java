@@ -1,7 +1,6 @@
 package edu.wpi.cs3733.D22.teamC.fileio.csv.service_request.translator;
 
 import edu.wpi.cs3733.D22.teamC.entity.employee.Employee;
-import edu.wpi.cs3733.D22.teamC.entity.service_request.laundry.LaundrySR;
 import edu.wpi.cs3733.D22.teamC.entity.service_request.translator.TranslatorSR;
 import edu.wpi.cs3733.D22.teamC.fileio.csv.CSVWriter;
 
@@ -70,7 +69,7 @@ public class TranslatorSRCVSWriter extends CSVWriter<TranslatorSR> {
                 output = serviceRequest.getLanguage().toString();
                 break;
             case "patientID":
-                output = serviceRequest.getPatientID();
+                output = serviceRequest.getPatient().getID();
                 break;
             case "modifierID":
                 Employee modifier = serviceRequest.getModifier();

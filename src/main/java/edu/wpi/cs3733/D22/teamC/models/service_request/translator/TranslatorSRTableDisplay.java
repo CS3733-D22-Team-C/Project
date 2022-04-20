@@ -2,10 +2,8 @@ package edu.wpi.cs3733.D22.teamC.models.service_request.translator;
 
 import com.jfoenix.controls.JFXTreeTableView;
 import edu.wpi.cs3733.D22.teamC.entity.patient.PatientDAO;
-import edu.wpi.cs3733.D22.teamC.entity.service_request.medical_equipment.MedicalEquipmentSR;
 import edu.wpi.cs3733.D22.teamC.entity.service_request.translator.TranslatorSR;
 import edu.wpi.cs3733.D22.teamC.models.service_request.ServiceRequestTableDisplay;
-import edu.wpi.cs3733.D22.teamC.models.service_request.medical_equipment.MedicalEquipmentSRTableDisplay;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
 
@@ -21,8 +19,8 @@ public class TranslatorSRTableDisplay extends ServiceRequestTableDisplay<Transla
 
             PatientDAO patientDAO = new PatientDAO();
             this.language = new SimpleStringProperty((translatorSR.getLanguage().toString()));
-            this.patient = new SimpleStringProperty((patientDAO.getByID(translatorSR.getPatientID()) != null)
-                    ? patientDAO.getByID(translatorSR.getPatientID()).toString() : "N/A");
+            this.patient = new SimpleStringProperty((translatorSR.getPatient() != null)
+                    ? translatorSR.getPatient().toString() : "N/A");
 
         }
     }

@@ -1,11 +1,9 @@
 package edu.wpi.cs3733.D22.teamC.entity.service_request.translator;
 
+import edu.wpi.cs3733.D22.teamC.entity.patient.Patient;
 import edu.wpi.cs3733.D22.teamC.entity.service_request.ServiceRequest;
 
 import javax.persistence.*;
-import java.security.SecureRandom;
-import java.sql.Timestamp;
-import java.util.Objects;
 
 
 @Entity
@@ -14,10 +12,11 @@ public class TranslatorSR extends ServiceRequest {
 
     @Enumerated(EnumType.STRING)
     @Column(name = "language")
-    private Language language;
-
-    @Column(name ="patientID") //TODO: change this to a patient object
-    private String patientID;
+    protected Language language;
+    
+    @ManyToOne
+    @JoinColumn(name = "PatientID", referencedColumnName = "ID")
+    protected Patient patient;
 
 
     public TranslatorSR(){}
@@ -42,12 +41,12 @@ public class TranslatorSR extends ServiceRequest {
         this.language = language;
     }
 
-    public String getPatientID() {
-        return patientID;
+    public Patient getPatient() {
+        return patient;
     }
 
-    public void setPatientID(String patientID) {
-        this.patientID = patientID;
+    public void setPatient(Patient patient) {
+        this.patient = patient;
     }
 
     @Override
@@ -56,6 +55,6 @@ public class TranslatorSR extends ServiceRequest {
         if(o == null || getClass() != o.getClass()) return false;
         if(!super.equals(o)) return false;
         TranslatorSR that = (TranslatorSR) o;
-        return language == (that.language) && patientID.equals(that.patientID);
+        return language == (that.language) && patient.getID().equals(that.patient.getID());
     }
 }
