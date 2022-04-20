@@ -42,7 +42,7 @@ public class MedicineDeliverySRInsertResolveController extends InsertServiceRequ
         PatientDAO patientDAO = new PatientDAO();
         List<Patient> patients = patientDAO.getAll();
 
-        ComponentWrapper.initializeComboBox(patientSComboBox, Patient::getFirstName);
+        ComponentWrapper.initializeComboBox(patientSComboBox, Patient::toString);
 
         patientSComboBox.getItems().setAll(patients);
     }
@@ -53,6 +53,7 @@ public class MedicineDeliverySRInsertResolveController extends InsertServiceRequ
         dosage.setEditable(isEditMode);
         medicine.setEditable(isEditMode);
         patientSComboBox.setEditable(isEditMode);
+        patientSComboBox.setDisable(!isEditMode);
 
         PatientDAO patientDAO = new PatientDAO();
 
@@ -77,7 +78,7 @@ public class MedicineDeliverySRInsertResolveController extends InsertServiceRequ
                 serviceRequest.setMedicine(medicine.getText());
                 serviceRequest.setDosage(dosage.getText());
                 if(patientSComboBox.getValue() != null)
-                    serviceRequest.setPatientID(patientSComboBox.getId());
+                    serviceRequest.setPatientID(patientSComboBox.getValue().getID());
         }
     }
 
@@ -98,7 +99,7 @@ public class MedicineDeliverySRInsertResolveController extends InsertServiceRequ
 
     @FXML
     void goToPatientTable(ActionEvent event) throws IOException {
-        new PatientSelectorWindow((patient -> this.setPatient(patient)));
+        new PatientSelectorWindow(this::setPatient);
     }
 
     private void setPatient(Patient patient){
