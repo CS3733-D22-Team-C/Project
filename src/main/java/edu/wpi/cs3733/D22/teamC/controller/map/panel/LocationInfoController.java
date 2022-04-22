@@ -11,6 +11,7 @@ import edu.wpi.cs3733.D22.teamC.controller.map.data.location.LocationMapNode;
 import edu.wpi.cs3733.D22.teamC.controller.map.data.medical_equipment.MedicalEquipmentCounter;
 import edu.wpi.cs3733.D22.teamC.controller.map.data.medical_equipment.MedicalEquipmentManager;
 import edu.wpi.cs3733.D22.teamC.controller.map.data.medical_equipment.MedicalEquipmentNode;
+import edu.wpi.cs3733.D22.teamC.controller.service_request.ServiceRequestLandingPage;
 import edu.wpi.cs3733.D22.teamC.controller.table.MedicalEquipmentViewController;
 import edu.wpi.cs3733.D22.teamC.entity.floor.Floor;
 import edu.wpi.cs3733.D22.teamC.entity.location.Location;
@@ -70,6 +71,9 @@ public class LocationInfoController implements Initializable {
     // Service Requests - Table
     @FXML JFXTreeTableView serviceRequestTable;
     ServiceRequestTableDisplay<ServiceRequest> serviceRequestTableDisplay;
+    private ServiceRequest activeServiceRequest;
+    ServiceRequestLandingPage serviceRequestLandingPage;
+
 
     //Patients - Table
     @FXML
@@ -85,6 +89,11 @@ public class LocationInfoController implements Initializable {
     @FXML private JFXButton updateStatus;
     @FXML private JFXToggleNode updateLocation;
     @FXML private ComboBox<MedicalEquipment.EquipmentStatus> statusComboBox;
+
+    //Service Requests - Update Buttons
+    @FXML private JFXButton resolveSR;
+    @FXML private JFXToggleNode updateLocationSR;
+
 
     // References
     FloorMapViewController mapViewController;
@@ -108,6 +117,7 @@ public class LocationInfoController implements Initializable {
         patientTableDisplay = new PatientTableDisplay(patientsTable);
 
         setRowInteraction();
+        setSRRowInteraction();
     }
 
     /**
@@ -158,6 +168,8 @@ public class LocationInfoController implements Initializable {
         });
     }
 
+
+
     /**
      * Sets the currently active Service Request (will have its information passed to edit/resolve pages).
      * @param medicalEquipment The Medical Equipment to be set as active.
@@ -178,9 +190,9 @@ public class LocationInfoController implements Initializable {
         if (medicalEquipmentManager != null) {
             MedicalEquipmentNode medicalEquipmentNode = (MedicalEquipmentNode) medicalEquipmentManager.getByLocation(mapViewController.getLocationManager().getCurrent());
             if(medicalEquipmentNode != null){
-            medicalEquipmentNode.updateValues();
-        }
-    }}
+                medicalEquipmentNode.updateValues();
+            }
+        }}
 
     private void setLocationClickCapture(boolean clickCapture) {
         if (clickCapture) {
@@ -199,6 +211,69 @@ public class LocationInfoController implements Initializable {
             updateLocation.setSelected(false);
         }
     }
+
+
+
+    protected void setSRRowInteraction() {
+        serviceRequestTable.setRowFactory(tv -> {
+            TreeTableRow<ServiceRequestTableDisplay.ServiceRequestTableEntry> row = new TreeTableRow<ServiceRequestTableDisplay.ServiceRequestTableEntry>();
+
+            row.setOnMouseClicked(event -> {
+                if (!row.isEmpty() && event.getButton() == MouseButton.PRIMARY) {
+                    setActiveServiceRequest(((ServiceRequest) row.getItem().object));
+                }
+                if (event.getClickCount() == 2) {
+                    // Double Click shortcut to service request edit/resolve page
+                    serviceRequestLandingPage.toDefaultPage(activeServiceRequest);
+                }
+            });
+
+            return row ;
+        });
+    }
+
+    private void updateServiceRequest() {
+        // Update Service Request DB
+        new ServiceRequestDAO().update(activeServiceRequest);
+
+//        // Update Service Request Node Counter
+//        MedicalEquipmentManager medicalEquipmentManager = mapViewController.getMedicalEquipmentManager();
+//        if (medicalEquipmentManager != null) {
+//            MedicalEquipmentNode medicalEquipmentNode = (MedicalEquipmentNode) medicalEquipmentManager.getByLocation(mapViewController.getLocationManager().getCurrent());
+//            if(medicalEquipmentNode != null){
+//                medicalEquipmentNode.updateValues();
+//            }
+//        }
+    }
+
+    private void setActiveServiceRequest(ServiceRequest serviceRequest) {
+        activeServiceRequest = serviceRequest;
+        resolveSR.setDisable(activeServiceRequest == null );
+        resolveSR.setDisable(activeServiceRequest == null);
+        setSRLocationClickCapture(false);
+    }
+
+    private void setSRLocationClickCapture(boolean clickCaptureSR) {
+        if (clickCaptureSR) {
+            mapViewController.getLocationManager().onClickCapture = location -> {
+                activeServiceRequest.setLocation(location.getID());
+                updateServiceRequest();
+
+                // Update Medical Equipment Table
+                populateServiceRequestTable(mapViewController.getLocationManager().getCurrent());
+
+                setLocationClickCapture(false);
+            };
+            updateLocationSR.setSelected(true);
+        } else {
+            mapViewController.getLocationManager().onClickCapture = null;
+            updateLocationSR.setSelected(false);
+        }
+    }
+
+
+
+
 
     //#region Pane Interaction
         /**
@@ -291,6 +366,11 @@ public class LocationInfoController implements Initializable {
             medicalEquipmentTableDisplay.emptyTable();
             new MedicalEquipmentDAO().getEquipmentByLocation(location.getID()).forEach(medicalEquipmentTableDisplay::addObject);
         }
+
+        public void populateServiceRequestTable(Location location) {
+             serviceRequestTableDisplay.emptyTable();
+             new ServiceRequestDAO().getAllSRByLocation(location.getID()).forEach(serviceRequestTableDisplay::addObject);
+    }
     //#endregion
 
     //#region FXML Events
@@ -333,6 +413,25 @@ public class LocationInfoController implements Initializable {
         @FXML
         public void onMedicalEquipmentStatusComboBoxChanged(ActionEvent actionEvent) {
             updateStatus.setDisable(activeMedicalEquipment == null || statusComboBox.getValue() == null);
+        }
+
+        @FXML
+        public void onResolveSRButtonPressed(ActionEvent actionEvent){
+            if (activeServiceRequest != null) {
+                activeServiceRequest.setStatus(Done);
+
+                // Update Medical Equipment Table
+                serviceRequestTableDisplay.updateObject(activeServiceRequest);
+
+                updateServiceRequest();
+            } else {
+
+            }
+        }
+
+        @FXML
+        public void onUpdateSRLocationButtonPressed(ActionEvent actionEvent){
+            setSRLocationClickCapture(true);
         }
     //#endregion
 }

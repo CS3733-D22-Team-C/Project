@@ -20,7 +20,6 @@
 <?import javafx.scene.paint.Color?>
 <?import javafx.scene.text.Font?>
 
-
 <TabPane fx:id="tabPane" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" side="LEFT" stylesheets="@../../../css/map/info_pane.css" tabClosingPolicy="UNAVAILABLE" tabMaxHeight="50.0" tabMaxWidth="115.0" tabMinHeight="50.0" tabMinWidth="115.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.wpi.cs3733.D22.teamC.controller.map.panel.LocationInfoController">
    <tabs>
       <Tab fx:id="locationTab" text="Location">
@@ -208,7 +207,7 @@
          <content>
             <StackPane prefWidth="200.0">
                <children>
-                  <VBox prefHeight="200.0" prefWidth="100.0">
+                  <VBox alignment="CENTER" minHeight="-Infinity" minWidth="-Infinity" prefHeight="200.0" prefWidth="200.0">
                      <children>
                         <Label alignment="CENTER" maxHeight="75.0" maxWidth="1.7976931348623157E308" minHeight="50.0" styleClass="card-content-header" text="Service Requests">
                            <padding>
@@ -218,11 +217,40 @@
                               <Font size="20.0" />
                            </font>
                         </Label>
-                        <JFXTreeTableView fx:id="serviceRequestTable" styleClass="table-view" VBox.vgrow="ALWAYS">
+                        <JFXTreeTableView fx:id="serviceRequestTable" prefHeight="334.0" prefWidth="250.0" styleClass="table-view" VBox.vgrow="ALWAYS">
                            <VBox.margin>
                               <Insets bottom="25.0" left="25.0" right="25.0" top="25.0" />
                            </VBox.margin>
                         </JFXTreeTableView>
+                        <HBox maxWidth="1.7976931348623157E308" spacing="15.0">
+                           <children>
+                              <VBox alignment="BOTTOM_CENTER" maxWidth="1.7976931348623157E308" prefHeight="58.0" prefWidth="141.0" HBox.hgrow="ALWAYS">
+                                 <children>
+                                    <JFXToggleNode fx:id="updateLocationSR" contentDisplay="CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" onAction="#onUpdateSRLocationButtonPressed" styleClass="button" text="Update Location">
+                                       <selectedColor>
+                                          <Color red="0.1836622804403305" green="0.2418220043182373" blue="0.8815789222717285" opacity="0.20000000298023224" />
+                                       </selectedColor>
+                                       <font>
+                                          <Font size="16.0" />
+                                       </font>
+                                    </JFXToggleNode>
+                                 </children>
+                              </VBox>
+                              <VBox alignment="BOTTOM_RIGHT" maxWidth="1.7976931348623157E308" HBox.hgrow="ALWAYS">
+                                 <children>
+                                    <ComboBox fx:id="statusComboBox1" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" onAction="#onMedicalEquipmentStatusComboBoxChanged" visible="false" />
+                                    <JFXButton fx:id="resolveSR" alignment="CENTER" contentDisplay="CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" onAction="#onResolveSRButtonPressed" text="Resolve">
+                                       <font>
+                                          <Font size="16.0" />
+                                       </font>
+                                    </JFXButton>
+                                 </children>
+                              </VBox>
+                           </children>
+                           <padding>
+                              <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                           </padding>
+                        </HBox>
                      </children>
                   </VBox>
                </children>

@@ -142,7 +142,7 @@ public class ServiceRequestLandingPage implements Initializable {
     }
 
     //#region Page Navigation
-    private void toDefaultPage(ServiceRequest serviceRequest) {
+    public void toDefaultPage(ServiceRequest serviceRequest) {
         switch (serviceRequest.getStatus()) {
             case Blank:
                 toEditPage(serviceRequest);
