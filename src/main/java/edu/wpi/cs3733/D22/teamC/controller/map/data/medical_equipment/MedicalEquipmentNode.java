@@ -22,15 +22,11 @@ public class MedicalEquipmentNode extends MapNode<MedicalEquipment> {
             new Pair(10, 35)
     };
 
-    // References
-    Group contextGroup;
-
-
-
-    //Variables
+    // Variables
     List<MedicalEquipment> medicalEquipments;
 
     // References
+    Group contextGroup;
     private MedicalEquipmentCounter[] counters = new MedicalEquipmentCounter[MedicalEquipment.EquipmentType.values().length];
 
     public MedicalEquipmentNode(MedicalEquipmentManager manager, Location location) {
