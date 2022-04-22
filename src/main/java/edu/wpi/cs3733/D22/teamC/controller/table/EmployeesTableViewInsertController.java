@@ -19,6 +19,8 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
+import org.controlsfx.validation.ValidationSupport;
+import org.controlsfx.validation.Validator;
 
 import java.net.URL;
 import java.util.List;
@@ -35,13 +37,16 @@ public class EmployeesTableViewInsertController extends InsertTableViewControlle
     @FXML private ComboBox<Employee.Role> roleComboBox;//
     @FXML Label title;
 
+    ValidationSupport validationfname = new ValidationSupport();
+
 
     public void initialize(URL location, ResourceBundle resources) {
         title.setText("Add Employee");
 
         //make a list of roles from the enum and put it into the combo box
         roleComboBox.getItems().setAll(Employee.Role.values());
-        confirmButton.setDisable(true);
+        //validationfname.registerValidator(firstName, Validator.createEmptyValidator("I love batman"));
+        //confirmButton.setDisable(true);
     }
 
     //#region Field Interaction
@@ -78,11 +83,27 @@ public class EmployeesTableViewInsertController extends InsertTableViewControlle
     }
     //#endregion
 
+    /**
+     *
+     * @return
+     */
     public boolean checkFieldsFilled() {
-        return !(firstName.getText().equals("")
-                || lastName.getText().equals("")
-                || phone.getText().equals("")
-                || roleComboBox.getValue()==null);
+
+        boolean failed = false;
+
+        if (firstName.getText().equals(""))
+        {
+            validationfname.registerValidator(firstName, Validator.createEmptyValidator("I love batman"));
+            validationfname.setErrorDecorationEnabled(true);
+            validationfname.redecorate();
+            failed = true;
+        }
+//        return !(firstName.getText().equals("")
+//                || lastName.getText().equals("")
+//                || phone.getText().equals("")
+//                || roleComboBox.getValue()==null);
+
+        return !failed;
     }
 
     //#region Abstraction
@@ -112,14 +133,21 @@ public class EmployeesTableViewInsertController extends InsertTableViewControlle
     //#region FXML Events
     @FXML
     void clickConfirm(ActionEvent event) {
-        if (parentController.currentObj == null) addObject();
-        else updateObject();
-        parentController.setCurrentObj(null);
+
+        if (checkFieldsFilled()){
+            if (parentController.currentObj == null) addObject();
+            else updateObject();
+            parentController.setCurrentObj(null);
+
+        }
     }
 
+//    @FXML
+//    void onFieldUpdated() {
+//        confirmButton.setDisable(!checkFieldsFilled());
+//    }
+
     @FXML
-    void onFieldUpdated() {
-        confirmButton.setDisable(!checkFieldsFilled());
-    }
+    void onFieldUpdated() {}
     //#endregion
 }
