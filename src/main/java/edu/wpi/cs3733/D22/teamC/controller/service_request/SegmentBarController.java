@@ -17,6 +17,7 @@ import org.controlsfx.control.SegmentedBar;
 
 import javax.swing.text.Segment;
 import java.net.URL;
+import java.util.Random;
 import java.util.ResourceBundle;
 
 import static javafx.application.Application.launch;
@@ -86,13 +87,20 @@ public class SegmentBarController implements Initializable {
             if(((SegmentedBar.Segment) segment).getText().contains("Blank"))
                 color = "#000000";
             else if (((SegmentedBar.Segment) segment).getText().contains("Processing"))
-                color = "#00C2A5";
+                color = RCG();
             else
                 color = "#069420";
 
             view.setStyle("-fx-background-color: " + color);
             return view ;
         });
+    }
+
+    public String RCG(){
+        Random random = new Random();
+        int rand = random.nextInt(0xffffff + 1);
+        System.out.println(String.format("#%06x", rand));
+        return String.format("#%06x", rand);
     }
 
 
