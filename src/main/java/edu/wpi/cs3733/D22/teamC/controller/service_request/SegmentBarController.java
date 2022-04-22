@@ -88,7 +88,7 @@ public class SegmentBarController implements Initializable {
             else if (((SegmentedBar.Segment) segment).getText().contains("Processing"))
                 color = "#00C2A5";
             else
-                color = "#069420";
+                color = "#000000";
 
             view.setStyle("-fx-background-color: " + color);
             return view ;
