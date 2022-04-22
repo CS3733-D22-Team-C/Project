@@ -85,7 +85,7 @@ public class App extends Application {
         // Store window as stage
         stage = primaryStage;
         stage.setFullScreen(true);
-        setViewStatic(LOGIN_PATH);
+        setViewStatic("view/service_request/segment_bar.fxml");
         //setViewStatic(MAP_DASHBOARD_PATH);
     }
 
