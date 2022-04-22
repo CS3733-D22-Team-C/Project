@@ -14,10 +14,6 @@ repositories {
     maven {
         url 'https://apisite.crmyers.dev/maven'
     }
-
-    flatDir {
-        dirs 'libs'
-    }
 }
 
 javafx {
@@ -51,6 +47,8 @@ dependencies {
             'org.slf4j:slf4j-simple:1.7.30',
     )
 
+    compile fileTree(dir: 'libs', include: ['*.jar'])
+
     testCompile(
             // Other
             "org.testfx:testfx-core:4.0.16-alpha",
@@ -63,7 +61,6 @@ dependencies {
     implementation 'org.springframework:spring-jdbc:5.3.17'
     implementation 'org.apache.logging.log4j:log4j-core:2.3.2'
     implementation 'io.github.palexdev:materialfx:11.13.4'
-    implementation name: 'edu.wpi.cs3733.D22.teamC'
 }
 
 
