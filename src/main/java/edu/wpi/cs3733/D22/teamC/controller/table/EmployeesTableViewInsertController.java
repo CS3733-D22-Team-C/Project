@@ -37,7 +37,7 @@ public class EmployeesTableViewInsertController extends InsertTableViewControlle
     @FXML private ComboBox<Employee.Role> roleComboBox;//
     @FXML Label title;
 
-    ValidationSupport validation;
+    private ValidationSupport validation;
 
 
     public void initialize(URL location, ResourceBundle resources) {
