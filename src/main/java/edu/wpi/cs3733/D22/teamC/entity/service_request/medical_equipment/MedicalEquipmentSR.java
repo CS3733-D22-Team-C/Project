@@ -2,6 +2,8 @@ package edu.wpi.cs3733.D22.teamC.entity.service_request.medical_equipment;
 
 import edu.wpi.cs3733.D22.teamC.entity.medical_equipment.MedicalEquipment;
 import edu.wpi.cs3733.D22.teamC.entity.service_request.ServiceRequest;
+import org.hibernate.annotations.OnDelete;
+import org.hibernate.annotations.OnDeleteAction;
 
 import javax.persistence.*;
 
@@ -15,6 +17,7 @@ public class MedicalEquipmentSR extends ServiceRequest {
     
     @ManyToOne
     @JoinColumn(name = "EquipID", referencedColumnName = "ID")
+    @OnDelete(action = OnDeleteAction.CASCADE)
     protected MedicalEquipment equipment;
     
     @Enumerated(EnumType.STRING)
