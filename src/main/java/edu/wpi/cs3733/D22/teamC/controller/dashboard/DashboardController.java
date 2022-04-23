@@ -19,7 +19,7 @@ import java.util.ResourceBundle;
 
 public class DashboardController<T extends ServiceRequest> implements Initializable {
 
-    private static final String RESOLVE_FORM = "view/service_request/skeleton/resolve_form.fxml";
+    private static final String FROM_DASH_RESOLVE_FORM = "view/service_request/skeleton/from_dash_resolve.fxml";
     private static final String CREATE_FORM = "view/service_request/skeleton/create_form.fxml";
     @FXML
     private JFXTreeTableView assignedTable;
@@ -37,8 +37,9 @@ public class DashboardController<T extends ServiceRequest> implements Initializa
         assignedTableDisplay = new DashboardAssignedTableDisplay(assignedTable);
         createdTableDisplay = new DashboardCreatedTableDisplay(createdTable);
 
-        setRowInteraction();
         setOtherRowInteraction();
+        setRowInteraction();
+
 
         // Populate Table Display
         ServiceRequestDAO serviceRequestDAO  = new ServiceRequestDAO();
@@ -61,7 +62,7 @@ public class DashboardController<T extends ServiceRequest> implements Initializa
                 if (!row.isEmpty() && event.getButton() == MouseButton.PRIMARY) {
                     if (event.getClickCount() == 2) {
                         ServiceRequest SR = (ServiceRequest) row.getItem().object;
-                        App.View<BaseServiceRequestResolveController> view = App.instance.loadView(RESOLVE_FORM);
+                        App.View<BaseServiceRequestResolveController> view = App.instance.loadView(FROM_DASH_RESOLVE_FORM);
                         view.getController().setup(SR, false);
                         App.instance.setView(view.getNode());
                     }
@@ -78,8 +79,8 @@ public class DashboardController<T extends ServiceRequest> implements Initializa
                 if (!row.isEmpty() && event.getButton() == MouseButton.PRIMARY) {
                     if (event.getClickCount() == 2) {
                         ServiceRequest SR = (ServiceRequest) row.getItem().object;
-                        App.View<BaseServiceRequestResolveController> view = App.instance.loadView(CREATE_FORM);
-                        view.getController().setup(SR, false);
+                        App.View<BaseServiceRequestResolveController> view = App.instance.loadView(FROM_DASH_RESOLVE_FORM);
+                        view.getController().setup(SR, true);
                         App.instance.setView(view.getNode());
                     }
                 }
