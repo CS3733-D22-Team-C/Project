@@ -1,6 +1,6 @@
 derby.log
 *.lock
-Game/Color-Collision-Final/dragonflyLog.txt
+**/dragonflyLog
 
 # Database Folders
 DB/*
