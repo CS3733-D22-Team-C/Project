@@ -61,6 +61,7 @@ public class ServiceRequestLandingPage implements Initializable {
 
     @FXML private JFXButton edit;
     @FXML private JFXButton resolve;
+    @FXML private JFXButton FMAPI;
 
     // Table
     @FXML private JFXTreeTableView table;
