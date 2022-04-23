@@ -16,7 +16,7 @@ import java.util.Locale;
  */
 public class ServiceRequestToken {
     // FXML
-    @FXML private Group root;
+    @FXML public Group root;
     @FXML private Label iconLabel;
 
     // Variables

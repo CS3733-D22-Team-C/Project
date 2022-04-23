@@ -3,6 +3,7 @@ package edu.wpi.cs3733.D22.teamC.controller.map.data.service_request;
 import edu.wpi.cs3733.D22.teamC.App;
 import edu.wpi.cs3733.D22.teamC.controller.map.data.MapNode;
 import edu.wpi.cs3733.D22.teamC.controller.map.data.location.LocationMapNode;
+import edu.wpi.cs3733.D22.teamC.controller.map.data.medical_equipment.MedicalEquipmentCounter;
 import edu.wpi.cs3733.D22.teamC.entity.location.Location;
 import edu.wpi.cs3733.D22.teamC.entity.medical_equipment.MedicalEquipment;
 import edu.wpi.cs3733.D22.teamC.entity.medical_equipment.MedicalEquipmentDAO;
@@ -70,4 +71,25 @@ public class ServiceRequestNode extends MapNode<ServiceRequest> {
             tokens[requestType.ordinal()].setServiceRequests(serviceRequestsByType);
         }
     }
+
+    //#region State Changes
+        public void toPreviewMode() {
+            for (ServiceRequestToken token : tokens) {
+//                token.setVisible((counter.getCount() != 0));
+            }
+        }
+
+        public void toFocusMode() {
+            for (ServiceRequestToken token : tokens) {
+//                counter.setVisible(true);
+            }
+        }
+
+        public void removeNode() {
+            for (ServiceRequestToken token : tokens) {
+                token.root.getChildren().clear();
+                contextGroup.getChildren().remove(token.root);
+            }
+        }
+    //#endregion
 }

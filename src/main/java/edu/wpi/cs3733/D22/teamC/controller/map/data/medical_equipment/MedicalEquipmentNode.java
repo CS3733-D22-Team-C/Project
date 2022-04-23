@@ -89,10 +89,8 @@ public class MedicalEquipmentNode extends MapNode<MedicalEquipment> {
     //#endregion
 
     //#region Getters
-
-    public List<MedicalEquipment> getMedicalEquipments() {
+        public List<MedicalEquipment> getMedicalEquipments() {
         return medicalEquipments;
     }
     //#endregion
-
 }
