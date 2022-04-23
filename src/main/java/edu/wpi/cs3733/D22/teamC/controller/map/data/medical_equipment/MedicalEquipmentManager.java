@@ -220,33 +220,33 @@ public class MedicalEquipmentManager extends ManagerMapNodes<MedicalEquipment> {
                 switch (medicalEquipment.getEquipmentType()) {
                     case Bed:
                         if (medicalEquipment.getStatus().equals(MedicalEquipment.EquipmentStatus.Dirty)) {
-                            List<MedicalEquipment> dirtyBeds = new MedicalEquipmentDAO().getEquipmentByFloor(location.getFloor()).stream().filter(
+                            List<MedicalEquipment> dirtyBeds = new MedicalEquipmentDAO().getEquipmentByFloor(location.getFloor().getID()).stream().filter(
                                     medEq -> medEq.getEquipmentType().equals(MedicalEquipment.EquipmentType.Bed)
                                             && medEq.getStatus().equals(MedicalEquipment.EquipmentStatus.Dirty)
                             ).collect(Collectors.toList());
                             if (dirtyBeds.size() >= 6) {
                                 createServiceRequest(medicalEquipment, new LocationDAO().getByLongName("OR Bed Park Floor L1"),
-                                        "As there are already " + dirtyBeds.size() + " Unavailable beds on " + mapViewController.getFloorManager().getByID(location.getFloor()).getLongName() + ",");
+                                        "As there are already " + dirtyBeds.size() + " Unavailable beds on " + mapViewController.getFloorManager().getByID(location.getFloor().getID()).getLongName() + ",");
                             }
                         }
                         break;
                     case Infusion_Pump:
                         if (medicalEquipment.getStatus().equals(MedicalEquipment.EquipmentStatus.Dirty)) {
-                            List<MedicalEquipment> dirtyPumps = new MedicalEquipmentDAO().getEquipmentByFloor(location.getFloor()).stream().filter(
+                            List<MedicalEquipment> dirtyPumps = new MedicalEquipmentDAO().getEquipmentByFloor(location.getFloor().getID()).stream().filter(
                                     medEq -> medEq.getEquipmentType().equals(MedicalEquipment.EquipmentType.Infusion_Pump)
                                             && medEq.getStatus().equals(MedicalEquipment.EquipmentStatus.Dirty)
                             ).collect(Collectors.toList());
                             if (dirtyPumps.size() >= 10) {
                                 createServiceRequest(medicalEquipment, new LocationDAO().getByLongName("West Plaza"),
-                                        "As there are already " + dirtyPumps.size() + " Unavailable beds on " + mapViewController.getFloorManager().getByID(location.getFloor()).getLongName() + ",");
+                                        "As there are already " + dirtyPumps.size() + " Unavailable beds on " + mapViewController.getFloorManager().getByID(location.getFloor().getID()).getLongName() + ",");
                             } else {
-                                List<MedicalEquipment> cleanPumps = new MedicalEquipmentDAO().getEquipmentByFloor(location.getFloor()).stream().filter(
+                                List<MedicalEquipment> cleanPumps = new MedicalEquipmentDAO().getEquipmentByFloor(location.getFloor().getID()).stream().filter(
                                         medEq -> medEq.getEquipmentType().equals(MedicalEquipment.EquipmentType.Infusion_Pump)
                                                 && medEq.getStatus().equals(MedicalEquipment.EquipmentStatus.Available)
                                 ).collect(Collectors.toList());
                                 if (cleanPumps.size() < 5) {
                                     createServiceRequest(medicalEquipment, new LocationDAO().getByLongName("West Plaza"),
-                                            ((cleanPumps.size() == 1) ? "As there is only 1 Available pump remaining on " : "As there are" + (cleanPumps.size() == 0 ? "" : " only") + " " + cleanPumps.size() + " Available pumps remaining on ") + mapViewController.getFloorManager().getByID(location.getFloor()).getLongName() + ",");
+                                            ((cleanPumps.size() == 1) ? "As there is only 1 Available pump remaining on " : "As there are" + (cleanPumps.size() == 0 ? "" : " only") + " " + cleanPumps.size() + " Available pumps remaining on ") + mapViewController.getFloorManager().getByID(location.getFloor().getID()).getLongName() + ",");
                                 }
                             }
                         }

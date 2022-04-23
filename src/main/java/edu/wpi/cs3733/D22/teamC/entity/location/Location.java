@@ -1,5 +1,6 @@
 package edu.wpi.cs3733.D22.teamC.entity.location;
 
+import edu.wpi.cs3733.D22.teamC.entity.floor.Floor;
 import edu.wpi.cs3733.D22.teamC.entity.generic.IDEntity;
 
 import javax.persistence.*;
@@ -11,9 +12,10 @@ public class Location implements IDEntity {
     @Id
     @Column(name = "ID")
     private String ID;
-    
-    @Column(name = "FloorID")
-    private String floor; // TODO: Floors should be objects
+
+    @ManyToOne
+    @JoinColumn(name = "FloorID", referencedColumnName = "ID")
+    private Floor floor; // TODO: Floors should be objects
     
     @Column(name = "Building")
     private String building = "";
@@ -56,7 +58,7 @@ public class Location implements IDEntity {
     }
     
     public Location(
-            String floor,
+            Floor floor,
             String building,
             NodeType nodeType,
             String longName,
@@ -96,11 +98,11 @@ public class Location implements IDEntity {
         this.ID = nodeID;
     }
     
-    public String getFloor() {
+    public Floor getFloor() {
         return floor;
     }
     
-    public void setFloor(String floor) {
+    public void setFloor(Floor floor) {
         this.floor = floor;
     }
     

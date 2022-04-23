@@ -240,7 +240,7 @@ public class LocationInfoController implements Initializable {
             shortNameField.setText(location.getShortName());
             longNameField.setText(location.getLongName());
             buildingField.setText(location.getBuilding());
-            ComponentWrapper.setValueSilently(floorComboBox, mapViewController.getFloorManager().getByID(location.getFloor()));
+            ComponentWrapper.setValueSilently(floorComboBox, mapViewController.getFloorManager().getByID(location.getFloor().getID()));
             ComponentWrapper.setValueSilently(nodeComboBox, location.getNodeType());
 
             // Medical Equipment
@@ -274,7 +274,7 @@ public class LocationInfoController implements Initializable {
             location.setShortName(shortNameField.getText());
             location.setLongName(longNameField.getText());
             location.setBuilding(buildingField.getText());
-            location.setFloor(floorComboBox.getValue().getID());
+            location.setFloor(floorComboBox.getValue());
             location.setNodeType(nodeComboBox.getValue());
 
             if (!original.equals(location)) {
