@@ -2,19 +2,6 @@ package edu.wpi.cs3733.D22.teamC;
 
 import edu.wpi.cs3733.D22.teamC.controller.SkeletonController;
 import edu.wpi.cs3733.D22.teamC.entity.employee.Employee;
-import edu.wpi.cs3733.D22.teamC.entity.employee.EmployeeDAO;
-import edu.wpi.cs3733.D22.teamC.entity.floor.Floor;
-import edu.wpi.cs3733.D22.teamC.entity.floor.FloorDAO;
-import edu.wpi.cs3733.D22.teamC.entity.location.Location;
-import edu.wpi.cs3733.D22.teamC.entity.location.LocationDAO;
-import edu.wpi.cs3733.D22.teamC.entity.medical_equipment.MedicalEquipment;
-import edu.wpi.cs3733.D22.teamC.entity.medical_equipment.MedicalEquipmentDAO;
-import edu.wpi.cs3733.D22.teamC.entity.patient.Patient;
-import edu.wpi.cs3733.D22.teamC.entity.patient.PatientDAO;
-import edu.wpi.cs3733.D22.teamC.entity.service_request.medical_equipment.MedicalEquipmentSR;
-import edu.wpi.cs3733.D22.teamC.entity.service_request.medical_equipment.MedicalEquipmentSRDAO;
-import edu.wpi.cs3733.D22.teamC.fileio.csv.CSVFacade;
-import edu.wpi.cs3733.D22.teamC.models.patient.PatientSelectorWindow;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
@@ -71,6 +58,7 @@ public class App extends Application {
     // Variables
     private Stage stage;
     private Scene scene;
+    public BorderPane baseNode;
 
     @Override
     public void init() {
@@ -82,16 +70,26 @@ public class App extends Application {
     public void start(Stage primaryStage) {
         // Create singleton instance
         instance = this;
-        // Store window as stage
+        // On the first run of the app set up the stage, load to login page
         stage = primaryStage;
         stage.setFullScreen(true);
-        setViewStatic(LOGIN_PATH);
-        //setViewStatic(MAP_DASHBOARD_PATH);
+        baseNode = (BorderPane) loadView(BASE_COMPONENT_PATH).getNode();
+        // Set the base node to the root
+        scene = new Scene(baseNode);
+        scene.setRoot(baseNode);
+        // Set the content of the borderpane to the login page
+        baseNode.setCenter(loadView(LOGIN_PATH).getNode());
+        stage.setScene(scene);
+        stage.show();
     }
 
     @Override
     public void stop() {
         log.info("Shutting Down");
+    }
+
+    public void changeCenter(String viewFile) {
+        baseNode.setCenter(loadView(viewFile).getNode());
     }
 
 
@@ -129,7 +127,7 @@ public class App extends Application {
      */
     public void setView(Node viewNode) {
         // Load Base Node
-        BorderPane baseNode = (BorderPane) loadView(BASE_COMPONENT_PATH).getNode();
+
 
         // TODO: Find a way to only change the center of the baseNode, nothing else
 
@@ -199,6 +197,15 @@ public class App extends Application {
         return null;
     }
 
+    public void showMenuBar(boolean show) {
+        if(show) {
+            this.baseNode.setLeft(loadView(DRAWER_PATH).getNode());
+        }
+        else {
+            this.baseNode.setLeft(null);
+        }
+    }
+
     public Stage getStage() {
         return stage;
     }
@@ -210,6 +217,4 @@ public class App extends Application {
     public void setUserAccount(Employee userAccount) {
         this.userAccount = userAccount;
     }
-
-
 }

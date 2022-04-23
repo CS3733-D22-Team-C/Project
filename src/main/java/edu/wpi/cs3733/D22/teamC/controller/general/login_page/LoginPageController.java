@@ -100,7 +100,8 @@ public class LoginPageController implements Initializable {
         else
         {
             App.instance.setUserAccount(eDAO.getEmployeeByUsername(username.getText()));
-            App.instance.setView(App.DASHBOARD_PATH);
+            App.instance.changeCenter(App.DASHBOARD_PATH);
+            App.instance.showMenuBar(true);
         }
     }
 

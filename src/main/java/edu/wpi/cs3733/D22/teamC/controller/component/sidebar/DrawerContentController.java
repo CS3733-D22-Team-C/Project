@@ -63,7 +63,7 @@ public class DrawerContentController implements Initializable {
         //initializeSVG();
 
         // Hide the database button if the user is not an admin
-        databaseButton.setVisible(App.instance.getUserAccount().getAdmin());
+//        databaseButton.setVisible(App.instance.getUserAccount().getAdmin());
 
         for (MFXButton button : allButtons) {
             button.setContentDisplay(ContentDisplay.LEFT);
@@ -74,7 +74,7 @@ public class DrawerContentController implements Initializable {
     //#region Button Events
     @FXML
     void dashboardButtonPress(ActionEvent event) {
-        App.instance.setView(App.DASHBOARD_PATH);
+        App.instance.changeCenter(App.DASHBOARD_PATH);
     }
 
     @FXML
@@ -85,28 +85,28 @@ public class DrawerContentController implements Initializable {
     @FXML
     void logOutButtonPress(ActionEvent event) {
         // TODO: Logout functionality, path to login page
-        App.instance.setViewStatic(App.LOGIN_PATH);
+        App.instance.changeCenter(App.LOGIN_PATH);
+        App.instance.showMenuBar(false);
     }
 
     @FXML
     void mapButtonPress(ActionEvent event) {
-        App.instance.setView(App.MAP_DASHBOARD_PATH);
+        App.instance.changeCenter(App.MAP_DASHBOARD_PATH);
     }
 
     @FXML
     void serviceRequestButtonPress(ActionEvent event) {
-        App.instance.setView(App.VIEW_SERVICE_REQUESTS_PATH);
+        App.instance.changeCenter(App.VIEW_SERVICE_REQUESTS_PATH);
     }
 
     @FXML
     void databaseButtonPress(ActionEvent event) {
-        // TODO: Path to view tasks related to user
-        App.instance.setView(App.DATABASE_PAGE_PATH);
+        App.instance.changeCenter(App.DATABASE_PAGE_PATH);
     }
 
     @FXML
     void userProfileButtonPress(ActionEvent event) {
-        App.instance.setView(App.USER_PROFILE);
+        App.instance.changeCenter(App.USER_PROFILE);
     }
     //#endregion
 
