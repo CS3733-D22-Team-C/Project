@@ -57,10 +57,10 @@ public class BaseServiceRequestResolveController<T extends ServiceRequest> imple
     @FXML private JFXButton mapViewButton;
 
     // References
-    private InsertServiceRequestResolveController<T> insertController;
+    protected InsertServiceRequestResolveController<T> insertController;
 
     // Variables
-    private ServiceRequest.RequestType requestType;
+    protected ServiceRequest.RequestType requestType;
 
     private T serviceRequest;
     private boolean isEditMode;
@@ -68,7 +68,7 @@ public class BaseServiceRequestResolveController<T extends ServiceRequest> imple
     private Employee employee;
     private Location location;
     
-    private String srUUID;
+    protected String srUUID;
 
     @FXML
     public void setup(ServiceRequest serviceRequest, boolean isEditMode) {

@@ -12,6 +12,7 @@ import edu.wpi.cs3733.D22.teamC.controller.map.data.medical_equipment.MedicalEqu
 import edu.wpi.cs3733.D22.teamC.controller.map.data.medical_equipment.MedicalEquipmentManager;
 import edu.wpi.cs3733.D22.teamC.controller.map.data.medical_equipment.MedicalEquipmentNode;
 import edu.wpi.cs3733.D22.teamC.controller.service_request.BaseServiceRequestResolveController;
+import edu.wpi.cs3733.D22.teamC.controller.service_request.SRShortcutController;
 import edu.wpi.cs3733.D22.teamC.controller.service_request.ServiceRequestLandingPage;
 import edu.wpi.cs3733.D22.teamC.controller.table.MedicalEquipmentViewController;
 import edu.wpi.cs3733.D22.teamC.entity.floor.Floor;
@@ -39,6 +40,7 @@ import javax.swing.*;
 import java.net.URL;
 import java.util.ResourceBundle;
 
+import static edu.wpi.cs3733.D22.teamC.controller.service_request.ServiceRequestLandingPage.RESOLVE_FORM;
 import static edu.wpi.cs3733.D22.teamC.entity.medical_equipment.MedicalEquipment.EquipmentStatus.*;
 import static edu.wpi.cs3733.D22.teamC.entity.service_request.ServiceRequest.Status.*;
 
@@ -99,6 +101,8 @@ public class LocationInfoController implements Initializable {
 
     // References
     FloorMapViewController mapViewController;
+    SRShortcutController serviceRequestShortcut;
+    BaseServiceRequestResolveController serviceRequestResolveController;
     ServiceRequestLandingPage serviceRequestLandingPage;
 
 
@@ -119,6 +123,8 @@ public class LocationInfoController implements Initializable {
         //Initialize Patients Info
         patientTableDisplay = new PatientTableDisplay(patientsTable);
 
+        serviceRequestShortcut = new SRShortcutController();
+        serviceRequestResolveController = new BaseServiceRequestResolveController();
         serviceRequestLandingPage = new ServiceRequestLandingPage();
 
         setRowInteraction();
@@ -218,6 +224,13 @@ public class LocationInfoController implements Initializable {
         }
     }
 
+    private void toEditPage(ServiceRequest serviceRequest) {
+        App.View<SRShortcutController> view = App.instance.loadView(App.SHORTCUT_EDIT);
+        //view.setController(serviceRequestShortcut);
+        view.getController().setup(serviceRequest, true);
+        App.instance.setView(view.getNode());
+    }
+
 
 
     protected void setSRRowInteraction() {
@@ -230,7 +243,7 @@ public class LocationInfoController implements Initializable {
                 }
                 if (event.getButton().equals(MouseButton.PRIMARY) && !row.isEmpty() && event.getClickCount() == 2) {
                     // Double Click shortcut to service request edit/resolve page
-                    serviceRequestLandingPage.toDefaultPage(activeServiceRequest);
+                    toEditPage(activeServiceRequest);
                 }
             });
 
