@@ -128,7 +128,7 @@ public class MapController implements Initializable {
                 Location location = new Location();
                 location.setX((int) event.getX());
                 location.setY((int) event.getY());
-                location.setFloor(mapViewController.getFloorManager().getCurrent().getID());
+                location.setFloor(mapViewController.getFloorManager().getCurrent());
                 location.setNodeType(Location.NodeType.values()[0]);
 
                 mapViewController.getLocationManager().addObject(location);

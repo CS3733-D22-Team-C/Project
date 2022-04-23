@@ -160,7 +160,7 @@ public class Location implements IDEntity {
         if (o == null || getClass() != o.getClass()) return false;
         Location location = (Location) o;
         return ID.equals(location.ID)
-                && floor.equals(location.floor)
+                && floor.getID().equals(location.floor.getID())
                 && x == location.x
                 && y == location.y
                 && building.equals(location.building)

@@ -70,7 +70,7 @@ public class LocationTableViewInsertController extends InsertTableViewController
             object.setShortName(shortNameField.getText());
             object.setNodeType(nodeTypeComboBox.getValue());
             object.setBuilding(buildingField.getText());
-            object.setFloor(floorComboBox.getValue().getID());
+            object.setFloor(floorComboBox.getValue());
             object.setX(Integer.valueOf(xField.getText()));
             object.setY(Integer.valueOf(yField.getText()));
             return object;
