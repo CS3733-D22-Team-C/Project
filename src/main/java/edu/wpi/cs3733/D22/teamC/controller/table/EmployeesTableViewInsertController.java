@@ -37,7 +37,7 @@ public class EmployeesTableViewInsertController extends InsertTableViewControlle
     @FXML private ComboBox<Employee.Role> roleComboBox;//
     @FXML Label title;
 
-    ValidationSupport validationfname = new ValidationSupport();
+    ValidationSupport validation;
 
 
     public void initialize(URL location, ResourceBundle resources) {
@@ -47,6 +47,12 @@ public class EmployeesTableViewInsertController extends InsertTableViewControlle
         roleComboBox.getItems().setAll(Employee.Role.values());
         //validationfname.registerValidator(firstName, Validator.createEmptyValidator("I love batman"));
         //confirmButton.setDisable(true);
+        validation = new ValidationSupport();
+        validation.registerValidator(firstName, Validator.createEmptyValidator("first name required"));
+        validation.registerValidator(lastName, Validator.createEmptyValidator("last name required"));
+        validation.registerValidator(phone, Validator.createEmptyValidator("phone number required"));
+        validation.registerValidator(roleComboBox, Validator.createEmptyValidator("role required"));
+        validation.setErrorDecorationEnabled(false);
     }
 
     //#region Field Interaction
@@ -79,7 +85,7 @@ public class EmployeesTableViewInsertController extends InsertTableViewControlle
         lastName.setText((object == null) ? "" : object.getLastName());
         phone.setText((object == null) ? "" : object.getPhone());
         roleComboBox.setValue((object == null) ? null : object.getRole());
-        confirmButton.setDisable(true);
+        //confirmButton.setDisable(true);
     }
     //#endregion
 
@@ -89,21 +95,13 @@ public class EmployeesTableViewInsertController extends InsertTableViewControlle
      */
     public boolean checkFieldsFilled() {
 
-        boolean failed = false;
-
-        if (firstName.getText().equals(""))
-        {
-            validationfname.registerValidator(firstName, Validator.createEmptyValidator("I love batman"));
-            validationfname.setErrorDecorationEnabled(true);
-            validationfname.redecorate();
-            failed = true;
-        }
-//        return !(firstName.getText().equals("")
-//                || lastName.getText().equals("")
-//                || phone.getText().equals("")
-//                || roleComboBox.getValue()==null);
-
-        return !failed;
+        //boolean failed = false;
+        //validation = new ValidationSupport();
+        validation.setErrorDecorationEnabled(true);
+        return !(firstName.getText().equals("")
+                || lastName.getText().equals("")
+                || phone.getText().equals("")
+                || roleComboBox.getValue()==null);
     }
 
     //#region Abstraction
@@ -133,12 +131,11 @@ public class EmployeesTableViewInsertController extends InsertTableViewControlle
     //#region FXML Events
     @FXML
     void clickConfirm(ActionEvent event) {
-
         if (checkFieldsFilled()){
             if (parentController.currentObj == null) addObject();
             else updateObject();
             parentController.setCurrentObj(null);
-
+            validation.setErrorDecorationEnabled(false);
         }
     }
 
