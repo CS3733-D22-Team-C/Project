@@ -13,8 +13,9 @@ import javafx.geometry.Orientation;
 import javafx.scene.Scene;
 import javafx.scene.layout.BorderPane;
 import javafx.stage.Stage;
+import javafx.util.Callback;
+import org.controlsfx.control.PopOver;
 import org.controlsfx.control.SegmentedBar;
-
 import javax.swing.text.Segment;
 import java.net.URL;
 import java.util.Random;
@@ -34,6 +35,8 @@ public class SegmentBarController implements Initializable {
     SegmentedBar.Segment blankSegment;
     SegmentedBar.Segment processingSegment;
     SegmentedBar.Segment doneSegment;
+    private Callback callback;
+    private PopOver popOver;
 
     @Override
     public void initialize(URL url, ResourceBundle resources) {
@@ -46,6 +49,7 @@ public class SegmentBarController implements Initializable {
         doneSegment = new SegmentedBar.Segment(0, "Done: ");
         processingSegment = new SegmentedBar.Segment(0, "Processing: ");
         blankSegment = new SegmentedBar.Segment(0, "Blank: ");
+        popOver = new PopOver();
 
     }
 
@@ -71,6 +75,11 @@ public class SegmentBarController implements Initializable {
 
     }
     public void setup(boolean isOriginal){
+        Callback callback = segmentBar.getInfoNodeFactory();
+        popOver.setTitle("Hello");
+
+
+        //Setting segmentedbar properties
         segmentBar.orientationProperty().bind(orientation);
         blankSegment.setText("Blank: " + blank);
         blankSegment.setValue(blank);
@@ -78,6 +87,7 @@ public class SegmentBarController implements Initializable {
         processingSegment.setValue(processing);
         doneSegment.setText("Done: " + done);
         doneSegment.setValue(done);
+
         if(isOriginal)
             segmentBar.getSegments().addAll(blankSegment, processingSegment, doneSegment);
 
@@ -85,13 +95,13 @@ public class SegmentBarController implements Initializable {
             SegmentedBar<org.controlsfx.control.SegmentedBar.Segment>.SegmentView view = segmentBar.new SegmentView((org.controlsfx.control.SegmentedBar.Segment)segment);
             String color = "";
             if(((SegmentedBar.Segment) segment).getText().contains("Blank"))
-                color = "#000000";
+                color = "#eb3469";
             else if (((SegmentedBar.Segment) segment).getText().contains("Processing"))
-                color = RCG();
+                color = "#ebb420";
             else
                 color = "#069420";
 
-            view.setStyle("-fx-background-color: " + color);
+            view.setStyle("-fx-background-color: " + color + "; -fx-font-size: 8px;");
             return view ;
         });
     }

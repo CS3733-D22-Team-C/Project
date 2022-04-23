@@ -19,7 +19,7 @@
                      <content>
                         <VBox fx:id="assignedTableBox">
                            <children>
-                              <JFXTreeTableView fx:id="assignedTable" prefHeight="233.0" prefWidth="225.0" styleClass="table-view" />
+                              <JFXTreeTableView fx:id="assignedTable" prefHeight="448.0" prefWidth="368.0" styleClass="table-view" />
                            </children>
                         </VBox>
                      </content>
