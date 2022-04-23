@@ -34,7 +34,9 @@ public class PatientTableDisplay extends TableDisplay<Patient>{
             emergencyContact = new SimpleStringProperty(patient.getEmergencyContact());
             phone = new SimpleStringProperty(patient.getPhone());
             location = new SimpleStringProperty((patient.getLocationID() == null) ? "" : new LocationDAO().getByID(patient.getLocationID()).getShortName());
-            DOB = new SimpleStringProperty(patient.getDOB().toString().substring(0,10));
+            System.out.println(patient);
+            System.out.println(patient.getDOB());
+            DOB = new SimpleStringProperty((patient.getDOB() == null) ? null : patient.getDOB().toString().substring(0,10));
         }
 
         @Override
@@ -45,7 +47,7 @@ public class PatientTableDisplay extends TableDisplay<Patient>{
             patientID.setValue(object.getID());
             emergencyContact.setValue(object.getEmergencyContact());
             location.setValue((object.getLocationID() == null) ? "" : new LocationDAO().getByID(object.getLocationID()).getShortName());
-            DOB.setValue(object.getDOB().toString().substring(0,10));
+            DOB.setValue((object.getDOB() == null) ? null : object.getDOB().toString().substring(0,10));
         }
     }
 
