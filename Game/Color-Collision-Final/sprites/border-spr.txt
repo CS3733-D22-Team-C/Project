@@ -1,0 +1,26 @@
+<HEADER>
+frames 1
+width 1
+height 13
+color white
+slowdown 0
+</HEADER>
+<BODY>
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+end
+</BODY>
+<FOOTER>
+version 1
+</FOOTER>
