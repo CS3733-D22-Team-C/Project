@@ -11,6 +11,7 @@ import edu.wpi.cs3733.D22.teamC.controller.map.data.location.LocationMapNode;
 import edu.wpi.cs3733.D22.teamC.controller.map.data.medical_equipment.MedicalEquipmentCounter;
 import edu.wpi.cs3733.D22.teamC.controller.map.data.medical_equipment.MedicalEquipmentManager;
 import edu.wpi.cs3733.D22.teamC.controller.map.data.medical_equipment.MedicalEquipmentNode;
+import edu.wpi.cs3733.D22.teamC.controller.service_request.BaseServiceRequestResolveController;
 import edu.wpi.cs3733.D22.teamC.controller.service_request.ServiceRequestLandingPage;
 import edu.wpi.cs3733.D22.teamC.controller.table.MedicalEquipmentViewController;
 import edu.wpi.cs3733.D22.teamC.entity.floor.Floor;
@@ -70,9 +71,10 @@ public class LocationInfoController implements Initializable {
 
     // Service Requests - Table
     @FXML JFXTreeTableView serviceRequestTable;
+
     ServiceRequestTableDisplay<ServiceRequest> serviceRequestTableDisplay;
     private ServiceRequest activeServiceRequest;
-    ServiceRequestLandingPage serviceRequestLandingPage;
+
 
 
     //Patients - Table
@@ -97,6 +99,7 @@ public class LocationInfoController implements Initializable {
 
     // References
     FloorMapViewController mapViewController;
+    ServiceRequestLandingPage serviceRequestLandingPage;
 
 
     @Override
@@ -115,6 +118,8 @@ public class LocationInfoController implements Initializable {
 
         //Initialize Patients Info
         patientTableDisplay = new PatientTableDisplay(patientsTable);
+
+        serviceRequestLandingPage = new ServiceRequestLandingPage();
 
         setRowInteraction();
         setSRRowInteraction();
@@ -139,6 +144,7 @@ public class LocationInfoController implements Initializable {
         setEditable(false);
         setVisible(false);
         setActiveMedicalEquipment(null);
+        setActiveServiceRequest(null);
     }
 
     /**
@@ -222,7 +228,7 @@ public class LocationInfoController implements Initializable {
                 if (!row.isEmpty() && event.getButton() == MouseButton.PRIMARY) {
                     setActiveServiceRequest(((ServiceRequest) row.getItem().object));
                 }
-                if (event.getClickCount() == 2) {
+                if (event.getButton().equals(MouseButton.PRIMARY) && !row.isEmpty() && event.getClickCount() == 2) {
                     // Double Click shortcut to service request edit/resolve page
                     serviceRequestLandingPage.toDefaultPage(activeServiceRequest);
                 }
@@ -236,6 +242,8 @@ public class LocationInfoController implements Initializable {
         // Update Service Request DB
         new ServiceRequestDAO().update(activeServiceRequest);
 
+        populateServiceRequestTable(mapViewController.getLocationManager().getCurrent());
+
 //        // Update Service Request Node Counter
 //        MedicalEquipmentManager medicalEquipmentManager = mapViewController.getMedicalEquipmentManager();
 //        if (medicalEquipmentManager != null) {
@@ -248,7 +256,7 @@ public class LocationInfoController implements Initializable {
 
     private void setActiveServiceRequest(ServiceRequest serviceRequest) {
         activeServiceRequest = serviceRequest;
-        resolveSR.setDisable(activeServiceRequest == null );
+        resolveSR.setDisable(activeServiceRequest == null);
         resolveSR.setDisable(activeServiceRequest == null);
         setSRLocationClickCapture(false);
     }
@@ -401,7 +409,7 @@ public class LocationInfoController implements Initializable {
 
                 updateMedicalEquipment();
             } else {
-                System.out.println("You fucked up, dude!");
+
             }
         }
 
@@ -420,7 +428,7 @@ public class LocationInfoController implements Initializable {
             if (activeServiceRequest != null) {
                 activeServiceRequest.setStatus(Done);
 
-                // Update Medical Equipment Table
+                // Update Service Request Table
                 serviceRequestTableDisplay.updateObject(activeServiceRequest);
 
                 updateServiceRequest();

@@ -148,7 +148,7 @@ public class ServiceRequestLandingPage implements Initializable {
                 toEditPage(serviceRequest);
                 break;
             case Processing:
-                toResolvePage(serviceRequest);
+                toEditPage(serviceRequest);
                 break;
             case Done:
                 // "Done" Service Requests cannot be edited or resolved
