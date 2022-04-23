@@ -6,6 +6,7 @@ import com.jfoenix.controls.JFXTreeTableView;
 import edu.wpi.cs3733.D22.teamC.App;
 import edu.wpi.cs3733.D22.teamC.controller.service_request.BaseServiceRequestCreateController;
 import edu.wpi.cs3733.D22.teamC.controller.service_request.BaseServiceRequestResolveController;
+import edu.wpi.cs3733.D22.teamC.entity.generic.DAO;
 import edu.wpi.cs3733.D22.teamC.entity.service_request.ServiceRequest;
 import edu.wpi.cs3733.D22.teamC.entity.service_request.ServiceRequestDAO;
 import edu.wpi.cs3733.D22.teamC.models.service_request.ServiceRequestTableDisplay;
@@ -13,6 +14,7 @@ import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.geometry.Insets;
 import javafx.scene.control.Label;
 import javafx.scene.control.TreeTableRow;
 import javafx.scene.image.Image;
@@ -20,6 +22,7 @@ import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseButton;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.GridPane;
+import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 
 import java.io.FileInputStream;
@@ -54,6 +57,9 @@ public class ServiceRequestLandingPage implements Initializable {
     @FXML private Label vishnu;
     @FXML private ImageView eye;
 
+    @FXML private JFXButton deleteButton;
+    @FXML private HBox buttonsBox;
+
     private boolean canSee = false;
 
     @FXML
@@ -83,8 +89,13 @@ public class ServiceRequestLandingPage implements Initializable {
 
         // Set Row Interaction with Table Display
         setRowInteraction();
-
         changeNameVisibility(canSee);
+
+        if (!App.instance.getUserAccount().getAdmin()) {
+            buttonsBox.getChildren().remove(deleteButton);
+        } else {
+            deleteButton.setDisable(true);
+        }
     }
 
     //#region Button Events
@@ -116,7 +127,6 @@ public class ServiceRequestLandingPage implements Initializable {
                     }
                 }
             });
-
             return row ;
         });
     }
@@ -139,6 +149,7 @@ public class ServiceRequestLandingPage implements Initializable {
             edit.setDisable(true);
             resolve.setDisable(true);
         }
+        deleteButton.setDisable(false);
     }
 
     //#region Page Navigation
@@ -267,5 +278,15 @@ public class ServiceRequestLandingPage implements Initializable {
         App.View<BaseServiceRequestCreateController> view = App.instance.loadView(CREATE_FORM);
         view.getController().setup(type);
         App.instance.setView(view.getNode());
+    }
+
+    @FXML
+    void onDeleteButton(){
+        if (activeServiceRequest != null) {
+            ServiceRequestDAO srDao = new ServiceRequestDAO();
+            srDao.delete(activeServiceRequest);
+            tableDisplay.removeObject(activeServiceRequest);
+            table.getSelectionModel().clearSelection();
+        }
     }
 }
