@@ -13,15 +13,27 @@ import edu.wpi.cs3733.D22.teamC.fileio.csv.floor.FloorCSVWriter;
 import edu.wpi.cs3733.D22.teamC.models.location.EquipmentTableDisplay;
 import io.github.palexdev.materialfx.controls.MFXButton;
 import io.github.palexdev.materialfx.utils.SwingFXUtils;
+import javafx.beans.property.BooleanProperty;
+import javafx.beans.property.ObjectProperty;
+import javafx.beans.property.SimpleObjectProperty;
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
 import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.geometry.Orientation;
+import javafx.scene.Group;
+import javafx.scene.Node;
 import javafx.scene.control.Label;
+import javafx.scene.control.ScrollBar;
 import javafx.scene.control.TextArea;
+import javafx.scene.control.TitledPane;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-import javafx.scene.input.MouseEvent;
+import javafx.scene.input.*;
 import javafx.scene.layout.HBox;
+import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
 import javafx.stage.FileChooser;
 import org.controlsfx.control.InfoOverlay;
@@ -37,6 +49,7 @@ import java.net.URL;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import java.util.ResourceBundle;
 
@@ -87,6 +100,9 @@ public class BaseMapSideViewController implements Initializable {
 
     private boolean addFloorClicked;
 
+    private static final String TAB_DRAG_KEY = "node";
+    private ObjectProperty<Node> draggingTab;
+
     @Override // Load floors and buttons
     public void initialize(URL location, ResourceBundle resources) {
         this.readyEquip = new Equipment();
@@ -102,6 +118,9 @@ public class BaseMapSideViewController implements Initializable {
         floorNodeControllerList = new ArrayList<>();
         FloorDAO floorDAO = new FloorDAO();
         List<Floor> lof = floorDAO.getAll();
+        System.out.println(lof.get(0).getOrder());
+        tableDisplay = new EquipmentTableDisplay(table);
+        draggingTab = new SimpleObjectProperty<Node>();
         for(Floor floor : lof){
             FloorNode floorNode = FloorNode.loadNewFloorNode();
             floorNode.setup(floor);
@@ -114,10 +133,73 @@ public class BaseMapSideViewController implements Initializable {
                     ex.printStackTrace();
                 }
             });
+            floorNode.getGroup().getChildren().get(0).setOnDragOver(new EventHandler<DragEvent>() {
+                @Override
+                public void handle(DragEvent event) {
+                    final Dragboard dragboard = event.getDragboard();
+                    if (dragboard.hasString()
+                            && TAB_DRAG_KEY.equals(dragboard.getString())
+                            && draggingTab.get() != null) {
+                        event.acceptTransferModes(TransferMode.MOVE);
+                        event.consume();
+                    }
+                }
+            });
+            floorNode.getGroup().getChildren().get(0).setOnDragDropped(new EventHandler<DragEvent>() {
+                public void handle(final DragEvent event) {
+                    Dragboard db = event.getDragboard();
+                    boolean success = false;
+                    if (db.hasString()) {
+                        HBox parent = floorNode.getGroup();
+                        Object source = event.getGestureSource();
+                        int sourceIndex = floorVBox.getChildren().indexOf(source);
+                        int targetIndex = floorVBox.getChildren().indexOf(floorNode.getGroup());
+                        List<Node> nodes = new ArrayList<Node>(floorVBox.getChildren());
+                        if (sourceIndex < targetIndex) {
+                            Collections.rotate( // todo look into using buttons that do this instead
+                                    nodes.subList(sourceIndex, targetIndex + 1), -1);
+                        } else {
+                            Collections.rotate(
+                                    nodes.subList(targetIndex, sourceIndex + 1), 1);
+                        }
+                        floorVBox.getChildren().clear();
+                        floorVBox.getChildren().addAll(nodes);
+                        success = true;
+                        updateFloor(); // todo: Write code to save order to csv
+                        // todo maybe try working with only the node list using the target and selected index and updating manually?
+                        // might need two functions (one for up and one for down for this to work)
+                    }
+                    event.setDropCompleted(success);
+                    event.consume();
+                }
+            });
+            floorNode.getGroup().getChildren().get(0).setOnDragDetected(new EventHandler<MouseEvent>() {
+                @Override
+                public void handle(MouseEvent event) {
+                    Dragboard dragboard = floorNode.getGroup().startDragAndDrop(TransferMode.MOVE);
+                    ClipboardContent clipboardContent = new ClipboardContent();
+                    clipboardContent.putString(TAB_DRAG_KEY);
+                    dragboard.setContent(clipboardContent);
+                    draggingTab.set(floorNode.getGroup());
+                    event.consume();
+                }
+            });
         }
+        ScrollBar sc = new ScrollBar();
+        sc.setMin(0);
+        sc.setOrientation(Orientation.VERTICAL);
+        //set other properties
+        sc.valueProperty().addListener(new ChangeListener<Number>() {
+            public void changed(ObservableValue<? extends Number> ov,
+                                Number old_val, Number new_val) {
+                floorVBox.setLayoutY(-new_val.doubleValue());
+            }
+        });
 
-        tableDisplay = new EquipmentTableDisplay(table);
+    }
 
+    public void updateFloor(){
+        // TODO: Place holder for updating floors in csv
     }
 
     public void onConfirmClicked(ActionEvent actionEvent) {
