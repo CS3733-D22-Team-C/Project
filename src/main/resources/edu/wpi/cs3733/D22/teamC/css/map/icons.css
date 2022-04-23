@@ -1,3 +1,4 @@
+/* Location Type Icons */
 .conf-icon {
     -fx-scale-x: .575;
     -fx-scale-y: .5;
@@ -67,3 +68,57 @@
     -fx-scale-x: .55;
     -fx-scale-y: .475;
 }
+
+/* Service Request Icons */
+.medical_equipment-icon {
+    -fx-scale-x: 0.7;
+    -fx-scale-y: 0.7;
+}
+
+.facility_maintenance-icon {
+    -fx-scale-x: 0.7;
+    -fx-scale-y: 0.7;
+}
+
+.lab_system-icon {
+    -fx-scale-x: 0.7;
+    -fx-scale-y: 0.7;
+}
+
+.medicine_delivery-icon {
+    -fx-scale-x: 0.7;
+    -fx-scale-y: 0.7;
+}
+
+.sanitation-icon {
+    -fx-scale-x: 0.7;
+    -fx-scale-y: 0.7;
+}
+
+.security-icon {
+    -fx-scale-x: 0.7;
+    -fx-scale-y: 0.7;
+}
+
+.translator-icon {
+    -fx-scale-x: 0.7;
+    -fx-scale-y: 0.7;
+}
+
+.patient_transport-icon {
+    -fx-scale-x: 0.7;
+    -fx-scale-y: 0.7;
+}
+
+.laundry-icon {
+    -fx-scale-x: 0.7;
+    -fx-scale-y: 0.7;
+}
+
+.delivery_system-icon {
+    -fx-scale-x: 0.7;
+    -fx-scale-y: 0.7;
+}
+
+
+

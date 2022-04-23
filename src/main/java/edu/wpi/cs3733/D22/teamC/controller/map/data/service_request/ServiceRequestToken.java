@@ -44,10 +44,11 @@ public class ServiceRequestToken {
      */
     public void updateIcon(){
         SVGParser svgParser = new SVGParser();
-        String content = svgParser.getPath("static/icons/" + requestType.toString().toUpperCase(Locale.ROOT) + ".svg");
+        String content = svgParser.getPath("static/icons/service_request/" + requestType.toString().toLowerCase(Locale.ROOT) + ".svg");
 
         SVGGlyph glyph = new SVGGlyph(content);
         glyph.getStyleClass().add(requestType.toString().toLowerCase(Locale.ROOT) + "-icon");
+        System.out.println(requestType.toString().toLowerCase(Locale.ROOT) + "-icon");
         iconLabel.setGraphic(glyph);
     }
 

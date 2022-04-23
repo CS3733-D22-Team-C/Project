@@ -18,18 +18,8 @@ import java.util.stream.Collectors;
 public class ServiceRequestNode extends MapNode<ServiceRequest> {
     // Constants
     private static final String TOKEN_PATH = "view/map/nodes/service_request/node.fxml";
-    private static final Pair<Integer, Integer>[] TOKEN_OFFSETS = new Pair[] {
-            new Pair(-30, -60),
-            new Pair(-30, -30),
-            new Pair(0, -60),
-            new Pair(0, -30),
-            new Pair(30, -60),
-            new Pair(30, -30),
-            new Pair(60, -60),
-            new Pair(60, -30),
-            new Pair(90, -60),
-            new Pair(90, -30)
-    };
+    private static final Pair<Integer, Integer> TOKEN_ORIGIN = new Pair(-75, -60);
+    private static final int TOKEN_OFFSET = 25;
 
     // References
     Group contextGroup;
@@ -52,7 +42,10 @@ public class ServiceRequestNode extends MapNode<ServiceRequest> {
             ServiceRequestToken controller = view.getController();
 
             contextGroup.getChildren().add(view.getNode());
-            controller.setPosition(TOKEN_OFFSETS[requestType.ordinal()].getKey(), TOKEN_OFFSETS[requestType.ordinal()].getValue());
+
+            int x = TOKEN_ORIGIN.getKey() + (requestType.ordinal() % 2) * TOKEN_OFFSET;
+            int y = TOKEN_ORIGIN.getValue() + (requestType.ordinal() / 2) * TOKEN_OFFSET;
+            controller.setPosition(x, y);
             controller.setType(requestType);
             controller.setup(this);
 

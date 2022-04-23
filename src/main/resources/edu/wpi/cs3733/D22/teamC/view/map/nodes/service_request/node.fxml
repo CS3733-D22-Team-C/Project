@@ -1,12 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import java.net.URL?>
 <?import javafx.scene.Group?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.shape.Rectangle?>
 
 <Group fx:id="root" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.wpi.cs3733.D22.teamC.controller.map.data.service_request.ServiceRequestToken">
    <children>
-      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="36.0" rotate="45.0" stroke="BLACK" strokeType="INSIDE" width="36.0" />
-      <Label fx:id="iconLabel" prefHeight="36.0" prefWidth="36.0" />
+      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="16.0" rotate="45.0" stroke="BLACK" strokeType="INSIDE" styleClass="service-request-node" width="16.0" />
+      <Label fx:id="iconLabel" prefHeight="16.0" prefWidth="16.0" />
    </children>
+   <stylesheets>
+      <URL value="@../../../../css/map/nodes.css" />
+      <URL value="@../../../../css/map/icons.css" />
+   </stylesheets>
 </Group>
