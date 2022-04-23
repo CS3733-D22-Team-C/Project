@@ -69,6 +69,12 @@ public class ServiceRequestLandingPage implements Initializable {
     private ServiceRequestTableDisplay<ServiceRequest> tableDisplay;
 
     @FXML
+    public void startAPI()
+    {
+
+    }
+
+    @FXML
     public void initialize(URL url, ResourceBundle rb) {
         // Populate Table Display
         ServiceRequestDAO serviceRequestDAO  = new ServiceRequestDAO();
