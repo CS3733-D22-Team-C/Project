@@ -12,6 +12,7 @@ import edu.wpi.cs3733.D22.teamC.entity.location.Location;
 import edu.wpi.cs3733.D22.teamC.entity.location.LocationDAO;
 import edu.wpi.cs3733.D22.teamC.entity.service_request.ServiceRequest;
 import edu.wpi.cs3733.D22.teamC.fileio.svg.SVGParser;
+import edu.wpi.cs3733.D22.teamC.models.builders.NotificationBuilder;
 import edu.wpi.cs3733.D22.teamC.models.employee.EmployeeSelectorWindow;
 import edu.wpi.cs3733.D22.teamC.models.location.MapSelectorWindow;
 import edu.wpi.cs3733.D22.teamC.models.utils.ComponentWrapper;
@@ -204,6 +205,11 @@ public class BaseServiceRequestResolveController<T extends ServiceRequest> imple
         serviceRequest.setDescription(description.getText());
         serviceRequestDAO.update(serviceRequest);
         insertController.updateServiceRequest(serviceRequest);
+
+        //Notification
+        String createdSRNotification = "Service Request " + serviceRequest + " has been edited";
+        NotificationBuilder.createNotification("Service Request Edited", createdSRNotification);
+
 
         clickGoBack(null);
 

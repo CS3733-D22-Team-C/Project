@@ -12,7 +12,10 @@ import edu.wpi.cs3733.D22.teamC.entity.location.Location;
 import edu.wpi.cs3733.D22.teamC.entity.patient.Patient;
 import edu.wpi.cs3733.D22.teamC.entity.location.LocationDAO;
 import edu.wpi.cs3733.D22.teamC.entity.service_request.ServiceRequest;
+import edu.wpi.cs3733.D22.teamC.entity.service_request.ServiceRequestDAO;
+import edu.wpi.cs3733.D22.teamC.entity.service_request.medical_equipment.MedicalEquipmentSRDAO;
 import edu.wpi.cs3733.D22.teamC.fileio.svg.SVGParser;
+import edu.wpi.cs3733.D22.teamC.models.builders.NotificationBuilder;
 import edu.wpi.cs3733.D22.teamC.models.employee.EmployeeSelectorWindow;
 import edu.wpi.cs3733.D22.teamC.models.location.MapSelectorWindow;
 import edu.wpi.cs3733.D22.teamC.models.patient.PatientSelectorWindow;
@@ -237,6 +240,15 @@ public class BaseServiceRequestCreateController<T extends ServiceRequest> implem
 
         // Add to TableDisplay
         tableDisplay.addObject(serviceRequest);
+
+//
+//        ServiceRequestDAO dao = new ServiceRequestDAO();
+//        dao.insert(serviceRequest);
+//        serviceRequest = (T) dao.getByID(serviceRequest.getID());
+
+        // Push Notification
+        String createdSRNotification = "Service Request " + serviceRequest + " has been created";
+        NotificationBuilder.createNotification("Service Request Created", createdSRNotification);
 
         clearFields();
     }
