@@ -159,13 +159,13 @@ public class ServiceRequestLandingPage implements Initializable {
     private void toEditPage(ServiceRequest serviceRequest) {
         App.View<BaseServiceRequestResolveController> view = App.instance.loadView(RESOLVE_FORM);
         view.getController().setup(serviceRequest, true);
-        App.instance.setView(view.getNode());
+        App.instance.changeCenter(view.getNode());
     }
 
     private void toResolvePage(ServiceRequest serviceRequest) {
         App.View<BaseServiceRequestResolveController> view = App.instance.loadView(RESOLVE_FORM);
         view.getController().setup(serviceRequest, false);
-        App.instance.setView(view.getNode());
+        App.instance.changeCenter(view.getNode());
     }
 
     /**
@@ -266,6 +266,6 @@ public class ServiceRequestLandingPage implements Initializable {
     private void goToSRPage(ServiceRequest.RequestType type){
         App.View<BaseServiceRequestCreateController> view = App.instance.loadView(CREATE_FORM);
         view.getController().setup(type);
-        App.instance.setView(view.getNode());
+        App.instance.changeCenter(view.getNode());
     }
 }

@@ -91,6 +91,9 @@ public class App extends Application {
     public void changeCenter(String viewFile) {
         baseNode.setCenter(loadView(viewFile).getNode());
     }
+    public void changeCenter(Node node) {
+        baseNode.setCenter(node);
+    }
 
 
     /**
