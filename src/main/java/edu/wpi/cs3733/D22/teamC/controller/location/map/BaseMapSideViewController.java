@@ -165,6 +165,7 @@ public class BaseMapSideViewController implements Initializable {
                         floorVBox.getChildren().clear();
                         floorVBox.getChildren().addAll(nodes);
                         success = true;
+                        System.out.println(floorNode.getFloor()); // gives the floor that gets placed over (i.e, if 4 is dragged over 5, 5 is given)
                         updateFloor(); // todo: Write code to save order to csv
                         // todo maybe try working with only the node list using the target and selected index and updating manually?
                         // might need two functions (one for up and one for down for this to work)
