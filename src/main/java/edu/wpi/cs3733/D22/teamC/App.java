@@ -45,7 +45,6 @@ public class App extends Application {
     public static final String MAP_DASHBOARD_PATH = "view/location/map/base_side_map_view.fxml";
     public static final String DATABASE_PAGE_PATH = "view/general/edit_databases_page.fxml";
     public static final String MAP_PATH = "view/map/floor_map.fxml";
-    public static final String BASE_CSS_PATH = "css/base.css";
     public static final String USER_PROFILE = "view/general/profile_page/user_profile.fxml";
     //public static final String IMAGE_PATH = "static/images/BrighamAndWomensHospital.png";
 
@@ -70,13 +69,16 @@ public class App extends Application {
     public void start(Stage primaryStage) {
         // Create singleton instance
         instance = this;
+
         // On the first run of the app set up the stage, load to login page
         stage = primaryStage;
         stage.setFullScreen(true);
         baseNode = (BorderPane) loadView(BASE_COMPONENT_PATH).getNode();
+
         // Set the base node to the root
         scene = new Scene(baseNode);
         scene.setRoot(baseNode);
+
         // Set the content of the borderpane to the login page
         baseNode.setCenter(loadView(LOGIN_PATH).getNode());
         stage.setScene(scene);
@@ -87,14 +89,6 @@ public class App extends Application {
     public void stop() {
         log.info("Shutting Down");
     }
-
-    public void changeCenter(String viewFile) {
-        baseNode.setCenter(loadView(viewFile).getNode());
-    }
-    public void changeCenter(Node node) {
-        baseNode.setCenter(node);
-    }
-
 
     /**
      * Set a skeleton file for a view.
@@ -114,14 +108,7 @@ public class App extends Application {
      * @param viewFile Path to the FXML file to be displayed.
      */
     public void setView(String viewFile){
-        Node node = loadView(viewFile).getNode();
-        setView(node);
-    }
-
-    public void setViewStatic(String viewFile)
-    {
-        Node node = loadView(viewFile).getNode();
-        setViewStatic(node);
+        baseNode.setCenter(loadView(viewFile).getNode());
     }
 
     /**
@@ -129,40 +116,7 @@ public class App extends Application {
      * @param viewNode Node to be displayed.
      */
     public void setView(Node viewNode) {
-        // Load Base Node
-
-
-        // TODO: Find a way to only change the center of the baseNode, nothing else
-
-        // Load drawer Menu
-        Node drawerNode = loadView(DRAWER_PATH).getNode();
-
-        // Embed views and components
-        //baseNode.setTop(menuBarNode);
         baseNode.setCenter(viewNode);
-        baseNode.setLeft(drawerNode);
-        baseNode.autosize();
-
-        if (scene != null) scene.setRoot(baseNode);
-        else scene = new Scene(baseNode);
-        stage.setScene(scene);
-        stage.show();
-    }
-
-    public void setViewStatic(Node viewNode)
-    {
-        // Load Base Node
-        BorderPane baseNode = (BorderPane) loadView(BASE_COMPONENT_PATH).getNode();
-
-        // Embed views and components
-        //baseNode.setTop(menuBarNode);
-        baseNode.setCenter(viewNode);
-        baseNode.autosize();
-
-        if (scene != null) scene.setRoot(baseNode);
-        else scene = new Scene(baseNode);
-        stage.setScene(scene);
-        stage.show();
     }
 
     /**
@@ -200,6 +154,10 @@ public class App extends Application {
         return null;
     }
 
+    /**
+     * Function to show and kill drawer
+     * @param show true if the drawer should show, false if drawer should be killed
+     */
     public void showMenuBar(boolean show) {
         if(show) {
             this.baseNode.setLeft(loadView(DRAWER_PATH).getNode());
