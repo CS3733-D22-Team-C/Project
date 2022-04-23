@@ -1,0 +1,84 @@
+Log : LogManager constructed
+Log : ResourceManager constructed
+Log : SRM::loadSprite(): Loading sprite 'sprites/rail_sprite.txt'.
+Log : SRM::loadSprite(): Opened file 'sprites/rail_sprite.txt'.
+Log : 	      Frames: 1
+Log : 	       Width: 83
+Log : 	      Height: 5
+Log : 	    Slowdown: 4
+Log : 	       Color: green
+Log : SRM::loadSprite(): Sprite 'railsprite' loaded.
+Log : SRM::loadSprite(): Loading sprite 'sprites/wall_sprite.txt'.
+Log : SRM::loadSprite(): Opened file 'sprites/wall_sprite.txt'.
+Log : 	      Frames: 1
+Log : 	       Width: 2
+Log : 	      Height: 3
+Log : 	    Slowdown: 1
+Log : 	       Color: white
+Log : SRM::loadSprite(): Sprite 'wallsprite' loaded.
+Log : SRM::loadSprite(): Loading sprite 'sprites/star_sprite.txt'.
+Log : SRM::loadSprite(): Opened file 'sprites/star_sprite.txt'.
+Log : 	      Frames: 2
+Log : 	       Width: 5
+Log : 	      Height: 3
+Log : 	    Slowdown: 15
+Log : 	       Color: magenta
+Log : SRM::loadSprite(): Sprite 'starsprite' loaded.
+Log : SRM::loadSprite(): Loading sprite 'sprites/hero-right-spr.txt'.
+Log : SRM::loadSprite(): Opened file 'sprites/hero-right-spr.txt'.
+Log : 	      Frames: 2
+Log : 	       Width: 5
+Log : 	      Height: 3
+Log : 	    Slowdown: 20
+Log : 	       Color: red
+Log : SRM::loadSprite(): Sprite 'heror' loaded.
+Log : SRM::loadSprite(): Loading sprite 'sprites/hero-left-spr.txt'.
+Log : SRM::loadSprite(): Opened file 'sprites/hero-left-spr.txt'.
+Log : 	      Frames: 2
+Log : 	       Width: 5
+Log : 	      Height: 3
+Log : 	    Slowdown: 20
+Log : 	       Color: red
+Log : SRM::loadSprite(): Sprite 'herol' loaded.
+Log : SRM::loadSprite(): Loading sprite 'sprites/hero-explode.txt'.
+Log : SRM::loadSprite(): Opened file 'sprites/hero-explode.txt'.
+Log : 	      Frames: 6
+Log : 	       Width: 6
+Log : 	      Height: 3
+Log : 	    Slowdown: 4
+Log : 	       Color: red
+Log : SRM::loadSprite(): Sprite 'heroexplode' loaded.
+Log : SRM::loadSprite(): Loading sprite 'sprites/main-menu-spr.txt'.
+Log : SRM::loadSprite(): Opened file 'sprites/main-menu-spr.txt'.
+Log : 	      Frames: 1
+Log : 	       Width: 75
+Log : 	      Height: 14
+Log : 	    Slowdown: 0
+Log : 	       Color: cyan
+Log : SRM::loadSprite(): Sprite 'gamestart' loaded.
+Log : SRM::loadSprite(): Loading sprite 'sprites/game-over-spr.txt'.
+Log : SRM::loadSprite(): Opened file 'sprites/game-over-spr.txt'.
+Log : 	      Frames: 1
+Log : 	       Width: 37
+Log : 	      Height: 14
+Log : 	    Slowdown: 0
+Log : 	       Color: red
+Log : SRM::loadSprite(): Sprite 'gameover' loaded.
+Log : SRM::loadSprite(): Loading sprite 'sprites/border-spr.txt'.
+Log : SRM::loadSprite(): Opened file 'sprites/border-spr.txt'.
+Log : 	      Frames: 1
+Log : 	       Width: 1
+Log : 	      Height: 13
+Log : 	    Slowdown: 0
+Log : 	       Color: white
+Log : SRM::loadSprite(): Sprite 'border' loaded.
+Log : WorldManager constructed
+Log : DisplayManager constructed
+Log : GM.run() Started!
+Log : Game loop ended!
+Log : GameManager Shutting down!
+Log : Input Manager Shutting Down
+Log : WorldManager destructed
+Log : DisplayManager destructed
+Log : ResourceManager destructed
+Log : LogManager Destructed
