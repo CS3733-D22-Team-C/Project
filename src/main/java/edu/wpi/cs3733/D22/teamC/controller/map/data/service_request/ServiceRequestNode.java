@@ -18,7 +18,7 @@ import java.util.stream.Collectors;
 public class ServiceRequestNode extends MapNode<ServiceRequest> {
     // Constants
     private static final String TOKEN_PATH = "view/map/nodes/service_request/node.fxml";
-    private static final Pair<Integer, Integer> TOKEN_ORIGIN = new Pair(-75, -60);
+    private static final Pair<Integer, Integer> TOKEN_ORIGIN = new Pair(-65, -59);
     private static final int TOKEN_OFFSET = 25;
 
     // References
@@ -66,17 +66,9 @@ public class ServiceRequestNode extends MapNode<ServiceRequest> {
     }
 
     //#region State Changes
-        public void toPreviewMode() {
-            for (ServiceRequestToken token : tokens) {
-//                token.setVisible((counter.getCount() != 0));
-            }
-        }
+        public void toPreviewMode() {}
 
-        public void toFocusMode() {
-            for (ServiceRequestToken token : tokens) {
-//                counter.setVisible(true);
-            }
-        }
+        public void toFocusMode() {}
 
         public void removeNode() {
             for (ServiceRequestToken token : tokens) {

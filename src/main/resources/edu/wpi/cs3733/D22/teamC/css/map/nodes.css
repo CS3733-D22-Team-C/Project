@@ -37,3 +37,14 @@
 .service-request-node {
     -fx-fill: -color-primary-light;
 }
+
+/* General */
+.inactive {
+    -fx-scale-x: .85;
+    -fx-scale-y: .85;
+    -fx-opacity: .5;
+}
+
+.inactive > .node {
+    -fx-fill: gray;
+}

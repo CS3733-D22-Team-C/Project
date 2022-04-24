@@ -53,10 +53,14 @@ public class ServiceRequestToken {
     }
 
     public void setServiceRequests(List<ServiceRequest> serviceRequests) {
-        setVisible(serviceRequests.size() > 0);
+        setActive(serviceRequests.size() > 0);
     }
 
     public void setVisible(boolean visible) {
         root.setVisible(visible);
+    }
+
+    public void setActive(boolean active) {
+        if (!active) root.getStyleClass().add("inactive");
     }
 }

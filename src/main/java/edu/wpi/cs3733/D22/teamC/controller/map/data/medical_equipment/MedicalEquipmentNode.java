@@ -16,10 +16,10 @@ import java.util.stream.Collectors;
 public class MedicalEquipmentNode extends MapNode<MedicalEquipment> {
     // Constants
     private static final Pair<Integer, Integer>[] COUNTER_OFFSETS = new Pair[] {
-            new Pair(10, -55),
-            new Pair(30, -25),
-            new Pair(30, 5),
-            new Pair(10, 35)
+            new Pair(10, -58),
+            new Pair(30, -28),
+            new Pair(30, 2),
+            new Pair(10, 32)
     };
 
     // Variables
