@@ -72,6 +72,8 @@ public class MedicalEquipmentToken {
         if (this.parentNode != null) {
             downArrow.setDisable((medicalEquipments.size() == 0));
             upArrow.setDisable(((MedicalEquipmentManager) this.parentNode.getManager()).getFreeCount(equipmentType) == 0);
+
+            ((MedicalEquipmentManager) parentNode.getManager()).updateCounter(parentNode.getLocation());
         }
     }
 

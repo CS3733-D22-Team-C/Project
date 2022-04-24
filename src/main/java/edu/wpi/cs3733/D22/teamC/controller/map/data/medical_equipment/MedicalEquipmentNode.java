@@ -14,7 +14,7 @@ import java.util.stream.Collectors;
 
 public class MedicalEquipmentNode extends MapNode<MedicalEquipment> {
     // Constants
-    private static final Pair<Integer, Integer>[] COUNTER_OFFSETS = new Pair[] {
+    private static final Pair<Integer, Integer>[] TOKEN_OFFSETS = new Pair[] {
             new Pair(10, -58),
             new Pair(30, -28),
             new Pair(30, 2),
@@ -26,7 +26,7 @@ public class MedicalEquipmentNode extends MapNode<MedicalEquipment> {
 
     // References
     Group contextGroup;
-    private MedicalEquipmentToken[] counters = new MedicalEquipmentToken[MedicalEquipment.EquipmentType.values().length];
+    private MedicalEquipmentToken[] tokens = new MedicalEquipmentToken[MedicalEquipment.EquipmentType.values().length];
 
     public MedicalEquipmentNode(MedicalEquipmentManager manager, Location location) {
         super(manager, location);
@@ -42,11 +42,11 @@ public class MedicalEquipmentNode extends MapNode<MedicalEquipment> {
             MedicalEquipmentToken controller = view.getController();
 
             contextGroup.getChildren().add(view.getNode());
-            controller.setPosition(COUNTER_OFFSETS[i].getKey(), COUNTER_OFFSETS[i].getValue());
+            controller.setPosition(TOKEN_OFFSETS[i].getKey(), TOKEN_OFFSETS[i].getValue());
             controller.setType(MedicalEquipment.EquipmentType.values()[i]);
             controller.setup(this);
 
-            counters[i] = controller;
+            tokens[i] = controller;
         }
 
         updateValues();
@@ -59,13 +59,13 @@ public class MedicalEquipmentNode extends MapNode<MedicalEquipment> {
 
         for (MedicalEquipment.EquipmentType equipmentType : MedicalEquipment.EquipmentType.values()) {
             List<MedicalEquipment> medicalEquipmentsByType = medicalEquipments.stream().filter(medicalEquipment -> medicalEquipment.getEquipmentType() == equipmentType).collect(Collectors.toList());
-            counters[equipmentType.ordinal()].setMedicalEquipments(medicalEquipmentsByType);
+            tokens[equipmentType.ordinal()].setMedicalEquipments(medicalEquipmentsByType);
         }
     }
 
     //#region State Changes
         public void toPreviewMode() {
-            for (MedicalEquipmentToken counter : counters) {
+            for (MedicalEquipmentToken counter : tokens) {
                 counter.setEditable(false);
 
                 counter.setVisible((counter.getCount() != 0));
@@ -73,14 +73,14 @@ public class MedicalEquipmentNode extends MapNode<MedicalEquipment> {
         }
 
         public void toFocusMode() {
-            for (MedicalEquipmentToken counter : counters) {
+            for (MedicalEquipmentToken counter : tokens) {
                 counter.setEditable(true);
                 counter.setVisible(true);
             }
         }
 
         public void removeNode() {
-            for (MedicalEquipmentToken counter : counters) {
+            for (MedicalEquipmentToken counter : tokens) {
                 counter.root.getChildren().clear();
                 contextGroup.getChildren().remove(counter.root);
             }

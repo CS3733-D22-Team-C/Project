@@ -342,5 +342,16 @@ public class MedicalEquipmentManager extends ManagerMapNodes<MedicalEquipment> {
             counters.forEach(MapCounter::delete);
             counters = new ArrayList<>();
         }
+
+        public void updateCounter(Location location) {
+            MapCounter counter = getCounterByLocation(location);
+            counter.setCount(getAllByLocation(location).size());
+        }
+
+        private MapCounter getCounterByLocation(Location location) {
+            List<MapCounter> filtered = counters.stream().filter(counter -> counter.getLocation().getID().equals(location.getID())).collect(Collectors.toList());
+            if (filtered.size() > 0) return filtered.get(0);
+            return null;
+        }
     //#endregion
 }

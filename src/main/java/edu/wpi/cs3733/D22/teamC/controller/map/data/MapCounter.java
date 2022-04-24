@@ -8,6 +8,8 @@ import javafx.scene.Node;
 import javafx.scene.control.Label;
 import javafx.scene.shape.Circle;
 
+import java.util.TimeZone;
+
 public class MapCounter {
     // Constants
     private final String COUNTER_PATH = "view/map/nodes/counter.fxml";
@@ -56,5 +58,9 @@ public class MapCounter {
 
     public Node getNode() {
         return circle;
+    }
+
+    public Location getLocation() {
+        return location;
     }
 }
