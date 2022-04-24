@@ -38,6 +38,15 @@
     -fx-fill: -color-primary-light;
 }
 
+/* Counters */
+.service-request-counter {
+    -fx-fill: -color-primary-light;
+}
+
+.medical-equipment-counter {
+
+}
+
 /* General */
 .inactive {
     -fx-scale-x: .85;
