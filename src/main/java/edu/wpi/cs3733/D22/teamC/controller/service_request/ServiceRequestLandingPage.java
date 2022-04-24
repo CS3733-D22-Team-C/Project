@@ -292,10 +292,11 @@ public class ServiceRequestLandingPage implements Initializable {
         App.instance.setView(view.getNode());
     }
 
-    public void setSegmentedBarInsert(){
+    public void setSegmentedBarInsert() {
         App.View<SegmentBarController> view = App.instance.loadView("view/service_request/segment_bar.fxml");
         insertBarController = view.getController();
         tableBox.getChildren().add(1, view.getNode());
+    }
 
     @FXML
     void onDeleteButton(){
