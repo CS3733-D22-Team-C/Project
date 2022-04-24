@@ -212,6 +212,10 @@ public class LocationInfoController implements Initializable {
         public void setVisible(boolean visible) {
             tabPane.setVisible(visible);
         }
+
+        public void setCurrentTab(int i) {
+            tabPane.getSelectionModel().select(i);
+        }
     //#endregion
 
     //#region Location Interaction

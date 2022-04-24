@@ -73,6 +73,10 @@ public class FloorMapViewController extends MapViewController {
             return mapControlsController;
         }
 
+        public LocationInfoController getLocationInfoController() {
+            return locationInfoController;
+        }
+
         public MedicalEquipmentManager getMedicalEquipmentManager() {
             return medicalEquipmentManager;
         }

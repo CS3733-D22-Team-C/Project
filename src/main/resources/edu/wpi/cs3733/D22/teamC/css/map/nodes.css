@@ -41,10 +41,20 @@
 /* Counters */
 .service-request-counter {
     -fx-fill: -color-primary-light;
+    -fx-cursor: hand;
+}
+
+.service-request-counter:hover {
+    -fx-fill: -color-primary;
 }
 
 .medical-equipment-counter {
     -fx-fill: -color-red-contrast;
+    -fx-cursor: hand;
+}
+
+.medical-equipment-counter:hover {
+    -fx-fill: -color-red-contrast-hover;
 }
 
 /* General */

@@ -1,14 +1,19 @@
 package edu.wpi.cs3733.D22.teamC.controller.map.data;
 
 import edu.wpi.cs3733.D22.teamC.App;
+import edu.wpi.cs3733.D22.teamC.controller.map.data.location.LocationMapNode;
 import edu.wpi.cs3733.D22.teamC.entity.location.Location;
 import javafx.fxml.FXML;
 import javafx.scene.Group;
 import javafx.scene.Node;
 import javafx.scene.control.Label;
+import javafx.scene.input.MouseButton;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.shape.Circle;
 
 import java.util.TimeZone;
+import java.util.function.BiConsumer;
+import java.util.function.Consumer;
 
 public class MapCounter {
     // Constants
@@ -22,6 +27,7 @@ public class MapCounter {
     // Variable
     private int count;
     private Location location;
+    public BiConsumer<MapCounter, MouseEvent> onClickEvent;
 
     // References
     private Group parent;
@@ -69,4 +75,15 @@ public class MapCounter {
     public int getCount() {
         return count;
     }
+
+    //#region FXML Events
+        @FXML
+        void onClickEvent(MouseEvent event) {
+            if (event.getButton().equals(MouseButton.PRIMARY)) {
+                if (onClickEvent != null) onClickEvent.accept(this, event);
+
+                event.consume();
+            }
+        }
+    //#endregion
 }

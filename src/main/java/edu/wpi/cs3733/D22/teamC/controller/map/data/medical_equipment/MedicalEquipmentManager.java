@@ -350,6 +350,13 @@ public class MedicalEquipmentManager extends ManagerMapNodes<MedicalEquipment> {
 
                 // Set Counter
                 counter.setCount(getAllByLocation(location).size());
+
+                // Set On Click Functionality
+                counter.onClickEvent = (mapCounter, event) -> {
+                    mapViewController.getLocationManager().unfocus();
+                    ((LocationMapNode) mapViewController.getLocationManager().getByLocation(mapCounter.getLocation())).onMouseClickedNode(event);
+                    ((FloorMapViewController) mapViewController).getLocationInfoController().setCurrentTab(1);
+                };
             }
 
             showCounters(((FloorMapViewController) mapViewController).getMapControlsController().getCounterChecked());
