@@ -27,8 +27,8 @@ import java.util.stream.Collectors;
  * Manages Medical Equipment data for MapControllers. An optional manager for Map to work with Medical Equipment Functionality.
  */
 public class MedicalEquipmentManager extends ManagerMapNodes<MedicalEquipment> {
-    // Constants
-    public static final String[] COUNTER_PATHS = {
+    // Constantsoverlays[equipmentType.ordinal()] = controller;
+    public static final String[] TOKEN_PATHS = {
             "view/map/nodes/medical_equipment/bed.fxml",
             "view/map/nodes/medical_equipment/recliner.fxml",
             "view/map/nodes/medical_equipment/xray.fxml",
@@ -56,7 +56,7 @@ public class MedicalEquipmentManager extends ManagerMapNodes<MedicalEquipment> {
         medicalEquipments = medicalEquipments.stream().filter(medicalEquipment -> !locationIDs.contains(medicalEquipment.getLocationID())).collect(Collectors.toList());
 
         for (MedicalEquipment.EquipmentType equipmentType : MedicalEquipment.EquipmentType.values()) {
-            App.View<MedicalEquipmentToken> view = App.instance.loadView(COUNTER_PATHS[equipmentType.ordinal()]);
+            App.View<MedicalEquipmentToken> view = App.instance.loadView(TOKEN_PATHS[equipmentType.ordinal()]);
 
             // Setup Controller
             MedicalEquipmentToken controller = view.getController();
@@ -137,13 +137,13 @@ public class MedicalEquipmentManager extends ManagerMapNodes<MedicalEquipment> {
         }
 
         public MedicalEquipment removeFree(MedicalEquipment.EquipmentType equipmentType) {
-            MedicalEquipmentToken counter = overlays[equipmentType.ordinal()];
-            return counter.removeMedicalEquipment();
+            MedicalEquipmentToken overlay = overlays[equipmentType.ordinal()];
+            return overlay.removeMedicalEquipment();
         }
 
         public void addFree(MedicalEquipment medicalEquipment) {
-            MedicalEquipmentToken counter = overlays[medicalEquipment.getEquipmentType().ordinal()];
-            counter.addMedicalEquipment(medicalEquipment);
+            MedicalEquipmentToken overlay = overlays[medicalEquipment.getEquipmentType().ordinal()];
+            overlay.addMedicalEquipment(medicalEquipment);
         }
     //#endregion
 

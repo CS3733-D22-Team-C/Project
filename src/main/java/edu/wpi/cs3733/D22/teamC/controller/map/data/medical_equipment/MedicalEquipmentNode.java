@@ -36,7 +36,7 @@ public class MedicalEquipmentNode extends MapNode<MedicalEquipment> {
         contextGroup = locationMapNode.getContextGroup();
 
         for (int i = 0; i < MedicalEquipment.EquipmentType.values().length; i++) {
-            App.View<MedicalEquipmentToken> view = App.instance.loadView(MedicalEquipmentManager.COUNTER_PATHS[i]);
+            App.View<MedicalEquipmentToken> view = App.instance.loadView(MedicalEquipmentManager.TOKEN_PATHS[i]);
 
             // Setup Controller
             MedicalEquipmentToken controller = view.getController();
