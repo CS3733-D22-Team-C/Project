@@ -11,6 +11,7 @@ import javafx.fxml.Initializable;
 import javafx.geometry.Insets;
 import javafx.geometry.Orientation;
 import javafx.scene.Scene;
+import javafx.scene.control.Label;
 import javafx.scene.layout.BorderPane;
 import javafx.stage.Stage;
 import javafx.util.Callback;
@@ -20,6 +21,7 @@ import javax.swing.text.Segment;
 import java.net.URL;
 import java.util.Random;
 import java.util.ResourceBundle;
+
 
 import static javafx.application.Application.launch;
 
@@ -81,6 +83,23 @@ public class SegmentBarController implements Initializable {
 
         //Setting segmentedbar properties
         segmentBar.orientationProperty().bind(orientation);
+//        segmentBar.setInfoNodeFactory(segment -> {
+//            if (true)
+//                new Label("hello");
+//            return null;
+//        });
+        segmentBar.setInfoNodeFactory(segment -> {
+            Label label = new Label("  " + (int)((SegmentedBar.Segment) segment).getValue() + " completed service requests  ");
+            if(((SegmentedBar.Segment) segment).getText().contains("Blank")){
+                label.setText("  " + (int)((SegmentedBar.Segment) segment).getValue() + " service requests missing required fields  ");
+            }
+            else if(((SegmentedBar.Segment) segment).getText().contains("Processing")){
+                label.setText("  " + (int)((SegmentedBar.Segment) segment).getValue() + " incomplete service requests  ");
+            }
+
+            return label;
+        });
+
         blankSegment.setText("Blank: " + blank);
         blankSegment.setValue(blank);
         processingSegment.setText("Processing: " + processing);
@@ -101,7 +120,8 @@ public class SegmentBarController implements Initializable {
             else
                 color = "#069420";
 
-            view.setStyle("-fx-background-color: " + color + "; -fx-font-size: 8px;");
+            view.setStyle("-fx-background-color: " + color + "; -fx-font-size: 10px;");
+
             return view ;
         });
     }
