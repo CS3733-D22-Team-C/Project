@@ -71,6 +71,8 @@ public class App extends Application {
     // Variables
     private Stage stage;
     private Scene scene;
+    private BorderPane baseNode;
+
 
     @Override
     public void init() {
