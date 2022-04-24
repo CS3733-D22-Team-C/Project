@@ -301,10 +301,16 @@ public class ServiceRequestLandingPage implements Initializable {
     @FXML
     void onDeleteButton(){
         if (activeServiceRequest != null) {
+            //Update SegementBar
+            insertBarController.updateNumbers(activeServiceRequest.getStatus(), false);
+            insertBarController.setup(false);
+
             ServiceRequestDAO srDao = new ServiceRequestDAO();
             srDao.delete(activeServiceRequest);
             tableDisplay.removeObject(activeServiceRequest);
             table.getSelectionModel().clearSelection();
+
+
         }
     }
 }
