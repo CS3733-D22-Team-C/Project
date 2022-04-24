@@ -2,11 +2,9 @@ package edu.wpi.cs3733.D22.teamC.controller.general.login_page;
 
 import edu.wpi.cs3733.D22.teamC.App;
 import edu.wpi.cs3733.D22.teamC.SessionManager;
-import edu.wpi.cs3733.D22.teamC.controller.component.sidebar.SidebarMenuController;
 import edu.wpi.cs3733.D22.teamC.entity.employee.EmployeeDAO;
 import edu.wpi.cs3733.D22.teamC.error.error_item.user_input.login.LoginErrorItem;
 import edu.wpi.cs3733.D22.teamC.validation.login.LoginEvaluator;
-import io.github.palexdev.materialfx.controls.MFXButton;
 import io.github.palexdev.materialfx.controls.MFXPasswordField;
 import io.github.palexdev.materialfx.controls.MFXTextField;
 import io.github.palexdev.materialfx.controls.MFXToggleButton;
@@ -18,9 +16,9 @@ import javafx.fxml.Initializable;
 import javafx.geometry.Pos;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
-import javafx.scene.input.MouseDragEvent;
-import org.sqlite.core.DB;
 
+import java.io.File;
+import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
@@ -70,6 +68,24 @@ public class LoginPageController implements Initializable {
 
     @FXML
     public void loginButtonClicked(ActionEvent event) {
+        // If the username (with any password) is gamer, Color Collision is launched
+        if(username.getText().equals("gamer")){
+            try
+            {
+                ProcessBuilder pb = new ProcessBuilder();
+                File dir = new File("Game\\Color-Collision-Final");
+                pb.directory(dir);
+                pb.command("Game\\Color-Collision-Final\\Color-Collision.exe");
+                pb.start();
+                return;
+            }
+
+            catch (IOException e)
+            {
+                e.printStackTrace();
+                return;
+            }
+        }
         //Login Validation eventually needed here
         invalidLogin.setVisible(false);
 
@@ -85,6 +101,7 @@ public class LoginPageController implements Initializable {
         {
             App.instance.setUserAccount(eDAO.getEmployeeByUsername(username.getText()));
             App.instance.setView(App.DASHBOARD_PATH);
+            App.instance.showMenuBar(true);
         }
     }
 

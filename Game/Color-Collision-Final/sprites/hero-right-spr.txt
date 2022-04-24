@@ -1,0 +1,20 @@
+<HEADER>
+frames 2
+width 5
+height 3
+color red
+slowdown 20
+</HEADER>
+<BODY>
+ ___ 
+/ ..\
+(L *)
+end
+ ___ 
+/ ..\
+(\ +)
+end
+</BODY>
+<FOOTER>
+version 1
+</FOOTER>
