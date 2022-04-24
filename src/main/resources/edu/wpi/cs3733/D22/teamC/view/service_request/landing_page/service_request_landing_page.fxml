@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import com.jfoenix.controls.JFXTreeTableView?>
+<?import io.github.palexdev.materialfx.controls.MFXToggleButton?>
+<?import java.lang.String?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.effect.Bloom?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<HBox alignment="CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" styleClass="page-padding" stylesheets="@../../../css/component/service_request_landing_page.css" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.wpi.cs3733.D22.teamC.controller.service_request.landing_page.ServiceRequestLandingPage">
+   <children>
+      <VBox alignment="CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" HBox.hgrow="ALWAYS">
+         <children>
+            <Label id="title" text="Pending Service Requests" />
+            <JFXTreeTableView fx:id="table" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" styleClass="table-view" VBox.vgrow="ALWAYS" />
+            <HBox alignment="CENTER">
+               <children>
+                  <HBox alignment="CENTER_LEFT" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" HBox.hgrow="ALWAYS">
+                     <children>
+                        <JFXButton fx:id="edit" disable="true" onAction="#onEditButton" prefHeight="31.0" prefWidth="72.0" styleClass="button-success" stylesheets="@../../../css/base.css" text="Edit" />
+                     </children>
+                  </HBox>
+                  <HBox alignment="CENTER_RIGHT" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" HBox.hgrow="ALWAYS">
+                     <children>
+                        <JFXButton fx:id="resolve" disable="true" onAction="#onResolveButton" prefHeight="31.0" styleClass="button-confirm" stylesheets="@../../../css/base.css" text="Resolve" />
+                     </children>
+                  </HBox>
+               </children>
+            </HBox>
+         </children>
+         <styleClass>
+            <String fx:value="page-container" />
+            <String fx:value="page-padding" />
+         </styleClass></VBox>
+      <VBox alignment="CENTER_RIGHT" stylesheets="@../../../css/component/service_request_landing_page.css">
+         <children>
+            <VBox alignment="CENTER">
+               <children>
+                  <StackPane prefHeight="0.0" prefWidth="306.0">
+                     <children>
+                        <Label id="title" alignment="CENTER" maxWidth="1.7976931348623157E308" prefHeight="18.0" text="Create a Service Request" />
+                        <HBox alignment="CENTER_RIGHT" prefHeight="100.0" prefWidth="200.0">
+                           <children>
+                              <JFXButton contentDisplay="RIGHT" graphicTextGap="0.0" onAction="#canViewNames" text=" ">
+                                 <font>
+                                    <Font size="1.0" />
+                                 </font>
+                                 <graphic>
+                                    <ImageView fx:id="eye" accessibleRole="BUTTON" fitHeight="27.0" fitWidth="34.0">
+                                       <image>
+                                          <Image url="@../../../static/images/Eye.png" />
+                                       </image>
+                                       <effect>
+                                          <Bloom />
+                                       </effect>
+                                    </ImageView>
+                                 </graphic>
+                              </JFXButton>
+                           </children>
+                        </HBox>
+                     </children>
+                  </StackPane>
+                  <MFXToggleButton onAction="#onAPIToggleButtonPress" prefHeight="2.0" prefWidth="122.0" text="Toggle API" />
+               </children>
+            </VBox>
+            <VBox fx:id="scrollPaneButtons" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" VBox.vgrow="ALWAYS" />
+         </children>
+         <styleClass>
+            <String fx:value="page-container" />
+            <String fx:value="service-request-container" />
+         </styleClass>
+      </VBox>
+   </children>
+</HBox>
