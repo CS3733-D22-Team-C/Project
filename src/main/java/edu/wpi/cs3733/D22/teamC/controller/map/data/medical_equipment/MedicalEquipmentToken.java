@@ -1,10 +1,6 @@
 package edu.wpi.cs3733.D22.teamC.controller.map.data.medical_equipment;
 
-import edu.wpi.cs3733.D22.teamC.entity.location.Location;
 import edu.wpi.cs3733.D22.teamC.entity.medical_equipment.MedicalEquipment;
-import edu.wpi.cs3733.D22.teamC.entity.medical_equipment.MedicalEquipmentDAO;
-import edu.wpi.cs3733.D22.teamC.models.builders.DialogBuilder;
-import edu.wpi.cs3733.D22.teamC.models.builders.NotificationBuilder;
 import javafx.fxml.FXML;
 import javafx.scene.Group;
 import javafx.scene.control.*;
@@ -12,9 +8,8 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.shape.SVGPath;
 
 import java.util.List;
-import java.util.concurrent.atomic.AtomicBoolean;
 
-public class MedicalEquipmentCounter {
+public class MedicalEquipmentToken {
     // General Components
     @FXML public Group root;
     @FXML private SVGPath icon;

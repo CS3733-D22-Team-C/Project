@@ -38,7 +38,7 @@ public class MedicalEquipmentManager extends ManagerMapNodes<MedicalEquipment> {
     // Variables
     Consumer<Location> onPreviewLocationEvent = this::previewLocation;
     Consumer<Location> onFocusLocationEvent = this::focusLocation;
-    private final MedicalEquipmentCounter[] counters = new MedicalEquipmentCounter[MedicalEquipment.EquipmentType.values().length];
+    private final MedicalEquipmentToken[] overlays = new MedicalEquipmentToken[MedicalEquipment.EquipmentType.values().length];
 
     AtomicBoolean updateAutomation = new AtomicBoolean(false);
     AtomicBoolean askUpdateAutomation = new AtomicBoolean(true);
@@ -49,28 +49,26 @@ public class MedicalEquipmentManager extends ManagerMapNodes<MedicalEquipment> {
         mapViewController.getLocationManager().onPreviewLocationEvents.add(onPreviewLocationEvent);
         mapViewController.getLocationManager().onFocusLocationEvents.add(onFocusLocationEvent);
 
-        // Create Counters
-        for (int i = 0; i < MedicalEquipment.EquipmentType.values().length; i++) {
-            App.View<MedicalEquipmentCounter> view = App.instance.loadView(COUNTER_PATHS[i]);
-
-            // Setup Controller
-            MedicalEquipmentCounter controller = view.getController();
-
-            getMapController().getBottomOverlay().getChildren().add(view.getNode());
-            controller.setType(MedicalEquipment.EquipmentType.values()[i]);
-
-            counters[i] = controller;
-        }
-
-        // Set Counters
+        // Create Overlays
         List<Location> locations = new LocationDAO().getAll();
         List<String> locationIDs = locations.stream().map(Location::getID).collect(Collectors.toList());
         List<MedicalEquipment> medicalEquipments = new MedicalEquipmentDAO().getAll();
         medicalEquipments = medicalEquipments.stream().filter(medicalEquipment -> !locationIDs.contains(medicalEquipment.getLocationID())).collect(Collectors.toList());
 
         for (MedicalEquipment.EquipmentType equipmentType : MedicalEquipment.EquipmentType.values()) {
+            App.View<MedicalEquipmentToken> view = App.instance.loadView(COUNTER_PATHS[equipmentType.ordinal()]);
+
+            // Setup Controller
+            MedicalEquipmentToken controller = view.getController();
+            overlays[equipmentType.ordinal()] = controller;
+
+            // Position Overlay
+            getMapController().getBottomOverlay().getChildren().add(view.getNode());
+            controller.setType(equipmentType);
+
+            // Set Overlays Counts
             List<MedicalEquipment> medicalEquipmentsByType = medicalEquipments.stream().filter(medicalEquipment -> medicalEquipment.getEquipmentType() == equipmentType).collect(Collectors.toList());
-            counters[equipmentType.ordinal()].setMedicalEquipments(medicalEquipmentsByType);
+            overlays[equipmentType.ordinal()].setMedicalEquipments(medicalEquipmentsByType);
         }
 
         focusLocation(mapViewController.getLocationManager().getCurrent());
@@ -83,10 +81,10 @@ public class MedicalEquipmentManager extends ManagerMapNodes<MedicalEquipment> {
         previewLocation(null);
         focusLocation(null);
 
-        // Delete Counters
-        for (MedicalEquipmentCounter counter : counters) {
-            counter.root.getChildren().clear();
-            getMapController().getBottomOverlay().getChildren().remove(counter.root);
+        // Delete Overlays
+        for (MedicalEquipmentToken overlay : overlays) {
+            overlay.root.getChildren().clear();
+            getMapController().getBottomOverlay().getChildren().remove(overlay.root);
         }
     }
 
@@ -135,16 +133,16 @@ public class MedicalEquipmentManager extends ManagerMapNodes<MedicalEquipment> {
 
     //#region Free Medical Equipment
         public int getFreeCount(MedicalEquipment.EquipmentType equipmentType) {
-            return counters[equipmentType.ordinal()].getCount();
+            return overlays[equipmentType.ordinal()].getCount();
         }
 
         public MedicalEquipment removeFree(MedicalEquipment.EquipmentType equipmentType) {
-            MedicalEquipmentCounter counter = counters[equipmentType.ordinal()];
+            MedicalEquipmentToken counter = overlays[equipmentType.ordinal()];
             return counter.removeMedicalEquipment();
         }
 
         public void addFree(MedicalEquipment medicalEquipment) {
-            MedicalEquipmentCounter counter = counters[medicalEquipment.getEquipmentType().ordinal()];
+            MedicalEquipmentToken counter = overlays[medicalEquipment.getEquipmentType().ordinal()];
             counter.addMedicalEquipment(medicalEquipment);
         }
     //#endregion

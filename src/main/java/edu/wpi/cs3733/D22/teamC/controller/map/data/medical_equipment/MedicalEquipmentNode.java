@@ -7,7 +7,6 @@ import edu.wpi.cs3733.D22.teamC.entity.location.Location;
 import edu.wpi.cs3733.D22.teamC.entity.medical_equipment.MedicalEquipment;
 import edu.wpi.cs3733.D22.teamC.entity.medical_equipment.MedicalEquipmentDAO;
 import javafx.scene.Group;
-import javafx.scene.Parent;
 import javafx.util.Pair;
 
 import java.util.List;
@@ -27,7 +26,7 @@ public class MedicalEquipmentNode extends MapNode<MedicalEquipment> {
 
     // References
     Group contextGroup;
-    private MedicalEquipmentCounter[] counters = new MedicalEquipmentCounter[MedicalEquipment.EquipmentType.values().length];
+    private MedicalEquipmentToken[] counters = new MedicalEquipmentToken[MedicalEquipment.EquipmentType.values().length];
 
     public MedicalEquipmentNode(MedicalEquipmentManager manager, Location location) {
         super(manager, location);
@@ -37,10 +36,10 @@ public class MedicalEquipmentNode extends MapNode<MedicalEquipment> {
         contextGroup = locationMapNode.getContextGroup();
 
         for (int i = 0; i < MedicalEquipment.EquipmentType.values().length; i++) {
-            App.View<MedicalEquipmentCounter> view = App.instance.loadView(MedicalEquipmentManager.COUNTER_PATHS[i]);
+            App.View<MedicalEquipmentToken> view = App.instance.loadView(MedicalEquipmentManager.COUNTER_PATHS[i]);
 
             // Setup Controller
-            MedicalEquipmentCounter controller = view.getController();
+            MedicalEquipmentToken controller = view.getController();
 
             contextGroup.getChildren().add(view.getNode());
             controller.setPosition(COUNTER_OFFSETS[i].getKey(), COUNTER_OFFSETS[i].getValue());
@@ -66,7 +65,7 @@ public class MedicalEquipmentNode extends MapNode<MedicalEquipment> {
 
     //#region State Changes
         public void toPreviewMode() {
-            for (MedicalEquipmentCounter counter : counters) {
+            for (MedicalEquipmentToken counter : counters) {
                 counter.setEditable(false);
 
                 counter.setVisible((counter.getCount() != 0));
@@ -74,14 +73,14 @@ public class MedicalEquipmentNode extends MapNode<MedicalEquipment> {
         }
 
         public void toFocusMode() {
-            for (MedicalEquipmentCounter counter : counters) {
+            for (MedicalEquipmentToken counter : counters) {
                 counter.setEditable(true);
                 counter.setVisible(true);
             }
         }
 
         public void removeNode() {
-            for (MedicalEquipmentCounter counter : counters) {
+            for (MedicalEquipmentToken counter : counters) {
                 counter.root.getChildren().clear();
                 contextGroup.getChildren().remove(counter.root);
             }
