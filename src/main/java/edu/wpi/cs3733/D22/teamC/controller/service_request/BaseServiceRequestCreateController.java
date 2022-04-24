@@ -241,11 +241,6 @@ public class BaseServiceRequestCreateController<T extends ServiceRequest> implem
         // Add to TableDisplay
         tableDisplay.addObject(serviceRequest);
 
-//
-//        ServiceRequestDAO dao = new ServiceRequestDAO();
-//        dao.insert(serviceRequest);
-//        serviceRequest = (T) dao.getByID(serviceRequest.getID());
-
         // Push Notification
         String createdSRNotification = "Service Request " + serviceRequest + " has been created";
         NotificationBuilder.createNotification("Service Request Created", createdSRNotification);

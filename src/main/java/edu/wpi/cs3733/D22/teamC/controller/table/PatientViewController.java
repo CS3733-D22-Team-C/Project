@@ -151,7 +151,11 @@ public class PatientViewController extends InsertTableViewController<Patient> im
     }
 
     public PatientDAO createDAO() { return new PatientDAO();}
-    ;
+
+    @Override
+    public String getObjectName() {
+        return "Patient";
+    }
     //#endregion
 
     //#region FXML Events

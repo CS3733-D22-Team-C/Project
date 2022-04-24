@@ -125,7 +125,13 @@ public class LocationTableViewInsertController extends InsertTableViewController
 
         public LocationDAO createDAO() {
             return new LocationDAO();
-        };
+        }
+
+    @Override
+    public String getObjectName() {
+        return "Location";
+    }
+
     //#endregion
 
     //#region FXML Events
