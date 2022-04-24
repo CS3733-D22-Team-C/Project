@@ -4,8 +4,10 @@ import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXComboBox;
 import com.jfoenix.controls.JFXTreeTableView;
 import edu.wpi.cs3733.D22.teamC.App;
+import edu.wpi.cs3733.D22.teamC.TeamCAPI;
 import edu.wpi.cs3733.D22.teamC.controller.service_request.BaseServiceRequestCreateController;
 import edu.wpi.cs3733.D22.teamC.controller.service_request.BaseServiceRequestResolveController;
+import edu.wpi.cs3733.D22.teamC.controller.service_request.facility_maintenance.ServiceExceptionAPI;
 import edu.wpi.cs3733.D22.teamC.entity.service_request.ServiceRequest;
 import edu.wpi.cs3733.D22.teamC.entity.service_request.ServiceRequestDAO;
 import edu.wpi.cs3733.D22.teamC.models.service_request.ServiceRequestTableDisplay;
@@ -24,6 +26,7 @@ import javafx.scene.layout.VBox;
 
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.net.URL;
 import java.util.List;
 import java.util.ResourceBundle;
@@ -70,8 +73,9 @@ public class ServiceRequestLandingPage implements Initializable {
     private ServiceRequestTableDisplay<ServiceRequest> tableDisplay;
 
     @FXML
-    public void startAPI()
-    {
+    public void startAPI() throws ServiceExceptionAPI, IOException {
+        TeamCAPI tC = new TeamCAPI();
+        tC.run(50, 50, 1000, 1000, "../../css/base.css", "Floor 1", "Floor 2");
 
     }
 

@@ -32,7 +32,7 @@
                         <Insets left="20.0" />
                      </HBox.margin>
                   </JFXButton>
-                  <JFXButton fx:id="FMAPI" disable="true" onAction="#startAPI" prefHeight="31.0" styleClass="button-confirm" stylesheets="@../../css/base.css" text="API" translateX="30.0" />
+                  <JFXButton fx:id="FMAPI" onAction="#startAPI" prefHeight="31.0" styleClass="button-confirm" stylesheets="@../../css/base.css" text="API" translateX="30.0" />
                </children>
             </HBox>
          </children></VBox>
