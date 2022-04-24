@@ -1,6 +1,7 @@
 package edu.wpi.cs3733.D22.teamC.controller.map.data.medical_equipment;
 
 import edu.wpi.cs3733.D22.teamC.App;
+import edu.wpi.cs3733.D22.teamC.controller.map.FloorMapViewController;
 import edu.wpi.cs3733.D22.teamC.controller.map.data.MapNode;
 import edu.wpi.cs3733.D22.teamC.controller.map.data.location.LocationMapNode;
 import edu.wpi.cs3733.D22.teamC.entity.location.Location;
@@ -68,14 +69,14 @@ public class MedicalEquipmentNode extends MapNode<MedicalEquipment> {
             for (MedicalEquipmentToken counter : tokens) {
                 counter.setEditable(false);
 
-                counter.setVisible((counter.getCount() != 0));
+                counter.setVisible((counter.getCount() != 0) && ((FloorMapViewController) manager.getMapViewController()).getMapControlsController().getTokenChecked());
             }
         }
 
         public void toFocusMode() {
             for (MedicalEquipmentToken counter : tokens) {
                 counter.setEditable(true);
-                counter.setVisible(true);
+                counter.setVisible(((FloorMapViewController) manager.getMapViewController()).getMapControlsController().getTokenChecked());
             }
         }
 

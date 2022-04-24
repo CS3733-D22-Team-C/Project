@@ -153,6 +153,14 @@ public class MedicalEquipmentManager extends ManagerMapNodes<MedicalEquipment> {
         public void removeNode(MapNode<MedicalEquipment> mapNode) {
             ((MedicalEquipmentNode) mapNode).removeNode();
         }
+
+        public void showTokens(boolean show) {
+            if (previewed != null) ((MedicalEquipmentNode) previewed).toPreviewMode();
+            if (focused != null) ((MedicalEquipmentNode) focused).toFocusMode();
+            for (MedicalEquipmentToken overlay : overlays) {
+                overlay.setVisible(((FloorMapViewController) mapViewController).getMapControlsController().getTokenChecked());
+            }
+        }
     //#endregion
 
     //#region Free Medical Equipment
@@ -319,10 +327,6 @@ public class MedicalEquipmentManager extends ManagerMapNodes<MedicalEquipment> {
     //#endregion
 
     //#region Counters
-        public void setCounterVisibility(boolean visibility) {
-            showCounters(visibility);
-        }
-
         public void showCounters(boolean show) {
             counters.forEach(mapCounter -> mapCounter.setVisible(show && mapCounter.getCount() > 0));
         }

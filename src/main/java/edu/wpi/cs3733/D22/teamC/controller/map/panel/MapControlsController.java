@@ -106,18 +106,26 @@ public class MapControlsController implements Initializable {
         void onCounterCheckboxPressed(ActionEvent event) {
             ServiceRequestManager serviceRequestManager = mapViewController.getServiceRequestManager();
             if (serviceRequestManager != null) {
-                serviceRequestManager.setCounterVisibility(counterCheckbox.isSelected());
+                serviceRequestManager.showCounters(counterCheckbox.isSelected());
             }
 
             MedicalEquipmentManager medicalEquipmentManager = mapViewController.getMedicalEquipmentManager();
             if (medicalEquipmentManager != null) {
-                medicalEquipmentManager.setCounterVisibility(counterCheckbox.isSelected());
+                medicalEquipmentManager.showCounters(counterCheckbox.isSelected());
             }
         }
 
         @FXML
         void onTokenCheckboxPressed(ActionEvent event) {
+            ServiceRequestManager serviceRequestManager = mapViewController.getServiceRequestManager();
+            if (serviceRequestManager != null) {
+                serviceRequestManager.showTokens(tokenCheckbox.isSelected());
+            }
 
+            MedicalEquipmentManager medicalEquipmentManager = mapViewController.getMedicalEquipmentManager();
+            if (medicalEquipmentManager != null) {
+                medicalEquipmentManager.showTokens(tokenCheckbox.isSelected());
+            }
         }
     //#endregion
 
@@ -140,6 +148,10 @@ public class MapControlsController implements Initializable {
     //#region State
         public boolean getCounterChecked() {
             return counterCheckbox.isSelected();
+        }
+
+        public boolean getTokenChecked() {
+            return tokenCheckbox.isSelected();
         }
     //#endregion
 }

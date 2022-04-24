@@ -6,6 +6,8 @@ import edu.wpi.cs3733.D22.teamC.controller.map.data.ManagerMapNodes;
 import edu.wpi.cs3733.D22.teamC.controller.map.data.MapCounter;
 import edu.wpi.cs3733.D22.teamC.controller.map.data.MapNode;
 import edu.wpi.cs3733.D22.teamC.controller.map.data.location.LocationMapNode;
+import edu.wpi.cs3733.D22.teamC.controller.map.data.medical_equipment.MedicalEquipmentNode;
+import edu.wpi.cs3733.D22.teamC.controller.map.data.medical_equipment.MedicalEquipmentToken;
 import edu.wpi.cs3733.D22.teamC.entity.floor.Floor;
 import edu.wpi.cs3733.D22.teamC.entity.location.Location;
 import edu.wpi.cs3733.D22.teamC.entity.service_request.ServiceRequest;
@@ -100,14 +102,15 @@ public class ServiceRequestManager extends ManagerMapNodes<ServiceRequest> {
         public void removeNode(MapNode<ServiceRequest> mapNode) {
             ((ServiceRequestNode) mapNode).removeNode();
         }
+
+        public void showTokens(boolean show) {
+            if (previewed != null) ((ServiceRequestNode) previewed).toPreviewMode();
+            if (focused != null) ((ServiceRequestNode) focused).toFocusMode();
+        }
     //#endregion
 
     //#region Counters
-        public void setCounterVisibility(boolean visibility) {
-            showCounters(visibility);
-        }
-
-        private void showCounters(boolean show) {
+        public void showCounters(boolean show) {
             counters.forEach(mapCounter -> mapCounter.setVisible(show && mapCounter.getCount() > 0));
         }
 

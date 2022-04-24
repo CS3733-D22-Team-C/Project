@@ -1,6 +1,7 @@
 package edu.wpi.cs3733.D22.teamC.controller.map.data.service_request;
 
 import edu.wpi.cs3733.D22.teamC.App;
+import edu.wpi.cs3733.D22.teamC.controller.map.FloorMapViewController;
 import edu.wpi.cs3733.D22.teamC.controller.map.data.MapNode;
 import edu.wpi.cs3733.D22.teamC.controller.map.data.location.LocationMapNode;
 import edu.wpi.cs3733.D22.teamC.entity.location.Location;
@@ -65,13 +66,13 @@ public class ServiceRequestNode extends MapNode<ServiceRequest> {
     //#region State Changes
         public void toPreviewMode() {
             for (ServiceRequestToken token : tokens) {
-                token.setVisible(token.getActive());
+                token.setVisible(token.getActive() && ((FloorMapViewController) manager.getMapViewController()).getMapControlsController().getTokenChecked());
             }
         }
 
         public void toFocusMode() {
             for (ServiceRequestToken token : tokens) {
-                token.setVisible(true);
+                token.setVisible(((FloorMapViewController) manager.getMapViewController()).getMapControlsController().getTokenChecked());
             }
         }
 
