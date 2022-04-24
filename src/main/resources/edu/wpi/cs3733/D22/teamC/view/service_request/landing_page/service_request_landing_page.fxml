@@ -26,6 +26,11 @@
                         <JFXButton fx:id="edit" disable="true" onAction="#onEditButton" prefHeight="31.0" prefWidth="72.0" styleClass="button-success" stylesheets="@../../../css/base.css" text="Edit" />
                      </children>
                   </HBox>
+                  <HBox fx:id="buttonsBox" alignment="CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="100.0" prefWidth="316.0">
+                     <children>
+                        <JFXButton fx:id="deleteButton" disable="true" onAction="#onDeleteButton" prefHeight="31.0" prefWidth="72.0" styleClass="button-success" stylesheets="@../../../css/base.css" text="Delete" />
+                     </children>
+                  </HBox>
                   <HBox alignment="CENTER_RIGHT" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" HBox.hgrow="ALWAYS">
                      <children>
                         <JFXButton fx:id="resolve" disable="true" onAction="#onResolveButton" prefHeight="31.0" styleClass="button-confirm" stylesheets="@../../../css/base.css" text="Resolve" />

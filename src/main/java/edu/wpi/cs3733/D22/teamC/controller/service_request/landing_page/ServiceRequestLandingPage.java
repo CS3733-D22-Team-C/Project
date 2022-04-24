@@ -89,8 +89,6 @@ public class ServiceRequestLandingPage implements Initializable {
         childController.setParentController(this);
         childController.changeNameVisibility(canSee);
 
-        changeNameVisibility(canSee);
-
         if (!App.instance.getUserAccount().getAdmin()) {
             buttonsBox.getChildren().remove(deleteButton);
         } else {
