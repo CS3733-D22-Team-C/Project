@@ -58,14 +58,6 @@ public class PatientViewController extends InsertTableViewController<Patient> im
 
 
     public void initialize(URL location, ResourceBundle resources) {
-
-        //this.location.getItems().setAll(MedicalEquipment.EquipmentType.values());
-//        title.setText("Add Equipment");
-//
-//        //make a list of roles from the enum and put it into the combo box
-//        typeComboBox.getItems().setAll(MedicalEquipment.EquipmentType.values());
-//        statusComboBox.getItems().setAll(MedicalEquipment.EquipmentStatus.values());
-//        confirmButton.setDisable(true);
         validation = new ValidationSupport();
         validation.registerValidator(firstName, Validator.createEmptyValidator("first name required"));
         validation.registerValidator(lastName, Validator.createEmptyValidator("last name required"));
@@ -73,6 +65,8 @@ public class PatientViewController extends InsertTableViewController<Patient> im
         validation.registerValidator(theLocation, Validator.createEmptyValidator("location required"));
         validation.registerValidator(date, Validator.createEmptyValidator("date required"));
         validation.setErrorDecorationEnabled(false);
+        date.setEditable(false);
+        theLocation.setEditable(false);
     }
 
     //#region Field Interaction
