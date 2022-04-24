@@ -91,7 +91,7 @@ public class SegmentBarController implements Initializable {
         segmentBar.setInfoNodeFactory(segment -> {
             Label label = new Label("  " + (int)((SegmentedBar.Segment) segment).getValue() + " completed service requests  ");
             if(((SegmentedBar.Segment) segment).getText().contains("Blank")){
-                label.setText("  " + (int)((SegmentedBar.Segment) segment).getValue() + " service requests missing required fields  ");
+                label.setText("  " + (int)((SegmentedBar.Segment) segment).getValue() + " service requests incomplete and missing required fields  ");
             }
             else if(((SegmentedBar.Segment) segment).getText().contains("Processing")){
                 label.setText("  " + (int)((SegmentedBar.Segment) segment).getValue() + " incomplete service requests  ");
