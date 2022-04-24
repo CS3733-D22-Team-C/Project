@@ -139,7 +139,10 @@ public class MedicalEquipmentViewController extends InsertTableViewController<Me
         }
 
         @FXML
-        void onFieldUpdated() {}
+        void onFieldUpdated() {
+            if (!number.getText().matches("\\d*"))
+                number.setText("");
+        }
 
         @FXML
         void goToMapView() {

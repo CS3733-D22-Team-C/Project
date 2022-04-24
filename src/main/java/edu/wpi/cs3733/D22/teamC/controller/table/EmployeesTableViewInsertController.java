@@ -145,6 +145,9 @@ public class EmployeesTableViewInsertController extends InsertTableViewControlle
 //    }
 
     @FXML
-    void onFieldUpdated() {}
+    void onFieldUpdated() {
+        if (!phone.getText().matches("\\d*"))
+            phone.setText("");
+    }
     //#endregion
 }

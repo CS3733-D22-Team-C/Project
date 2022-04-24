@@ -172,7 +172,10 @@ public class PatientViewController extends InsertTableViewController<Patient> im
     }
 
     @FXML
-    void onFieldUpdated() {}
+    void onFieldUpdated() {
+        if (!number.getText().matches("\\d*"))
+            number.setText("");
+    }
 
     @FXML
     void goToMapView() {

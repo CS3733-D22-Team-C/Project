@@ -155,6 +155,11 @@ public class LocationTableViewInsertController extends InsertTableViewController
         }
 
         @FXML
-        void onFieldUpdated() {}
+        void onFieldUpdated() {
+            if (!xField.getText().matches("\\d*"))
+                xField.setText("");
+            if (!yField.getText().matches("\\d*"))
+                yField.setText("");
+        }
     //#endregion
 }
