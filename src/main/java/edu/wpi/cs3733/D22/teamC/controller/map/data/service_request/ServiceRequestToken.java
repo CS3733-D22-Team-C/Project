@@ -21,6 +21,7 @@ public class ServiceRequestToken {
 
     // Variables
     ServiceRequest.RequestType requestType;
+    boolean active = false;
 
     // References
     private ServiceRequestNode parentNode;
@@ -61,6 +62,11 @@ public class ServiceRequestToken {
     }
 
     public void setActive(boolean active) {
+        this.active = active;
         if (!active) root.getStyleClass().add("inactive");
+    }
+
+    public boolean getActive() {
+        return active;
     }
 }
