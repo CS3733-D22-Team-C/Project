@@ -4,13 +4,17 @@ import com.jfoenix.controls.JFXTreeTableView;
 import edu.wpi.cs3733.D22.teamC.App;
 import edu.wpi.cs3733.D22.teamC.controller.service_request.InsertServiceRequestCreateController;
 import edu.wpi.cs3733.D22.teamC.controller.service_request.SegmentBarController;
+import edu.wpi.cs3733.D22.teamC.controller.service_request.BaseServiceRequestResolveController;
 import edu.wpi.cs3733.D22.teamC.entity.employee.Employee;
 import edu.wpi.cs3733.D22.teamC.entity.service_request.ServiceRequest;
 import edu.wpi.cs3733.D22.teamC.entity.service_request.ServiceRequestDAO;
+import edu.wpi.cs3733.D22.teamC.models.service_request.ServiceRequestTableDisplay;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
 import javafx.scene.layout.VBox;
+import javafx.scene.control.TreeTableRow;
+import javafx.scene.input.MouseButton;
 
 import java.net.URL;
 import java.util.List;
@@ -18,6 +22,8 @@ import java.util.ResourceBundle;
 
 public class DashboardController<T extends ServiceRequest> implements Initializable {
 
+    private static final String FROM_DASH_RESOLVE_FORM = "view/service_request/skeleton/from_dash_resolve.fxml";
+    private static final String CREATE_FORM = "view/service_request/skeleton/create_form.fxml";
     @FXML
     private JFXTreeTableView assignedTable;
     @FXML
@@ -39,6 +45,10 @@ public class DashboardController<T extends ServiceRequest> implements Initializa
     public void initialize(URL location, ResourceBundle resources) {
         assignedTableDisplay = new DashboardAssignedTableDisplay(assignedTable);
         createdTableDisplay = new DashboardCreatedTableDisplay(createdTable);
+
+        setOtherRowInteraction();
+        setRowInteraction();
+
 
         // Populate Table Display
         ServiceRequestDAO serviceRequestDAO  = new ServiceRequestDAO();
@@ -81,5 +91,40 @@ public class DashboardController<T extends ServiceRequest> implements Initializa
         App.View<SegmentBarController> view = App.instance.loadView("view/service_request/segment_bar.fxml");
         insertCreatedTableBarController = view.getController();
         createdTableBox.getChildren().add(0, view.getNode());
+    }
+
+    protected void setRowInteraction() {
+        assignedTable.setRowFactory(tv -> {
+            TreeTableRow<ServiceRequestTableDisplay.ServiceRequestTableEntry> row = new TreeTableRow<ServiceRequestTableDisplay.ServiceRequestTableEntry>();
+
+            row.setOnMouseClicked(event -> {
+                if (!row.isEmpty() && event.getButton() == MouseButton.PRIMARY) {
+                    if (event.getClickCount() == 2) {
+                        ServiceRequest SR = (ServiceRequest) row.getItem().object;
+                        App.View<BaseServiceRequestResolveController> view = App.instance.loadView(FROM_DASH_RESOLVE_FORM);
+                        view.getController().setup(SR, false);
+                        App.instance.setView(view.getNode());
+                    }
+                }
+            });
+            return row ;
+        });
+    }
+
+    protected void setOtherRowInteraction() {
+        createdTable.setRowFactory(tv -> {
+            TreeTableRow<ServiceRequestTableDisplay.ServiceRequestTableEntry> row = new TreeTableRow<ServiceRequestTableDisplay.ServiceRequestTableEntry>();
+            row.setOnMouseClicked(event -> {
+                if (!row.isEmpty() && event.getButton() == MouseButton.PRIMARY) {
+                    if (event.getClickCount() == 2) {
+                        ServiceRequest SR = (ServiceRequest) row.getItem().object;
+                        App.View<BaseServiceRequestResolveController> view = App.instance.loadView(FROM_DASH_RESOLVE_FORM);
+                        view.getController().setup(SR, true);
+                        App.instance.setView(view.getNode());
+                    }
+                }
+            });
+            return row ;
+        });
     }
 }
