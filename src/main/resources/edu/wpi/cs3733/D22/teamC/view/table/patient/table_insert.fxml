@@ -18,7 +18,7 @@
                <children>
                   <VBox alignment="CENTER_LEFT" prefHeight="115.0" prefWidth="419.0">
                      <children>
-                        <Label fx:id="title" prefHeight="25.0" prefWidth="270.0" styleClass="base-insert-heeder" stylesheets="@../../../css/table_skeleton.css">
+                        <Label fx:id="title" prefHeight="25.0" prefWidth="270.0" styleClass="base-insert-heeder" stylesheets="@../../../css/table_skeleton.css" text="Add Patient">
                            <font>
                               <Font size="24.0" />
                            </font>
