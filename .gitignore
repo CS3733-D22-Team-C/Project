@@ -1,5 +1,6 @@
 derby.log
 *.lock
+**/dragonflyLog
 
 # Database Folders
 DB/*
