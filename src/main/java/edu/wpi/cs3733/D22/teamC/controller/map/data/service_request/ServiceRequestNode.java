@@ -66,9 +66,17 @@ public class ServiceRequestNode extends MapNode<ServiceRequest> {
     }
 
     //#region State Changes
-        public void toPreviewMode() {}
+        public void toPreviewMode() {
+            for (ServiceRequestToken token : tokens) {
+                token.setVisible(token.getActive());
+            }
+        }
 
-        public void toFocusMode() {}
+        public void toFocusMode() {
+            for (ServiceRequestToken token : tokens) {
+                token.setVisible(true);
+            }
+        }
 
         public void removeNode() {
             for (ServiceRequestToken token : tokens) {

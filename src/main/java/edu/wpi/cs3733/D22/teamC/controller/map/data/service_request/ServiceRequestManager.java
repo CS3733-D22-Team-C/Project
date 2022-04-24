@@ -78,8 +78,8 @@ public class ServiceRequestManager extends ManagerMapNodes<ServiceRequest> {
     //#region Map Node Manipulation
         @Override
         public void removeNode(MapNode<ServiceRequest> mapNode) {
-        ((ServiceRequestNode) mapNode).removeNode();
-    }
+            ((ServiceRequestNode) mapNode).removeNode();
+        }
     //#endregion
 
 }
