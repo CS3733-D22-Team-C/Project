@@ -1,6 +1,7 @@
 package edu.wpi.cs3733.D22.teamC.controller.map.data.medical_equipment;
 
 import edu.wpi.cs3733.D22.teamC.App;
+import edu.wpi.cs3733.D22.teamC.controller.map.FloorMapViewController;
 import edu.wpi.cs3733.D22.teamC.controller.map.MapViewController;
 import edu.wpi.cs3733.D22.teamC.controller.map.data.ManagerMapNodes;
 import edu.wpi.cs3733.D22.teamC.controller.map.data.MapCounter;
@@ -50,11 +51,12 @@ public class MedicalEquipmentManager extends ManagerMapNodes<MedicalEquipment> {
     Consumer<Location> onFocusLocationEvent = this::focusLocation;
     BiConsumer<Floor, Floor> onChangeFloorEvent = (f1, f2) -> this.drawCounters();
     private final MedicalEquipmentToken[] overlays = new MedicalEquipmentToken[MedicalEquipment.EquipmentType.values().length];
+    private boolean counterVisibility;
 
     AtomicBoolean updateAutomation = new AtomicBoolean(false);
     AtomicBoolean askUpdateAutomation = new AtomicBoolean(true);
 
-    public MedicalEquipmentManager(MapViewController mapViewController) {
+    public MedicalEquipmentManager(FloorMapViewController mapViewController) {
         super(mapViewController);
 
         mapViewController.getLocationManager().onPreviewLocationEvents.add(onPreviewLocationEvent);
@@ -84,6 +86,8 @@ public class MedicalEquipmentManager extends ManagerMapNodes<MedicalEquipment> {
         }
 
         focusLocation(mapViewController.getLocationManager().getCurrent());
+
+        counterVisibility = mapViewController.getMapControlsController().getCounterChecked();
         drawCounters();
     }
 
@@ -318,6 +322,15 @@ public class MedicalEquipmentManager extends ManagerMapNodes<MedicalEquipment> {
     //#endregion
 
     //#region Counters
+        public void setCounterVisibility(boolean visibility) {
+            this.counterVisibility = visibility;
+            showCounters(visibility);
+        }
+
+        public void showCounters(boolean show) {
+            counters.forEach(mapCounter -> mapCounter.setVisible(show && mapCounter.getCount() > 0));
+        }
+
         private void drawCounters() {
             for (Location location : getMapViewController().getLocationManager().getAll()) {
                 // Load Counter
@@ -336,6 +349,8 @@ public class MedicalEquipmentManager extends ManagerMapNodes<MedicalEquipment> {
                 // Set Counter
                 counter.setCount(getAllByLocation(location).size());
             }
+
+            showCounters(counterVisibility);
         }
 
         private void deleteCounters() {
@@ -345,7 +360,7 @@ public class MedicalEquipmentManager extends ManagerMapNodes<MedicalEquipment> {
 
         public void updateCounter(Location location) {
             MapCounter counter = getCounterByLocation(location);
-            counter.setCount(getAllByLocation(location).size());
+            if (counter != null) counter.setCount(getAllByLocation(location).size());
         }
 
         private MapCounter getCounterByLocation(Location location) {

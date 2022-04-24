@@ -1,5 +1,6 @@
 package edu.wpi.cs3733.D22.teamC.controller.map.data.service_request;
 
+import edu.wpi.cs3733.D22.teamC.controller.map.FloorMapViewController;
 import edu.wpi.cs3733.D22.teamC.controller.map.MapViewController;
 import edu.wpi.cs3733.D22.teamC.controller.map.data.ManagerMapNodes;
 import edu.wpi.cs3733.D22.teamC.controller.map.data.MapCounter;
@@ -26,9 +27,10 @@ public class ServiceRequestManager extends ManagerMapNodes<ServiceRequest> {
     Consumer<Location> onPreviewLocationEvent = this::previewLocation;
     Consumer<Location> onFocusLocationEvent = this::focusLocation;
     BiConsumer<Floor, Floor> onChangeFloorEvent = (f1, f2) -> this.drawCounters();
+    private boolean counterVisibility;
 
 
-    public ServiceRequestManager(MapViewController mapViewController) {
+    public ServiceRequestManager(FloorMapViewController mapViewController) {
         super(mapViewController);
 
         mapViewController.getLocationManager().onPreviewLocationEvents.add(onPreviewLocationEvent);
@@ -36,6 +38,8 @@ public class ServiceRequestManager extends ManagerMapNodes<ServiceRequest> {
         mapViewController.getFloorManager().onChangeCurrentEvents.add(onChangeFloorEvent);
 
         focusLocation(mapViewController.getLocationManager().getCurrent());
+
+        counterVisibility = mapViewController.getMapControlsController().getCounterChecked();
         drawCounters();
     }
 
@@ -101,6 +105,15 @@ public class ServiceRequestManager extends ManagerMapNodes<ServiceRequest> {
     //#endregion
 
     //#region Counters
+        public void setCounterVisibility(boolean visibility) {
+            this.counterVisibility = visibility;
+            showCounters(visibility);
+        }
+
+        private void showCounters(boolean show) {
+            counters.forEach(mapCounter -> mapCounter.setVisible(show && mapCounter.getCount() > 0));
+        }
+
         private void drawCounters() {
             for (Location location : getMapViewController().getLocationManager().getAll()) {
                 // Load Counter
@@ -119,6 +132,8 @@ public class ServiceRequestManager extends ManagerMapNodes<ServiceRequest> {
                 // Set Counter
                 counter.setCount(getAllByLocation(location).size());
             }
+
+            showCounters(counterVisibility);
         }
 
         private void deleteCounters() {

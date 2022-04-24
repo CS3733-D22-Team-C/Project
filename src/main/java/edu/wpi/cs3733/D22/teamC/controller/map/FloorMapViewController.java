@@ -69,6 +69,10 @@ public class FloorMapViewController extends MapViewController {
     //#endregion
 
     //#region Interfacing Getters/Setters
+        public MapControlsController getMapControlsController() {
+            return mapControlsController;
+        }
+
         public MedicalEquipmentManager getMedicalEquipmentManager() {
             return medicalEquipmentManager;
         }

@@ -3,8 +3,10 @@ package edu.wpi.cs3733.D22.teamC.controller.map.panel;
 import edu.wpi.cs3733.D22.teamC.App;
 import edu.wpi.cs3733.D22.teamC.controller.map.FloorMapViewController;
 import edu.wpi.cs3733.D22.teamC.controller.map.data.medical_equipment.MedicalEquipmentManager;
+import edu.wpi.cs3733.D22.teamC.controller.map.data.service_request.ServiceRequestManager;
 import edu.wpi.cs3733.D22.teamC.entity.floor.Floor;
 import edu.wpi.cs3733.D22.teamC.models.utils.ComponentWrapper;
+import io.github.palexdev.materialfx.controls.MFXCheckbox;
 import io.github.palexdev.materialfx.controls.MFXToggleButton;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -25,6 +27,8 @@ public class MapControlsController implements Initializable {
     @FXML private Button exitButton;
     @FXML private MFXToggleButton medicalEquipmentToggle;
     @FXML private MFXToggleButton serviceRequestToggle;
+    @FXML private MFXCheckbox counterCheckbox;
+    @FXML private MFXCheckbox tokenCheckbox;
 
     // References
     private FloorMapViewController mapViewController;
@@ -97,6 +101,24 @@ public class MapControlsController implements Initializable {
         void onExitButtonPressed(ActionEvent event) {
             App.instance.setView(App.MAP_DASHBOARD_PATH);
         }
+
+        @FXML
+        void onCounterCheckboxPressed(ActionEvent event) {
+            ServiceRequestManager serviceRequestManager = mapViewController.getServiceRequestManager();
+            if (serviceRequestManager != null) {
+                serviceRequestManager.setCounterVisibility(counterCheckbox.isSelected());
+            }
+
+            MedicalEquipmentManager medicalEquipmentManager = mapViewController.getMedicalEquipmentManager();
+            if (medicalEquipmentManager != null) {
+                medicalEquipmentManager.setCounterVisibility(counterCheckbox.isSelected());
+            }
+        }
+
+        @FXML
+        void onTokenCheckboxPressed(ActionEvent event) {
+
+        }
     //#endregion
 
     public void switchMode(boolean editing) {
@@ -107,9 +129,17 @@ public class MapControlsController implements Initializable {
         saveButton.setDisable(true);
         medicalEquipmentToggle.setVisible(!editing);
         serviceRequestToggle.setVisible(!editing);
+        counterCheckbox.setVisible(!editing);
+        tokenCheckbox.setVisible(!editing);
     }
 
     public void canSave() {
         saveButton.setDisable(false);
     }
+
+    //#region State
+        public boolean getCounterChecked() {
+            return counterCheckbox.isSelected();
+        }
+    //#endregion
 }

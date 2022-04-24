@@ -20,6 +20,7 @@ public class MapCounter {
     @FXML private Group root;
 
     // Variable
+    private int count;
     private Location location;
 
     // References
@@ -48,6 +49,7 @@ public class MapCounter {
     }
 
     public void setCount(int count) {
+        this.count = count;
         counterLabel.setText(Integer.toString(count));
         setVisible(count > 0);
     }
@@ -62,5 +64,9 @@ public class MapCounter {
 
     public Location getLocation() {
         return location;
+    }
+
+    public int getCount() {
+        return count;
     }
 }
