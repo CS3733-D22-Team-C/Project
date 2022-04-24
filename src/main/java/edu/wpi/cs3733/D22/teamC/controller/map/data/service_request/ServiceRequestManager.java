@@ -47,6 +47,7 @@ public class ServiceRequestManager extends ManagerMapNodes<ServiceRequest> {
         previewLocation(null);
         focusLocation(null);
 
+        // Delete Counters
         deleteCounters();
     }
 

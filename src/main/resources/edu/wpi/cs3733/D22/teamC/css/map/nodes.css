@@ -44,7 +44,7 @@
 }
 
 .medical-equipment-counter {
-
+    -fx-fill: -color-red-contrast;
 }
 
 /* General */

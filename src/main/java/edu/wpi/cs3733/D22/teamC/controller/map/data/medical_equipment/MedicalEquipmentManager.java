@@ -3,23 +3,31 @@ package edu.wpi.cs3733.D22.teamC.controller.map.data.medical_equipment;
 import edu.wpi.cs3733.D22.teamC.App;
 import edu.wpi.cs3733.D22.teamC.controller.map.MapViewController;
 import edu.wpi.cs3733.D22.teamC.controller.map.data.ManagerMapNodes;
+import edu.wpi.cs3733.D22.teamC.controller.map.data.MapCounter;
 import edu.wpi.cs3733.D22.teamC.controller.map.data.MapNode;
+import edu.wpi.cs3733.D22.teamC.controller.map.data.location.LocationMapNode;
+import edu.wpi.cs3733.D22.teamC.entity.floor.Floor;
 import edu.wpi.cs3733.D22.teamC.entity.location.Location;
 import edu.wpi.cs3733.D22.teamC.entity.location.LocationDAO;
 import edu.wpi.cs3733.D22.teamC.entity.medical_equipment.MedicalEquipment;
 import edu.wpi.cs3733.D22.teamC.entity.medical_equipment.MedicalEquipmentDAO;
 import edu.wpi.cs3733.D22.teamC.entity.service_request.ServiceRequest;
+import edu.wpi.cs3733.D22.teamC.entity.service_request.ServiceRequestDAO;
 import edu.wpi.cs3733.D22.teamC.entity.service_request.medical_equipment.MedicalEquipmentSR;
 import edu.wpi.cs3733.D22.teamC.entity.service_request.medical_equipment.MedicalEquipmentSRDAO;
 import edu.wpi.cs3733.D22.teamC.models.builders.DialogBuilder;
 import edu.wpi.cs3733.D22.teamC.models.builders.NotificationBuilder;
+import javafx.scene.Group;
 import javafx.scene.control.Alert;
 import javafx.scene.control.ButtonBar;
 import javafx.scene.control.ButtonType;
+import javafx.util.Pair;
 
 import java.sql.Timestamp;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.atomic.AtomicBoolean;
+import java.util.function.BiConsumer;
 import java.util.function.Consumer;
 import java.util.stream.Collectors;
 
@@ -27,17 +35,20 @@ import java.util.stream.Collectors;
  * Manages Medical Equipment data for MapControllers. An optional manager for Map to work with Medical Equipment Functionality.
  */
 public class MedicalEquipmentManager extends ManagerMapNodes<MedicalEquipment> {
-    // Constantsoverlays[equipmentType.ordinal()] = controller;
+    // Constants
     public static final String[] TOKEN_PATHS = {
             "view/map/nodes/medical_equipment/bed.fxml",
             "view/map/nodes/medical_equipment/recliner.fxml",
             "view/map/nodes/medical_equipment/xray.fxml",
             "view/map/nodes/medical_equipment/pump.fxml"
     };
+    private final static Pair<Integer, Integer> COUNTER_OFFSET = new Pair<>(12, -12);
 
     // Variables
+    List<MapCounter> counters = new ArrayList<>();
     Consumer<Location> onPreviewLocationEvent = this::previewLocation;
     Consumer<Location> onFocusLocationEvent = this::focusLocation;
+    BiConsumer<Floor, Floor> onChangeFloorEvent = (f1, f2) -> this.drawCounters();
     private final MedicalEquipmentToken[] overlays = new MedicalEquipmentToken[MedicalEquipment.EquipmentType.values().length];
 
     AtomicBoolean updateAutomation = new AtomicBoolean(false);
@@ -48,6 +59,7 @@ public class MedicalEquipmentManager extends ManagerMapNodes<MedicalEquipment> {
 
         mapViewController.getLocationManager().onPreviewLocationEvents.add(onPreviewLocationEvent);
         mapViewController.getLocationManager().onFocusLocationEvents.add(onFocusLocationEvent);
+        mapViewController.getFloorManager().onChangeCurrentEvents.add(onChangeFloorEvent);
 
         // Create Overlays
         List<Location> locations = new LocationDAO().getAll();
@@ -72,11 +84,13 @@ public class MedicalEquipmentManager extends ManagerMapNodes<MedicalEquipment> {
         }
 
         focusLocation(mapViewController.getLocationManager().getCurrent());
+        drawCounters();
     }
 
     public void shutdown() {
         mapViewController.getLocationManager().onPreviewLocationEvents.remove(onPreviewLocationEvent);
         mapViewController.getLocationManager().onFocusLocationEvents.remove(onFocusLocationEvent);
+        mapViewController.getFloorManager().onChangeCurrentEvents.remove(onChangeFloorEvent);
 
         previewLocation(null);
         focusLocation(null);
@@ -86,7 +100,16 @@ public class MedicalEquipmentManager extends ManagerMapNodes<MedicalEquipment> {
             overlay.root.getChildren().clear();
             getMapController().getBottomOverlay().getChildren().remove(overlay.root);
         }
+
+        // Delete Counters
+        deleteCounters();
     }
+
+    //#region Object Manipulation
+        public List<MedicalEquipment> getAllByLocation(Location location) {
+            return new MedicalEquipmentDAO().getEquipmentByLocation(location.getID());
+        }
+    //#endregion
 
     //#region Location Changes
         public void previewLocation(Location location) {
@@ -291,6 +314,33 @@ public class MedicalEquipmentManager extends ManagerMapNodes<MedicalEquipment> {
 
             // Push Notification
             NotificationBuilder.createNotification("Medical Equipment Service Request", notification);
+        }
+    //#endregion
+
+    //#region Counters
+        private void drawCounters() {
+            for (Location location : getMapViewController().getLocationManager().getAll()) {
+                // Load Counter
+                MapCounter counter = new MapCounter(location);
+                counters.add(counter);
+
+                // Set Counter Location
+                LocationMapNode locationMapNode = (LocationMapNode) getMapViewController().getLocationManager().getByLocation(location);
+                Group contextGroup = locationMapNode.getContextGroup();
+                counter.setParent(contextGroup);
+                counter.setPosition(COUNTER_OFFSET.getKey(), COUNTER_OFFSET.getValue());
+
+                // Set CSS
+                counter.getNode().getStyleClass().add("medical-equipment-counter");
+
+                // Set Counter
+                counter.setCount(getAllByLocation(location).size());
+            }
+        }
+
+        private void deleteCounters() {
+            counters.forEach(MapCounter::delete);
+            counters = new ArrayList<>();
         }
     //#endregion
 }
