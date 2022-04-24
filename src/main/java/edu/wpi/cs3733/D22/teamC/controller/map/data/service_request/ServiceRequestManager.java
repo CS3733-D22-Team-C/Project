@@ -27,7 +27,6 @@ public class ServiceRequestManager extends ManagerMapNodes<ServiceRequest> {
     Consumer<Location> onPreviewLocationEvent = this::previewLocation;
     Consumer<Location> onFocusLocationEvent = this::focusLocation;
     BiConsumer<Floor, Floor> onChangeFloorEvent = (f1, f2) -> this.drawCounters();
-    private boolean counterVisibility;
 
 
     public ServiceRequestManager(FloorMapViewController mapViewController) {
@@ -39,7 +38,6 @@ public class ServiceRequestManager extends ManagerMapNodes<ServiceRequest> {
 
         focusLocation(mapViewController.getLocationManager().getCurrent());
 
-        counterVisibility = mapViewController.getMapControlsController().getCounterChecked();
         drawCounters();
     }
 
@@ -106,7 +104,6 @@ public class ServiceRequestManager extends ManagerMapNodes<ServiceRequest> {
 
     //#region Counters
         public void setCounterVisibility(boolean visibility) {
-            this.counterVisibility = visibility;
             showCounters(visibility);
         }
 
@@ -133,7 +130,7 @@ public class ServiceRequestManager extends ManagerMapNodes<ServiceRequest> {
                 counter.setCount(getAllByLocation(location).size());
             }
 
-            showCounters(counterVisibility);
+            showCounters(((FloorMapViewController) mapViewController).getMapControlsController().getCounterChecked());
         }
 
         private void deleteCounters() {

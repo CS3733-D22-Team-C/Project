@@ -51,7 +51,6 @@ public class MedicalEquipmentManager extends ManagerMapNodes<MedicalEquipment> {
     Consumer<Location> onFocusLocationEvent = this::focusLocation;
     BiConsumer<Floor, Floor> onChangeFloorEvent = (f1, f2) -> this.drawCounters();
     private final MedicalEquipmentToken[] overlays = new MedicalEquipmentToken[MedicalEquipment.EquipmentType.values().length];
-    private boolean counterVisibility;
 
     AtomicBoolean updateAutomation = new AtomicBoolean(false);
     AtomicBoolean askUpdateAutomation = new AtomicBoolean(true);
@@ -86,8 +85,6 @@ public class MedicalEquipmentManager extends ManagerMapNodes<MedicalEquipment> {
         }
 
         focusLocation(mapViewController.getLocationManager().getCurrent());
-
-        counterVisibility = mapViewController.getMapControlsController().getCounterChecked();
         drawCounters();
     }
 
@@ -323,7 +320,6 @@ public class MedicalEquipmentManager extends ManagerMapNodes<MedicalEquipment> {
 
     //#region Counters
         public void setCounterVisibility(boolean visibility) {
-            this.counterVisibility = visibility;
             showCounters(visibility);
         }
 
@@ -350,7 +346,7 @@ public class MedicalEquipmentManager extends ManagerMapNodes<MedicalEquipment> {
                 counter.setCount(getAllByLocation(location).size());
             }
 
-            showCounters(counterVisibility);
+            showCounters(((FloorMapViewController) mapViewController).getMapControlsController().getCounterChecked());
         }
 
         private void deleteCounters() {
