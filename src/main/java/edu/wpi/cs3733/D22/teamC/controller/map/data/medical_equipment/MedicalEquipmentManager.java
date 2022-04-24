@@ -82,6 +82,8 @@ public class MedicalEquipmentManager extends ManagerMapNodes<MedicalEquipment> {
             // Set Overlays Counts
             List<MedicalEquipment> medicalEquipmentsByType = medicalEquipments.stream().filter(medicalEquipment -> medicalEquipment.getEquipmentType() == equipmentType).collect(Collectors.toList());
             overlays[equipmentType.ordinal()].setMedicalEquipments(medicalEquipmentsByType);
+
+            overlays[equipmentType.ordinal()].setVisible(mapViewController.getMapControlsController().getTokenChecked());
         }
 
         focusLocation(mapViewController.getLocationManager().getCurrent());
@@ -158,7 +160,7 @@ public class MedicalEquipmentManager extends ManagerMapNodes<MedicalEquipment> {
             if (previewed != null) ((MedicalEquipmentNode) previewed).toPreviewMode();
             if (focused != null) ((MedicalEquipmentNode) focused).toFocusMode();
             for (MedicalEquipmentToken overlay : overlays) {
-                overlay.setVisible(((FloorMapViewController) mapViewController).getMapControlsController().getTokenChecked());
+                overlay.setVisible(show);
             }
         }
     //#endregion
