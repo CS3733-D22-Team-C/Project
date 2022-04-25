@@ -33,9 +33,8 @@ public class API_Practice {
 
         List<Location> locations = new LocationDAO().getAll();
         for(Location location: locations){
-            edu.wpi.cs3733.D22.teamB.api.Location teamBLocation = new edu.wpi.cs3733.D22.teamB.api.Location(location.getID(), location.getX(), location.getY(), location.getFloor(), location.getBuilding(), location.getNodeType().toString(), location.getLongName(),location.getShortName());
+            databaseController.add(new edu.wpi.cs3733.D22.teamB.api.Location(location.getID(), location.getX(), location.getY(), location.getFloor(), location.getBuilding(), location.getNodeType().toString(), location.getLongName(),location.getShortName()));
         }
-
 
         //Running the API
         edu.wpi.cs3733.D22.teamB.api.API apiB = new edu.wpi.cs3733.D22.teamB.api.API();
@@ -51,6 +50,13 @@ public class API_Practice {
     @FXML
     void clickTeamCAPI(ActionEvent event) throws ServiceExceptionAPI, IOException {
         TeamCAPI apiC = new TeamCAPI();
+
+        List<Employee> employees = new EmployeeDAO().getAll();
+        for(Employee employee: employees){
+            if(apiC.getEmployee(employee.getFirstName(), employee.getLastName()) == null)
+                apiC.createEmployee(employee.getLastName(), employee.getFirstName());
+        }
+
         apiC.run(60,60,700,700,"", "hello", "goodbye");
     }
 }
