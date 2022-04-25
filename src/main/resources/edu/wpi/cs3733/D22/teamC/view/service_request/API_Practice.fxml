@@ -6,7 +6,7 @@
 <VBox alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" spacing="50.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.wpi.cs3733.D22.teamC.controller.service_request.API_Practice">
     <children>
         <MFXButton onAction="#clickTeamZAPI" text="Team Z" />
-        <MFXButton onAction="#clickTeamEAPI" text="Team E" />
+        <MFXButton onAction="#clickTeamBAPI" text="Team E" />
         <MFXButton onAction="#clickTeamCAPI" text="Team C" />
     </children>
 </VBox>

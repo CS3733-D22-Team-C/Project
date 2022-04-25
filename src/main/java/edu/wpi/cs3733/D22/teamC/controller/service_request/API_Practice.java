@@ -20,7 +20,7 @@ import java.io.IOException;
 public class API_Practice {
 
     @FXML
-    void clickTeamEAPI(ActionEvent event) throws edu.wpi.cs3733.D22.teamB.api.ServiceException, IOException {
+    void clickTeamBAPI(ActionEvent event) throws edu.wpi.cs3733.D22.teamB.api.ServiceException, IOException {
         edu.wpi.cs3733.D22.teamB.api.API apiB = new edu.wpi.cs3733.D22.teamB.api.API();
         apiB.run(0,0,700,700,"", "hello", "goodbye");
     }
