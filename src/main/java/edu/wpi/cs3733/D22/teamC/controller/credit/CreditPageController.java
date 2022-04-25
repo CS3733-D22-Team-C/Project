@@ -14,13 +14,14 @@ public class CreditPageController implements Initializable {
     @FXML
     private JFXButton goBackButton;
 
+
+    @FXML
     private void onGoBackButtonPressed(ActionEvent actionEvent){
-        App.instance.getStage().close();
+        App.instance.setView(App.DASHBOARD_PATH);
     }
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-
     }
 
 }

@@ -60,7 +60,7 @@ public class App extends Application {
     public static final String MAP_PATH = "view/map/floor_map.fxml";
     public static final String BASE_CSS_PATH = "css/base.css";
     public static final String USER_PROFILE = "view/general/profile_page/user_profile.fxml";
-    public static final String CREDIT_PAGE = "view/general/Credit.fxml";
+    public static final String CREDIT_PAGE = "view/general/credit.fxml";
     //public static final String IMAGE_PATH = "static/images/BrighamAndWomensHospital.png";
 
     // Singleton Instance
