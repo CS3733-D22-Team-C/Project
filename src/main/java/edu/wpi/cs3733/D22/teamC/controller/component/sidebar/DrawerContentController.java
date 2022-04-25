@@ -120,6 +120,7 @@ public class DrawerContentController implements Initializable {
 
     @FXML
     public void aboutButtonPress(ActionEvent actionEvent) {
+        App.instance.setView(App.ABOUT_PAGE);
     }
 }
 
