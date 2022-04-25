@@ -15,11 +15,12 @@ import java.util.stream.Collectors;
 
 public class MedicalEquipmentNode extends MapNode<MedicalEquipment> {
     // Constants
-    private static final Pair<Integer, Integer>[] TOKEN_OFFSETS = new Pair[] {
+    private static final Pair<Integer, Integer>[] TOKEN_OFFSETS = new Pair[]{
             new Pair(30, -58),
             new Pair(30, -28),
             new Pair(30, 2),
             new Pair(30, 32)
+    };
 
     // Variables
     List<MedicalEquipment> medicalEquipments;
