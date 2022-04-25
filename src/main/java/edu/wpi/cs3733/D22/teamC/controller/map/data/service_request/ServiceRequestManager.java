@@ -111,7 +111,7 @@ public class ServiceRequestManager extends ManagerMapNodes<ServiceRequest> {
 
     //#region Counters
         public void showCounters(boolean show) {
-            counters.forEach(mapCounter -> mapCounter.setVisible(show && mapCounter.getCount() > 0));
+            counters.forEach(mapCounter -> mapCounter.setActive(show));
         }
 
         private void drawCounters() {

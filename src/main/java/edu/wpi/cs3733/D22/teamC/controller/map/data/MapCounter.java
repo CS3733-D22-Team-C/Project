@@ -24,7 +24,8 @@ public class MapCounter {
     @FXML private Label counterLabel;
     @FXML private Group root;
 
-    // Variable
+    // Variables
+    private boolean active;
     private int count;
     private Location location;
     public BiConsumer<MapCounter, MouseEvent> onClickEvent;
@@ -57,7 +58,12 @@ public class MapCounter {
     public void setCount(int count) {
         this.count = count;
         counterLabel.setText(Integer.toString(count));
-        setVisible(count > 0);
+        setVisible(active && count > 0);
+    }
+
+    public void setActive(boolean active) {
+        this.active = active;
+        setVisible(active && count > 0);
     }
 
     public void setVisible(boolean visible) {

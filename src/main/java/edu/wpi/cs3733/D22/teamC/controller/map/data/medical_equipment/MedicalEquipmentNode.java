@@ -66,24 +66,24 @@ public class MedicalEquipmentNode extends MapNode<MedicalEquipment> {
 
     //#region State Changes
         public void toPreviewMode() {
-            for (MedicalEquipmentToken counter : tokens) {
-                counter.setEditable(false);
+            for (MedicalEquipmentToken token : tokens) {
+                token.setEditable(false);
 
-                counter.setVisible((counter.getCount() != 0) && ((FloorMapViewController) manager.getMapViewController()).getMapControlsController().getTokenChecked());
+                token.setVisible((token.getCount() != 0) && ((FloorMapViewController) manager.getMapViewController()).getMapControlsController().getTokenChecked());
             }
         }
 
         public void toFocusMode() {
-            for (MedicalEquipmentToken counter : tokens) {
-                counter.setEditable(true);
-                counter.setVisible(((FloorMapViewController) manager.getMapViewController()).getMapControlsController().getTokenChecked());
+            for (MedicalEquipmentToken token : tokens) {
+                token.setEditable(true);
+                token.setVisible(((FloorMapViewController) manager.getMapViewController()).getMapControlsController().getTokenChecked());
             }
         }
 
         public void removeNode() {
-            for (MedicalEquipmentToken counter : tokens) {
-                counter.root.getChildren().clear();
-                contextGroup.getChildren().remove(counter.root);
+            for (MedicalEquipmentToken token : tokens) {
+                token.root.getChildren().clear();
+                contextGroup.getChildren().remove(token.root);
             }
         }
     //#endregion
