@@ -47,6 +47,8 @@ dependencies {
             'org.slf4j:slf4j-simple:1.7.30',
     )
 
+    compile fileTree(dir: 'API', include: ['*.jar'])
+
     testCompile(
             // Other
             "org.testfx:testfx-core:4.0.16-alpha",

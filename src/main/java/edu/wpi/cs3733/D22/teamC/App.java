@@ -6,10 +6,12 @@ import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Scene;
+import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.BorderPane;
 import javafx.stage.Stage;
 import lombok.extern.slf4j.Slf4j;
 
+import javax.lang.model.element.ElementVisitor;
 import java.io.IOException;
 
 @Slf4j
@@ -40,7 +42,7 @@ public class App extends Application {
     public static final String LOGIN_PATH = "view/general/login.fxml";
     public static final String MY_TASKS_PATH = "view/general/my_tasks.fxml";
     public static final String VIEW_LOCATIONS_PATH = "view/location/view_locations.fxml";
-    public static final String VIEW_SERVICE_REQUESTS_PATH = "view/service_request/service_request_landing_page.fxml";
+    public static final String VIEW_SERVICE_REQUESTS_PATH = "view/service_request/landing_page/service_request_landing_page.fxml";
     public static final String SERVICE_REQUEST_LANDING_PAGE = "view/service_request/service_request_landing_page.fxml";
     public static final String DASHBOARD_PATH = "view/location/map/base_side_map_view.fxml";
     public static final String DATABASE_PAGE_PATH = "view/general/edit_databases_page.fxml";
@@ -78,6 +80,51 @@ public class App extends Application {
         // Set the base node to the root
         scene = new Scene(baseNode);
         scene.setRoot(baseNode);
+
+        scene.setOnKeyPressed((KeyEvent event) -> {
+
+            /*
+               The left node is null when we are not logged in.
+               if this changes, this will break
+             */
+            if (this.baseNode.getLeft() != null)
+            {
+                if (event.isControlDown() && event.isShiftDown())
+                {
+                    switch (event.getCode().getChar())
+                    {
+                        case "D" :
+                            setView(DASHBOARD_PATH);
+                            break;
+                        case "X" :
+                            if (userAccount.getAdmin())
+                            {
+                                setView(DATABASE_PAGE_PATH);
+                            }
+                            break;
+                        case "M" :
+                            setView(MAP_DASHBOARD_PATH);
+                            break;
+                        case "S" :
+                            setView(VIEW_SERVICE_REQUESTS_PATH);
+                            break;
+                        case "P" :
+                            setView(USER_PROFILE);
+                            break;
+                        case "L" :
+                            setView(App.LOGIN_PATH);
+                            showMenuBar(false);
+                            break;
+                        case "Q" :
+                            getStage().close();
+                            break;
+                        default:
+                            break;
+                    }
+                }
+            }
+        });
+
 
         // Set the content of the borderpane to the login page
         baseNode.setCenter(loadView(LOGIN_PATH).getNode());
