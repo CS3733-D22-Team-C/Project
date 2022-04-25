@@ -24,6 +24,7 @@ import edu.wpi.cs3733.D22.teamC.entity.patient.PatientDAO;
 import edu.wpi.cs3733.D22.teamC.entity.service_request.ServiceRequest;
 import edu.wpi.cs3733.D22.teamC.entity.service_request.ServiceRequestDAO;
 import edu.wpi.cs3733.D22.teamC.fileio.svg.SVGParser;
+import edu.wpi.cs3733.D22.teamC.models.SRShortcutSelectorWindow;
 import edu.wpi.cs3733.D22.teamC.models.medical_equipment.MedicalEquipmentTableDisplay;
 import edu.wpi.cs3733.D22.teamC.models.patient.PatientTableDisplay;
 import edu.wpi.cs3733.D22.teamC.models.service_request.ServiceRequestTableDisplay;
@@ -104,6 +105,7 @@ public class LocationInfoController implements Initializable {
     SRShortcutController serviceRequestShortcut;
     BaseServiceRequestResolveController serviceRequestResolveController;
     ServiceRequestLandingPage serviceRequestLandingPage;
+    SRShortcutSelectorWindow srShortcutSelectorWindow;
 
 
     @Override
@@ -126,6 +128,7 @@ public class LocationInfoController implements Initializable {
         serviceRequestShortcut = new SRShortcutController();
         serviceRequestResolveController = new BaseServiceRequestResolveController();
         serviceRequestLandingPage = new ServiceRequestLandingPage();
+        //srShortcutSelectorWindow = new SRShortcutSelectorWindow(ServiceRequest activeServiceRequest);
 
         setRowInteraction();
         setSRRowInteraction();
@@ -243,7 +246,7 @@ public class LocationInfoController implements Initializable {
                 }
                 if (event.getButton().equals(MouseButton.PRIMARY) && !row.isEmpty() && event.getClickCount() == 2) {
                     // Double Click shortcut to service request edit/resolve page
-                    toEditPage(activeServiceRequest);
+                    srShortcutSelectorWindow(activeServiceRequest);
                 }
             });
 
