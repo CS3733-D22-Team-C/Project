@@ -16,7 +16,7 @@
 
 <HBox alignment="CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" styleClass="page-padding" stylesheets="@../../css/component/service_request_landing_page.css" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.wpi.cs3733.D22.teamC.controller.service_request.ServiceRequestLandingPage">
    <children>
-      <VBox alignment="CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" styleClass="page-container" HBox.hgrow="ALWAYS">
+      <VBox fx:id="tableBox" alignment="CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" spacing="10.0" styleClass="page-container" HBox.hgrow="ALWAYS">
          <children>
             <Label id="title" text="Pending Service Requests" />
             <JFXTreeTableView fx:id="table" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" styleClass="table-view" VBox.vgrow="ALWAYS" />
