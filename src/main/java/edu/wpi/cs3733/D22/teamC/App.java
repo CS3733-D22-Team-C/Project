@@ -82,7 +82,6 @@ public class App extends Application {
         scene.setRoot(baseNode);
 
         scene.setOnKeyPressed((KeyEvent event) -> {
-
             /*
                The left node is null when we are not logged in.
                if this changes, this will break
@@ -103,7 +102,7 @@ public class App extends Application {
                             }
                             break;
                         case "M" :
-                            setView(MAP_DASHBOARD_PATH);
+                            setView(MY_TASKS_PATH);
                             break;
                         case "S" :
                             setView(VIEW_SERVICE_REQUESTS_PATH);
