@@ -6,10 +6,12 @@ import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Scene;
+import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.BorderPane;
 import javafx.stage.Stage;
 import lombok.extern.slf4j.Slf4j;
 
+import javax.lang.model.element.ElementVisitor;
 import java.io.IOException;
 
 @Slf4j
@@ -78,6 +80,51 @@ public class App extends Application {
         // Set the base node to the root
         scene = new Scene(baseNode);
         scene.setRoot(baseNode);
+
+        scene.setOnKeyPressed((KeyEvent event) -> {
+
+            /*
+               The left node is null when we are not logged in.
+               if this changes, this will break
+             */
+            if (this.baseNode.getLeft() != null)
+            {
+                if (event.isControlDown() && event.isShiftDown())
+                {
+                    switch (event.getCode().getChar())
+                    {
+                        case "D" :
+                            setView(DASHBOARD_PATH);
+                            break;
+                        case "X" :
+                            if (userAccount.getAdmin())
+                            {
+                                setView(DATABASE_PAGE_PATH);
+                            }
+                            break;
+                        case "M" :
+                            setView(MAP_DASHBOARD_PATH);
+                            break;
+                        case "S" :
+                            setView(VIEW_SERVICE_REQUESTS_PATH);
+                            break;
+                        case "P" :
+                            setView(USER_PROFILE);
+                            break;
+                        case "L" :
+                            setView(App.LOGIN_PATH);
+                            showMenuBar(false);
+                            break;
+                        case "Q" :
+                            getStage().close();
+                            break;
+                        default:
+                            break;
+                    }
+                }
+            }
+        });
+
 
         // Set the content of the borderpane to the login page
         baseNode.setCenter(loadView(LOGIN_PATH).getNode());
