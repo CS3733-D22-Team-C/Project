@@ -80,7 +80,7 @@ public class App extends Application {
         scene.setRoot(baseNode);
 
         // Set the content of the borderpane to the login page
-        baseNode.setCenter(loadView(LOGIN_PATH).getNode());
+        baseNode.setCenter(loadView("view/service_request/API_Practice.fxml").getNode());
         stage.setScene(scene);
         stage.show();
     }
