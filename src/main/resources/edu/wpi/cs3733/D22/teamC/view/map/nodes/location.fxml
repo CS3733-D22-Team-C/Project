@@ -15,7 +15,7 @@
       </Group>
    </children>
    <stylesheets>
-      <URL value="@../../../css/map/location_node.css" />
+      <URL value="@../../../css/map/nodes.css" />
       <URL value="@../../../css/map/icons.css" />
    </stylesheets>
 </Group>

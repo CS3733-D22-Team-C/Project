@@ -24,9 +24,6 @@
     -fx-focus-color: transparent;
     -fx-faint-focus-color: transparent;
 
-    /* Allows for all MFX buttons to have their ripple generators generate the ripples to the correct shape */
-    -mfx-auto-clip: true;
-
     /* This allows all components to be resized down to 0 pixels */
     /* If labels or anything is not showing up its due to this, must beware what this entails */
     /* I wish I read my own comments before wanting to pull my hair out */
@@ -94,10 +91,17 @@
     -mfx-button-type: RAISED;
     -fx-background-color: -color-primary;
     -fx-text-fill: -color-primary-text;
+
+    /* Allows for all MFX buttons to have their ripple generators generate the ripples to the correct shape */
+    -mfx-auto-clip: true;
 }
 
 .button:hover {
     -fx-background-color: -color-primary-dark;
+}
+
+.mfx-ripple-generator {
+    
 }
 
 /* Uses secondary color as style */
