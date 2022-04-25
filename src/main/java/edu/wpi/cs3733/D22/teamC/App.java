@@ -6,10 +6,12 @@ import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Scene;
+import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.BorderPane;
 import javafx.stage.Stage;
 import lombok.extern.slf4j.Slf4j;
 
+import javax.lang.model.element.ElementVisitor;
 import java.io.IOException;
 
 @Slf4j
@@ -78,6 +80,34 @@ public class App extends Application {
         // Set the base node to the root
         scene = new Scene(baseNode);
         scene.setRoot(baseNode);
+
+        scene.setOnKeyPressed((KeyEvent event) -> {
+
+            if (event.isControlDown() && event.isShiftDown()&& event.getCode().getChar().equals("D"))
+            {
+                System.out.println("HERE");
+                setView(DASHBOARD_PATH);
+            }
+
+            if (userAccount.getAdmin())
+            {
+                if (event.isControlDown() && event.isShiftDown()&& event.getCode().getChar().equals("X")){
+                    System.out.println("HERE");
+                    setView(DATABASE_PAGE_PATH);
+                }
+            }
+
+//            if (event.isControlDown() && event.isShiftDown()&& event.getCode().getChar().equals("X")){
+//                System.out.println("HERE");
+//                setView(DATABASE_PAGE_PATH);
+//            }
+
+
+
+
+
+        });
+
 
         // Set the content of the borderpane to the login page
         baseNode.setCenter(loadView(LOGIN_PATH).getNode());
