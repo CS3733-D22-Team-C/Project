@@ -100,6 +100,11 @@
     -fx-background-color: -color-primary-dark;
 }
 
+.button:disabled {
+    -fx-background-color: -color-primary-dark;
+    -mfx-button-type: FLAT;
+}
+
 .mfx-ripple-generator {
     
 }

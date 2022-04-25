@@ -33,6 +33,10 @@
     -fx-background-color: -color-primary;
 }
 
+.button:disabled {
+    -fx-opacity: 1;
+}
+
 /* Sets ripple color for the button */
 .mfx-button .mfx-ripple-generator {
     -mfx-ripple-color: -color-primary-light;
