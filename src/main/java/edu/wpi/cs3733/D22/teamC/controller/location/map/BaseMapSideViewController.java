@@ -275,7 +275,6 @@ public class BaseMapSideViewController implements Initializable {
                     found = true;
                 }
             }
-
             if(!requiredFieldsPresent()) return;
 
             imagePath = "";
@@ -293,6 +292,7 @@ public class BaseMapSideViewController implements Initializable {
             App.instance.setView("view/location/map/base_side_map_view.fxml");
             return;
         }
+        // editing
         addFloorClicked = false;
         selectedFloor.setLongName(longName.getText());
         selectedFloor.setDescription(description.getText());
@@ -303,6 +303,7 @@ public class BaseMapSideViewController implements Initializable {
         System.out.println("Old order: " + oldOrder);
         selectedFloor.setOrder(Integer.parseInt(order.getText()));
         int newOrder = selectedFloor.getOrder();
+        System.out.println("New order: " + newOrder);
 
         boolean incorrectOrder = false;
         if(newOrder < 1) {selectedFloor.setOrder(1); newOrder = 1; incorrectOrder = true;} // less than check
@@ -312,11 +313,14 @@ public class BaseMapSideViewController implements Initializable {
 
         int greatestOrder = 0; // greater than check
         for(Floor floor : floorDAO.getAll()){
-            if(floor.getOrder() > greatestOrder && floor.getOrder() != newOrder) greatestOrder = floor.getOrder();
+            if(floor.getOrder() > greatestOrder && floor != selectedFloor) greatestOrder = floor.getOrder();
         }
-        if(newOrder > greatestOrder+1) {newOrder = greatestOrder; selectedFloor.setOrder(greatestOrder); incorrectOrder = true;}
+
+        System.out.println("Greatest Order: " + greatestOrder);
+        if(newOrder > greatestOrder+1 && greatestOrder != newOrder) {newOrder = greatestOrder; selectedFloor.setOrder(greatestOrder); incorrectOrder = true;}
 
         if(newOrder > oldOrder) {
+            System.out.println("New order is greater than old order: " + newOrder + ", " + oldOrder);
 
             // Works for updating floors by moving up.
             for (Floor floor : floorDAO.getAll()) {
