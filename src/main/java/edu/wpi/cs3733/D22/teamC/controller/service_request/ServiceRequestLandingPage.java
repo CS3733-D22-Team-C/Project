@@ -57,8 +57,7 @@ public class ServiceRequestLandingPage implements Initializable {
     @FXML private Label vagmi;
     @FXML private Label vishnu;
     @FXML private ImageView eye;
-
-    @FXML private JFXButton deleteButton;
+    
     @FXML private HBox buttonsBox;
 
     private boolean canSee = false;
@@ -68,6 +67,7 @@ public class ServiceRequestLandingPage implements Initializable {
 
     @FXML private JFXButton edit;
     @FXML private JFXButton resolve;
+    @FXML private JFXButton deleteButton;
 
     // Table
     @FXML private JFXTreeTableView table;
@@ -309,8 +309,6 @@ public class ServiceRequestLandingPage implements Initializable {
             srDao.delete(activeServiceRequest);
             tableDisplay.removeObject(activeServiceRequest);
             table.getSelectionModel().clearSelection();
-
-
         }
     }
 }
