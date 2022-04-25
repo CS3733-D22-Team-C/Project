@@ -41,6 +41,7 @@ public class ServiceRequestLandingPage implements Initializable {
 
     public static final String BASE_PATH = "view/service_request/";
 
+    @FXML private VBox tableBox;
     private ServiceRequest activeServiceRequest;
 
 
@@ -74,14 +75,25 @@ public class ServiceRequestLandingPage implements Initializable {
     // Variables
     private ServiceRequestTableDisplay<ServiceRequest> tableDisplay;
 
+    SegmentBarController insertBarController;
+
     @FXML
     public void initialize(URL url, ResourceBundle rb) {
+
+        //Insert for Segmented Bar
+        setSegmentedBarInsert();
+        insertBarController.preSetup();
+
         // Populate Table Display
         ServiceRequestDAO serviceRequestDAO  = new ServiceRequestDAO();
         List<ServiceRequest> serviceRequests = serviceRequestDAO.getAll();
         tableDisplay = new ServiceRequestTableDisplay<ServiceRequest>(table);
         serviceRequests.forEach(tableDisplay::addObject);
+        for (ServiceRequest serviceRequest : serviceRequests) {
+            insertBarController.updateNumbers(serviceRequest.getStatus(), true);
+        }
 
+        insertBarController.setup(true);
         // Load the cards view
 //        App.View cards = App.instance.loadView(App.SERVICE_REQUEST_CARDS);
 
@@ -280,13 +292,25 @@ public class ServiceRequestLandingPage implements Initializable {
         App.instance.setView(view.getNode());
     }
 
+    public void setSegmentedBarInsert() {
+        App.View<SegmentBarController> view = App.instance.loadView("view/service_request/segment_bar.fxml");
+        insertBarController = view.getController();
+        tableBox.getChildren().add(1, view.getNode());
+    }
+
     @FXML
     void onDeleteButton(){
         if (activeServiceRequest != null) {
+            //Update SegementBar
+            insertBarController.updateNumbers(activeServiceRequest.getStatus(), false);
+            insertBarController.setup(false);
+
             ServiceRequestDAO srDao = new ServiceRequestDAO();
             srDao.delete(activeServiceRequest);
             tableDisplay.removeObject(activeServiceRequest);
             table.getSelectionModel().clearSelection();
+
+
         }
     }
 }
