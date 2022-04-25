@@ -114,6 +114,15 @@
                   <Insets bottom="10.0" />
                </VBox.margin>
             </CustomTextField>
+            <HBox alignment="CENTER" VBox.vgrow="NEVER">
+               <children>
+                  <Region HBox.hgrow="ALWAYS" />
+                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Order" HBox.hgrow="NEVER" />
+                  <MFXButton fx:id="info" maxHeight="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onAction="#onInfoClicked" prefHeight="26.0" prefWidth="20.0" style="-fx-background-color: transparent;" text=" " HBox.hgrow="NEVER" />
+                  <Region HBox.hgrow="ALWAYS" />
+               </children>
+            </HBox>
+            <CustomTextField fx:id="order" disable="true" layoutX="20.0" layoutY="88.0" />
             <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Description" />
             <TextArea fx:id="description" disable="true" prefHeight="200.0" prefWidth="200.0" wrapText="true" VBox.vgrow="ALWAYS">
                <VBox.margin>
