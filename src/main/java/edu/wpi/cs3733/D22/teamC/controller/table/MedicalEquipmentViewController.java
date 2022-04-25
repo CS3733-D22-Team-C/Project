@@ -39,6 +39,7 @@ public class MedicalEquipmentViewController extends InsertTableViewController<Me
 
     public void initialize(URL location, ResourceBundle resources) {
         title.setText("Add Equipment");
+        locationID.setEditable(false);
 
         //make a list of roles from the enum and put it into the combo box
         typeComboBox.getItems().setAll(MedicalEquipment.EquipmentType.values());
