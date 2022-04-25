@@ -2,7 +2,6 @@ package edu.wpi.cs3733.D22.teamC.controller.map.panel;
 
 import edu.wpi.cs3733.D22.teamC.App;
 import edu.wpi.cs3733.D22.teamC.controller.map.FloorMapViewController;
-import edu.wpi.cs3733.D22.teamC.controller.map.data.medical_equipment.MedicalEquipmentManager;
 import edu.wpi.cs3733.D22.teamC.entity.floor.Floor;
 import edu.wpi.cs3733.D22.teamC.models.utils.ComponentWrapper;
 import io.github.palexdev.materialfx.controls.MFXToggleButton;
@@ -11,7 +10,6 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
-import javafx.scene.control.ToggleButton;
 
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -95,7 +93,7 @@ public class MapControlsController implements Initializable {
 
         @FXML
         void onExitButtonPressed(ActionEvent event) {
-            App.instance.setView(App.MAP_DASHBOARD_PATH);
+            App.instance.setView(App.DASHBOARD_PATH);
         }
     //#endregion
 

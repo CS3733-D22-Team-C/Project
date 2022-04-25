@@ -2,20 +2,16 @@ package edu.wpi.cs3733.D22.teamC.controller.component.sidebar;
 
 import edu.wpi.cs3733.D22.teamC.App;
 import io.github.palexdev.materialfx.controls.MFXButton;
-import javafx.animation.*;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.geometry.Pos;
-import javafx.scene.Node;
 import javafx.scene.control.ContentDisplay;
 import javafx.scene.layout.VBox;
 import javafx.scene.shape.SVGPath;
-import javafx.util.Duration;
 
 import java.net.URL;
 import java.util.ResourceBundle;
-import java.util.concurrent.TimeUnit;
 
 public class DrawerContentController implements Initializable {
 
@@ -32,7 +28,7 @@ public class DrawerContentController implements Initializable {
     private MFXButton logOutButton;
 
     @FXML
-    private MFXButton mapsButton;
+    private MFXButton myTasksButton;
 
     @FXML
     private MFXButton databaseButton;
@@ -59,11 +55,11 @@ public class DrawerContentController implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        allButtons = new MFXButton[]{dashboardButton, exitButton, logOutButton, databaseButton, viewProfileButton, mapsButton, serviceRequestsButton};
+        allButtons = new MFXButton[]{dashboardButton, exitButton, logOutButton, databaseButton, viewProfileButton, myTasksButton, serviceRequestsButton};
         //initializeSVG();
 
         // Hide the database button if the user is not an admin
-//        databaseButton.setVisible(App.instance.getUserAccount().getAdmin());
+        databaseButton.setVisible(App.instance.getUserAccount().getAdmin());
 
         for (MFXButton button : allButtons) {
             button.setContentDisplay(ContentDisplay.LEFT);
@@ -90,8 +86,8 @@ public class DrawerContentController implements Initializable {
     }
 
     @FXML
-    void mapButtonPress(ActionEvent event) {
-        App.instance.setView(App.MAP_DASHBOARD_PATH);
+    void myTasksButtonPress(ActionEvent event) {
+        App.instance.setView(App.MY_TASKS_PATH);
     }
 
     @FXML
