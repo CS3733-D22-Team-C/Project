@@ -2,7 +2,7 @@ package edu.wpi.cs3733.D22.teamC.controller.service_request.landing_page;
 
 import edu.wpi.cs3733.D22.teamC.App;
 import edu.wpi.cs3733.D22.teamC.TeamCAPI;
-import edu.wpi.cs3733.D22.teamC.controller.service_request.facility_maintenance.ServiceExceptionAPI;
+import edu.wpi.cs3733.D22.teamC.controller.service_request.facility_maintenance.ServiceException;
 import edu.wpi.cs3733.D22.teamC.entity.service_request.ServiceRequest;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -38,7 +38,7 @@ public class ServiceRequestAPIScrollPane implements Initializable {
     }
 
     @FXML
-    void clickFacilityMaintenance() throws ServiceExceptionAPI, IOException {
+    void clickFacilityMaintenance() throws ServiceException, IOException {
         TeamCAPI tC = new TeamCAPI();
         tC.setOwner(App.instance.getStage());
         tC.run(50, 50, 1000, 1000, "../../css/base.css", "Floor 1", "Floor 2");

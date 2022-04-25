@@ -7,7 +7,7 @@ import edu.wpi.cs3733.D22.teamC.App;
 import edu.wpi.cs3733.D22.teamC.TeamCAPI;
 import edu.wpi.cs3733.D22.teamC.controller.service_request.BaseServiceRequestCreateController;
 import edu.wpi.cs3733.D22.teamC.controller.service_request.BaseServiceRequestResolveController;
-import edu.wpi.cs3733.D22.teamC.controller.service_request.facility_maintenance.ServiceExceptionAPI;
+import edu.wpi.cs3733.D22.teamC.controller.service_request.facility_maintenance.ServiceException;
 import edu.wpi.cs3733.D22.teamC.entity.generic.DAO;
 import edu.wpi.cs3733.D22.teamC.entity.service_request.ServiceRequest;
 import edu.wpi.cs3733.D22.teamC.entity.service_request.ServiceRequestDAO;
