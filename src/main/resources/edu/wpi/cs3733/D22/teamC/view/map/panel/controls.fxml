@@ -22,6 +22,7 @@
             <RowConstraints maxHeight="1.7976931348623157E308" vgrow="ALWAYS" />
             <RowConstraints maxHeight="1.7976931348623157E308" vgrow="ALWAYS" />
             <RowConstraints maxHeight="1.7976931348623157E308" vgrow="ALWAYS" />
+            <RowConstraints maxHeight="1.7976931348623157E308" vgrow="ALWAYS" />
             <RowConstraints />
          </rowConstraints>
          <padding>
@@ -54,10 +55,18 @@
                   <MFXToggleButton fx:id="medicalEquipmentToggle" alignment="CENTER" contentDisposition="RIGHT" prefHeight="22.0" selected="true" text="Medical Equipment" textAlignment="CENTER" />
                </children>
                <GridPane.margin>
-                  <Insets bottom="10.0" top="10.0" />
+                  <Insets top="10.0" />
                </GridPane.margin>
             </HBox>
             <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" GridPane.rowIndex="3">
+               <children>
+                  <MFXToggleButton fx:id="serviceRequestToggle" alignment="CENTER_RIGHT" contentDisposition="RIGHT" prefHeight="22.0" selected="true" text="Service Requests    " textAlignment="CENTER" />
+               </children>
+               <GridPane.margin>
+                  <Insets bottom="10.0" />
+               </GridPane.margin>
+            </HBox>
+            <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" GridPane.rowIndex="4">
                <children>
                   <StackPane prefHeight="150.0" prefWidth="200.0">
                      <children>

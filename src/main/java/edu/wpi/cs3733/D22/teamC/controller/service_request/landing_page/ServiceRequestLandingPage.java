@@ -43,6 +43,7 @@ public class ServiceRequestLandingPage implements Initializable {
     public static final String CREATE_FORM = "view/service_request/skeleton/create_form.fxml";
     public static final String RESOLVE_FORM = "view/service_request/skeleton/resolve_form.fxml";
     public static final String BASE_PATH = "view/service_request/";
+
     private ServiceRequest activeServiceRequest;
 
     // Button Paths
@@ -54,6 +55,8 @@ public class ServiceRequestLandingPage implements Initializable {
     ServiceRequestAPIScrollPane childAPIController;
 
     // Show labels with names
+    @FXML private VBox tableBox;
+
     @FXML private ImageView eye;
     @FXML private JFXButton deleteButton;
     @FXML private HBox buttonsBox;
@@ -71,13 +74,29 @@ public class ServiceRequestLandingPage implements Initializable {
     private ServiceRequestTableDisplay<ServiceRequest> tableDisplay;
     private boolean api = false;
 
+    SegmentBarController insertBarController;
+
     @FXML
     public void initialize(URL url, ResourceBundle rb) {
+
+        //Insert for Segmented Bar
+        setSegmentedBarInsert();
+        insertBarController.preSetup();
+
         // Populate Table Display
         ServiceRequestDAO serviceRequestDAO  = new ServiceRequestDAO();
         List<ServiceRequest> serviceRequests = serviceRequestDAO.getAll();
         tableDisplay = new ServiceRequestTableDisplay<ServiceRequest>(table);
         serviceRequests.forEach(tableDisplay::addObject);
+        for (ServiceRequest serviceRequest : serviceRequests) {
+            insertBarController.updateNumbers(serviceRequest.getStatus(), true);
+        }
+
+        insertBarController.setup(true);
+        // Load the cards view
+//        App.View cards = App.instance.loadView(App.SERVICE_REQUEST_CARDS);
+
+//        cardsView.getChildren().add(cards.getNode());
 
         // Set Row Interaction with Table Display
         setRowInteraction();
@@ -217,6 +236,12 @@ public class ServiceRequestLandingPage implements Initializable {
         App.instance.setView(view.getNode());
     }
 
+    public void setSegmentedBarInsert() {
+        App.View<SegmentBarController> view = App.instance.loadView("view/service_request/segment_bar.fxml");
+        insertBarController = view.getController();
+        tableBox.getChildren().add(1, view.getNode());
+    }
+
     @FXML
     private void onAPIToggleButtonPress() {
         // Remove currently existing buttons
@@ -241,10 +266,16 @@ public class ServiceRequestLandingPage implements Initializable {
     @FXML
     void onDeleteButton(){
         if (activeServiceRequest != null) {
+            //Update SegementBar
+            insertBarController.updateNumbers(activeServiceRequest.getStatus(), false);
+            insertBarController.setup(false);
+
             ServiceRequestDAO srDao = new ServiceRequestDAO();
             srDao.delete(activeServiceRequest);
             tableDisplay.removeObject(activeServiceRequest);
             table.getSelectionModel().clearSelection();
+
+
         }
     }
 }
