@@ -36,22 +36,22 @@
             </VBox>
             <VBox maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minWidth="52.0" prefWidth="52.0" spacing="5.0" styleClass="vbox" VBox.vgrow="ALWAYS">
                <children>
-                  <MFXButton fx:id="dashboardButton" buttonType="RAISED" ellipsisString="" maxWidth="1.7976931348623157E308" onAction="#dashboardButtonPress" text="Dashboard">
+                  <MFXButton fx:id="dashboardButton" buttonType="RAISED" contentDisplay="GRAPHIC_ONLY" ellipsisString="" maxWidth="1.7976931348623157E308" minWidth="44.0" onAction="#dashboardButtonPress" prefWidth="44.0" text="Dashboard">
                      <graphic>
                         <SVGPath content="M4 13h6c.55 0 1-.45 1-1V4c0-.55-.45-1-1-1H4c-.55 0-1 .45-1 1v8c0 .55.45 1 1 1zm0 8h6c.55 0 1-.45 1-1v-4c0-.55-.45-1-1-1H4c-.55 0-1 .45-1 1v4c0 .55.45 1 1 1zm10 0h6c.55 0 1-.45 1-1v-8c0-.55-.45-1-1-1h-6c-.55 0-1 .45-1 1v8c0 .55.45 1 1 1zM13 4v4c0 .55.45 1 1 1h6c.55 0 1-.45 1-1V4c0-.55-.45-1-1-1h-6c-.55 0-1 .45-1 1z" />
                      </graphic>
                   </MFXButton>
-                  <MFXButton fx:id="mapsButton" ellipsisString="" maxWidth="1.7976931348623157E308" onAction="#mapButtonPress" text="Maps">
+                  <MFXButton fx:id="mapsButton" contentDisplay="GRAPHIC_ONLY" ellipsisString="" maxWidth="1.7976931348623157E308" minWidth="44.0" onAction="#mapButtonPress" prefWidth="44.0" text="My Tasks">
                      <graphic>
-                        <SVGPath content="M20.5 3l-.16.03L15 5.1 9 3 3.36 4.9c-.21.07-.36.25-.36.48V20.5c0 .28.22.5.5.5l.16-.03L9 18.9l6 2.1 5.64-1.9c.21-.07.36-.25.36-.48V3.5c0-.28-.22-.5-.5-.5zM10 5.47l4 1.4v11.66l-4-1.4V5.47zm-5 .99l3-1.01v11.7l-3 1.16V6.46zm14 11.08l-3 1.01V6.86l3-1.16v11.84z" />
+                        <SVGPath content="M18 22H6Q5.175 22 4.588 21.413Q4 20.825 4 20V4Q4 3.175 4.588 2.587Q5.175 2 6 2H14L20 8V20Q20 20.825 19.413 21.413Q18.825 22 18 22ZM13 9V4H6Q6 4 6 4Q6 4 6 4V20Q6 20 6 20Q6 20 6 20H18Q18 20 18 20Q18 20 18 20V9ZM10.95 18 16.6 12.35 15.15 10.9 10.925 15.125 8.825 13.025 7.4 14.45ZM6 4V9V4V9V20Q6 20 6 20Q6 20 6 20Q6 20 6 20Q6 20 6 20V4Q6 4 6 4Q6 4 6 4Z" />
                      </graphic>
                   </MFXButton>
-                  <MFXButton fx:id="serviceRequestsButton" ellipsisString="" maxWidth="1.7976931348623157E308" onAction="#serviceRequestButtonPress" text="Service Requests">
+                  <MFXButton fx:id="serviceRequestsButton" contentDisplay="GRAPHIC_ONLY" ellipsisString="" maxWidth="1.7976931348623157E308" minWidth="44.0" onAction="#serviceRequestButtonPress" prefWidth="44.0" text="Service Requests">
                      <graphic>
                         <SVGPath content="M20 2H4c-1.1 0-1.99.9-1.99 2L2 22l4-4h14c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2zm0 14H5.17l-.59.59-.58.58V4h16v12zm-9.5-2H18v-2h-5.5zm3.86-5.87c.2-.2.2-.51 0-.71l-1.77-1.77c-.2-.2-.51-.2-.71 0L6 11.53V14h2.47l5.89-5.87z" />
                      </graphic>
                   </MFXButton>
-                  <MFXButton fx:id="databaseButton" ellipsisString="" maxWidth="1.7976931348623157E308" onAction="#databaseButtonPress" text="Database">
+                  <MFXButton fx:id="databaseButton" alignment="CENTER" contentDisplay="GRAPHIC_ONLY" ellipsisString="" maxWidth="1.7976931348623157E308" minWidth="44.0" onAction="#databaseButtonPress" prefWidth="44.0" text="Database">
                      <graphic>
                         <SVGPath content="M 20 3.125 L 20 5 C 20 6.726562 15.523438 8.125 10 8.125 C 4.476562 8.125 0 6.726562 0 5 L 0 3.125 C 0 1.398438 4.476562 0 10 0 C 15.523438 0 20 1.398438 20 3.125 Z M 17.554688 8.386719 C 18.441406 8.097656 19.335938 7.726562 20 7.269531 L 20 11.25 C 20 12.976562 15.523438 14.375 10 14.375 C 4.476562 14.375 0 12.976562 0 11.25 L 0 7.269531 C 0.667969 7.726562 1.519531 8.097656 2.449219 8.386719 C 4.449219 9.011719 7.121094 9.375 10 9.375 C 12.878906 9.375 15.550781 9.011719 17.554688 8.386719 Z M 2.449219 14.636719 C 4.449219 15.261719 7.121094 15.625 10 15.625 C 12.878906 15.625 15.550781 15.261719 17.554688 14.636719 C 18.441406 14.347656 19.335938 13.976562 20 13.519531 L 20 16.875 C 20 18.601562 15.523438 20 10 20 C 4.476562 20 0 18.601562 0 16.875 L 0 13.519531 C 0.667969 13.976562 1.519531 14.347656 2.449219 14.636719 Z M 2.449219 14.636719 " />
                      </graphic>
@@ -60,17 +60,17 @@
             </VBox>
          </children>
       </VBox>
-      <VBox alignment="BOTTOM_CENTER" prefHeight="200.0" prefWidth="100.0" spacing="5.0" styleClass="vbox" VBox.vgrow="ALWAYS">
+      <VBox alignment="BOTTOM_CENTER" prefHeight="200.0" prefWidth="100.0" spacing="5.0" styleClass="vbox" VBox.vgrow="SOMETIMES">
          <children>
-            <MFXButton fx:id="viewProfileButton" ellipsisString="" maxWidth="1.7976931348623157E308" onAction="#userProfileButtonPress" text="View Profile">
+            <MFXButton fx:id="viewProfileButton" alignment="CENTER" contentDisplay="GRAPHIC_ONLY" ellipsisString="" maxWidth="1.7976931348623157E308" minWidth="44.0" onAction="#userProfileButtonPress" prefWidth="44.0" text="View Profile">
                <graphic>
                   <SVGPath content="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zM7.07 18.28c.43-.9 3.05-1.78 4.93-1.78s4.51.88 4.93 1.78C15.57 19.36 13.86 20 12 20s-3.57-.64-4.93-1.72zm11.29-1.45c-1.43-1.74-4.9-2.33-6.36-2.33s-4.93.59-6.36 2.33C4.62 15.49 4 13.82 4 12c0-4.41 3.59-8 8-8s8 3.59 8 8c0 1.82-.62 3.49-1.64 4.83zM12 6c-1.94 0-3.5 1.56-3.5 3.5S10.06 13 12 13s3.5-1.56 3.5-3.5S13.94 6 12 6zm0 5c-.83 0-1.5-.67-1.5-1.5S11.17 8 12 8s1.5.67 1.5 1.5S12.83 11 12 11z" />
                </graphic></MFXButton>
-            <MFXButton fx:id="logOutButton" ellipsisString="" maxWidth="1.7976931348623157E308" onAction="#logOutButtonPress" text="Logout">
+            <MFXButton fx:id="logOutButton" alignment="CENTER" contentDisplay="GRAPHIC_ONLY" ellipsisString="" maxWidth="1.7976931348623157E308" minWidth="44.0" onAction="#logOutButtonPress" prefWidth="44.0" text="Logout">
                <graphic>
                   <SVGPath content="M17,8l-1.41,1.41L17.17,11H9v2h8.17l-1.58,1.58L17,16l4-4L17,8z M5,5h7V3H5C3.9,3,3,3.9,3,5v14c0,1.1,0.9,2,2,2h7v-2H5V5z" />
                </graphic></MFXButton>
-            <MFXButton fx:id="exitButton" ellipsisString="" maxWidth="1.7976931348623157E308" onAction="#exitButtonPress" text="Exit">
+            <MFXButton fx:id="exitButton" alignment="CENTER" contentDisplay="GRAPHIC_ONLY" ellipsisString="" maxWidth="1.7976931348623157E308" minWidth="44.0" onAction="#exitButtonPress" prefWidth="44.0" text="Exit">
                <graphic>
                   <SVGPath content="M13 3h-2v10h2V3zm4.83 2.17l-1.42 1.42C17.99 7.86 19 9.81 19 12c0 3.87-3.13 7-7 7s-7-3.13-7-7c0-2.19 1.01-4.14 2.58-5.42L6.17 5.17C4.23 6.82 3 9.26 3 12c0 4.97 4.03 9 9 9s9-4.03 9-9c0-2.74-1.23-5.18-3.17-6.83z" />
                </graphic></MFXButton>

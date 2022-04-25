@@ -11,7 +11,7 @@
    <children>
       <HBox alignment="CENTER_LEFT" prefHeight="52.0" prefWidth="600.0">
          <children>
-            <Label fx:id="title" prefHeight="68.0" prefWidth="463.0" styleClass="page-title" stylesheets="@../../css/base.css" text="Select an Employee" />
+            <Label fx:id="title" prefHeight="68.0" prefWidth="463.0" styleClass="page-title" stylesheets="@../../css/default.css" text="Select an Employee" />
          </children>
          <padding>
             <Insets bottom="15.0" left="35.0" right="15.0" top="15.0" />
@@ -27,7 +27,7 @@
       </VBox>
       <HBox alignment="CENTER_RIGHT" prefHeight="70.0" prefWidth="600.0">
          <children>
-            <JFXButton onAction="#onSelect" styleClass="button-confirm" stylesheets="@../../css/base.css" text="Select" />
+            <JFXButton onAction="#onSelect" styleClass="button-confirm" stylesheets="@../../css/default.css" text="Select" />
          </children>
          <padding>
             <Insets bottom="15.0" left="15.0" right="35.0" top="15.0" />
