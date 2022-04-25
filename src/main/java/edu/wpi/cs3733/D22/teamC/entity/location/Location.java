@@ -2,6 +2,8 @@ package edu.wpi.cs3733.D22.teamC.entity.location;
 
 import edu.wpi.cs3733.D22.teamC.entity.floor.Floor;
 import edu.wpi.cs3733.D22.teamC.entity.generic.IDEntity;
+import org.hibernate.annotations.OnDelete;
+import org.hibernate.annotations.OnDeleteAction;
 
 import javax.persistence.*;
 import java.util.UUID;
@@ -15,7 +17,8 @@ public class Location implements IDEntity {
 
     @ManyToOne
     @JoinColumn(name = "FloorID", referencedColumnName = "ID")
-    private Floor floor; // TODO: Floors should be objects
+    @OnDelete(action = OnDeleteAction.CASCADE)
+    private Floor floor;
     
     @Column(name = "Building")
     private String building = "";

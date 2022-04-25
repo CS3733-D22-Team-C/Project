@@ -4,6 +4,8 @@ import edu.wpi.cs3733.D22.teamC.entity.employee.Employee;
 import edu.wpi.cs3733.D22.teamC.entity.generic.IDEntity;
 import org.hibernate.annotations.Generated;
 import org.hibernate.annotations.GenerationTime;
+import org.hibernate.annotations.OnDelete;
+import org.hibernate.annotations.OnDeleteAction;
 
 import javax.persistence.*;
 import java.sql.Timestamp;
@@ -24,10 +26,12 @@ public class ServiceRequest implements IDEntity {
     
     @ManyToOne
     @JoinColumn(name = "CreatorID", referencedColumnName = "ID")
+    @OnDelete(action = OnDeleteAction.CASCADE)
     protected Employee creator;
     
     @ManyToOne
     @JoinColumn(name = "AssigneeID", referencedColumnName = "ID")
+    @OnDelete(action = OnDeleteAction.CASCADE)
     protected Employee assignee;
     
     @Column(name = "LocationID")
@@ -53,6 +57,7 @@ public class ServiceRequest implements IDEntity {
 
     @ManyToOne
     @JoinColumn(name = "ModifierID", referencedColumnName = "ID")
+    @OnDelete(action = OnDeleteAction.CASCADE)
     protected Employee modifier;
     
     @Column(name = "ModifiedTimestamp")
