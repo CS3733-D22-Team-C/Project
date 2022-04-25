@@ -36,7 +36,7 @@
 
 /* Within SceneBuilder give every thing that is a title the title ID */
 #title {
-    -fx-font-size: 18pt !important;
+    -fx-font-size: 18pt ;
     -fx-font-weight: bold;
 }
 
@@ -46,7 +46,7 @@
 
 /* This class will be the base container that holds virtually every page */
 .page-container {
-    -fx-background-color: -color-surface !important;
+    -fx-background-color: -color-surface;
     -fx-max-width: 800px;
     -fx-max-height: 800px;
     -fx-background-radius: 20px;
@@ -89,7 +89,7 @@
     -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.5), 1, 0, 0, 0);
     -fx-cursor: hand;
     -mfx-button-type: RAISED;
-    -fx-background-color: -color-primary;
+    -fx-background-color: -color-primary-light;
     -fx-text-fill: -color-primary-text;
 
     /* Allows for all MFX buttons to have their ripple generators generate the ripples to the correct shape */
@@ -97,12 +97,7 @@
 }
 
 .button:hover {
-    -fx-background-color: -color-primary-dark;
-}
-
-.button:disabled {
-    -fx-background-color: -color-primary-dark;
-    -mfx-button-type: FLAT;
+    -fx-background-color: -color-primary;
 }
 
 .mfx-ripple-generator {
@@ -125,10 +120,10 @@
 }
 
 .button-file-select {
-    -fx-max-width: 30px !important;
-    -fx-max-height: 24px !important;
-    -fx-background-color: -color-secondary !important;
-    -fx-font-size: 12px !important;
+    -fx-max-width: 30px;
+    -fx-max-height: 24px;
+    -fx-background-color: -color-secondary;
+    -fx-font-size: 12px;
 }
 
 .text-field {
