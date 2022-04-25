@@ -63,6 +63,8 @@ public class BaseServiceRequestCreateController<T extends ServiceRequest> implem
 
     @FXML
     private VBox fieldsBox;
+    @FXML
+    private VBox tableBox;
 
     @FXML
     private JFXTreeTableView<?> table;
@@ -80,6 +82,8 @@ public class BaseServiceRequestCreateController<T extends ServiceRequest> implem
     private EmployeeSelectorWindow employeeSelectorWindow;
     private Location location;
     private Employee assignee;
+
+    SegmentBarController insertBarController;
 
 
     public void setup(ServiceRequest.RequestType requestType) {
@@ -137,6 +141,10 @@ public class BaseServiceRequestCreateController<T extends ServiceRequest> implem
             priority.getItems().add(pri.toString());
         }
 
+        //Insert for Segmented Bar
+        setSegmentedBarInsert();
+        insertBarController.preSetup();
+
         // Restrict ID TextFields to only contain numeric values
         //setIDFieldToNumeric(assigneeID);
         //ComponentWrapper.setIDFieldToNumeric(locationField);
@@ -154,7 +162,10 @@ public class BaseServiceRequestCreateController<T extends ServiceRequest> implem
         DAO<T> serviceRequestDAO = insertController.createServiceRequestDAO();
         for (T serviceRequest : serviceRequestDAO.getAll()) {
             tableDisplay.addObject(serviceRequest);
+            insertBarController.updateNumbers(serviceRequest.getStatus(), true);
         }
+
+        insertBarController.setup(true);
 
         // Setup Combobox
         List<Employee> employees = new EmployeeDAO().getAll();
@@ -235,6 +246,9 @@ public class BaseServiceRequestCreateController<T extends ServiceRequest> implem
         DAO<T> serviceRequestDAO = insertController.createServiceRequestDAO();
         serviceRequest.setID(serviceRequestDAO.insert(serviceRequest));
 
+        //Update SegementBar
+        insertBarController.updateNumbers(serviceRequest.getStatus(), true);
+        insertBarController.setup(false);
         // Add to TableDisplay
         tableDisplay.addObject(serviceRequest);
 
@@ -269,4 +283,10 @@ public class BaseServiceRequestCreateController<T extends ServiceRequest> implem
             new MapSelectorWindow(this::setLocation);
         }
     //#endregion
+
+    public void setSegmentedBarInsert(){
+        App.View<SegmentBarController> view = App.instance.loadView("view/service_request/segment_bar.fxml");
+        insertBarController = view.getController();
+        tableBox.getChildren().add(0, view.getNode());
+    }
 }
