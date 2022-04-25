@@ -117,5 +117,9 @@ public class DrawerContentController implements Initializable {
     public VBox getMiniView() {
         return miniView;
     }
+
+    @FXML
+    public void aboutButtonPress(ActionEvent actionEvent) {
+    }
 }
 
