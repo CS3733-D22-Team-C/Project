@@ -2,19 +2,6 @@ package edu.wpi.cs3733.D22.teamC;
 
 import edu.wpi.cs3733.D22.teamC.controller.SkeletonController;
 import edu.wpi.cs3733.D22.teamC.entity.employee.Employee;
-import edu.wpi.cs3733.D22.teamC.entity.employee.EmployeeDAO;
-import edu.wpi.cs3733.D22.teamC.entity.floor.Floor;
-import edu.wpi.cs3733.D22.teamC.entity.floor.FloorDAO;
-import edu.wpi.cs3733.D22.teamC.entity.location.Location;
-import edu.wpi.cs3733.D22.teamC.entity.location.LocationDAO;
-import edu.wpi.cs3733.D22.teamC.entity.medical_equipment.MedicalEquipment;
-import edu.wpi.cs3733.D22.teamC.entity.medical_equipment.MedicalEquipmentDAO;
-import edu.wpi.cs3733.D22.teamC.entity.patient.Patient;
-import edu.wpi.cs3733.D22.teamC.entity.patient.PatientDAO;
-import edu.wpi.cs3733.D22.teamC.entity.service_request.medical_equipment.MedicalEquipmentSR;
-import edu.wpi.cs3733.D22.teamC.entity.service_request.medical_equipment.MedicalEquipmentSRDAO;
-import edu.wpi.cs3733.D22.teamC.fileio.csv.CSVFacade;
-import edu.wpi.cs3733.D22.teamC.models.patient.PatientSelectorWindow;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
@@ -58,7 +45,6 @@ public class App extends Application {
     public static final String MAP_DASHBOARD_PATH = "view/location/map/base_side_map_view.fxml";
     public static final String DATABASE_PAGE_PATH = "view/general/edit_databases_page.fxml";
     public static final String MAP_PATH = "view/map/floor_map.fxml";
-    public static final String BASE_CSS_PATH = "css/base.css";
     public static final String USER_PROFILE = "view/general/profile_page/user_profile.fxml";
     //public static final String IMAGE_PATH = "static/images/BrighamAndWomensHospital.png";
 
@@ -71,6 +57,7 @@ public class App extends Application {
     // Variables
     private Stage stage;
     private Scene scene;
+    public BorderPane baseNode;
 
     @Override
     public void init() {
@@ -82,18 +69,26 @@ public class App extends Application {
     public void start(Stage primaryStage) {
         // Create singleton instance
         instance = this;
-        // Store window as stage
+
+        // On the first run of the app set up the stage, load to login page
         stage = primaryStage;
         stage.setFullScreen(true);
-        setViewStatic(LOGIN_PATH);
-        //setViewStatic(MAP_DASHBOARD_PATH);
+        baseNode = (BorderPane) loadView(BASE_COMPONENT_PATH).getNode();
+
+        // Set the base node to the root
+        scene = new Scene(baseNode);
+        scene.setRoot(baseNode);
+
+        // Set the content of the borderpane to the login page
+        baseNode.setCenter(loadView(LOGIN_PATH).getNode());
+        stage.setScene(scene);
+        stage.show();
     }
 
     @Override
     public void stop() {
         log.info("Shutting Down");
     }
-
 
     /**
      * Set a skeleton file for a view.
@@ -113,14 +108,7 @@ public class App extends Application {
      * @param viewFile Path to the FXML file to be displayed.
      */
     public void setView(String viewFile){
-        Node node = loadView(viewFile).getNode();
-        setView(node);
-    }
-
-    public void setViewStatic(String viewFile)
-    {
-        Node node = loadView(viewFile).getNode();
-        setViewStatic(node);
+        baseNode.setCenter(loadView(viewFile).getNode());
     }
 
     /**
@@ -128,40 +116,7 @@ public class App extends Application {
      * @param viewNode Node to be displayed.
      */
     public void setView(Node viewNode) {
-        // Load Base Node
-        BorderPane baseNode = (BorderPane) loadView(BASE_COMPONENT_PATH).getNode();
-
-        // TODO: Find a way to only change the center of the baseNode, nothing else
-
-        // Load drawer Menu
-        Node drawerNode = loadView(DRAWER_PATH).getNode();
-
-        // Embed views and components
-        //baseNode.setTop(menuBarNode);
         baseNode.setCenter(viewNode);
-        baseNode.setLeft(drawerNode);
-        baseNode.autosize();
-
-        if (scene != null) scene.setRoot(baseNode);
-        else scene = new Scene(baseNode);
-        stage.setScene(scene);
-        stage.show();
-    }
-
-    public void setViewStatic(Node viewNode)
-    {
-        // Load Base Node
-        BorderPane baseNode = (BorderPane) loadView(BASE_COMPONENT_PATH).getNode();
-
-        // Embed views and components
-        //baseNode.setTop(menuBarNode);
-        baseNode.setCenter(viewNode);
-        baseNode.autosize();
-
-        if (scene != null) scene.setRoot(baseNode);
-        else scene = new Scene(baseNode);
-        stage.setScene(scene);
-        stage.show();
     }
 
     /**
@@ -199,6 +154,19 @@ public class App extends Application {
         return null;
     }
 
+    /**
+     * Function to show and kill drawer
+     * @param show true if the drawer should show, false if drawer should be killed
+     */
+    public void showMenuBar(boolean show) {
+        if(show) {
+            this.baseNode.setLeft(loadView(DRAWER_PATH).getNode());
+        }
+        else {
+            this.baseNode.setLeft(null);
+        }
+    }
+
     public Stage getStage() {
         return stage;
     }
@@ -210,6 +178,4 @@ public class App extends Application {
     public void setUserAccount(Employee userAccount) {
         this.userAccount = userAccount;
     }
-
-
 }

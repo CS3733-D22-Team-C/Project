@@ -82,10 +82,12 @@ public class MapController implements Initializable {
     //#region FXML Events
         @FXML
         protected void onMouseClickedMap(MouseEvent event) {
-            mapViewController.getLocationManager().unfocus();
-            if (mapViewController.getLocationManager().isEditMode()) doubleClickAddLocation(event);
+            if (event.getButton().equals(MouseButton.PRIMARY)) {
+                mapViewController.getLocationManager().unfocus();
+                if (mapViewController.getLocationManager().isEditMode()) doubleClickAddLocation(event);
 
-            event.consume();
+                event.consume();
+            }
         }
 
         @FXML

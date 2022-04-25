@@ -24,6 +24,7 @@ public class MapControlsController implements Initializable {
     @FXML private Button saveButton;
     @FXML private Button exitButton;
     @FXML private MFXToggleButton medicalEquipmentToggle;
+    @FXML private MFXToggleButton serviceRequestToggle;
 
     // References
     private FloorMapViewController mapViewController;
@@ -45,6 +46,9 @@ public class MapControlsController implements Initializable {
 
         medicalEquipmentToggle.setSelected(false);
         medicalEquipmentToggle.setOnAction(this::onMedicalEquipmentToggle);
+
+        serviceRequestToggle.setSelected(false);
+        serviceRequestToggle.setOnAction(this::onServiceRequestToggle);
     }
 
     //#region External Events
@@ -63,17 +67,24 @@ public class MapControlsController implements Initializable {
         void onViewModeButtonPressed(ActionEvent event) {
             mapViewController.switchMode(false);
             mapViewController.activateMedicalEquipmentManager(medicalEquipmentToggle.isSelected());
+            mapViewController.activateServiceRequestManager(serviceRequestToggle.isSelected());
         }
 
         @FXML
         void onEditModeButtonPressed(ActionEvent event) {
             mapViewController.switchMode(true);
             mapViewController.activateMedicalEquipmentManager(false);
+            mapViewController.activateServiceRequestManager(false);
         }
 
         @FXML
         void onMedicalEquipmentToggle(ActionEvent event) {
             mapViewController.activateMedicalEquipmentManager(medicalEquipmentToggle.isSelected());
+        }
+
+        @FXML
+        void onServiceRequestToggle(ActionEvent event) {
+            mapViewController.activateServiceRequestManager(serviceRequestToggle.isSelected());
         }
 
         @FXML
@@ -95,6 +106,7 @@ public class MapControlsController implements Initializable {
         exitButton.setVisible(!editing);
         saveButton.setDisable(true);
         medicalEquipmentToggle.setVisible(!editing);
+        serviceRequestToggle.setVisible(!editing);
     }
 
     public void canSave() {
