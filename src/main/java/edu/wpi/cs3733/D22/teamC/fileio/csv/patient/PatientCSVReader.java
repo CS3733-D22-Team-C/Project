@@ -24,7 +24,7 @@ public class PatientCSVReader extends CSVReader<Patient> {
                     break;
                 case "DOB":
                     try {
-                        patient.setDOB(new SimpleDateFormat("mm/dd/yyyy").parse(value));
+                        patient.setDOB(new SimpleDateFormat("YYYY-MM-DD").parse(value));
                     } catch (ParseException e) {
                         e.printStackTrace();
                     }
