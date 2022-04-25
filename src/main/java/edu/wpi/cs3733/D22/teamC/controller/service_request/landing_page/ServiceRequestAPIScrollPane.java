@@ -29,6 +29,8 @@ public class ServiceRequestAPIScrollPane implements Initializable {
     @FXML private Label teamC;
     @FXML private Label teamZ;
 
+    DatabaseController databaseController;
+
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
@@ -36,23 +38,28 @@ public class ServiceRequestAPIScrollPane implements Initializable {
 
         //Not sure what we want to do with this
         //Loads our locations and employees into team B
-//        DatabaseController databaseController = new DatabaseController();
+        databaseController = new DatabaseController();
 //        try {
 //            databaseController.reset();
 //        } catch (edu.wpi.cs3733.D22.teamB.api.ServiceException e) {
 //            e.printStackTrace();
 //        }
-//        List<Employee> employees = new EmployeeDAO().getAll();
-//        for(Employee employee: employees){
-//            databaseController.addEmployee(employee.getLastName(), employee.getFirstName(), "", employee.getRole().toString());
-//        }
-//
-//        List<Location> locations = new LocationDAO().getAll();
-//        for(Location location: locations){
-//            databaseController.add(new edu.wpi.cs3733.D22.teamB.api.Location(location.getID(), location.getX(), location.getY(), location.getFloor(), location.getBuilding(), location.getNodeType().toString(), location.getLongName(),location.getShortName()));
-//        }
 
 
+    }
+
+    public void loadEmployeesTeamB(){
+        List<Employee> employees = new EmployeeDAO().getAll();
+        for(Employee employee: employees){
+            databaseController.addEmployee(employee.getLastName(), employee.getFirstName(), "", employee.getRole().toString());
+        }
+    }
+
+    public void loadLocationsTeamB(){
+                List<Location> locations = new LocationDAO().getAll();
+        for(Location location: locations){
+            databaseController.add(new edu.wpi.cs3733.D22.teamB.api.Location(location.getID(), location.getX(), location.getY(), location.getFloor(), location.getBuilding(), location.getNodeType().toString(), location.getLongName(),location.getShortName()));
+        }
 
     }
 
