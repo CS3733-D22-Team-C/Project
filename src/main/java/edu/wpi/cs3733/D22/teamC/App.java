@@ -83,29 +83,46 @@ public class App extends Application {
 
         scene.setOnKeyPressed((KeyEvent event) -> {
 
-            if (event.isControlDown() && event.isShiftDown()&& event.getCode().getChar().equals("D"))
+            /*
+               The left node is null when we are not logged in.
+               if this changes, this will break
+             */
+            if (this.baseNode.getLeft() != null)
             {
-                System.out.println("HERE");
-                setView(DASHBOARD_PATH);
-            }
-
-            if (userAccount.getAdmin())
-            {
-                if (event.isControlDown() && event.isShiftDown()&& event.getCode().getChar().equals("X")){
-                    System.out.println("HERE");
-                    setView(DATABASE_PAGE_PATH);
+                if (event.isControlDown() && event.isShiftDown())
+                {
+                    switch (event.getCode().getChar())
+                    {
+                        case "D" :
+                            setView(DASHBOARD_PATH);
+                            break;
+                        case "X" :
+                            if (userAccount.getAdmin())
+                            {
+                                setView(DATABASE_PAGE_PATH);
+                            }
+                            break;
+                        case "M" :
+                            setView(MAP_DASHBOARD_PATH);
+                            break;
+                        case "S" :
+                            setView(VIEW_SERVICE_REQUESTS_PATH);
+                            break;
+                        case "P" :
+                            setView(USER_PROFILE);
+                            break;
+                        case "L" :
+                            setView(App.LOGIN_PATH);
+                            showMenuBar(false);
+                            break;
+                        case "Q" :
+                            getStage().close();
+                            break;
+                        default:
+                            break;
+                    }
                 }
             }
-
-//            if (event.isControlDown() && event.isShiftDown()&& event.getCode().getChar().equals("X")){
-//                System.out.println("HERE");
-//                setView(DATABASE_PAGE_PATH);
-//            }
-
-
-
-
-
         });
 
 
