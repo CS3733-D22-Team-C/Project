@@ -23,6 +23,9 @@ javafx {
 
 
 dependencies {
+
+    compile fileTree(dir: 'libs', include: ['*.jar'])
+    
     implementation(
             // JFoenix
             'com.jfoenix:jfoenix:9.0.10',
