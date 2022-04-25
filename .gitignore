@@ -1,9 +1,11 @@
 derby.log
 *.lock
+**/dragonflyLog
 
 # Database Folders
 DB/*
 TESTDB/*
+TEAMC_API_DB/*
 
 # Created by https://www.gitignore.io/api/java,macos,gradle,intellij+all
 # Edit at https://www.gitignore.io/?templates=java,macos,gradle,intellij+all

@@ -66,7 +66,7 @@ public class DrawerContentController implements Initializable {
         //initializeSVG();
 
         // Hide the database button if the user is not an admin
-        databaseButton.setVisible(App.instance.getUserAccount().getAdmin());
+//        databaseButton.setVisible(App.instance.getUserAccount().getAdmin());
 
         for (MFXButton button : allButtons) {
             button.setContentDisplay(ContentDisplay.LEFT);
@@ -88,7 +88,8 @@ public class DrawerContentController implements Initializable {
     @FXML
     void logOutButtonPress(ActionEvent event) {
         // TODO: Logout functionality, path to login page
-        App.instance.setViewStatic(App.LOGIN_PATH);
+        App.instance.setView(App.LOGIN_PATH);
+        App.instance.showMenuBar(false);
     }
 
     @FXML
@@ -103,7 +104,6 @@ public class DrawerContentController implements Initializable {
 
     @FXML
     void databaseButtonPress(ActionEvent event) {
-        // TODO: Path to view tasks related to user
         App.instance.setView(App.DATABASE_PAGE_PATH);
     }
 
