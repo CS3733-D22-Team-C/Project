@@ -17,7 +17,8 @@ public class TranslatorSR extends ServiceRequest {
     protected Language language;
     
     @ManyToOne
-    @JoinColumn(name = "PatientID", referencedColumnName = "ID")
+    @JoinColumn(name = "PatientID", referencedColumnName = "ID",
+            foreignKey = @ForeignKey(foreignKeyDefinition = "FOREIGN KEY fk_patient REFERENCES PATIENT (ID) ON DELETE SET NULL"))
     @OnDelete(action = OnDeleteAction.CASCADE)
     protected Patient patient;
 
