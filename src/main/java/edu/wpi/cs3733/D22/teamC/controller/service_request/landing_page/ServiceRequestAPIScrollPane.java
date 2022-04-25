@@ -83,7 +83,7 @@ public class ServiceRequestAPIScrollPane implements Initializable {
     void clickTeamB(MouseEvent event) throws edu.wpi.cs3733.D22.teamB.api.ServiceException, IOException {
         //Running the API
         edu.wpi.cs3733.D22.teamB.api.API apiB = new edu.wpi.cs3733.D22.teamB.api.API();
-        apiB.run(0,0,700,700,"", "hello", "goodbye");
+        apiB.run(0,0,700,700,"edu/wpi/cs3733/D22/teamC/css/default.css", "hello", "goodbye");
     }
 
     @FXML
