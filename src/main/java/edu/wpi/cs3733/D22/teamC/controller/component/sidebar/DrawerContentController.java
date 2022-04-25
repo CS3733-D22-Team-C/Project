@@ -56,7 +56,7 @@ public class DrawerContentController implements Initializable {
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         allButtons = new MFXButton[]{dashboardButton, exitButton, logOutButton, databaseButton, viewProfileButton, myTasksButton, serviceRequestsButton};
-        disableButton(dashboardButton);
+        selectedButton(dashboardButton);
 
         // Hide the database button if the user is not an admin
         databaseButton.setVisible(App.instance.getUserAccount().getAdmin());
@@ -67,18 +67,19 @@ public class DrawerContentController implements Initializable {
         }
     }
 
-    private void disableButton(MFXButton disableButton) {
+    private void selectedButton(MFXButton disableButton) {
         for (MFXButton button : allButtons) {
-            button.setDisable(false);
+            button.getStyleClass().clear();
+            button.getStyleClass().add("button");
         }
-        disableButton.setDisable(true);
+        disableButton.getStyleClass().addAll("active-button");
     }
 
     //#region Button Events
     @FXML
     void dashboardButtonPress(ActionEvent event) {
         App.instance.setView(App.DASHBOARD_PATH);
-        disableButton(dashboardButton);
+        selectedButton(dashboardButton);
     }
 
     @FXML
@@ -96,25 +97,25 @@ public class DrawerContentController implements Initializable {
     @FXML
     void myTasksButtonPress(ActionEvent event) {
         App.instance.setView(App.MY_TASKS_PATH);
-        disableButton(myTasksButton);
+        selectedButton(myTasksButton);
     }
 
     @FXML
     void serviceRequestButtonPress(ActionEvent event) {
         App.instance.setView(App.VIEW_SERVICE_REQUESTS_PATH);
-        disableButton(serviceRequestsButton);
+        selectedButton(serviceRequestsButton);
     }
 
     @FXML
     void databaseButtonPress(ActionEvent event) {
         App.instance.setView(App.DATABASE_PAGE_PATH);
-        disableButton(databaseButton);
+        selectedButton(databaseButton);
     }
 
     @FXML
     void userProfileButtonPress(ActionEvent event) {
         App.instance.setView(App.USER_PROFILE);
-        disableButton(viewProfileButton);
+        selectedButton(viewProfileButton);
     }
     //#endregion
 

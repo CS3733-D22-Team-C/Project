@@ -40,7 +40,7 @@
     -fx-font-weight: bold;
 }
 
-.base-pane {
+#base-pane {
     -fx-background-color: -color-background;
 }
 
