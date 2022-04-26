@@ -105,5 +105,7 @@ public class BaseTableViewController<T extends Object> implements Initializable,
         public void onBackButtonClicked() {
             App.instance.setView(App.DATABASE_PAGE_PATH);
         }
+
+        public void setRemoveDisable(boolean disabled) {remove.setDisable(disabled);}
     //#endregion
 }

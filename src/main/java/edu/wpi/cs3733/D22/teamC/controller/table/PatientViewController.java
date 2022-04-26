@@ -1,25 +1,18 @@
 package edu.wpi.cs3733.D22.teamC.controller.table;
 
 import com.jfoenix.controls.JFXButton;
-import com.jfoenix.controls.JFXComboBox;
 import com.jfoenix.controls.JFXTreeTableView;
-import edu.wpi.cs3733.D22.teamC.entity.floor.Floor;
 import edu.wpi.cs3733.D22.teamC.entity.location.Location;
 import edu.wpi.cs3733.D22.teamC.entity.location.LocationDAO;
-import edu.wpi.cs3733.D22.teamC.entity.medical_equipment.MedicalEquipment;
-import edu.wpi.cs3733.D22.teamC.entity.medical_equipment.MedicalEquipmentDAO;
 import edu.wpi.cs3733.D22.teamC.entity.patient.Patient;
 import edu.wpi.cs3733.D22.teamC.entity.patient.PatientDAO;
 import edu.wpi.cs3733.D22.teamC.models.generic.TableDisplay;
 import edu.wpi.cs3733.D22.teamC.models.location.MapSelectorWindow;
-import edu.wpi.cs3733.D22.teamC.models.medical_equipment.MedicalEquipmentTableDisplay;
 import edu.wpi.cs3733.D22.teamC.models.patient.PatientTableDisplay;
 import io.github.palexdev.materialfx.controls.MFXDatePicker;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.control.ComboBox;
-import javafx.scene.control.DatePicker;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import org.controlsfx.validation.ValidationSupport;
@@ -30,7 +23,6 @@ import java.sql.Timestamp;
 import java.time.Instant;
 import java.time.LocalDate;
 import java.time.ZoneId;
-import java.util.Date;
 import java.util.List;
 import java.util.ResourceBundle;
 
@@ -169,8 +161,14 @@ public class PatientViewController extends InsertTableViewController<Patient> im
     @FXML
     void clickConfirm(ActionEvent event) {
         if (checkFieldsFilled()){
-            if (parentController.currentObj == null) addObject();
-            else updateObject();
+            if (parentController.currentObj == null) {
+                addObject();
+                parentController.setCurrentObj(null);
+                parentController.setRemoveDisable(true);
+            }
+            else {
+                updateObject();
+            }
             validation.setErrorDecorationEnabled(false);
         }
     }

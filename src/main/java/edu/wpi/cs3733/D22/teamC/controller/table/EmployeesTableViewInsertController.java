@@ -139,8 +139,14 @@ public class EmployeesTableViewInsertController extends InsertTableViewControlle
     @FXML
     void clickConfirm(ActionEvent event) {
         if (checkFieldsFilled()){
-            if (parentController.currentObj == null) addObject();
-            else updateObject();
+            if (parentController.currentObj == null){
+                addObject();
+                parentController.setCurrentObj(null);
+                parentController.setRemoveDisable(true);
+            }
+            else{
+                updateObject();
+            }
             validation.setErrorDecorationEnabled(false);
         }
     }

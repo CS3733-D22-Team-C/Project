@@ -153,7 +153,11 @@ public class LocationTableViewInsertController extends InsertTableViewController
         @FXML
         void clickConfirm(ActionEvent event) {
             if (checkFieldsFilled()){
-                if (parentController.currentObj == null) addObject();
+                if (parentController.currentObj == null){
+                    addObject();
+                    parentController.setCurrentObj(null);
+                    parentController.setRemoveDisable(true);
+                }
                 else updateObject();
                 validation.setErrorDecorationEnabled(false);
             }
