@@ -75,6 +75,7 @@ public class App extends Application {
 
     // Variables
     private Stage stage;
+    private Stage activeStage;
     private Scene scene;
 
     @Override
@@ -208,6 +209,14 @@ public class App extends Application {
         return stage;
     }
 
+    public void setActiveStage(Stage activeStage) {
+        this.activeStage = activeStage;
+    }
+
+    public Stage getActiveStage() {
+        return (activeStage == null) ? stage : activeStage;
+    }
+
     public Employee getUserAccount() {
         return userAccount;
     }
@@ -215,6 +224,4 @@ public class App extends Application {
     public void setUserAccount(Employee userAccount) {
         this.userAccount = userAccount;
     }
-
-
 }

@@ -5,6 +5,7 @@ import com.jfoenix.controls.JFXTreeTableView;
 import com.jfoenix.controls.RecursiveTreeItem;
 import com.jfoenix.controls.datamodels.treetable.RecursiveTreeObject;
 import com.jfoenix.svg.SVGGlyph;
+import edu.wpi.cs3733.D22.teamC.entity.generic.IDEntity;
 import edu.wpi.cs3733.D22.teamC.fileio.svg.SVGParser;
 import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
@@ -18,7 +19,7 @@ import javafx.util.Callback;
  * A wrapper for creating and managing TableDisplays.
  * @param <T> The type of object which the TableDisplay wrapper works on.
  */
-public abstract class TableDisplay<T extends Object> {
+public abstract class TableDisplay<T extends IDEntity> {
     /**
      * An entry in the TableDisplay, created over an object of type T.
      */
@@ -71,7 +72,8 @@ public abstract class TableDisplay<T extends Object> {
          */
         public void updateObject(T object) {
             for (TableDisplayEntry entry : entries) {
-                if (entry.object == object) {
+                if (entry.object.getID().equals(object.getID())) {
+                    entry.object = object;
                     entry.RefreshEntry();
                     return;
                 }

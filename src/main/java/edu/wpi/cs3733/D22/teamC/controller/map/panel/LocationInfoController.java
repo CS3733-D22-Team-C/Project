@@ -3,18 +3,13 @@ package edu.wpi.cs3733.D22.teamC.controller.map.panel;
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXToggleNode;
 import com.jfoenix.controls.JFXTreeTableView;
-import com.jfoenix.svg.SVGGlyph;
 import edu.wpi.cs3733.D22.teamC.App;
 import edu.wpi.cs3733.D22.teamC.controller.map.FloorMapViewController;
-import edu.wpi.cs3733.D22.teamC.controller.map.MapViewController;
 import edu.wpi.cs3733.D22.teamC.controller.map.data.location.LocationMapNode;
-import edu.wpi.cs3733.D22.teamC.controller.map.data.medical_equipment.MedicalEquipmentCounter;
 import edu.wpi.cs3733.D22.teamC.controller.map.data.medical_equipment.MedicalEquipmentManager;
 import edu.wpi.cs3733.D22.teamC.controller.map.data.medical_equipment.MedicalEquipmentNode;
 import edu.wpi.cs3733.D22.teamC.controller.service_request.BaseServiceRequestResolveController;
-import edu.wpi.cs3733.D22.teamC.controller.service_request.SRShortcutController;
 import edu.wpi.cs3733.D22.teamC.controller.service_request.ServiceRequestLandingPage;
-import edu.wpi.cs3733.D22.teamC.controller.table.MedicalEquipmentViewController;
 import edu.wpi.cs3733.D22.teamC.entity.floor.Floor;
 import edu.wpi.cs3733.D22.teamC.entity.location.Location;
 import edu.wpi.cs3733.D22.teamC.entity.location.LocationDAO;
@@ -23,7 +18,6 @@ import edu.wpi.cs3733.D22.teamC.entity.medical_equipment.MedicalEquipmentDAO;
 import edu.wpi.cs3733.D22.teamC.entity.patient.PatientDAO;
 import edu.wpi.cs3733.D22.teamC.entity.service_request.ServiceRequest;
 import edu.wpi.cs3733.D22.teamC.entity.service_request.ServiceRequestDAO;
-import edu.wpi.cs3733.D22.teamC.fileio.svg.SVGParser;
 import edu.wpi.cs3733.D22.teamC.models.SRShortcutSelectorWindow;
 import edu.wpi.cs3733.D22.teamC.models.medical_equipment.MedicalEquipmentTableDisplay;
 import edu.wpi.cs3733.D22.teamC.models.patient.PatientTableDisplay;
@@ -36,13 +30,9 @@ import javafx.scene.control.*;
 import javafx.scene.input.MouseButton;
 import javafx.scene.shape.SVGPath;
 
-import javax.persistence.TemporalType;
-import javax.swing.*;
 import java.net.URL;
 import java.util.ResourceBundle;
 
-import static edu.wpi.cs3733.D22.teamC.controller.service_request.ServiceRequestLandingPage.RESOLVE_FORM;
-import static edu.wpi.cs3733.D22.teamC.entity.medical_equipment.MedicalEquipment.EquipmentStatus.*;
 import static edu.wpi.cs3733.D22.teamC.entity.service_request.ServiceRequest.Status.*;
 
 public class LocationInfoController implements Initializable {
@@ -102,11 +92,6 @@ public class LocationInfoController implements Initializable {
 
     // References
     FloorMapViewController mapViewController;
-    SRShortcutController serviceRequestShortcut;
-    BaseServiceRequestResolveController serviceRequestResolveController;
-    ServiceRequestLandingPage serviceRequestLandingPage;
-    SRShortcutSelectorWindow srShortcutSelectorWindow;
-
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
@@ -124,11 +109,6 @@ public class LocationInfoController implements Initializable {
 
         //Initialize Patients Info
         patientTableDisplay = new PatientTableDisplay(patientsTable);
-
-        serviceRequestShortcut = new SRShortcutController();
-        serviceRequestResolveController = new BaseServiceRequestResolveController();
-        serviceRequestLandingPage = new ServiceRequestLandingPage();
-        //srShortcutSelectorWindow = new SRShortcutSelectorWindow(ServiceRequest activeServiceRequest);
 
         setRowInteraction();
         setSRRowInteraction();
@@ -227,15 +207,6 @@ public class LocationInfoController implements Initializable {
         }
     }
 
-    private void toEditPage(ServiceRequest serviceRequest) {
-        App.View<SRShortcutController> view = App.instance.loadView(App.SHORTCUT_EDIT);
-        //view.setController(serviceRequestShortcut);
-        view.getController().setup(serviceRequest, true);
-        App.instance.setView(view.getNode());
-    }
-
-
-
     protected void setSRRowInteraction() {
         serviceRequestTable.setRowFactory(tv -> {
             TreeTableRow<ServiceRequestTableDisplay.ServiceRequestTableEntry> row = new TreeTableRow<ServiceRequestTableDisplay.ServiceRequestTableEntry>();
@@ -246,7 +217,9 @@ public class LocationInfoController implements Initializable {
                 }
                 if (event.getButton().equals(MouseButton.PRIMARY) && !row.isEmpty() && event.getClickCount() == 2) {
                     // Double Click shortcut to service request edit/resolve page
-                    new SRShortcutSelectorWindow((foo)->{}).setup(activeServiceRequest);
+                    new SRShortcutSelectorWindow((foo)->{
+                        serviceRequestTableDisplay.updateObject(new ServiceRequestDAO().getByID(activeServiceRequest.getID()));
+                    }).setup(activeServiceRequest);
                 }
             });
 
