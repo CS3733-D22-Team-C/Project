@@ -59,7 +59,6 @@ public class DrawerContentController implements Initializable {
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         allButtons = new MFXButton[]{dashboardButton, exitButton, logOutButton, databaseButton, viewProfileButton, myTasksButton, serviceRequestsButton, creditButton};
-        //initializeSVG();
 
         // Hide the database button if the user is not an admin
         databaseButton.setVisible(App.instance.getUserAccount().getAdmin());
@@ -68,6 +67,9 @@ public class DrawerContentController implements Initializable {
             button.setContentDisplay(ContentDisplay.LEFT);
             button.setAlignment(Pos.CENTER_LEFT);
         }
+
+        // Set selected button to initial page
+        selectedButton(dashboardButton);
     }
 
     private void selectedButton(MFXButton disableButton) {
@@ -75,7 +77,7 @@ public class DrawerContentController implements Initializable {
             button.getStyleClass().clear();
             button.getStyleClass().add("button");
         }
-        disableButton.getStyleClass().addAll("active-button");
+        disableButton.getStyleClass().add("active-button");
     }
 
     //#region Button Events
@@ -122,7 +124,10 @@ public class DrawerContentController implements Initializable {
     }
 
     @FXML
-    void creditButtonPress(ActionEvent event) {App.instance.setView(App.CREDIT_PAGE);}
+    void creditButtonPress(ActionEvent event) {
+        App.instance.setView(App.CREDIT_PAGE);
+        selectedButton(creditButton);
+    }
     //#endregion
 
     public SVGPath getExpandedView() {
