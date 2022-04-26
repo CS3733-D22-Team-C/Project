@@ -173,8 +173,35 @@ public class LocationManager extends ManagerMapNodes<Location> {
         public void saveChanges() {
             if (isEditMode) {
                 LocationDAO dao = new LocationDAO();
-                dao.deleteAllFromTable();
-                all.forEach(dao::insert);
+                List<Location> originalLocations = dao.getAll();
+
+                // Update and Insert New Locations
+                all.forEach(newLocation -> {
+                    Location originalLocation = dao.getByID(newLocation.getID());
+
+                    if (originalLocation != null) {
+                        // Already Existing Location
+
+                        // Update Location if Changes
+                        if (!originalLocation.equals(newLocation)) {
+                            dao.update(newLocation);
+                        }
+
+                        // Remove Location from Original List
+                        for (int i = 0; i < originalLocations.size(); i++) {
+                            if (originalLocations.get(i).getID().equals(newLocation.getID())) {
+                                originalLocations.remove(i);
+                                break;
+                            }
+                        }
+                    } else {
+                        // New Location, Insert Location
+                        dao.insert(newLocation);
+                    }
+                });
+
+                // Delete Old Locations
+                originalLocations.forEach(dao::delete);
             }
         }
 
