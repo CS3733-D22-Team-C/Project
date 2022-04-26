@@ -421,7 +421,7 @@ public class LocationInfoController implements Initializable {
 
         @FXML
         public void onResolveSRButtonPressed(ActionEvent actionEvent){
-            if (activeServiceRequest != null) {
+            if (activeServiceRequest != null && activeServiceRequest.getStatus() == Processing) {
                 activeServiceRequest.setStatus(Done);
 
                 // Update Service Request Table
