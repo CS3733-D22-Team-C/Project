@@ -314,14 +314,17 @@ public class BaseMapSideViewController implements Initializable {
 
         int greatestOrder = 0; // greater than check
         for(Floor floor : floorDAO.getAll()){
-            if(floor.getOrder() > greatestOrder && floor != selectedFloor) greatestOrder = floor.getOrder();
+            if(floor.getOrder() > greatestOrder && floor.getOrder() != newOrder) greatestOrder = floor.getOrder();
         }
 
         System.out.println("Greatest Order: " + greatestOrder);
+        if(!(oldOrder < greatestOrder)) newOrder = greatestOrder+1;
         if(newOrder > greatestOrder+1 && greatestOrder != newOrder) {newOrder = greatestOrder; selectedFloor.setOrder(greatestOrder); incorrectOrder = true;}
+
 
         if(newOrder > oldOrder) {
             System.out.println("New order is greater than old order: " + newOrder + ", " + oldOrder);
+            if(oldOrder > greatestOrder) selectedFloor.setOrder(oldOrder);
 
             // Works for updating floors by moving up.
             for (Floor floor : floorDAO.getAll()) {
