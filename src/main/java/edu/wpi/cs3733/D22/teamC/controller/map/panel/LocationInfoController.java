@@ -25,12 +25,14 @@ import edu.wpi.cs3733.D22.teamC.models.medical_equipment.MedicalEquipmentTableDi
 import edu.wpi.cs3733.D22.teamC.models.patient.PatientTableDisplay;
 import edu.wpi.cs3733.D22.teamC.models.service_request.ServiceRequestTableDisplay;
 import edu.wpi.cs3733.D22.teamC.models.utils.ComponentWrapper;
+import io.github.palexdev.materialfx.controls.MFXButton;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
 import javafx.scene.input.MouseButton;
 import javafx.scene.shape.SVGPath;
+import org.controlsfx.control.SearchableComboBox;
 
 import javax.persistence.TemporalType;
 import javax.swing.*;
@@ -63,12 +65,18 @@ public class LocationInfoController implements Initializable {
 
     // Medical Equipment - Table
     @FXML JFXTreeTableView medicalEquipmentTable;
+    @FXML private SearchableComboBox<String> medEquipTypeComboBox;
+    @FXML private MFXButton medEquipTypeClearButton;
+
 
     MedicalEquipmentTableDisplay medicalEquipmentTableDisplay;
     private MedicalEquipment activeMedicalEquipment;
 
     // Service Requests - Table
     @FXML JFXTreeTableView serviceRequestTable;
+    @FXML private SearchableComboBox<String> serviceReqComboBox;
+    @FXML private MFXButton SRTypeClearButton;
+
     ServiceRequestTableDisplay<ServiceRequest> serviceRequestTableDisplay;
 
     //Patients - Table
@@ -99,9 +107,20 @@ public class LocationInfoController implements Initializable {
         setTabIcon(patientsTab, PATIENT_ICON);
 
         // Initialize Service Request Info
+
+        //Service Request type dropdown
+        for(ServiceRequest.RequestType requestType : ServiceRequest.RequestType.values()){
+            serviceReqComboBox.getItems().add(requestType.toString());
+        }
+
         serviceRequestTableDisplay = new ServiceRequestTableDisplay<>(serviceRequestTable);
 
         // Initialize Medical Equipment Info
+
+        //MedicalEquipment type dropdown
+        for(MedicalEquipment.EquipmentType equipmentType : MedicalEquipment.EquipmentType.values()){
+            medEquipTypeComboBox.getItems().add(equipmentType.toString());
+        }
         medicalEquipmentTableDisplay = new MedicalEquipmentTableDisplay(medicalEquipmentTable);
 
         //Initialize Patients Info
