@@ -44,6 +44,9 @@ public class DrawerContentController implements Initializable {
 
     @FXML
     private SVGPath expandedView;
+
+    @FXML
+    private MFXButton creditButton;
     //#endregion
 
     // list to store all buttons
@@ -55,8 +58,8 @@ public class DrawerContentController implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        allButtons = new MFXButton[]{dashboardButton, exitButton, logOutButton, databaseButton, viewProfileButton, myTasksButton, serviceRequestsButton};
-        selectedButton(dashboardButton);
+        allButtons = new MFXButton[]{dashboardButton, exitButton, logOutButton, databaseButton, viewProfileButton, myTasksButton, serviceRequestsButton, creditButton};
+        //initializeSVG();
 
         // Hide the database button if the user is not an admin
         databaseButton.setVisible(App.instance.getUserAccount().getAdmin());
@@ -117,6 +120,9 @@ public class DrawerContentController implements Initializable {
         App.instance.setView(App.USER_PROFILE);
         selectedButton(viewProfileButton);
     }
+
+    @FXML
+    void creditButtonPress(ActionEvent event) {App.instance.setView(App.CREDIT_PAGE);}
     //#endregion
 
     public SVGPath getExpandedView() {

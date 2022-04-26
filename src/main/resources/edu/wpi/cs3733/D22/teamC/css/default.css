@@ -36,7 +36,7 @@
 
 /* Within SceneBuilder give every thing that is a title the title ID */
 #title {
-    -fx-font-size: 18pt ;
+    -fx-font-size: 18pt;
     -fx-font-weight: bold;
 }
 

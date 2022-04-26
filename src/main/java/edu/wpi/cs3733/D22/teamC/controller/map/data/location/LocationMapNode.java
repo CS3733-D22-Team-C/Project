@@ -22,6 +22,7 @@ public class LocationMapNode extends MapNode<Location> {
     private static final String NODE_PATH = "view/map/nodes/location.fxml";
 
     // FXML
+    @FXML private Group root;
     @FXML private Group contextGroup;
     @FXML private Circle locationCircle;
     @FXML private Label iconLabel;
@@ -81,6 +82,9 @@ public class LocationMapNode extends MapNode<Location> {
             iconLabel.setGraphic(glyph);
         }
 
+        public void setVisible(boolean visible) {
+            root.setVisible(visible);
+        }
     //#endregion
 
     //#region State Updating
@@ -119,7 +123,7 @@ public class LocationMapNode extends MapNode<Location> {
         }
 
         @FXML
-        protected void onMouseClickedNode(MouseEvent event) {
+        public void onMouseClickedNode(MouseEvent event) {
             if (event.getButton().equals(MouseButton.PRIMARY)) {
                 // Single-Click select toggle
                 if (((LocationManager) getManager()).onClickCapture != null) {

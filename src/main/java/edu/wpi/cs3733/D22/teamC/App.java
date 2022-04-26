@@ -48,6 +48,7 @@ public class App extends Application {
     public static final String DATABASE_PAGE_PATH = "view/general/edit_databases_page.fxml";
     public static final String MAP_PATH = "view/map/floor_map.fxml";
     public static final String USER_PROFILE = "view/general/profile_page/user_profile.fxml";
+    public static final String CREDIT_PAGE = "view/general/credit.fxml";
     //public static final String IMAGE_PATH = "static/images/BrighamAndWomensHospital.png";
 
     // Singleton Instance
@@ -66,7 +67,7 @@ public class App extends Application {
         SessionManager.switchDatabase(SessionManager.DBMode.EMBEDDED);
         log.info("Starting Up");
     }
-
+    //Test comment
     @Override
     public void start(Stage primaryStage) {
         // Create singleton instance
