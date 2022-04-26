@@ -49,7 +49,6 @@ public class ServiceRequestToken {
 
         SVGGlyph glyph = new SVGGlyph(content);
         glyph.getStyleClass().add(requestType.toString().toLowerCase(Locale.ROOT) + "-icon");
-        System.out.println(requestType.toString().toLowerCase(Locale.ROOT) + "-icon");
         iconLabel.setGraphic(glyph);
     }
 

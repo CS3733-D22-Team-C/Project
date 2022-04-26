@@ -75,6 +75,8 @@ Log : SRM::loadSprite(): Sprite 'border' loaded.
 Log : WorldManager constructed
 Log : DisplayManager constructed
 Log : GM.run() Started!
+Log : GameManager::run(): Can't keep up! Target Frame Time: 33 ms, split 79 ms
+Log : GameManager::run(): Can't keep up! Target Frame Time: 33 ms, split 60 ms
 Log : Game loop ended!
 Log : GameManager Shutting down!
 Log : Input Manager Shutting Down

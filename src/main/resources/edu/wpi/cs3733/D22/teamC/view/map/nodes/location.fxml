@@ -5,7 +5,7 @@
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.shape.Circle?>
 
-<Group fx:id="rootGroup" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1">
+<Group fx:id="root" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1">
    <children>
       <Circle fx:id="locationCircle" fill="#005a9b" onMouseClicked="#onMouseClickedNode" onMouseDragged="#onMouseDraggedNode" onMouseEntered="#onMouseEnterNode" onMouseExited="#onMouseExitNode" radius="12.5" stroke="BLACK" strokeType="INSIDE" styleClass="location-node" />
       <Group fx:id="contextGroup">

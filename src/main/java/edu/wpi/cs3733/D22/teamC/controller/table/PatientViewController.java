@@ -1,33 +1,28 @@
 package edu.wpi.cs3733.D22.teamC.controller.table;
 
 import com.jfoenix.controls.JFXButton;
-import com.jfoenix.controls.JFXComboBox;
 import com.jfoenix.controls.JFXTreeTableView;
-import edu.wpi.cs3733.D22.teamC.entity.floor.Floor;
 import edu.wpi.cs3733.D22.teamC.entity.location.Location;
 import edu.wpi.cs3733.D22.teamC.entity.location.LocationDAO;
-import edu.wpi.cs3733.D22.teamC.entity.medical_equipment.MedicalEquipment;
-import edu.wpi.cs3733.D22.teamC.entity.medical_equipment.MedicalEquipmentDAO;
 import edu.wpi.cs3733.D22.teamC.entity.patient.Patient;
 import edu.wpi.cs3733.D22.teamC.entity.patient.PatientDAO;
 import edu.wpi.cs3733.D22.teamC.models.generic.TableDisplay;
 import edu.wpi.cs3733.D22.teamC.models.location.MapSelectorWindow;
-import edu.wpi.cs3733.D22.teamC.models.medical_equipment.MedicalEquipmentTableDisplay;
 import edu.wpi.cs3733.D22.teamC.models.patient.PatientTableDisplay;
+import io.github.palexdev.materialfx.controls.MFXDatePicker;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.control.ComboBox;
-import javafx.scene.control.DatePicker;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
+import org.controlsfx.validation.ValidationSupport;
+import org.controlsfx.validation.Validator;
 
 import java.net.URL;
 import java.sql.Timestamp;
 import java.time.Instant;
 import java.time.LocalDate;
 import java.time.ZoneId;
-import java.util.Date;
 import java.util.List;
 import java.util.ResourceBundle;
 
@@ -39,10 +34,12 @@ public class PatientViewController extends InsertTableViewController<Patient> im
     @FXML private TextField firstName;
     @FXML private TextField lastName;
     @FXML private TextField number;
-    @FXML private TextField location;
+    @FXML private TextField theLocation;
     @FXML private JFXButton locationButton;
-    @FXML private DatePicker date;
+    @FXML private MFXDatePicker date;
     Location a_location;
+
+    private ValidationSupport validation;
 
 
 //    @FXML private TextField locationID;
@@ -54,14 +51,15 @@ public class PatientViewController extends InsertTableViewController<Patient> im
 
 
     public void initialize(URL location, ResourceBundle resources) {
-
-        //this.location.getItems().setAll(MedicalEquipment.EquipmentType.values());
-//        title.setText("Add Equipment");
-//
-//        //make a list of roles from the enum and put it into the combo box
-//        typeComboBox.getItems().setAll(MedicalEquipment.EquipmentType.values());
-//        statusComboBox.getItems().setAll(MedicalEquipment.EquipmentStatus.values());
-//        confirmButton.setDisable(true);
+        validation = new ValidationSupport();
+        validation.registerValidator(firstName, Validator.createEmptyValidator("first name required"));
+        validation.registerValidator(lastName, Validator.createEmptyValidator("last name required"));
+        validation.registerValidator(number, Validator.createEmptyValidator("number required"));
+        validation.registerValidator(theLocation, Validator.createEmptyValidator("location required"));
+        validation.registerValidator(date, Validator.createEmptyValidator("date required"));
+        validation.setErrorDecorationEnabled(false);
+        date.setEditable(false);
+        theLocation.setEditable(false);
     }
 
     //#region Field Interaction
@@ -104,7 +102,7 @@ public class PatientViewController extends InsertTableViewController<Patient> im
         }
 
         date.setValue((object == null) ? null : lD);
-        location.setText((object == null) ? "" : a_location.getShortName());
+        theLocation.setText((object == null) ? "" : a_location.getShortName());
 
 
 //        confirmButton.setDisable(true);
@@ -113,12 +111,13 @@ public class PatientViewController extends InsertTableViewController<Patient> im
 
     public boolean checkFieldsFilled() {
 
+        validation.setErrorDecorationEnabled(true);
         //return true if all the fields are FILLED
         return !(firstName.getText().equals("")
                 || lastName.getText().equals("")
                 || number.getText().equals("")
                 || date.getValue() == null
-                || location.getText().equals("")
+                || theLocation.getText().equals("")
                 );
     }
 
@@ -130,7 +129,7 @@ public class PatientViewController extends InsertTableViewController<Patient> im
             locationName = location.getShortName();
         }
 
-        this.location.setText(locationName);
+        this.theLocation.setText(locationName);
         onFieldUpdated();
     }
 
@@ -151,20 +150,33 @@ public class PatientViewController extends InsertTableViewController<Patient> im
     }
 
     public PatientDAO createDAO() { return new PatientDAO();}
-    ;
+
+    @Override
+    public String getObjectName() {
+        return "Patient";
+    }
     //#endregion
 
     //#region FXML Events
     @FXML
     void clickConfirm(ActionEvent event) {
-        if (parentController.currentObj == null) addObject();
-        else updateObject();
-        parentController.setCurrentObj(null);
+        if (checkFieldsFilled()){
+            if (parentController.currentObj == null) {
+                addObject();
+                parentController.setCurrentObj(null);
+                parentController.setRemoveDisable(true);
+            }
+            else {
+                updateObject();
+            }
+            validation.setErrorDecorationEnabled(false);
+        }
     }
 
     @FXML
     void onFieldUpdated() {
-        confirmButton.setDisable(!checkFieldsFilled());
+        if (!number.getText().matches("\\d*"))
+            number.setText("");
     }
 
     @FXML

@@ -38,6 +38,35 @@
     -fx-fill: -color-primary-light;
 }
 
+/* Counters */
+.service-request-counter {
+    -fx-fill: -color-primary-light;
+    -fx-cursor: hand;
+}
+
+.service-request-counter:hover {
+    -fx-fill: -color-primary;
+}
+
+.medical-equipment-counter {
+    -fx-fill: -color-red-contrast;
+    -fx-cursor: hand;
+}
+
+.medical-equipment-counter:hover {
+    -fx-fill: -color-red-contrast-hover;
+}
+
+.patient-counter {
+    -fx-fill: gray;
+    -fx-cursor: hand;
+}
+
+.patient-counter:hover {
+    -fx-fill: #b0b0b0;
+}
+
+
 /* General */
 .inactive {
     -fx-scale-x: .85;
