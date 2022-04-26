@@ -70,6 +70,8 @@ public class BaseServiceRequestResolveController<T extends ServiceRequest> imple
     
     protected String srUUID;
 
+    private Runnable goBackEvent = this::returnToSRPage;
+
     @FXML
     public void setup(ServiceRequest serviceRequest, boolean isEditMode) {
         SVGParser svgParser = new SVGParser();
@@ -211,8 +213,12 @@ public class BaseServiceRequestResolveController<T extends ServiceRequest> imple
 
     @FXML
     void clickGoBack(ActionEvent event) {
-        App.instance.setView(App.VIEW_SERVICE_REQUESTS_PATH);
+        goBackEvent.run();
 
+    }
+
+    private void returnToSRPage(){
+        App.instance.setView(App.VIEW_SERVICE_REQUESTS_PATH);
     }
 
     public void setInsert(ServiceRequest.RequestType requestType) {
@@ -289,5 +295,10 @@ public class BaseServiceRequestResolveController<T extends ServiceRequest> imple
 
             locationID.setValue(location);
         }
+
     //#endregion
+
+    public void setGoBackEvent(Runnable goBackEvent) {
+        this.goBackEvent = goBackEvent;
+    }
 }

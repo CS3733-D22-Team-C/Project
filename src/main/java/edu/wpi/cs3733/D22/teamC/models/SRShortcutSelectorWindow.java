@@ -11,6 +11,7 @@ import edu.wpi.cs3733.D22.teamC.entity.service_request.ServiceRequestDAO;
 import edu.wpi.cs3733.D22.teamC.models.employee.EmployeeTableDisplay;
 import edu.wpi.cs3733.D22.teamC.models.generic.SelectorWindow;
 import edu.wpi.cs3733.D22.teamC.models.utils.ComponentWrapper;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.layout.GridPane;
@@ -20,8 +21,9 @@ import java.util.List;
 import java.util.ResourceBundle;
 import java.util.function.Consumer;
 
-public class SRShortcutSelectorWindow extends SelectorWindow<ServiceRequest> implements Initializable {
+public class SRShortcutSelectorWindow extends SelectorWindow<ServiceRequest> {
     private static final String SR_EDIT_VIEW_PATH = "view/service_request/popup_service_request_resolve.fxml";
+    private static final String SR_BASE_EDIT_PATH = "view/service_request/skeleton/resolve_form.fxml";
 
     @FXML
     private GridPane root;
@@ -32,24 +34,20 @@ public class SRShortcutSelectorWindow extends SelectorWindow<ServiceRequest> imp
     public SRShortcutSelectorWindow(Consumer<ServiceRequest> consumer) {
         super(consumer);
 
-        App.View<BaseServiceRequestResolveController> view = App.instance.loadView(SR_EDIT_VIEW_PATH);
+        App.View<BaseServiceRequestResolveController> view = App.instance.loadView(SR_BASE_EDIT_PATH);
         this.baseServiceRequestResolveController = view.getController();
-
+        baseServiceRequestResolveController.setGoBackEvent(()->this.onSelectionMade(null));
         root.getChildren().add(view.getNode());
 
-        view.getController().setup(serviceRequest, true);
-        ComponentWrapper.view.getController();
+    }
 
+    public void setup(ServiceRequest serviceRequest){
+        baseServiceRequestResolveController.setup(serviceRequest, true);
     }
 
     @Override
     protected String getView() {
-        return "view/map/floor_map.fxml";
+        return SR_EDIT_VIEW_PATH;
     }
 
-    @Override
-    public void initialize(URL location, ResourceBundle resources) {
-
-
-    }
 }

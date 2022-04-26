@@ -8,6 +8,7 @@ import javafx.scene.Scene;
 import javafx.scene.layout.VBox;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
+import javafx.stage.Window;
 
 import java.util.function.Consumer;
 
@@ -17,6 +18,11 @@ public abstract class SelectorWindow<T> {
     Stage stage;
 
     public SelectorWindow(Consumer<T> consumer) {
+        this(consumer, App.instance.getStage().getScene().getWindow());
+
+    }
+
+    public SelectorWindow(Consumer<T> consumer, Window owner) {
         App.View<SelectorWindow<T>> view = App.instance.loadView(getView(), this);
         Parent root = (Parent) view.getNode();
 
@@ -27,14 +33,17 @@ public abstract class SelectorWindow<T> {
         else scene = new Scene(root);
         stage.setScene(scene);
         stage.initModality(Modality.WINDOW_MODAL);
-        stage.initOwner(App.instance.getStage().getScene().getWindow());
+        stage.initOwner(owner);
         stage.show();
+
 
         // Set Controller
         SelectorWindow<T> controller = view.getController();
         controller.returnConsumer = consumer;
         controller.stage = stage;
     }
+
+
 
     public void onSelectionMade(T object) {
         returnConsumer.accept(object);

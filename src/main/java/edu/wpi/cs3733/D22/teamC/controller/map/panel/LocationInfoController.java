@@ -246,7 +246,7 @@ public class LocationInfoController implements Initializable {
                 }
                 if (event.getButton().equals(MouseButton.PRIMARY) && !row.isEmpty() && event.getClickCount() == 2) {
                     // Double Click shortcut to service request edit/resolve page
-                    srShortcutSelectorWindow(activeServiceRequest);
+                    new SRShortcutSelectorWindow((foo)->{}).setup(activeServiceRequest);
                 }
             });
 
