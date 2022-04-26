@@ -238,7 +238,7 @@
                               <Label styleClass="service-field-label" stylesheets="@../../../css/base.css" text="Type:" />
                               <HBox maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="26.0" prefWidth="198.0">
                                  <children>
-                                    <SearchableComboBox fx:id="serviceReqComboBox" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" onAction="#onSRTypeSelected" prefHeight="26.0" prefWidth="81.0" HBox.hgrow="ALWAYS" />
+                                    <SearchableComboBox fx:id="serviceReqTypeComboBox" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" onAction="#onSRTypeSelected" prefHeight="26.0" prefWidth="81.0" HBox.hgrow="ALWAYS" />
                                     <MFXButton fx:id="SRTypeClearButton" onAction="#onClearSRTypeButtonClicked" text="Clear" />
                                  </children>
                               </HBox>

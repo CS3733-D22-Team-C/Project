@@ -29,7 +29,9 @@ import javafx.scene.shape.SVGPath;
 import org.controlsfx.control.SearchableComboBox;
 
 import java.net.URL;
+import java.util.List;
 import java.util.ResourceBundle;
+import java.util.stream.Collectors;
 
 public class LocationInfoController implements Initializable {
     // Constants
@@ -63,7 +65,7 @@ public class LocationInfoController implements Initializable {
 
     // Service Requests - Table
     @FXML JFXTreeTableView serviceRequestTable;
-    @FXML private SearchableComboBox<ServiceRequest.RequestType> serviceReqComboBox;
+    @FXML private SearchableComboBox<ServiceRequest.RequestType> serviceReqTypeComboBox;
     @FXML private MFXButton SRTypeClearButton;
 
     ServiceRequestTableDisplay<ServiceRequest> serviceRequestTableDisplay;
@@ -98,7 +100,7 @@ public class LocationInfoController implements Initializable {
         // Initialize Service Request Info
 
         //Service Request type dropdown
-        serviceReqComboBox.getItems().setAll(ServiceRequest.RequestType.values());
+        serviceReqTypeComboBox.getItems().setAll(ServiceRequest.RequestType.values());
 
         serviceRequestTableDisplay = new ServiceRequestTableDisplay<>(serviceRequestTable);
 
@@ -300,6 +302,10 @@ public class LocationInfoController implements Initializable {
             medicalEquipmentTableDisplay.emptyTable();
             new MedicalEquipmentDAO().getEquipmentByLocation(location.getID()).forEach(medicalEquipmentTableDisplay::addObject);
         }
+        public void populateServiceRequestTable(Location location) {
+            serviceRequestTableDisplay.emptyTable();
+            new ServiceRequestDAO().getAllSRByLocation(location.getID()).forEach(serviceRequestTableDisplay::addObject);
+        }
     //#endregion
 
     //#region FXML Events
@@ -347,24 +353,43 @@ public class LocationInfoController implements Initializable {
         @FXML
         void onClearMETypeButtonClicked(ActionEvent event) {
             Location location = mapViewController.getLocationManager().getCurrent();
+
             populateMedicalEquipmentTable(location);
-            medEquipTypeComboBox.setValue(null);
-
-        }
-
-        @FXML
-        void onClearSRTypeButtonClicked(ActionEvent event) {
-
+            ComponentWrapper.setValueSilently(medEquipTypeComboBox, null);
         }
 
         @FXML
         void onMETypeSelected(ActionEvent event) {
+            medicalEquipmentTableDisplay.emptyTable();
 
+            Location location = mapViewController.getLocationManager().getCurrent();
+
+            if(medEquipTypeComboBox.getValue() != null){
+                List<MedicalEquipment> medicalEquipmentList = new MedicalEquipmentDAO().getEquipmentByLocation(location.getID());
+                medicalEquipmentList = medicalEquipmentList.stream().filter(medicalEquipment -> medicalEquipment.getEquipmentType().equals(medEquipTypeComboBox.getValue())).collect(Collectors.toList());
+                medicalEquipmentList.forEach(medicalEquipmentTableDisplay::addObject);
+            }
+        }
+
+        @FXML
+        void onClearSRTypeButtonClicked(ActionEvent event) {
+            Location location = mapViewController.getLocationManager().getCurrent();
+
+            populateServiceRequestTable(location);
+            ComponentWrapper.setValueSilently(serviceReqTypeComboBox, null);
         }
 
         @FXML
         void onSRTypeSelected(ActionEvent event) {
+            serviceRequestTableDisplay.emptyTable();
 
+            Location location = mapViewController.getLocationManager().getCurrent();
+
+            if(serviceReqTypeComboBox.getValue() != null){
+                List<ServiceRequest> serviceRequests = new ServiceRequestDAO().getAllSRByLocation(location.getID());
+                serviceRequests = serviceRequests.stream().filter(serviceRequest -> serviceRequest.getRequestType().equals(serviceReqTypeComboBox.getValue())).collect(Collectors.toList());
+                serviceRequests.forEach(serviceRequestTableDisplay::addObject);
+            }
         }
 
 
