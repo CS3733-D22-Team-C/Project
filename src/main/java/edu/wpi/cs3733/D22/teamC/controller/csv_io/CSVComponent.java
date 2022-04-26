@@ -228,6 +228,21 @@ public class CSVComponent implements Initializable {
             if(employeesExport.isSelected()) {
                 EmployeeDAO employeeDAO = new EmployeeDAO();
                 List<Employee> employees = employeeDAO.getAll();
+
+                int adminIdx = -1, staffIdx = -1;
+                for(int i = 0; i < employees.size(); i++) {
+                    if(employees.get(i).getUsername().equals("admin")) {
+                        adminIdx = i;
+                    }
+                }
+                employees.remove(adminIdx);
+                for(int i = 0; i < employees.size(); i++) {
+                    if (employees.get(i).getUsername().equals("staff")) {
+                        staffIdx = i;
+                    }
+                }
+                employees.remove(staffIdx);
+
                 CSVFacade.write(Employee.class, savedFile.getPath() + File.separator + EMPLOYEE_CSV, employees);
             }
 
