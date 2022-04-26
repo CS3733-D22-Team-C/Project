@@ -37,7 +37,7 @@ public class MapCounter {
         this.location = location;
 
         // Load FXML
-        App.View<MapCounter> view = App.instance.loadView(COUNTER_PATH, this);
+        App.View<MapCounter> view = App.instance.loadView(getView(), this);
     }
 
     public void delete() {
@@ -92,4 +92,8 @@ public class MapCounter {
             }
         }
     //#endregion
+
+    public String getView() {
+        return COUNTER_PATH;
+    }
 }
