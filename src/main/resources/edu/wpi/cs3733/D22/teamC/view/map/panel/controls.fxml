@@ -54,7 +54,7 @@
                   <Insets bottom="10.0" top="10.0" />
                </GridPane.margin>
             </HBox>
-            <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" GridPane.hgrow="ALWAYS" GridPane.rowIndex="2" GridPane.vgrow="ALWAYS">
+            <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" GridPane.hgrow="ALWAYS" GridPane.rowIndex="4" GridPane.vgrow="ALWAYS">
                <children>
                   <VBox alignment="CENTER_LEFT" prefHeight="200.0" prefWidth="100.0">
                      <children>
@@ -91,7 +91,7 @@
                   <Insets bottom="10.0" top="10.0" />
                </GridPane.margin>
             </HBox>
-            <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" GridPane.halignment="CENTER" GridPane.rowIndex="3" GridPane.vgrow="ALWAYS">
+            <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" GridPane.halignment="CENTER" GridPane.rowIndex="2" GridPane.vgrow="ALWAYS">
                <children>
                   <MFXToggleButton fx:id="medicalEquipmentToggle" alignment="CENTER" contentDisposition="RIGHT" prefHeight="22.0" selected="true" text="Medical Equipment" textAlignment="CENTER">
                      <cursor>
@@ -102,7 +102,7 @@
                   <Insets />
                </GridPane.margin>
             </HBox>
-            <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" GridPane.rowIndex="4">
+            <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" GridPane.rowIndex="3">
                <children>
                   <MFXToggleButton fx:id="serviceRequestToggle" alignment="CENTER_RIGHT" contentDisposition="RIGHT" prefHeight="22.0" selected="true" text="Service Requests    " textAlignment="CENTER">
                      <cursor>
