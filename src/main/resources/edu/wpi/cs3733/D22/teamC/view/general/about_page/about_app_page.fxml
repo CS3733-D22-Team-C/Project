@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import io.github.palexdev.materialfx.controls.MFXButton?>
+<?import java.lang.String?>
+<?import java.net.URL?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="730.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.wpi/cs3733/D22/teamC/controller/general/about_page/AboutPageController.java">
+   <children>
+      <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="46.0" prefWidth="600.0" style="-fx-background-color: #005A9B;" styleClass="service-field-label" stylesheets="@../../../css/component/login.css" text="About Brigham and Womens Internal Tools" textFill="WHITE" />
+      <GridPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="704.0" prefWidth="600.0">
+         <columnConstraints>
+            <ColumnConstraints hgrow="ALWAYS" maxWidth="1.7976931348623157E308" minWidth="10.0" prefWidth="306.2" />
+            <ColumnConstraints hgrow="ALWAYS" maxWidth="1.7976931348623157E308" minWidth="10.0" prefWidth="293.3999999999999" />
+         </columnConstraints>
+         <rowConstraints>
+            <RowConstraints maxHeight="1.7976931348623157E308" minHeight="10.0" prefHeight="116.99998931884767" vgrow="ALWAYS" />
+            <RowConstraints maxHeight="1.7976931348623157E308" minHeight="10.0" prefHeight="118.3999938964844" vgrow="ALWAYS" />
+            <RowConstraints maxHeight="1.7976931348623157E308" minHeight="10.0" prefHeight="120.0000061035156" vgrow="ALWAYS" />
+            <RowConstraints maxHeight="1.7976931348623157E308" minHeight="10.0" prefHeight="130.40001220703124" vgrow="ALWAYS" />
+            <RowConstraints maxHeight="1.7976931348623157E308" minHeight="10.0" prefHeight="99.19998779296873" vgrow="ALWAYS" />
+            <RowConstraints maxHeight="1.7976931348623157E308" minHeight="10.0" prefHeight="117.19997558593752" vgrow="ALWAYS" />
+         </rowConstraints>
+         <children>
+            <HBox alignment="BOTTOM_RIGHT" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" GridPane.columnIndex="1" GridPane.hgrow="ALWAYS" GridPane.rowIndex="5" GridPane.vgrow="ALWAYS">
+               <children>
+                  <Label prefHeight="126.0" prefWidth="294.0" style="-fx-background-color: #005A9B;" text="The Brigham &amp; Women’s Hospital maps and data used in this application are copyrighted and provided for the sole use of educational purposes." wrapText="true">
+                     <padding>
+                        <Insets right="10.0" />
+                     </padding>
+                     <stylesheets>
+                        <URL value="@../../../css/component/request_page.css" />
+                        <URL value="@../../../css/colors.css" />
+                     </stylesheets>
+                     <styleClass>
+                        <String fx:value="service-field-label" />
+                        <String fx:value="fields-padding" />
+                        <String fx:value="card-content-header" />
+                     </styleClass>
+                     <font>
+                        <Font size="13.0" />
+                     </font>
+                  </Label>
+               </children>
+            </HBox>
+            <HBox alignment="CENTER_LEFT" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="90.0" prefWidth="308.0" GridPane.hgrow="ALWAYS" GridPane.rowIndex="5" GridPane.vgrow="ALWAYS">
+               <children>
+                  <MFXButton fx:id="backButton" onAction="#onBackButtonClicked" prefHeight="31.0" prefWidth="75.0" stylesheets="@../../../css/component/request_page.css" text="Back" translateX="10.0" translateY="40.0" />
+               </children>
+            </HBox>
+            <VBox prefHeight="200.0" prefWidth="100.0" />
+         </children>
+      </GridPane>
+   </children>
+</VBox>
