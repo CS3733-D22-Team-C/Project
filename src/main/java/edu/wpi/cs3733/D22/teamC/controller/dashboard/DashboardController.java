@@ -2,6 +2,8 @@ package edu.wpi.cs3733.D22.teamC.controller.dashboard;
 
 import com.jfoenix.controls.JFXTreeTableView;
 import edu.wpi.cs3733.D22.teamC.App;
+import edu.wpi.cs3733.D22.teamC.controller.service_request.InsertServiceRequestCreateController;
+import edu.wpi.cs3733.D22.teamC.controller.service_request.SegmentBarController;
 import edu.wpi.cs3733.D22.teamC.controller.service_request.BaseServiceRequestResolveController;
 import edu.wpi.cs3733.D22.teamC.entity.employee.Employee;
 import edu.wpi.cs3733.D22.teamC.entity.service_request.ServiceRequest;
@@ -10,6 +12,7 @@ import edu.wpi.cs3733.D22.teamC.models.service_request.ServiceRequestTableDispla
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
+import javafx.scene.layout.VBox;
 import javafx.scene.control.TreeTableRow;
 import javafx.scene.input.MouseButton;
 
@@ -27,11 +30,17 @@ public class DashboardController<T extends ServiceRequest> implements Initializa
     private JFXTreeTableView createdTable;
     @FXML
     private Label greetingLabel;
+    @FXML
+    private VBox assignedTableBox;
+    @FXML
+    private VBox createdTableBox;
 
     private Employee employee;
     private DashboardAssignedTableDisplay assignedTableDisplay;
     private DashboardCreatedTableDisplay createdTableDisplay;
 
+    SegmentBarController insertAssignedTableBarController;
+    SegmentBarController insertCreatedTableBarController;
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         assignedTableDisplay = new DashboardAssignedTableDisplay(assignedTable);
@@ -44,14 +53,44 @@ public class DashboardController<T extends ServiceRequest> implements Initializa
         // Populate Table Display
         ServiceRequestDAO serviceRequestDAO  = new ServiceRequestDAO();
 
-        serviceRequestDAO.getAllSRByAssignee(App.instance.getUserAccount().getID()).forEach(assignedTableDisplay::addObject);
-        serviceRequestDAO.getAllSRByCreator(App.instance.getUserAccount().getID()).forEach(createdTableDisplay::addObject);
+        List<ServiceRequest> assignedServiceRequests = serviceRequestDAO.getAllSRByAssignee(App.instance.getUserAccount().getID());
+        assignedServiceRequests.forEach(assignedTableDisplay::addObject);
+        List<ServiceRequest> createdServiceRequests = serviceRequestDAO.getAllSRByCreator(App.instance.getUserAccount().getID());
+        createdServiceRequests.forEach(createdTableDisplay::addObject);
 
         setGreetingLabel(App.instance.getUserAccount().getUsername());
+
+        //SegmentedBars
+        setAssignedTableSegmentedBarInsert();
+        insertAssignedTableBarController.preSetup();
+        for (ServiceRequest serviceRequest : assignedServiceRequests) {
+            insertAssignedTableBarController.updateNumbers(serviceRequest.getStatus(), true);
+        }
+        insertAssignedTableBarController.setup(true);
+
+        setCreatedTableSegmentedBarInsert();
+        insertCreatedTableBarController.preSetup();
+        for (ServiceRequest serviceRequest : createdServiceRequests) {
+            insertCreatedTableBarController.updateNumbers(serviceRequest.getStatus(), true);
+        }
+        insertCreatedTableBarController.setup(true);
+
     }
 
     public void setGreetingLabel(String username) {
         greetingLabel.setText("Hello, " + username + "!");
+    }
+
+    public void setAssignedTableSegmentedBarInsert(){
+        App.View<SegmentBarController> view = App.instance.loadView("view/service_request/segment_bar.fxml");
+        insertAssignedTableBarController = view.getController();
+        assignedTableBox.getChildren().add(0, view.getNode());
+    }
+
+    public void setCreatedTableSegmentedBarInsert(){
+        App.View<SegmentBarController> view = App.instance.loadView("view/service_request/segment_bar.fxml");
+        insertCreatedTableBarController = view.getController();
+        createdTableBox.getChildren().add(0, view.getNode());
     }
 
     protected void setRowInteraction() {
@@ -88,5 +127,4 @@ public class DashboardController<T extends ServiceRequest> implements Initializa
             return row ;
         });
     }
-
 }
