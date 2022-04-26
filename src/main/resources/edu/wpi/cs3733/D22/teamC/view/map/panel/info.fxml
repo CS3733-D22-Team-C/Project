@@ -171,7 +171,7 @@
                               <HBox maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="26.0" prefWidth="198.0">
                                  <children>
                                     <SearchableComboBox fx:id="medEquipTypeComboBox" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" onAction="#onMETypeSelected" prefHeight="26.0" prefWidth="81.0" HBox.hgrow="ALWAYS" />
-                                    <MFXButton fx:id="medEquipTypeClearButton" onAction="#onClearMEType" prefHeight="26.0" prefWidth="52.0" text="Clear" />
+                                    <MFXButton fx:id="medEquipTypeClearButton" onAction="#onClearMETypeButtonClicked" prefHeight="26.0" prefWidth="52.0" text="Clear" />
                                  </children>
                               </HBox>
                            </children>
@@ -239,7 +239,7 @@
                               <HBox maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="26.0" prefWidth="198.0">
                                  <children>
                                     <SearchableComboBox fx:id="serviceReqComboBox" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" onAction="#onSRTypeSelected" prefHeight="26.0" prefWidth="81.0" HBox.hgrow="ALWAYS" />
-                                    <MFXButton fx:id="SRTypeClearButton" onAction="#onClearSRType" text="Clear" />
+                                    <MFXButton fx:id="SRTypeClearButton" onAction="#onClearSRTypeButtonClicked" text="Clear" />
                                  </children>
                               </HBox>
                            </children>

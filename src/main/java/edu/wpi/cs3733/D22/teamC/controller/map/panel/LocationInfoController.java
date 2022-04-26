@@ -54,7 +54,7 @@ public class LocationInfoController implements Initializable {
 
     // Medical Equipment - Table
     @FXML JFXTreeTableView medicalEquipmentTable;
-    @FXML private SearchableComboBox<String> medEquipTypeComboBox;
+    @FXML private SearchableComboBox<MedicalEquipment.EquipmentType> medEquipTypeComboBox;
     @FXML private MFXButton medEquipTypeClearButton;
 
 
@@ -63,7 +63,7 @@ public class LocationInfoController implements Initializable {
 
     // Service Requests - Table
     @FXML JFXTreeTableView serviceRequestTable;
-    @FXML private SearchableComboBox<String> serviceReqComboBox;
+    @FXML private SearchableComboBox<ServiceRequest.RequestType> serviceReqComboBox;
     @FXML private MFXButton SRTypeClearButton;
 
     ServiceRequestTableDisplay<ServiceRequest> serviceRequestTableDisplay;
@@ -98,18 +98,15 @@ public class LocationInfoController implements Initializable {
         // Initialize Service Request Info
 
         //Service Request type dropdown
-        for(ServiceRequest.RequestType requestType : ServiceRequest.RequestType.values()){
-            serviceReqComboBox.getItems().add(requestType.toString());
-        }
+        serviceReqComboBox.getItems().setAll(ServiceRequest.RequestType.values());
 
         serviceRequestTableDisplay = new ServiceRequestTableDisplay<>(serviceRequestTable);
 
         // Initialize Medical Equipment Info
 
         //MedicalEquipment type dropdown
-        for(MedicalEquipment.EquipmentType equipmentType : MedicalEquipment.EquipmentType.values()){
-            medEquipTypeComboBox.getItems().add(equipmentType.toString());
-        }
+        medEquipTypeComboBox.getItems().setAll(MedicalEquipment.EquipmentType.values());
+
         medicalEquipmentTableDisplay = new MedicalEquipmentTableDisplay(medicalEquipmentTable);
 
         //Initialize Patients Info
@@ -346,5 +343,31 @@ public class LocationInfoController implements Initializable {
         public void onMedicalEquipmentStatusComboBoxChanged(ActionEvent actionEvent) {
             updateStatus.setDisable(activeMedicalEquipment == null || statusComboBox.getValue() == null);
         }
+
+        @FXML
+        void onClearMETypeButtonClicked(ActionEvent event) {
+            Location location = mapViewController.getLocationManager().getCurrent();
+            populateMedicalEquipmentTable(location);
+            medEquipTypeComboBox.setValue(null);
+
+        }
+
+        @FXML
+        void onClearSRTypeButtonClicked(ActionEvent event) {
+
+        }
+
+        @FXML
+        void onMETypeSelected(ActionEvent event) {
+
+        }
+
+        @FXML
+        void onSRTypeSelected(ActionEvent event) {
+
+        }
+
+
+
     //#endregion
 }
