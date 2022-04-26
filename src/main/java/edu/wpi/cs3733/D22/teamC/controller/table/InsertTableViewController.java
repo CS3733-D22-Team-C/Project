@@ -2,10 +2,11 @@ package edu.wpi.cs3733.D22.teamC.controller.table;
 
 import com.jfoenix.controls.JFXTreeTableView;
 import edu.wpi.cs3733.D22.teamC.entity.generic.DAO;
+import edu.wpi.cs3733.D22.teamC.entity.generic.IDEntity;
 import edu.wpi.cs3733.D22.teamC.models.builders.NotificationBuilder;
 import edu.wpi.cs3733.D22.teamC.models.generic.TableDisplay;
 
-public abstract class InsertTableViewController<T extends Object> {
+public abstract class InsertTableViewController<T extends IDEntity> {
     // References
     BaseTableViewController<T> parentController;
 

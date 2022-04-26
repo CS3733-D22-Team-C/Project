@@ -68,6 +68,7 @@ public class PatientManager extends ManagerMapNodes<Patient> {
                     mapViewController.getLocationManager().unfocus();
                     ((LocationMapNode) mapViewController.getLocationManager().getByLocation(mapCounter.getLocation())).onMouseClickedNode(event);
                     ((FloorMapViewController) mapViewController).getLocationInfoController().setCurrentTab(3);
+                    locationMapNode.getNode().toFront();
                 };
             }
 
