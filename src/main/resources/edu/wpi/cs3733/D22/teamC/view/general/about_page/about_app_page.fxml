@@ -21,7 +21,7 @@
             <Font size="14.0" />
          </font>
       </Label>
-      <GridPane alignment="TOP_CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="868.0" prefWidth="604.0" stylesheets="@../../../css/table_skeleton.css">
+      <GridPane alignment="TOP_CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="868.0" prefWidth="604.0">
          <columnConstraints>
             <ColumnConstraints halignment="LEFT" hgrow="ALWAYS" maxWidth="1.7976931348623157E308" minWidth="10.0" prefWidth="290.1999755859375" />
             <ColumnConstraints halignment="RIGHT" hgrow="ALWAYS" maxWidth="1.7976931348623157E308" minWidth="10.0" prefWidth="313.40002441406244" />
@@ -295,10 +295,6 @@
                </children>
             </HBox>
          </children>
-         <styleClass>
-            <String fx:value="base_view_table_back" />
-            <String fx:value="base_view_table_confirm" />
-         </styleClass>
       </GridPane>
    </children>
 </VBox>
