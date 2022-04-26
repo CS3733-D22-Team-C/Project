@@ -318,9 +318,13 @@ public class BaseMapSideViewController implements Initializable {
         }
 
         System.out.println("Greatest Order: " + greatestOrder);
-        if(!(oldOrder < greatestOrder)) newOrder = greatestOrder+1;
+        if(!(oldOrder < greatestOrder) && newOrder > oldOrder) newOrder = greatestOrder+1; // makes it 7
         if(newOrder > greatestOrder+1 && greatestOrder != newOrder) {newOrder = greatestOrder; selectedFloor.setOrder(greatestOrder); incorrectOrder = true;}
 
+        System.out.println("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
+        System.out.println("New order: " + newOrder);
+        System.out.println("Old order: " + oldOrder);
+        System.out.println("Greatest order: " + greatestOrder);
 
         if(newOrder > oldOrder) {
             System.out.println("New order is greater than old order: " + newOrder + ", " + oldOrder);
