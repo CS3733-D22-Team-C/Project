@@ -1,7 +1,6 @@
 package edu.wpi.cs3733.D22.teamC.controller.map.data;
 
 import edu.wpi.cs3733.D22.teamC.App;
-import edu.wpi.cs3733.D22.teamC.controller.map.data.location.LocationMapNode;
 import edu.wpi.cs3733.D22.teamC.entity.location.Location;
 import javafx.fxml.FXML;
 import javafx.scene.Group;
@@ -9,18 +8,16 @@ import javafx.scene.Node;
 import javafx.scene.control.Label;
 import javafx.scene.input.MouseButton;
 import javafx.scene.input.MouseEvent;
-import javafx.scene.shape.Circle;
+import javafx.scene.shape.Shape;
 
-import java.util.TimeZone;
 import java.util.function.BiConsumer;
-import java.util.function.Consumer;
 
 public class MapCounter {
     // Constants
     private final String COUNTER_PATH = "view/map/nodes/counter.fxml";
 
     // FXML
-    @FXML private Circle circle;
+    @FXML private Shape node;
     @FXML private Label counterLabel;
     @FXML private Group root;
 
@@ -37,7 +34,7 @@ public class MapCounter {
         this.location = location;
 
         // Load FXML
-        App.View<MapCounter> view = App.instance.loadView(COUNTER_PATH, this);
+        App.View<MapCounter> view = App.instance.loadView(getView(), this);
     }
 
     public void delete() {
@@ -50,7 +47,7 @@ public class MapCounter {
         parent.getChildren().add(root);
     }
 
-    public void setPosition(int x, int y) {
+    public void setPosition(double x, double y) {
         root.setTranslateX(x);
         root.setTranslateY(y);
     }
@@ -71,7 +68,7 @@ public class MapCounter {
     }
 
     public Node getNode() {
-        return circle;
+        return node;
     }
 
     public Location getLocation() {
@@ -92,4 +89,8 @@ public class MapCounter {
             }
         }
     //#endregion
+
+    public String getView() {
+        return COUNTER_PATH;
+    }
 }

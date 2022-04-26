@@ -140,16 +140,25 @@ public class LocationTableViewInsertController extends InsertTableViewController
 
         public LocationDAO createDAO() {
             return new LocationDAO();
-        };
+        }
+
+    @Override
+    public String getObjectName() {
+        return "Location";
+    }
+
     //#endregion
 
     //#region FXML Events
         @FXML
         void clickConfirm(ActionEvent event) {
             if (checkFieldsFilled()){
-                if (parentController.currentObj == null) addObject();
+                if (parentController.currentObj == null){
+                    addObject();
+                    parentController.setCurrentObj(null);
+                    parentController.setRemoveDisable(true);
+                }
                 else updateObject();
-                parentController.setCurrentObj(null);
                 validation.setErrorDecorationEnabled(false);
             }
         }
