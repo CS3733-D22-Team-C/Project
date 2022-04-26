@@ -3,15 +3,10 @@ package edu.wpi.cs3733.D22.teamC.controller.map.panel;
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXToggleNode;
 import com.jfoenix.controls.JFXTreeTableView;
-import com.jfoenix.svg.SVGGlyph;
-import edu.wpi.cs3733.D22.teamC.App;
 import edu.wpi.cs3733.D22.teamC.controller.map.FloorMapViewController;
-import edu.wpi.cs3733.D22.teamC.controller.map.MapViewController;
 import edu.wpi.cs3733.D22.teamC.controller.map.data.location.LocationMapNode;
-import edu.wpi.cs3733.D22.teamC.controller.map.data.medical_equipment.MedicalEquipmentCounter;
 import edu.wpi.cs3733.D22.teamC.controller.map.data.medical_equipment.MedicalEquipmentManager;
 import edu.wpi.cs3733.D22.teamC.controller.map.data.medical_equipment.MedicalEquipmentNode;
-import edu.wpi.cs3733.D22.teamC.controller.table.MedicalEquipmentViewController;
 import edu.wpi.cs3733.D22.teamC.entity.floor.Floor;
 import edu.wpi.cs3733.D22.teamC.entity.location.Location;
 import edu.wpi.cs3733.D22.teamC.entity.location.LocationDAO;
@@ -20,7 +15,6 @@ import edu.wpi.cs3733.D22.teamC.entity.medical_equipment.MedicalEquipmentDAO;
 import edu.wpi.cs3733.D22.teamC.entity.patient.PatientDAO;
 import edu.wpi.cs3733.D22.teamC.entity.service_request.ServiceRequest;
 import edu.wpi.cs3733.D22.teamC.entity.service_request.ServiceRequestDAO;
-import edu.wpi.cs3733.D22.teamC.fileio.svg.SVGParser;
 import edu.wpi.cs3733.D22.teamC.models.medical_equipment.MedicalEquipmentTableDisplay;
 import edu.wpi.cs3733.D22.teamC.models.patient.PatientTableDisplay;
 import edu.wpi.cs3733.D22.teamC.models.service_request.ServiceRequestTableDisplay;
@@ -34,13 +28,8 @@ import javafx.scene.input.MouseButton;
 import javafx.scene.shape.SVGPath;
 import org.controlsfx.control.SearchableComboBox;
 
-import javax.persistence.TemporalType;
-import javax.swing.*;
 import java.net.URL;
 import java.util.ResourceBundle;
-
-import static edu.wpi.cs3733.D22.teamC.entity.medical_equipment.MedicalEquipment.EquipmentStatus.*;
-import static edu.wpi.cs3733.D22.teamC.entity.service_request.ServiceRequest.Status.*;
 
 public class LocationInfoController implements Initializable {
     // Constants
@@ -241,6 +230,10 @@ public class LocationInfoController implements Initializable {
          */
         public void setVisible(boolean visible) {
             tabPane.setVisible(visible);
+        }
+
+        public void setCurrentTab(int i) {
+            tabPane.getSelectionModel().select(i);
         }
     //#endregion
 

@@ -17,12 +17,20 @@
                <tabs>
                   <Tab closable="false" text="Assigned Service Requests">
                      <content>
-                        <JFXTreeTableView fx:id="assignedTable" prefHeight="233.0" prefWidth="225.0" styleClass="table-view" />
+                        <VBox fx:id="assignedTableBox">
+                           <children>
+                              <JFXTreeTableView fx:id="assignedTable" prefHeight="448.0" prefWidth="368.0" styleClass="table-view" />
+                           </children>
+                        </VBox>
                      </content>
                   </Tab>
                   <Tab closable="false" text="Created Service Requests">
                      <content>
-                        <JFXTreeTableView fx:id="createdTable" styleClass="table-view" />
+                        <VBox fx:id="createdTableBox">
+                           <children>
+                              <JFXTreeTableView fx:id="createdTable" styleClass="table-view" />
+                           </children>
+                        </VBox>
                      </content>
                   </Tab>
                </tabs>

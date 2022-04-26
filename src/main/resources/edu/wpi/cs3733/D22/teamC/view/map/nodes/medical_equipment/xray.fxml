@@ -8,7 +8,7 @@
 <?import javafx.scene.shape.SVGPath?>
 <?import javafx.scene.text.Font?>
 
-<Group fx:id="root" stylesheets="@../../../../css/map/location_node.css" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.wpi.cs3733.D22.teamC.controller.map.data.medical_equipment.MedicalEquipmentCounter">
+<Group fx:id="root" stylesheets="@../../../../css/map/nodes.css" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.wpi.cs3733.D22.teamC.controller.map.data.medical_equipment.MedicalEquipmentToken">
    <children>
       <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#00000087" height="25.0" stroke="BLACK" strokeType="INSIDE" styleClass="medical-equipment-node" width="50.0" />
       <Group fx:id="editGroup" visible="false">
