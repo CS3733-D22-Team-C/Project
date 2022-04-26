@@ -9,6 +9,7 @@ import edu.wpi.cs3733.D22.teamC.entity.floor.FloorDAO;
 import edu.wpi.cs3733.D22.teamC.entity.location.Location;
 import edu.wpi.cs3733.D22.teamC.entity.location.LocationDAO;
 import edu.wpi.cs3733.D22.teamC.entity.service_request.medical_equipment.MedicalEquipmentSR;
+import edu.wpi.cs3733.D22.teamC.models.builders.NotificationBuilder;
 import edu.wpi.cs3733.D22.teamC.models.employee.EmployeeTableDisplay;
 import edu.wpi.cs3733.D22.teamC.models.generic.TableDisplay;
 import edu.wpi.cs3733.D22.teamC.models.location.LocationTableDisplay;
@@ -125,16 +126,27 @@ public class EmployeesTableViewInsertController extends InsertTableViewControlle
 
     public EmployeeDAO createDAO() {
         return new EmployeeDAO();
-    };
+    }
+
+    @Override
+    public String getObjectName() {
+        return "Employee";
+    }
+
     //#endregion
 
     //#region FXML Events
     @FXML
     void clickConfirm(ActionEvent event) {
         if (checkFieldsFilled()){
-            if (parentController.currentObj == null) addObject();
-            else updateObject();
-            parentController.setCurrentObj(null);
+            if (parentController.currentObj == null){
+                addObject();
+                parentController.setCurrentObj(null);
+                parentController.setRemoveDisable(true);
+            }
+            else{
+                updateObject();
+            }
             validation.setErrorDecorationEnabled(false);
         }
     }
