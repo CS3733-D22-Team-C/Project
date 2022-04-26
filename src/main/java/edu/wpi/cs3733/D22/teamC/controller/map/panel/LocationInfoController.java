@@ -498,6 +498,7 @@ public class LocationInfoController implements Initializable {
             serviceRequestTableDisplay.updateObject(activeServiceRequest);
 
             updateServiceRequest();
+            setActiveServiceRequest(null);
         }
 
         @FXML
