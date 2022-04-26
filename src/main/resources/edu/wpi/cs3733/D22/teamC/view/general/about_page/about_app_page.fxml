@@ -27,12 +27,12 @@
             <ColumnConstraints halignment="RIGHT" hgrow="ALWAYS" maxWidth="1.7976931348623157E308" minWidth="10.0" prefWidth="313.40002441406244" />
          </columnConstraints>
          <rowConstraints>
-            <RowConstraints maxHeight="1.7976931348623157E308" minHeight="10.0" prefHeight="127.0" vgrow="ALWAYS" />
-            <RowConstraints maxHeight="1.7976931348623157E308" minHeight="10.0" prefHeight="125.00000610351564" vgrow="ALWAYS" />
-            <RowConstraints maxHeight="1.7976931348623157E308" minHeight="10.0" prefHeight="125.20000610351559" vgrow="ALWAYS" />
-            <RowConstraints maxHeight="1.7976931348623157E308" minHeight="10.0" prefHeight="125.39996337890625" vgrow="ALWAYS" />
-            <RowConstraints maxHeight="1.7976931348623157E308" minHeight="10.0" prefHeight="154.20003662109377" vgrow="ALWAYS" />
-            <RowConstraints maxHeight="1.7976931348623157E308" minHeight="10.0" prefHeight="125.4000244140625" vgrow="ALWAYS" />
+            <RowConstraints maxHeight="1.7976931348623157E308" minHeight="10.0" prefHeight="140.80001220703124" vgrow="ALWAYS" />
+            <RowConstraints maxHeight="1.7976931348623157E308" minHeight="10.0" prefHeight="140.79998779296878" vgrow="ALWAYS" />
+            <RowConstraints maxHeight="1.7976931348623157E308" minHeight="10.0" prefHeight="139.79998779296875" vgrow="ALWAYS" />
+            <RowConstraints maxHeight="1.7976931348623157E308" minHeight="10.0" prefHeight="139.20004882812498" vgrow="ALWAYS" />
+            <RowConstraints maxHeight="1.7976931348623157E308" minHeight="10.0" prefHeight="139.99995117187495" vgrow="ALWAYS" />
+            <RowConstraints maxHeight="1.7976931348623157E308" minHeight="10.0" prefHeight="76.8000366210938" vgrow="ALWAYS" />
          </rowConstraints>
          <children>
             <HBox alignment="BOTTOM_RIGHT" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="126.0" prefWidth="318.0" translateY="1.0" GridPane.columnIndex="1" GridPane.hgrow="ALWAYS" GridPane.rowIndex="5" GridPane.vgrow="ALWAYS">
@@ -53,7 +53,7 @@
             </HBox>
             <HBox alignment="CENTER_LEFT" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="90.0" prefWidth="308.0" GridPane.hgrow="ALWAYS" GridPane.rowIndex="5" GridPane.vgrow="ALWAYS">
                <children>
-                  <MFXButton fx:id="backButton" onAction="#onBackButtonClicked" prefHeight="31.0" prefWidth="75.0" stylesheets="@../../../css/component/request_page.css" text="Back" translateX="10.0" translateY="30.0" HBox.hgrow="ALWAYS" />
+                  <MFXButton fx:id="backButton" onAction="#onBackButtonClicked" prefHeight="31.0" prefWidth="75.0" stylesheets="@../../../css/component/request_page.css" text="Back" translateX="10.0" translateY="10.0" HBox.hgrow="ALWAYS" />
                </children>
             </HBox>
             <HBox alignment="TOP_CENTER">
