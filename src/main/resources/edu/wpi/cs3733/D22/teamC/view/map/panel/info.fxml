@@ -277,7 +277,7 @@
                         </VBox>
                         <HBox maxWidth="1.7976931348623157E308" spacing="15.0">
                            <children>
-                              <VBox alignment="BOTTOM_CENTER" maxWidth="1.7976931348623157E308" prefHeight="58.0" prefWidth="141.0" HBox.hgrow="ALWAYS">
+                              <VBox alignment="BOTTOM_CENTER" maxWidth="1.7976931348623157E308" HBox.hgrow="ALWAYS">
                                  <children>
                                     <JFXToggleNode fx:id="updateLocationSR" contentDisplay="CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" onAction="#onUpdateSRLocationButtonPressed" styleClass="button" text="Update Location">
                                        <selectedColor>
@@ -289,9 +289,8 @@
                                     </JFXToggleNode>
                                  </children>
                               </VBox>
-                              <VBox alignment="BOTTOM_RIGHT" maxWidth="1.7976931348623157E308" HBox.hgrow="ALWAYS">
+                              <VBox alignment="BOTTOM_CENTER" maxWidth="1.7976931348623157E308" HBox.hgrow="ALWAYS">
                                  <children>
-                                    <ComboBox fx:id="statusComboBox1" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" onAction="#onMedicalEquipmentStatusComboBoxChanged" visible="false" />
                                     <JFXButton fx:id="resolveSR" alignment="CENTER" contentDisplay="CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" onAction="#onResolveSRButtonPressed" text="Resolve">
                                        <font>
                                           <Font size="16.0" />
