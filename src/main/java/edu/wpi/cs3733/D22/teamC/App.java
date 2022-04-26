@@ -1,6 +1,7 @@
 package edu.wpi.cs3733.D22.teamC;
 
 import edu.wpi.cs3733.D22.teamC.controller.SkeletonController;
+import edu.wpi.cs3733.D22.teamC.controller.component.sidebar.DrawerContentController;
 import edu.wpi.cs3733.D22.teamC.entity.employee.Employee;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
@@ -47,7 +48,7 @@ public class App extends Application {
     public static final String DASHBOARD_PATH = "view/location/map/base_side_map_view.fxml";
     public static final String DATABASE_PAGE_PATH = "view/general/edit_databases_page.fxml";
     public static final String MAP_PATH = "view/map/floor_map.fxml";
-    public static final String USER_PROFILE = "view/general/profile_page/user_profile.fxml";
+    public static final String USER_PROFILE = "view/general/profile_page/user_dashboard.fxml";
     public static final String CREDIT_PAGE = "view/general/credit.fxml";
     //public static final String IMAGE_PATH = "static/images/BrighamAndWomensHospital.png";
 
@@ -61,6 +62,7 @@ public class App extends Application {
     private Stage stage;
     private Scene scene;
     public BorderPane baseNode;
+    public DrawerContentController drawerContentController;
 
     @Override
     public void init() {
@@ -224,5 +226,9 @@ public class App extends Application {
 
     public void setUserAccount(Employee userAccount) {
         this.userAccount = userAccount;
+    }
+
+    public void setDrawerContentController(DrawerContentController drawerContentController) {
+        this.drawerContentController = drawerContentController;
     }
 }

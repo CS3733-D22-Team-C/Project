@@ -28,9 +28,6 @@ public class DrawerContentController implements Initializable {
     private MFXButton logOutButton;
 
     @FXML
-    private MFXButton myTasksButton;
-
-    @FXML
     private MFXButton databaseButton;
 
     @FXML
@@ -58,7 +55,7 @@ public class DrawerContentController implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        allButtons = new MFXButton[]{dashboardButton, exitButton, logOutButton, databaseButton, viewProfileButton, myTasksButton, serviceRequestsButton, creditButton};
+        allButtons = new MFXButton[]{dashboardButton, exitButton, logOutButton, databaseButton, viewProfileButton, serviceRequestsButton, creditButton};
 
         // Hide the database button if the user is not an admin
         databaseButton.setVisible(App.instance.getUserAccount().getAdmin());
@@ -70,14 +67,15 @@ public class DrawerContentController implements Initializable {
 
         // Set selected button to initial page
         selectedButton(dashboardButton);
+        App.instance.setDrawerContentController(this);
     }
 
-    private void selectedButton(MFXButton disableButton) {
+    public void selectedButton(MFXButton selectedButton) {
         for (MFXButton button : allButtons) {
             button.getStyleClass().clear();
             button.getStyleClass().add("button");
         }
-        disableButton.getStyleClass().add("active-button");
+        selectedButton.getStyleClass().add("active-button");
     }
 
     //#region Button Events
@@ -97,12 +95,6 @@ public class DrawerContentController implements Initializable {
         // TODO: Logout functionality, path to login page
         App.instance.setView(App.LOGIN_PATH);
         App.instance.showMenuBar(false);
-    }
-
-    @FXML
-    void myTasksButtonPress(ActionEvent event) {
-        App.instance.setView(App.MY_TASKS_PATH);
-        selectedButton(myTasksButton);
     }
 
     @FXML
@@ -136,6 +128,10 @@ public class DrawerContentController implements Initializable {
 
     public VBox getMiniView() {
         return miniView;
+    }
+
+    public MFXButton getDashboardButton() {
+        return dashboardButton;
     }
 }
 

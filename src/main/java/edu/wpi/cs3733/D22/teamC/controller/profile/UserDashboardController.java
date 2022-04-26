@@ -1,40 +1,62 @@
-package edu.wpi.cs3733.D22.teamC.controller.dashboard;
+package edu.wpi.cs3733.D22.teamC.controller.profile;
 
 import com.jfoenix.controls.JFXTreeTableView;
 import edu.wpi.cs3733.D22.teamC.App;
-import edu.wpi.cs3733.D22.teamC.controller.profile.DashboardAssignedTableDisplay;
-import edu.wpi.cs3733.D22.teamC.controller.profile.DashboardCreatedTableDisplay;
-import edu.wpi.cs3733.D22.teamC.controller.service_request.SegmentBarController;
+import edu.wpi.cs3733.D22.teamC.controller.component.sidebar.DrawerContentController;
 import edu.wpi.cs3733.D22.teamC.controller.service_request.BaseServiceRequestResolveController;
+import edu.wpi.cs3733.D22.teamC.controller.service_request.SegmentBarController;
 import edu.wpi.cs3733.D22.teamC.entity.employee.Employee;
+import edu.wpi.cs3733.D22.teamC.entity.employee.EmployeeDAO;
 import edu.wpi.cs3733.D22.teamC.entity.service_request.ServiceRequest;
 import edu.wpi.cs3733.D22.teamC.entity.service_request.ServiceRequestDAO;
 import edu.wpi.cs3733.D22.teamC.models.service_request.ServiceRequestTableDisplay;
+import io.github.palexdev.materialfx.controls.MFXButton;
+import io.github.palexdev.materialfx.controls.MFXPasswordField;
+import io.github.palexdev.materialfx.utils.SwingFXUtils;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.geometry.Pos;
 import javafx.scene.control.Label;
-import javafx.scene.layout.VBox;
 import javafx.scene.control.TreeTableRow;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseButton;
+import javafx.scene.layout.VBox;
+import javafx.stage.FileChooser;
+import lombok.SneakyThrows;
 
+import javax.imageio.ImageIO;
+import java.awt.image.BufferedImage;
+import java.io.ByteArrayInputStream;
+import java.io.ByteArrayOutputStream;
+import java.io.File;
+import java.io.IOException;
 import java.net.URL;
 import java.util.List;
 import java.util.ResourceBundle;
 
-public class DashboardController<T extends ServiceRequest> implements Initializable {
-
+public class UserDashboardController implements Initializable {
     private static final String FROM_DASH_RESOLVE_FORM = "view/service_request/skeleton/from_dash_resolve.fxml";
-    private static final String CREATE_FORM = "view/service_request/skeleton/create_form.fxml";
-    @FXML
-    private JFXTreeTableView assignedTable;
-    @FXML
-    private JFXTreeTableView createdTable;
-    @FXML
-    private Label greetingLabel;
-    @FXML
-    private VBox assignedTableBox;
-    @FXML
-    private VBox createdTableBox;
+
+    @FXML private JFXTreeTableView assignedTable;
+    @FXML private JFXTreeTableView createdTable;
+    @FXML private Label greetingLabel;
+    @FXML private VBox assignedTableBox;
+    @FXML private VBox createdTableBox;
+
+    @FXML Label position;
+    @FXML Label contact;
+    @FXML Label address;
+    @FXML Label username;
+    @FXML MFXButton back;
+
+    @FXML ImageView profileImage;
+    @FXML MFXButton addimg;
+
+
+    //ones made in the whatever
+    @FXML VBox mainNode;
+    @FXML VBox passwordNode;
 
     private Employee employee;
     private DashboardAssignedTableDisplay assignedTableDisplay;
@@ -42,14 +64,37 @@ public class DashboardController<T extends ServiceRequest> implements Initializa
 
     SegmentBarController insertAssignedTableBarController;
     SegmentBarController insertCreatedTableBarController;
+
+
+
+    Employee currentEmploy;
+    private byte[] bFile;
+    private String imagePath;
+
+    @SneakyThrows
     @Override
-    public void initialize(URL location, ResourceBundle resources) {
+    public void initialize(URL url, ResourceBundle resourceBundle) {
+        currentEmploy = App.instance.getUserAccount();
+        if (currentEmploy.getImage() != null) {
+            ByteArrayInputStream bis = new ByteArrayInputStream(currentEmploy.getImage());
+            BufferedImage img = ImageIO.read(bis);
+            Image image = SwingFXUtils.toFXImage(img, null);
+            profileImage.setImage(image);
+        }
+
+        //Set label texts
+        setGreetingLabel(currentEmploy);
+//        position.setText(currentEmploy.getRole().toString());
+        contact.setText(currentEmploy.getPhone());
+        address.setText(currentEmploy.getAddress());
+        username.setText(currentEmploy.getUsername());
+
+        // Do table stuff
         assignedTableDisplay = new DashboardAssignedTableDisplay(assignedTable);
         createdTableDisplay = new DashboardCreatedTableDisplay(createdTable);
 
         setOtherRowInteraction();
         setRowInteraction();
-
 
         // Populate Table Display
         ServiceRequestDAO serviceRequestDAO  = new ServiceRequestDAO();
@@ -59,7 +104,7 @@ public class DashboardController<T extends ServiceRequest> implements Initializa
         List<ServiceRequest> createdServiceRequests = serviceRequestDAO.getAllSRByCreator(App.instance.getUserAccount().getID());
         createdServiceRequests.forEach(createdTableDisplay::addObject);
 
-        setGreetingLabel(App.instance.getUserAccount().getUsername());
+        setGreetingLabel(currentEmploy);
 
         //SegmentedBars
         setAssignedTableSegmentedBarInsert();
@@ -75,11 +120,51 @@ public class DashboardController<T extends ServiceRequest> implements Initializa
             insertCreatedTableBarController.updateNumbers(serviceRequest.getStatus(), true);
         }
         insertCreatedTableBarController.setup(true);
+    }
+
+    public void backButton() {
+        App.instance.setView(App.DASHBOARD_PATH);
+        App.instance.drawerContentController.selectedButton(App.instance.drawerContentController.getDashboardButton());
 
     }
 
-    public void setGreetingLabel(String username) {
-        greetingLabel.setText("Hello, " + username + "!");
+    public void addImage()
+    {
+        FileChooser fileChooser = new FileChooser();
+        fileChooser.setTitle("Import Image File");
+        FileChooser.ExtensionFilter extFilter = new FileChooser.ExtensionFilter("Image files (*.png, *.jpg)", "*.png","*.jpg");
+        fileChooser.getExtensionFilters().add(extFilter);
+        File file = fileChooser.showOpenDialog(App.instance.getStage());
+
+        if (file != null) {
+            // Load image
+            try {
+                BufferedImage bImg = ImageIO.read(file);
+                ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
+                ImageIO.write(bImg, "png", byteArrayOutputStream);
+                bFile = byteArrayOutputStream.toByteArray();
+                imagePath = file.getName();
+
+                ByteArrayInputStream bis = new ByteArrayInputStream(bFile);
+                BufferedImage img = ImageIO.read(bis);
+                Image image = SwingFXUtils.toFXImage(img, null);
+
+                profileImage.setImage(image);
+
+                currentEmploy.setImage(bFile);
+                new EmployeeDAO().update(currentEmploy);
+                //new EmployeeDAO().update();
+
+
+
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+    }
+
+    public void setGreetingLabel(Employee employee) {
+        greetingLabel.setText("Hello, " + employee.getFirstName() + " " + employee.getLastName() + "!");
     }
 
     public void setAssignedTableSegmentedBarInsert(){
