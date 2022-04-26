@@ -49,10 +49,15 @@ public class UserDashboardController implements Initializable {
     @FXML Label address;
     @FXML Label username;
     @FXML MFXButton back;
+    @FXML MFXButton submitButton;
+    @FXML MFXButton changePasswordButton;
 
     @FXML ImageView profileImage;
     @FXML MFXButton addimg;
 
+    @FXML MFXPasswordField beforePassword;
+    @FXML MFXPasswordField newPass;
+    @FXML MFXPasswordField newPassConfirm;
 
     //ones made in the whatever
     @FXML VBox mainNode;
@@ -120,12 +125,50 @@ public class UserDashboardController implements Initializable {
             insertCreatedTableBarController.updateNumbers(serviceRequest.getStatus(), true);
         }
         insertCreatedTableBarController.setup(true);
+
+        passwordNode.setVisible(false);
     }
 
     public void backButton() {
         App.instance.setView(App.DASHBOARD_PATH);
         App.instance.drawerContentController.selectedButton(App.instance.drawerContentController.getDashboardButton());
 
+    }
+
+    @FXML
+    public void onChangePasswordButtonPress() {
+        passwordNode.setVisible(true);
+        mainNode.setVisible(false);
+    }
+
+    @FXML
+    public void onSubmitButtonPress() {
+        if (beforePassword.getText().equals(currentEmploy.getPassword()) &&
+                newPass.getText().equals(newPassConfirm.getText()) && isLegal(newPass.getText())){
+            //set the new password
+            currentEmploy.setPassword(newPass.getText());
+            new EmployeeDAO().update(currentEmploy);
+            //Reset the fields
+            beforePassword.setText("");
+            newPass.setText("");
+            newPassConfirm.setText("");
+            //return the old node
+            passwordNode.setVisible(false);
+            mainNode.setVisible(true);
+        } else {
+            beforePassword.setText("");
+            newPass.setText("");
+            newPassConfirm.setText("");
+            submitButton.setText("Try Again");
+        }
+    }
+
+    public boolean isLegal(String password)
+    {
+        //The password paradox; the less popular a password is, the better it is.
+
+        //What other parameters do we need?
+        return password.length() <= 20;
     }
 
     public void addImage()

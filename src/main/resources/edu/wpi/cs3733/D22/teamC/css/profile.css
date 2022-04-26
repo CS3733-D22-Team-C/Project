@@ -45,6 +45,10 @@
     -fx-text-fill: -color-primary;
 }
 
+.text-field {
+    -fx-effect: none;
+}
+
 .button {
     -fx-text-fill: black;
 }
