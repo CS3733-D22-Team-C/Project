@@ -71,7 +71,7 @@ public class PatientViewController extends InsertTableViewController<Patient> im
     public Patient setValues(Patient object) {
 
 
-        object.setLocationID(a_location.getID());
+        object.setLocation(a_location);
         object.setDOB(Timestamp.valueOf(date.getValue().atStartOfDay()));
         object.setPhone(number.getText());
         object.setFirstName(firstName.getText());
@@ -88,7 +88,7 @@ public class PatientViewController extends InsertTableViewController<Patient> im
     public void setFields(Patient object) {
 
         if (object != null){
-            a_location = new LocationDAO().getByID(object.getLocationID());
+            a_location = new LocationDAO().getByID(object.getLocation().getID());
         }
 
         title.setText((object == null) ? "Add Patient" : "Edit Patient");

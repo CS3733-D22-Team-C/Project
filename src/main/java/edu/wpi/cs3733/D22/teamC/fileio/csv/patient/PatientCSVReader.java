@@ -1,15 +1,17 @@
 package edu.wpi.cs3733.D22.teamC.fileio.csv.patient;
 
+import edu.wpi.cs3733.D22.teamC.entity.location.Location;
+import edu.wpi.cs3733.D22.teamC.entity.location.LocationDAO;
 import edu.wpi.cs3733.D22.teamC.entity.patient.Patient;
 import edu.wpi.cs3733.D22.teamC.fileio.csv.CSVReader;
 
-import java.sql.Date;
-import java.sql.Timestamp;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 
 public class PatientCSVReader extends CSVReader<Patient> {
-
+    
+    private final LocationDAO locationDAO = new LocationDAO();
+    
     @Override
     protected Patient parseAttribute(Patient patient, String header, String value) {
             switch (header) {
@@ -30,7 +32,8 @@ public class PatientCSVReader extends CSVReader<Patient> {
                     }
                     break;
                 case "Location":
-                    patient.setLocationID(value);
+                    Location location = locationDAO.getByID(value);
+                    patient.setLocation(location);
                     break;
                 case "Phone":
                     patient.setPhone(value);

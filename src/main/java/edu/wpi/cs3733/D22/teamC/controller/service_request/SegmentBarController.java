@@ -129,7 +129,7 @@ public class SegmentBarController implements Initializable {
     public String RCG(){
         Random random = new Random();
         int rand = random.nextInt(0xffffff + 1);
-        System.out.println(String.format("#%06x", rand));
+        //System.out.println(String.format("#%06x", rand));
         return String.format("#%06x", rand);
     }
 

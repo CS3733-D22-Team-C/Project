@@ -257,22 +257,22 @@ public class BaseMapSideViewController implements Initializable {
             FloorDAO floorDAO = new FloorDAO();
 
             boolean found = false;
-            System.out.println("Attempting to update Floors in DAO");
+            //System.out.println("Attempting to update Floors in DAO");
             for(Floor floor : floorDAO.getAll()){
                 if(found) break;
                 if(floor.getOrder() != selectedFloor.getOrder()){
                     floor.setOrder(floor.getOrder()+1);
-                    System.out.println(floor.getLongName() + " set new order to " + floor.getOrder());
+                    //System.out.println(floor.getLongName() + " set new order to " + floor.getOrder());
                     floorDAO.update(floor);
-                    System.out.println("Floor updated in DAO");
+                    //System.out.println("Floor updated in DAO");
                 }
                 else {
                     floor.setOrder(floor.getOrder()+1);
-                    System.out.println(floor.getLongName() + " set new order to " + floor.getOrder());
+                    //System.out.println(floor.getLongName() + " set new order to " + floor.getOrder());
                     floorDAO.update(floor);
-                    System.out.println("Floor updated in DAO");
+                    //System.out.println("Floor updated in DAO");
                     floorDAO.insert(selectedFloor);
-                    System.out.println(selectedFloor.getLongName() + " added to DAO");
+                    //System.out.println(selectedFloor.getLongName() + " added to DAO");
                     found = true;
                 }
             }
@@ -301,10 +301,10 @@ public class BaseMapSideViewController implements Initializable {
         selectedFloor.setImage(bFile);
         selectedFloor.setImageSrc(imagePath);
         int oldOrder = selectedFloor.getOrder();
-        System.out.println("Old order: " + oldOrder);
+        //System.out.println("Old order: " + oldOrder);
         selectedFloor.setOrder(Integer.parseInt(order.getText()));
         int newOrder = selectedFloor.getOrder();
-        System.out.println("New order: " + newOrder);
+        //System.out.println("New order: " + newOrder);
 
         boolean incorrectOrder = false;
         if(newOrder < 1) {selectedFloor.setOrder(1); newOrder = 1; incorrectOrder = true;} // less than check
@@ -317,25 +317,25 @@ public class BaseMapSideViewController implements Initializable {
             if(floor.getOrder() > greatestOrder && floor.getOrder() != newOrder) greatestOrder = floor.getOrder();
         }
 
-        System.out.println("Greatest Order: " + greatestOrder);
+        //System.out.println("Greatest Order: " + greatestOrder);
         if(!(oldOrder < greatestOrder) && newOrder > oldOrder) newOrder = greatestOrder+1; // makes it 7
         if(newOrder > greatestOrder+1 && greatestOrder != newOrder) {newOrder = greatestOrder; selectedFloor.setOrder(greatestOrder); incorrectOrder = true;}
 
-        System.out.println("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
-        System.out.println("New order: " + newOrder);
-        System.out.println("Old order: " + oldOrder);
-        System.out.println("Greatest order: " + greatestOrder);
+        //System.out.println("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
+        //System.out.println("New order: " + newOrder);
+        //System.out.println("Old order: " + oldOrder);
+        //System.out.println("Greatest order: " + greatestOrder);
 
         if(newOrder > oldOrder) {
-            System.out.println("New order is greater than old order: " + newOrder + ", " + oldOrder);
+           // System.out.println("New order is greater than old order: " + newOrder + ", " + oldOrder);
             if(oldOrder > greatestOrder) selectedFloor.setOrder(oldOrder);
 
             // Works for updating floors by moving up.
             for (Floor floor : floorDAO.getAll()) {
-                System.out.println("Currently on: " + floor.getLongName());
+                //System.out.println("Currently on: " + floor.getLongName());
                 if (floor.getOrder() <= oldOrder - 1) System.out.println("Floor is less than old order, did nothing");
                 else if (floor.getOrder() <= selectedFloor.getOrder()) {
-                    System.out.println("Floor order updated. Was " + floor.getOrder() + ". Is now " + (floor.getOrder() - 1));
+                    //System.out.println("Floor order updated. Was " + floor.getOrder() + ". Is now " + (floor.getOrder() - 1));
                     floor.setOrder(floor.getOrder() - 1);
                     floorDAO.update(floor);
                 }
@@ -343,11 +343,11 @@ public class BaseMapSideViewController implements Initializable {
         }
         else if(newOrder < oldOrder){
             for (Floor floor : floorDAO.getAll()) {
-                System.out.println("Currently on: " + floor.getLongName());
+                //System.out.println("Currently on: " + floor.getLongName());
                 if (floor.getOrder() >= oldOrder) System.out.println("Floor is more than old order, did nothing");
                 else if(floor.getOrder() < newOrder) System.out.println("Floor is less than new order, did nothing");
                 else if (floor.getOrder() < oldOrder) {
-                    System.out.println("Floor order updated. Was " + floor.getOrder() + ". Is now " + (floor.getOrder() + 1));
+                    //System.out.println("Floor order updated. Was " + floor.getOrder() + ". Is now " + (floor.getOrder() + 1));
                     floor.setOrder(floor.getOrder() + 1);
                     floorDAO.update(floor);
                 }
