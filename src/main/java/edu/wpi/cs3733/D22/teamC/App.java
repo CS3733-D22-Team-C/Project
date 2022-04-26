@@ -67,7 +67,7 @@ public class App extends Application {
         SessionManager.switchDatabase(SessionManager.DBMode.EMBEDDED);
         log.info("Starting Up");
     }
-
+    //Test comment
     @Override
     public void start(Stage primaryStage) {
         // Create singleton instance
