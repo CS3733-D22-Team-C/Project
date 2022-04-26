@@ -212,24 +212,37 @@ public class CSVComponent implements Initializable {
             if(patientTransportExport.isSelected()) {
                 PatientTransportSRDAO patientTransportSRDAO = new PatientTransportSRDAO();
                 List<PatientTransportSR> patientTransportSRS = patientTransportSRDAO.getAll();
-                CSVFacade.write(PatientTransportSR.class, savedFile.getPath() + "\\" + PATIENT_TRANSPORT_CSV, patientTransportSRS);
+                CSVFacade.write(PatientTransportSR.class, savedFile.getPath() + File.separator + PATIENT_TRANSPORT_CSV, patientTransportSRS);
             }
             if(laundryExport.isSelected()) {
                 LaundrySRDAO laundrySRDAO = new LaundrySRDAO();
                 List<LaundrySR> laundrySRS = laundrySRDAO.getAll();
-                CSVFacade.write(LaundrySR.class, savedFile.getPath() + "\\" + LAUNDRY_CSV, laundrySRS);
+                CSVFacade.write(LaundrySR.class, savedFile.getPath() + File.separator + LAUNDRY_CSV, laundrySRS);
             }
             if(translatorExport.isSelected()) {
                 TranslatorSRDAO translatorSRDAO = new TranslatorSRDAO();
                 List<TranslatorSR> translatorSRS = translatorSRDAO.getAll();
-                CSVFacade.write(TranslatorSR.class, savedFile.getPath() + "\\" + TRANSLATOR_CSV, translatorSRS);
+                CSVFacade.write(TranslatorSR.class, savedFile.getPath() + File.separator + TRANSLATOR_CSV, translatorSRS);
             }
-
-
             //Employee
             if(employeesExport.isSelected()) {
                 EmployeeDAO employeeDAO = new EmployeeDAO();
                 List<Employee> employees = employeeDAO.getAll();
+
+                int adminIdx = -1, staffIdx = -1;
+                for(int i = 0; i < employees.size(); i++) {
+                    if(employees.get(i).getUsername().equals("admin")) {
+                        adminIdx = i;
+                    }
+                }
+                employees.remove(adminIdx);
+                for(int i = 0; i < employees.size(); i++) {
+                    if (employees.get(i).getUsername().equals("staff")) {
+                        staffIdx = i;
+                    }
+                }
+                employees.remove(staffIdx);
+
                 CSVFacade.write(Employee.class, savedFile.getPath() + File.separator + EMPLOYEE_CSV, employees);
             }
 
@@ -328,19 +341,19 @@ public class CSVComponent implements Initializable {
                 deliverySystemSRS.forEach(deliverySystemSRDAO::insert);
             }
             if(patientTransportImport.isSelected()) {
-                List<PatientTransportSR> patientTransportSRS = CSVFacade.read(PatientTransportSR.class, savedFile.getPath() + "\\" + PATIENT_TRANSPORT_CSV);
+                List<PatientTransportSR> patientTransportSRS = CSVFacade.read(PatientTransportSR.class, savedFile.getPath() + File.separator + PATIENT_TRANSPORT_CSV);
                 PatientTransportSRDAO patientTransportSRDAO = new PatientTransportSRDAO();
                 patientTransportSRDAO.deleteAllFromTable();
                 patientTransportSRS.forEach(patientTransportSRDAO::insert);
             }
             if(laundryImport.isSelected()) {
-                List<LaundrySR> laundrySRS = CSVFacade.read(LaundrySR.class, savedFile.getPath() + "\\" + LAUNDRY_CSV);
+                List<LaundrySR> laundrySRS = CSVFacade.read(LaundrySR.class, savedFile.getPath() + File.separator + LAUNDRY_CSV);
                 LaundrySRDAO laundrySRDAO = new LaundrySRDAO();
                 laundrySRDAO.deleteAllFromTable();
                 laundrySRS.forEach(laundrySRDAO::insert);
             }
             if(translatorImport.isSelected()) {
-                List<TranslatorSR> translatorSRS = CSVFacade.read(TranslatorSR.class, savedFile.getPath() + "\\" + TRANSLATOR_CSV);
+                List<TranslatorSR> translatorSRS = CSVFacade.read(TranslatorSR.class, savedFile.getPath() + File.separator + TRANSLATOR_CSV);
                 TranslatorSRDAO translatorSRDAO = new TranslatorSRDAO();
                 translatorSRDAO.deleteAllFromTable();
                 translatorSRS.forEach(translatorSRDAO::insert);
