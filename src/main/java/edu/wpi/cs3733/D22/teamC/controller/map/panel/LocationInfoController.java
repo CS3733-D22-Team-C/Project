@@ -216,7 +216,8 @@ public class LocationInfoController implements Initializable {
             if(medicalEquipmentNode != null){
                 medicalEquipmentNode.updateValues();
             }
-        }}
+        }
+    }
 
     private void setLocationClickCapture(boolean clickCapture) {
         if (clickCapture) {
@@ -224,8 +225,18 @@ public class LocationInfoController implements Initializable {
                 activeMedicalEquipment.setLocationID(location.getID());
                 updateMedicalEquipment();
 
-                // Update Medical Equipment Table
-                populateMedicalEquipmentTable(mapViewController.getLocationManager().getCurrent());
+                Location currentLocation = mapViewController.getLocationManager().getCurrent();
+
+                // Table updating
+                populateMedicalEquipmentTable(currentLocation);
+
+                // Counters updating
+                mapViewController.getMedicalEquipmentManager().updateCounter(currentLocation);
+                mapViewController.getMedicalEquipmentManager().updateCounter(location);
+
+                // Tokens updating
+                if (mapViewController.getMedicalEquipmentManager().isFocusing()) mapViewController.getMedicalEquipmentManager().focusLocation(currentLocation);
+                if (mapViewController.getMedicalEquipmentManager().isPreviewing()) mapViewController.getMedicalEquipmentManager().previewLocation(null);
 
                 setLocationClickCapture(false);
             };
@@ -239,9 +250,6 @@ public class LocationInfoController implements Initializable {
     private void updateServiceRequest() {
         // Update Service Request DB
         new ServiceRequestDAO().update(activeServiceRequest);
-        setActiveServiceRequest(null);
-
-        populateServiceRequestTable(mapViewController.getLocationManager().getCurrent());
     }
 
     private void setActiveServiceRequest(ServiceRequest serviceRequest) {
@@ -258,8 +266,18 @@ public class LocationInfoController implements Initializable {
                 activeServiceRequest.setLocation(location.getID());
                 updateServiceRequest();
 
-                // Update Medical Equipment Table
-                populateServiceRequestTable(mapViewController.getLocationManager().getCurrent());
+                Location currentLocation = mapViewController.getLocationManager().getCurrent();
+
+                // Table updating
+                populateServiceRequestTable(currentLocation);
+
+                // Counters Updating
+                mapViewController.getServiceRequestManager().updateCounter(currentLocation);
+                mapViewController.getServiceRequestManager().updateCounter(location);
+
+                // Tokens updating
+                if (mapViewController.getServiceRequestManager().isFocusing()) mapViewController.getServiceRequestManager().focusLocation(currentLocation);
+                if (mapViewController.getServiceRequestManager().isPreviewing()) mapViewController.getServiceRequestManager().previewLocation(null);
 
                 setSRLocationClickCapture(false);
             };
@@ -269,10 +287,6 @@ public class LocationInfoController implements Initializable {
             updateLocationSR.setSelected(false);
         }
     }
-
-
-
-
 
     //#region Pane Interaction
         /**

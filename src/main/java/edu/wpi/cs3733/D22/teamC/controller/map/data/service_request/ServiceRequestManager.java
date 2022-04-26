@@ -19,6 +19,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.function.BiConsumer;
 import java.util.function.Consumer;
+import java.util.stream.Collectors;
 
 public class ServiceRequestManager extends ManagerMapNodes<ServiceRequest> {
     // Constants
@@ -146,6 +147,17 @@ public class ServiceRequestManager extends ManagerMapNodes<ServiceRequest> {
         private void deleteCounters() {
             counters.forEach(MapCounter::delete);
             counters = new ArrayList<>();
+        }
+
+        public void updateCounter(Location location) {
+            MapCounter counter = getCounterByLocation(location);
+            if (counter != null) counter.setCount(getAllByLocation(location).size());
+        }
+
+        private MapCounter getCounterByLocation(Location location) {
+            List<MapCounter> filtered = counters.stream().filter(counter -> counter.getLocation().getID().equals(location.getID())).collect(Collectors.toList());
+            if (filtered.size() > 0) return filtered.get(0);
+            return null;
         }
     //#endregion
 }
