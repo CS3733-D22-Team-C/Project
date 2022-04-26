@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import io.github.palexdev.materialfx.controls.MFXButton?>
-<?import java.lang.String?>
 <?import java.net.URL?>
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Label?>
@@ -15,80 +14,156 @@
 <?import javafx.scene.text.Font?>
 
 
-<VBox alignment="TOP_CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.wpi/cs3733/D22/teamC/controller/general/about_page/AboutPageController.java">
+<VBox alignment="TOP_CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="841.0" prefWidth="604.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.wpi/cs3733/D22/teamC/controller/general/about_page/AboutPageController.java">
    <children>
       <Label alignment="CENTER" contentDisplay="CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="46.0" prefWidth="600.0" style="-fx-background-color: #005A9B;" styleClass="service-field-label" stylesheets="@../../../css/component/login.css" text="About the Development Team - Brigham and Womens Internal Tools" textFill="WHITE" VBox.vgrow="ALWAYS">
          <font>
             <Font size="14.0" />
          </font>
       </Label>
-      <GridPane alignment="TOP_CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308">
+      <GridPane alignment="TOP_CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="868.0" prefWidth="604.0">
          <columnConstraints>
-            <ColumnConstraints halignment="LEFT" hgrow="ALWAYS" maxWidth="1.7976931348623157E308" minWidth="10.0" prefWidth="308.8" />
-            <ColumnConstraints halignment="RIGHT" hgrow="ALWAYS" maxWidth="1.7976931348623157E308" minWidth="10.0" prefWidth="295.2" />
+            <ColumnConstraints halignment="LEFT" hgrow="ALWAYS" maxWidth="1.7976931348623157E308" minWidth="10.0" prefWidth="255.999951171875" />
+            <ColumnConstraints halignment="RIGHT" hgrow="ALWAYS" maxWidth="1.7976931348623157E308" minWidth="10.0" prefWidth="348.000048828125" />
          </columnConstraints>
          <rowConstraints>
-            <RowConstraints maxHeight="1.7976931348623157E308" minHeight="10.0" prefHeight="122.39998779296874" vgrow="ALWAYS" />
-            <RowConstraints maxHeight="1.7976931348623157E308" minHeight="10.0" prefHeight="118.39998779296874" vgrow="ALWAYS" />
-            <RowConstraints maxHeight="1.7976931348623157E308" minHeight="10.0" prefHeight="121.59998168945316" vgrow="ALWAYS" />
-            <RowConstraints maxHeight="1.7976931348623157E308" minHeight="10.0" prefHeight="112.80000000000001" vgrow="ALWAYS" />
-            <RowConstraints maxHeight="1.7976931348623157E308" minHeight="10.0" prefHeight="116.80000000000001" vgrow="ALWAYS" />
-            <RowConstraints maxHeight="1.7976931348623157E308" minHeight="10.0" prefHeight="117.19997558593752" vgrow="ALWAYS" />
+            <RowConstraints maxHeight="1.7976931348623157E308" minHeight="10.0" prefHeight="143.20000305175782" vgrow="ALWAYS" />
+            <RowConstraints maxHeight="1.7976931348623157E308" minHeight="10.0" prefHeight="135.99999694824217" vgrow="ALWAYS" />
+            <RowConstraints maxHeight="1.7976931348623157E308" minHeight="10.0" prefHeight="133.0000061035156" vgrow="ALWAYS" />
+            <RowConstraints maxHeight="1.7976931348623157E308" minHeight="10.0" prefHeight="139.80002441406248" vgrow="ALWAYS" />
+            <RowConstraints maxHeight="1.7976931348623157E308" minHeight="10.0" prefHeight="138.19997558593752" vgrow="ALWAYS" />
+            <RowConstraints maxHeight="1.7976931348623157E308" minHeight="10.0" prefHeight="125.4000244140625" vgrow="ALWAYS" />
          </rowConstraints>
          <children>
-            <HBox alignment="BOTTOM_RIGHT" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" translateY="1.0" GridPane.columnIndex="1" GridPane.hgrow="ALWAYS" GridPane.rowIndex="5" GridPane.vgrow="ALWAYS">
+            <HBox alignment="BOTTOM_RIGHT" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="126.0" prefWidth="318.0" translateY="1.0" GridPane.columnIndex="1" GridPane.hgrow="ALWAYS" GridPane.rowIndex="5" GridPane.vgrow="ALWAYS">
                <children>
-                  <Label prefHeight="126.0" prefWidth="294.0" style="-fx-background-color: #005A9B;" text="The Brigham &amp; Women’s Hospital maps and data used in this application are copyrighted and provided for the sole use of educational purposes." wrapText="true">
+                  <Label prefHeight="38.0" prefWidth="354.0" style="-fx-background-color: #005A9B;" text="The Brigham &amp; Women’s Hospital maps and data used in this application are copyrighted and provided for the sole use of educational purposes." textFill="WHITE" translateY="-15.0" wrapText="true">
                      <padding>
-                        <Insets right="10.0" />
+                        <Insets left="10.0" right="10.0" />
                      </padding>
                      <stylesheets>
                         <URL value="@../../../css/component/request_page.css" />
                         <URL value="@../../../css/colors.css" />
                      </stylesheets>
-                     <styleClass>
-                        <String fx:value="service-field-label" />
-                        <String fx:value="fields-padding" />
-                        <String fx:value="card-content-header" />
-                     </styleClass>
                      <font>
-                        <Font size="13.0" />
+                        <Font size="10.0" />
                      </font>
                   </Label>
                </children>
             </HBox>
             <HBox alignment="CENTER_LEFT" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="90.0" prefWidth="308.0" GridPane.hgrow="ALWAYS" GridPane.rowIndex="5" GridPane.vgrow="ALWAYS">
                <children>
-                  <MFXButton fx:id="backButton" onAction="#onBackButtonClicked" prefHeight="31.0" prefWidth="75.0" stylesheets="@../../../css/component/request_page.css" text="Back" translateX="10.0" translateY="40.0" HBox.hgrow="ALWAYS" />
+                  <MFXButton fx:id="backButton" onAction="#onBackButtonClicked" prefHeight="31.0" prefWidth="75.0" stylesheets="@../../../css/component/request_page.css" text="Back" translateX="10.0" translateY="30.0" HBox.hgrow="ALWAYS" />
                </children>
             </HBox>
-            <VBox alignment="TOP_CENTER" prefHeight="118.0" prefWidth="315.0">
+            <HBox alignment="TOP_RIGHT">
                <children>
-                  <ImageView fitHeight="101.0" fitWidth="105.0" layoutY="50.0" pickOnBounds="true" preserveRatio="true" translateY="10.0">
+                  <ImageView fitHeight="113.0" fitWidth="159.0" pickOnBounds="true" preserveRatio="true">
                      <image>
                         <Image url="@../../../static/images/team_members/Nick%20Frangie%20Soft%20Eng.png" />
                      </image>
+                     <HBox.margin>
+                        <Insets />
+                     </HBox.margin>
                   </ImageView>
                </children>
-            </VBox>
-            <VBox alignment="TOP_CENTER" prefHeight="118.0" prefWidth="315.0" GridPane.columnIndex="1">
+            </HBox>
+            <HBox alignment="TOP_RIGHT" GridPane.columnIndex="1">
                <children>
-                  <ImageView fitHeight="109.0" fitWidth="82.0" pickOnBounds="true" preserveRatio="true" translateY="10.0">
+                  <ImageView fitHeight="113.0" fitWidth="159.0" pickOnBounds="true" preserveRatio="true">
                      <image>
                         <Image url="@../../../static/images/team_members/Brian%20Soft%20Eng.png" />
                      </image>
+                     <HBox.margin>
+                        <Insets right="40.0" />
+                     </HBox.margin>
                   </ImageView>
                </children>
-            </VBox>
-            <VBox prefHeight="200.0" prefWidth="100.0" GridPane.rowIndex="1">
+            </HBox>
+            <HBox alignment="TOP_RIGHT" GridPane.rowIndex="1">
                <children>
-                  <ImageView fitHeight="95.0" fitWidth="105.0" pickOnBounds="true" preserveRatio="true">
+                  <ImageView fitHeight="113.0" fitWidth="159.0" pickOnBounds="true" preserveRatio="true">
                      <image>
                         <Image url="@../../../static/images/team_members/Brandon%20Soft%20Eng.png" />
                      </image>
                   </ImageView>
                </children>
-            </VBox>
+            </HBox>
+            <HBox alignment="TOP_RIGHT" GridPane.columnIndex="1" GridPane.rowIndex="1">
+               <children>
+                  <ImageView fitHeight="113.0" fitWidth="159.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../../../static/images/team_members/Grace%20Soft%20Eng.png" />
+                     </image>
+                     <HBox.margin>
+                        <Insets right="40.0" />
+                     </HBox.margin>
+                  </ImageView>
+               </children>
+            </HBox>
+            <HBox alignment="TOP_RIGHT" GridPane.rowIndex="2">
+               <children>
+                  <ImageView fitHeight="113.0" fitWidth="159.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../../../static/images/team_members/Mia%20Soft%20Eng.png" />
+                     </image>
+                  </ImageView>
+               </children>
+            </HBox>
+            <HBox alignment="TOP_RIGHT" GridPane.columnIndex="1" GridPane.rowIndex="4">
+               <children>
+                  <ImageView fitHeight="113.0" fitWidth="159.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../../../static/images/team_members/Vagmi%20Soft%20Eng.png" />
+                     </image>
+                     <HBox.margin>
+                        <Insets right="40.0" />
+                     </HBox.margin>
+                  </ImageView>
+               </children>
+            </HBox>
+            <HBox alignment="TOP_RIGHT" GridPane.rowIndex="3">
+               <children>
+                  <ImageView fitHeight="113.0" fitWidth="159.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../../../static/images/team_members/Jack%20Soft%20Eng.png" />
+                     </image>
+                  </ImageView>
+               </children>
+            </HBox>
+            <HBox alignment="TOP_RIGHT" GridPane.rowIndex="4">
+               <children>
+                  <ImageView fitHeight="113.0" fitWidth="159.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../../../static/images/team_members/Matthew%20Soft%20Eng.png" />
+                     </image>
+                  </ImageView>
+               </children>
+            </HBox>
+            <HBox alignment="TOP_RIGHT" GridPane.columnIndex="1" GridPane.rowIndex="2">
+               <children>
+                  <ImageView fitHeight="113.0" fitWidth="159.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../../../static/images/team_members/Nelson%20Soft%20Eng.png" />
+                     </image>
+                     <HBox.margin>
+                        <Insets right="40.0" />
+                     </HBox.margin>
+                  </ImageView>
+               </children>
+            </HBox>
+            <HBox alignment="TOP_RIGHT" GridPane.columnIndex="1" GridPane.rowIndex="3">
+               <children>
+                  <ImageView fitHeight="113.0" fitWidth="159.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../../../static/images/team_members/Vishnu%20Soft%20Eng.png" />
+                     </image>
+                     <HBox.margin>
+                        <Insets right="40.0" />
+                     </HBox.margin>
+                  </ImageView>
+               </children>
+            </HBox>
          </children>
       </GridPane>
    </children>
