@@ -305,9 +305,10 @@ public class LocationInfoController implements Initializable {
             }
         }
 
-        private void setMedicalEquipmentFilter(MedicalEquipment.EquipmentType type) {
+    public void setMedicalEquipmentFilter(MedicalEquipment.EquipmentType type) {
             this.filterEquipmentType = type;
 
+            ComponentWrapper.setValueSilently(medEquipTypeComboBox, type);
             Location location = mapViewController.getLocationManager().getCurrent();
             populateMedicalEquipmentTable(location);
 
@@ -322,9 +323,10 @@ public class LocationInfoController implements Initializable {
             medicalEquipments.forEach(medicalEquipmentTableDisplay::addObject);
         }
 
-        private void setServiceRequestFilter(ServiceRequest.RequestType type) {
+        public void setServiceRequestFilter(ServiceRequest.RequestType type) {
             this.filterRequestType = type;
 
+            ComponentWrapper.setValueSilently(serviceReqTypeComboBox, type);
             Location location = mapViewController.getLocationManager().getCurrent();
             populateServiceRequestTable(location);
 
