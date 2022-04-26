@@ -47,7 +47,7 @@ public class MapCounter {
         parent.getChildren().add(root);
     }
 
-    public void setPosition(int x, int y) {
+    public void setPosition(double x, double y) {
         root.setTranslateX(x);
         root.setTranslateY(y);
     }

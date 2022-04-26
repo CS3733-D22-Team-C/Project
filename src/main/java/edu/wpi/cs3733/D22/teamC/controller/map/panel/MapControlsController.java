@@ -27,6 +27,7 @@ public class MapControlsController implements Initializable {
     @FXML private Button exitButton;
     @FXML private MFXToggleButton medicalEquipmentToggle;
     @FXML private MFXToggleButton serviceRequestToggle;
+    @FXML private MFXToggleButton patientToggle;
     @FXML private MFXCheckbox counterCheckbox;
     @FXML private MFXCheckbox tokenCheckbox;
 
@@ -53,6 +54,9 @@ public class MapControlsController implements Initializable {
 
         serviceRequestToggle.setSelected(false);
         serviceRequestToggle.setOnAction(this::onServiceRequestToggle);
+
+        patientToggle.setSelected(false);
+        patientToggle.setOnAction(this::onPatientToggle);
     }
 
     //#region External Events
@@ -89,6 +93,11 @@ public class MapControlsController implements Initializable {
         @FXML
         void onServiceRequestToggle(ActionEvent event) {
             mapViewController.activateServiceRequestManager(serviceRequestToggle.isSelected());
+        }
+
+        @FXML
+        void onPatientToggle(ActionEvent event) {
+            mapViewController.activatePatientManager(patientToggle.isSelected());
         }
 
         @FXML

@@ -20,7 +20,7 @@ import java.util.stream.Collectors;
 
 public class PatientManager extends ManagerMapNodes<Patient> {
     // Constants
-    private final static Pair<Integer, Integer> COUNTER_OFFSET = new Pair<>(0, 12);
+    private final static Pair<Double, Double> COUNTER_OFFSET = new Pair<>(-12.5, 10.0);
 
     // Variables
     List<MapCounter> counters = new ArrayList<>();
