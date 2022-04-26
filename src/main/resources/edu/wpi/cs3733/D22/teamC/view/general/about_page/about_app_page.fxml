@@ -23,8 +23,8 @@
       </Label>
       <GridPane alignment="TOP_CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="868.0" prefWidth="604.0" stylesheets="@../../../css/table_skeleton.css">
          <columnConstraints>
-            <ColumnConstraints halignment="LEFT" hgrow="ALWAYS" maxWidth="1.7976931348623157E308" minWidth="10.0" prefWidth="255.999951171875" />
-            <ColumnConstraints halignment="RIGHT" hgrow="ALWAYS" maxWidth="1.7976931348623157E308" minWidth="10.0" prefWidth="348.000048828125" />
+            <ColumnConstraints halignment="LEFT" hgrow="ALWAYS" maxWidth="1.7976931348623157E308" minWidth="10.0" prefWidth="290.1999755859375" />
+            <ColumnConstraints halignment="RIGHT" hgrow="ALWAYS" maxWidth="1.7976931348623157E308" minWidth="10.0" prefWidth="313.40002441406244" />
          </columnConstraints>
          <rowConstraints>
             <RowConstraints maxHeight="1.7976931348623157E308" minHeight="10.0" prefHeight="143.20000305175782" vgrow="ALWAYS" />
@@ -58,7 +58,7 @@
             </HBox>
             <HBox alignment="TOP_CENTER">
                <children>
-                  <Label prefHeight="111.0" prefWidth="117.0" style="-fx-background-color: #005A9B;" text="Nicholas Frangie - Lead Software Engineer" translateY="15.0" wrapText="true">
+                  <Label prefHeight="111.0" prefWidth="117.0" style="-fx-background-color: #005A9B; -fx-text-fill: #FFFFFF;" text="Nicholas Frangie - Lead Software Engineer" textFill="WHITE" translateY="15.0" wrapText="true">
                      <padding>
                         <Insets left="10.0" />
                      </padding>
@@ -71,7 +71,7 @@
                         <String fx:value="card" />
                      </styleClass>
                   </Label>
-                  <ImageView fitHeight="113.0" fitWidth="159.0" pickOnBounds="true" preserveRatio="true" translateY="15.0">
+                  <ImageView fitHeight="111.0" fitWidth="95.0" pickOnBounds="true" translateY="15.0">
                      <image>
                         <Image url="@../../../static/images/team_members/Nick%20Frangie%20Soft%20Eng.png" />
                      </image>
@@ -83,7 +83,7 @@
             </HBox>
             <HBox alignment="TOP_CENTER" GridPane.columnIndex="1">
                <children>
-                  <Label prefHeight="111.0" prefWidth="212.0" style="-fx-background-color: #005A9B;" text="Brian Shin - Lead Backend Engineer" translateX="15.0" translateY="15.0" wrapText="true">
+                  <Label prefHeight="111.0" prefWidth="117.0" style="-fx-background-color: #005A9B; -fx-text-fill: #FFFFFF;" text="Brian Shin - Lead Backend Engineer" translateX="15.0" translateY="15.0" wrapText="true">
                      <padding>
                         <Insets left="10.0" />
                      </padding>
@@ -96,7 +96,7 @@
                         <String fx:value="card" />
                      </styleClass>
                   </Label>
-                  <ImageView fitHeight="113.0" fitWidth="159.0" pickOnBounds="true" preserveRatio="true" translateX="15.0" translateY="15.0">
+                  <ImageView fitHeight="111.0" fitWidth="95.0" pickOnBounds="true" translateX="15.0" translateY="15.0">
                      <image>
                         <Image url="@../../../static/images/team_members/Brian%20Soft%20Eng.png" />
                      </image>
@@ -108,7 +108,7 @@
             </HBox>
             <HBox alignment="TOP_CENTER" GridPane.rowIndex="1">
                <children>
-                  <Label prefHeight="111.0" prefWidth="142.0" style="-fx-background-color: #005A9B;" text="Brandon Vuong - Lead Frontend Engineer" translateY="15.0" wrapText="true">
+                  <Label prefHeight="111.0" prefWidth="117.0" style="-fx-background-color: #005A9B; -fx-text-fill: #FFFFFF;" text="Brandon Vuong - Lead Frontend Engineer" translateY="15.0" wrapText="true">
                      <padding>
                         <Insets left="10.0" />
                      </padding>
@@ -121,7 +121,7 @@
                         <String fx:value="card" />
                      </styleClass>
                   </Label>
-                  <ImageView fitHeight="113.0" fitWidth="159.0" pickOnBounds="true" preserveRatio="true" translateY="15.0">
+                  <ImageView fitHeight="111.0" fitWidth="95.0" pickOnBounds="true" translateY="15.0">
                      <image>
                         <Image url="@../../../static/images/team_members/Brandon%20Soft%20Eng.png" />
                      </image>
@@ -130,7 +130,7 @@
             </HBox>
             <HBox alignment="TOP_CENTER" GridPane.columnIndex="1" GridPane.rowIndex="1">
                <children>
-                  <Label prefHeight="111.0" prefWidth="225.0" style="-fx-background-color: #005A9B;" text="Grace O'Reilly - Documentation Analyst and Backend Engineer" translateX="15.0" translateY="15.0" wrapText="true">
+                  <Label prefHeight="111.0" prefWidth="117.0" style="-fx-background-color: #005A9B; -fx-text-fill: #FFFFFF;" text="Grace O'Reilly - Documentation Analyst and Backend Engineer" translateX="15.0" translateY="15.0" wrapText="true">
                      <padding>
                         <Insets left="10.0" />
                      </padding>
@@ -143,7 +143,7 @@
                         <String fx:value="card" />
                      </styleClass>
                   </Label>
-                  <ImageView fitHeight="113.0" fitWidth="159.0" pickOnBounds="true" preserveRatio="true" translateX="15.0" translateY="15.0">
+                  <ImageView fitHeight="111.0" fitWidth="95.0" pickOnBounds="true" translateX="15.0" translateY="15.0">
                      <image>
                         <Image url="@../../../static/images/team_members/Grace%20Soft%20Eng.png" />
                      </image>
@@ -155,7 +155,7 @@
             </HBox>
             <HBox alignment="TOP_CENTER" GridPane.rowIndex="2">
                <children>
-                  <Label prefHeight="111.0" prefWidth="149.0" style="-fx-background-color: #005A9B;" text="Mia Mueting - Scrum Master and Frontend Engineer" translateY="15.0" wrapText="true">
+                  <Label prefHeight="111.0" prefWidth="117.0" style="-fx-background-color: #005A9B; -fx-text-fill: #FFFFFF;" text="Mia Mueting - Scrum Master and Frontend Engineer" translateY="15.0" wrapText="true">
                      <padding>
                         <Insets left="10.0" />
                      </padding>
@@ -168,7 +168,7 @@
                         <String fx:value="card" />
                      </styleClass>
                   </Label>
-                  <ImageView fitHeight="113.0" fitWidth="159.0" pickOnBounds="true" preserveRatio="true" translateY="15.0">
+                  <ImageView fitHeight="111.0" fitWidth="95.0" pickOnBounds="true" translateY="15.0">
                      <image>
                         <Image url="@../../../static/images/team_members/Mia%20Soft%20Eng.png" />
                      </image>
@@ -177,7 +177,7 @@
             </HBox>
             <HBox alignment="TOP_CENTER" GridPane.columnIndex="1" GridPane.rowIndex="4">
                <children>
-                  <Label prefHeight="111.0" prefWidth="226.0" style="-fx-background-color: #005A9B;" text="Vagmi Bhagavathula - Backend Engineer" translateX="15.0" translateY="15.0" wrapText="true">
+                  <Label prefHeight="111.0" prefWidth="117.0" style="-fx-background-color: #005A9B; -fx-text-fill: #FFFFFF;" text="Vagmi Bhagavathula - Backend Engineer" translateX="15.0" translateY="15.0" wrapText="true">
                      <padding>
                         <Insets left="10.0" />
                      </padding>
@@ -190,7 +190,7 @@
                         <String fx:value="card" />
                      </styleClass>
                   </Label>
-                  <ImageView fitHeight="113.0" fitWidth="159.0" pickOnBounds="true" preserveRatio="true" translateX="15.0" translateY="15.0">
+                  <ImageView fitHeight="111.0" fitWidth="95.0" pickOnBounds="true" translateX="15.0" translateY="15.0">
                      <image>
                         <Image url="@../../../static/images/team_members/Vagmi%20Soft%20Eng.png" />
                      </image>
@@ -202,7 +202,7 @@
             </HBox>
             <HBox alignment="TOP_CENTER" GridPane.rowIndex="3">
                <children>
-                  <Label prefHeight="104.0" prefWidth="97.0" style="-fx-background-color: #005A9B;" text="Jack Murihead - Frontend Engineer" translateY="15.0" wrapText="true">
+                  <Label prefHeight="111.0" prefWidth="117.0" style="-fx-background-color: #005A9B; -fx-text-fill: #FFFFFF;" text="Jack Murihead - Frontend Engineer" translateY="15.0" wrapText="true">
                      <padding>
                         <Insets left="10.0" />
                      </padding>
@@ -215,7 +215,7 @@
                         <String fx:value="card" />
                      </styleClass>
                   </Label>
-                  <ImageView fitHeight="115.0" fitWidth="159.0" pickOnBounds="true" preserveRatio="true" translateY="15.0">
+                  <ImageView fitHeight="111.0" fitWidth="95.0" pickOnBounds="true" translateY="15.0">
                      <image>
                         <Image url="@../../../static/images/team_members/Jack%20Soft%20Eng.png" />
                      </image>
@@ -224,7 +224,7 @@
             </HBox>
             <HBox alignment="TOP_CENTER" GridPane.rowIndex="4">
                <children>
-                  <Label prefHeight="111.0" prefWidth="171.0" style="-fx-background-color: #005A9B;" text="Matthew McAlarney - Frontend Engineer" translateY="15.0" wrapText="true">
+                  <Label prefHeight="111.0" prefWidth="117.0" style="-fx-background-color: #005A9B; -fx-text-fill: #FFFFFF;" text="Matthew McAlarney - Frontend Engineer" translateY="15.0" wrapText="true">
                      <padding>
                         <Insets left="10.0" />
                      </padding>
@@ -237,7 +237,7 @@
                         <String fx:value="card" />
                      </styleClass>
                   </Label>
-                  <ImageView fitHeight="113.0" fitWidth="159.0" pickOnBounds="true" preserveRatio="true" translateY="15.0">
+                  <ImageView fitHeight="111.0" fitWidth="95.0" pickOnBounds="true" translateY="15.0">
                      <image>
                         <Image url="@../../../static/images/team_members/Matthew%20Soft%20Eng.png" />
                      </image>
@@ -246,7 +246,7 @@
             </HBox>
             <HBox alignment="TOP_CENTER" GridPane.columnIndex="1" GridPane.rowIndex="2">
                <children>
-                  <Label prefHeight="111.0" prefWidth="222.0" style="-fx-background-color: #005A9B;" text="Nelson Pires - Product Owner and Frontend Engineer" translateX="15.0" translateY="15.0" wrapText="true">
+                  <Label prefHeight="111.0" prefWidth="117.0" style="-fx-background-color: #005A9B; -fx-text-fill: #FFFFFF;" text="Nelson Pires - Product Owner and Frontend Engineer" translateX="15.0" translateY="15.0" wrapText="true">
                      <padding>
                         <Insets left="10.0" />
                      </padding>
@@ -259,7 +259,7 @@
                         <String fx:value="card" />
                      </styleClass>
                   </Label>
-                  <ImageView fitHeight="113.0" fitWidth="100.0" pickOnBounds="true" preserveRatio="true" translateX="15.0" translateY="15.0">
+                  <ImageView fitHeight="111.0" fitWidth="95.0" pickOnBounds="true" translateX="15.0" translateY="15.0">
                      <image>
                         <Image url="@../../../static/images/team_members/Nelson%20Soft%20Eng.png" />
                      </image>
@@ -271,7 +271,7 @@
             </HBox>
             <HBox alignment="TOP_CENTER" GridPane.columnIndex="1" GridPane.rowIndex="3">
                <children>
-                  <Label prefHeight="111.0" prefWidth="225.0" style="-fx-background-color: #005A9B;" text="Vishnu Dendukuri - Backend Engineer" translateX="15.0" translateY="15.0" wrapText="true">
+                  <Label prefHeight="111.0" prefWidth="117.0" style="-fx-background-color: #005A9B; -fx-text-fill: #FFFFFF;" text="Vishnu Dendukuri - Backend Engineer" translateX="15.0" translateY="15.0" wrapText="true">
                      <padding>
                         <Insets left="10.0" />
                      </padding>
@@ -284,7 +284,7 @@
                         <String fx:value="card" />
                      </styleClass>
                   </Label>
-                  <ImageView fitHeight="113.0" fitWidth="159.0" pickOnBounds="true" preserveRatio="true" translateX="15.0" translateY="15.0">
+                  <ImageView fitHeight="111.0" fitWidth="95.0" pickOnBounds="true" translateX="15.0" translateY="15.0">
                      <image>
                         <Image url="@../../../static/images/team_members/Vishnu%20Soft%20Eng.png" />
                      </image>
