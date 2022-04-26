@@ -47,6 +47,12 @@ public class ServiceRequestNode extends MapNode<ServiceRequest> {
             controller.setType(requestType);
             controller.setup(this);
 
+            // Set On Click Functionality
+            controller.onClickEvent = event -> {
+                ((FloorMapViewController) manager.getMapViewController()).getLocationInfoController().setCurrentTab(2);
+                ((FloorMapViewController) manager.getMapViewController()).getLocationInfoController().setServiceRequestFilter(requestType);
+            };
+
             tokens[requestType.ordinal()] = controller;
         }
 
