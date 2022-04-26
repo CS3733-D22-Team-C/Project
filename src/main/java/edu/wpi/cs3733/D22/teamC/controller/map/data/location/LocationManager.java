@@ -129,15 +129,19 @@ public class LocationManager extends ManagerMapNodes<Location> {
                 renderLocations = all.stream().filter(location -> location.getFloor().equals(floor.getID())).collect(Collectors.toList());
             }
 
-            // Node Type Filtering
-            renderLocations = renderLocations.stream().filter(location -> filteredNodeTypes[location.getNodeType().ordinal()]).collect(Collectors.toList());
-
-            renderLocations.forEach(location -> nodes.add(new LocationMapNode(this, location)));
+            renderLocations.forEach(location -> {
+                LocationMapNode mapNode = new LocationMapNode(this, location);
+                mapNode.setVisible(filteredNodeTypes[location.getNodeType().ordinal()]);
+                nodes.add(mapNode);
+            });
         }
 
         public void changeFilters(boolean[] filteredNodeTypes) {
             this.filteredNodeTypes = filteredNodeTypes;
-            renderFloor(getMapViewController().getFloorManager().getCurrent());
+
+            for (MapNode node : nodes) {
+                ((LocationMapNode) node).setVisible(filteredNodeTypes[node.getLocation().getNodeType().ordinal()]);
+            }
         }
     //#endregion
 
