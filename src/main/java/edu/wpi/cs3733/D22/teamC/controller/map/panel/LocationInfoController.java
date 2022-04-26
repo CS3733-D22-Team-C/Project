@@ -109,7 +109,6 @@ public class LocationInfoController implements Initializable {
         patientTableDisplay = new PatientTableDisplay(patientsTable);
 
         setRowInteraction();
-        setSRRowInteraction();
     }
 
     /**
@@ -150,13 +149,40 @@ public class LocationInfoController implements Initializable {
     }
 
     protected void setRowInteraction() {
-
+        // Medical Equipment Table
         medicalEquipmentTable.setRowFactory(tv -> {
             TreeTableRow<MedicalEquipmentTableDisplay.MedicalEquipmentTableEntry> row = new TreeTableRow<MedicalEquipmentTableDisplay.MedicalEquipmentTableEntry>();
 
             row.setOnMouseClicked(event -> {
                 if (!row.isEmpty() && event.getButton() == MouseButton.PRIMARY) {
                     setActiveMedicalEquipment(((MedicalEquipment) row.getItem().object));
+                }
+            });
+
+            return row ;
+        });
+
+        // Service Request Table
+        serviceRequestTable.setRowFactory(tv -> {
+            TreeTableRow<ServiceRequestTableDisplay.ServiceRequestTableEntry> row = new TreeTableRow<ServiceRequestTableDisplay.ServiceRequestTableEntry>();
+
+            row.setOnMouseClicked(event -> {
+                if (!row.isEmpty() && event.getButton() == MouseButton.PRIMARY) {
+                    setActiveServiceRequest(((ServiceRequest) row.getItem().object));
+                }
+                if (event.getButton().equals(MouseButton.PRIMARY) && !row.isEmpty() && event.getClickCount() == 2) {
+                    if (activeServiceRequest.getStatus() != Done) {
+                        // Double Click shortcut to service request edit/resolve page
+                        new SRShortcutSelectorWindow((foo)->{
+                            ServiceRequest query = new ServiceRequestDAO().getByID(activeServiceRequest.getID());
+                            if (query.getLocation().equals(mapViewController.getLocationManager().getCurrent().getID())) {
+                                serviceRequestTableDisplay.updateObject(query);
+                            } else {
+                                serviceRequestTableDisplay.removeObject(query);
+                            }
+                            resolveSR.setDisable(query.getStatus() != Processing);
+                        }).setup(activeServiceRequest);
+                    }
                 }
             });
 
@@ -175,6 +201,7 @@ public class LocationInfoController implements Initializable {
         updateStatus.setDisable(activeMedicalEquipment == null || statusComboBox.getValue() == null);
         updateLocation.setDisable(activeMedicalEquipment == null);
         setLocationClickCapture(false);
+        if (medicalEquipment == null) medicalEquipmentTable.getSelectionModel().clearSelection();
     }
 
     private void updateMedicalEquipment() {
@@ -209,54 +236,20 @@ public class LocationInfoController implements Initializable {
         }
     }
 
-    protected void setSRRowInteraction() {
-        serviceRequestTable.setRowFactory(tv -> {
-            TreeTableRow<ServiceRequestTableDisplay.ServiceRequestTableEntry> row = new TreeTableRow<ServiceRequestTableDisplay.ServiceRequestTableEntry>();
-
-            row.setOnMouseClicked(event -> {
-                if (!row.isEmpty() && event.getButton() == MouseButton.PRIMARY) {
-                    setActiveServiceRequest(((ServiceRequest) row.getItem().object));
-                }
-                if (event.getButton().equals(MouseButton.PRIMARY) && !row.isEmpty() && event.getClickCount() == 2) {
-                    // Double Click shortcut to service request edit/resolve page
-                    new SRShortcutSelectorWindow((foo)->{
-                        ServiceRequest query = new ServiceRequestDAO().getByID(activeServiceRequest.getID());
-                        if (query.getLocation().equals(mapViewController.getLocationManager().getCurrent().getID())) {
-                            serviceRequestTableDisplay.updateObject(query);
-                        } else {
-                            serviceRequestTableDisplay.removeObject(query);
-                        }
-
-                    }).setup(activeServiceRequest);
-                }
-            });
-
-            return row ;
-        });
-    }
-
     private void updateServiceRequest() {
         // Update Service Request DB
         new ServiceRequestDAO().update(activeServiceRequest);
         setActiveServiceRequest(null);
 
         populateServiceRequestTable(mapViewController.getLocationManager().getCurrent());
-
-//        // Update Service Request Node Counter
-//        MedicalEquipmentManager medicalEquipmentManager = mapViewController.getMedicalEquipmentManager();
-//        if (medicalEquipmentManager != null) {
-//            MedicalEquipmentNode medicalEquipmentNode = (MedicalEquipmentNode) medicalEquipmentManager.getByLocation(mapViewController.getLocationManager().getCurrent());
-//            if(medicalEquipmentNode != null){
-//                medicalEquipmentNode.updateValues();
-//            }
-//        }
     }
 
     private void setActiveServiceRequest(ServiceRequest serviceRequest) {
         activeServiceRequest = serviceRequest;
-        resolveSR.setDisable(activeServiceRequest == null);
-        updateLocationSR.setDisable(activeServiceRequest == null);
+        resolveSR.setDisable(!(activeServiceRequest != null && activeServiceRequest.getStatus() == Processing));
+        updateLocationSR.setDisable(activeServiceRequest == null || activeServiceRequest.getStatus() == Done);
         setSRLocationClickCapture(false);
+        if (serviceRequest == null) serviceRequestTable.getSelectionModel().clearSelection();
     }
 
     private void setSRLocationClickCapture(boolean clickCaptureSR) {
@@ -425,16 +418,12 @@ public class LocationInfoController implements Initializable {
 
         @FXML
         public void onResolveSRButtonPressed(ActionEvent actionEvent){
-            if (activeServiceRequest != null && activeServiceRequest.getStatus() == Processing) {
-                activeServiceRequest.setStatus(Done);
+            activeServiceRequest.setStatus(Done);
 
-                // Update Service Request Table
-                serviceRequestTableDisplay.updateObject(activeServiceRequest);
+            // Update Service Request Table
+            serviceRequestTableDisplay.updateObject(activeServiceRequest);
 
-                updateServiceRequest();
-            } else {
-
-            }
+            updateServiceRequest();
         }
 
         @FXML
