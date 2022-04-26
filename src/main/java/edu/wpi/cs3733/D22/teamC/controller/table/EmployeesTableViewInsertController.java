@@ -141,7 +141,6 @@ public class EmployeesTableViewInsertController extends InsertTableViewControlle
         if (checkFieldsFilled()){
             if (parentController.currentObj == null) addObject();
             else updateObject();
-            parentController.setCurrentObj(null);
             validation.setErrorDecorationEnabled(false);
         }
     }

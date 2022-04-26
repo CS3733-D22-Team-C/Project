@@ -95,6 +95,7 @@ public class BaseTableViewController<T extends Object> implements Initializable,
 
         @FXML
         public void onAddButtonClicked(){
+            table.getSelectionModel().clearSelection();
             currentObj = null;
             insertController.setFields(null);
             table.getSelectionModel().clearSelection();

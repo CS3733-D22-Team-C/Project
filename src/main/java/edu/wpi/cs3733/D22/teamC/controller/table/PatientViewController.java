@@ -171,7 +171,6 @@ public class PatientViewController extends InsertTableViewController<Patient> im
         if (checkFieldsFilled()){
             if (parentController.currentObj == null) addObject();
             else updateObject();
-            parentController.setCurrentObj(null);
             validation.setErrorDecorationEnabled(false);
         }
     }

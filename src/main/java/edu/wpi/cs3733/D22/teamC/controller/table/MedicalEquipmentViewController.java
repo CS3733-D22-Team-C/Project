@@ -141,7 +141,6 @@ public class MedicalEquipmentViewController extends InsertTableViewController<Me
             if (checkFieldsFilled()) {
                 if (parentController.currentObj == null) addObject();
                 else updateObject();
-                parentController.setCurrentObj(null);
                 validation.setErrorDecorationEnabled(false);
             }
         }
