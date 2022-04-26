@@ -17,6 +17,8 @@ public abstract class SelectorWindow<T> {
     Consumer<T> returnConsumer;
     Stage stage;
 
+
+
     public SelectorWindow(Consumer<T> consumer) {
         this(consumer, App.instance.getActiveStage().getScene().getWindow());
 
@@ -26,21 +28,25 @@ public abstract class SelectorWindow<T> {
         App.View<SelectorWindow<T>> view = App.instance.loadView(getView(), this);
         Parent root = (Parent) view.getNode();
 
+
+
         // Set Window
         Scene scene = new Scene(root);
         Stage stage = new Stage();
         stage.setOnCloseRequest(event -> {
-            App.instance.setActiveStage(null);
-        });
-
+            if(App.instance.getActiveStage() == stage){App.instance.removeActiveStage(stage);
+        }});
         if (scene != null) scene.setRoot(root);
         else scene = new Scene(root);
         stage.setScene(scene);
         stage.initModality(Modality.WINDOW_MODAL);
         stage.initOwner(owner);
         stage.show();
+        stage.setHeight(700);
+        stage.setWidth(700);
 
-        App.instance.setActiveStage(stage);
+
+        App.instance.addActiveStage(stage);
 
         // Set Controller
         SelectorWindow<T> controller = view.getController();

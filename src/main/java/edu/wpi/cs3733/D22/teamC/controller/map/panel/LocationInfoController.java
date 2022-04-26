@@ -132,8 +132,10 @@ public class LocationInfoController implements Initializable {
         // Hide when inactive
         setEditable(false);
         setVisible(false);
+
         setActiveMedicalEquipment(null);
         setActiveServiceRequest(null);
+
     }
 
     /**
@@ -150,6 +152,7 @@ public class LocationInfoController implements Initializable {
     }
 
     protected void setRowInteraction() {
+
         medicalEquipmentTable.setRowFactory(tv -> {
             TreeTableRow<MedicalEquipmentTableDisplay.MedicalEquipmentTableEntry> row = new TreeTableRow<MedicalEquipmentTableDisplay.MedicalEquipmentTableEntry>();
 
@@ -179,6 +182,7 @@ public class LocationInfoController implements Initializable {
     private void updateMedicalEquipment() {
         // Update Medical Equipment DB
         new MedicalEquipmentDAO().update(activeMedicalEquipment);
+        setActiveMedicalEquipment(null);
 
         // Update Medical Equipment Node Counter
         MedicalEquipmentManager medicalEquipmentManager = mapViewController.getMedicalEquipmentManager();
@@ -230,6 +234,7 @@ public class LocationInfoController implements Initializable {
     private void updateServiceRequest() {
         // Update Service Request DB
         new ServiceRequestDAO().update(activeServiceRequest);
+        setActiveServiceRequest(null);
 
         populateServiceRequestTable(mapViewController.getLocationManager().getCurrent());
 
@@ -246,7 +251,7 @@ public class LocationInfoController implements Initializable {
     private void setActiveServiceRequest(ServiceRequest serviceRequest) {
         activeServiceRequest = serviceRequest;
         resolveSR.setDisable(activeServiceRequest == null);
-        resolveSR.setDisable(activeServiceRequest == null);
+        updateLocationSR.setDisable(activeServiceRequest == null);
         setSRLocationClickCapture(false);
     }
 
@@ -259,7 +264,7 @@ public class LocationInfoController implements Initializable {
                 // Update Medical Equipment Table
                 populateServiceRequestTable(mapViewController.getLocationManager().getCurrent());
 
-                setLocationClickCapture(false);
+                setSRLocationClickCapture(false);
             };
             updateLocationSR.setSelected(true);
         } else {
@@ -305,6 +310,7 @@ public class LocationInfoController implements Initializable {
         public void setLocation(Location location) {
             setVisible(location != null);
             setLocationClickCapture(false);
+            setSRLocationClickCapture(false);
 
             if (location == null) return;
 
@@ -330,6 +336,7 @@ public class LocationInfoController implements Initializable {
             revertButton.setDisable(location.equals(new LocationDAO().getByID(location.getID())));
 
             setActiveMedicalEquipment(null);
+            setActiveServiceRequest(null);
         }
 
         /**

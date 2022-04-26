@@ -24,6 +24,9 @@ import javafx.stage.Stage;
 import lombok.extern.slf4j.Slf4j;
 
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Stack;
 
 @Slf4j
 public class App extends Application {
@@ -75,7 +78,7 @@ public class App extends Application {
 
     // Variables
     private Stage stage;
-    private Stage activeStage;
+    private Stack<Stage> activeStages = new Stack<>();
     private Scene scene;
 
     @Override
@@ -90,6 +93,7 @@ public class App extends Application {
         instance = this;
         // Store window as stage
         stage = primaryStage;
+        activeStages.add(stage);
         stage.setFullScreen(true);
         setViewStatic(LOGIN_PATH);
         //setViewStatic(MAP_DASHBOARD_PATH);
@@ -209,12 +213,16 @@ public class App extends Application {
         return stage;
     }
 
-    public void setActiveStage(Stage activeStage) {
-        this.activeStage = activeStage;
+    public void addActiveStage(Stage activeStage) {
+        activeStages.add(activeStage);
+    }
+
+    public void removeActiveStage(Stage activeStage) {
+        activeStages.remove(activeStage);
     }
 
     public Stage getActiveStage() {
-        return (activeStage == null) ? stage : activeStage;
+        return activeStages.peek();
     }
 
     public Employee getUserAccount() {
