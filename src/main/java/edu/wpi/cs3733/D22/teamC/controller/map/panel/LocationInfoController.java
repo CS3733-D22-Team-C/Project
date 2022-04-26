@@ -175,12 +175,26 @@ public class LocationInfoController implements Initializable {
                         // Double Click shortcut to service request edit/resolve page
                         new SRShortcutSelectorWindow((foo)->{
                             ServiceRequest query = new ServiceRequestDAO().getByID(activeServiceRequest.getID());
-                            if (query.getLocation().equals(mapViewController.getLocationManager().getCurrent().getID())) {
+
+                            // Update Table
+                            Location currentLocation = mapViewController.getLocationManager().getCurrent();
+
+                            if (query.getLocation().equals(currentLocation.getID())) {
                                 serviceRequestTableDisplay.updateObject(query);
                             } else {
                                 serviceRequestTableDisplay.removeObject(query);
+                                setActiveServiceRequest(null);
                             }
+
+                            // Update Buttons
                             resolveSR.setDisable(query.getStatus() != Processing);
+
+                            // Counters Updating
+                            mapViewController.getServiceRequestManager().updateCounter(currentLocation);
+                            mapViewController.getServiceRequestManager().updateCounter(mapViewController.getLocationManager().getByID(query.getLocation()));
+
+                            // Tokens updating
+                            mapViewController.getServiceRequestManager().focusLocation(currentLocation);
                         }).setup(activeServiceRequest);
                     }
                 }
@@ -189,8 +203,6 @@ public class LocationInfoController implements Initializable {
             return row ;
         });
     }
-
-
 
     /**
      * Sets the currently active Service Request (will have its information passed to edit/resolve pages).
