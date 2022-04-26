@@ -52,7 +52,7 @@ public class ServiceRequestDAO extends DAO<ServiceRequest> {
      */
     public List<ServiceRequest> getAllSRByLocation(String locationID) {
         return HibernateManager.filterQuery("select q from " + classType().getName() +
-                " q where q.locationID = '" + locationID + "'");
+                " q where q.location = '" + locationID + "'");
     }
 
     public List<ServiceRequest> getAllSRByAssignee(String assigneeID) {

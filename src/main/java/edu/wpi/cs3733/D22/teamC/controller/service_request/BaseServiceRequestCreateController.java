@@ -228,7 +228,7 @@ public class BaseServiceRequestCreateController<T extends ServiceRequest> implem
         T serviceRequest = insertController.createServiceRequest();
 
         serviceRequest.setAssignee(employeeComboBox.getValue());
-        serviceRequest.setLocation(locationID.getValue().getID());
+        serviceRequest.setLocation(locationID.getValue());
         serviceRequest.setDescription(description.getText());
         serviceRequest.setPriority(ServiceRequest.Priority.valueOf(priority.getValue()));
 

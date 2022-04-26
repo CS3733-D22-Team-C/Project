@@ -278,7 +278,7 @@ public class MedicalEquipmentManager extends ManagerMapNodes<MedicalEquipment> {
             serviceRequest.setEquipmentType(medicalEquipment.getEquipmentType());
             serviceRequest.setEquipment(medicalEquipment);
             serviceRequest.setEquipmentStatus(MedicalEquipmentSR.EquipmentStatus.Available);
-            serviceRequest.setLocation(defaultLocation == null ? "" : defaultLocation.getID());
+            serviceRequest.setLocation(defaultLocation);
 
             MedicalEquipmentSRDAO dao = new MedicalEquipmentSRDAO();
             dao.insert(serviceRequest);
