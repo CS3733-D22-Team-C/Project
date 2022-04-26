@@ -201,7 +201,7 @@ public class LocationInfoController implements Initializable {
                             // Update Table
                             Location currentLocation = mapViewController.getLocationManager().getCurrent();
 
-                            if (query.getLocation().equals(currentLocation.getID())) {
+                            if (query.getLocation().getID().equals(currentLocation.getID())) {
                                 serviceRequestTableDisplay.updateObject(query);
                             } else {
                                 serviceRequestTableDisplay.removeObject(query);
@@ -213,7 +213,7 @@ public class LocationInfoController implements Initializable {
 
                             // Counters Updating
                             mapViewController.getServiceRequestManager().updateCounter(currentLocation);
-                            mapViewController.getServiceRequestManager().updateCounter(mapViewController.getLocationManager().getByID(query.getLocation()));
+                            mapViewController.getServiceRequestManager().updateCounter(mapViewController.getLocationManager().getByID(query.getLocation().getID()));
 
                             // Tokens updating
                             mapViewController.getServiceRequestManager().focusLocation(currentLocation);
@@ -297,7 +297,7 @@ public class LocationInfoController implements Initializable {
     private void setSRLocationClickCapture(boolean clickCaptureSR) {
         if (clickCaptureSR) {
             mapViewController.getLocationManager().onClickCapture = location -> {
-                activeServiceRequest.setLocation(location.getID());
+                activeServiceRequest.setLocation(location);
                 updateServiceRequest();
 
                 Location currentLocation = mapViewController.getLocationManager().getCurrent();

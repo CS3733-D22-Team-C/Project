@@ -36,7 +36,7 @@ public class ServiceRequestTableDisplay<T extends ServiceRequest> extends TableD
             number.setValue(object.toString());
             type.setValue(object.getRequestType().toString());
             assigneeID.setValue(object.getAssignee() == null ? "" : object.getAssignee().getLastName() + ", " + object.getAssignee().getFirstName());
-            location.setValue(object.getLocation().equals("") ? "" : new LocationDAO().getByID(object.getLocation()).getShortName());
+            location.setValue(object.getLocation().equals("") ? "" : object.getLocation().getShortName());
             status.setValue(object.getStatus().toString());
             priority.setValue(object.getPriority().toString());
             createTime.setValue(object.getCreationTimestamp().toString());
