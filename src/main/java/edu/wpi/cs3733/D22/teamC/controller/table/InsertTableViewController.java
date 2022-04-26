@@ -3,6 +3,7 @@ package edu.wpi.cs3733.D22.teamC.controller.table;
 import com.jfoenix.controls.JFXTreeTableView;
 import edu.wpi.cs3733.D22.teamC.entity.generic.DAO;
 import edu.wpi.cs3733.D22.teamC.entity.generic.IDEntity;
+import edu.wpi.cs3733.D22.teamC.models.builders.NotificationBuilder;
 import edu.wpi.cs3733.D22.teamC.models.generic.TableDisplay;
 
 public abstract class InsertTableViewController<T extends IDEntity> {
@@ -20,6 +21,8 @@ public abstract class InsertTableViewController<T extends IDEntity> {
         public abstract T createObject();
         public abstract TableDisplay<T> createTableDisplay(JFXTreeTableView table);
         public abstract DAO<T> createDAO();
+        public abstract String getObjectName();
+
     //#endregion
 
     //#region DB Operations
@@ -34,6 +37,10 @@ public abstract class InsertTableViewController<T extends IDEntity> {
 
             // Add to Table
             parentController.tableDisplay.addObject(object);
+
+            // Push Notification
+            String notification = "New " + getObjectName() + " " + object.toString() + " has been created.";
+            NotificationBuilder.createNotification(getObjectName() + " Created", notification);
         }
 
         public void deleteObject() {
@@ -46,6 +53,10 @@ public abstract class InsertTableViewController<T extends IDEntity> {
 
             // Remove from Table
             parentController.tableDisplay.removeObject(object);
+
+            //Push Notification
+            String notification = getObjectName() + " " + object.toString() + " has been deleted.";
+            NotificationBuilder.createNotification(getObjectName() + " Deleted", notification);
         }
 
         public void updateObject() {
@@ -59,6 +70,10 @@ public abstract class InsertTableViewController<T extends IDEntity> {
 
             // Update on Table
             parentController.tableDisplay.updateObject(object);
+
+            //Push Notification
+            String notification = getObjectName() + " " + object.toString() + " has been updated.";
+            NotificationBuilder.createNotification(getObjectName() + " Updated", notification);
         }
     //#endregion
 
@@ -76,4 +91,5 @@ public abstract class InsertTableViewController<T extends IDEntity> {
          */
         public abstract void setFields(T object);
     //#endregion
+
 }

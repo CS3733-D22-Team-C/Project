@@ -55,7 +55,7 @@ public class EquipmentTableDisplay extends TableDisplay<BaseMapSideViewControlle
                 table,
                 "",
                 bedContent,
-                1f * Integer.MAX_VALUE * 25.0,
+                1f * Integer.MAX_VALUE * 31.0,
                 (EquipmentTableEntry entry) -> {return entry.numOfBeds;}
         );
 
@@ -63,7 +63,7 @@ public class EquipmentTableDisplay extends TableDisplay<BaseMapSideViewControlle
                 table,
                 "",
                 reclinerContent,
-                1f * Integer.MAX_VALUE * 25.0,
+                1f * Integer.MAX_VALUE * 23.0,
                 (EquipmentTableEntry entry) -> {return entry.numOfRecliners;}
         );
 
@@ -71,7 +71,7 @@ public class EquipmentTableDisplay extends TableDisplay<BaseMapSideViewControlle
                 table,
                 "",
                 xRayContent,
-                1f * Integer.MAX_VALUE * 25.0,
+                1f * Integer.MAX_VALUE * 23.0,
                 (EquipmentTableEntry entry) -> {return entry.numOfXRays;}
         );
 
@@ -79,7 +79,7 @@ public class EquipmentTableDisplay extends TableDisplay<BaseMapSideViewControlle
                 table,
                 "",
                 pumpContent,
-                1f * Integer.MAX_VALUE * 25.0,
+                1f * Integer.MAX_VALUE * 23.0,
                 (EquipmentTableEntry entry) -> {return entry.numOfPumps;}
         );
     }

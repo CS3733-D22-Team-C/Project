@@ -1,0 +1,36 @@
+<HEADER>
+frames 6
+width 6
+height 3
+color red
+slowdown 4
+</HEADER>
+<BODY>
+-&) gK
+.-J*=-
+.j |\_
+end
+ '\ ?.
+.j=*-.
+-'l L-
+end
+ -. > 
+.j *-.
+  'l' 
+end
+  -  >
+ .-*- 
+   ' '
+end
+  . . 
+ .-*. 
+   '  
+end
+      
+   *  
+      
+end
+</BODY>
+<FOOTER>
+version 1
+</FOOTER>

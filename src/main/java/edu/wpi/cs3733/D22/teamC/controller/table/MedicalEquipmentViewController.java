@@ -6,6 +6,7 @@ import edu.wpi.cs3733.D22.teamC.entity.location.Location;
 import edu.wpi.cs3733.D22.teamC.entity.location.LocationDAO;
 import edu.wpi.cs3733.D22.teamC.entity.medical_equipment.MedicalEquipment;
 import edu.wpi.cs3733.D22.teamC.entity.medical_equipment.MedicalEquipmentDAO;
+import edu.wpi.cs3733.D22.teamC.models.builders.NotificationBuilder;
 import edu.wpi.cs3733.D22.teamC.models.generic.TableDisplay;
 import edu.wpi.cs3733.D22.teamC.models.location.MapSelectorWindow;
 import edu.wpi.cs3733.D22.teamC.models.medical_equipment.MedicalEquipmentTableDisplay;
@@ -15,6 +16,8 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
+import org.controlsfx.validation.ValidationSupport;
+import org.controlsfx.validation.Validator;
 
 import java.net.URL;
 import java.util.List;
@@ -33,14 +36,22 @@ public class MedicalEquipmentViewController extends InsertTableViewController<Me
     @FXML JFXButton mapViewButton;
 
     Location location;
+    private ValidationSupport validation;
 
     public void initialize(URL location, ResourceBundle resources) {
         title.setText("Add Equipment");
+        locationID.setEditable(false);
 
         //make a list of roles from the enum and put it into the combo box
         typeComboBox.getItems().setAll(MedicalEquipment.EquipmentType.values());
         statusComboBox.getItems().setAll(MedicalEquipment.EquipmentStatus.values());
-        confirmButton.setDisable(true);
+
+        validation = new ValidationSupport();
+        validation.registerValidator(locationID, Validator.createEmptyValidator("location required"));
+        validation.registerValidator(typeComboBox, Validator.createEmptyValidator("type required"));
+        validation.registerValidator(number, Validator.createEmptyValidator("number required"));
+        validation.registerValidator(statusComboBox, Validator.createEmptyValidator("status required"));
+        validation.setErrorDecorationEnabled(false);
     }
 
     //#region Field Interaction
@@ -63,7 +74,7 @@ public class MedicalEquipmentViewController extends InsertTableViewController<Me
      * @param object The (nullable) object to set field values from.
      */
     public void setFields(MedicalEquipment object) {
-        location = new LocationDAO().getByID(object.getLocationID());
+        location = (object == null)? null : new LocationDAO().getByID(object.getLocationID());
 
         title.setText((object == null) ? "Add Equipment" : "Edit Equipment");
         locationID.setText((object == null) ? "" : location.getShortName());
@@ -71,13 +82,13 @@ public class MedicalEquipmentViewController extends InsertTableViewController<Me
         number.setText(String.valueOf((object == null) ? "" : object.getTypeNumber()));
         statusComboBox.setValue((object == null) ? null : object.getStatus());
 
-        confirmButton.setDisable(true);
     }
     //#endregion
 
     public boolean checkFieldsFilled() {
-        if (locationID.getText().equals("")) return false;
 
+        validation.setErrorDecorationEnabled(true);
+        if (locationID.getText().equals("")) return false;
         return !(typeComboBox.getValue()==null
                 || number.getText().equals("")
                 || statusComboBox.getValue()==null);
@@ -115,21 +126,36 @@ public class MedicalEquipmentViewController extends InsertTableViewController<Me
 
     public MedicalEquipmentDAO createDAO() {
         return new MedicalEquipmentDAO();
-    };
+    }
+
+    @Override
+    public String getObjectName() {
+        return "Medical Equipment";
+    }
+
     //#endregion
 
     //#region FXML Events
         @FXML
         void clickConfirm(ActionEvent event) {
-            if (parentController.currentObj == null) addObject();
-            else updateObject();
-            parentController.setCurrentObj(null);
+            if (checkFieldsFilled()) {
+                if (parentController.currentObj == null){
+                    addObject();
+                    parentController.setCurrentObj(null);
+                    parentController.setRemoveDisable(true);
+                }
+                else{
+                    updateObject();
+                }
+                validation.setErrorDecorationEnabled(false);
+            }
         }
 
         @FXML
         void onFieldUpdated() {
-            confirmButton.setDisable(!checkFieldsFilled());
-    }
+            if (!number.getText().matches("\\d*"))
+                number.setText("");
+        }
 
         @FXML
         void goToMapView() {

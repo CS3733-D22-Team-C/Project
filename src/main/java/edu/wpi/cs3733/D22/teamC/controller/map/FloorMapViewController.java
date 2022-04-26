@@ -4,6 +4,8 @@ import edu.wpi.cs3733.D22.teamC.App;
 import edu.wpi.cs3733.D22.teamC.controller.map.data.floor.FloorManager;
 import edu.wpi.cs3733.D22.teamC.controller.map.data.location.LocationManager;
 import edu.wpi.cs3733.D22.teamC.controller.map.data.medical_equipment.MedicalEquipmentManager;
+import edu.wpi.cs3733.D22.teamC.controller.map.data.patient.PatientManager;
+import edu.wpi.cs3733.D22.teamC.controller.map.data.service_request.ServiceRequestManager;
 import edu.wpi.cs3733.D22.teamC.controller.map.panel.LocationInfoController;
 import edu.wpi.cs3733.D22.teamC.controller.map.panel.MapControlsController;
 import javafx.fxml.FXML;
@@ -27,7 +29,10 @@ public class FloorMapViewController extends MapViewController {
     // References
     private LocationInfoController locationInfoController;
     private MapControlsController mapControlsController;
+
     private MedicalEquipmentManager medicalEquipmentManager;
+    private ServiceRequestManager serviceRequestManager;
+    private PatientManager patientManager;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
@@ -66,6 +71,14 @@ public class FloorMapViewController extends MapViewController {
     //#endregion
 
     //#region Interfacing Getters/Setters
+        public MapControlsController getMapControlsController() {
+            return mapControlsController;
+        }
+
+        public LocationInfoController getLocationInfoController() {
+            return locationInfoController;
+        }
+
         public MedicalEquipmentManager getMedicalEquipmentManager() {
             return medicalEquipmentManager;
         }
@@ -77,6 +90,32 @@ public class FloorMapViewController extends MapViewController {
             } else {
                 if (medicalEquipmentManager != null) medicalEquipmentManager.shutdown();
                 medicalEquipmentManager = null;
+            }
+        }
+
+        public ServiceRequestManager getServiceRequestManager() {
+            return serviceRequestManager;
+        }
+
+        public void activateServiceRequestManager(boolean activate) {
+            if (activate) {
+                serviceRequestManager = new ServiceRequestManager(this);
+            } else {
+                if (serviceRequestManager != null) serviceRequestManager.shutdown();
+                serviceRequestManager = null;
+            }
+        }
+
+        public PatientManager getPatientManager() {
+            return patientManager;
+        }
+
+        public void activatePatientManager(boolean activate) {
+            if (activate) {
+                patientManager = new PatientManager(this);
+            } else {
+                if (patientManager != null) patientManager.shutdown();
+                patientManager = null;
             }
         }
     //#endregion

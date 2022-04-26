@@ -15,6 +15,8 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
+import org.controlsfx.validation.ValidationSupport;
+import org.controlsfx.validation.Validator;
 
 import java.net.URL;
 import java.util.List;
@@ -34,6 +36,10 @@ public class LocationTableViewInsertController extends InsertTableViewController
     @FXML private TextField yField;
 
     @FXML Label title;
+
+    private ValidationSupport validation;
+
+
 
     // References
     List<Floor> floors;
@@ -56,7 +62,16 @@ public class LocationTableViewInsertController extends InsertTableViewController
         ComponentWrapper.setIDFieldToNumeric(xField);
         ComponentWrapper.setIDFieldToNumeric(yField);
 
-        confirmButton.setDisable(true);
+        validation = new ValidationSupport();
+        validation.registerValidator(longNameField, Validator.createEmptyValidator("long name required"));
+        validation.registerValidator(shortNameField, Validator.createEmptyValidator("short name required"));
+        validation.registerValidator(nodeTypeComboBox, Validator.createEmptyValidator("location required"));
+        validation.registerValidator(buildingField, Validator.createEmptyValidator("building required"));
+        validation.registerValidator(floorComboBox, Validator.createEmptyValidator("floor required"));
+        validation.registerValidator(xField, Validator.createEmptyValidator("x pos required"));
+        validation.registerValidator(yField, Validator.createEmptyValidator("y pos required"));
+        validation.setErrorDecorationEnabled(false);
+
     }
 
     //#region Field Interaction
@@ -91,11 +106,11 @@ public class LocationTableViewInsertController extends InsertTableViewController
             xField.setText((object == null) ? "" : Integer.toString(object.getX()));
             yField.setText((object == null) ? "" : Integer.toString(object.getY()));
 
-            confirmButton.setDisable(true);
         }
     //#endregion
 
     public boolean checkFieldsFilled() {
+        validation.setErrorDecorationEnabled(true);
         return !(longNameField.getText().equals("")
                 || shortNameField.getText().equals("")
                 || nodeTypeComboBox.getValue() == null
@@ -125,20 +140,35 @@ public class LocationTableViewInsertController extends InsertTableViewController
 
         public LocationDAO createDAO() {
             return new LocationDAO();
-        };
+        }
+
+    @Override
+    public String getObjectName() {
+        return "Location";
+    }
+
     //#endregion
 
     //#region FXML Events
         @FXML
         void clickConfirm(ActionEvent event) {
-            if (parentController.currentObj == null) addObject();
-            else updateObject();
-            parentController.setCurrentObj(null);
+            if (checkFieldsFilled()){
+                if (parentController.currentObj == null){
+                    addObject();
+                    parentController.setCurrentObj(null);
+                    parentController.setRemoveDisable(true);
+                }
+                else updateObject();
+                validation.setErrorDecorationEnabled(false);
+            }
         }
 
         @FXML
         void onFieldUpdated() {
-            confirmButton.setDisable(!checkFieldsFilled());
+            if (!xField.getText().matches("\\d*"))
+                xField.setText("");
+            if (!yField.getText().matches("\\d*"))
+                yField.setText("");
         }
     //#endregion
 }

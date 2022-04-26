@@ -1,5 +1,6 @@
 package edu.wpi.cs3733.D22.teamC.controller.table;
 
+import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXTreeTableView;
 import edu.wpi.cs3733.D22.teamC.App;
 import edu.wpi.cs3733.D22.teamC.controller.SkeletonController;
@@ -18,6 +19,7 @@ public class BaseTableViewController<T extends IDEntity> implements Initializabl
     // FXML
     @FXML private VBox insertBox;
     @FXML private JFXTreeTableView table;
+    @FXML private JFXButton remove;
 
     // Variables
     TableDisplay<T> tableDisplay;
@@ -31,6 +33,8 @@ public class BaseTableViewController<T extends IDEntity> implements Initializabl
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         rowInteraction();
+        System.out.println("HERE");
+        remove.setDisable(true);
     }
 
     public void setUp(String insertPath){
@@ -69,12 +73,15 @@ public class BaseTableViewController<T extends IDEntity> implements Initializabl
     public void setCurrentObj(T object) {
         currentObj = object;
         insertController.setFields(object);
+        remove.setDisable(false);
     }
 
     //#region FXML Events
         @FXML
         public void onRemoveButtonClicked() {
             if (currentObj != null) {
+                remove.setDisable(true);
+                table.getSelectionModel().clearSelection();
                 // Delete from DB
                 insertController.deleteObject();
 
@@ -83,11 +90,13 @@ public class BaseTableViewController<T extends IDEntity> implements Initializabl
 
                 // Delete from Insert
                 insertController.setFields(null);
+                table.getSelectionModel().clearSelection();
             }
         }
 
         @FXML
         public void onAddButtonClicked(){
+            table.getSelectionModel().clearSelection();
             currentObj = null;
             insertController.setFields(null);
             table.getSelectionModel().clearSelection();
@@ -97,5 +106,7 @@ public class BaseTableViewController<T extends IDEntity> implements Initializabl
         public void onBackButtonClicked() {
             App.instance.setView(App.DATABASE_PAGE_PATH);
         }
+
+        public void setRemoveDisable(boolean disabled) {remove.setDisable(disabled);}
     //#endregion
 }

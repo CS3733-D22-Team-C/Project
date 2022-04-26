@@ -38,7 +38,9 @@ public class MedicalEquipmentSRInsertResolveController extends InsertServiceRequ
         equipment.setDisable(!isEditMode);
         ComponentWrapper.setValueSilently(equipmentType, serviceRequest.getEquipmentType());
         createEquipIDs();
-        ComponentWrapper.setValueSilently(equipment, new MedicalEquipmentDAO().getByID(serviceRequest.getEquipment().getID()));
+        if (serviceRequest.getEquipment() != null){
+            ComponentWrapper.setValueSilently(equipment, new MedicalEquipmentDAO().getByID(serviceRequest.getEquipment().getID()));
+        }
     }
 
     public boolean requiredFieldsPresent(){
