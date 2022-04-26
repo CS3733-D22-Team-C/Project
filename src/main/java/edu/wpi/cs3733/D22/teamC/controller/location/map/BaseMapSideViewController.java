@@ -243,15 +243,16 @@ public class BaseMapSideViewController implements Initializable {
     public void onConfirmClicked(ActionEvent actionEvent) {
         if(selectedFloor == null){
             if(!requiredFieldsPresent()) return;
+            // adding new floor
             selectedFloor = new Floor();
             selectedFloor.setLongName(longName.getText());
             selectedFloor.setDescription(description.getText());
             selectedFloor.setShortName(shortName.getText());
             selectedFloor.setImage(bFile);
             selectedFloor.setImageSrc(imagePath);
-            System.out.println("Trying to set order");
-            selectedFloor.setOrder(Integer.parseInt(order.getText()));
-            System.out.println("Set order");
+
+            selectedFloor.setOrder(Integer.parseInt(order.getText())+1);
+
 
             FloorDAO floorDAO = new FloorDAO();
 
@@ -461,6 +462,7 @@ public class BaseMapSideViewController implements Initializable {
         floorImage.fitHeightProperty().bind(imageBox.heightProperty());
         floorImage.setImage(image);
 
+        //does not work fucking bitch
         InfoOverlay overlay = new InfoOverlay(floorImage, selectedFloor.getDescription());
         overlay.setContent(floorImage);
 
