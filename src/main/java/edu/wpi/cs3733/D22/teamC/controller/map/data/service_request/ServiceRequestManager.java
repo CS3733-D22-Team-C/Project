@@ -138,6 +138,7 @@ public class ServiceRequestManager extends ManagerMapNodes<ServiceRequest> {
                     mapViewController.getLocationManager().unfocus();
                     ((LocationMapNode) mapViewController.getLocationManager().getByLocation(mapCounter.getLocation())).onMouseClickedNode(event);
                     ((FloorMapViewController) mapViewController).getLocationInfoController().setCurrentTab(2);
+                    locationMapNode.getNode().toFront();
                 };
             }
 
