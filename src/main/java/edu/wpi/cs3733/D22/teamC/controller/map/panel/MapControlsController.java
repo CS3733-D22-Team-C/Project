@@ -3,6 +3,7 @@ package edu.wpi.cs3733.D22.teamC.controller.map.panel;
 import edu.wpi.cs3733.D22.teamC.App;
 import edu.wpi.cs3733.D22.teamC.controller.map.FloorMapViewController;
 import edu.wpi.cs3733.D22.teamC.controller.map.data.medical_equipment.MedicalEquipmentManager;
+import edu.wpi.cs3733.D22.teamC.controller.map.data.patient.PatientManager;
 import edu.wpi.cs3733.D22.teamC.controller.map.data.service_request.ServiceRequestManager;
 import edu.wpi.cs3733.D22.teamC.entity.floor.Floor;
 import edu.wpi.cs3733.D22.teamC.models.utils.ComponentWrapper;
@@ -26,6 +27,7 @@ public class MapControlsController implements Initializable {
     @FXML private Button exitButton;
     @FXML private MFXToggleButton medicalEquipmentToggle;
     @FXML private MFXToggleButton serviceRequestToggle;
+    @FXML private MFXToggleButton patientToggle;
     @FXML private MFXCheckbox counterCheckbox;
     @FXML private MFXCheckbox tokenCheckbox;
 
@@ -52,6 +54,9 @@ public class MapControlsController implements Initializable {
 
         serviceRequestToggle.setSelected(false);
         serviceRequestToggle.setOnAction(this::onServiceRequestToggle);
+
+        patientToggle.setSelected(false);
+        patientToggle.setOnAction(this::onPatientToggle);
     }
 
     //#region External Events
@@ -91,6 +96,11 @@ public class MapControlsController implements Initializable {
         }
 
         @FXML
+        void onPatientToggle(ActionEvent event) {
+            mapViewController.activatePatientManager(patientToggle.isSelected());
+        }
+
+        @FXML
         void onSaveButtonPressed(ActionEvent event) {
             mapViewController.getLocationManager().saveChanges();
             saveButton.setDisable(true);
@@ -111,6 +121,11 @@ public class MapControlsController implements Initializable {
             MedicalEquipmentManager medicalEquipmentManager = mapViewController.getMedicalEquipmentManager();
             if (medicalEquipmentManager != null) {
                 medicalEquipmentManager.showCounters(counterCheckbox.isSelected());
+            }
+
+            PatientManager patientManager = mapViewController.getPatientManager();
+            if (patientManager != null) {
+                patientManager.showCounters(counterCheckbox.isSelected());
             }
         }
 

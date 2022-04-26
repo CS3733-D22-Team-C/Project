@@ -4,6 +4,7 @@ import edu.wpi.cs3733.D22.teamC.App;
 import edu.wpi.cs3733.D22.teamC.controller.map.data.floor.FloorManager;
 import edu.wpi.cs3733.D22.teamC.controller.map.data.location.LocationManager;
 import edu.wpi.cs3733.D22.teamC.controller.map.data.medical_equipment.MedicalEquipmentManager;
+import edu.wpi.cs3733.D22.teamC.controller.map.data.patient.PatientManager;
 import edu.wpi.cs3733.D22.teamC.controller.map.data.service_request.ServiceRequestManager;
 import edu.wpi.cs3733.D22.teamC.controller.map.panel.LocationInfoController;
 import edu.wpi.cs3733.D22.teamC.controller.map.panel.MapControlsController;
@@ -31,6 +32,7 @@ public class FloorMapViewController extends MapViewController {
 
     private MedicalEquipmentManager medicalEquipmentManager;
     private ServiceRequestManager serviceRequestManager;
+    private PatientManager patientManager;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
@@ -101,6 +103,19 @@ public class FloorMapViewController extends MapViewController {
             } else {
                 if (serviceRequestManager != null) serviceRequestManager.shutdown();
                 serviceRequestManager = null;
+            }
+        }
+
+        public PatientManager getPatientManager() {
+            return patientManager;
+        }
+
+        public void activatePatientManager(boolean activate) {
+            if (activate) {
+                patientManager = new PatientManager(this);
+            } else {
+                if (patientManager != null) patientManager.shutdown();
+                patientManager = null;
             }
         }
     //#endregion

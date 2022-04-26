@@ -1,3 +1,5 @@
+externalTransportDB/*
+CS3733-TeamB-TransferAPI-Database/*
 derby.log
 *.lock
 **/dragonflyLog

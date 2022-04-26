@@ -8,6 +8,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Group;
 import javafx.scene.layout.HBox;
+import javafx.scene.text.Text;
 
 import java.io.IOException;
 
@@ -15,6 +16,7 @@ public class FloorNode {
 
     @FXML private MFXButton floorButton;
     @FXML private HBox group;
+    @FXML private Text floorOrder;
     private Floor floor;
 
     private boolean isSelected;
@@ -33,6 +35,7 @@ public class FloorNode {
         this.floor = floor;
         this.floorButton.setText(floor.getLongName());
         this.isSelected = false;
+        this.floorOrder.setText(Integer.toString(floor.getOrder()));
     }
 
     public Floor getFloor() {

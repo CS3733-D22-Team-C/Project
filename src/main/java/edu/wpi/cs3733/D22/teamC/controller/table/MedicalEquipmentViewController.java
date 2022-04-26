@@ -6,6 +6,7 @@ import edu.wpi.cs3733.D22.teamC.entity.location.Location;
 import edu.wpi.cs3733.D22.teamC.entity.location.LocationDAO;
 import edu.wpi.cs3733.D22.teamC.entity.medical_equipment.MedicalEquipment;
 import edu.wpi.cs3733.D22.teamC.entity.medical_equipment.MedicalEquipmentDAO;
+import edu.wpi.cs3733.D22.teamC.models.builders.NotificationBuilder;
 import edu.wpi.cs3733.D22.teamC.models.generic.TableDisplay;
 import edu.wpi.cs3733.D22.teamC.models.location.MapSelectorWindow;
 import edu.wpi.cs3733.D22.teamC.models.medical_equipment.MedicalEquipmentTableDisplay;
@@ -125,16 +126,27 @@ public class MedicalEquipmentViewController extends InsertTableViewController<Me
 
     public MedicalEquipmentDAO createDAO() {
         return new MedicalEquipmentDAO();
-    };
+    }
+
+    @Override
+    public String getObjectName() {
+        return "Medical Equipment";
+    }
+
     //#endregion
 
     //#region FXML Events
         @FXML
         void clickConfirm(ActionEvent event) {
             if (checkFieldsFilled()) {
-                if (parentController.currentObj == null) addObject();
-                else updateObject();
-                parentController.setCurrentObj(null);
+                if (parentController.currentObj == null){
+                    addObject();
+                    parentController.setCurrentObj(null);
+                    parentController.setRemoveDisable(true);
+                }
+                else{
+                    updateObject();
+                }
                 validation.setErrorDecorationEnabled(false);
             }
         }
