@@ -256,7 +256,7 @@ public class LocationInfoController implements Initializable {
     private void setLocationClickCapture(boolean clickCapture) {
         if (clickCapture) {
             mapViewController.getLocationManager().onClickCapture = location -> {
-                activeMedicalEquipment.setLocationID(location.getID());
+                activeMedicalEquipment.setLocation(location);
                 updateMedicalEquipment();
 
                 Location currentLocation = mapViewController.getLocationManager().getCurrent();
