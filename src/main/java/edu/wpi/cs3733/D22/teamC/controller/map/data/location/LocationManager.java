@@ -126,7 +126,7 @@ public class LocationManager extends ManagerMapNodes<Location> {
                 all = new FloorDAO().getAllLocations(floor.getID());
                 renderLocations = all;
             } else {
-                renderLocations = all.stream().filter(location -> location.getFloor().equals(floor.getID())).collect(Collectors.toList());
+                renderLocations = all.stream().filter(location -> location.getFloor().getID().equals(floor.getID())).collect(Collectors.toList());
             }
 
             renderLocations.forEach(location -> {
