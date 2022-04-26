@@ -448,11 +448,6 @@ public class LocationInfoController implements Initializable {
             if (filterRequestType != null) serviceRequests = serviceRequests.stream().filter(serviceRequest -> serviceRequest.getRequestType().equals(this.filterRequestType)).collect(Collectors.toList());
             serviceRequests.forEach(serviceRequestTableDisplay::addObject);
         }
-
-        public void populateServiceRequestTable(Location location) {
-             serviceRequestTableDisplay.emptyTable();
-             new ServiceRequestDAO().getAllSRByLocation(location.getID()).forEach(serviceRequestTableDisplay::addObject);
-    }
     //#endregion
 
     //#region FXML Events
