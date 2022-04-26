@@ -57,6 +57,10 @@
     -fx-fill: -color-red-contrast-hover;
 }
 
+.patient-counter {
+    -fx-fill: gray;
+}
+
 /* General */
 .inactive {
     -fx-scale-x: .85;

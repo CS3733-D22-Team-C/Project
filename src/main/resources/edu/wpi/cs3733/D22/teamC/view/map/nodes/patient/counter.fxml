@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.Group?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Tooltip?>
+<?import javafx.scene.shape.Rectangle?>
+<?import javafx.scene.shape.SVGPath?>
+<?import javafx.scene.text.Font?>
+
+<Group fx:id="root" stylesheets="@../../../../css/map/nodes.css" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <Rectangle fx:id="node" arcHeight="5.0" arcWidth="5.0" fill="#00000087" height="25.0" stroke="BLACK" strokeType="INSIDE" styleClass="patient-counter" width="50.0" />
+      <SVGPath fx:id="icon" content="M224 256c70.7 0 128-57.31 128-128s-57.3-128-128-128C153.3 0 96 57.31 96 128S153.3 256 224 256zM274.7 304H173.3C77.61 304 0 381.6 0 477.3c0 19.14 15.52 34.67 34.66 34.67h378.7C432.5 512 448 496.5 448 477.3C448 381.6 370.4 304 274.7 304zM224 256c70.7 0 128-57.31 128-128s-57.3-128-128-128C153.3 0 96 57.31 96 128S153.3 256 224 256zM274.7 304H173.3C77.61 304 0 381.6 0 477.3c0 19.14 15.52 34.67 34.66 34.67h378.7C432.5 512 448 496.5 448 477.3C448 381.6 370.4 304 274.7 304z" fill="WHITE" layoutX="-210.0" layoutY="-256.0" mouseTransparent="true" scaleX="0.02" scaleY="0.02" stroke="BLACK" translateY="13.0" />
+      <Label fx:id="counterLabel" alignment="CENTER" layoutX="21.0" mouseTransparent="true" prefHeight="25.0" prefWidth="29.0" stylesheets="@../../../../css/map/nodes.css" text="99" textAlignment="CENTER" textFill="WHITE">
+         <font>
+            <Font name="ArtifaktElement-Regular" size="13.0" />
+         </font>
+      </Label>
+      <Label maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="25.0" prefWidth="50.0">
+         <tooltip>
+            <Tooltip text="Patients" />
+         </tooltip>
+      </Label>
+   </children>
+</Group>

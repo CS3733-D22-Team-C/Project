@@ -60,9 +60,6 @@ public class PatientManager extends ManagerMapNodes<Patient> {
                 counter.setParent(contextGroup);
                 counter.setPosition(COUNTER_OFFSET.getKey(), COUNTER_OFFSET.getValue());
 
-                // Set CSS
-                counter.getNode().getStyleClass().add("patient-counter");
-
                 // Set Counter
                 counter.setCount(getAllByLocation(location).size());
 
