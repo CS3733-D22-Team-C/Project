@@ -151,6 +151,7 @@ public class MapControlsController implements Initializable {
         saveButton.setDisable(true);
         medicalEquipmentToggle.setVisible(!editing);
         serviceRequestToggle.setVisible(!editing);
+        patientToggle.setVisible(!editing);
         counterCheckbox.setVisible(!editing);
         tokenCheckbox.setVisible(!editing);
     }
