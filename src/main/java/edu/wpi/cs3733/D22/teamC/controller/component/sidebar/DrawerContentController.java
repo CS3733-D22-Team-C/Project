@@ -23,6 +23,9 @@ public class DrawerContentController implements Initializable {
 
     //#region FXML
     @FXML
+    private MFXButton aboutButton;
+
+    @FXML
     private MFXButton dashboardButton;
 
     @FXML
