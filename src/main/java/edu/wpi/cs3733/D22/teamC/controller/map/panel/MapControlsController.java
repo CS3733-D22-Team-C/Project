@@ -3,6 +3,7 @@ package edu.wpi.cs3733.D22.teamC.controller.map.panel;
 import edu.wpi.cs3733.D22.teamC.App;
 import edu.wpi.cs3733.D22.teamC.controller.map.FloorMapViewController;
 import edu.wpi.cs3733.D22.teamC.controller.map.data.medical_equipment.MedicalEquipmentManager;
+import edu.wpi.cs3733.D22.teamC.controller.map.data.patient.PatientManager;
 import edu.wpi.cs3733.D22.teamC.controller.map.data.service_request.ServiceRequestManager;
 import edu.wpi.cs3733.D22.teamC.entity.floor.Floor;
 import edu.wpi.cs3733.D22.teamC.models.utils.ComponentWrapper;
@@ -121,6 +122,11 @@ public class MapControlsController implements Initializable {
             MedicalEquipmentManager medicalEquipmentManager = mapViewController.getMedicalEquipmentManager();
             if (medicalEquipmentManager != null) {
                 medicalEquipmentManager.showCounters(counterCheckbox.isSelected());
+            }
+
+            PatientManager patientManager = mapViewController.getPatientManager();
+            if (patientManager != null) {
+                patientManager.showCounters(counterCheckbox.isSelected());
             }
         }
 
