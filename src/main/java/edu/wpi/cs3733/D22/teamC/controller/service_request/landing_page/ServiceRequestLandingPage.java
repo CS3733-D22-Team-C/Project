@@ -275,8 +275,9 @@ public class ServiceRequestLandingPage implements Initializable {
             srDao.delete(activeServiceRequest);
             tableDisplay.removeObject(activeServiceRequest);
             table.getSelectionModel().clearSelection();
-
-
+            deleteButton.setDisable(true);
+            edit.setDisable(true);
+            resolve.setDisable(true);
         }
     }
 }

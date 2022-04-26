@@ -82,6 +82,7 @@ public class BaseTableViewController<T extends Object> implements Initializable,
 
                 // Delete from Insert
                 insertController.setFields(null);
+                table.getSelectionModel().clearSelection();
             }
         }
 
