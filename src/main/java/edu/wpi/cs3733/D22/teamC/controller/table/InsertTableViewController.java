@@ -13,7 +13,6 @@ public abstract class InsertTableViewController<T extends Object> {
         public void setup(BaseTableViewController parentController) {
             this.parentController = parentController;
         }
-
     //#endregion
 
     //#region Abstraction
