@@ -59,7 +59,7 @@ public abstract class TableDisplay<T extends IDEntity> {
          */
         public void removeObject(T object) {
             for (TableDisplayEntry entry : entries) {
-                if (entry.object == object) {
+                if (entry.object.getID().equals(object.getID())) {
                     entries.remove(entry);
                     return;
                 }
