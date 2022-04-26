@@ -13,6 +13,9 @@ import lombok.extern.slf4j.Slf4j;
 
 import javax.lang.model.element.ElementVisitor;
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Stack;
 
 @Slf4j
 public class App extends Application {
@@ -32,6 +35,9 @@ public class App extends Application {
         public T getController() {
             return controller;
         }
+        public void setController(T controller){
+            this.controller = controller;
+        }
     }
 
     // Constants
@@ -48,8 +54,9 @@ public class App extends Application {
     public static final String DATABASE_PAGE_PATH = "view/general/edit_databases_page.fxml";
     public static final String MAP_PATH = "view/map/floor_map.fxml";
     public static final String USER_PROFILE = "view/general/profile_page/user_profile.fxml";
+    public static final String MAP_SIDEBAR = "view/map/floor_map.fxml";
+    public static final String SHORTCUT_EDIT = "view/service_request/skeleton/sr_shortcut.fxml";
     public static final String CREDIT_PAGE = "view/general/credit.fxml";
-    //public static final String IMAGE_PATH = "static/images/BrighamAndWomensHospital.png";
 
     // Singleton Instance
     public static App instance;
@@ -59,6 +66,7 @@ public class App extends Application {
 
     // Variables
     private Stage stage;
+    private Stack<Stage> activeStages = new Stack<>();
     private Scene scene;
     public BorderPane baseNode;
 
@@ -75,6 +83,7 @@ public class App extends Application {
 
         // On the first run of the app set up the stage, load to login page
         stage = primaryStage;
+        activeStages.add(stage);
         stage.setFullScreen(true);
         baseNode = (BorderPane) loadView(BASE_COMPONENT_PATH).getNode();
 
@@ -217,6 +226,18 @@ public class App extends Application {
 
     public Stage getStage() {
         return stage;
+    }
+
+    public void addActiveStage(Stage activeStage) {
+        activeStages.add(activeStage);
+    }
+
+    public void removeActiveStage(Stage activeStage) {
+        activeStages.remove(activeStage);
+    }
+
+    public Stage getActiveStage() {
+        return activeStages.peek();
     }
 
     public Employee getUserAccount() {

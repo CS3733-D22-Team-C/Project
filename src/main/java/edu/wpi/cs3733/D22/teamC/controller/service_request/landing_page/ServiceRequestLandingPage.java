@@ -183,13 +183,13 @@ public class ServiceRequestLandingPage implements Initializable {
     }
 
     //#region Page Navigation
-    private void toDefaultPage(ServiceRequest serviceRequest) {
+    public void toDefaultPage(ServiceRequest serviceRequest) {
         switch (serviceRequest.getStatus()) {
             case Blank:
                 toEditPage(serviceRequest);
                 break;
             case Processing:
-                toResolvePage(serviceRequest);
+                toEditPage(serviceRequest);
                 break;
             case Done:
                 // "Done" Service Requests cannot be edited or resolved

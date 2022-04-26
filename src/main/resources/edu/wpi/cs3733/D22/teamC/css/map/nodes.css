@@ -36,6 +36,11 @@
 /* Service Request Node */
 .service-request-node {
     -fx-fill: -color-primary-light;
+    -fx-cursor: hand;
+}
+
+.service-request-node:hover {
+    -fx-fill: -color-primary;
 }
 
 /* Counters */
@@ -76,4 +81,8 @@
 
 .inactive > .node {
     -fx-fill: gray;
+}
+
+.inactive:hover {
+    -fx-opacity: .75;
 }

@@ -4,6 +4,7 @@ import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXTreeTableView;
 import edu.wpi.cs3733.D22.teamC.App;
 import edu.wpi.cs3733.D22.teamC.controller.SkeletonController;
+import edu.wpi.cs3733.D22.teamC.entity.generic.IDEntity;
 import edu.wpi.cs3733.D22.teamC.models.generic.TableDisplay;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -14,7 +15,7 @@ import javafx.scene.layout.VBox;
 import java.net.URL;
 import java.util.ResourceBundle;
 
-public class BaseTableViewController<T extends Object> implements Initializable, SkeletonController {
+public class BaseTableViewController<T extends IDEntity> implements Initializable, SkeletonController {
     // FXML
     @FXML private VBox insertBox;
     @FXML private JFXTreeTableView table;

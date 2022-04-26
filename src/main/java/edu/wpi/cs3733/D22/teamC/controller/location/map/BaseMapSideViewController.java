@@ -7,6 +7,7 @@ import edu.wpi.cs3733.D22.teamC.App;
 import edu.wpi.cs3733.D22.teamC.controller.map.MapViewController;
 import edu.wpi.cs3733.D22.teamC.entity.floor.Floor;
 import edu.wpi.cs3733.D22.teamC.entity.floor.FloorDAO;
+import edu.wpi.cs3733.D22.teamC.entity.generic.IDEntity;
 import edu.wpi.cs3733.D22.teamC.entity.medical_equipment.MedicalEquipment;
 import edu.wpi.cs3733.D22.teamC.entity.medical_equipment.MedicalEquipmentDAO;
 import edu.wpi.cs3733.D22.teamC.fileio.csv.floor.FloorCSVReader;
@@ -43,6 +44,7 @@ import javafx.stage.FileChooser;
 import org.controlsfx.control.InfoOverlay;
 import org.controlsfx.control.PopOver;
 import org.controlsfx.control.textfield.CustomTextField;
+import org.hibernate.metamodel.model.domain.IdentifiableDomainType;
 
 import javax.imageio.ImageIO;
 import java.awt.image.BufferedImage;
@@ -406,7 +408,7 @@ public class BaseMapSideViewController implements Initializable {
         order.setDisable(false);
     }
 
-    public class Equipment extends RecursiveTreeObject<Equipment> {
+    public class Equipment extends RecursiveTreeObject<Equipment> implements IDEntity {
         public String numOfBeds;
         public int numOfRecliners;
         public int numOfXRays;
@@ -417,6 +419,16 @@ public class BaseMapSideViewController implements Initializable {
             this.numOfRecliners = 0;
             this.numOfXRays = 0;
             this.numOfPumps = 0;
+        }
+
+        @Override
+        public String getID() {
+            return null;
+        }
+
+        @Override
+        public void setID(String id) {
+
         }
     }
 
