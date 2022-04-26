@@ -79,6 +79,8 @@ public class BaseTableViewController<T extends Object> implements Initializable,
         @FXML
         public void onRemoveButtonClicked() {
             if (currentObj != null) {
+                remove.setDisable(true);
+                table.getSelectionModel().clearSelection();
                 // Delete from DB
                 insertController.deleteObject();
 
@@ -87,7 +89,6 @@ public class BaseTableViewController<T extends Object> implements Initializable,
 
                 // Delete from Insert
                 insertController.setFields(null);
-                remove.setDisable(true);
             }
         }
 
