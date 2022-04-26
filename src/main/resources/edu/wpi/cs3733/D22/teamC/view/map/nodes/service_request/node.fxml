@@ -8,12 +8,12 @@
 
 <Group fx:id="root" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.wpi.cs3733.D22.teamC.controller.map.data.service_request.ServiceRequestToken">
    <children>
-      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="16.0" rotate="45.0" stroke="BLACK" strokeType="INSIDE" width="16.0">
+      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="16.0" onMouseClicked="#onTokenClick" rotate="45.0" stroke="BLACK" strokeType="INSIDE" width="16.0">
          <styleClass>
             <String fx:value="service-request-node" />
             <String fx:value="node" />
          </styleClass></Rectangle>
-      <Label fx:id="iconLabel" prefHeight="16.0" prefWidth="16.0" />
+      <Label fx:id="iconLabel" mouseTransparent="true" prefHeight="16.0" prefWidth="16.0" />
    </children>
    <stylesheets>
       <URL value="@../../../../css/map/nodes.css" />
