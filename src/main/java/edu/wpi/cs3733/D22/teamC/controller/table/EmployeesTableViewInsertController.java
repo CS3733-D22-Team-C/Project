@@ -20,6 +20,8 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
+import org.controlsfx.validation.ValidationSupport;
+import org.controlsfx.validation.Validator;
 
 import java.net.URL;
 import java.util.List;
@@ -36,13 +38,22 @@ public class EmployeesTableViewInsertController extends InsertTableViewControlle
     @FXML private ComboBox<Employee.Role> roleComboBox;//
     @FXML Label title;
 
+    private ValidationSupport validation;
+
 
     public void initialize(URL location, ResourceBundle resources) {
         title.setText("Add Employee");
 
         //make a list of roles from the enum and put it into the combo box
         roleComboBox.getItems().setAll(Employee.Role.values());
-        confirmButton.setDisable(true);
+        //validationfname.registerValidator(firstName, Validator.createEmptyValidator("I love batman"));
+        //confirmButton.setDisable(true);
+        validation = new ValidationSupport();
+        validation.registerValidator(firstName, Validator.createEmptyValidator("first name required"));
+        validation.registerValidator(lastName, Validator.createEmptyValidator("last name required"));
+        validation.registerValidator(phone, Validator.createEmptyValidator("phone number required"));
+        validation.registerValidator(roleComboBox, Validator.createEmptyValidator("role required"));
+        validation.setErrorDecorationEnabled(false);
     }
 
     //#region Field Interaction
@@ -75,11 +86,19 @@ public class EmployeesTableViewInsertController extends InsertTableViewControlle
         lastName.setText((object == null) ? "" : object.getLastName());
         phone.setText((object == null) ? "" : object.getPhone());
         roleComboBox.setValue((object == null) ? null : object.getRole());
-        confirmButton.setDisable(true);
+        //confirmButton.setDisable(true);
     }
     //#endregion
 
+    /**
+     *
+     * @return
+     */
     public boolean checkFieldsFilled() {
+
+        //boolean failed = false;
+        //validation = new ValidationSupport();
+        validation.setErrorDecorationEnabled(true);
         return !(firstName.getText().equals("")
                 || lastName.getText().equals("")
                 || phone.getText().equals("")
@@ -119,18 +138,23 @@ public class EmployeesTableViewInsertController extends InsertTableViewControlle
     //#region FXML Events
     @FXML
     void clickConfirm(ActionEvent event) {
-        if (parentController.currentObj == null) {
-            addObject();
+        if (checkFieldsFilled()){
+            if (parentController.currentObj == null) addObject();
+            else updateObject();
+            parentController.setCurrentObj(null);
+            validation.setErrorDecorationEnabled(false);
         }
-        else {
-            updateObject();
-        }
-        parentController.setCurrentObj(null);
     }
+
+//    @FXML
+//    void onFieldUpdated() {
+//        confirmButton.setDisable(!checkFieldsFilled());
+//    }
 
     @FXML
     void onFieldUpdated() {
-        confirmButton.setDisable(!checkFieldsFilled());
+        if (!phone.getText().matches("\\d*"))
+            phone.setText("");
     }
     //#endregion
 }

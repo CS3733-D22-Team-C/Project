@@ -48,6 +48,9 @@ public class DrawerContentController implements Initializable {
 
     @FXML
     private SVGPath expandedView;
+
+    @FXML
+    private MFXButton creditButton;
     //#endregion
 
     // use a list to store all buttons
@@ -59,11 +62,11 @@ public class DrawerContentController implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        allButtons = new MFXButton[]{dashboardButton, exitButton, logOutButton, databaseButton, viewProfileButton, mapsButton, serviceRequestsButton};
+        allButtons = new MFXButton[]{dashboardButton, exitButton, logOutButton, databaseButton, viewProfileButton, mapsButton, serviceRequestsButton, creditButton};
         //initializeSVG();
 
         // Hide the database button if the user is not an admin
-        databaseButton.setVisible(App.instance.getUserAccount().getAdmin());
+//        databaseButton.setVisible(App.instance.getUserAccount().getAdmin());
 
         for (MFXButton button : allButtons) {
             button.setContentDisplay(ContentDisplay.LEFT);
@@ -85,7 +88,8 @@ public class DrawerContentController implements Initializable {
     @FXML
     void logOutButtonPress(ActionEvent event) {
         // TODO: Logout functionality, path to login page
-        App.instance.setViewStatic(App.LOGIN_PATH);
+        App.instance.setView(App.LOGIN_PATH);
+        App.instance.showMenuBar(false);
     }
 
     @FXML
@@ -100,7 +104,6 @@ public class DrawerContentController implements Initializable {
 
     @FXML
     void databaseButtonPress(ActionEvent event) {
-        // TODO: Path to view tasks related to user
         App.instance.setView(App.DATABASE_PAGE_PATH);
     }
 
@@ -108,6 +111,9 @@ public class DrawerContentController implements Initializable {
     void userProfileButtonPress(ActionEvent event) {
         App.instance.setView(App.USER_PROFILE);
     }
+
+    @FXML
+    void creditButtonPress(ActionEvent event) {App.instance.setView(App.CREDIT_PAGE);}
     //#endregion
 
     public SVGPath getExpandedView() {

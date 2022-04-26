@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.Group?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.shape.Circle?>
+<?import javafx.scene.text.Font?>
+
+<Group fx:id="root" stylesheets="@../../../css/map/nodes.css" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <Circle fx:id="circle" fill="DODGERBLUE" onMouseClicked="#onClickEvent" radius="7.5" stroke="BLACK" strokeType="INSIDE" />
+      <Label fx:id="counterLabel" alignment="CENTER" contentDisplay="CENTER" layoutX="-7.5" layoutY="-7.5" mouseTransparent="true" prefHeight="15.0" prefWidth="15.0" text="99" textAlignment="CENTER" textFill="WHITE">
+         <font>
+            <Font size="7.0" />
+         </font>
+      </Label>
+   </children>
+</Group>
