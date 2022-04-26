@@ -259,7 +259,7 @@
                         <String fx:value="card" />
                      </styleClass>
                   </Label>
-                  <ImageView fitHeight="113.0" fitWidth="159.0" pickOnBounds="true" preserveRatio="true" translateX="15.0" translateY="15.0">
+                  <ImageView fitHeight="113.0" fitWidth="100.0" pickOnBounds="true" preserveRatio="true" translateX="15.0" translateY="15.0">
                      <image>
                         <Image url="@../../../static/images/team_members/Nelson%20Soft%20Eng.png" />
                      </image>
