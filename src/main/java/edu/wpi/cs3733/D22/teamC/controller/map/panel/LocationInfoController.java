@@ -255,12 +255,16 @@ public class LocationInfoController implements Initializable {
             ComponentWrapper.setValueSilently(nodeComboBox, location.getNodeType());
 
             // Medical Equipment
+
             populateMedicalEquipmentTable(location);
+            ComponentWrapper.setValueSilently(medEquipTypeComboBox, null);
             ComponentWrapper.setValueSilently(statusComboBox, null);
+
 
             // Service Requests
             serviceRequestTableDisplay.emptyTable();
             new ServiceRequestDAO().getAllSRByLocation(location.getID()).forEach(serviceRequestTableDisplay::addObject);
+            ComponentWrapper.setValueSilently(serviceReqTypeComboBox, null);
 
             // Patient
             patientTableDisplay.emptyTable();
@@ -369,6 +373,8 @@ public class LocationInfoController implements Initializable {
                 medicalEquipmentList = medicalEquipmentList.stream().filter(medicalEquipment -> medicalEquipment.getEquipmentType().equals(medEquipTypeComboBox.getValue())).collect(Collectors.toList());
                 medicalEquipmentList.forEach(medicalEquipmentTableDisplay::addObject);
             }
+
+
         }
 
         @FXML
