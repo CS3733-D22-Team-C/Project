@@ -1,25 +1,34 @@
 package edu.wpi.cs3733.D22.teamC.controller.map.data.medical_equipment;
 
 import edu.wpi.cs3733.D22.teamC.App;
+import edu.wpi.cs3733.D22.teamC.controller.map.FloorMapViewController;
 import edu.wpi.cs3733.D22.teamC.controller.map.MapViewController;
 import edu.wpi.cs3733.D22.teamC.controller.map.data.ManagerMapNodes;
+import edu.wpi.cs3733.D22.teamC.controller.map.data.MapCounter;
 import edu.wpi.cs3733.D22.teamC.controller.map.data.MapNode;
+import edu.wpi.cs3733.D22.teamC.controller.map.data.location.LocationMapNode;
+import edu.wpi.cs3733.D22.teamC.entity.floor.Floor;
 import edu.wpi.cs3733.D22.teamC.entity.location.Location;
 import edu.wpi.cs3733.D22.teamC.entity.location.LocationDAO;
 import edu.wpi.cs3733.D22.teamC.entity.medical_equipment.MedicalEquipment;
 import edu.wpi.cs3733.D22.teamC.entity.medical_equipment.MedicalEquipmentDAO;
 import edu.wpi.cs3733.D22.teamC.entity.service_request.ServiceRequest;
+import edu.wpi.cs3733.D22.teamC.entity.service_request.ServiceRequestDAO;
 import edu.wpi.cs3733.D22.teamC.entity.service_request.medical_equipment.MedicalEquipmentSR;
 import edu.wpi.cs3733.D22.teamC.entity.service_request.medical_equipment.MedicalEquipmentSRDAO;
 import edu.wpi.cs3733.D22.teamC.models.builders.DialogBuilder;
 import edu.wpi.cs3733.D22.teamC.models.builders.NotificationBuilder;
+import javafx.scene.Group;
 import javafx.scene.control.Alert;
 import javafx.scene.control.ButtonBar;
 import javafx.scene.control.ButtonType;
+import javafx.util.Pair;
 
 import java.sql.Timestamp;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.atomic.AtomicBoolean;
+import java.util.function.BiConsumer;
 import java.util.function.Consumer;
 import java.util.stream.Collectors;
 
@@ -28,67 +37,82 @@ import java.util.stream.Collectors;
  */
 public class MedicalEquipmentManager extends ManagerMapNodes<MedicalEquipment> {
     // Constants
-    public static final String[] COUNTER_PATHS = {
+    public static final String[] TOKEN_PATHS = {
             "view/map/nodes/medical_equipment/bed.fxml",
             "view/map/nodes/medical_equipment/recliner.fxml",
             "view/map/nodes/medical_equipment/xray.fxml",
             "view/map/nodes/medical_equipment/pump.fxml"
     };
+    private final static Pair<Integer, Integer> COUNTER_OFFSET = new Pair<>(12, -12);
 
     // Variables
+    List<MapCounter> counters = new ArrayList<>();
     Consumer<Location> onPreviewLocationEvent = this::previewLocation;
     Consumer<Location> onFocusLocationEvent = this::focusLocation;
-    private final MedicalEquipmentCounter[] counters = new MedicalEquipmentCounter[MedicalEquipment.EquipmentType.values().length];
+    BiConsumer<Floor, Floor> onChangeFloorEvent = (f1, f2) -> this.drawCounters();
+    private final MedicalEquipmentToken[] overlays = new MedicalEquipmentToken[MedicalEquipment.EquipmentType.values().length];
 
     AtomicBoolean updateAutomation = new AtomicBoolean(false);
     AtomicBoolean askUpdateAutomation = new AtomicBoolean(true);
 
-    public MedicalEquipmentManager(MapViewController mapViewController) {
+    public MedicalEquipmentManager(FloorMapViewController mapViewController) {
         super(mapViewController);
 
         mapViewController.getLocationManager().onPreviewLocationEvents.add(onPreviewLocationEvent);
         mapViewController.getLocationManager().onFocusLocationEvents.add(onFocusLocationEvent);
+        mapViewController.getFloorManager().onChangeCurrentEvents.add(onChangeFloorEvent);
 
-        // Create Counters
-        for (int i = 0; i < MedicalEquipment.EquipmentType.values().length; i++) {
-            App.View<MedicalEquipmentCounter> view = App.instance.loadView(COUNTER_PATHS[i]);
-
-            // Setup Controller
-            MedicalEquipmentCounter controller = view.getController();
-
-            getMapController().getBottomOverlay().getChildren().add(view.getNode());
-            controller.setType(MedicalEquipment.EquipmentType.values()[i]);
-
-            counters[i] = controller;
-        }
-
-        // Set Counters
+        // Create Overlays
         List<Location> locations = new LocationDAO().getAll();
         List<String> locationIDs = locations.stream().map(Location::getID).collect(Collectors.toList());
         List<MedicalEquipment> medicalEquipments = new MedicalEquipmentDAO().getAll();
         medicalEquipments = medicalEquipments.stream().filter(medicalEquipment -> !locationIDs.contains(medicalEquipment.getLocationID())).collect(Collectors.toList());
 
         for (MedicalEquipment.EquipmentType equipmentType : MedicalEquipment.EquipmentType.values()) {
+            App.View<MedicalEquipmentToken> view = App.instance.loadView(TOKEN_PATHS[equipmentType.ordinal()]);
+
+            // Setup Controller
+            MedicalEquipmentToken controller = view.getController();
+            overlays[equipmentType.ordinal()] = controller;
+
+            // Position Overlay
+            getMapController().getBottomOverlay().getChildren().add(view.getNode());
+            controller.setType(equipmentType);
+
+            // Set Overlays Counts
             List<MedicalEquipment> medicalEquipmentsByType = medicalEquipments.stream().filter(medicalEquipment -> medicalEquipment.getEquipmentType() == equipmentType).collect(Collectors.toList());
-            counters[equipmentType.ordinal()].setMedicalEquipments(medicalEquipmentsByType);
+            overlays[equipmentType.ordinal()].setMedicalEquipments(medicalEquipmentsByType);
+
+            overlays[equipmentType.ordinal()].setVisible(mapViewController.getMapControlsController().getTokenChecked());
         }
 
         focusLocation(mapViewController.getLocationManager().getCurrent());
+        drawCounters();
     }
 
     public void shutdown() {
         mapViewController.getLocationManager().onPreviewLocationEvents.remove(onPreviewLocationEvent);
         mapViewController.getLocationManager().onFocusLocationEvents.remove(onFocusLocationEvent);
+        mapViewController.getFloorManager().onChangeCurrentEvents.remove(onChangeFloorEvent);
 
         previewLocation(null);
         focusLocation(null);
 
-        // Delete Counters
-        for (MedicalEquipmentCounter counter : counters) {
-            counter.root.getChildren().clear();
-            getMapController().getBottomOverlay().getChildren().remove(counter.root);
+        // Delete Overlays
+        for (MedicalEquipmentToken overlay : overlays) {
+            overlay.root.getChildren().clear();
+            getMapController().getBottomOverlay().getChildren().remove(overlay.root);
         }
+
+        // Delete Counters
+        deleteCounters();
     }
+
+    //#region Object Manipulation
+        public List<MedicalEquipment> getAllByLocation(Location location) {
+            return new MedicalEquipmentDAO().getEquipmentByLocation(location.getID());
+        }
+    //#endregion
 
     //#region Location Changes
         public void previewLocation(Location location) {
@@ -131,21 +155,29 @@ public class MedicalEquipmentManager extends ManagerMapNodes<MedicalEquipment> {
         public void removeNode(MapNode<MedicalEquipment> mapNode) {
             ((MedicalEquipmentNode) mapNode).removeNode();
         }
+
+        public void showTokens(boolean show) {
+            if (previewed != null) ((MedicalEquipmentNode) previewed).toPreviewMode();
+            if (focused != null) ((MedicalEquipmentNode) focused).toFocusMode();
+            for (MedicalEquipmentToken overlay : overlays) {
+                overlay.setVisible(show);
+            }
+        }
     //#endregion
 
     //#region Free Medical Equipment
         public int getFreeCount(MedicalEquipment.EquipmentType equipmentType) {
-            return counters[equipmentType.ordinal()].getCount();
+            return overlays[equipmentType.ordinal()].getCount();
         }
 
         public MedicalEquipment removeFree(MedicalEquipment.EquipmentType equipmentType) {
-            MedicalEquipmentCounter counter = counters[equipmentType.ordinal()];
-            return counter.removeMedicalEquipment();
+            MedicalEquipmentToken overlay = overlays[equipmentType.ordinal()];
+            return overlay.removeMedicalEquipment();
         }
 
         public void addFree(MedicalEquipment medicalEquipment) {
-            MedicalEquipmentCounter counter = counters[medicalEquipment.getEquipmentType().ordinal()];
-            counter.addMedicalEquipment(medicalEquipment);
+            MedicalEquipmentToken overlay = overlays[medicalEquipment.getEquipmentType().ordinal()];
+            overlay.addMedicalEquipment(medicalEquipment);
         }
     //#endregion
 
@@ -293,6 +325,57 @@ public class MedicalEquipmentManager extends ManagerMapNodes<MedicalEquipment> {
 
             // Push Notification
             NotificationBuilder.createNotification("Medical Equipment Service Request", notification);
+        }
+    //#endregion
+
+    //#region Counters
+        public void showCounters(boolean show) {
+            counters.forEach(mapCounter -> mapCounter.setActive(show));
+        }
+
+        private void drawCounters() {
+            for (Location location : getMapViewController().getLocationManager().getAll()) {
+                // Load Counter
+                MapCounter counter = new MapCounter(location);
+                counters.add(counter);
+
+                // Set Counter Location
+                LocationMapNode locationMapNode = (LocationMapNode) getMapViewController().getLocationManager().getByLocation(location);
+                Group contextGroup = locationMapNode.getContextGroup();
+                counter.setParent(contextGroup);
+                counter.setPosition(COUNTER_OFFSET.getKey(), COUNTER_OFFSET.getValue());
+
+                // Set CSS
+                counter.getNode().getStyleClass().add("medical-equipment-counter");
+
+                // Set Counter
+                counter.setCount(getAllByLocation(location).size());
+
+                // Set On Click Functionality
+                counter.onClickEvent = (mapCounter, event) -> {
+                    mapViewController.getLocationManager().unfocus();
+                    ((LocationMapNode) mapViewController.getLocationManager().getByLocation(mapCounter.getLocation())).onMouseClickedNode(event);
+                    ((FloorMapViewController) mapViewController).getLocationInfoController().setCurrentTab(1);
+                };
+            }
+
+            showCounters(((FloorMapViewController) mapViewController).getMapControlsController().getCounterChecked());
+        }
+
+        private void deleteCounters() {
+            counters.forEach(MapCounter::delete);
+            counters = new ArrayList<>();
+        }
+
+        public void updateCounter(Location location) {
+            MapCounter counter = getCounterByLocation(location);
+            if (counter != null) counter.setCount(getAllByLocation(location).size());
+        }
+
+        private MapCounter getCounterByLocation(Location location) {
+            List<MapCounter> filtered = counters.stream().filter(counter -> counter.getLocation().getID().equals(location.getID())).collect(Collectors.toList());
+            if (filtered.size() > 0) return filtered.get(0);
+            return null;
         }
     //#endregion
 }

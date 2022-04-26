@@ -1,13 +1,13 @@
 package edu.wpi.cs3733.D22.teamC.controller.map.data.medical_equipment;
 
 import edu.wpi.cs3733.D22.teamC.App;
+import edu.wpi.cs3733.D22.teamC.controller.map.FloorMapViewController;
 import edu.wpi.cs3733.D22.teamC.controller.map.data.MapNode;
 import edu.wpi.cs3733.D22.teamC.controller.map.data.location.LocationMapNode;
 import edu.wpi.cs3733.D22.teamC.entity.location.Location;
 import edu.wpi.cs3733.D22.teamC.entity.medical_equipment.MedicalEquipment;
 import edu.wpi.cs3733.D22.teamC.entity.medical_equipment.MedicalEquipmentDAO;
 import javafx.scene.Group;
-import javafx.scene.Parent;
 import javafx.util.Pair;
 
 import java.util.List;
@@ -15,11 +15,11 @@ import java.util.stream.Collectors;
 
 public class MedicalEquipmentNode extends MapNode<MedicalEquipment> {
     // Constants
-    private static final Pair<Integer, Integer>[] COUNTER_OFFSETS = new Pair[] {
-            new Pair(10, -58),
+    private static final Pair<Integer, Integer>[] TOKEN_OFFSETS = new Pair[]{
+            new Pair(30, -58),
             new Pair(30, -28),
             new Pair(30, 2),
-            new Pair(10, 32)
+            new Pair(30, 32)
     };
 
     // Variables
@@ -27,7 +27,7 @@ public class MedicalEquipmentNode extends MapNode<MedicalEquipment> {
 
     // References
     Group contextGroup;
-    private MedicalEquipmentCounter[] counters = new MedicalEquipmentCounter[MedicalEquipment.EquipmentType.values().length];
+    private MedicalEquipmentToken[] tokens = new MedicalEquipmentToken[MedicalEquipment.EquipmentType.values().length];
 
     public MedicalEquipmentNode(MedicalEquipmentManager manager, Location location) {
         super(manager, location);
@@ -37,17 +37,17 @@ public class MedicalEquipmentNode extends MapNode<MedicalEquipment> {
         contextGroup = locationMapNode.getContextGroup();
 
         for (int i = 0; i < MedicalEquipment.EquipmentType.values().length; i++) {
-            App.View<MedicalEquipmentCounter> view = App.instance.loadView(MedicalEquipmentManager.COUNTER_PATHS[i]);
+            App.View<MedicalEquipmentToken> view = App.instance.loadView(MedicalEquipmentManager.TOKEN_PATHS[i]);
 
             // Setup Controller
-            MedicalEquipmentCounter controller = view.getController();
+            MedicalEquipmentToken controller = view.getController();
 
             contextGroup.getChildren().add(view.getNode());
-            controller.setPosition(COUNTER_OFFSETS[i].getKey(), COUNTER_OFFSETS[i].getValue());
+            controller.setPosition(TOKEN_OFFSETS[i].getKey(), TOKEN_OFFSETS[i].getValue());
             controller.setType(MedicalEquipment.EquipmentType.values()[i]);
             controller.setup(this);
 
-            counters[i] = controller;
+            tokens[i] = controller;
         }
 
         updateValues();
@@ -60,30 +60,30 @@ public class MedicalEquipmentNode extends MapNode<MedicalEquipment> {
 
         for (MedicalEquipment.EquipmentType equipmentType : MedicalEquipment.EquipmentType.values()) {
             List<MedicalEquipment> medicalEquipmentsByType = medicalEquipments.stream().filter(medicalEquipment -> medicalEquipment.getEquipmentType() == equipmentType).collect(Collectors.toList());
-            counters[equipmentType.ordinal()].setMedicalEquipments(medicalEquipmentsByType);
+            tokens[equipmentType.ordinal()].setMedicalEquipments(medicalEquipmentsByType);
         }
     }
 
     //#region State Changes
         public void toPreviewMode() {
-            for (MedicalEquipmentCounter counter : counters) {
-                counter.setEditable(false);
+            for (MedicalEquipmentToken token : tokens) {
+                token.setEditable(false);
 
-                counter.setVisible((counter.getCount() != 0));
+                token.setVisible((token.getCount() != 0) && ((FloorMapViewController) manager.getMapViewController()).getMapControlsController().getTokenChecked());
             }
         }
 
         public void toFocusMode() {
-            for (MedicalEquipmentCounter counter : counters) {
-                counter.setEditable(true);
-                counter.setVisible(true);
+            for (MedicalEquipmentToken token : tokens) {
+                token.setEditable(true);
+                token.setVisible(((FloorMapViewController) manager.getMapViewController()).getMapControlsController().getTokenChecked());
             }
         }
 
         public void removeNode() {
-            for (MedicalEquipmentCounter counter : counters) {
-                counter.root.getChildren().clear();
-                contextGroup.getChildren().remove(counter.root);
+            for (MedicalEquipmentToken token : tokens) {
+                token.root.getChildren().clear();
+                contextGroup.getChildren().remove(token.root);
             }
         }
     //#endregion

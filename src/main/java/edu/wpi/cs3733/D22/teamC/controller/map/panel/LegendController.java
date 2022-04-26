@@ -102,7 +102,6 @@ public class LegendController implements Initializable {
                 filteredNodeTypes[i] = toggleNodes[i].isSelected();
             }
 
-            // TODO: Pass filtered list to MapController and rerender floor with provided Node Types
             mapController.getMapViewController().getLocationManager().changeFilters(filteredNodeTypes);
         }
     //#endregion

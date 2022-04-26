@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import com.jfoenix.controls.JFXButton?>
+<?import io.github.palexdev.materialfx.controls.MFXDatePicker?>
 <?import javafx.geometry.Insets?>
-<?import javafx.scene.control.DatePicker?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.ScrollPane?>
 <?import javafx.scene.control.TextField?>
@@ -18,7 +18,7 @@
                <children>
                   <VBox alignment="CENTER_LEFT" prefHeight="115.0" prefWidth="419.0">
                      <children>
-                        <Label fx:id="title" prefHeight="25.0" prefWidth="270.0" styleClass="base-insert-heeder" stylesheets="@../../../css/table_skeleton.css">
+                        <Label fx:id="title" prefHeight="25.0" prefWidth="270.0" styleClass="base-insert-heeder" stylesheets="@../../../css/table_skeleton.css" text="Add Patient">
                            <font>
                               <Font size="24.0" />
                            </font>
@@ -46,7 +46,7 @@
                   <VBox prefHeight="65.0" prefWidth="399.0">
                      <children>
                         <Label text="DOB" />
-                        <DatePicker fx:id="date" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="47.0" prefWidth="399.0" VBox.vgrow="ALWAYS" />
+                        <MFXDatePicker fx:id="date" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="40.0" prefWidth="505.0" />
                      </children>
                      <VBox.margin>
                         <Insets top="10.0" />
@@ -73,7 +73,7 @@
                         </Label>
                         <HBox prefHeight="58.0" prefWidth="399.0">
                            <children>
-                              <TextField fx:id="location" onKeyTyped="#onFieldUpdated" prefHeight="42.0" prefWidth="338.0" styleClass="base_view_table_text" stylesheets="@../../../css/table_skeleton.css" HBox.hgrow="ALWAYS" />
+                              <TextField fx:id="theLocation" onKeyTyped="#onFieldUpdated" prefHeight="42.0" prefWidth="338.0" styleClass="base_view_table_text" stylesheets="@../../../css/table_skeleton.css" HBox.hgrow="ALWAYS" />
                               <JFXButton fx:id="locationButton" onAction="#goToMapView" prefHeight="42.0" prefWidth="62.0" style="-fx-background-color: -color-secondary;" stylesheets="@../../../css/colors.css" text="-&gt;" />
                            </children>
                         </HBox>
