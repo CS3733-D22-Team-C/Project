@@ -22,7 +22,7 @@
 <?import javafx.scene.text.Font?>
 <?import org.controlsfx.control.SearchableComboBox?>
 
-<TabPane fx:id="tabPane" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" side="LEFT" stylesheets="@../../../css/map/info_pane.css" tabClosingPolicy="UNAVAILABLE" tabMaxHeight="50.0" tabMaxWidth="115.0" tabMinHeight="50.0" tabMinWidth="115.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.wpi.cs3733.D22.teamC.controller.map.panel.LocationInfoController">
+<TabPane fx:id="tabPane" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" prefHeight="450.0" prefWidth="400.0" side="LEFT" stylesheets="@../../../css/map/info_pane.css" tabClosingPolicy="UNAVAILABLE" tabMaxHeight="50.0" tabMaxWidth="115.0" tabMinHeight="50.0" tabMinWidth="115.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.wpi.cs3733.D22.teamC.controller.map.panel.LocationInfoController">
    <tabs>
       <Tab fx:id="locationTab" text="Location">
          <content>
@@ -167,18 +167,30 @@
                         </Label>
                         <VBox alignment="CENTER_LEFT" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefWidth="227.0" styleClass="fields-padding">
                            <children>
-                              <Label styleClass="service-field-label" stylesheets="@../../../css/base.css" text="Type:" />
-                              <HBox maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="26.0" prefWidth="198.0">
+                              <HBox alignment="CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308">
                                  <children>
-                                    <SearchableComboBox fx:id="medEquipTypeComboBox" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" onAction="#onMETypeSelected" prefHeight="26.0" prefWidth="81.0" HBox.hgrow="ALWAYS" />
-                                    <MFXButton fx:id="medEquipTypeClearButton" onAction="#onClearMETypeButtonClicked" prefHeight="26.0" prefWidth="52.0" text="Clear" />
+                                    <SearchableComboBox fx:id="medEquipTypeComboBox" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" onAction="#onMETypeSelected" HBox.hgrow="ALWAYS">
+                                       <HBox.margin>
+                                          <Insets left="5.0" right="5.0" />
+                                       </HBox.margin>
+                                    </SearchableComboBox>
+                                    <MFXButton fx:id="medEquipTypeClearButton" alignment="CENTER" onAction="#onClearMETypeButtonClicked" text="Clear" HBox.hgrow="ALWAYS">
+                                       <HBox.margin>
+                                          <Insets left="5.0" right="5.0" />
+                                       </HBox.margin></MFXButton>
                                  </children>
+                                 <padding>
+                                    <Insets bottom="5.0" left="10.0" right="10.0" top="5.0" />
+                                 </padding>
+                                 <VBox.margin>
+                                    <Insets top="5.0" />
+                                 </VBox.margin>
                               </HBox>
                            </children>
                         </VBox>
                         <VBox VBox.vgrow="ALWAYS">
                            <VBox.margin>
-                              <Insets bottom="25.0" left="25.0" right="25.0" top="25.0" />
+                              <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
                            </VBox.margin>
                            <children>
                               <JFXTreeTableView fx:id="medicalEquipmentTable" prefHeight="334.0" prefWidth="250.0" styleClass="table-view" />
@@ -198,7 +210,7 @@
                                     </JFXToggleNode>
                                  </children>
                               </VBox>
-                              <VBox alignment="BOTTOM_RIGHT" maxWidth="1.7976931348623157E308" HBox.hgrow="ALWAYS">
+                              <VBox alignment="BOTTOM_CENTER" maxWidth="1.7976931348623157E308" HBox.hgrow="ALWAYS">
                                  <children>
                                     <ComboBox fx:id="statusComboBox" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" onAction="#onMedicalEquipmentStatusComboBoxChanged" />
                                     <JFXButton fx:id="updateStatus" alignment="CENTER" contentDisplay="CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" onAction="#onUpdateStatusButtonPressed" text="Update Status">
@@ -235,21 +247,31 @@
                         </Label>
                         <VBox alignment="CENTER_LEFT" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefWidth="227.0" styleClass="fields-padding">
                            <children>
-                              <Label styleClass="service-field-label" stylesheets="@../../../css/base.css" text="Type:" />
-                              <HBox maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="26.0" prefWidth="198.0">
+                              <HBox alignment="CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308">
                                  <children>
-                                    <SearchableComboBox fx:id="serviceReqTypeComboBox" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" onAction="#onSRTypeSelected" prefHeight="26.0" prefWidth="81.0" HBox.hgrow="ALWAYS" />
-                                    <MFXButton fx:id="SRTypeClearButton" onAction="#onClearSRTypeButtonClicked" text="Clear" />
+                                    <SearchableComboBox fx:id="serviceReqTypeComboBox" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" onAction="#onSRTypeSelected" HBox.hgrow="ALWAYS">
+                                       <HBox.margin>
+                                          <Insets left="5.0" right="5.0" />
+                                       </HBox.margin></SearchableComboBox>
+                                    <MFXButton fx:id="SRTypeClearButton" onAction="#onClearSRTypeButtonClicked" text="Clear" HBox.hgrow="ALWAYS">
+                                       <HBox.margin>
+                                          <Insets left="5.0" right="5.0" />
+                                       </HBox.margin></MFXButton>
                                  </children>
+                                 <VBox.margin>
+                                    <Insets top="5.0" />
+                                 </VBox.margin>
+                                 <padding>
+                                    <Insets bottom="5.0" left="10.0" right="10.0" top="5.0" />
+                                 </padding>
                               </HBox>
                            </children>
                         </VBox>
                         <VBox VBox.vgrow="ALWAYS">
                            <VBox.margin>
-                              <Insets bottom="25.0" left="25.0" right="25.0" top="25.0" />
+                              <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
                            </VBox.margin>
                            <children>
-                              <HBox />
                               <JFXTreeTableView fx:id="serviceRequestTable" styleClass="table-view" />
                            </children>
                         </VBox>
@@ -275,7 +297,7 @@
                         </Label>
                         <JFXTreeTableView fx:id="patientsTable" styleClass="table-view" VBox.vgrow="ALWAYS">
                            <VBox.margin>
-                              <Insets bottom="25.0" left="25.0" right="25.0" top="25.0" />
+                              <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
                            </VBox.margin>
                         </JFXTreeTableView>
                      </children>
