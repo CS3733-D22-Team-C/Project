@@ -356,6 +356,7 @@ public class MedicalEquipmentManager extends ManagerMapNodes<MedicalEquipment> {
                     mapViewController.getLocationManager().unfocus();
                     ((LocationMapNode) mapViewController.getLocationManager().getByLocation(mapCounter.getLocation())).onMouseClickedNode(event);
                     ((FloorMapViewController) mapViewController).getLocationInfoController().setCurrentTab(1);
+                    locationMapNode.getNode().toFront();
                 };
             }
 
