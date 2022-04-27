@@ -2,6 +2,8 @@ package edu.wpi.cs3733.D22.teamC.fileio.csv.service_request.patient_transport;
 
 import edu.wpi.cs3733.D22.teamC.entity.employee.Employee;
 import edu.wpi.cs3733.D22.teamC.entity.employee.EmployeeDAO;
+import edu.wpi.cs3733.D22.teamC.entity.location.Location;
+import edu.wpi.cs3733.D22.teamC.entity.location.LocationDAO;
 import edu.wpi.cs3733.D22.teamC.entity.patient.Patient;
 import edu.wpi.cs3733.D22.teamC.entity.patient.PatientDAO;
 import edu.wpi.cs3733.D22.teamC.entity.service_request.ServiceRequest;
@@ -12,6 +14,7 @@ import java.sql.Timestamp;
 
 public class PatientTransportSRCSVReader extends CSVReader<PatientTransportSR> {
     
+    private final LocationDAO locationDAO = new LocationDAO();
     private final EmployeeDAO employeeDAO = new EmployeeDAO();
     private final PatientDAO patientDAO = new PatientDAO();
    
@@ -37,11 +40,11 @@ public class PatientTransportSRCSVReader extends CSVReader<PatientTransportSR> {
                 serviceRequest.setAssignee(assignee);
                 break;
             case "location":
-                serviceRequest.setLocation(value);
+                Location location = locationDAO.getByID(value);
+                serviceRequest.setLocation(location);
                 break;
             case "creationTimestamp":
                 serviceRequest.setCreationTimestamp(Timestamp.valueOf(value));
-
                 break;
             case "status":
                 serviceRequest.setStatus(ServiceRequest.Status.valueOf(value));

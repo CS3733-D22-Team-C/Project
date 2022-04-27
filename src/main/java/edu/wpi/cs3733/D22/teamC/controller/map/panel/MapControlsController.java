@@ -76,6 +76,7 @@ public class MapControlsController implements Initializable {
             mapViewController.switchMode(false);
             mapViewController.activateMedicalEquipmentManager(medicalEquipmentToggle.isSelected());
             mapViewController.activateServiceRequestManager(serviceRequestToggle.isSelected());
+            mapViewController.activatePatientManager(patientToggle.isSelected());
         }
 
         @FXML
@@ -83,6 +84,7 @@ public class MapControlsController implements Initializable {
             mapViewController.switchMode(true);
             mapViewController.activateMedicalEquipmentManager(false);
             mapViewController.activateServiceRequestManager(false);
+            mapViewController.activatePatientManager(false);
         }
 
         @FXML
