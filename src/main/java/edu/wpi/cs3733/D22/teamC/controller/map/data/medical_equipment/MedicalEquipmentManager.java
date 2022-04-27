@@ -61,10 +61,8 @@ public class MedicalEquipmentManager extends ManagerMapNodes<MedicalEquipment> {
         mapViewController.getFloorManager().onChangeCurrentEvents.add(onChangeFloorEvent);
 
         // Create Overlays
-        List<Location> locations = new LocationDAO().getAll();
-        List<String> locationIDs = locations.stream().map(Location::getID).collect(Collectors.toList());
         List<MedicalEquipment> medicalEquipments = new MedicalEquipmentDAO().getAll();
-        medicalEquipments = medicalEquipments.stream().filter(medicalEquipment -> !locationIDs.contains(medicalEquipment.getLocation().getID())).collect(Collectors.toList());
+        medicalEquipments = medicalEquipments.stream().filter(medicalEquipment -> medicalEquipment.getLocation() == null).collect(Collectors.toList());
 
         for (MedicalEquipment.EquipmentType equipmentType : MedicalEquipment.EquipmentType.values()) {
             App.View<MedicalEquipmentToken> view = App.instance.loadView(TOKEN_PATHS[equipmentType.ordinal()]);
