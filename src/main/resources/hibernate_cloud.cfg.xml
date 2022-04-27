@@ -8,13 +8,13 @@
     <session-factory>
 
         <!-- DATABASE -->
-        <property name="connection.url">jdbc:postgresql://35.243.161.132/cs3733-db2</property>
+        <property name="connection.url">jdbc:postgresql:///cs3733-db2?cloudSqlInstance=cs3733-application:us-east1:cs3733-instance2&amp;socketFactory=com.google.cloud.sql.postgres.SocketFactory&amp;user=postgres&amp;password=admin</property>
         <property name="connection.driver_class">org.postgresql.Driver</property>
         <property name="connection.pool_size">100</property>
 
         <property name="dialect">org.hibernate.dialect.PostgreSQL95Dialect</property>
-        <!-- <property name="connection.username"/> -->
-        <!-- <property name="connection.password"/> -->
+        <property name="connection.username">postgres</property> 
+        <property name="connection.password">admin</property> 
 
 
         <!-- DEBUGGING -->
@@ -22,7 +22,7 @@
          <property name="format_sql">true</property>
 
         <!-- SCHEMA GENERATION -->
-        <property name="hibernate.hbm2ddl.auto">create</property>
+        <property name="hibernate.hbm2ddl.auto">update</property>
         <property name="hibernate.hbm2ddl.import_files">triggers.sql</property>
 
         <!-- MAPPING -->

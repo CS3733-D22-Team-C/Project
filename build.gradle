@@ -53,7 +53,8 @@ dependencies {
             // Google Cloud
             [group: 'com.google.cloud',name: 'google-cloud-spanner-hibernate-dialect', version: '1.5.2'],
             [group: 'com.google.cloud',name: 'google-cloud-spanner-jdbc', version: '2.5.11'],
-            [group: 'org.postgresql',name: 'postgresql', version: '42.2.0'],
+            [group: 'com.google.cloud.sql',name: 'postgres-socket-factory', version: '1.5.0'],
+            [group: 'org.postgresql',name: 'postgresql', version: '42.2.5'],
     )
 
     compile fileTree(dir: 'API', include: ['*.jar'])
