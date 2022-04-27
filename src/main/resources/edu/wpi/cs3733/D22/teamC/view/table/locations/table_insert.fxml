@@ -4,108 +4,122 @@
 <?import com.jfoenix.controls.JFXComboBox?>
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Label?>
-<?import javafx.scene.control.ScrollPane?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<VBox styleClass="page-container" stylesheets="@../../../css/component/table_insert.css" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.wpi.cs3733.D22.teamC.controller.table.LocationTableViewInsertController">
+<VBox fx:id="root" styleClass="page-container" stylesheets="@../../../css/component/table_insert.css" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.wpi.cs3733.D22.teamC.controller.table.LocationTableViewInsertController">
    <children>
-      <ScrollPane fitToHeight="true" fitToWidth="true" prefHeight="550.0" prefWidth="421.0">
-         <content>
-            <VBox spacing="15.0" styleClass="scroll-pane">
+      <VBox spacing="15.0" styleClass="scroll-pane">
+         <children>
+            <VBox alignment="CENTER_LEFT" prefWidth="419.0" VBox.vgrow="ALWAYS">
                <children>
-                  <VBox alignment="CENTER_LEFT" prefWidth="419.0" VBox.vgrow="ALWAYS">
+                  <Label fx:id="title" prefHeight="25.0" prefWidth="270.0" styleClass="base-insert-heeder" stylesheets="@../../../css/table_skeleton.css" text="Location Insert">
+                     <font>
+                        <Font size="24.0" />
+                     </font>
+                  </Label>
+               </children>
+            </VBox>
+            <VBox VBox.vgrow="ALWAYS">
+               <children>
+                  <Label fx:id="label1" text="Long Name:" />
+                  <TextField fx:id="longNameField" onKeyTyped="#onFieldUpdated" prefWidth="373.0" styleClass="base_view_table_text" stylesheets="@../../../css/table_skeleton.css">
+                     <padding>
+                        <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                     </padding>
+                  </TextField>
+               </children>
+            </VBox>
+            <VBox VBox.vgrow="ALWAYS">
+               <children>
+                  <Label fx:id="label2" text="Short Name:" />
+                  <TextField fx:id="shortNameField" onKeyTyped="#onFieldUpdated" prefWidth="373.0" styleClass="base_view_table_text" stylesheets="@../../../css/table_skeleton.css">
+                     <padding>
+                        <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                     </padding>
+                  </TextField>
+               </children>
+            </VBox>
+            <VBox VBox.vgrow="ALWAYS">
+               <children>
+                  <Label fx:id="label4" text="Node Type:" />
+                  <JFXComboBox fx:id="nodeTypeComboBox" maxWidth="1.7976931348623157E308" minHeight="-Infinity" onAction="#onFieldUpdated" prefHeight="35.0" prefWidth="420.0" styleClass="dropdown" stylesheets="@../../../css/default.css" />
+               </children>
+            </VBox>
+            <VBox VBox.vgrow="ALWAYS">
+               <children>
+                  <Label fx:id="label5" text="Building:" />
+                  <TextField fx:id="buildingField" onKeyTyped="#onFieldUpdated" prefWidth="419.0" styleClass="base_view_table_text" stylesheets="@../../../css/table_skeleton.css">
+                     <padding>
+                        <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                     </padding>
+                  </TextField>
+               </children>
+            </VBox>
+            <VBox VBox.vgrow="ALWAYS">
+               <children>
+                  <Label fx:id="label6" text="Floor:" />
+                  <JFXComboBox fx:id="floorComboBox" maxWidth="1.7976931348623157E308" minHeight="-Infinity" onAction="#onFieldUpdated" prefHeight="35.0" prefWidth="420.0" styleClass="dropdown" stylesheets="@../../../css/default.css" />
+               </children>
+            </VBox>
+            <HBox spacing="20.0" VBox.vgrow="ALWAYS">
+               <children>
+                  <VBox prefWidth="149.5" HBox.hgrow="ALWAYS">
                      <children>
-                        <Label fx:id="title" prefHeight="25.0" prefWidth="270.0" styleClass="base-insert-heeder" stylesheets="@../../../css/table_skeleton.css" text="Location Insert">
-                           <font>
-                              <Font size="24.0" />
-                           </font>
-                        </Label>
-                     </children>
-                  </VBox>
-                  <VBox VBox.vgrow="ALWAYS">
-                     <children>
-                        <Label fx:id="label1" text="Long Name:" />
-                        <TextField fx:id="longNameField" onKeyTyped="#onFieldUpdated" prefWidth="373.0" styleClass="base_view_table_text" stylesheets="@../../../css/table_skeleton.css">
+                        <Label fx:id="label7" text="X Coordinate:" />
+                        <TextField onKeyTyped="#onFieldUpdated" prefWidth="373.0" styleClass="base_view_table_text" stylesheets="@../../../css/table_skeleton.css" fx:id="xField">
                            <padding>
                               <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
                            </padding>
                         </TextField>
                      </children>
                   </VBox>
-                  <VBox VBox.vgrow="ALWAYS">
+                  <VBox prefWidth="149.5" HBox.hgrow="ALWAYS">
                      <children>
-                        <Label fx:id="label2" text="Short Name:" />
-                        <TextField fx:id="shortNameField" onKeyTyped="#onFieldUpdated" prefWidth="373.0" styleClass="base_view_table_text" stylesheets="@../../../css/table_skeleton.css">
+                        <Label fx:id="label8" text="Y Coordinate:" />
+                        <TextField fx:id="yField" onKeyTyped="#onFieldUpdated" prefWidth="17.0" styleClass="base_view_table_text" stylesheets="@../../../css/table_skeleton.css">
                            <padding>
                               <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
                            </padding>
                         </TextField>
                      </children>
                   </VBox>
-                  <VBox VBox.vgrow="ALWAYS">
+               </children>
+            </HBox>
+            <HBox alignment="CENTER" prefHeight="61.0" prefWidth="395.0">
+               <children>
+                  <HBox prefHeight="41.0" prefWidth="406.0">
+                     <HBox.margin>
+                        <Insets />
+                     </HBox.margin>
                      <children>
-                        <Label fx:id="label4" text="Node Type:" />
-                        <JFXComboBox fx:id="nodeTypeComboBox" maxWidth="1.7976931348623157E308" minHeight="-Infinity" onAction="#onFieldUpdated" prefHeight="35.0" prefWidth="420.0" styleClass="dropdown" stylesheets="@../../../css/default.css" />
-                     </children>
-                  </VBox>
-                  <VBox VBox.vgrow="ALWAYS">
-                     <children>
-                        <Label fx:id="label5" text="Building:" />
-                        <TextField fx:id="buildingField" onKeyTyped="#onFieldUpdated" prefWidth="419.0" styleClass="base_view_table_text" stylesheets="@../../../css/table_skeleton.css">
-                           <padding>
-                              <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
-                           </padding>
-                        </TextField>
-                     </children>
-                  </VBox>
-                  <VBox VBox.vgrow="ALWAYS">
-                     <children>
-                        <Label fx:id="label6" text="Floor:" />
-                        <JFXComboBox fx:id="floorComboBox" maxWidth="1.7976931348623157E308" minHeight="-Infinity" onAction="#onFieldUpdated" prefHeight="35.0" prefWidth="420.0" styleClass="dropdown" stylesheets="@../../../css/default.css" />
-                     </children>
-                  </VBox>
-                  <HBox spacing="20.0" VBox.vgrow="ALWAYS">
-                     <children>
-                        <VBox prefWidth="149.5" HBox.hgrow="ALWAYS">
+                        <HBox alignment="CENTER_LEFT" prefHeight="61.0" prefWidth="205.0">
                            <children>
-                              <Label fx:id="label7" text="X Coordinate:" />
-                              <TextField onKeyTyped="#onFieldUpdated" prefWidth="373.0" styleClass="base_view_table_text" stylesheets="@../../../css/table_skeleton.css" fx:id="xField">
-                                 <padding>
-                                    <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
-                                 </padding>
-                              </TextField>
+                              <JFXButton fx:id="cancel" onAction="#clickCancel" prefHeight="42.0" prefWidth="139.0" styleClass="base_view_table_back" stylesheets="@../../../css/table_skeleton.css" text="Cancel" />
                            </children>
-                        </VBox>
-                        <VBox prefWidth="149.5" HBox.hgrow="ALWAYS">
-                           <children>
-                              <Label fx:id="label8" text="Y Coordinate:" />
-                              <TextField fx:id="yField" onKeyTyped="#onFieldUpdated" prefWidth="17.0" styleClass="base_view_table_text" stylesheets="@../../../css/table_skeleton.css">
-                                 <padding>
-                                    <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
-                                 </padding>
-                              </TextField>
-                           </children>
-                        </VBox>
-                     </children>
-                  </HBox>
-                  <HBox alignment="CENTER_RIGHT" prefWidth="395.0" VBox.vgrow="ALWAYS">
-                     <children>
-                        <JFXButton fx:id="confirmButton" onAction="#clickConfirm" prefHeight="42.0" prefWidth="139.0" styleClass="base_view_table_confirm" stylesheets="@../../../css/table_skeleton.css" text="Confirm">
                            <HBox.margin>
-                              <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                              <Insets left="5.0" />
                            </HBox.margin>
-                        </JFXButton>
+                        </HBox>
+                        <HBox alignment="CENTER_RIGHT" prefHeight="61.0" prefWidth="219.0">
+                           <children>
+                              <JFXButton fx:id="confirmButton" onAction="#clickConfirm" prefHeight="42.0" prefWidth="139.0" styleClass="base_view_table_confirm" stylesheets="@../../../css/table_skeleton.css" text="Confirm" />
+                           </children>
+                           <HBox.margin>
+                              <Insets right="5.0" />
+                           </HBox.margin>
+                        </HBox>
                      </children>
                   </HBox>
                </children>
-               <padding>
-                  <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
-               </padding>
-            </VBox>
-         </content></ScrollPane>
+            </HBox>
+         </children>
+         <padding>
+            <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+         </padding>
+      </VBox>
    </children>
    <padding>
       <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
