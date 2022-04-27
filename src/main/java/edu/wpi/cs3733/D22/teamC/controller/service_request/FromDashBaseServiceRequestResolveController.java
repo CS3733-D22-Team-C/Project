@@ -7,6 +7,6 @@ public class FromDashBaseServiceRequestResolveController extends BaseServiceRequ
 
     @Override
     void clickGoBack(ActionEvent event) {
-        App.instance.setView(App.MY_TASKS_PATH);
+        App.instance.setView(App.USER_PROFILE);
     }
 }

@@ -48,7 +48,6 @@ public class UserDashboardController implements Initializable {
     @FXML Label contact;
     @FXML Label address;
     @FXML Label username;
-    @FXML MFXButton back;
     @FXML MFXButton submitButton;
     @FXML MFXButton changePasswordButton;
 
@@ -127,12 +126,6 @@ public class UserDashboardController implements Initializable {
         insertCreatedTableBarController.setup(true);
 
         passwordNode.setVisible(false);
-    }
-
-    public void backButton() {
-        App.instance.setView(App.DASHBOARD_PATH);
-        App.instance.drawerContentController.selectedButton(App.instance.drawerContentController.getDashboardButton());
-
     }
 
     @FXML

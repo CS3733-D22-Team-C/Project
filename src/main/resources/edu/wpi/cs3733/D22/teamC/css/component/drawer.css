@@ -51,6 +51,7 @@
 }
 
 /* Sets the background color of the drawer */
-.jfx-drawer {
-    -fx-background-color: transparent;
+.jfx-drawer > .jfx-drawer-overlay-pane {
+    -fx-background-color: -color-background;
 }
+
