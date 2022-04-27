@@ -1,14 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.geometry.Insets?>
 <?import javafx.scene.layout.HBox?>
 <?import org.controlsfx.control.SegmentedBar?>
 
-<HBox alignment="CENTER" maxHeight="-Infinity" maxWidth="1.7976931348623157E308" prefHeight="75.0" prefWidth="740.0" stylesheets="@../../css/component/request_page.css" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.wpi.cs3733.D22.teamC.controller.service_request.SegmentBarController">
+<HBox alignment="CENTER" maxHeight="-Infinity" maxWidth="1.7976931348623157E308" prefHeight="41.0" prefWidth="740.0" stylesheets="@../../css/component/request_page.css" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.wpi.cs3733.D22.teamC.controller.service_request.SegmentBarController">
    <children>
-      <SegmentedBar fx:id="segmentBar" maxHeight="-Infinity" maxWidth="1.7976931348623157E308" prefHeight="46.0" prefWidth="730.0" styleClass="fields-padding" HBox.hgrow="ALWAYS" />
+      <SegmentedBar fx:id="segmentBar" maxHeight="-Infinity" maxWidth="1.7976931348623157E308" prefHeight="49.0" prefWidth="730.0" styleClass="fields-padding" HBox.hgrow="ALWAYS" />
    </children>
-   <padding>
-      <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
-   </padding>
 </HBox>
