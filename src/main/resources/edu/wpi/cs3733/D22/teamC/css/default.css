@@ -180,41 +180,57 @@
 }
 
 /* Custom IDs */
-#title {
+.title {
 
 }
 
-#primary-action-button {
+.primary-action-button {
     -fx-background-color: -color-primary-light;
 }
 
-#primary-action-button:hover {
+.primary-action-button:hover {
     -fx-background-color: -color-primary;
 }
 
-#secondary-action-button {
+.secondary-action-button {
     -fx-background-color: -color-secondary-light;
 }
 
-#secondary-action-button:hover {
+.secondary-action-button:hover {
     -fx-background-color: -color-secondary;
 }
 
-#cancel-button {
+.cancel-button {
     -fx-background-color: -color-red-contrast;
 }
 
-#cancel-button:hover {
+.cancel-button:hover {
     -fx-background-color: -color-red-contrast-hover;
 }
 
-#selector-button {
+.selector-button {
     -fx-background-color: -color-secondary-light;
 }
 
-#selector-button:hover {
+.selector-button:hover {
     -fx-background-color: -color-secondary;
 }
+
+.validated-text {
+    -fx-text-fill: -color-red-contrast;
+}
+
+.validated-field {
+    -fx-border-color: -color-red-contrast;
+}
+
+    .validated-field .floating-text {
+        -fx-text-fill: -color-red-contrast;
+    }
+
+    .validated-field .mfx-font-icon {
+        -mfx-color: -color-red-contrast;
+    }
 
 /*
 ⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⣀⣀⣀⣀⣀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
