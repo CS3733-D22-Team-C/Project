@@ -8,6 +8,7 @@ import edu.wpi.cs3733.D22.teamC.entity.location.LocationDAO;
 import edu.wpi.cs3733.D22.teamC.entity.medical_equipment.MedicalEquipment;
 import edu.wpi.cs3733.D22.teamC.entity.medical_equipment.MedicalEquipmentDAO;
 import edu.wpi.cs3733.D22.teamC.fileio.svg.SVGParser;
+import edu.wpi.cs3733.D22.teamC.models.builders.NotificationBuilder;
 import edu.wpi.cs3733.D22.teamC.models.generic.TableDisplay;
 import edu.wpi.cs3733.D22.teamC.models.location.MapSelectorWindow;
 import edu.wpi.cs3733.D22.teamC.models.medical_equipment.MedicalEquipmentTableDisplay;
@@ -148,18 +149,37 @@ public class MedicalEquipmentViewController extends InsertTableViewController<Me
     //#region FXML Events
         @FXML
         void clickConfirm(ActionEvent event) {
-            if (checkFieldsFilled()) {
-                if (parentController.currentObj == null){
-                    addObject();
-                    parentController.setCurrentObj(null);
-                    parentController.setRemoveDisable(true);
+                if (checkFieldsFilled()) {
+                    if (parentController.currentObj == null) {
+                        if (!medicineExists(typeComboBox.getValue(), Integer.parseInt(number.getText()))){
+                            addObject();
+                            parentController.setCurrentObj(null);
+                            parentController.setRemoveDisable(true);
+                        } else {
+                            String createdSRNotification = "Medical Equipment Type and Number Already Exists";
+                            NotificationBuilder.createNotification("Already Exists", createdSRNotification);
+                        }
+                    }
+                    else{
+                        if ((!parentController.currentObj.getEquipmentType().equals(typeComboBox.getValue()))
+                            || !(parentController.currentObj.getTypeNumber()== Integer.parseInt(number.getText()))){
+                            //this code runs if user changed the tpye or number. We must check that chages are OK
+
+                            if (!medicineExists(typeComboBox.getValue(), Integer.parseInt(number.getText()))){
+                                updateObject();
+                            } else {
+                                String createdSRNotification = "Cannot Modify to Already Existing Type-Number Combo";
+                                NotificationBuilder.createNotification("Already Exists", createdSRNotification);
+                            }
+                        } else {
+                            updateObject();
+                        }
+                    }
+                    validation.setErrorDecorationEnabled(false);
                 }
-                else{
-                    updateObject();
-                }
-                validation.setErrorDecorationEnabled(false);
-            }
+
         }
+
 
         @FXML
         void onFieldUpdated() {
@@ -172,4 +192,17 @@ public class MedicalEquipmentViewController extends InsertTableViewController<Me
             new MapSelectorWindow(this::setLocation);
         }
     //#endregion
+
+    private boolean medicineExists(MedicalEquipment.EquipmentType medType, int medNumber){
+        List<MedicalEquipment> medicalEquipmentList = new MedicalEquipmentDAO().getAll();
+
+        for (MedicalEquipment a_medicalEquipment : medicalEquipmentList){
+            if ((a_medicalEquipment.getEquipmentType().equals(medType)) &&
+                    (a_medicalEquipment.getTypeNumber() == medNumber)){
+                //true as in the medicine already EXISTS!
+                return true;
+            }
+        }
+        return false;
+    }
 }
