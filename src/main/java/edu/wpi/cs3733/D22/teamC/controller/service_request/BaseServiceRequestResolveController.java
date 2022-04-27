@@ -137,8 +137,6 @@ public class BaseServiceRequestResolveController<T extends ServiceRequest> imple
         }
     
         if (isEditMode) {
-            // Set generic title (overridden in children)
-            title.setText("Edit Service Request Request");
 
             // Priority Dropdown
             for (ServiceRequest.Priority pri : ServiceRequest.Priority.values()) {
@@ -156,10 +154,77 @@ public class BaseServiceRequestResolveController<T extends ServiceRequest> imple
             locationID.setDisable(false);
             assigneeID.setDisable(false);
 
-        } else {
-            // Set generic title (overridden in children)
-            title.setText("Resolve Service Request");
+            switch (requestType)
+            {
+                case Medical_Equipment:
+                    title.setText("Edit Medical Equipment Service Request");
+                    break;
+                case Facility_Maintenance:
+                    title.setText("Edit Facility Maintenance Service Request");
+                    break;
+                case Lab_System:
+                    title.setText("Edit Lab System Service Request");
+                    break;
+                case Medicine_Delivery:
+                    title.setText("Edit Medicine Delivery Service Request");
+                    break;
+                case Security:
+                    title.setText("Edit Security Service Request");
+                    break;
+                case Sanitation:
+                    title.setText("Edit Sanitation Service Request");
+                    break;
+                case Patient_Transport:
+                    title.setText("Edit Patient Transport Service Request");
+                    break;
+                case Laundry:
+                    title.setText("Edit Laundry Service Request");
+                    break;
+                case Delivery_System:
+                    title.setText("Edit Delivery System Service Request");
+                    break;
+                case Translator:
+                    title.setText("Edit Translator Service Request");
+                    break;
+                default:
+            }
 
+        } else {
+
+            switch (requestType)
+            {
+                case Medical_Equipment:
+                    title.setText("Resolve Medical Equipment Service Request");
+                    break;
+                case Facility_Maintenance:
+                    title.setText("Resolve Facility Maintenance Service Request");
+                    break;
+                case Lab_System:
+                    title.setText("Resolve Lab System Service Request");
+                    break;
+                case Medicine_Delivery:
+                    title.setText("Resolve Medicine Delivery Service Request");
+                    break;
+                case Security:
+                    title.setText("Resolve Security Service Request");
+                    break;
+                case Sanitation:
+                    title.setText("Resolve Sanitation Service Request");
+                    break;
+                case Patient_Transport:
+                    title.setText("Resolve Patient Transport Service Request");
+                    break;
+                case Laundry:
+                    title.setText("Resolve Laundry Service Request");
+                    break;
+                case Delivery_System:
+                    title.setText("Resolve Delivery System Service Request");
+                    break;
+                case Translator:
+                    title.setText("Resolve Translator Service Request");
+                    break;
+                default:
+            }
             // Sets status at bottom
             firstStatus.setText("processing");
             secondStatus.setText("resolve");
