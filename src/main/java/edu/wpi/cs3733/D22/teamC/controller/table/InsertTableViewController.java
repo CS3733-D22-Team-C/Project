@@ -23,7 +23,7 @@ public abstract class InsertTableViewController<T extends IDEntity> {
 
     //#region Pane Interaction
         public void setVisible(boolean visible){
-            parentController.disableTable(admin);
+            parentController.disableTable(visible);
             root.setVisible(visible);
         }
     //#endregion

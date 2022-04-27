@@ -36,6 +36,7 @@ public class EmployeesTableViewInsertController extends InsertTableViewControlle
     @FXML private TextField lastName;
     @FXML private TextField phone;
     @FXML private ComboBox<Employee.Role> roleComboBox;//
+    @FXML private JFXButton cancel;
     @FXML Label title;
 
     private ValidationSupport validation;
@@ -151,15 +152,19 @@ public class EmployeesTableViewInsertController extends InsertTableViewControlle
         }
     }
 
+    @FXML
+    void clickCancel(ActionEvent event)
+    {
+        setVisible(false);
+        parentController.currentObj = null;
+    }
+
 //    @FXML
 //    void onFieldUpdated() {
 //        confirmButton.setDisable(!checkFieldsFilled());
 //    }
 
     @FXML
-    void onFieldUpdated() {
-        if (!phone.getText().matches("\\d*"))
-            phone.setText("");
-    }
+    void onFieldUpdated() {}
     //#endregion
 }
