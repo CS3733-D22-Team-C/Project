@@ -152,6 +152,7 @@ public class BaseMapSideViewController implements Initializable {
                     ex.printStackTrace();
                 }
             });
+            // Dragging nodes
             /*floorNode.getGroup().getChildren().get(0).setOnDragOver(new EventHandler<DragEvent>() {
                 @Override
                 public void handle(DragEvent event) {

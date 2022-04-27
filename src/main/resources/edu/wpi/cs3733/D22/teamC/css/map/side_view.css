@@ -14,7 +14,7 @@
 }
 
 .mfx-button .mfx-ripple-generator{
-    -mfx-ripple-radius: 16px;
+    /*-mfx-ripple-radius: 16px;*/
     -mfx-auto-clip: true;
 }
 
@@ -39,4 +39,55 @@
     -fx-background-color: #F0F0F0;
     -fx-padding: 20 20 20 20;
     -fx-alignment: center;
+}
+
+.edit-button{
+    -fx-background-color: #4E86CC;
+}
+
+.jfx-text-area {
+    -fx-border-color: -color-primary;
+    -fx-border-radius: 5px;
+    -fx-gap-start-and-end: 5;
+}
+
+.jfx-text-area .prompt-container{
+    visibility: falseadmin;
+}
+
+.jfx-text-area .input-focus-line{
+    -fx-stroke: transparent;
+    -fx-fill: transparent;
+    -fx-background-color: transparent;
+}
+
+.jfx-text-area .input-line{
+    -fx-stroke: transparent;
+    -fx-fill: transparent;
+    -fx-background-color: transparent;
+}
+
+.jfx-text-area .text-field {
+    -fx-background-color: transparent;
+}
+
+.jfx-text-area .floating-text {
+    -fx-text-fill: -color-primary;
+}
+
+.chart-pie {
+    -fx-border-color: derive(-fx-pie-color, -40%);
+    -fx-border-width: 3px;
+}
+.tooltip{
+    -fx-background-color: white;
+    -fx-text-fill: black;
+    -fx-opacity: 80%;
+    -fx-stroke: -color-primary;
+    -fx-stroke-width: 1;
+    -fx-font-size: 15;
+}
+-page-container{
+    -fx-max-height: 200;
+    -fx-max-width: 200;
 }
