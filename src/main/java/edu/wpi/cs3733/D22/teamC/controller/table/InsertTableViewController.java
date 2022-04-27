@@ -14,7 +14,6 @@ public abstract class InsertTableViewController<T extends IDEntity> {
         public void setup(BaseTableViewController parentController) {
             this.parentController = parentController;
         }
-
     //#endregion
 
     //#region Abstraction

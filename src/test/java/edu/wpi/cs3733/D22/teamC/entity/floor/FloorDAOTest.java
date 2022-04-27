@@ -35,7 +35,7 @@ public class FloorDAOTest extends DAOTest<Floor> {
         LocationDAO testLDAO = new LocationDAO();
         LocationFactory locationFactory = new LocationFactory();
         Location testLoc = locationFactory.create();
-        testLoc.setFloor(testFloorID);
+        testLoc.setFloor(testFloor);
         String testLocID = testLDAO.insert(testLoc);
         assertNotNull(testFloorID);
         assertNotNull(testLocID);

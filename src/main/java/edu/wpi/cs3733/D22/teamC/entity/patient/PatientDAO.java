@@ -19,6 +19,6 @@ public class PatientDAO extends DAO<Patient> {
      */
     public List<Patient> getPatientByLocation(String locationID) {
         return HibernateManager.filterQuery("select q from " + classType().getName() +
-                " q where q.locationID = '" + locationID + "'");
+                " q where q.location = '" + locationID + "'");
     }
 }

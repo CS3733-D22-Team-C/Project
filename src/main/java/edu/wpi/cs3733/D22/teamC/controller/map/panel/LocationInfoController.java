@@ -201,7 +201,7 @@ public class LocationInfoController implements Initializable {
                             // Update Table
                             Location currentLocation = mapViewController.getLocationManager().getCurrent();
 
-                            if (query.getLocation().equals(currentLocation.getID())) {
+                            if (query.getLocation().getID().equals(currentLocation.getID())) {
                                 serviceRequestTableDisplay.updateObject(query);
                             } else {
                                 serviceRequestTableDisplay.removeObject(query);
@@ -213,7 +213,7 @@ public class LocationInfoController implements Initializable {
 
                             // Counters Updating
                             mapViewController.getServiceRequestManager().updateCounter(currentLocation);
-                            mapViewController.getServiceRequestManager().updateCounter(mapViewController.getLocationManager().getByID(query.getLocation()));
+                            mapViewController.getServiceRequestManager().updateCounter(mapViewController.getLocationManager().getByID(query.getLocation().getID()));
 
                             // Tokens updating
                             mapViewController.getServiceRequestManager().focusLocation(currentLocation);
@@ -256,7 +256,7 @@ public class LocationInfoController implements Initializable {
     private void setLocationClickCapture(boolean clickCapture) {
         if (clickCapture) {
             mapViewController.getLocationManager().onClickCapture = location -> {
-                activeMedicalEquipment.setLocationID(location.getID());
+                activeMedicalEquipment.setLocation(location);
                 updateMedicalEquipment();
 
                 Location currentLocation = mapViewController.getLocationManager().getCurrent();
@@ -297,7 +297,7 @@ public class LocationInfoController implements Initializable {
     private void setSRLocationClickCapture(boolean clickCaptureSR) {
         if (clickCaptureSR) {
             mapViewController.getLocationManager().onClickCapture = location -> {
-                activeServiceRequest.setLocation(location.getID());
+                activeServiceRequest.setLocation(location);
                 updateServiceRequest();
 
                 Location currentLocation = mapViewController.getLocationManager().getCurrent();
@@ -367,7 +367,7 @@ public class LocationInfoController implements Initializable {
             shortNameField.setText(location.getShortName());
             longNameField.setText(location.getLongName());
             buildingField.setText(location.getBuilding());
-            ComponentWrapper.setValueSilently(floorComboBox, mapViewController.getFloorManager().getByID(location.getFloor()));
+            ComponentWrapper.setValueSilently(floorComboBox, mapViewController.getFloorManager().getByID(location.getFloor().getID()));
             ComponentWrapper.setValueSilently(nodeComboBox, location.getNodeType());
 
             // Medical Equipment
@@ -400,7 +400,7 @@ public class LocationInfoController implements Initializable {
             location.setShortName(shortNameField.getText());
             location.setLongName(longNameField.getText());
             location.setBuilding(buildingField.getText());
-            location.setFloor(floorComboBox.getValue().getID());
+            location.setFloor(floorComboBox.getValue());
             location.setNodeType(nodeComboBox.getValue());
 
             if (!original.equals(location)) {
