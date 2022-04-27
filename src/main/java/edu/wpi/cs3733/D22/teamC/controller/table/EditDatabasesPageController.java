@@ -5,6 +5,7 @@ import edu.wpi.cs3733.D22.teamC.controller.csv_io.CSVComponent;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.layout.GridPane;
 import javafx.scene.layout.VBox;
 
 import java.net.URL;
@@ -12,8 +13,7 @@ import java.util.ResourceBundle;
 
 public class EditDatabasesPageController implements Initializable {
 
-    @FXML private VBox insertVbox;
-
+    @FXML private GridPane gridPane;
 
     CSVComponent insertController;
 
@@ -46,7 +46,7 @@ public class EditDatabasesPageController implements Initializable {
         String viewFile = "view/location/map/controls/csv_page.fxml";
 
         App.View<CSVComponent> view = App.instance.loadView(viewFile);
-        insertVbox.getChildren().add(view.getNode());
+        gridPane.add(view.getNode(),  1, 0);
         insertController = view.getController();
     }
 
