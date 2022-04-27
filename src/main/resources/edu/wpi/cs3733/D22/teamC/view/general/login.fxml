@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import io.github.palexdev.materialfx.controls.MFXButton?>
+<?import io.github.palexdev.materialfx.controls.MFXComboBox?>
 <?import io.github.palexdev.materialfx.controls.MFXPasswordField?>
 <?import io.github.palexdev.materialfx.controls.MFXTextField?>
-<?import io.github.palexdev.materialfx.controls.MFXToggleButton?>
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.image.Image?>
@@ -98,9 +98,9 @@
                         </MFXButton>
                      </children>
                   </VBox>
-                  <VBox alignment="CENTER" GridPane.rowIndex="3">
+                  <VBox alignment="TOP_CENTER" GridPane.rowIndex="3">
                      <children>
-                        <MFXToggleButton fx:id="toggleButton" prefHeight="46.0" prefWidth="200.0" styleClass="toggle-button-background" />
+                        <MFXComboBox fx:id="serverComboBox" floatMode="BORDER" floatingText="Server Type" onAction="#onServerComboBoxChanged" prefHeight="34.0" prefWidth="200.0" selectable="true" />
                      </children>
                   </VBox>
                </children>
