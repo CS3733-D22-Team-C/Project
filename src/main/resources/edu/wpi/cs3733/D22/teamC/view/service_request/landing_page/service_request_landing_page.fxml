@@ -27,7 +27,7 @@
                   <HBox>
                      <children>
                         <SearchableComboBox fx:id="serviceReqTypeComboBox" onAction="#onSRTypeSelected" />
-                        <MFXButton fx:id="SRTypeClearButton" onAction="#onClearSRTypeButtonClicked" prefHeight="31.0" prefWidth="55.0" text="Clear" />
+                        <MFXButton fx:id="SRTypeClearButton" onAction="#onClearSRTypeButtonClicked" prefHeight="31.0" prefWidth="72.0" text="Clear" />
                      </children>
                      <padding>
                         <Insets right="20.0" />
