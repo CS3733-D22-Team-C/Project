@@ -263,19 +263,25 @@ public class BaseServiceRequestResolveController<T extends ServiceRequest> imple
             serviceRequest.setModifier(App.instance.getUserAccount());
 
             insertController.updateServiceRequest(serviceRequest);
+
+            //Notification
+            String createdSRNotification = "Service Request " + serviceRequest + " has been edited";
+            NotificationBuilder.createNotification("Service Request Edited", createdSRNotification);
+
         }
         else {
             //Set status to Done
             serviceRequest.setStatus(ServiceRequest.Status.Done);
+            //Notification
+            String createdSRNotification = "Service Request " + serviceRequest + " has been resolved";
+            NotificationBuilder.createNotification("Service Request Resolved", createdSRNotification);
+
         }
 
         serviceRequest.setDescription(description.getText());
         serviceRequestDAO.update(serviceRequest);
         insertController.updateServiceRequest(serviceRequest);
 
-        //Notification
-        String createdSRNotification = "Service Request " + serviceRequest + " has been edited";
-        NotificationBuilder.createNotification("Service Request Edited", createdSRNotification);
 
 
         clickGoBack(null);
