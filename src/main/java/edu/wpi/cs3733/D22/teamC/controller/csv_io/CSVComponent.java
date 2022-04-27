@@ -45,6 +45,7 @@ import javafx.stage.FileChooser;
 import java.io.File;
 import java.net.URL;
 import java.util.List;
+import java.util.Locale;
 import java.util.ResourceBundle;
 
 public class CSVComponent implements Initializable {
@@ -82,6 +83,9 @@ public class CSVComponent implements Initializable {
     @FXML private MFXCheckbox translatorExport;
     @FXML private JFXButton importButton;
     @FXML private JFXButton exportButton;
+    
+    @FXML private MFXCheckbox selectAllImport;
+    @FXML private MFXCheckbox selectAllExport;
 
     //Textfields
     @FXML private TextField exportText;
@@ -112,8 +116,8 @@ public class CSVComponent implements Initializable {
 
         SVGGlyph folderContent = new SVGGlyph(folderIcon);
         SVGGlyph folderContent2 = new SVGGlyph(folderIcon);
-        folderContent.setSize(20);
-        folderContent2.setSize(20);
+        folderContent.getStyleClass().add("folder-icon");
+        folderContent2.getStyleClass().add("folder-icon");
         importButton.setGraphic(folderContent);
         exportButton.setGraphic(folderContent2);
     }

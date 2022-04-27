@@ -27,6 +27,11 @@ public class EmployeeDAO extends DAO<Employee> {
         }
     }
     
+    @Override
+    public List<Employee> getAll() {
+        return null;
+    }
+    
     /**
      * Override table delete to preserve backdoor accounts.
      * @return True if successful.
