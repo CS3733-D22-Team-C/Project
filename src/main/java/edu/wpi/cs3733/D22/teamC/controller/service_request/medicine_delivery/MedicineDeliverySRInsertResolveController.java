@@ -51,15 +51,15 @@ public class MedicineDeliverySRInsertResolveController extends InsertServiceRequ
     @Override
     public void setup(BaseServiceRequestResolveController<MedicineDeliverySR> baseServiceRequestResolveController, MedicineDeliverySR serviceRequest, boolean isEditMode) {
         super.setup(baseServiceRequestResolveController, serviceRequest, isEditMode);
-        dosage.setEditable(isEditMode);
-        medicine.setEditable(isEditMode);
-        patientSComboBox.setEditable(isEditMode);
+        dosage.setDisable(!isEditMode);
+        medicine.setDisable(!isEditMode);
         patientSComboBox.setDisable(!isEditMode);
+        patientButton.setDisable(!isEditMode);
         
         dosage.setText(serviceRequest.getDosage());
         medicine.setText(serviceRequest.getMedicine());
         patientSComboBox.setValue(serviceRequest.getPatient());
-        patientSComboBox.setPromptText(serviceRequest.getPatient().toString());
+        patientSComboBox.setPromptText(serviceRequest.getPatient().toString());;
     }
 
     public boolean requiredFieldsPresent(){
