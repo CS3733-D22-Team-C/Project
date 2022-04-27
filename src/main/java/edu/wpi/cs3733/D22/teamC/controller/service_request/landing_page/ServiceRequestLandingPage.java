@@ -308,6 +308,14 @@ public class ServiceRequestLandingPage implements Initializable {
         }
         serviceRequests.forEach(tableDisplay::addObject);
 
+
+        insertBarController.clear();
+        for (ServiceRequest serviceRequest : serviceRequests) {
+            if(serviceRequest.getRequestType().equals(serviceReqTypeComboBox.getValue()))
+                insertBarController.updateNumbers(serviceRequest.getStatus(), true);
+        }
+
+        insertBarController.setup(false);
         setActiveServiceRequest(null);
     }
 
@@ -315,7 +323,18 @@ public class ServiceRequestLandingPage implements Initializable {
     @FXML
     void onClearSRTypeButtonClicked(ActionEvent event) {
         serviceReqTypeComboBox.setValue(null);
+        insertBarController.clear();
+        ServiceRequestDAO serviceRequestDAO  = new ServiceRequestDAO();
+        List<ServiceRequest> serviceRequests = serviceRequestDAO.getAll();
+
+        for (ServiceRequest serviceRequest : serviceRequests) {
+                insertBarController.updateNumbers(serviceRequest.getStatus(), true);
+        }
+
+        insertBarController.setup(false);
+
     }
+
 
     @FXML
     void onSRTypeSelected(ActionEvent event) {
