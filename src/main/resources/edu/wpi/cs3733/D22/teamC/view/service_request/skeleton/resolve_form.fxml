@@ -81,7 +81,7 @@
       </VBox>
       <VBox fx:id="fieldsBox" prefHeight="170.0" prefWidth="479.0" styleClass="fields-padding" GridPane.rowIndex="2">
          <children>
-            <HBox maxHeight="-Infinity" prefHeight="85.0" prefWidth="479.0" VBox.vgrow="NEVER">
+            <HBox maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308">
                <children>
                   <VBox alignment="CENTER_LEFT" prefHeight="200.0" prefWidth="100.0" styleClass="fields-padding" HBox.hgrow="ALWAYS">
                      <children>
