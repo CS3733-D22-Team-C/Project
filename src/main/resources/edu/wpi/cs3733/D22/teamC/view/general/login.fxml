@@ -53,10 +53,18 @@
                   </HBox>
                   <VBox id="fields" alignment="CENTER_LEFT" prefHeight="163.0" prefWidth="564.0" GridPane.rowIndex="1">
                      <children>
-                        <MFXTextField id="validated-field" fx:id="username" floatMode="BORDER" floatingText="Username" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="30.0" prefWidth="269.0" />
-                        <Label fx:id="usernameValidationLabel" styleClass="validated-text" text="Label" visible="false" />
-                        <MFXPasswordField id="validated-field" fx:id="password" alignment="TOP_LEFT" floatMode="BORDER" floatingText="Password" maxWidth="1.7976931348623157E308" prefHeight="26.0" prefWidth="240.0" />
-                        <Label fx:id="passwordValidationLabel" styleClass="validated-text" text="Label" visible="false" />
+                        <VBox>
+                           <children>
+                              <MFXTextField id="validated-field" fx:id="username" floatMode="BORDER" floatingText="Username" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="30.0" prefWidth="269.0" />
+                              <Label fx:id="usernameValidationLabel" styleClass="validated-text" text="Label" visible="false" />
+                           </children>
+                        </VBox>
+                        <VBox>
+                           <children>
+                              <MFXPasswordField id="validated-field" fx:id="password" alignment="TOP_LEFT" floatMode="BORDER" floatingText="Password" maxWidth="1.7976931348623157E308" prefHeight="26.0" prefWidth="240.0" />
+                              <Label fx:id="passwordValidationLabel" styleClass="validated-text" text="Label" visible="false" />
+                           </children>
+                        </VBox>
                      </children>
                      <GridPane.margin>
                         <Insets />
