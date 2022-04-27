@@ -54,3 +54,8 @@
     -fx-font-size: 12px;
     -fx-border-color: transparent;
 }
+
+.folder-icon {
+    -fx-scale-x: 1.2;
+    -fx-scale-y: .78;
+}
