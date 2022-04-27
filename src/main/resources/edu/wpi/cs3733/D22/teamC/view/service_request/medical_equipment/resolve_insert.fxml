@@ -7,7 +7,7 @@
 
 <HBox maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="114.0" prefWidth="490.0" stylesheets="@../../../css/component/request_page.css" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.wpi.cs3733.D22.teamC.controller.service_request.medical_equipment.MedicalEquipmentSRInsertResolveController">
    <children>
-      <VBox alignment="CENTER_LEFT" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefWidth="100.0" styleClass="fields-padding" HBox.hgrow="ALWAYS">
+      <VBox alignment="CENTER_LEFT" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefWidth="105.0" styleClass="fields-padding" HBox.hgrow="ALWAYS">
          <children>
             <Label styleClass="service-field-label" text="Equipment Type:" />
             <JFXComboBox fx:id="equipmentType" maxHeight="-Infinity" maxWidth="1.7976931348623157E308" minHeight="-Infinity" onAction="#statusUpdated" prefHeight="31.2" prefWidth="190.0" styleClass="dropdown" stylesheets="@../../../css/base.css" VBox.vgrow="ALWAYS" />
@@ -19,6 +19,6 @@
             <JFXComboBox fx:id="equipment" maxHeight="-Infinity" maxWidth="1.7976931348623157E308" minHeight="-Infinity" onAction="#statusUpdated" onMouseClicked="#equipTypeChanged" prefHeight="31.2" prefWidth="190.0" styleClass="dropdown" stylesheets="@../../../css/base.css" VBox.vgrow="ALWAYS" />
          </children>
       </VBox>
-      <VBox alignment="CENTER_LEFT" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefWidth="100.0" styleClass="fields-padding" HBox.hgrow="ALWAYS" />
+      <VBox alignment="CENTER_LEFT" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefWidth="90.0" styleClass="fields-padding" HBox.hgrow="ALWAYS" />
    </children>
 </HBox>
