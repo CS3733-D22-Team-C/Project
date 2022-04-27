@@ -5,14 +5,27 @@ import edu.wpi.cs3733.D22.teamC.entity.generic.DAO;
 import edu.wpi.cs3733.D22.teamC.entity.generic.IDEntity;
 import edu.wpi.cs3733.D22.teamC.models.builders.NotificationBuilder;
 import edu.wpi.cs3733.D22.teamC.models.generic.TableDisplay;
+import javafx.event.ActionEvent;
+import javafx.fxml.FXML;
+import javafx.scene.layout.VBox;
 
 public abstract class InsertTableViewController<T extends IDEntity> {
+
+    @FXML private VBox root;
     // References
     BaseTableViewController<T> parentController;
 
     //#region Setup
         public void setup(BaseTableViewController parentController) {
             this.parentController = parentController;
+            setVisible(false);
+        }
+    //#endregion
+
+    //#region Pane Interaction
+        public void setVisible(boolean visible){
+            parentController.disableTable(visible);
+            root.setVisible(visible);
         }
     //#endregion
 
@@ -40,6 +53,9 @@ public abstract class InsertTableViewController<T extends IDEntity> {
             // Push Notification
             String notification = "New " + getObjectName() + " " + object.toString() + " has been created.";
             NotificationBuilder.createNotification(getObjectName() + " Created", notification);
+
+            //hide field
+            setVisible(false);
         }
 
         public void deleteObject() {
@@ -73,6 +89,9 @@ public abstract class InsertTableViewController<T extends IDEntity> {
             //Push Notification
             String notification = getObjectName() + " " + object.toString() + " has been updated.";
             NotificationBuilder.createNotification(getObjectName() + " Updated", notification);
+
+            //hide field
+            setVisible(false);
         }
     //#endregion
 
@@ -91,4 +110,11 @@ public abstract class InsertTableViewController<T extends IDEntity> {
         public abstract void setFields(T object);
     //#endregion
 
+
+    @FXML
+    void clickCancel(ActionEvent event)
+    {
+        setVisible(false);
+        parentController.currentObj = null;
+    }
 }
