@@ -100,7 +100,7 @@ public class PatientTransportSRInsertCreateController implements InsertServiceRe
 
     @FXML
     void goToPatientTable(ActionEvent event) throws IOException {
-        new PatientSelectorWindow(this::setPatientComboBox);
+        new PatientSelectorWindow(patient -> this.setPatientComboBox(patient));
     }
 
     private void setPatientComboBox(Patient patientComboBox) {
