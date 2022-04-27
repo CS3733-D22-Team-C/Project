@@ -136,7 +136,7 @@ public class CSVComponent implements Initializable {
     void clickExportFiles(ActionEvent event) {
         if(!exportText.getText().equals("")) {
             entitiesChecked(true);
-            resetFields();
+            setFields();
         }
     }
 
@@ -144,9 +144,19 @@ public class CSVComponent implements Initializable {
     void clickImportFiles(ActionEvent event) {
         if(!importText.getText().equals("")) {
             entitiesChecked(false);
-            resetFields();
+            setFields();
         }
 
+    }
+    
+    @FXML
+    void toggleSelectionsImport(ActionEvent event) {
+        
+    }
+    
+    @FXML
+    void toggleSelectionsExport(ActionEvent event) {
+        
     }
 
     void chooseCSV(TextField csvName) {
@@ -232,21 +242,6 @@ public class CSVComponent implements Initializable {
             if(employeesExport.isSelected()) {
                 EmployeeDAO employeeDAO = new EmployeeDAO();
                 List<Employee> employees = employeeDAO.getAll();
-
-                int adminIdx = -1, staffIdx = -1;
-                for(int i = 0; i < employees.size(); i++) {
-                    if(employees.get(i).getUsername().equals("admin")) {
-                        adminIdx = i;
-                    }
-                }
-                employees.remove(adminIdx);
-                for(int i = 0; i < employees.size(); i++) {
-                    if (employees.get(i).getUsername().equals("staff")) {
-                        staffIdx = i;
-                    }
-                }
-                employees.remove(staffIdx);
-
                 CSVFacade.write(Employee.class, savedFile.getPath() + File.separator + EMPLOYEE_CSV, employees);
             }
 
@@ -365,8 +360,7 @@ public class CSVComponent implements Initializable {
         }
     }
 
-    void resetFields(){
-
+    void setFields(){
         //Map
         floorsExport.setSelected(false);
         floorsImport.setSelected(false);
@@ -397,6 +391,9 @@ public class CSVComponent implements Initializable {
     
         medicalEquipmentEntityImport.setSelected(false);
         medicalEquipmentEntityExport.setSelected(false);
+        
+        selectAllImport.setSelected(false);
+        selectAllExport.setSelected(false);
 
         employeesExport.setSelected(false);
         employeesImport.setSelected(false);

@@ -271,7 +271,7 @@
                         </HBox>
                         <HBox alignment="TOP_RIGHT">
                            <children>
-                              <MFXCheckbox fx:id="selectAllImport" contentDisposition="RIGHT" text="Select All">
+                              <MFXCheckbox fx:id="selectAllImport" contentDisposition="RIGHT" onAction="#toggleSelectionsImport" text="Select All">
                                  <font>
                                     <Font name="System Bold" size="12.0" />
                                  </font>
@@ -454,7 +454,7 @@
                         </VBox>
                         <HBox alignment="TOP_RIGHT">
                            <children>
-                              <MFXCheckbox fx:id="selectAllExport" contentDisposition="RIGHT" text="Select All">
+                              <MFXCheckbox fx:id="selectAllExport" contentDisposition="RIGHT" onAction="#toggleSelectionsExport" text="Select All">
                                  <font>
                                     <Font name="System Bold" size="12.0" />
                                  </font>
