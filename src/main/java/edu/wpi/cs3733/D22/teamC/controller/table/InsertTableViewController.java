@@ -5,6 +5,7 @@ import edu.wpi.cs3733.D22.teamC.entity.generic.DAO;
 import edu.wpi.cs3733.D22.teamC.entity.generic.IDEntity;
 import edu.wpi.cs3733.D22.teamC.models.builders.NotificationBuilder;
 import edu.wpi.cs3733.D22.teamC.models.generic.TableDisplay;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.layout.VBox;
 
@@ -109,4 +110,11 @@ public abstract class InsertTableViewController<T extends IDEntity> {
         public abstract void setFields(T object);
     //#endregion
 
+
+    @FXML
+    void clickCancel(ActionEvent event)
+    {
+        setVisible(false);
+        parentController.currentObj = null;
+    }
 }

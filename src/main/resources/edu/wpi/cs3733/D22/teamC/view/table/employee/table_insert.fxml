@@ -16,7 +16,7 @@
          <content>
             <VBox styleClass="scroll-pane">
                <children>
-                  <VBox alignment="CENTER_LEFT" prefHeight="115.0" prefWidth="419.0">
+                  <VBox alignment="CENTER_LEFT" prefHeight="89.0" prefWidth="399.0">
                      <children>
                         <Label fx:id="title" prefHeight="25.0" prefWidth="270.0" styleClass="base-insert-heeder" stylesheets="@../../../css/table_skeleton.css" text="dfgdfgdg">
                            <font>
@@ -48,7 +48,7 @@
                         </TextField>
                      </children>
                      <VBox.margin>
-                        <Insets top="10.0" />
+                        <Insets top="15.0" />
                      </VBox.margin>
                   </VBox>
                   <VBox>
@@ -57,12 +57,12 @@
                         <TextField fx:id="phone" onKeyTyped="#onFieldUpdated" prefHeight="47.0" prefWidth="410.0" styleClass="base_view_table_text" stylesheets="@../../../css/table_skeleton.css" />
                      </children>
                      <VBox.margin>
-                        <Insets top="10.0" />
+                        <Insets top="15.0" />
                      </VBox.margin>
                   </VBox>
                   <VBox>
                      <VBox.margin>
-                        <Insets top="10.0" />
+                        <Insets top="15.0" />
                      </VBox.margin>
                      <children>
                         <Label prefHeight="17.0" prefWidth="404.0" text="Role">
@@ -70,25 +70,34 @@
                               <Insets left="10.0" />
                            </padding>
                         </Label>
-                        <JFXComboBox fx:id="roleComboBox" maxWidth="1.7976931348623157E308" onAction="#onFieldUpdated" prefHeight="47.0" prefWidth="419.0" styleClass="dropdown" stylesheets="@../../../css/default.css" />
+                        <JFXComboBox fx:id="roleComboBox" maxWidth="1.7976931348623157E308" onAction="#onFieldUpdated" prefHeight="47.0" prefWidth="419.0" styleClass="dropdown" stylesheets="@../../../css/default.css">
+                           <VBox.margin>
+                              <Insets bottom="20.0" />
+                           </VBox.margin></JFXComboBox>
                      </children>
                   </VBox>
                   <HBox alignment="CENTER" prefHeight="61.0" prefWidth="395.0">
                      <children>
-                        <HBox prefHeight="41.0" prefWidth="380.0">
+                        <HBox prefHeight="41.0" prefWidth="406.0">
                            <HBox.margin>
-                              <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                              <Insets />
                            </HBox.margin>
                            <children>
-                              <HBox alignment="CENTER_LEFT" prefHeight="41.0" prefWidth="190.0">
+                              <HBox alignment="CENTER_LEFT" prefHeight="61.0" prefWidth="205.0">
                                  <children>
-                                    <JFXButton fx:id="cancel" onAction="#clickCancel" prefHeight="42.0" prefWidth="139.0" styleClass="base_view_table_confirm" stylesheets="@../../../css/table_skeleton.css" text="Cancel" />
+                                    <JFXButton fx:id="cancel" onAction="#clickCancel" prefHeight="42.0" prefWidth="139.0" styleClass="base_view_table_back" stylesheets="@../../../css/table_skeleton.css" text="Cancel" />
                                  </children>
+                                 <HBox.margin>
+                                    <Insets left="5.0" />
+                                 </HBox.margin>
                               </HBox>
-                              <HBox alignment="CENTER_RIGHT" prefHeight="41.0" prefWidth="190.0">
+                              <HBox alignment="CENTER_RIGHT" prefHeight="61.0" prefWidth="219.0">
                                  <children>
                                     <JFXButton fx:id="confirmButton" onAction="#clickConfirm" prefHeight="42.0" prefWidth="139.0" styleClass="base_view_table_confirm" stylesheets="@../../../css/table_skeleton.css" text="Confirm" />
                                  </children>
+                                 <HBox.margin>
+                                    <Insets right="5.0" />
+                                 </HBox.margin>
                               </HBox>
                            </children>
                         </HBox>

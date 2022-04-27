@@ -90,6 +90,7 @@ public class BaseTableViewController<T extends IDEntity> implements Initializabl
         public void onRemoveButtonClicked() {
             if (currentObj != null) {
                 remove.setDisable(true);
+                edit.setDisable(true);
                 table.getSelectionModel().clearSelection();
                 // Delete from DB
                 insertController.deleteObject();

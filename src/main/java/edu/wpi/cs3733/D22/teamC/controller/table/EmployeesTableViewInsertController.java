@@ -152,13 +152,6 @@ public class EmployeesTableViewInsertController extends InsertTableViewControlle
         }
     }
 
-    @FXML
-    void clickCancel(ActionEvent event)
-    {
-        setVisible(false);
-        parentController.currentObj = null;
-    }
-
 //    @FXML
 //    void onFieldUpdated() {
 //        confirmButton.setDisable(!checkFieldsFilled());
