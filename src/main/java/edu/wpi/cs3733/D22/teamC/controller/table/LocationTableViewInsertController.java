@@ -167,7 +167,7 @@ public class LocationTableViewInsertController extends InsertTableViewController
         @FXML
         void clickCancel(ActionEvent event)
         {
-            
+
         }
 
         @FXML
