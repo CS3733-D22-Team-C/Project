@@ -44,17 +44,12 @@ public class App extends Application {
     public static final String DRAWER_PATH = "view/component/drawer.fxml";
     public static final String DRAWER_CONTENT_PATH = "view/component/drawer_content.fxml";
     public static final String LOGIN_PATH = "view/general/login.fxml";
-    public static final String MY_TASKS_PATH = "view/general/my_tasks.fxml";
     public static final String SERVICE_REQUEST_DASHBOARD = "view/service_request/landing_page/service_request_landing_page.fxml";
     public static final String DASHBOARD_PATH = "view/location/map/base_side_map_view.fxml";
     public static final String DATABASE_PAGE_PATH = "view/general/edit_databases_page.fxml";
     public static final String MAP_PATH = "view/map/floor_map.fxml";
 
     public static final String ABOUT_PAGE = "view/general/about_page/about_app_page.fxml";
-
-
-    //public static final String IMAGE_PATH = "static/images/BrighamAndWomensHospital.png";
-
     public static final String USER_PROFILE = "view/general/profile_page/user_dashboard.fxml";
 
     public static final String MAP_SIDEBAR = "view/map/floor_map.fxml";
@@ -110,19 +105,15 @@ public class App extends Application {
                             setView(DASHBOARD_PATH);
                             break;
                         case "X" :
-                            if (userAccount.getAdmin())
-                            {
+                            if (userAccount.getAdmin()) {
                                 setView(DATABASE_PAGE_PATH);
                             }
                             break;
                         case "M" :
-                            setView(MY_TASKS_PATH);
+                            setView(USER_PROFILE);
                             break;
                         case "S" :
                             setView(SERVICE_REQUEST_DASHBOARD);
-                            break;
-                        case "P" :
-                            setView(USER_PROFILE);
                             break;
                         case "L" :
                             setView(App.LOGIN_PATH);
