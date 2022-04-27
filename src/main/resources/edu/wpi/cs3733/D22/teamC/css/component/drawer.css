@@ -1,27 +1,9 @@
-@import "../colors.css";
 @import "../default.css";
 
-/* CUSTOM */
-/* Mass. General Brigham label */
-.top-label {
-    -fx-rotate: -90;
-    -fx-wrap-text: false;
-    -fx-font-size: 18px;
-    -fx-font-family: "Roboto";
-    -fx-fill: -color-primary-text;
-}
-
-/* Container containing both the text and logo of the hospital */
-.logo-container {
-    -fx-background-color: -color-primary-dark;
-}
-
-/* DEFAULT OVERRIDES */
-
-/* Override button styling */
+/* JavaFX Overrides */
 .button {
     -fx-background-color: -color-primary-light;
-    -fx-text-fill: -color-primary-text;
+    -fx-text-fill: -color-secondary-text;
     -fx-pref-height: 40px;
     -fx-pref-width: 40px;
     -fx-padding: 10px;
@@ -33,25 +15,32 @@
     -fx-background-color: -color-primary;
 }
 
-.active-button {
-    -fx-background-color: -color-primary;
-    -mfx-button-type: FLAT;
-}
-
-/* Sets ripple color for the button */
 .mfx-button .mfx-ripple-generator {
     -mfx-ripple-color: -color-primary-light;
     -mfx-ripple-opacity: .5;
 }
 
-/* Sets all spacing between components within all vboxes */
-.vbox {
+/* Custom */
+#title {
+    -fx-rotate: -90;
+    -fx-wrap-text: false;
+    -fx-font-size: 18px;
+    -fx-font-family: "Roboto";
+    -fx-fill: -color-primary-text;
+}
+
+#container {
+    -fx-background-color: -color-primary-dark;
+}
+
+
+#vbox {
     -fx-spacing: 6px;
     -fx-padding: 5px;
 }
 
-/* Sets the background color of the drawer */
-.jfx-drawer > .jfx-drawer-overlay-pane {
-    -fx-background-color: -color-background;
+/* Selected button styling */
+.active-button {
+    -fx-background-color: -color-primary;
+    -mfx-button-type: FLAT;
 }
-
