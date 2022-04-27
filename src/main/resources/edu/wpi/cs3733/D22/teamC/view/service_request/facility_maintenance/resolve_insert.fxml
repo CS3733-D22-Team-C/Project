@@ -7,10 +7,10 @@
 
 <HBox stylesheets="@../../../css/component/request_page.css" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.wpi.cs3733.D22.teamC.controller.service_request.facility_maintenance.FacilityMaintenanceSRInsertResolveController">
    <children>
-      <VBox prefWidth="227.0" styleClass="fields-padding">
+      <VBox prefWidth="227.0" styleClass="fields-padding" translateX="0.5">
          <children>
             <Label styleClass="service-field-label" text="Maintenance Type:" />
-            <JFXComboBox fx:id="maintType" maxWidth="1.7976931348623157E308" onAction="#statusUpdated" prefWidth="190.0" styleClass="dropdown" stylesheets="@../../../css/default.css" VBox.vgrow="ALWAYS" />
+            <JFXComboBox fx:id="maintType" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onAction="#statusUpdated" prefHeight="31.2" prefWidth="244.0" styleClass="dropdown" stylesheets="@../../../css/default.css" VBox.vgrow="ALWAYS" />
          </children>
       </VBox>
       <VBox prefWidth="227.0" styleClass="fields-padding" />

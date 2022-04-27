@@ -10,7 +10,7 @@ public class FacilityMaintenanceSRFactory extends ServiceRequestFactory<Facility
         FacilityMaintenanceSR serviceRequest = new FacilityMaintenanceSR();
 
         ServiceRequest.RequestType requestType = ServiceRequest.RequestType.Facility_Maintenance;
-        FacilityMaintenanceSR.MaintenanceType maintenanceType = FacilityMaintenanceSR.MaintenanceType.Cleaning.values()[generator.nextInt(FacilityMaintenanceSR.MaintenanceType.values().length)];
+        FacilityMaintenanceSR.MaintenanceType maintenanceType = FacilityMaintenanceSR.MaintenanceType.Broken_Pipe.values()[generator.nextInt(FacilityMaintenanceSR.MaintenanceType.values().length)];
 
         serviceRequest.setRequestType(requestType);
         serviceRequest.setMaintenanceType(maintenanceType);

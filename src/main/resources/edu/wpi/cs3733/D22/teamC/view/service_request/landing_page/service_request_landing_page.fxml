@@ -27,7 +27,7 @@
                   <HBox>
                      <children>
                         <SearchableComboBox fx:id="serviceReqTypeComboBox" onAction="#onSRTypeSelected" />
-                        <MFXButton fx:id="SRTypeClearButton" onAction="#onClearSRTypeButtonClicked" prefHeight="31.0" prefWidth="55.0" text="Clear" />
+                        <MFXButton fx:id="SRTypeClearButton" onAction="#onClearSRTypeButtonClicked" prefHeight="31.0" prefWidth="72.0" text="Clear" />
                      </children>
                      <padding>
                         <Insets right="20.0" />
@@ -35,9 +35,9 @@
                   </HBox>
                   <HBox alignment="CENTER_RIGHT" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" spacing="10.0" HBox.hgrow="ALWAYS">
                      <children>
-                        <JFXButton fx:id="edit" disable="true" onAction="#onEditButton" prefHeight="31.0" prefWidth="72.0" styleClass="button-success" stylesheets="@../../../css/base.css" text="Edit" />
-                        <JFXButton fx:id="resolve" disable="true" onAction="#onResolveButton" prefHeight="31.0" prefWidth="72.0" styleClass="button-confirm" stylesheets="@../../../css/base.css" text="Resolve" />
-                        <JFXButton fx:id="deleteButton" disable="true" onAction="#onDeleteButton" prefHeight="31.0" prefWidth="72.0" styleClass="button-success" stylesheets="@../../../css/base.css" text="Delete" />
+                        <JFXButton fx:id="edit" disable="true" onAction="#onEditButton" prefHeight="31.0" prefWidth="72.0" styleClass="button-success" stylesheets="@../../../css/default.css" text="Edit" />
+                        <JFXButton fx:id="resolve" disable="true" onAction="#onResolveButton" prefHeight="31.0" prefWidth="72.0" styleClass="button-confirm" stylesheets="@../../../css/default.css" text="Resolve" />
+                        <JFXButton fx:id="deleteButton" disable="true" onAction="#onDeleteButton" prefHeight="31.0" prefWidth="72.0" styleClass="button-success" stylesheets="@../../../css/default.css" text="Delete" />
                      </children>
                   </HBox>
                </children>
@@ -49,7 +49,7 @@
          </styleClass></VBox>
       <VBox alignment="CENTER_RIGHT" stylesheets="@../../../css/component/service_request_landing_page.css">
          <children>
-            <VBox alignment="CENTER">
+            <VBox alignment="CENTER" prefHeight="99.0" prefWidth="306.0">
                <children>
                   <StackPane prefHeight="0.0" prefWidth="306.0">
                      <children>
@@ -75,10 +75,10 @@
                         </HBox>
                      </children>
                   </StackPane>
-                  <MFXToggleButton onAction="#onAPIToggleButtonPress" prefHeight="2.0" prefWidth="122.0" text="Toggle API" />
+                  <MFXToggleButton onAction="#onAPIToggleButtonPress" prefHeight="31.0" prefWidth="124.0" text="Toggle API" translateY="10.0" />
                </children>
             </VBox>
-            <VBox fx:id="scrollPaneButtons" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" VBox.vgrow="ALWAYS" />
+            <VBox fx:id="scrollPaneButtons" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefWidth="306.0" VBox.vgrow="ALWAYS" />
          </children>
          <styleClass>
             <String fx:value="page-container" />

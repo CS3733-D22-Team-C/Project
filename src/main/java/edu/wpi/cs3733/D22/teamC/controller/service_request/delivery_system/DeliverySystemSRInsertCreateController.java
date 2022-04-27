@@ -3,12 +3,14 @@ package edu.wpi.cs3733.D22.teamC.controller.service_request.delivery_system;
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXComboBox;
 import com.jfoenix.controls.JFXTreeTableView;
+import com.jfoenix.svg.SVGGlyph;
 import edu.wpi.cs3733.D22.teamC.controller.service_request.InsertServiceRequestCreateController;
 import edu.wpi.cs3733.D22.teamC.entity.generic.DAO;
 import edu.wpi.cs3733.D22.teamC.entity.patient.Patient;
 import edu.wpi.cs3733.D22.teamC.entity.patient.PatientDAO;
 import edu.wpi.cs3733.D22.teamC.entity.service_request.delivery_system.DeliverySystemSR;
 import edu.wpi.cs3733.D22.teamC.entity.service_request.delivery_system.DeliverySystemSRDAO;
+import edu.wpi.cs3733.D22.teamC.fileio.svg.SVGParser;
 import edu.wpi.cs3733.D22.teamC.models.patient.PatientSelectorWindow;
 import edu.wpi.cs3733.D22.teamC.models.service_request.ServiceRequestTableDisplay;
 import edu.wpi.cs3733.D22.teamC.models.service_request.delivery_system.DeliverySystemSRTableDisplay;
@@ -32,7 +34,7 @@ public class DeliverySystemSRInsertCreateController implements InsertServiceRequ
     
     @FXML
     public void goToPatientTable(ActionEvent event) {
-        new PatientSelectorWindow(patient -> this.setPatientComboBox(patient));
+        new PatientSelectorWindow(this::setPatientComboBox);
     }
     
     public void setPatientComboBox(Patient patientComboBox) {
@@ -41,6 +43,12 @@ public class DeliverySystemSRInsertCreateController implements InsertServiceRequ
     
     @Override
     public void initialize(URL location, ResourceBundle resources) {
+        SVGParser svgParser = new SVGParser();
+        String employeeIcon = svgParser.getPath("static/icons/employee_icon.svg");
+        SVGGlyph employeeContent = new SVGGlyph(employeeIcon);
+        employeeContent.setSize(20);
+        patientTableButton.setGraphic(employeeContent);
+        
         // DeliveryType dropdown
         for (DeliverySystemSR.DeliveryType labs : DeliverySystemSR.DeliveryType.values()) {
             deliveryType.getItems().add(labs.toString());
