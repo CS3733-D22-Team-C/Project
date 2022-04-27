@@ -20,6 +20,9 @@ import org.controlsfx.control.SearchableComboBox;
 import java.io.IOException;
 import java.net.URL;
 import java.sql.Timestamp;
+import java.time.Instant;
+import java.time.LocalDate;
+import java.time.ZoneId;
 import java.util.List;
 import java.util.ResourceBundle;
 
@@ -49,7 +52,13 @@ public class PatientTransportSRInsertResolveController extends InsertServiceRequ
 
         date.setDisable(!isEditMode);
         patientSComboBox.setDisable(!isEditMode);
-        
+
+        LocalDate lD = null;
+        if (serviceRequest != null){
+            lD = Instant.ofEpochMilli(serviceRequest.getTransportTime().getTime()).atZone(ZoneId.systemDefault()).toLocalDate();
+        }
+
+        date.setValue((serviceRequest == null) ? null : lD);
         date.setText(serviceRequest.getTransportTime().toString());
         patientSComboBox.setValue(serviceRequest.getPatient());
         patientSComboBox.setPromptText(serviceRequest.getPatient().toString());
