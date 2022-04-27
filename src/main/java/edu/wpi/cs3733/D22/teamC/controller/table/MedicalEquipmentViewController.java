@@ -2,10 +2,13 @@ package edu.wpi.cs3733.D22.teamC.controller.table;
 
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXTreeTableView;
+import com.jfoenix.svg.SVGGlyph;
 import edu.wpi.cs3733.D22.teamC.entity.location.Location;
 import edu.wpi.cs3733.D22.teamC.entity.location.LocationDAO;
 import edu.wpi.cs3733.D22.teamC.entity.medical_equipment.MedicalEquipment;
 import edu.wpi.cs3733.D22.teamC.entity.medical_equipment.MedicalEquipmentDAO;
+import edu.wpi.cs3733.D22.teamC.fileio.svg.SVGParser;
+import edu.wpi.cs3733.D22.teamC.models.builders.NotificationBuilder;
 import edu.wpi.cs3733.D22.teamC.models.generic.TableDisplay;
 import edu.wpi.cs3733.D22.teamC.models.location.MapSelectorWindow;
 import edu.wpi.cs3733.D22.teamC.models.medical_equipment.MedicalEquipmentTableDisplay;
@@ -15,6 +18,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
+import org.controlsfx.control.SearchableComboBox;
 import org.controlsfx.validation.ValidationSupport;
 import org.controlsfx.validation.Validator;
 
@@ -26,7 +30,7 @@ public class MedicalEquipmentViewController extends InsertTableViewController<Me
     // FXML
     @FXML protected JFXButton confirmButton;
 
-    @FXML private TextField locationID;
+    @FXML private SearchableComboBox locationID;
     @FXML private ComboBox<MedicalEquipment.EquipmentType> typeComboBox;
     @FXML private TextField number;
     @FXML private ComboBox<MedicalEquipment.EquipmentStatus> statusComboBox;//
@@ -38,6 +42,14 @@ public class MedicalEquipmentViewController extends InsertTableViewController<Me
     private ValidationSupport validation;
 
     public void initialize(URL location, ResourceBundle resources) {
+
+        SVGParser svgParser = new SVGParser();
+        String locationIcon = svgParser.getPath("static/icons/location_icon.svg");
+        SVGGlyph locationContent = new SVGGlyph(locationIcon);
+        locationContent.setSize(20);
+        mapViewButton.setGraphic(locationContent);
+
+
         title.setText("Add Equipment");
         locationID.setEditable(false);
 
@@ -76,7 +88,7 @@ public class MedicalEquipmentViewController extends InsertTableViewController<Me
         location = (object == null) ? null : new LocationDAO().getByID(object.getLocation().getID());
 
         title.setText((object == null) ? "Add Equipment" : "Edit Equipment");
-        locationID.setText((object == null) ? "" : location.getShortName());
+        locationID.setValue((object == null) ? "" : location.getShortName());
         typeComboBox.setValue((object == null) ? null : object.getEquipmentType());
         number.setText(String.valueOf((object == null) ? "" : object.getTypeNumber()));
         statusComboBox.setValue((object == null) ? null : object.getStatus());
@@ -87,7 +99,7 @@ public class MedicalEquipmentViewController extends InsertTableViewController<Me
     public boolean checkFieldsFilled() {
 
         validation.setErrorDecorationEnabled(true);
-        if (locationID.getText().equals("")) return false;
+        if (locationID.getValue().toString().equals("")) return false;
         return !(typeComboBox.getValue()==null
                 || number.getText().equals("")
                 || statusComboBox.getValue()==null);
@@ -101,7 +113,7 @@ public class MedicalEquipmentViewController extends InsertTableViewController<Me
             locationName = location.getShortName();
         }
 
-        locationID.setText(locationName);
+        locationID.setValue(locationName);
     }
 
     //#region Abstraction
@@ -137,18 +149,37 @@ public class MedicalEquipmentViewController extends InsertTableViewController<Me
     //#region FXML Events
         @FXML
         void clickConfirm(ActionEvent event) {
-            if (checkFieldsFilled()) {
-                if (parentController.currentObj == null){
-                    addObject();
-                    parentController.setCurrentObj(null);
-                    parentController.setRemoveDisable(true);
+                if (checkFieldsFilled()) {
+                    if (parentController.currentObj == null) {
+                        if (!medicineExists(typeComboBox.getValue(), Integer.parseInt(number.getText()))){
+                            addObject();
+                            parentController.setCurrentObj(null);
+                            parentController.setRemoveDisable(true);
+                        } else {
+                            String createdSRNotification = "Medical Equipment Type and Number Already Exists";
+                            NotificationBuilder.createNotification("Already Exists", createdSRNotification);
+                        }
+                    }
+                    else{
+                        if ((!parentController.currentObj.getEquipmentType().equals(typeComboBox.getValue()))
+                            || !(parentController.currentObj.getTypeNumber()== Integer.parseInt(number.getText()))){
+                            //this code runs if user changed the tpye or number. We must check that chages are OK
+
+                            if (!medicineExists(typeComboBox.getValue(), Integer.parseInt(number.getText()))){
+                                updateObject();
+                            } else {
+                                String createdSRNotification = "Cannot Modify to Already Existing Type-Number Combo";
+                                NotificationBuilder.createNotification("Already Exists", createdSRNotification);
+                            }
+                        } else {
+                            updateObject();
+                        }
+                    }
+                    validation.setErrorDecorationEnabled(false);
                 }
-                else{
-                    updateObject();
-                }
-                validation.setErrorDecorationEnabled(false);
-            }
+
         }
+
 
         @FXML
         void onFieldUpdated() {
@@ -161,4 +192,17 @@ public class MedicalEquipmentViewController extends InsertTableViewController<Me
             new MapSelectorWindow(this::setLocation);
         }
     //#endregion
+
+    private boolean medicineExists(MedicalEquipment.EquipmentType medType, int medNumber){
+        List<MedicalEquipment> medicalEquipmentList = new MedicalEquipmentDAO().getAll();
+
+        for (MedicalEquipment a_medicalEquipment : medicalEquipmentList){
+            if ((a_medicalEquipment.getEquipmentType().equals(medType)) &&
+                    (a_medicalEquipment.getTypeNumber() == medNumber)){
+                //true as in the medicine already EXISTS!
+                return true;
+            }
+        }
+        return false;
+    }
 }
