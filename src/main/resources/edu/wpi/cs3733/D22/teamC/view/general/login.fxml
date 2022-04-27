@@ -19,7 +19,7 @@
    <children>
       <VBox alignment="CENTER" maxHeight="1.7976931348623157E308" prefHeight="866.0" prefWidth="564.0" styleClass="login-interface-background-upper">
          <children>
-            <Label id="title" alignment="CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" styleClass="login-interface-title" stylesheets="@../../css/component/login.css" text="Brigham and Womens Internal Tools" VBox.vgrow="ALWAYS">
+            <Label alignment="CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" styleClass="title" stylesheets="@../../css/component/login.css" text="Brigham and Womens Internal Tools" VBox.vgrow="ALWAYS">
                <font>
                   <Font size="18.0" />
                </font>
@@ -33,51 +33,36 @@
             </Label>
             <GridPane prefHeight="583.0" prefWidth="522.0" styleClass="grid-pane-fields" VBox.vgrow="ALWAYS">
               <columnConstraints>
-                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                <ColumnConstraints minWidth="10.0" prefWidth="100.0" />
               </columnConstraints>
               <rowConstraints>
-                  <RowConstraints maxHeight="221.0" minHeight="10.0" prefHeight="84.0" vgrow="SOMETIMES" />
-                  <RowConstraints maxHeight="137.0" minHeight="0.0" prefHeight="137.0" vgrow="ALWAYS" />
-                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="ALWAYS" />
-                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="ALWAYS" />
-                <RowConstraints minHeight="10.0" prefHeight="30.0" valignment="CENTER" vgrow="ALWAYS" />
-                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="ALWAYS" />
+                  <RowConstraints vgrow="SOMETIMES" />
+                  <RowConstraints maxHeight="203.80001220703124" minHeight="0.0" prefHeight="196.33333740234374" vgrow="ALWAYS" />
+                <RowConstraints maxHeight="321.6667236328125" minHeight="10.0" prefHeight="261.6666625976562" vgrow="ALWAYS" />
+                  <RowConstraints maxHeight="245.93332519531248" minHeight="10.0" prefHeight="185.13327636718748" vgrow="ALWAYS" />
               </rowConstraints>
                <children>
-                  <VBox alignment="CENTER" prefHeight="101.0" prefWidth="564.0">
+                  <HBox id="error-box" alignment="CENTER" GridPane.hgrow="ALWAYS">
                      <children>
-                        <Label fx:id="invalidLogin" alignment="CENTER" prefHeight="40.0" prefWidth="197.0" styleClass="invalid-label" stylesheets="@../../css/component/login.css" VBox.vgrow="ALWAYS">
+                        <Label id="invalid-label" fx:id="invalidLogin" alignment="CENTER" maxWidth="1.7976931348623157E308" prefHeight="40.0" prefWidth="197.0" stylesheets="@../../css/component/login.css" visible="false">
                            <font>
                               <Font size="10.0" />
                            </font>
                         </Label>
                      </children>
-                     <padding>
-                        <Insets bottom="20.0" top="20.0" />
-                     </padding>
-                  </VBox>
-                  <VBox alignment="CENTER_LEFT" GridPane.rowIndex="1">
+                  </HBox>
+                  <VBox id="fields" alignment="CENTER_LEFT" prefHeight="163.0" prefWidth="564.0" GridPane.rowIndex="1">
                      <children>
-                        <MFXTextField fx:id="username" floatMode="BORDER" floatingText="Username" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="30.0" prefWidth="269.0" />
+                        <MFXTextField id="validated-field" fx:id="username" floatMode="BORDER" floatingText="Username" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="30.0" prefWidth="269.0" />
+                        <Label fx:id="usernameValidationLabel" styleClass="validated-text" text="Label" visible="false" />
+                        <MFXPasswordField id="validated-field" fx:id="password" alignment="TOP_LEFT" floatMode="BORDER" floatingText="Password" maxWidth="1.7976931348623157E308" prefHeight="26.0" prefWidth="240.0" />
+                        <Label fx:id="passwordValidationLabel" styleClass="validated-text" text="Label" visible="false" />
                      </children>
-                     <padding>
-                        <Insets bottom="20.0" left="100.0" right="100.0" top="20.0" />
-                     </padding>
+                     <GridPane.margin>
+                        <Insets />
+                     </GridPane.margin>
                   </VBox>
-                  <VBox GridPane.rowIndex="2">
-                     <children>
-                        <MFXPasswordField fx:id="password" alignment="TOP_LEFT" floatMode="BORDER" floatingText="Password" maxWidth="1.7976931348623157E308" prefHeight="26.0" prefWidth="240.0" />
-                     </children>
-                     <padding>
-                        <Insets bottom="20.0" left="100.0" right="100.0" top="20.0" />
-                     </padding>
-                  </VBox>
-                  <VBox alignment="CENTER" GridPane.rowIndex="3">
-                     <children>
-                        <MFXToggleButton fx:id="toggleButton" prefHeight="46.0" prefWidth="200.0" styleClass="toggle-button-background" />
-                     </children>
-                  </VBox>
-                  <VBox alignment="CENTER" GridPane.rowIndex="4">
+                  <VBox id="buttons" alignment="CENTER" GridPane.rowIndex="2">
                      <children>
                         <MFXButton defaultButton="true" onAction="#loginButtonClicked" prefHeight="50.0" prefWidth="200.0" styleClass="login-button" stylesheets="@../../css/component/login.css" text="Login">
                            <font>
@@ -91,11 +76,7 @@
                               </ImageView>
                            </graphic>
                         </MFXButton>
-                     </children>
-                  </VBox>
-                  <VBox alignment="CENTER" GridPane.rowIndex="5">
-                     <children>
-                        <MFXButton onAction="#exitButtonClicked" prefHeight="50.0" prefWidth="200.0" styleClass="failure-button" stylesheets="@../../css/component/login.css" text="Exit">
+                        <MFXButton onAction="#exitButtonClicked" prefHeight="50.0" prefWidth="200.0" styleClass="cancel-button" stylesheets="@../../css/component/login.css" text="Exit">
                            <font>
                               <Font name="Roboto Light" size="12.0" />
                            </font>
@@ -107,6 +88,11 @@
                               </ImageView>
                            </graphic>
                         </MFXButton>
+                     </children>
+                  </VBox>
+                  <VBox alignment="CENTER" GridPane.rowIndex="3">
+                     <children>
+                        <MFXToggleButton fx:id="toggleButton" prefHeight="46.0" prefWidth="200.0" styleClass="toggle-button-background" />
                      </children>
                   </VBox>
                </children>
