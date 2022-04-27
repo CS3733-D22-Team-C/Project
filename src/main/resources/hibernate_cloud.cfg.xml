@@ -8,11 +8,11 @@
     <session-factory>
 
         <!-- DATABASE -->
-        <property name="connection.url">jdbc:cloudspanner:/projects/cs3733-application/instances/cs3733-instance/databases/cs3733-db</property>
-        <property name="connection.driver_class">com.google.cloud.spanner.jdbc.JdbcDriver</property>
+        <property name="connection.url">jdbc:postgresql://35.243.161.132/cs3733-db2</property>
+        <property name="connection.driver_class">org.postgresql.Driver</property>
         <property name="connection.pool_size">100</property>
 
-        <property name="dialect">com.google.cloud.spanner.hibernate.SpannerDialect</property>
+        <property name="dialect">org.hibernate.dialect.PostgreSQL95Dialect</property>
         <!-- <property name="connection.username"/> -->
         <!-- <property name="connection.password"/> -->
 
