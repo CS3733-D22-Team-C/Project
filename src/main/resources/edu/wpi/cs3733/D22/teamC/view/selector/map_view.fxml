@@ -15,7 +15,7 @@
    <children>
       <HBox VBox.vgrow="SOMETIMES">
          <padding>
-            <Insets bottom="15.0" left="35.0" right="15.0" top="15.0" />
+            <Insets bottom="25.0" left="35.0" right="15.0" top="15.0" />
          </padding>
          <children>
             <Label fx:id="title" styleClass="page-title" stylesheets="@../../css/default.css" text="Select a Location" HBox.hgrow="ALWAYS" />
@@ -29,14 +29,11 @@
           <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
         </columnConstraints>
         <rowConstraints>
-          <RowConstraints fillHeight="false" minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
         </rowConstraints>
          <VBox.margin>
-            <Insets />
+            <Insets left="15.0" right="15.0" />
          </VBox.margin>
-         <padding>
-            <Insets bottom="15.0" left="15.0" right="15.0" top="15.0" />
-         </padding>
       </GridPane>
       <HBox alignment="CENTER" prefHeight="80.0" prefWidth="600.0" VBox.vgrow="SOMETIMES">
          <children>
