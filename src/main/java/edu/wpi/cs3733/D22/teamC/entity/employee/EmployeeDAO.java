@@ -18,13 +18,24 @@ public class EmployeeDAO extends DAO<Employee> {
     }
 
     public Employee getEmployeeByUsername(String username) {
-        List<Employee> employee = HibernateManager.filterQuery("select u from " + classType().getName() + " u where u.username = '" + username + "'");
+        List<Employee> employee = HibernateManager.filterQuery("select e from " + classType().getName() + 
+                " e where e.username = '" + username + "'");
         if (employee.size() == 1) {
             return employee.get(0);
         }
         else {
             return null;
         }
+    }
+    
+    /**
+     * Override getAll to ignore backdoor accounts.
+     * @return List of all Employees.
+     */
+    @Override
+    public List<Employee> getAll() {
+        return HibernateManager.filterQuery("select e from " + classType().getName() + 
+                " e where e.username not like 'admin' and e.username not like 'staff'");
     }
     
     /**
