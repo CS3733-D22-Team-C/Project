@@ -9,6 +9,7 @@ import edu.wpi.cs3733.D22.teamC.entity.medical_equipment.MedicalEquipmentDAO;
 import edu.wpi.cs3733.D22.teamC.entity.service_request.medical_equipment.MedicalEquipmentSR;
 import edu.wpi.cs3733.D22.teamC.entity.service_request.medical_equipment.MedicalEquipmentSRDAO;
 import edu.wpi.cs3733.D22.teamC.models.utils.ComponentWrapper;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.input.MouseEvent;
@@ -64,6 +65,7 @@ public class MedicalEquipmentSRInsertResolveController extends InsertServiceRequ
     @FXML
     public void statusUpdated(){
         super.onFieldUpdated();
+        equipTypeChanged(null);
     }
 
     public DAO<MedicalEquipmentSR> createServiceRequestDAO() {
@@ -71,7 +73,7 @@ public class MedicalEquipmentSRInsertResolveController extends InsertServiceRequ
     }
 
     @FXML
-    void equipTypeChanged(MouseEvent event) {
+    void equipTypeChanged(ActionEvent event) {
         if(isEditMode) {
             //If on the same equipment type
             if (equipmentType.getValue().equals(lastType)) {
@@ -82,8 +84,6 @@ public class MedicalEquipmentSRInsertResolveController extends InsertServiceRequ
             }
 
         }
-
-
     }
 
     private void createEquipIDs(){

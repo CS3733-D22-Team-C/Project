@@ -10,6 +10,7 @@ import edu.wpi.cs3733.D22.teamC.entity.service_request.medical_equipment.Medical
 import edu.wpi.cs3733.D22.teamC.entity.service_request.medical_equipment.MedicalEquipmentSRDAO;
 import edu.wpi.cs3733.D22.teamC.models.service_request.ServiceRequestTableDisplay;
 import edu.wpi.cs3733.D22.teamC.models.service_request.medical_equipment.MedicalEquipmentSRTableDisplay;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.input.MouseEvent;
@@ -31,12 +32,14 @@ public class MedicalEquipmentSRInsertCreateController implements InsertServiceRe
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         equipmentType.getItems().addAll(MedicalEquipment.EquipmentType.values());
+        equipment.setDisable(true);
     }
 
     @Override
     public void clearFields() {
         equipmentType.setValue(null);
         equipment.setValue(null);
+        equipment.setDisable(true);
     }
 
     @Override
@@ -63,8 +66,9 @@ public class MedicalEquipmentSRInsertCreateController implements InsertServiceRe
     }
 
     @FXML
-    void equipTypeChanged(MouseEvent event) {
+    void equipTypeChanged(ActionEvent event) {
         //If on the same equipment type
+        equipment.setDisable(false);
         if (equipmentType.getValue().equals(lastType)) {
             return;
         } else {
