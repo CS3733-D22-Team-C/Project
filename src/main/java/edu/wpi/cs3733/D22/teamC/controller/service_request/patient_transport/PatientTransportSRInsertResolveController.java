@@ -53,13 +53,8 @@ public class PatientTransportSRInsertResolveController extends InsertServiceRequ
         date.setDisable(!isEditMode);
         patientSComboBox.setDisable(!isEditMode);
 
-        LocalDate lD = null;
-        if (serviceRequest != null){
-            lD = Instant.ofEpochMilli(serviceRequest.getTransportTime().getTime()).atZone(ZoneId.systemDefault()).toLocalDate();
-        }
 
-        date.setValue((serviceRequest == null) ? null : lD);
-        date.setText(serviceRequest.getTransportTime().toString());
+        date.setText((serviceRequest == null) ? "" : serviceRequest.getTransportTime().toLocalDateTime().toLocalDate().toString());
         patientSComboBox.setValue(serviceRequest.getPatient());
         patientSComboBox.setPromptText(serviceRequest.getPatient().toString());
     }
