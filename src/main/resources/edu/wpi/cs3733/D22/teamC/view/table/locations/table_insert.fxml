@@ -88,10 +88,31 @@
                   </VBox>
                </children>
             </HBox>
-            <HBox alignment="CENTER_RIGHT" prefWidth="395.0" VBox.vgrow="ALWAYS">
+            <HBox alignment="CENTER" prefHeight="61.0" prefWidth="395.0">
                <children>
-                  <JFXButton fx:id="cancel" onAction="#clickCancel" prefHeight="42.0" prefWidth="139.0" style="-fx-text-fill: #000000;" styleClass="base_view_table_back" stylesheets="@../../../css/table_skeleton.css" text="Cancel" translateX="-143.0" />
-                  <JFXButton fx:id="confirmButton1" onAction="#clickConfirm" prefHeight="42.0" prefWidth="139.0" styleClass="base_view_table_confirm" stylesheets="@../../../css/table_skeleton.css" text="Confirm" />
+                  <HBox prefHeight="41.0" prefWidth="406.0">
+                     <HBox.margin>
+                        <Insets />
+                     </HBox.margin>
+                     <children>
+                        <HBox alignment="CENTER_LEFT" prefHeight="61.0" prefWidth="205.0">
+                           <children>
+                              <JFXButton fx:id="cancel" onAction="#clickCancel" prefHeight="42.0" prefWidth="139.0" style="-fx-text-fill: #000000;" styleClass="base_view_table_back" stylesheets="@../../../css/table_skeleton.css" text="Cancel" />
+                           </children>
+                           <HBox.margin>
+                              <Insets left="5.0" />
+                           </HBox.margin>
+                        </HBox>
+                        <HBox alignment="CENTER_RIGHT" prefHeight="61.0" prefWidth="219.0">
+                           <children>
+                              <JFXButton fx:id="confirmButton" onAction="#clickConfirm" prefHeight="42.0" prefWidth="139.0" styleClass="base_view_table_confirm" stylesheets="@../../../css/table_skeleton.css" text="Confirm" />
+                           </children>
+                           <HBox.margin>
+                              <Insets right="5.0" />
+                           </HBox.margin>
+                        </HBox>
+                     </children>
+                  </HBox>
                </children>
             </HBox>
          </children>
