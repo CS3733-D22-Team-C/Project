@@ -27,7 +27,7 @@
       </VBox>
       <HBox alignment="CENTER_RIGHT" VBox.vgrow="ALWAYS">
          <children>
-            <JFXButton fx:id="selectButton" onAction="#clickSelect" text="Select">
+            <JFXButton fx:id="selectButton" onAction="#clickSelect" prefHeight="30.0" prefWidth="75.0" text="Select">
                <HBox.margin>
                   <Insets right="20.0" />
                </HBox.margin></JFXButton>

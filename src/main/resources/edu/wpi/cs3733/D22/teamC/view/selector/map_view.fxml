@@ -11,20 +11,20 @@
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.layout.VBox?>
 
-<VBox minHeight="-Infinity" minWidth="-Infinity" prefHeight="700.0" prefWidth="800.0" stylesheets="@../../css/default.css" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1">
+<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="600.0" stylesheets="@../../css/default.css" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1">
    <children>
-      <HBox prefHeight="50.0" prefWidth="200.0">
+      <HBox VBox.vgrow="SOMETIMES">
          <padding>
-            <Insets bottom="20.0" left="20.0" right="10.0" top="10.0" />
+            <Insets bottom="15.0" left="35.0" right="15.0" top="15.0" />
          </padding>
          <children>
-            <Label fx:id="title" prefHeight="68.0" prefWidth="463.0" styleClass="page-title" stylesheets="@../../css/default.css" text="Select a Location" HBox.hgrow="ALWAYS" />
+            <Label fx:id="title" styleClass="page-title" stylesheets="@../../css/default.css" text="Select a Location" HBox.hgrow="ALWAYS" />
          </children>
          <VBox.margin>
-            <Insets bottom="20.0" />
+            <Insets />
          </VBox.margin>
       </HBox>
-      <GridPane fx:id="mapViewContainer" maxHeight="-Infinity" prefHeight="600.0" VBox.vgrow="SOMETIMES">
+      <GridPane fx:id="mapViewContainer" VBox.vgrow="ALWAYS">
         <columnConstraints>
           <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
         </columnConstraints>
@@ -32,24 +32,27 @@
           <RowConstraints fillHeight="false" minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
         </rowConstraints>
          <VBox.margin>
-            <Insets bottom="20.0" top="20.0" />
+            <Insets />
          </VBox.margin>
          <padding>
-            <Insets bottom="30.0" left="30.0" right="30.0" top="30.0" />
+            <Insets bottom="15.0" left="15.0" right="15.0" top="15.0" />
          </padding>
       </GridPane>
-      <HBox alignment="CENTER" prefHeight="80.0" prefWidth="600.0">
+      <HBox alignment="CENTER" prefHeight="80.0" prefWidth="600.0" VBox.vgrow="SOMETIMES">
          <children>
-            <HBox alignment="CENTER_LEFT" prefWidth="200.0" HBox.hgrow="ALWAYS">
+            <HBox alignment="CENTER_LEFT" HBox.hgrow="ALWAYS">
                <children>
-                  <JFXComboBox fx:id="floorComboBox" maxWidth="1.7976931348623157E308" onAction="#onFloorChanged" prefHeight="30.0" prefWidth="150.0" styleClass="combo-box" />
+                  <JFXComboBox fx:id="floorComboBox" onAction="#onFloorChanged" prefHeight="30.0" prefWidth="200.0" promptText="Floor" styleClass="combo-box">
+                     <padding>
+                        <Insets left="6.0" />
+                     </padding></JFXComboBox>
                </children>
                <padding>
-                  <Insets bottom="15.0" left="25.0" right="15.0" top="15.0" />
+                  <Insets bottom="25.0" left="36.0" right="25.0" top="25.0" />
                </padding></HBox>
-            <HBox alignment="CENTER_RIGHT" prefWidth="200.0" HBox.hgrow="ALWAYS">
+            <HBox alignment="CENTER_RIGHT" spacing="1.5" HBox.hgrow="ALWAYS">
                <children>
-                  <TextField fx:id="selectedLocationField" disable="true" prefHeight="30.0" prefWidth="150.0">
+                  <TextField fx:id="selectedLocationField" disable="true" prefWidth="150.0">
                      <padding>
                         <Insets bottom="7.0" top="7.0" />
                      </padding>
@@ -57,7 +60,7 @@
                   <JFXButton onAction="#onSelectButtonPressed" prefHeight="30.0" prefWidth="75.0" styleClass="button-confirm" stylesheets="@../../css/default.css" text="Select" />
                </children>
                <padding>
-                  <Insets bottom="15.0" left="15.0" right="25.0" top="15.0" />
+                  <Insets bottom="25.0" left="25.0" right="35.0" top="25.0" />
                </padding>
             </HBox>
          </children>
