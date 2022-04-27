@@ -83,6 +83,7 @@ public class BaseTableViewController<T extends IDEntity> implements Initializabl
         insertController.setFields(object);
         remove.setDisable(object == null);
         edit.setDisable(object == null);
+        if (object == null) table.getSelectionModel().clearSelection();
     }
 
     //#region FXML Events

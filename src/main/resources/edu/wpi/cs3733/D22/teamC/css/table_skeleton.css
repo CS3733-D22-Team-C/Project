@@ -11,6 +11,16 @@
     -fx-background-color: -color-primary-dark;
 }
 
+.base_view_table_edit {
+    -fx-background-color: -color-primary;
+    -fx-text-fill: -color-menu-text;
+    -fx-border-radius: 10px;
+    -fx-cursor: hand;
+}
+.base_view_table_edit:hover{
+    -fx-background-color: -color-primary-dark;
+}
+
 .base_view_table_header {
     -fx-background-color: -color-table-color;
     -fx-text-fill: -color-menu-text;
@@ -20,7 +30,7 @@
 
 .base_view_table_sub {
     -fx-background-color: -color-red-contrast;
-    -fx-text-fill: -color-black;
+    -fx-text-fill: -color-menu-text;
     -fx-border-radius: 10px;
     -fx-cursor: hand;
 }
@@ -33,7 +43,6 @@
 }
 
 .base_view_table_back {
-    -fx-background-color: #c5c5c5;
     -fx-border-radius: 10px;
     -fx-cursor: hand;
 }
@@ -41,22 +50,16 @@
 .base_view_table_confirm {
     -fx-background-color:  -color-menu-light;
     -fx-border-radius: 50px;
-    -fx-text-fill: black;
+    -fx-text-fill: white;
 }
 
 .base_view_table_back {
-    -fx-background-color: -color-button-back;
-    -fx-border-radius: 50px;
-    -fx-text-fill: black;
-}
-.base_view_table_back:hover {
-    -fx-background-color: -color-button-back-hover;
-}
-
-.base_view_table_edit {
     -fx-background-color: -color-menu-light;
     -fx-border-radius: 50px;
-    -fx-text-fill: black;
+    -fx-text-fill: -color-menu-text;
+}
+.base_view_table_back:hover {
+    -fx-background-color: -color-menu;
 }
 
 .base_view_table_text {
