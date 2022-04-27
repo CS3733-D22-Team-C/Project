@@ -54,7 +54,14 @@ public class App extends Application {
     public static final String DASHBOARD_PATH = "view/location/map/base_side_map_view.fxml";
     public static final String DATABASE_PAGE_PATH = "view/general/edit_databases_page.fxml";
     public static final String MAP_PATH = "view/map/floor_map.fxml";
+
+    public static final String ABOUT_PAGE = "view/general/about_page/about_app_page.fxml";
+
+
+    //public static final String IMAGE_PATH = "static/images/BrighamAndWomensHospital.png";
+
     public static final String USER_PROFILE = "view/general/profile_page/user_dashboard.fxml";
+
     public static final String MAP_SIDEBAR = "view/map/floor_map.fxml";
     public static final String SHORTCUT_EDIT = "view/service_request/skeleton/sr_shortcut.fxml";
     public static final String CREDIT_PAGE = "view/general/credit.fxml";
