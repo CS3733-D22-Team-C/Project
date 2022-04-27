@@ -84,6 +84,7 @@ public class App extends Application {
         stage = primaryStage;
         activeStages.add(stage);
         stage.setFullScreen(true);
+        stage.setFullScreenExitHint("");
         baseNode = (BorderPane) loadView(BASE_COMPONENT_PATH).getNode();
 
         // Set the base node to the root
