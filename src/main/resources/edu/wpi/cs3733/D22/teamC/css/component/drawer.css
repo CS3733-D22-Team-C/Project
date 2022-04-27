@@ -21,7 +21,7 @@
 /* Override button styling */
 .button {
     -fx-background-color: -color-primary-light;
-    -fx-text-fill: -color-secondary-text;
+    -fx-text-fill: -color-primary-text;
     -fx-pref-height: 40px;
     -fx-pref-width: 40px;
     -fx-padding: 10px;
@@ -31,6 +31,11 @@
 
 .button:hover {
     -fx-background-color: -color-primary;
+}
+
+.active-button {
+    -fx-background-color: -color-primary;
+    -mfx-button-type: FLAT;
 }
 
 /* Sets ripple color for the button */
@@ -46,6 +51,7 @@
 }
 
 /* Sets the background color of the drawer */
-.jfx-drawer {
-    -fx-background-color: transparent;
+.jfx-drawer > .jfx-drawer-overlay-pane {
+    -fx-background-color: -color-background;
 }
+

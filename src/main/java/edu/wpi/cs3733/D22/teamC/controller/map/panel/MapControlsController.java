@@ -14,7 +14,6 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
-import javafx.scene.control.ToggleButton;
 
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -111,7 +110,7 @@ public class MapControlsController implements Initializable {
 
         @FXML
         void onExitButtonPressed(ActionEvent event) {
-            App.instance.setView(App.MAP_DASHBOARD_PATH);
+            App.instance.setView(App.DASHBOARD_PATH);
         }
 
         @FXML

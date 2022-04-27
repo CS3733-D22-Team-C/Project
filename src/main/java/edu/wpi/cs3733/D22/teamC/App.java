@@ -1,6 +1,7 @@
 package edu.wpi.cs3733.D22.teamC;
 
 import edu.wpi.cs3733.D22.teamC.controller.SkeletonController;
+import edu.wpi.cs3733.D22.teamC.controller.component.sidebar.DrawerContentController;
 import edu.wpi.cs3733.D22.teamC.entity.employee.Employee;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
@@ -46,14 +47,14 @@ public class App extends Application {
     public static final String DRAWER_PATH = "view/component/drawer.fxml";
     public static final String DRAWER_CONTENT_PATH = "view/component/drawer_content.fxml";
     public static final String LOGIN_PATH = "view/general/login.fxml";
-    public static final String DASHBOARD_PATH = "view/general/dashboard.fxml";
+    public static final String MY_TASKS_PATH = "view/general/my_tasks.fxml";
     public static final String VIEW_LOCATIONS_PATH = "view/location/view_locations.fxml";
     public static final String VIEW_SERVICE_REQUESTS_PATH = "view/service_request/landing_page/service_request_landing_page.fxml";
     public static final String SERVICE_REQUEST_LANDING_PAGE = "view/service_request/service_request_landing_page.fxml";
-    public static final String MAP_DASHBOARD_PATH = "view/location/map/base_side_map_view.fxml";
+    public static final String DASHBOARD_PATH = "view/location/map/base_side_map_view.fxml";
     public static final String DATABASE_PAGE_PATH = "view/general/edit_databases_page.fxml";
     public static final String MAP_PATH = "view/map/floor_map.fxml";
-    public static final String USER_PROFILE = "view/general/profile_page/user_profile.fxml";
+    public static final String USER_PROFILE = "view/general/profile_page/user_dashboard.fxml";
     public static final String MAP_SIDEBAR = "view/map/floor_map.fxml";
     public static final String SHORTCUT_EDIT = "view/service_request/skeleton/sr_shortcut.fxml";
     public static final String CREDIT_PAGE = "view/general/credit.fxml";
@@ -69,6 +70,7 @@ public class App extends Application {
     private Stack<Stage> activeStages = new Stack<>();
     private Scene scene;
     public BorderPane baseNode;
+    public DrawerContentController drawerContentController;
 
     @Override
     public void init() {
@@ -92,7 +94,6 @@ public class App extends Application {
         scene.setRoot(baseNode);
 
         scene.setOnKeyPressed((KeyEvent event) -> {
-
             /*
                The left node is null when we are not logged in.
                if this changes, this will break
@@ -113,7 +114,7 @@ public class App extends Application {
                             }
                             break;
                         case "M" :
-                            setView(MAP_DASHBOARD_PATH);
+                            setView(MY_TASKS_PATH);
                             break;
                         case "S" :
                             setView(VIEW_SERVICE_REQUESTS_PATH);
@@ -246,5 +247,9 @@ public class App extends Application {
 
     public void setUserAccount(Employee userAccount) {
         this.userAccount = userAccount;
+    }
+
+    public void setDrawerContentController(DrawerContentController drawerContentController) {
+        this.drawerContentController = drawerContentController;
     }
 }
