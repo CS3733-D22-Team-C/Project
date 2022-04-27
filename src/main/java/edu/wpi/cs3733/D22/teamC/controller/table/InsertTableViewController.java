@@ -115,6 +115,6 @@ public abstract class InsertTableViewController<T extends IDEntity> {
     void clickCancel(ActionEvent event)
     {
         setVisible(false);
-        parentController.currentObj = null;
+        parentController.setCurrentObj(null);
     }
 }

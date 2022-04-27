@@ -19,6 +19,9 @@ public class DrawerContentController implements Initializable {
 
     //#region FXML
     @FXML
+    private MFXButton aboutButton;
+
+    @FXML
     private MFXButton dashboardButton;
 
     @FXML
@@ -55,7 +58,8 @@ public class DrawerContentController implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        allButtons = new MFXButton[]{dashboardButton, exitButton, logOutButton, databaseButton, viewProfileButton, serviceRequestsButton, creditButton};
+
+        allButtons = new MFXButton[]{dashboardButton, exitButton, logOutButton, databaseButton, viewProfileButton, serviceRequestsButton, creditButton, aboutButton};
 
         // Hide the database button if the user is not an admin
         databaseButton.setVisible(App.instance.getUserAccount().getAdmin());
@@ -128,6 +132,12 @@ public class DrawerContentController implements Initializable {
 
     public VBox getMiniView() {
         return miniView;
+    }
+
+
+    @FXML
+    public void aboutButtonPress(ActionEvent actionEvent) {
+        App.instance.setView(App.ABOUT_PAGE);
     }
 
     public MFXButton getDashboardButton() {

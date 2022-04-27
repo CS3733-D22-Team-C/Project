@@ -2,8 +2,10 @@
 
 <?import com.jfoenix.controls.JFXButton?>
 <?import com.jfoenix.controls.JFXTreeTableView?>
+<?import io.github.palexdev.materialfx.controls.MFXButton?>
 <?import io.github.palexdev.materialfx.controls.MFXToggleButton?>
 <?import java.lang.String?>
+<?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.effect.Bloom?>
 <?import javafx.scene.image.Image?>
@@ -12,6 +14,7 @@
 <?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
+<?import org.controlsfx.control.SearchableComboBox?>
 
 <HBox alignment="CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" styleClass="page-padding" stylesheets="@../../../css/component/service_request_landing_page.css" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.wpi.cs3733.D22.teamC.controller.service_request.landing_page.ServiceRequestLandingPage">
    <children>
@@ -21,19 +24,20 @@
             <JFXTreeTableView fx:id="table" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" styleClass="table-view" VBox.vgrow="ALWAYS" />
             <HBox alignment="CENTER">
                <children>
-                  <HBox alignment="CENTER_LEFT" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" HBox.hgrow="ALWAYS">
+                  <HBox>
                      <children>
-                        <JFXButton fx:id="edit" disable="true" onAction="#onEditButton" prefHeight="31.0" prefWidth="72.0" styleClass="button-success" stylesheets="@../../../css/base.css" text="Edit" />
+                        <SearchableComboBox fx:id="serviceReqTypeComboBox" onAction="#onSRTypeSelected" />
+                        <MFXButton fx:id="SRTypeClearButton" onAction="#onClearSRTypeButtonClicked" prefHeight="31.0" prefWidth="55.0" text="Clear" />
                      </children>
+                     <padding>
+                        <Insets right="20.0" />
+                     </padding>
                   </HBox>
-                  <HBox fx:id="buttonsBox" alignment="CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="100.0" prefWidth="316.0">
+                  <HBox alignment="CENTER_RIGHT" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" spacing="10.0" HBox.hgrow="ALWAYS">
                      <children>
-                        <JFXButton fx:id="deleteButton" disable="true" onAction="#onDeleteButton" prefHeight="31.0" prefWidth="72.0" styleClass="button-success" stylesheets="@../../../css/base.css" text="Delete" />
-                     </children>
-                  </HBox>
-                  <HBox alignment="CENTER_RIGHT" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" HBox.hgrow="ALWAYS">
-                     <children>
-                        <JFXButton fx:id="resolve" disable="true" onAction="#onResolveButton" prefHeight="31.0" styleClass="button-confirm" stylesheets="@../../../css/base.css" text="Resolve" />
+                        <JFXButton fx:id="edit" disable="true" onAction="#onEditButton" prefHeight="31.0" prefWidth="72.0" styleClass="button-success" stylesheets="@../../../css/default.css" text="Edit" />
+                        <JFXButton fx:id="resolve" disable="true" onAction="#onResolveButton" prefHeight="31.0" prefWidth="72.0" styleClass="button-confirm" stylesheets="@../../../css/default.css" text="Resolve" />
+                        <JFXButton fx:id="deleteButton" disable="true" onAction="#onDeleteButton" prefHeight="31.0" prefWidth="72.0" styleClass="button-success" stylesheets="@../../../css/default.css" text="Delete" />
                      </children>
                   </HBox>
                </children>

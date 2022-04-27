@@ -13,8 +13,15 @@ public class FacilityMaintenanceSR extends ServiceRequest {
     protected MaintenanceType maintenanceType;
 
     public enum MaintenanceType {
-        Cleaning,
-        Organizing
+        Broken_Pipe,
+        Broken_Machine,
+        Broken_Light,
+        Broken_Medical_Tool,
+        Broken_Computer,
+        Broken_Toilet,
+        Broken_Sink,
+        Broken_Door,
+        Broken_Phone,
     }
     
     public FacilityMaintenanceSR() {

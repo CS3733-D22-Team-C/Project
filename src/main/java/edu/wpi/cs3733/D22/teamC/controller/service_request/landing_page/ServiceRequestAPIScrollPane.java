@@ -83,7 +83,7 @@ public class ServiceRequestAPIScrollPane implements Initializable {
                 tC.createEmployee(employee.getLastName(), employee.getFirstName());
         }
         tC.setOwner(App.instance.getStage());
-        tC.run(50, 50, 1000, 1000, "../../css/base.css", "Floor 1", "Floor 2");
+        tC.run(50, 50, 1000, 1000, "../../css/default.css", "Floor 1", "Floor 2");
     }
 
     @FXML
