@@ -16,7 +16,7 @@
       </VBox>
       <VBox alignment="CENTER_LEFT" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefWidth="227.0" styleClass="fields-padding" HBox.hgrow="ALWAYS">
          <children>
-            <Label prefHeight="18.0" prefWidth="118.0" styleClass="service-field-label" text="Quantity:" />
+            <Label prefHeight="27.0" prefWidth="190.0" styleClass="service-field-label" text="Quantity:" />
             <TextField fx:id="quantity" onAction="#statusUpdated" onKeyPressed="#statusUpdatedKeyEvent" />
          </children>
       </VBox>
