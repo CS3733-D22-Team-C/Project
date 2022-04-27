@@ -10,6 +10,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.TreeTableRow;
 import javafx.scene.input.MouseButton;
+import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
 
 import java.net.URL;
@@ -19,7 +20,10 @@ public class BaseTableViewController<T extends IDEntity> implements Initializabl
     // FXML
     @FXML private VBox insertBox;
     @FXML private JFXTreeTableView table;
+    @FXML private JFXButton add;
+    @FXML private JFXButton edit;
     @FXML private JFXButton remove;
+    @FXML private StackPane stackPane;
 
     // Variables
     TableDisplay<T> tableDisplay;
@@ -33,6 +37,7 @@ public class BaseTableViewController<T extends IDEntity> implements Initializabl
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         rowInteraction();
+        edit.setDisable(true);
         remove.setDisable(true);
     }
 
@@ -45,10 +50,9 @@ public class BaseTableViewController<T extends IDEntity> implements Initializabl
     }
 
     public void setInsert(String path){
-
         App.View<InsertTableViewController<T>> view = App.instance.loadView(path);
         insertController = view.getController();
-        insertBox.getChildren().add(view.getNode());
+        stackPane.getChildren().add(view.getNode());
     }
 
 
@@ -64,15 +68,22 @@ public class BaseTableViewController<T extends IDEntity> implements Initializabl
                         setCurrentObj(row.getItem().object);
                     }
                 }
+                event.consume();
             });
             return row;
         });
     }
 
+    public void disableTable(boolean disable) {
+        table.setDisable(disable);
+    }
+
     public void setCurrentObj(T object) {
         currentObj = object;
         insertController.setFields(object);
-        remove.setDisable(false);
+        remove.setDisable(object == null);
+        edit.setDisable(object == null);
+        if (object == null) table.getSelectionModel().clearSelection();
     }
 
     //#region FXML Events
@@ -80,6 +91,7 @@ public class BaseTableViewController<T extends IDEntity> implements Initializabl
         public void onRemoveButtonClicked() {
             if (currentObj != null) {
                 remove.setDisable(true);
+                edit.setDisable(true);
                 table.getSelectionModel().clearSelection();
                 // Delete from DB
                 insertController.deleteObject();
@@ -96,9 +108,14 @@ public class BaseTableViewController<T extends IDEntity> implements Initializabl
         @FXML
         public void onAddButtonClicked(){
             table.getSelectionModel().clearSelection();
-            currentObj = null;
+            setCurrentObj(null);
             insertController.setFields(null);
-            table.getSelectionModel().clearSelection();
+            insertController.setVisible(true);
+        }
+
+        @FXML
+        public void onEditButtonClicked() {
+            insertController.setVisible(true);
         }
 
         @FXML
