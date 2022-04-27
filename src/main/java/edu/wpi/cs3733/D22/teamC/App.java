@@ -113,21 +113,22 @@ public class App extends Application {
                     {
                         case "D" :
                             setView(DASHBOARD_PATH);
+                            drawerContentController.selectedButton(drawerContentController.dashboardButton);
                             break;
                         case "X" :
                             if (userAccount.getAdmin())
                             {
                                 setView(DATABASE_PAGE_PATH);
+                                drawerContentController.selectedButton(drawerContentController.databaseButton);
                             }
-                            break;
-                        case "M" :
-                            setView(MY_TASKS_PATH);
                             break;
                         case "S" :
                             setView(VIEW_SERVICE_REQUESTS_PATH);
+                            drawerContentController.selectedButton(drawerContentController.serviceRequestsButton);
                             break;
                         case "P" :
                             setView(USER_PROFILE);
+                            drawerContentController.selectedButton(drawerContentController.viewProfileButton);
                             break;
                         case "L" :
                             setView(App.LOGIN_PATH);
@@ -135,6 +136,14 @@ public class App extends Application {
                             break;
                         case "Q" :
                             getStage().close();
+                            break;
+                        case "C" :
+                            setView(CREDIT_PAGE);
+                            drawerContentController.selectedButton(drawerContentController.creditButton);
+                            break;
+                        case "A" :
+                            setView(ABOUT_PAGE);
+                            drawerContentController.selectedButton(drawerContentController.aboutButton);
                             break;
                         default:
                             break;
