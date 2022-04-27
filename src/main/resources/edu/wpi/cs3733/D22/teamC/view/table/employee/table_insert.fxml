@@ -65,11 +65,7 @@
                         <Insets top="15.0" />
                      </VBox.margin>
                      <children>
-                        <Label prefHeight="17.0" prefWidth="404.0" text="Role">
-                           <padding>
-                              <Insets left="10.0" />
-                           </padding>
-                        </Label>
+                        <Label prefHeight="17.0" prefWidth="421.0" text="Role" />
                         <JFXComboBox fx:id="roleComboBox" maxWidth="1.7976931348623157E308" onAction="#onFieldUpdated" prefHeight="47.0" prefWidth="419.0" styleClass="dropdown" stylesheets="@../../../css/default.css">
                            <VBox.margin>
                               <Insets bottom="20.0" />
