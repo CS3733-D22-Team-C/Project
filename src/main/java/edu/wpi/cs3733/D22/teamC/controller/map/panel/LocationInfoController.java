@@ -124,28 +124,28 @@ public class LocationInfoController implements Initializable {
                 addColumn(
                         table,
                         "Number",
-                        1f * Integer.MAX_VALUE * 30,
+                        1f * Integer.MAX_VALUE * 120,
                         (ServiceRequestTableEntry entry) -> {return entry.number;}
                 );
 
                 addColumn(
                         table,
                         "Type",
-                        1f * Integer.MAX_VALUE * 30,
+                        1f * Integer.MAX_VALUE * 120,
                         (ServiceRequestTableEntry entry) -> {return entry.type;}
                 );
 
                 addColumn(
                         table,
                         "Status",
-                        1f * Integer.MAX_VALUE * 25,
+                        1f * Integer.MAX_VALUE * 100,
                         (ServiceRequestTableEntry entry) -> {return entry.status;}
                 );
 
                 addColumn(
                         table,
                         "Priority",
-                        1f * Integer.MAX_VALUE * 25,
+                        1f * Integer.MAX_VALUE * 100,
                         (ServiceRequestTableEntry entry) -> {return entry.priority;}
                 );
             }
@@ -160,21 +160,21 @@ public class LocationInfoController implements Initializable {
                 addColumn(
                         table,
                         "Type",
-                        1f * Integer.MAX_VALUE * 33,
+                        1f * Integer.MAX_VALUE * 132,
                         (MedicalEquipmentTableEntry entry) -> entry.typeProperty
                 );
 
                 addColumn(
                         table,
                         "Number",
-                        1f * Integer.MAX_VALUE * 33,
+                        1f * Integer.MAX_VALUE * 132,
                         (MedicalEquipmentTableEntry entry) -> entry.typeNumberProperty
                 );
 
                 addColumn(
                         table,
                         "Status",
-                        1f * Integer.MAX_VALUE * 33,
+                        1f * Integer.MAX_VALUE * 132,
                         (MedicalEquipmentTableEntry entry) -> entry.statusProperty
                 );
             }
@@ -187,21 +187,21 @@ public class LocationInfoController implements Initializable {
                 addColumn(
                         table,
                         "Last Name",
-                        1f * Integer.MAX_VALUE * 20,
+                        1f * Integer.MAX_VALUE * 120,
                         (PatientTableDisplay.PatientTableEntry entry) -> {return entry.lastName;}
                 );
 
                 addColumn(
                         table,
                         "First Name",
-                        1f * Integer.MAX_VALUE * 20,
+                        1f * Integer.MAX_VALUE * 120,
                         (PatientTableDisplay.PatientTableEntry entry) -> {return entry.firstName;}
                 );
 
                 addColumn(
                         table,
                         "DOB",
-                        1f * Integer.MAX_VALUE * 20,
+                        1f * Integer.MAX_VALUE * 120,
                         (PatientTableDisplay.PatientTableEntry entry) -> {return entry.DOB;}
                 );
             }

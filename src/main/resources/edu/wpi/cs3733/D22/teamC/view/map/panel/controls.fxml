@@ -6,6 +6,7 @@
 <?import io.github.palexdev.materialfx.controls.MFXToggleButton?>
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.Cursor?>
+<?import javafx.scene.control.Tooltip?>
 <?import javafx.scene.layout.ColumnConstraints?>
 <?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.HBox?>
@@ -104,6 +105,9 @@
                                  <padding>
                                     <Insets left="25.0" />
                                  </padding>
+                                 <tooltip>
+                                    <Tooltip text="Counters are useful previews of the number of entities of each type in a given location." />
+                                 </tooltip>
                               </MFXCheckbox>
                            </children>
                         </VBox>
@@ -119,6 +123,9 @@
                                  <padding>
                                     <Insets left="5.0" />
                                  </padding>
+                                 <tooltip>
+                                    <Tooltip text="Token are specialized interactable components for locations on the map." />
+                                 </tooltip>
                               </MFXCheckbox>
                            </children>
                         </VBox>
