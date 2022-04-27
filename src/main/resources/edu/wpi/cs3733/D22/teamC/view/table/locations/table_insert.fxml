@@ -9,7 +9,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<VBox styleClass="page-container" stylesheets="@../../../css/component/table_insert.css" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.wpi.cs3733.D22.teamC.controller.table.LocationTableViewInsertController">
+<VBox fx:id="root" styleClass="page-container" stylesheets="@../../../css/component/table_insert.css" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.wpi.cs3733.D22.teamC.controller.table.LocationTableViewInsertController">
    <children>
       <VBox spacing="15.0" styleClass="scroll-pane">
          <children>
@@ -97,7 +97,7 @@
                      <children>
                         <HBox alignment="CENTER_LEFT" prefHeight="61.0" prefWidth="205.0">
                            <children>
-                              <JFXButton fx:id="cancel" onAction="#clickCancel" prefHeight="42.0" prefWidth="139.0" style="-fx-text-fill: #000000;" styleClass="base_view_table_back" stylesheets="@../../../css/table_skeleton.css" text="Cancel" />
+                              <JFXButton fx:id="cancel" onAction="#clickCancel" prefHeight="42.0" prefWidth="139.0" styleClass="base_view_table_back" stylesheets="@../../../css/table_skeleton.css" text="Cancel" />
                            </children>
                            <HBox.margin>
                               <Insets left="5.0" />
