@@ -51,7 +51,7 @@
 }
 
 .tab-header-area {
-    -fx-padding: 70 0 0 0;
+    -fx-padding: 0 0 0 0;
 }
 
 .button:selected {
