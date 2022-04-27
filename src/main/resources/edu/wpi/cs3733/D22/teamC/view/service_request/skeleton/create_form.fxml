@@ -25,7 +25,7 @@
         <RowConstraints maxHeight="1.7976931348623157E308" vgrow="ALWAYS" />
     </rowConstraints>
     <children>
-        <Label fx:id="title" alignment="CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="0.0" prefWidth="442.0" styleClass="card-content-header" text="Generic Service Request " GridPane.hgrow="ALWAYS" GridPane.vgrow="ALWAYS" />
+        <Label id="title" fx:id="title" alignment="CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="18.0" prefWidth="442.0" styleClass="card-content-header" stylesheets="@../../../css/component/service_request_landing_page.css" text="Generic Service Request " GridPane.hgrow="ALWAYS" GridPane.vgrow="ALWAYS" />
       <VBox fx:id="fieldsBox" prefHeight="200.0" prefWidth="100.0" styleClass="fields-padding" GridPane.hgrow="ALWAYS" GridPane.rowIndex="1">
          <children>
             <HBox maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="124.0" prefWidth="490.0" VBox.vgrow="NEVER">
