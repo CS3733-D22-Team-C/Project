@@ -103,7 +103,7 @@ public class DrawerContentController implements Initializable {
 
     @FXML
     void serviceRequestButtonPress(ActionEvent event) {
-        App.instance.setView(App.VIEW_SERVICE_REQUESTS_PATH);
+        App.instance.setView(App.SERVICE_REQUEST_DASHBOARD);
         selectedButton(serviceRequestsButton);
     }
 

@@ -1,7 +1,6 @@
 package edu.wpi.cs3733.D22.teamC.controller.service_request;
 
 import com.jfoenix.controls.JFXButton;
-import com.jfoenix.controls.JFXComboBox;
 import com.jfoenix.controls.JFXTextArea;
 import com.jfoenix.svg.SVGGlyph;
 import edu.wpi.cs3733.D22.teamC.App;
@@ -19,7 +18,6 @@ import edu.wpi.cs3733.D22.teamC.models.utils.ComponentWrapper;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
-import javafx.scene.control.TextField;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.VBox;
 import org.controlsfx.control.SearchableComboBox;
@@ -224,7 +222,7 @@ public class BaseServiceRequestResolveController<T extends ServiceRequest> imple
     }
 
     private void returnToSRPage(){
-        App.instance.setView(App.VIEW_SERVICE_REQUESTS_PATH);
+        App.instance.setView(App.SERVICE_REQUEST_DASHBOARD);
     }
 
     public void setInsert(ServiceRequest.RequestType requestType) {
