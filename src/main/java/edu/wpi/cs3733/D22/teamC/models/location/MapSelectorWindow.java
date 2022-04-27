@@ -12,8 +12,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.TextField;
-import javafx.scene.layout.GridPane;
-import javafx.scene.layout.HBox;
+import javafx.scene.layout.*;
 
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -26,7 +25,7 @@ public class MapSelectorWindow extends SelectorWindow<Location> implements Initi
     // FXML
     @FXML private ComboBox<Floor> floorComboBox;
     @FXML private TextField selectedLocationField;
-    @FXML private GridPane mapViewContainer;
+    @FXML private Pane mapViewContainer;
 
     // References
     MapViewController mapViewController;
@@ -39,7 +38,6 @@ public class MapSelectorWindow extends SelectorWindow<Location> implements Initi
         this.mapViewController = view.getController();
 
         mapViewContainer.getChildren().add(view.getNode());
-
 
         // Initialize Floor Combo Box values
         mapViewController.getLocationManager().onChangeCurrentEvents.add((oldLocation, newLocation) -> this.updateLocationField(newLocation));
