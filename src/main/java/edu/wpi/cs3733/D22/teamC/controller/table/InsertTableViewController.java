@@ -5,8 +5,12 @@ import edu.wpi.cs3733.D22.teamC.entity.generic.DAO;
 import edu.wpi.cs3733.D22.teamC.entity.generic.IDEntity;
 import edu.wpi.cs3733.D22.teamC.models.builders.NotificationBuilder;
 import edu.wpi.cs3733.D22.teamC.models.generic.TableDisplay;
+import javafx.fxml.FXML;
+import javafx.scene.layout.VBox;
 
 public abstract class InsertTableViewController<T extends IDEntity> {
+
+    @FXML private VBox root;
     // References
     BaseTableViewController<T> parentController;
 
@@ -14,6 +18,10 @@ public abstract class InsertTableViewController<T extends IDEntity> {
         public void setup(BaseTableViewController parentController) {
             this.parentController = parentController;
         }
+    //#endregion
+
+    //#region Pane Interaction
+        public void setVisible(boolean visible){root.setVisible(visible);}
     //#endregion
 
     //#region Abstraction
@@ -40,6 +48,9 @@ public abstract class InsertTableViewController<T extends IDEntity> {
             // Push Notification
             String notification = "New " + getObjectName() + " " + object.toString() + " has been created.";
             NotificationBuilder.createNotification(getObjectName() + " Created", notification);
+
+            //hide field
+            setVisible(false);
         }
 
         public void deleteObject() {
@@ -73,6 +84,9 @@ public abstract class InsertTableViewController<T extends IDEntity> {
             //Push Notification
             String notification = getObjectName() + " " + object.toString() + " has been updated.";
             NotificationBuilder.createNotification(getObjectName() + " Updated", notification);
+
+            //hide field
+            setVisible(false);
         }
     //#endregion
 

@@ -10,6 +10,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.TreeTableRow;
 import javafx.scene.input.MouseButton;
+import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
 
 import java.net.URL;
@@ -20,6 +21,7 @@ public class BaseTableViewController<T extends IDEntity> implements Initializabl
     @FXML private VBox insertBox;
     @FXML private JFXTreeTableView table;
     @FXML private JFXButton remove;
+    @FXML private StackPane stackPane;
 
     // Variables
     TableDisplay<T> tableDisplay;
@@ -48,7 +50,7 @@ public class BaseTableViewController<T extends IDEntity> implements Initializabl
 
         App.View<InsertTableViewController<T>> view = App.instance.loadView(path);
         insertController = view.getController();
-        insertBox.getChildren().add(view.getNode());
+        stackPane.getChildren().add(view.getNode());
     }
 
 
@@ -98,7 +100,12 @@ public class BaseTableViewController<T extends IDEntity> implements Initializabl
             table.getSelectionModel().clearSelection();
             currentObj = null;
             insertController.setFields(null);
-            table.getSelectionModel().clearSelection();
+            insertController.setVisible(true);
+        }
+
+        @FXML
+        public void onEditButtonClicked(){
+
         }
 
         @FXML
