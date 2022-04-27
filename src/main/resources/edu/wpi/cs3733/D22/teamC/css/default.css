@@ -33,15 +33,35 @@
     -mfx-button-type: RAISED;
     -mfx-auto-clip: true; /* Allows for all MFX buttons to have their ripple generators generate the ripples to the correct shape */
     -mfx-background-opacity: 0;
+
+}
+
+.mfx-toggle-button {
+    -mfx-main: -color-primary;
 }
 
 .mfx-text-field {
     -mfx-main: -color-primary;
 }
 
-.mfx-text-field .text-field {
-    -fx-highlight-fill: -color-secondary-light;
+    .mfx-text-field .text-field {
+        -fx-highlight-fill: -color-secondary-light;
+    }
+
+/* region Date Picker */
+.mfx-date-picker {
+
 }
+
+    .mfx-date-picker .icon {
+        -mfx-color: -color-primary-dark;
+    }
+
+    .mfx-date-picker .date-picker-popup .content {
+        -fx-background-color: -color-secondary;
+}
+/* endregion */
+
 
 .combo-box {
     -fx-background-color: -color-primary-text;
@@ -49,7 +69,19 @@
     -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.5), 1, 0, 0, 0);
 }
 
-/* Tab Pane Overrides */
+    .combo-box:disabled {
+        -fx-opacity: 50%;
+    }
+
+.mfx-checkbox {
+    -mfx-main:-color-secondary;
+}
+
+    .mfx-checkbox .text {
+        -fx-cursor: hand;
+    }
+
+/* region Tab Pane Overrides */
 .tab-pane {
     -fx-padding: 20px;
     -fx-alignment: right;
@@ -75,6 +107,7 @@
 .tab-pane .tab {
     -fx-background-color: -color-unselected-tab;
     -fx-font-size: 14px;
+    -fx-cursor: hand;
 }
 
 /* Stylizes selected tab */
@@ -96,8 +129,9 @@
     -fx-background-color: transparent;
     -fx-border-radius: 4px;
 }
+/* endregion */
 
-/* Table Styling */
+/* region Table Styling */
 .tree-table-view {
     -fx-background-color: transparent;
 }
@@ -177,8 +211,9 @@
 .table-view .virtual-flow .scroll-bar:horizontal .thumb {
     -fx-background-color: transparent;
 }
+/* endregion */
 
-/* Custom IDs */
+/* Custom */
 .title {
 
 }
@@ -192,37 +227,47 @@
     -fx-border-radius: 20px;
 }
 
-.primary-action-button {
-    -fx-background-color: -color-primary-light;
+.page-container-title {
+    -fx-text-fill: -color-primary-text;
+    -fx-background-color: -color-primary;
+    -fx-alignment: center;
+    -fx-background-radius: 20 20 0 0;
 }
 
-.primary-action-button:hover {
-    -fx-background-color: -color-primary;
+.primary-action-button {
+    -fx-background-color: -color-primary-light;
+    -fx-text-fill: -color-primary-text;
 }
+
+    .primary-action-button:hover {
+        -fx-background-color: -color-primary;
+    }
 
 .secondary-action-button {
     -fx-background-color: -color-secondary-light;
+    -fx-text-fill: -color-secondary-text;
 }
 
-.secondary-action-button:hover {
-    -fx-background-color: -color-secondary;
-}
+    .secondary-action-button:hover {
+        -fx-background-color: -color-secondary;
+    }
 
 .cancel-button {
     -fx-background-color: -color-red-contrast;
+    -fx-text-fill: -color-red-contrast-text;
 }
 
-.cancel-button:hover {
-    -fx-background-color: -color-red-contrast-hover;
-}
+    .cancel-button:hover {
+        -fx-background-color: -color-red-contrast-hover;
+    }
 
 .selector-button {
     -fx-background-color: -color-secondary-light;
 }
 
-.selector-button:hover {
-    -fx-background-color: -color-secondary;
-}
+    .selector-button:hover {
+        -fx-background-color: -color-secondary;
+    }
 
 .validated-text {
     -fx-text-fill: -color-red-contrast;
