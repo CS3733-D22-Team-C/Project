@@ -18,7 +18,8 @@ public class SessionManager {
     public enum DBMode {
         EMBEDDED,
         EMBEDDED_TEST,
-        SERVER
+        SERVER,
+        CLOUD
     }
 
 	/**
@@ -46,8 +47,10 @@ public class SessionManager {
     private static SessionFactory createSessionFactory(DBMode mode) {
         if (mode == DBMode.SERVER) {
             return new Configuration().configure("hibernate_server.cfg.xml").buildSessionFactory();
-        } else if (mode == DBMode.EMBEDDED){
+        } else if (mode == DBMode.EMBEDDED) {
             return new Configuration().configure("hibernate.cfg.xml").buildSessionFactory();
+        } else if (mode == DBMode.CLOUD) {
+            return new Configuration().configure("hibernate_cloud.cfg.xml").buildSessionFactory();
         } else {
             return new Configuration().configure("hibernate_test.cfg.xml").buildSessionFactory();
         }
@@ -73,7 +76,10 @@ public class SessionManager {
      * @param mode DBMode.EMBEDDED for client-server database.
      */
 	public static void switchDatabase(DBMode mode) {
-        SessionManager.serverDatabase = (mode == DBMode.EMBEDDED) ? DBMode.EMBEDDED : DBMode.SERVER;
+        SessionManager.serverDatabase = DBMode.EMBEDDED;    // Default to Embedded
+        if (mode == DBMode.SERVER) SessionManager.serverDatabase = DBMode.SERVER;
+        if (mode == DBMode.CLOUD) SessionManager.serverDatabase = DBMode.CLOUD;
+        
         killSessionFactory();
         sf = createSessionFactory(serverDatabase);
         

@@ -81,7 +81,7 @@ public class App extends Application {
 
     @Override
     public void init() {
-        SessionManager.switchDatabase(SessionManager.DBMode.EMBEDDED);
+        SessionManager.switchDatabase(SessionManager.DBMode.CLOUD);
         log.info("Starting Up");
     }
     //Test comment

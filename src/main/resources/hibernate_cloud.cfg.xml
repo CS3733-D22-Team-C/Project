@@ -1,0 +1,48 @@
+<?xml version='1.0' encoding='utf-8'?>
+<!DOCTYPE hibernate-configuration PUBLIC
+        "-//Hibernate/Hibernate Configuration DTD//EN"
+        "http://www.hibernate.org/dtd/hibernate-configuration-3.0.dtd">
+
+<hibernate-configuration>
+
+    <session-factory>
+
+        <!-- DATABASE -->
+        <property name="connection.url">jdbc:cloudspanner:/projects/cs3733-application/instances/cs3733-instance/databases/cs3733-db</property>
+        <property name="connection.driver_class">com.google.cloud.spanner.jdbc.JdbcDriver</property>
+        <property name="connection.pool_size">100</property>
+
+        <property name="dialect">com.google.cloud.spanner.hibernate.SpannerDialect</property>
+        <!-- <property name="connection.username"/> -->
+        <!-- <property name="connection.password"/> -->
+
+
+        <!-- DEBUGGING -->
+         <property name="show_sql">true</property>
+         <property name="format_sql">true</property>
+
+        <!-- SCHEMA GENERATION -->
+        <property name="hibernate.hbm2ddl.auto">create</property>
+        <property name="hibernate.hbm2ddl.import_files">triggers.sql</property>
+
+        <!-- MAPPING -->
+        <mapping class="edu.wpi.cs3733.D22.teamC.entity.location.Location" />
+        <mapping class="edu.wpi.cs3733.D22.teamC.entity.employee.Employee" />
+        <mapping class="edu.wpi.cs3733.D22.teamC.entity.patient.Patient" />
+        <mapping class="edu.wpi.cs3733.D22.teamC.entity.floor.Floor" />
+        <mapping class="edu.wpi.cs3733.D22.teamC.entity.medical_equipment.MedicalEquipment" />
+        <mapping class="edu.wpi.cs3733.D22.teamC.entity.service_request.ServiceRequest" />
+        <mapping class="edu.wpi.cs3733.D22.teamC.entity.service_request.security.SecuritySR" />
+        <mapping class="edu.wpi.cs3733.D22.teamC.entity.service_request.medicine_delivery.MedicineDeliverySR" />
+        <mapping class="edu.wpi.cs3733.D22.teamC.entity.service_request.sanitation.SanitationSR" />
+        <mapping class="edu.wpi.cs3733.D22.teamC.entity.service_request.facility_maintenance.FacilityMaintenanceSR" />
+        <mapping class="edu.wpi.cs3733.D22.teamC.entity.service_request.lab_system.LabSystemSR" />
+        <mapping class="edu.wpi.cs3733.D22.teamC.entity.service_request.medical_equipment.MedicalEquipmentSR" />
+        <mapping class="edu.wpi.cs3733.D22.teamC.entity.service_request.translator.TranslatorSR" />
+        <mapping class="edu.wpi.cs3733.D22.teamC.entity.service_request.patient_transport.PatientTransportSR" />
+        <mapping class="edu.wpi.cs3733.D22.teamC.entity.service_request.laundry.LaundrySR" />
+        <mapping class="edu.wpi.cs3733.D22.teamC.entity.service_request.delivery_system.DeliverySystemSR" />
+
+
+    </session-factory>
+</hibernate-configuration>
