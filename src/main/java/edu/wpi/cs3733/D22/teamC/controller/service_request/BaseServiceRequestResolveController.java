@@ -144,8 +144,8 @@ public class BaseServiceRequestResolveController<T extends ServiceRequest> imple
             }
 
             // Sets status at bottom
-            firstStatus.setText(serviceRequest.getStatus().toString().toLowerCase());
-            secondStatus.setText(serviceRequest.getStatus().toString().toLowerCase());
+            firstStatus.setText("  " + serviceRequest.getStatus().toString().toLowerCase() + "  ");
+            secondStatus.setText("  " + serviceRequest.getStatus().toString().toLowerCase() + "  ");
 
             // Set fields editable
             priority.setDisable(false);
@@ -226,8 +226,8 @@ public class BaseServiceRequestResolveController<T extends ServiceRequest> imple
                 default:
             }
             // Sets status at bottom
-            firstStatus.setText("processing");
-            secondStatus.setText("resolve");
+            firstStatus.setText("  processing  ");
+            secondStatus.setText("  resolve  ");
 
             // Set fields uneditable
             priority.setDisable(true);
@@ -316,10 +316,10 @@ public class BaseServiceRequestResolveController<T extends ServiceRequest> imple
         if(!isEditMode)
             return;
         if(requiredFieldsPresent()){
-            secondStatus.setText("processing");
+            secondStatus.setText("  processing  ");
         }
         else
-            secondStatus.setText("blank");
+            secondStatus.setText("  blank  ");
 
         //check this
         //insertController.statusUpdated();
