@@ -22,7 +22,7 @@
       </VBox>
       <VBox alignment="CENTER_LEFT" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefWidth="227.0" styleClass="fields-padding" HBox.hgrow="ALWAYS">
          <children>
-            <Label styleClass="service-field-label" text="Transport Time:" />
+            <Label styleClass="service-field-label" text="Transport Date:" />
             <MFXDatePicker fx:id="date" maxWidth="1.7976931348623157E308" minHeight="-Infinity" onAction="#onClickDate" prefHeight="30.0" />
          </children>
       </VBox>
