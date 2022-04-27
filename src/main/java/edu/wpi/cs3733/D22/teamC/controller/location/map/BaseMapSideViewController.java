@@ -124,7 +124,7 @@ public class BaseMapSideViewController implements Initializable {
         SVGParser svgParser = new SVGParser();
         String infoIcon = svgParser.getPath("static/icons/info_icon.svg");
         SVGGlyph infoContent = new SVGGlyph(infoIcon);
-        infoContent.setSize(20);
+        infoContent.setSize(25); // 20
         info.setGraphic(infoContent);
 
         floorNodeControllerList = new ArrayList<>();
@@ -260,22 +260,16 @@ public class BaseMapSideViewController implements Initializable {
             FloorDAO floorDAO = new FloorDAO();
 
             boolean found = false;
-            //System.out.println("Attempting to update Floors in DAO");
             for(Floor floor : floorDAO.getAll()){
                 if(found) break;
                 if(floor.getOrder() != selectedFloor.getOrder()){
                     floor.setOrder(floor.getOrder()+1);
-                    //System.out.println(floor.getLongName() + " set new order to " + floor.getOrder());
                     floorDAO.update(floor);
-                    //System.out.println("Floor updated in DAO");
                 }
                 else {
                     floor.setOrder(floor.getOrder()+1);
-                    //System.out.println(floor.getLongName() + " set new order to " + floor.getOrder());
                     floorDAO.update(floor);
-                    //System.out.println("Floor updated in DAO");
                     floorDAO.insert(selectedFloor);
-                    //System.out.println(selectedFloor.getLongName() + " added to DAO");
                     found = true;
                 }
             }

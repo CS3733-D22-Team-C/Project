@@ -15,6 +15,7 @@ public class DoughnutChart extends PieChart {
 
         innerCircle = new Circle();
         getStylesheets().add("css/map/sideview.css");
+        setStartAngle(0.0);
 
         // just styled in code for demo purposes,
         // use a style class instead to style via css.

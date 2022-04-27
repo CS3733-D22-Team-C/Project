@@ -16,7 +16,6 @@ public class FloorNode {
 
     @FXML private MFXButton floorButton;
     @FXML private HBox group;
-    @FXML private Text floorOrder;
     private Floor floor;
 
     private boolean isSelected;
@@ -35,7 +34,6 @@ public class FloorNode {
         this.floor = floor;
         this.floorButton.setText(floor.getLongName());
         this.isSelected = false;
-        this.floorOrder.setText(Integer.toString(floor.getOrder()));
     }
 
     public Floor getFloor() {
