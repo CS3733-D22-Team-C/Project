@@ -21,6 +21,9 @@ import org.controlsfx.control.SearchableComboBox;
 import java.io.IOException;
 import java.net.URL;
 import java.sql.Timestamp;
+import java.time.LocalDate;
+import java.time.Year;
+import java.time.YearMonth;
 import java.util.List;
 import java.util.ResourceBundle;
 
@@ -48,6 +51,9 @@ public class PatientTransportSRInsertCreateController implements InsertServiceRe
         ComponentWrapper.initializeComboBox(patientComboBox,Patient::toString);
 
         patientComboBox.getItems().setAll(patientList);
+
+        date.setStartingYearMonth(YearMonth.now());
+
     }
 
     @Override
