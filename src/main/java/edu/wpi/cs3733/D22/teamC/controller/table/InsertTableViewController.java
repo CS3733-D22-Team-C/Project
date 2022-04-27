@@ -17,11 +17,15 @@ public abstract class InsertTableViewController<T extends IDEntity> {
     //#region Setup
         public void setup(BaseTableViewController parentController) {
             this.parentController = parentController;
+            setVisible(false);
         }
     //#endregion
 
     //#region Pane Interaction
-        public void setVisible(boolean visible){root.setVisible(visible);}
+        public void setVisible(boolean visible){
+            parentController.disableTable(admin);
+            root.setVisible(visible);
+        }
     //#endregion
 
     //#region Abstraction

@@ -20,6 +20,8 @@ public class BaseTableViewController<T extends IDEntity> implements Initializabl
     // FXML
     @FXML private VBox insertBox;
     @FXML private JFXTreeTableView table;
+    @FXML private JFXButton add;
+    @FXML private JFXButton edit;
     @FXML private JFXButton remove;
     @FXML private StackPane stackPane;
 
@@ -35,6 +37,7 @@ public class BaseTableViewController<T extends IDEntity> implements Initializabl
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         rowInteraction();
+        edit.setDisable(true);
         remove.setDisable(true);
     }
 
@@ -47,7 +50,6 @@ public class BaseTableViewController<T extends IDEntity> implements Initializabl
     }
 
     public void setInsert(String path){
-
         App.View<InsertTableViewController<T>> view = App.instance.loadView(path);
         insertController = view.getController();
         stackPane.getChildren().add(view.getNode());
@@ -66,15 +68,21 @@ public class BaseTableViewController<T extends IDEntity> implements Initializabl
                         setCurrentObj(row.getItem().object);
                     }
                 }
+                event.consume();
             });
             return row;
         });
     }
 
+    public void disableTable(boolean disable) {
+        table.setDisable(disable);
+    }
+
     public void setCurrentObj(T object) {
         currentObj = object;
         insertController.setFields(object);
-        remove.setDisable(false);
+        remove.setDisable(object == null);
+        edit.setDisable(object == null);
     }
 
     //#region FXML Events
@@ -98,14 +106,14 @@ public class BaseTableViewController<T extends IDEntity> implements Initializabl
         @FXML
         public void onAddButtonClicked(){
             table.getSelectionModel().clearSelection();
-            currentObj = null;
+            setCurrentObj(null);
             insertController.setFields(null);
             insertController.setVisible(true);
         }
 
         @FXML
-        public void onEditButtonClicked(){
-
+        public void onEditButtonClicked() {
+            insertController.setVisible(true);
         }
 
         @FXML
