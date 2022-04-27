@@ -40,12 +40,10 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.TextField;
 import javafx.stage.DirectoryChooser;
-import javafx.stage.FileChooser;
 
 import java.io.File;
 import java.net.URL;
 import java.util.List;
-import java.util.Locale;
 import java.util.ResourceBundle;
 
 public class CSVComponent implements Initializable {
@@ -136,7 +134,8 @@ public class CSVComponent implements Initializable {
     void clickExportFiles(ActionEvent event) {
         if(!exportText.getText().equals("")) {
             entitiesChecked(true);
-            setFields();
+            setFieldsImport(false, false);
+            setFieldsExport(false, false);
         }
     }
 
@@ -144,19 +143,20 @@ public class CSVComponent implements Initializable {
     void clickImportFiles(ActionEvent event) {
         if(!importText.getText().equals("")) {
             entitiesChecked(false);
-            setFields();
+            setFieldsImport(false, false);
+            setFieldsExport(false, false);
         }
 
     }
     
     @FXML
     void toggleSelectionsImport(ActionEvent event) {
-        
+        setFieldsImport(selectAllImport.isSelected(), true);
     }
     
     @FXML
     void toggleSelectionsExport(ActionEvent event) {
-        
+        setFieldsExport(selectAllExport.isSelected(), true);
     }
 
     void chooseCSV(TextField csvName) {
@@ -359,49 +359,70 @@ public class CSVComponent implements Initializable {
             }
         }
     }
-
-    void setFields(){
+    
+    /**
+     * Bulk changes for checkboxes and button selection options.
+     * @param selected True to select the elements.
+     * @param justCheckBoxes Just the checkboxes or everything.
+     */
+    void setFieldsImport(boolean selected, boolean justCheckBoxes){
         //Map
-        floorsExport.setSelected(false);
-        floorsImport.setSelected(false);
-        locationsExport.setSelected(false);
-        locationsImport.setSelected(false);
+        floorsImport.setSelected(selected);
+        locationsImport.setSelected(selected);
 
         //Service Requests
-        facilityMaintenanceExport.setSelected(false);
-        facilityMaintenanceImport.setSelected(false);
-        medicalEquipmentExport.setSelected(false);
-        medicalEquipmentImport.setSelected(false);
-        medicineDeliveryExport.setSelected(false);
-        medicineDeliveryImport.setSelected(false);
-        sanitationExport.setSelected(false);
-        sanitationImport.setSelected(false);
-        securityExport.setSelected(false);
-        securityImport.setSelected(false);
-        labSystemExport.setSelected(false);
-        labSystemImport.setSelected(false);
-        deliveryExport.setSelected(false);
-        deliveryImport.setSelected(false);
-        laundryExport.setSelected(false);
-        laundryImport.setSelected(false);
-        translatorImport.setSelected(false);
-        translatorExport.setSelected(false);
-        patientTransportExport.setSelected(false);
-        patientTransportImport.setSelected(false);
+        facilityMaintenanceImport.setSelected(selected);
+        medicalEquipmentImport.setSelected(selected);
+        medicineDeliveryImport.setSelected(selected);
+        sanitationImport.setSelected(selected);
+        securityImport.setSelected(selected);
+        labSystemImport.setSelected(selected);
+        deliveryImport.setSelected(selected);
+        laundryImport.setSelected(selected);
+        translatorImport.setSelected(selected);
+        patientTransportImport.setSelected(selected);
     
-        medicalEquipmentEntityImport.setSelected(false);
-        medicalEquipmentEntityExport.setSelected(false);
+        medicalEquipmentEntityImport.setSelected(selected);
+        employeesImport.setSelected(selected);
+        patientImport.setSelected(selected);
+    
+    
+        if (!justCheckBoxes) {
+            selectAllImport.setSelected(selected);
+            importText.setText("");
+        }
+    }
+    
+    /**
+     * Bulk changes for checkboxes and button selection options.
+     * @param selected True to select the elements.
+     * @param justCheckBoxes Just the checkboxes or everything.
+     */
+    void setFieldsExport(boolean selected, boolean justCheckBoxes){
+        //Map
+        floorsExport.setSelected(selected);
+        locationsExport.setSelected(selected);
         
-        selectAllImport.setSelected(false);
-        selectAllExport.setSelected(false);
-
-        employeesExport.setSelected(false);
-        employeesImport.setSelected(false);
-        patientExport.setSelected(false);
-        patientImport.setSelected(false);
-
-        exportText.setText("");
-        importText.setText("");
+        //Service Requests
+        facilityMaintenanceExport.setSelected(selected);
+        medicalEquipmentExport.setSelected(selected);
+        medicineDeliveryExport.setSelected(selected);
+        sanitationExport.setSelected(selected);
+        securityExport.setSelected(selected);
+        labSystemExport.setSelected(selected);
+        deliveryExport.setSelected(selected);
+        laundryExport.setSelected(selected);
+        translatorExport.setSelected(selected);
+        patientTransportExport.setSelected(selected);
+        
+        medicalEquipmentEntityExport.setSelected(selected);
+        employeesExport.setSelected(selected);
+        patientExport.setSelected(selected);
+        
+        if (!justCheckBoxes) {
+            selectAllExport.setSelected(selected);
+            exportText.setText("");
+        }
     }
 
 
