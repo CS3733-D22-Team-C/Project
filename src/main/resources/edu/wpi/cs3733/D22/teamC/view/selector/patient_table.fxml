@@ -7,31 +7,30 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 
-<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="470.0" prefWidth="582.0" stylesheets="@../../css/default.css" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1">
+<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="600.0" stylesheets="@../../css/default.css" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1">
    <children>
-      <HBox alignment="CENTER_LEFT" prefHeight="89.0" prefWidth="582.0">
+      <HBox alignment="CENTER_LEFT" VBox.vgrow="ALWAYS">
          <children>
             <Label id="title" text="Select a Patient" />
          </children>
          <padding>
-            <Insets bottom="15.0" left="15.0" right="15.0" top="15.0" />
+            <Insets bottom="15.0" left="35.0" right="15.0" top="15.0" />
          </padding>
       </HBox>
-      <VBox prefHeight="319.0" prefWidth="582.0">
+      <VBox VBox.vgrow="ALWAYS">
          <children>
-            <JFXTreeTableView fx:id="table" styleClass="table-view">
-               <padding>
-                  <Insets left="35.0" right="35.0" />
-               </padding>
-            </JFXTreeTableView>
+            <JFXTreeTableView fx:id="table" styleClass="table-view" />
          </children>
          <padding>
             <Insets left="35.0" right="35.0" />
          </padding>
       </VBox>
-      <HBox alignment="CENTER_RIGHT" prefHeight="100.0" prefWidth="200.0">
+      <HBox alignment="CENTER_RIGHT" VBox.vgrow="ALWAYS">
          <children>
-            <JFXButton fx:id="selectButton" onAction="#clickSelect" text="Select" />
+            <JFXButton fx:id="selectButton" onAction="#clickSelect" text="Select">
+               <HBox.margin>
+                  <Insets right="20.0" />
+               </HBox.margin></JFXButton>
          </children>
          <padding>
             <Insets bottom="15.0" left="15.0" right="15.0" top="15.0" />

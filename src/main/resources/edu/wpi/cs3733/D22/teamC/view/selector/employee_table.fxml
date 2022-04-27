@@ -7,30 +7,33 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 
-<VBox alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="561.0" prefWidth="600.0" styleClass="p" stylesheets="@../../css/default.css" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1">
+<VBox alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="600.0" stylesheets="@../../css/default.css" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1">
    <children>
-      <HBox alignment="CENTER_LEFT" prefHeight="52.0" prefWidth="600.0">
+      <HBox alignment="CENTER_LEFT" VBox.vgrow="ALWAYS">
          <children>
-            <Label fx:id="title" prefHeight="68.0" prefWidth="463.0" styleClass="page-title" stylesheets="@../../css/default.css" text="Select an Employee" />
+            <Label fx:id="title" styleClass="page-title" stylesheets="@../../css/default.css" text="Select an Employee" />
          </children>
          <padding>
             <Insets bottom="15.0" left="35.0" right="15.0" top="15.0" />
          </padding>
       </HBox>
-      <VBox>
+      <VBox VBox.vgrow="ALWAYS">
          <children>
-            <JFXTreeTableView fx:id="table" prefHeight="495.0" prefWidth="600.0" styleClass="table-view" />
+            <JFXTreeTableView fx:id="table" styleClass="table-view" />
          </children>
          <padding>
             <Insets left="35.0" right="35.0" />
          </padding>
       </VBox>
-      <HBox alignment="CENTER_RIGHT" prefHeight="70.0" prefWidth="600.0">
+      <HBox alignment="CENTER_RIGHT" VBox.vgrow="ALWAYS">
          <children>
-            <JFXButton onAction="#onSelect" styleClass="button-confirm" stylesheets="@../../css/default.css" text="Select" />
+            <JFXButton onAction="#onSelect" styleClass="button-confirm" stylesheets="@../../css/default.css" text="Select">
+               <HBox.margin>
+                  <Insets right="20.0" />
+               </HBox.margin></JFXButton>
          </children>
          <padding>
-            <Insets bottom="15.0" left="15.0" right="35.0" top="15.0" />
+            <Insets bottom="15.0" left="15.0" right="15.0" top="15.0" />
          </padding>
       </HBox>
    </children>
