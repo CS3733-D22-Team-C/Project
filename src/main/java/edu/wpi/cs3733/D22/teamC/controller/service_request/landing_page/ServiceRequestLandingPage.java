@@ -76,7 +76,7 @@ public class ServiceRequestLandingPage implements Initializable {
     // Show labels with names
     @FXML private VBox tableBox;
 
-    @FXML private HBox buttonsBox;
+    @FXML private VBox buttonsBox;
 
 
     @FXML private SearchableComboBox<ServiceRequest.RequestType> serviceReqTypeComboBox;

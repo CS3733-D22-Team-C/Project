@@ -99,6 +99,11 @@
         </VBox>
       <VBox fx:id="tableBox" GridPane.rowIndex="3">
          <children>
+            <VBox fx:id="tableBox" alignment="BOTTOM_CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="48.0" prefWidth="784.0">
+               <VBox.margin>
+                  <Insets left="8.0" right="8.0" />
+               </VBox.margin>
+            </VBox>
             <JFXTreeTableView fx:id="table" maxWidth="1.7976931348623157E308" prefHeight="262.0" prefWidth="442.0">
                <styleClass>
                   <String fx:value="table-view" />
