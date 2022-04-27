@@ -1,5 +1,7 @@
 package edu.wpi.cs3733.D22.teamC.factory.patient;
 
+import edu.wpi.cs3733.D22.teamC.entity.location.Location;
+import edu.wpi.cs3733.D22.teamC.entity.location.LocationDAO;
 import edu.wpi.cs3733.D22.teamC.entity.patient.Patient;
 import edu.wpi.cs3733.D22.teamC.factory.Factory;
 
@@ -21,14 +23,17 @@ public class PatientFactory implements Factory<Patient> {
             String firstName = "Wilson";
             String lastName = "Wong";
             String phone = "1321231312";
-            String location = "loc";
             Date dob = format1.parse("05/01/1999");
             String emergencyContact = "1321231312";
+    
+            Location location = new Location();
+            LocationDAO testDao = new LocationDAO();
+            testDao.insert(location);
 
             patient.setFirstName(firstName);
             patient.setLastName(lastName);
             patient.setPhone(phone);
-            patient.setLocationID(location);
+            patient.setLocation(location);
             patient.setEmergencyContact(emergencyContact);
             patient.setDOB(dob);
 

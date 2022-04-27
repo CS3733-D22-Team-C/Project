@@ -30,6 +30,7 @@ public abstract class DAOTest<T extends IDEntity>{
     @AfterEach
     void tearDown() {
         // Kill Session Factory after every test. Note: this will drop the tables!
+        dao.deleteAllFromTable();
         SessionManager.killSessionFactory();
     }
 
@@ -83,7 +84,7 @@ public abstract class DAOTest<T extends IDEntity>{
     }
 
     @Test
-    void deleteTest(){
+    protected void deleteTest(){
         T obj = factory.create();
         String id = dao.insert(obj);
         assertNotNull(id);

@@ -2,6 +2,8 @@ package edu.wpi.cs3733.D22.teamC.fileio.csv.service_request.facility_maintenance
 
 import edu.wpi.cs3733.D22.teamC.entity.employee.Employee;
 import edu.wpi.cs3733.D22.teamC.entity.employee.EmployeeDAO;
+import edu.wpi.cs3733.D22.teamC.entity.location.Location;
+import edu.wpi.cs3733.D22.teamC.entity.location.LocationDAO;
 import edu.wpi.cs3733.D22.teamC.entity.service_request.ServiceRequest;
 import edu.wpi.cs3733.D22.teamC.entity.service_request.facility_maintenance.FacilityMaintenanceSR;
 import edu.wpi.cs3733.D22.teamC.fileio.csv.CSVReader;
@@ -9,7 +11,10 @@ import edu.wpi.cs3733.D22.teamC.fileio.csv.CSVReader;
 import java.sql.Timestamp;
 
 public class FacilityMaintenanceSRCSVReader extends CSVReader<FacilityMaintenanceSR> {
-    private EmployeeDAO employeeDAO = new EmployeeDAO();
+    
+    private final LocationDAO locationDAO = new LocationDAO();
+    private final EmployeeDAO employeeDAO = new EmployeeDAO();
+    
     /**
      * Maps ServiceRequest (header, value) pairs to a value to change for the object.
      * @param serviceRequest The object to be modified.
@@ -32,7 +37,8 @@ public class FacilityMaintenanceSRCSVReader extends CSVReader<FacilityMaintenanc
                 serviceRequest.setAssignee(assignee);
                 break;
             case "location":
-                serviceRequest.setLocation(value);
+                Location location = locationDAO.getByID(value);
+                serviceRequest.setLocation(location);
                 break;
             case "creationTimestamp":
                 serviceRequest.setCreationTimestamp(Timestamp.valueOf(value));

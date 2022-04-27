@@ -1,0 +1,300 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import io.github.palexdev.materialfx.controls.MFXButton?>
+<?import java.lang.String?>
+<?import java.net.URL?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<VBox alignment="TOP_CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="841.0" prefWidth="604.0" styleClass="page-container" stylesheets="@../../../css/credits.css" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.wpi.cs3733.D22.teamC.controller.general.about_page.AboutPageController">
+   <children>
+      <Label alignment="CENTER" contentDisplay="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="22.0" prefWidth="458.0" style="-fx-background-color: #005A9B;" styleClass="service-field-label" stylesheets="@../../../css/component/login.css" text="About the Development Team - Brigham and Womens Internal Tools" textFill="WHITE" VBox.vgrow="ALWAYS">
+         <font>
+            <Font size="14.0" />
+         </font>
+      </Label>
+      <GridPane alignment="TOP_CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="868.0" prefWidth="604.0">
+         <columnConstraints>
+            <ColumnConstraints halignment="LEFT" hgrow="ALWAYS" maxWidth="1.7976931348623157E308" minWidth="10.0" prefWidth="290.1999755859375" />
+            <ColumnConstraints halignment="RIGHT" hgrow="ALWAYS" maxWidth="1.7976931348623157E308" minWidth="10.0" prefWidth="313.40002441406244" />
+         </columnConstraints>
+         <rowConstraints>
+            <RowConstraints maxHeight="1.7976931348623157E308" minHeight="10.0" prefHeight="140.80001220703124" vgrow="ALWAYS" />
+            <RowConstraints maxHeight="1.7976931348623157E308" minHeight="10.0" prefHeight="140.79998779296878" vgrow="ALWAYS" />
+            <RowConstraints maxHeight="1.7976931348623157E308" minHeight="10.0" prefHeight="139.79998779296875" vgrow="ALWAYS" />
+            <RowConstraints maxHeight="1.7976931348623157E308" minHeight="10.0" prefHeight="139.20004882812498" vgrow="ALWAYS" />
+            <RowConstraints maxHeight="1.7976931348623157E308" minHeight="10.0" prefHeight="139.99995117187495" vgrow="ALWAYS" />
+            <RowConstraints maxHeight="1.7976931348623157E308" minHeight="10.0" prefHeight="76.8000366210938" vgrow="ALWAYS" />
+         </rowConstraints>
+         <children>
+            <HBox alignment="BOTTOM_RIGHT" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="126.0" prefWidth="318.0" translateY="1.0" GridPane.columnIndex="1" GridPane.hgrow="ALWAYS" GridPane.rowIndex="5" GridPane.vgrow="ALWAYS">
+               <children>
+                  <Label prefHeight="38.0" prefWidth="354.0" style="-fx-background-color: #005A9B;" text="The Brigham &amp; Women’s Hospital maps and data used in this application are copyrighted and provided for the sole use of educational purposes." textFill="WHITE" translateY="-15.0" wrapText="true">
+                     <padding>
+                        <Insets left="10.0" right="10.0" />
+                     </padding>
+                     <stylesheets>
+                        <URL value="@../../../css/component/request_page.css" />
+                        <URL value="@../../../css/colors.css" />
+                     </stylesheets>
+                     <font>
+                        <Font size="10.0" />
+                     </font>
+                  </Label>
+               </children>
+            </HBox>
+            <HBox alignment="CENTER_LEFT" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="90.0" prefWidth="308.0" GridPane.hgrow="ALWAYS" GridPane.rowIndex="5" GridPane.vgrow="ALWAYS">
+               <children>
+                  <MFXButton fx:id="backButton" onAction="#onBackButtonClicked" prefHeight="31.0" prefWidth="75.0" stylesheets="@../../../css/component/request_page.css" text="Back" translateX="10.0" translateY="10.0" HBox.hgrow="ALWAYS" />
+               </children>
+            </HBox>
+            <HBox alignment="TOP_CENTER">
+               <children>
+                  <Label prefHeight="111.0" prefWidth="117.0" style="-fx-background-color: #005A9B; -fx-text-fill: #FFFFFF;" text="Nicholas Frangie - Lead Software Engineer" textFill="WHITE" translateY="15.0" wrapText="true">
+                     <padding>
+                        <Insets left="10.0" />
+                     </padding>
+                     <stylesheets>
+                        <URL value="@../../../css/component/request_page.css" />
+                        <URL value="@../../../css/component/service_request_landing_page.css" />
+                     </stylesheets>
+                     <styleClass>
+                        <String fx:value="base_view_table_confirm" />
+                        <String fx:value="card" />
+                     </styleClass>
+                  </Label>
+                  <ImageView fitHeight="111.0" fitWidth="95.0" pickOnBounds="true" translateY="15.0">
+                     <image>
+                        <Image url="@../../../static/images/team_members/Nick%20Frangie%20Soft%20Eng.png" />
+                     </image>
+                     <HBox.margin>
+                        <Insets />
+                     </HBox.margin>
+                  </ImageView>
+               </children>
+            </HBox>
+            <HBox alignment="TOP_CENTER" GridPane.columnIndex="1">
+               <children>
+                  <Label prefHeight="111.0" prefWidth="117.0" style="-fx-background-color: #005A9B; -fx-text-fill: #FFFFFF;" text="Brian Shin - Lead Backend Engineer" translateX="15.0" translateY="15.0" wrapText="true">
+                     <padding>
+                        <Insets left="10.0" />
+                     </padding>
+                     <stylesheets>
+                        <URL value="@../../../css/component/request_page.css" />
+                        <URL value="@../../../css/component/service_request_landing_page.css" />
+                     </stylesheets>
+                     <styleClass>
+                        <String fx:value="base_view_table_confirm" />
+                        <String fx:value="card" />
+                     </styleClass>
+                  </Label>
+                  <ImageView fitHeight="111.0" fitWidth="95.0" pickOnBounds="true" translateX="15.0" translateY="15.0">
+                     <image>
+                        <Image url="@../../../static/images/team_members/Brian%20Soft%20Eng.png" />
+                     </image>
+                     <HBox.margin>
+                        <Insets right="40.0" />
+                     </HBox.margin>
+                  </ImageView>
+               </children>
+            </HBox>
+            <HBox alignment="TOP_CENTER" GridPane.rowIndex="1">
+               <children>
+                  <Label prefHeight="111.0" prefWidth="117.0" style="-fx-background-color: #005A9B; -fx-text-fill: #FFFFFF;" text="Brandon Vuong - Lead Frontend Engineer" translateY="15.0" wrapText="true">
+                     <padding>
+                        <Insets left="10.0" />
+                     </padding>
+                     <stylesheets>
+                        <URL value="@../../../css/component/request_page.css" />
+                        <URL value="@../../../css/component/service_request_landing_page.css" />
+                     </stylesheets>
+                     <styleClass>
+                        <String fx:value="base_view_table_confirm" />
+                        <String fx:value="card" />
+                     </styleClass>
+                  </Label>
+                  <ImageView fitHeight="111.0" fitWidth="95.0" pickOnBounds="true" translateY="15.0">
+                     <image>
+                        <Image url="@../../../static/images/team_members/Brandon%20Soft%20Eng.png" />
+                     </image>
+                  </ImageView>
+               </children>
+            </HBox>
+            <HBox alignment="TOP_CENTER" GridPane.columnIndex="1" GridPane.rowIndex="1">
+               <children>
+                  <Label prefHeight="111.0" prefWidth="117.0" style="-fx-background-color: #005A9B; -fx-text-fill: #FFFFFF;" text="Grace O'Reilly - Documentation Analyst and Backend Engineer" translateX="15.0" translateY="15.0" wrapText="true">
+                     <padding>
+                        <Insets left="10.0" />
+                     </padding>
+                     <stylesheets>
+                        <URL value="@../../../css/component/request_page.css" />
+                        <URL value="@../../../css/component/service_request_landing_page.css" />
+                     </stylesheets>
+                     <styleClass>
+                        <String fx:value="base_view_table_confirm" />
+                        <String fx:value="card" />
+                     </styleClass>
+                  </Label>
+                  <ImageView fitHeight="111.0" fitWidth="95.0" pickOnBounds="true" translateX="15.0" translateY="15.0">
+                     <image>
+                        <Image url="@../../../static/images/team_members/Grace%20Soft%20Eng.png" />
+                     </image>
+                     <HBox.margin>
+                        <Insets right="40.0" />
+                     </HBox.margin>
+                  </ImageView>
+               </children>
+            </HBox>
+            <HBox alignment="TOP_CENTER" GridPane.rowIndex="2">
+               <children>
+                  <Label prefHeight="111.0" prefWidth="117.0" style="-fx-background-color: #005A9B; -fx-text-fill: #FFFFFF;" text="Mia Mueting - Scrum Master and Frontend Engineer" translateY="15.0" wrapText="true">
+                     <padding>
+                        <Insets left="10.0" />
+                     </padding>
+                     <stylesheets>
+                        <URL value="@../../../css/component/request_page.css" />
+                        <URL value="@../../../css/component/service_request_landing_page.css" />
+                     </stylesheets>
+                     <styleClass>
+                        <String fx:value="base_view_table_confirm" />
+                        <String fx:value="card" />
+                     </styleClass>
+                  </Label>
+                  <ImageView fitHeight="111.0" fitWidth="95.0" pickOnBounds="true" translateY="15.0">
+                     <image>
+                        <Image url="@../../../static/images/team_members/Mia%20Soft%20Eng.png" />
+                     </image>
+                  </ImageView>
+               </children>
+            </HBox>
+            <HBox alignment="TOP_CENTER" GridPane.columnIndex="1" GridPane.rowIndex="4">
+               <children>
+                  <Label prefHeight="111.0" prefWidth="117.0" style="-fx-background-color: #005A9B; -fx-text-fill: #FFFFFF;" text="Vagmi Bhagavathula - Backend Engineer" translateX="15.0" translateY="15.0" wrapText="true">
+                     <padding>
+                        <Insets left="10.0" />
+                     </padding>
+                     <stylesheets>
+                        <URL value="@../../../css/component/request_page.css" />
+                        <URL value="@../../../css/component/service_request_landing_page.css" />
+                     </stylesheets>
+                     <styleClass>
+                        <String fx:value="base_view_table_confirm" />
+                        <String fx:value="card" />
+                     </styleClass>
+                  </Label>
+                  <ImageView fitHeight="111.0" fitWidth="95.0" pickOnBounds="true" translateX="15.0" translateY="15.0">
+                     <image>
+                        <Image url="@../../../static/images/team_members/Vagmi%20Soft%20Eng.png" />
+                     </image>
+                     <HBox.margin>
+                        <Insets right="40.0" />
+                     </HBox.margin>
+                  </ImageView>
+               </children>
+            </HBox>
+            <HBox alignment="TOP_CENTER" GridPane.rowIndex="3">
+               <children>
+                  <Label prefHeight="111.0" prefWidth="117.0" style="-fx-background-color: #005A9B; -fx-text-fill: #FFFFFF;" text="Jack Murihead - Frontend Engineer" translateY="15.0" wrapText="true">
+                     <padding>
+                        <Insets left="10.0" />
+                     </padding>
+                     <stylesheets>
+                        <URL value="@../../../css/component/request_page.css" />
+                        <URL value="@../../../css/component/service_request_landing_page.css" />
+                     </stylesheets>
+                     <styleClass>
+                        <String fx:value="base_view_table_confirm" />
+                        <String fx:value="card" />
+                     </styleClass>
+                  </Label>
+                  <ImageView fitHeight="111.0" fitWidth="95.0" pickOnBounds="true" translateY="15.0">
+                     <image>
+                        <Image url="@../../../static/images/team_members/Jack%20Soft%20Eng.png" />
+                     </image>
+                  </ImageView>
+               </children>
+            </HBox>
+            <HBox alignment="TOP_CENTER" GridPane.rowIndex="4">
+               <children>
+                  <Label prefHeight="111.0" prefWidth="117.0" style="-fx-background-color: #005A9B; -fx-text-fill: #FFFFFF;" text="Matthew McAlarney - Frontend Engineer" translateY="15.0" wrapText="true">
+                     <padding>
+                        <Insets left="10.0" />
+                     </padding>
+                     <stylesheets>
+                        <URL value="@../../../css/component/request_page.css" />
+                        <URL value="@../../../css/component/service_request_landing_page.css" />
+                     </stylesheets>
+                     <styleClass>
+                        <String fx:value="base_view_table_confirm" />
+                        <String fx:value="card" />
+                     </styleClass>
+                  </Label>
+                  <ImageView fitHeight="111.0" fitWidth="95.0" pickOnBounds="true" translateY="15.0">
+                     <image>
+                        <Image url="@../../../static/images/team_members/Matthew%20Soft%20Eng.png" />
+                     </image>
+                  </ImageView>
+               </children>
+            </HBox>
+            <HBox alignment="TOP_CENTER" GridPane.columnIndex="1" GridPane.rowIndex="2">
+               <children>
+                  <Label prefHeight="111.0" prefWidth="117.0" style="-fx-background-color: #005A9B; -fx-text-fill: #FFFFFF;" text="Nelson Pires - Product Owner and Frontend Engineer" translateX="15.0" translateY="15.0" wrapText="true">
+                     <padding>
+                        <Insets left="10.0" />
+                     </padding>
+                     <stylesheets>
+                        <URL value="@../../../css/component/request_page.css" />
+                        <URL value="@../../../css/component/service_request_landing_page.css" />
+                     </stylesheets>
+                     <styleClass>
+                        <String fx:value="base_view_table_confirm" />
+                        <String fx:value="card" />
+                     </styleClass>
+                  </Label>
+                  <ImageView fitHeight="111.0" fitWidth="95.0" pickOnBounds="true" translateX="15.0" translateY="15.0">
+                     <image>
+                        <Image url="@../../../static/images/team_members/Nelson%20Soft%20Eng.png" />
+                     </image>
+                     <HBox.margin>
+                        <Insets right="40.0" />
+                     </HBox.margin>
+                  </ImageView>
+               </children>
+            </HBox>
+            <HBox alignment="TOP_CENTER" GridPane.columnIndex="1" GridPane.rowIndex="3">
+               <children>
+                  <Label prefHeight="111.0" prefWidth="117.0" style="-fx-background-color: #005A9B; -fx-text-fill: #FFFFFF;" text="Vishnu Dendukuri - Backend Engineer" translateX="15.0" translateY="15.0" wrapText="true">
+                     <padding>
+                        <Insets left="10.0" />
+                     </padding>
+                     <stylesheets>
+                        <URL value="@../../../css/component/request_page.css" />
+                        <URL value="@../../../css/component/service_request_landing_page.css" />
+                     </stylesheets>
+                     <styleClass>
+                        <String fx:value="base_view_table_confirm" />
+                        <String fx:value="card" />
+                     </styleClass>
+                  </Label>
+                  <ImageView fitHeight="111.0" fitWidth="95.0" pickOnBounds="true" translateX="15.0" translateY="15.0">
+                     <image>
+                        <Image url="@../../../static/images/team_members/Vishnu%20Soft%20Eng.png" />
+                     </image>
+                     <HBox.margin>
+                        <Insets right="40.0" />
+                     </HBox.margin>
+                  </ImageView>
+               </children>
+            </HBox>
+         </children>
+      </GridPane>
+   </children>
+</VBox>

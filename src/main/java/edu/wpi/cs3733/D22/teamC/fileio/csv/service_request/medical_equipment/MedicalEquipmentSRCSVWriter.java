@@ -1,6 +1,7 @@
 package edu.wpi.cs3733.D22.teamC.fileio.csv.service_request.medical_equipment;
 
 import edu.wpi.cs3733.D22.teamC.entity.employee.Employee;
+import edu.wpi.cs3733.D22.teamC.entity.location.Location;
 import edu.wpi.cs3733.D22.teamC.entity.service_request.medical_equipment.MedicalEquipmentSR;
 import edu.wpi.cs3733.D22.teamC.fileio.csv.CSVWriter;
 
@@ -49,7 +50,8 @@ public class MedicalEquipmentSRCSVWriter extends CSVWriter<MedicalEquipmentSR> {
                 output = (assignee != null) ? assignee.getID() : "";
                 break;
             case "location":
-                output = serviceRequest.getLocation();
+                Location location = serviceRequest.getLocation();
+                output = (location != null) ? location.getID() : "";
                 break;
             case "creationTimestamp":
                 output = (serviceRequest.getCreationTimestamp() == null) ? "" : serviceRequest.getCreationTimestamp().toString();

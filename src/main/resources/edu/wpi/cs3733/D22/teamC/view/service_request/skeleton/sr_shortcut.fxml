@@ -1,0 +1,168 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import com.jfoenix.controls.JFXTextArea?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.layout.VBox?>
+<?import org.controlsfx.control.SearchableComboBox?>
+
+<GridPane alignment="CENTER" maxHeight="1.7976931348623157E308" maxWidth="838.0" prefHeight="683.0" prefWidth="606.0" styleClass="page-container" stylesheets="@../../../css/component/request_page.css" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.wpi.cs3733.D22.teamC.controller.service_request.SRShortcutController">
+    <columnConstraints>
+        <ColumnConstraints hgrow="ALWAYS" maxWidth="1.7976931348623157E308" minWidth="10.0" prefWidth="272.79998779296875" />
+    </columnConstraints>
+    <rowConstraints>
+        <RowConstraints maxHeight="144.8000030517578" minHeight="5.599998474121094" prefHeight="72.0" vgrow="NEVER" />
+        <RowConstraints maxHeight="185.60000228881836" minHeight="0.0" prefHeight="155.0" vgrow="ALWAYS" />
+        <RowConstraints maxHeight="377.6" minHeight="10.0" prefHeight="131.0" vgrow="ALWAYS" />
+        <RowConstraints maxHeight="260.0000183105468" minHeight="10.0" prefHeight="190.4000183105469" vgrow="ALWAYS" />
+        <RowConstraints maxHeight="226.40000000000003" minHeight="0.0" prefHeight="133.59999389648442" vgrow="ALWAYS" />
+    </rowConstraints>
+    <children>
+        <VBox GridPane.hgrow="ALWAYS" GridPane.vgrow="ALWAYS">
+            <children>
+                <Label id="title" fx:id="title" alignment="CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="71.0" prefWidth="590.0" styleClass="card-content-header" text="Resolve Service Request " VBox.vgrow="NEVER" />
+            </children>
+        </VBox>
+        <VBox prefHeight="148.0" prefWidth="478.0" styleClass="fields-padding" GridPane.rowIndex="1">
+            <children>
+                <HBox prefHeight="6.0" prefWidth="520.0">
+                    <children>
+                        <Label id="t" prefHeight="27.0" prefWidth="190.0" styleClass="service-request-id" text="Service Request ID:  " />
+                        <Label fx:id="requestID" prefHeight="17.0" prefWidth="320.0" styleClass="service-request-id" text="00000000" />
+                    </children>
+                </HBox>
+                <GridPane prefHeight="38.0" prefWidth="590.0" VBox.vgrow="ALWAYS">
+                    <columnConstraints>
+                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="1.7976931348623157E308" minWidth="6.99996719360351" prefWidth="166.1999755859375" />
+                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="1.7976931348623157E308" minWidth="10.0" prefWidth="287.8000244140625" />
+                    </columnConstraints>
+                    <rowConstraints>
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="ALWAYS" />
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="ALWAYS" />
+                    </rowConstraints>
+                    <children>
+                        <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="6.0" GridPane.columnIndex="1">
+                            <children>
+                                <Label styleClass="service-field-label" text="Creation Time:" />
+                                <Label fx:id="creationTime" maxWidth="1.7976931348623157E308" prefHeight="22.0" prefWidth="190.0" styleClass="service-field-label" text="00000000000000000000000" underline="true" HBox.hgrow="ALWAYS" />
+                            </children>
+                        </HBox>
+                        <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="6.0">
+                            <children>
+                                <Label styleClass="service-field-label" text="Created By:" />
+                                <Label fx:id="createdBy" styleClass="service-field-label" text="00000000" underline="true" />
+                            </children>
+                            <GridPane.margin>
+                                <Insets left="10.0" />
+                            </GridPane.margin>
+                        </HBox>
+                        <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="6.0" GridPane.rowIndex="1">
+                            <children>
+                                <Label styleClass="service-field-label" text="Updated By:" />
+                                <Label fx:id="updatedBy" styleClass="service-field-label" text="00000000" underline="true" />
+                            </children>
+                            <GridPane.margin>
+                                <Insets left="10.0" />
+                            </GridPane.margin>
+                        </HBox>
+                        <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="6.0" GridPane.columnIndex="1" GridPane.rowIndex="1">
+                            <children>
+                                <Label styleClass="service-field-label" text="Last Updated:" />
+                                <Label fx:id="lastUpdated" maxWidth="1.7976931348623157E308" prefHeight="22.0" prefWidth="191.0" styleClass="service-field-label" text="00000000000000000000000" underline="true" HBox.hgrow="ALWAYS" />
+                            </children>
+                        </HBox>
+                    </children>
+                </GridPane>
+            </children>
+            <padding>
+                <Insets left="30.0" right="30.0" />
+            </padding>
+        </VBox>
+        <VBox fx:id="fieldsBox" prefHeight="170.0" prefWidth="479.0" styleClass="fields-padding" GridPane.rowIndex="2">
+            <children>
+                <HBox maxHeight="-Infinity" prefHeight="85.0" prefWidth="479.0" VBox.vgrow="NEVER">
+                    <children>
+                        <VBox alignment="CENTER_LEFT" prefHeight="200.0" prefWidth="100.0" styleClass="fields-padding" HBox.hgrow="ALWAYS">
+                            <children>
+                                <Label styleClass="service-field-label" text="Assign To:" />
+                                <HBox>
+                                    <children>
+                                        <SearchableComboBox fx:id="assigneeID" onAction="#statusUpdated" HBox.hgrow="ALWAYS" />
+                                        <JFXButton fx:id="employeeTableButton" onAction="#goToEmployeeTable" prefHeight="26.0" style="-fx-background-color: -color-secondary;" stylesheets="@../../../css/colors.css" />
+                                    </children>
+                                </HBox>
+                            </children>
+                        </VBox>
+                        <VBox alignment="CENTER_LEFT" prefHeight="200.0" prefWidth="100.0" styleClass="fields-padding" HBox.hgrow="ALWAYS">
+                            <children>
+                                <Label styleClass="service-field-label" text="Location:" />
+                                <HBox>
+                                    <children>
+                                        <SearchableComboBox fx:id="locationID" onAction="#statusUpdated" HBox.hgrow="ALWAYS" />
+                                        <JFXButton fx:id="mapViewButton" onAction="#goToMapView" prefHeight="26.0" style="-fx-background-color: -color-secondary;" stylesheets="@../../../css/colors.css" />
+                                    </children>
+                                </HBox>
+                            </children>
+                        </VBox>
+                        <VBox alignment="CENTER_LEFT" prefHeight="200.0" prefWidth="100.0" styleClass="fields-padding" HBox.hgrow="ALWAYS">
+                            <children>
+                                <Label styleClass="service-field-label" text="Priority:" />
+                                <SearchableComboBox fx:id="priority" onAction="#statusUpdated" />
+                            </children>
+                        </VBox>
+                    </children>
+                </HBox>
+            </children>
+            <padding>
+                <Insets left="30.0" right="30.0" />
+            </padding>
+        </VBox>
+        <VBox maxWidth="1.7976931348623157E308" prefHeight="150.0" prefWidth="479.0" styleClass="fields-padding" GridPane.rowIndex="3">
+            <children>
+                <VBox styleClass="fields-padding">
+                    <children>
+                        <Label styleClass="service-field-label" text="Additional Notes:" />
+                        <JFXTextArea fx:id="description" prefHeight="108.0" prefWidth="458.0" />
+                    </children>
+                </VBox>
+            </children>
+            <padding>
+                <Insets left="30.0" right="30.0" />
+            </padding>
+        </VBox>
+        <VBox styleClass="fields-padding" GridPane.rowIndex="4">
+            <children>
+                <HBox alignment="TOP_CENTER" prefHeight="100.0" prefWidth="200.0" styleClass="fie">
+                    <children>
+                        <Label styleClass="text-field-with-margin" text="Status:" />
+                        <Label fx:id="firstStatus" styleClass="text-field-with-margin" />
+                        <Label styleClass="text-field-with-margin" text="→" />
+                        <Label fx:id="secondStatus" styleClass="text-field-with-margin" />
+                    </children>
+                </HBox>
+                <HBox prefHeight="100.0" prefWidth="200.0">
+                    <children>
+                        <HBox prefHeight="75.0" prefWidth="341.0">
+                            <children>
+                                <JFXButton fx:id="goBackButton" onAction="#clickGoBack" styleClass="button-secondary" text="Go Back" />
+                            </children>
+                        </HBox>
+                        <HBox alignment="TOP_RIGHT" prefHeight="75.0" prefWidth="349.0" HBox.hgrow="ALWAYS">
+                            <children>
+                                <JFXButton fx:id="confirmButton" onAction="#clickConfirm" styleClass="button-confirm" text="Confirm" />
+                            </children>
+                        </HBox>
+                    </children>
+                </HBox>
+            </children>
+            <padding>
+                <Insets left="30.0" right="30.0" />
+            </padding>
+        </VBox>
+    </children>
+</GridPane>

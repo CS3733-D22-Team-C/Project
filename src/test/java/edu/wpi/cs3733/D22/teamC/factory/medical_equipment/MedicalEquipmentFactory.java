@@ -1,6 +1,7 @@
 package edu.wpi.cs3733.D22.teamC.factory.medical_equipment;
 
 import edu.wpi.cs3733.D22.teamC.entity.location.Location;
+import edu.wpi.cs3733.D22.teamC.entity.location.LocationDAO;
 import edu.wpi.cs3733.D22.teamC.entity.medical_equipment.MedicalEquipment;
 import edu.wpi.cs3733.D22.teamC.factory.Factory;
 
@@ -15,7 +16,12 @@ public class MedicalEquipmentFactory implements Factory<MedicalEquipment> {
         equipment.setEquipmentType(MedicalEquipment.EquipmentType.values()[generator.nextInt(MedicalEquipment.EquipmentType.values().length)]);
         equipment.setStatus(MedicalEquipment.EquipmentStatus.values()[generator.nextInt(MedicalEquipment.EquipmentStatus.values().length)]);
         equipment.setTypeNumber(generator.nextInt(30));
-        equipment.setLocationID(generateRandomString(16));
+    
+        Location location = new Location();
+        LocationDAO testDao = new LocationDAO();
+        testDao.insert(location);
+        
+        equipment.setLocation(location);
 
         return equipment;
     }

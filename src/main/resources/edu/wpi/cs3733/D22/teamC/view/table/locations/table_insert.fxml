@@ -48,7 +48,7 @@
                   <VBox VBox.vgrow="ALWAYS">
                      <children>
                         <Label fx:id="label4" text="Node Type:" />
-                        <JFXComboBox fx:id="nodeTypeComboBox" maxWidth="1.7976931348623157E308" minHeight="-Infinity" onAction="#onFieldUpdated" prefHeight="35.0" prefWidth="420.0" styleClass="dropdown" stylesheets="@../../../css/base.css" />
+                        <JFXComboBox fx:id="nodeTypeComboBox" maxWidth="1.7976931348623157E308" minHeight="-Infinity" onAction="#onFieldUpdated" prefHeight="35.0" prefWidth="420.0" styleClass="dropdown" stylesheets="@../../../css/default.css" />
                      </children>
                   </VBox>
                   <VBox VBox.vgrow="ALWAYS">
@@ -64,7 +64,7 @@
                   <VBox VBox.vgrow="ALWAYS">
                      <children>
                         <Label fx:id="label6" text="Floor:" />
-                        <JFXComboBox fx:id="floorComboBox" maxWidth="1.7976931348623157E308" minHeight="-Infinity" onAction="#onFieldUpdated" prefHeight="35.0" prefWidth="420.0" styleClass="dropdown" stylesheets="@../../../css/base.css" />
+                        <JFXComboBox fx:id="floorComboBox" maxWidth="1.7976931348623157E308" minHeight="-Infinity" onAction="#onFieldUpdated" prefHeight="35.0" prefWidth="420.0" styleClass="dropdown" stylesheets="@../../../css/default.css" />
                      </children>
                   </VBox>
                   <HBox spacing="20.0" VBox.vgrow="ALWAYS">

@@ -19,7 +19,7 @@ public class MedicalEquipmentTableDisplay extends TableDisplay<MedicalEquipment>
             super(medicalEquipment);
 
             this.idProperty             = new SimpleStringProperty(medicalEquipment.getID());
-            this.locationNameProperty   = new SimpleStringProperty(new LocationDAO().getByID(medicalEquipment.getLocationID()).getShortName());
+            this.locationNameProperty   = new SimpleStringProperty((medicalEquipment.getLocation() == null) ? "" : new LocationDAO().getByID(medicalEquipment.getLocation().getID()).getShortName());
             this.typeProperty           = new SimpleStringProperty(medicalEquipment.getEquipmentType().toString());
             this.typeNumberProperty     = new SimpleIntegerProperty(medicalEquipment.getTypeNumber());
             this.statusProperty         = new SimpleStringProperty(medicalEquipment.getStatus().toString());
@@ -28,7 +28,7 @@ public class MedicalEquipmentTableDisplay extends TableDisplay<MedicalEquipment>
         @Override
         public void RefreshEntry() {
             idProperty.setValue(object.getID());
-            locationNameProperty.setValue(new LocationDAO().getByID(object.getLocationID()).getShortName());
+            locationNameProperty.setValue(new LocationDAO().getByID(object.getLocation().getID()).getShortName());
             typeNumberProperty.setValue(object.getTypeNumber());
             statusProperty.setValue(object.getStatus().toString());
         }

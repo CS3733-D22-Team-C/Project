@@ -1,12 +1,10 @@
 package edu.wpi.cs3733.D22.teamC.entity.patient;
 
-import edu.wpi.cs3733.D22.teamC.entity.employee.Employee;
-
 import edu.wpi.cs3733.D22.teamC.entity.generic.IDEntity;
+import edu.wpi.cs3733.D22.teamC.entity.location.Location;
 
 
 import javax.persistence.*;
-import java.time.LocalDate;
 import java.util.Date;
 import java.util.UUID;
 
@@ -27,9 +25,11 @@ public class Patient implements IDEntity {
     @Temporal(TemporalType.DATE)
     @Column(name = "DOB")
     private Date DOB;
-
-    @Column(name = "Location")
-    private String locationID;
+    
+    @ManyToOne
+    @JoinColumn(name = "Location", referencedColumnName = "ID", foreignKey = @ForeignKey(name = "fk_PatientLocation",
+            foreignKeyDefinition = "FOREIGN KEY (Location) REFERENCES LOCATION (ID) ON DELETE SET NULL"))
+    private Location location;
 
     @Column(name = "Phone")
     private String phone;
@@ -71,12 +71,12 @@ public class Patient implements IDEntity {
         this.DOB = DOB;
     }
 
-    public String getLocationID() {
-        return locationID;
+    public Location getLocation() {
+        return location;
     }
 
-    public void setLocationID(String locationID) {
-        this.locationID = locationID;
+    public void setLocation(Location location) {
+        this.location = location;
     }
 
     public String getPhone() {
@@ -107,7 +107,7 @@ public class Patient implements IDEntity {
                 && emergencyContact.equals(patient.emergencyContact)
                 && phone.equals(patient.phone)
                 && DOB.equals(patient.DOB)
-                && locationID.equals(patient.locationID);
+                && location.getID().equals(patient.location.getID());
     }
     
     @Override

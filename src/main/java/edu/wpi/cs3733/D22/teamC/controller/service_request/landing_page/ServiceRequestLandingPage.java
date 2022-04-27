@@ -10,9 +10,12 @@ import edu.wpi.cs3733.D22.teamC.controller.service_request.BaseServiceRequestRes
 import edu.wpi.cs3733.D22.teamC.controller.service_request.SegmentBarController;
 import edu.wpi.cs3733.D22.teamC.controller.service_request.facility_maintenance.ServiceException;
 import edu.wpi.cs3733.D22.teamC.entity.generic.DAO;
+import edu.wpi.cs3733.D22.teamC.entity.location.Location;
 import edu.wpi.cs3733.D22.teamC.entity.service_request.ServiceRequest;
 import edu.wpi.cs3733.D22.teamC.entity.service_request.ServiceRequestDAO;
 import edu.wpi.cs3733.D22.teamC.models.service_request.ServiceRequestTableDisplay;
+import edu.wpi.cs3733.D22.teamC.models.utils.ComponentWrapper;
+import io.github.palexdev.materialfx.controls.MFXButton;
 import io.github.palexdev.materialfx.controls.MFXToggleButton;
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
@@ -28,6 +31,7 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
+import org.controlsfx.control.SearchableComboBox;
 
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
@@ -35,6 +39,7 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.List;
 import java.util.ResourceBundle;
+import java.util.stream.Collectors;
 
 import static edu.wpi.cs3733.D22.teamC.entity.service_request.ServiceRequest.Status.*;
 
@@ -51,6 +56,19 @@ public class ServiceRequestLandingPage implements Initializable {
     public static final String API_BUTTONS = "view/service_request/landing_page/landing_page_api_buttons.fxml";
     public static final String BUTTONS = "view/service_request/landing_page/landing_page_buttons.fxml";
 
+    //Name labels
+    @FXML private Label brandon;
+    @FXML private Label brian;
+    @FXML private Label grace;
+    @FXML private Label jack;
+    @FXML private Label matthew;
+    @FXML private Label mia;
+    @FXML private Label nelson;
+    @FXML private Label nick;
+    @FXML private Label vagmi;
+    @FXML private Label vishnu;
+    @FXML private ImageView eye;
+    
     // Child Controllers
     ServiceRequestScrollPane childController;
     ServiceRequestAPIScrollPane childAPIController;
@@ -58,14 +76,17 @@ public class ServiceRequestLandingPage implements Initializable {
     // Show labels with names
     @FXML private VBox tableBox;
 
-    @FXML private ImageView eye;
-    @FXML private JFXButton deleteButton;
     @FXML private HBox buttonsBox;
+
+
+    @FXML private SearchableComboBox<ServiceRequest.RequestType> serviceReqTypeComboBox;
+    @FXML private MFXButton SRTypeClearButton;
 
     private boolean canSee = false;
 
     @FXML private JFXButton edit;
     @FXML private JFXButton resolve;
+    @FXML private JFXButton deleteButton;
     @FXML private VBox scrollPaneButtons;
 
     // Table
@@ -74,6 +95,7 @@ public class ServiceRequestLandingPage implements Initializable {
     // Variables
     private ServiceRequestTableDisplay<ServiceRequest> tableDisplay;
     private boolean api = false;
+    private ServiceRequest.RequestType filterRequestType;
 
     SegmentBarController insertBarController;
 
@@ -83,6 +105,9 @@ public class ServiceRequestLandingPage implements Initializable {
         //Insert for Segmented Bar
         setSegmentedBarInsert();
         insertBarController.preSetup();
+
+        //Service Request type dropdown
+        serviceReqTypeComboBox.getItems().setAll(ServiceRequest.RequestType.values());
 
         // Populate Table Display
         ServiceRequestDAO serviceRequestDAO  = new ServiceRequestDAO();
@@ -171,13 +196,13 @@ public class ServiceRequestLandingPage implements Initializable {
     }
 
     //#region Page Navigation
-    private void toDefaultPage(ServiceRequest serviceRequest) {
+    public void toDefaultPage(ServiceRequest serviceRequest) {
         switch (serviceRequest.getStatus()) {
             case Blank:
                 toEditPage(serviceRequest);
                 break;
             case Processing:
-                toResolvePage(serviceRequest);
+                toEditPage(serviceRequest);
                 break;
             case Done:
                 // "Done" Service Requests cannot be edited or resolved
@@ -275,9 +300,57 @@ public class ServiceRequestLandingPage implements Initializable {
             srDao.delete(activeServiceRequest);
             tableDisplay.removeObject(activeServiceRequest);
             table.getSelectionModel().clearSelection();
+            
             deleteButton.setDisable(true);
             edit.setDisable(true);
             resolve.setDisable(true);
         }
+    }
+
+    public void setServiceRequestFilterAndPopulate(ServiceRequest.RequestType type) {
+        this.filterRequestType = type;
+
+        ComponentWrapper.setValueSilently(serviceReqTypeComboBox, type);
+
+        tableDisplay.emptyTable();
+
+        ServiceRequestDAO serviceRequestDAO  = new ServiceRequestDAO();
+        List<ServiceRequest> serviceRequests = serviceRequestDAO.getAll();
+        if(filterRequestType != null){
+            serviceRequests = serviceRequests.stream().filter(serviceRequest -> serviceRequest.getRequestType().equals(serviceReqTypeComboBox.getValue())).collect(Collectors.toList());
+        }
+        serviceRequests.forEach(tableDisplay::addObject);
+
+
+        insertBarController.clear();
+        for (ServiceRequest serviceRequest : serviceRequests) {
+            if(serviceRequest.getRequestType().equals(serviceReqTypeComboBox.getValue()))
+                insertBarController.updateNumbers(serviceRequest.getStatus(), true);
+        }
+
+        insertBarController.setup(false);
+        setActiveServiceRequest(null);
+    }
+
+
+    @FXML
+    void onClearSRTypeButtonClicked(ActionEvent event) {
+        serviceReqTypeComboBox.setValue(null);
+        insertBarController.clear();
+        ServiceRequestDAO serviceRequestDAO  = new ServiceRequestDAO();
+        List<ServiceRequest> serviceRequests = serviceRequestDAO.getAll();
+
+        for (ServiceRequest serviceRequest : serviceRequests) {
+                insertBarController.updateNumbers(serviceRequest.getStatus(), true);
+        }
+
+        insertBarController.setup(false);
+
+    }
+
+
+    @FXML
+    void onSRTypeSelected(ActionEvent event) {
+        setServiceRequestFilterAndPopulate(serviceReqTypeComboBox.getValue());
     }
 }

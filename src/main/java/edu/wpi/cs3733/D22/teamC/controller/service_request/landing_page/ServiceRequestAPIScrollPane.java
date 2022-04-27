@@ -58,7 +58,7 @@ public class ServiceRequestAPIScrollPane implements Initializable {
     public void loadLocationsTeamB(){
                 List<Location> locations = new LocationDAO().getAll();
         for(Location location: locations){
-            databaseController.add(new edu.wpi.cs3733.D22.teamB.api.Location(location.getID(), location.getX(), location.getY(), location.getFloor(), location.getBuilding(), location.getNodeType().toString(), location.getLongName(),location.getShortName()));
+            databaseController.add(new edu.wpi.cs3733.D22.teamB.api.Location(location.getID(), location.getX(), location.getY(), location.getFloor().getID(), location.getBuilding(), location.getNodeType().toString(), location.getLongName(),location.getShortName()));
         }
 
     }

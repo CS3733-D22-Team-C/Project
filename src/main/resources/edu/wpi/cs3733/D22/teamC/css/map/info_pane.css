@@ -16,7 +16,7 @@
     -fx-tab-max-width: 50;
     -fx-tab-min-width: 50;
 
-    -fx-border-insets: 0px !important;
+    -fx-border-insets: 0px;
     /*-fx-padding: 0px;*/
 }
 

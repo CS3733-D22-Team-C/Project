@@ -1,5 +1,6 @@
 package edu.wpi.cs3733.D22.teamC.fileio.csv.patient;
 
+import edu.wpi.cs3733.D22.teamC.entity.location.Location;
 import edu.wpi.cs3733.D22.teamC.entity.patient.Patient;
 import edu.wpi.cs3733.D22.teamC.fileio.csv.CSVWriter;
 
@@ -35,7 +36,8 @@ public class PatientCSVWriter extends CSVWriter<Patient> {
                 output = object.getDOB().toString();
                 break;
             case "Location":
-                output = object.getLocationID();
+                Location location = object.getLocation();
+                output = (location != null) ? location.getID() : "";
                 break;
             case "Phone":
                 output = object.getPhone();

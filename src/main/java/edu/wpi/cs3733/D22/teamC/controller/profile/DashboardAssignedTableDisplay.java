@@ -1,19 +1,12 @@
-package edu.wpi.cs3733.D22.teamC.controller.dashboard;
+package edu.wpi.cs3733.D22.teamC.controller.profile;
 
 import com.jfoenix.controls.JFXTreeTableView;
 import edu.wpi.cs3733.D22.teamC.entity.service_request.ServiceRequest;
-import edu.wpi.cs3733.D22.teamC.models.generic.TableDisplay;
 import edu.wpi.cs3733.D22.teamC.models.service_request.ServiceRequestTableDisplay;
-import javafx.beans.property.ObjectProperty;
-import javafx.beans.property.SimpleObjectProperty;
-import javafx.beans.property.SimpleStringProperty;
-import javafx.beans.property.StringProperty;
 
-import java.sql.Timestamp;
+public class DashboardAssignedTableDisplay extends ServiceRequestTableDisplay<ServiceRequest> {
 
-public class DashboardCreatedTableDisplay extends ServiceRequestTableDisplay<ServiceRequest> {
-
-    public DashboardCreatedTableDisplay(JFXTreeTableView table) {
+    public DashboardAssignedTableDisplay(JFXTreeTableView table) {
         super(table);
     }
 
@@ -50,11 +43,9 @@ public class DashboardCreatedTableDisplay extends ServiceRequestTableDisplay<Ser
 
         addColumn(
                 table,
-                "Assignee ID",
+                "Location",
                 1f * Integer.MAX_VALUE * 16.66,
-                (ServiceRequestTableEntry entry) -> {return entry.assigneeID;}
+                (ServiceRequestTableEntry entry) -> {return entry.location;}
         );
     }
-
-
 }

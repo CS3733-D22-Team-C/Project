@@ -1,6 +1,9 @@
 package edu.wpi.cs3733.D22.teamC.entity.location;
 
+import edu.wpi.cs3733.D22.teamC.entity.floor.Floor;
 import edu.wpi.cs3733.D22.teamC.entity.generic.IDEntity;
+import org.hibernate.annotations.OnDelete;
+import org.hibernate.annotations.OnDeleteAction;
 
 import javax.persistence.*;
 import java.util.UUID;
@@ -11,9 +14,11 @@ public class Location implements IDEntity {
     @Id
     @Column(name = "ID")
     private String ID;
-    
-    @Column(name = "FloorID")
-    private String floor; // TODO: Floors should be objects
+
+    @ManyToOne
+    @JoinColumn(name = "FloorID", referencedColumnName = "ID")
+    @OnDelete(action = OnDeleteAction.CASCADE)
+    private Floor floor;
     
     @Column(name = "Building")
     private String building = "";
@@ -56,7 +61,7 @@ public class Location implements IDEntity {
     }
     
     public Location(
-            String floor,
+            Floor floor,
             String building,
             NodeType nodeType,
             String longName,
@@ -96,11 +101,11 @@ public class Location implements IDEntity {
         this.ID = nodeID;
     }
     
-    public String getFloor() {
+    public Floor getFloor() {
         return floor;
     }
     
-    public void setFloor(String floor) {
+    public void setFloor(Floor floor) {
         this.floor = floor;
     }
     
@@ -158,7 +163,7 @@ public class Location implements IDEntity {
         if (o == null || getClass() != o.getClass()) return false;
         Location location = (Location) o;
         return ID.equals(location.ID)
-                && floor.equals(location.floor)
+                && floor.getID().equals(location.floor.getID())
                 && x == location.x
                 && y == location.y
                 && building.equals(location.building)
