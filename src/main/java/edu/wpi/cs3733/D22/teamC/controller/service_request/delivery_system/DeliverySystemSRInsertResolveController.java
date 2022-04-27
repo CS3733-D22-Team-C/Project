@@ -1,6 +1,8 @@
 package edu.wpi.cs3733.D22.teamC.controller.service_request.delivery_system;
 
+import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXComboBox;
+import com.jfoenix.svg.SVGGlyph;
 import edu.wpi.cs3733.D22.teamC.controller.service_request.BaseServiceRequestResolveController;
 import edu.wpi.cs3733.D22.teamC.controller.service_request.InsertServiceRequestResolveController;
 import edu.wpi.cs3733.D22.teamC.entity.generic.DAO;
@@ -8,6 +10,7 @@ import edu.wpi.cs3733.D22.teamC.entity.patient.Patient;
 import edu.wpi.cs3733.D22.teamC.entity.patient.PatientDAO;
 import edu.wpi.cs3733.D22.teamC.entity.service_request.delivery_system.DeliverySystemSR;
 import edu.wpi.cs3733.D22.teamC.entity.service_request.delivery_system.DeliverySystemSRDAO;
+import edu.wpi.cs3733.D22.teamC.fileio.svg.SVGParser;
 import edu.wpi.cs3733.D22.teamC.models.patient.PatientSelectorWindow;
 import edu.wpi.cs3733.D22.teamC.models.utils.ComponentWrapper;
 import javafx.event.ActionEvent;
@@ -28,8 +31,17 @@ public class DeliverySystemSRInsertResolveController extends InsertServiceReques
     @FXML
     private SearchableComboBox<Patient> patientSComboBox;
     
+    @FXML
+    private JFXButton patientButton;
+    
     @Override
     public void initialize(URL location, ResourceBundle resources) {
+        SVGParser svgParser = new SVGParser();
+        String employeeIcon = svgParser.getPath("static/icons/employee_icon.svg");
+        SVGGlyph employeeContent = new SVGGlyph(employeeIcon);
+        employeeContent.setSize(20);
+        patientButton.setGraphic(employeeContent);
+        
         // DeliveryType dropdown
         for (DeliverySystemSR.DeliveryType labs : DeliverySystemSR.DeliveryType.values()) {
             deliveryType.getItems().add(labs.toString());
@@ -47,6 +59,7 @@ public class DeliverySystemSRInsertResolveController extends InsertServiceReques
         deliveryType.setDisable(!isEditMode);
         patientSComboBox.setEditable(isEditMode);
         patientSComboBox.setDisable(!isEditMode);
+        patientButton.setDisable(!isEditMode);
     
         Patient currPatient = serviceRequest.getPatient();
         
@@ -58,9 +71,7 @@ public class DeliverySystemSRInsertResolveController extends InsertServiceReques
     public boolean requiredFieldsPresent(){
         if(deliveryType.getValue() == null && deliveryType.getPromptText().equals(""))
             return false;
-        if(patientSComboBox.getValue() == null)
-            return false;
-        return true;
+        return patientSComboBox.getValue() != null;
     }
     
     @Override
