@@ -10,7 +10,7 @@
       <VBox prefWidth="227.0" styleClass="fields-padding">
          <children>
             <Label styleClass="service-field-label" text="Maintenance Type:" />
-            <JFXComboBox fx:id="maintType" maxWidth="1.7976931348623157E308" onAction="#statusUpdated" prefWidth="190.0" styleClass="dropdown" stylesheets="@../../../css/base.css" VBox.vgrow="ALWAYS" />
+            <JFXComboBox fx:id="maintType" maxWidth="1.7976931348623157E308" onAction="#statusUpdated" prefWidth="190.0" styleClass="dropdown" stylesheets="@../../../css/default.css" VBox.vgrow="ALWAYS" />
          </children>
       </VBox>
       <VBox prefWidth="227.0" styleClass="fields-padding" />

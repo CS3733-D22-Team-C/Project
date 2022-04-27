@@ -10,7 +10,7 @@
       <VBox maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefWidth="227.0" styleClass="fields-padding" HBox.hgrow="ALWAYS">
          <children>
             <Label styleClass="service-field-label" text="Sanitation Type:" />
-            <JFXComboBox fx:id="sanitationType" maxWidth="1.7976931348623157E308" prefWidth="190.0" styleClass="dropdown" stylesheets="@../../../css/base.css" VBox.vgrow="ALWAYS" />
+            <JFXComboBox fx:id="sanitationType" maxWidth="1.7976931348623157E308" prefWidth="190.0" styleClass="dropdown" stylesheets="@../../../css/default.css" VBox.vgrow="ALWAYS" />
          </children>
       </VBox>
       <VBox alignment="CENTER_LEFT" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefWidth="227.0" styleClass="box-margin" HBox.hgrow="ALWAYS" />
