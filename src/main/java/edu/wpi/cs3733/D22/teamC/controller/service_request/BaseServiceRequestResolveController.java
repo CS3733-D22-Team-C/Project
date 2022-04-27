@@ -58,10 +58,10 @@ public class BaseServiceRequestResolveController<T extends ServiceRequest> imple
     @FXML private JFXButton mapViewButton;
 
     // References
-    private InsertServiceRequestResolveController<T> insertController;
+    protected InsertServiceRequestResolveController<T> insertController;
 
     // Variables
-    private ServiceRequest.RequestType requestType;
+    protected ServiceRequest.RequestType requestType;
 
     private T serviceRequest;
     private boolean isEditMode;
@@ -69,7 +69,9 @@ public class BaseServiceRequestResolveController<T extends ServiceRequest> imple
     private Employee employee;
     private Location location;
     
-    private String srUUID;
+    protected String srUUID;
+
+    private Runnable goBackEvent = this::returnToSRPage;
 
     @FXML
     public void setup(ServiceRequest serviceRequest, boolean isEditMode) {
@@ -93,7 +95,7 @@ public class BaseServiceRequestResolveController<T extends ServiceRequest> imple
         this.serviceRequest = serviceRequestDAO.getByID(serviceRequest.getID());
         srUUID = this.serviceRequest.getID();
 
-        if (serviceRequest.getLocation() != null) location = new LocationDAO().getByID(serviceRequest.getLocation());
+        if (serviceRequest.getLocation() != null) location = new LocationDAO().getByID(serviceRequest.getLocation().getID());
 
         insertController.setup(this, this.serviceRequest, isEditMode);
 
@@ -185,7 +187,7 @@ public class BaseServiceRequestResolveController<T extends ServiceRequest> imple
             //Assignee ID
             serviceRequest.setAssignee(assigneeID.getValue());
             //Location
-            serviceRequest.setLocation(locationID.getValue().getID());
+            serviceRequest.setLocation(locationID.getValue());
             //Status
             if(requiredFieldsPresent())
                 serviceRequest.setStatus(ServiceRequest.Status.Processing);
@@ -217,8 +219,12 @@ public class BaseServiceRequestResolveController<T extends ServiceRequest> imple
 
     @FXML
     void clickGoBack(ActionEvent event) {
-        App.instance.setView(App.VIEW_SERVICE_REQUESTS_PATH);
+        goBackEvent.run();
 
+    }
+
+    private void returnToSRPage(){
+        App.instance.setView(App.VIEW_SERVICE_REQUESTS_PATH);
     }
 
     public void setInsert(ServiceRequest.RequestType requestType) {
@@ -295,5 +301,10 @@ public class BaseServiceRequestResolveController<T extends ServiceRequest> imple
 
             locationID.setValue(location);
         }
+
     //#endregion
+
+    public void setGoBackEvent(Runnable goBackEvent) {
+        this.goBackEvent = goBackEvent;
+    }
 }

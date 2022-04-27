@@ -14,6 +14,7 @@ import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseButton;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.input.ScrollEvent;
+import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
 import org.controlsfx.control.PopOver;
@@ -75,7 +76,7 @@ public class MapController implements Initializable {
             Image image = new Image(new ByteArrayInputStream(newFloor.getImage()));
             mapImage.setImage(image);
             mapPane.setPrefWidth(image.getWidth());
-            mapPane.setPrefHeight(image.getHeight());
+            mapPane.setPrefHeight(image.getWidth());
         }
     //#endregion
 
@@ -130,7 +131,7 @@ public class MapController implements Initializable {
                 Location location = new Location();
                 location.setX((int) event.getX());
                 location.setY((int) event.getY());
-                location.setFloor(mapViewController.getFloorManager().getCurrent().getID());
+                location.setFloor(mapViewController.getFloorManager().getCurrent());
                 location.setNodeType(Location.NodeType.values()[0]);
 
                 mapViewController.getLocationManager().addObject(location);

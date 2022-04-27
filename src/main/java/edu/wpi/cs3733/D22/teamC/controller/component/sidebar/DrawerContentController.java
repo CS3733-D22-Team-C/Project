@@ -2,26 +2,25 @@ package edu.wpi.cs3733.D22.teamC.controller.component.sidebar;
 
 import edu.wpi.cs3733.D22.teamC.App;
 import io.github.palexdev.materialfx.controls.MFXButton;
-import javafx.animation.*;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.geometry.Pos;
-import javafx.scene.Node;
 import javafx.scene.control.ContentDisplay;
 import javafx.scene.layout.VBox;
 import javafx.scene.shape.SVGPath;
-import javafx.util.Duration;
 
 import java.net.URL;
 import java.util.ResourceBundle;
-import java.util.concurrent.TimeUnit;
 
 public class DrawerContentController implements Initializable {
 
     SidebarMenuController sidebarMenuController;
 
     //#region FXML
+    @FXML
+    private MFXButton aboutButton;
+
     @FXML
     private MFXButton dashboardButton;
 
@@ -30,9 +29,6 @@ public class DrawerContentController implements Initializable {
 
     @FXML
     private MFXButton logOutButton;
-
-    @FXML
-    private MFXButton mapsButton;
 
     @FXML
     private MFXButton databaseButton;
@@ -53,7 +49,7 @@ public class DrawerContentController implements Initializable {
     private MFXButton creditButton;
     //#endregion
 
-    // use a list to store all buttons
+    // list to store all buttons
     MFXButton[] allButtons;
 
     protected void setParentController(SidebarMenuController parentController) {
@@ -62,22 +58,35 @@ public class DrawerContentController implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        allButtons = new MFXButton[]{dashboardButton, exitButton, logOutButton, databaseButton, viewProfileButton, mapsButton, serviceRequestsButton, creditButton};
-        //initializeSVG();
+
+        allButtons = new MFXButton[]{dashboardButton, exitButton, logOutButton, databaseButton, viewProfileButton, serviceRequestsButton, creditButton, aboutButton};
 
         // Hide the database button if the user is not an admin
-//        databaseButton.setVisible(App.instance.getUserAccount().getAdmin());
+        databaseButton.setVisible(App.instance.getUserAccount().getAdmin());
 
         for (MFXButton button : allButtons) {
             button.setContentDisplay(ContentDisplay.LEFT);
             button.setAlignment(Pos.CENTER_LEFT);
         }
+
+        // Set selected button to initial page
+        selectedButton(dashboardButton);
+        App.instance.setDrawerContentController(this);
+    }
+
+    public void selectedButton(MFXButton selectedButton) {
+        for (MFXButton button : allButtons) {
+            button.getStyleClass().clear();
+            button.getStyleClass().add("button");
+        }
+        selectedButton.getStyleClass().add("active-button");
     }
 
     //#region Button Events
     @FXML
     void dashboardButtonPress(ActionEvent event) {
         App.instance.setView(App.DASHBOARD_PATH);
+        selectedButton(dashboardButton);
     }
 
     @FXML
@@ -93,27 +102,28 @@ public class DrawerContentController implements Initializable {
     }
 
     @FXML
-    void mapButtonPress(ActionEvent event) {
-        App.instance.setView(App.MAP_DASHBOARD_PATH);
-    }
-
-    @FXML
     void serviceRequestButtonPress(ActionEvent event) {
         App.instance.setView(App.VIEW_SERVICE_REQUESTS_PATH);
+        selectedButton(serviceRequestsButton);
     }
 
     @FXML
     void databaseButtonPress(ActionEvent event) {
         App.instance.setView(App.DATABASE_PAGE_PATH);
+        selectedButton(databaseButton);
     }
 
     @FXML
     void userProfileButtonPress(ActionEvent event) {
         App.instance.setView(App.USER_PROFILE);
+        selectedButton(viewProfileButton);
     }
 
     @FXML
-    void creditButtonPress(ActionEvent event) {App.instance.setView(App.CREDIT_PAGE);}
+    void creditButtonPress(ActionEvent event) {
+        App.instance.setView(App.CREDIT_PAGE);
+        selectedButton(creditButton);
+    }
     //#endregion
 
     public SVGPath getExpandedView() {
@@ -122,6 +132,16 @@ public class DrawerContentController implements Initializable {
 
     public VBox getMiniView() {
         return miniView;
+    }
+
+
+    @FXML
+    public void aboutButtonPress(ActionEvent actionEvent) {
+        App.instance.setView(App.ABOUT_PAGE);
+    }
+
+    public MFXButton getDashboardButton() {
+        return dashboardButton;
     }
 }
 

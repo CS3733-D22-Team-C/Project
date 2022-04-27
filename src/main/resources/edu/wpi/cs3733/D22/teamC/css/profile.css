@@ -2,6 +2,37 @@
 @import "fonts.css";
 @import "default.css";
 
+#page {
+    -fx-padding: 10px;
+}
+
+#text-box {
+    -fx-spacing: 5px;
+    -fx-padding: 10px;
+}
+
+#top-container {
+    -fx-spacing: 100px;
+}
+
+#fields-container {
+    -fx-spacing: 5px;
+}
+
+#greeting {
+    -fx-font-size: 18px;
+    -fx-font-weight: bold;
+    -fx-spacing: 10px;
+}
+
+#field-label {
+    -fx-spacing: 10px;
+}
+
+.card {
+    -fx-padding: 20px;
+}
+
 .mfx-text-field {
     -fx-border-color: -color-primary;
 }
@@ -12,6 +43,10 @@
 
 .mfx-text-field .floating-text {
     -fx-text-fill: -color-primary;
+}
+
+.text-field {
+    -fx-effect: none;
 }
 
 .button {

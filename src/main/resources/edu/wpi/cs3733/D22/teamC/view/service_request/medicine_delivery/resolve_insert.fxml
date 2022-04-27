@@ -11,7 +11,7 @@
    <children>
       <VBox alignment="CENTER_LEFT" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefWidth="227.0" styleClass="box-margin">
          <children>
-            <Label styleClass="service-field-label" stylesheets="@../../../css/base.css" text="Patient:" />
+            <Label styleClass="service-field-label" stylesheets="@../../../css/default.css" text="Patient:" />
             <HBox maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="26.0" prefWidth="198.0">
                <children>
                   <SearchableComboBox fx:id="patientSComboBox" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" onAction="#statusUpdated" />

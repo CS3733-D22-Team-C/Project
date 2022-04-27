@@ -42,7 +42,7 @@
                   <VBox>
                      <children>
                         <Label prefHeight="17.0" prefWidth="367.0" text="Type" />
-                        <JFXComboBox fx:id="typeComboBox" maxWidth="1.7976931348623157E308" onAction="#onFieldUpdated" prefHeight="47.0" prefWidth="419.0" styleClass="dropdown" stylesheets="@../../../css/base.css" />
+                        <JFXComboBox fx:id="typeComboBox" maxWidth="1.7976931348623157E308" onAction="#onFieldUpdated" prefHeight="47.0" prefWidth="419.0" styleClass="dropdown" stylesheets="@../../../css/default.css" />
                      </children>
                      <VBox.margin>
                         <Insets top="10.0" />
@@ -67,7 +67,7 @@
                               <Insets left="10.0" />
                            </padding>
                         </Label>
-                        <JFXComboBox fx:id="statusComboBox" maxWidth="1.7976931348623157E308" onAction="#onFieldUpdated" prefHeight="47.0" prefWidth="419.0" styleClass="dropdown" stylesheets="@../../../css/base.css" />
+                        <JFXComboBox fx:id="statusComboBox" maxWidth="1.7976931348623157E308" onAction="#onFieldUpdated" prefHeight="47.0" prefWidth="419.0" styleClass="dropdown" stylesheets="@../../../css/default.css" />
                      </children>
                   </VBox>
                   <HBox alignment="CENTER_RIGHT" prefHeight="61.0" prefWidth="395.0">

@@ -7,9 +7,11 @@ import edu.wpi.cs3733.D22.teamC.fileio.svg.SVGParser;
 import javafx.fxml.FXML;
 import javafx.scene.Group;
 import javafx.scene.control.Label;
+import javafx.scene.input.MouseEvent;
 
 import java.util.List;
 import java.util.Locale;
+import java.util.function.Consumer;
 
 /**
  * A single Service Request Token, representing a Service Request of a given type.
@@ -25,6 +27,9 @@ public class ServiceRequestToken {
 
     // References
     private ServiceRequestNode parentNode;
+
+    // Events
+    public Consumer<MouseEvent> onClickEvent;
 
     public void setup(ServiceRequestNode serviceRequestNode) {
         this.parentNode = serviceRequestNode;
@@ -68,4 +73,12 @@ public class ServiceRequestToken {
     public boolean getActive() {
         return active;
     }
+
+    //#region
+        @FXML
+        private void onTokenClick(MouseEvent event) {
+            if (onClickEvent != null) onClickEvent.accept(event);
+            event.consume();
+        }
+    //#endregion
 }

@@ -1,0 +1,141 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXTreeTableView?>
+<?import io.github.palexdev.materialfx.controls.MFXButton?>
+<?import io.github.palexdev.materialfx.controls.MFXPasswordField?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Tab?>
+<?import javafx.scene.control.TabPane?>
+<?import javafx.scene.effect.DropShadow?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.layout.VBox?>
+
+<VBox id="page" alignment="CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" stylesheets="@../../../css/profile.css" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.wpi.cs3733.D22.teamC.controller.profile.UserDashboardController">
+   <children>
+      <HBox maxWidth="650.0" styleClass="card">
+         <children>
+            <VBox id="fields-container" alignment="CENTER" HBox.hgrow="NEVER">
+               <children>
+                  <ImageView fx:id="profileImage" fitHeight="200.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true" />
+                  <MFXButton fx:id="addimg" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" onAction="#addImage" prefWidth="84.0" styleClass="vb_class" stylesheets="@../../../css/profile.css" text="Change Image" />
+               </children>
+            </VBox>
+            <VBox HBox.hgrow="NEVER">
+               <children>
+                  <Label id="greeting" fx:id="greetingLabel" alignment="TOP_CENTER" maxWidth="1.7976931348623157E308" text="Hello, ________!" />
+                  <HBox id="text-box" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308">
+                     <children>
+                        <HBox id="fields-container" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" HBox.hgrow="ALWAYS">
+                           <children>
+                              <Label id="field-label" text="Contact:" HBox.hgrow="SOMETIMES" />
+                              <Label id="field-label" fx:id="contact" text="Label" HBox.hgrow="ALWAYS" />
+                           </children>
+                        </HBox>
+                     </children>
+                  </HBox>
+                  <HBox id="text-box" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308">
+                     <children>
+                        <HBox id="fields-container" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308">
+                           <children>
+                              <Label id="field-label" text="Username:" />
+                              <Label id="field-label" fx:id="username" text="Label" />
+                           </children>
+                        </HBox>
+                     </children>
+                  </HBox>
+                  <HBox id="text-box" alignment="BOTTOM_LEFT" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308">
+                     <children>
+                        <Label id="field-label" text="Address:" HBox.hgrow="SOMETIMES" />
+                        <Label id="field-label" fx:id="address" text="Label" HBox.hgrow="ALWAYS" />
+                     </children>
+                  </HBox>
+                  <HBox alignment="BOTTOM_CENTER" prefWidth="188.0" VBox.vgrow="ALWAYS">
+                     <children>
+                        <StackPane alignment="BOTTOM_CENTER" HBox.hgrow="ALWAYS">
+                           <children>
+                              <VBox fx:id="mainNode" alignment="BOTTOM_CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" StackPane.alignment="BOTTOM_CENTER">
+                                 <children>
+                                    <MFXButton fx:id="changePasswordButton" onAction="#onChangePasswordButtonPress" styleClass="back_button" stylesheets="@../../../css/profile.css" text="Change Password" />
+                                 </children>
+                              </VBox>
+                              <VBox fx:id="passwordNode" alignment="CENTER" prefHeight="130.0" prefWidth="208.0">
+                                 <children>
+                                    <HBox alignment="CENTER" prefHeight="51.0" prefWidth="702.0">
+                                       <children>
+                                          <MFXPasswordField fx:id="beforePassword" floatingText="Password" prefHeight="51.0" prefWidth="470.0" style="-fx-background-color: clear;" />
+                                       </children>
+                                       <VBox.margin>
+                                          <Insets top="5.0" />
+                                       </VBox.margin>
+                                    </HBox>
+                                    <HBox alignment="CENTER" prefHeight="51.0" prefWidth="691.0">
+                                       <children>
+                                          <MFXPasswordField fx:id="newPass" floatingText="New Password" prefHeight="51.0" prefWidth="470.0" style="-fx-background-color: clear;" />
+                                       </children>
+                                       <VBox.margin>
+                                          <Insets top="5.0" />
+                                       </VBox.margin>
+                                    </HBox>
+                                    <HBox alignment="CENTER" prefHeight="51.0" prefWidth="719.0">
+                                       <children>
+                                          <MFXPasswordField fx:id="newPassConfirm" floatingText="Confirm" prefHeight="51.0" prefWidth="470.0" style="-fx-background-color: clear;" />
+                                       </children>
+                                       <VBox.margin>
+                                          <Insets top="5.0" />
+                                       </VBox.margin>
+                                    </HBox>
+                                    <MFXButton fx:id="submitButton" onAction="#onSubmitButtonPress" prefHeight="27.0" prefWidth="308.0" styleClass="vb_class" stylesheets="@../../../css/profile.css" text="Submit">
+                                       <VBox.margin>
+                                          <Insets bottom="10.0" top="10.0" />
+                                       </VBox.margin>
+                                    </MFXButton>
+                                 </children>
+                                 <padding>
+                                    <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                                 </padding>
+                              </VBox>
+                           </children>
+                        </StackPane>
+                     </children>
+                  </HBox>
+               </children>
+               <padding>
+                  <Insets left="200.0" />
+               </padding>
+            </VBox>
+         </children>
+      </HBox>
+      <HBox alignment="CENTER" maxWidth="1.7976931348623157E308" VBox.vgrow="SOMETIMES">
+         <children>
+            <TabPane maxHeight="1.7976931348623157E308" maxWidth="1000.0" stylesheets="@../../../css/default.css" tabClosingPolicy="UNAVAILABLE" HBox.hgrow="ALWAYS">
+               <tabs>
+                  <Tab closable="false" text="Assigned Service Requests">
+                     <content>
+                        <VBox fx:id="assignedTableBox">
+                           <children>
+                              <JFXTreeTableView fx:id="assignedTable" prefHeight="448.0" prefWidth="368.0" styleClass="table-view" />
+                           </children>
+                        </VBox>
+                     </content>
+                  </Tab>
+                  <Tab closable="false" text="Created Service Requests">
+                     <content>
+                        <VBox fx:id="createdTableBox">
+                           <children>
+                              <JFXTreeTableView fx:id="createdTable" styleClass="table-view" />
+                           </children>
+                        </VBox>
+                     </content>
+                  </Tab>
+               </tabs>
+               <effect>
+                  <DropShadow />
+               </effect>
+            </TabPane>
+         </children>
+      </HBox>
+   </children>
+</VBox>

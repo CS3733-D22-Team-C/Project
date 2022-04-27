@@ -2,7 +2,6 @@ package edu.wpi.cs3733.D22.teamC.controller.map.data.medical_equipment;
 
 import edu.wpi.cs3733.D22.teamC.App;
 import edu.wpi.cs3733.D22.teamC.controller.map.FloorMapViewController;
-import edu.wpi.cs3733.D22.teamC.controller.map.MapViewController;
 import edu.wpi.cs3733.D22.teamC.controller.map.data.ManagerMapNodes;
 import edu.wpi.cs3733.D22.teamC.controller.map.data.MapCounter;
 import edu.wpi.cs3733.D22.teamC.controller.map.data.MapNode;
@@ -13,7 +12,6 @@ import edu.wpi.cs3733.D22.teamC.entity.location.LocationDAO;
 import edu.wpi.cs3733.D22.teamC.entity.medical_equipment.MedicalEquipment;
 import edu.wpi.cs3733.D22.teamC.entity.medical_equipment.MedicalEquipmentDAO;
 import edu.wpi.cs3733.D22.teamC.entity.service_request.ServiceRequest;
-import edu.wpi.cs3733.D22.teamC.entity.service_request.ServiceRequestDAO;
 import edu.wpi.cs3733.D22.teamC.entity.service_request.medical_equipment.MedicalEquipmentSR;
 import edu.wpi.cs3733.D22.teamC.entity.service_request.medical_equipment.MedicalEquipmentSRDAO;
 import edu.wpi.cs3733.D22.teamC.models.builders.DialogBuilder;
@@ -63,10 +61,8 @@ public class MedicalEquipmentManager extends ManagerMapNodes<MedicalEquipment> {
         mapViewController.getFloorManager().onChangeCurrentEvents.add(onChangeFloorEvent);
 
         // Create Overlays
-        List<Location> locations = new LocationDAO().getAll();
-        List<String> locationIDs = locations.stream().map(Location::getID).collect(Collectors.toList());
         List<MedicalEquipment> medicalEquipments = new MedicalEquipmentDAO().getAll();
-        medicalEquipments = medicalEquipments.stream().filter(medicalEquipment -> !locationIDs.contains(medicalEquipment.getLocationID())).collect(Collectors.toList());
+        medicalEquipments = medicalEquipments.stream().filter(medicalEquipment -> medicalEquipment.getLocation() == null).collect(Collectors.toList());
 
         for (MedicalEquipment.EquipmentType equipmentType : MedicalEquipment.EquipmentType.values()) {
             App.View<MedicalEquipmentToken> view = App.instance.loadView(TOKEN_PATHS[equipmentType.ordinal()]);
@@ -252,33 +248,33 @@ public class MedicalEquipmentManager extends ManagerMapNodes<MedicalEquipment> {
                 switch (medicalEquipment.getEquipmentType()) {
                     case Bed:
                         if (medicalEquipment.getStatus().equals(MedicalEquipment.EquipmentStatus.Dirty)) {
-                            List<MedicalEquipment> dirtyBeds = new MedicalEquipmentDAO().getEquipmentByFloor(location.getFloor()).stream().filter(
+                            List<MedicalEquipment> dirtyBeds = new MedicalEquipmentDAO().getEquipmentByFloor(location.getFloor().getID()).stream().filter(
                                     medEq -> medEq.getEquipmentType().equals(MedicalEquipment.EquipmentType.Bed)
                                             && medEq.getStatus().equals(MedicalEquipment.EquipmentStatus.Dirty)
                             ).collect(Collectors.toList());
                             if (dirtyBeds.size() >= 6) {
                                 createServiceRequest(medicalEquipment, new LocationDAO().getByLongName("OR Bed Park Floor L1"),
-                                        "As there are already " + dirtyBeds.size() + " Unavailable beds on " + mapViewController.getFloorManager().getByID(location.getFloor()).getLongName() + ",");
+                                        "As there are already " + dirtyBeds.size() + " Unavailable beds on " + mapViewController.getFloorManager().getByID(location.getFloor().getID()).getLongName() + ",");
                             }
                         }
                         break;
                     case Infusion_Pump:
                         if (medicalEquipment.getStatus().equals(MedicalEquipment.EquipmentStatus.Dirty)) {
-                            List<MedicalEquipment> dirtyPumps = new MedicalEquipmentDAO().getEquipmentByFloor(location.getFloor()).stream().filter(
+                            List<MedicalEquipment> dirtyPumps = new MedicalEquipmentDAO().getEquipmentByFloor(location.getFloor().getID()).stream().filter(
                                     medEq -> medEq.getEquipmentType().equals(MedicalEquipment.EquipmentType.Infusion_Pump)
                                             && medEq.getStatus().equals(MedicalEquipment.EquipmentStatus.Dirty)
                             ).collect(Collectors.toList());
                             if (dirtyPumps.size() >= 10) {
                                 createServiceRequest(medicalEquipment, new LocationDAO().getByLongName("West Plaza"),
-                                        "As there are already " + dirtyPumps.size() + " Unavailable beds on " + mapViewController.getFloorManager().getByID(location.getFloor()).getLongName() + ",");
+                                        "As there are already " + dirtyPumps.size() + " Unavailable beds on " + mapViewController.getFloorManager().getByID(location.getFloor().getID()).getLongName() + ",");
                             } else {
-                                List<MedicalEquipment> cleanPumps = new MedicalEquipmentDAO().getEquipmentByFloor(location.getFloor()).stream().filter(
+                                List<MedicalEquipment> cleanPumps = new MedicalEquipmentDAO().getEquipmentByFloor(location.getFloor().getID()).stream().filter(
                                         medEq -> medEq.getEquipmentType().equals(MedicalEquipment.EquipmentType.Infusion_Pump)
                                                 && medEq.getStatus().equals(MedicalEquipment.EquipmentStatus.Available)
                                 ).collect(Collectors.toList());
                                 if (cleanPumps.size() < 5) {
                                     createServiceRequest(medicalEquipment, new LocationDAO().getByLongName("West Plaza"),
-                                            ((cleanPumps.size() == 1) ? "As there is only 1 Available pump remaining on " : "As there are" + (cleanPumps.size() == 0 ? "" : " only") + " " + cleanPumps.size() + " Available pumps remaining on ") + mapViewController.getFloorManager().getByID(location.getFloor()).getLongName() + ",");
+                                            ((cleanPumps.size() == 1) ? "As there is only 1 Available pump remaining on " : "As there are" + (cleanPumps.size() == 0 ? "" : " only") + " " + cleanPumps.size() + " Available pumps remaining on ") + mapViewController.getFloorManager().getByID(location.getFloor().getID()).getLongName() + ",");
                                 }
                             }
                         }
@@ -289,7 +285,7 @@ public class MedicalEquipmentManager extends ManagerMapNodes<MedicalEquipment> {
             }
 
             // Make Updates
-            medicalEquipment.setLocationID(location == null ? "" : location.getID());
+            medicalEquipment.setLocation(location);
             new MedicalEquipmentDAO().update(medicalEquipment);
             onUpdateDataEvents.forEach(Runnable::run);
         }
@@ -310,7 +306,7 @@ public class MedicalEquipmentManager extends ManagerMapNodes<MedicalEquipment> {
             serviceRequest.setEquipmentType(medicalEquipment.getEquipmentType());
             serviceRequest.setEquipment(medicalEquipment);
             serviceRequest.setEquipmentStatus(MedicalEquipmentSR.EquipmentStatus.Available);
-            serviceRequest.setLocation(defaultLocation == null ? "" : defaultLocation.getID());
+            serviceRequest.setLocation(defaultLocation);
 
             MedicalEquipmentSRDAO dao = new MedicalEquipmentSRDAO();
             dao.insert(serviceRequest);
@@ -356,6 +352,7 @@ public class MedicalEquipmentManager extends ManagerMapNodes<MedicalEquipment> {
                     mapViewController.getLocationManager().unfocus();
                     ((LocationMapNode) mapViewController.getLocationManager().getByLocation(mapCounter.getLocation())).onMouseClickedNode(event);
                     ((FloorMapViewController) mapViewController).getLocationInfoController().setCurrentTab(1);
+                    locationMapNode.getNode().toFront();
                 };
             }
 

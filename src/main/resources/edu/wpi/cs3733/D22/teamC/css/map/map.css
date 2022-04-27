@@ -1,8 +1,8 @@
 @import "base.css";
 
 .map {
-    -fx-background-color: rgba(255, 253, 253, 0.79) !important;
-    -fx-max-width: 800px !important;
+    -fx-background-color: rgba(255, 253, 253, 0.79);
+    -fx-max-width: 800px;
     -fx-max-height: 800px;
     -fx-hgap: 20px;
     -fx-padding: 40px;
@@ -13,8 +13,8 @@
 }
 
 .page-container {
-    -fx-background-color: -color-surface !important;
-    -fx-max-width: 800px !important;
+    -fx-background-color: -color-surface;
+    -fx-max-width: 800px;
     -fx-max-height: 800px;
     -fx-hgap: 20px;
     -fx-padding: 40px;

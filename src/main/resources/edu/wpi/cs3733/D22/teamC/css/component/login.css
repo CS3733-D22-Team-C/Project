@@ -34,5 +34,5 @@
 }
 
 .text-field {
-    -fx-effect: none !important;
+    -fx-effect: none;
 }

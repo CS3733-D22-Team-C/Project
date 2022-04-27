@@ -1,15 +1,9 @@
 package edu.wpi.cs3733.D22.teamC.models.patient;
 
 import com.jfoenix.controls.JFXTreeTableView;
-import edu.wpi.cs3733.D22.teamC.entity.employee.Employee;
-import edu.wpi.cs3733.D22.teamC.entity.location.Location;
 import edu.wpi.cs3733.D22.teamC.entity.location.LocationDAO;
 import edu.wpi.cs3733.D22.teamC.entity.patient.Patient;
-import edu.wpi.cs3733.D22.teamC.entity.patient.PatientDAO;
-import edu.wpi.cs3733.D22.teamC.models.employee.EmployeeTableDisplay;
 import edu.wpi.cs3733.D22.teamC.models.generic.TableDisplay;
-import javafx.beans.property.BooleanProperty;
-import javafx.beans.property.SimpleBooleanProperty;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
 
@@ -33,9 +27,7 @@ public class PatientTableDisplay extends TableDisplay<Patient>{
             lastName = new SimpleStringProperty(patient.getLastName());
             emergencyContact = new SimpleStringProperty(patient.getEmergencyContact());
             phone = new SimpleStringProperty(patient.getPhone());
-            location = new SimpleStringProperty((patient.getLocationID() == null) ? "" : new LocationDAO().getByID(patient.getLocationID()).getShortName());
-            System.out.println(patient);
-            System.out.println(patient.getDOB());
+            location = new SimpleStringProperty((patient.getLocation() == null) ? "" : new LocationDAO().getByID(patient.getLocation().getID()).getShortName());
             DOB = new SimpleStringProperty((patient.getDOB() == null) ? null : patient.getDOB().toString().substring(0,10));
         }
 
@@ -46,7 +38,7 @@ public class PatientTableDisplay extends TableDisplay<Patient>{
             phone.setValue(object.getPhone());
             patientID.setValue(object.getID());
             emergencyContact.setValue(object.getEmergencyContact());
-            location.setValue((object.getLocationID() == null) ? "" : new LocationDAO().getByID(object.getLocationID()).getShortName());
+            location.setValue((object.getLocation() == null) ? "" : new LocationDAO().getByID(object.getLocation().getID()).getShortName());
             DOB.setValue((object.getDOB() == null) ? null : object.getDOB().toString().substring(0,10));
         }
     }

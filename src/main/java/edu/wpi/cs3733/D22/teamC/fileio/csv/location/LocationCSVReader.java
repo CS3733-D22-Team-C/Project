@@ -1,5 +1,7 @@
 package edu.wpi.cs3733.D22.teamC.fileio.csv.location;
 
+import edu.wpi.cs3733.D22.teamC.entity.floor.Floor;
+import edu.wpi.cs3733.D22.teamC.entity.floor.FloorDAO;
 import edu.wpi.cs3733.D22.teamC.entity.location.Location;
 import edu.wpi.cs3733.D22.teamC.fileio.csv.CSVReader;
 
@@ -25,7 +27,9 @@ public class LocationCSVReader extends CSVReader<Location> {
                 object.setY(Integer.parseInt(value));
                 break;
             case "floor":
-                object.setFloor(value);
+                FloorDAO floorDAO = new FloorDAO();
+                Floor floor = floorDAO.getByID(value);
+                object.setFloor(floor);
                 break;
             case "building":
                 object.setBuilding(value);

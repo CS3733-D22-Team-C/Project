@@ -10,27 +10,24 @@
 <?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.layout.VBox?>
 
-<StackPane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" prefHeight="538.0" prefWidth="541.0" stylesheets="@../../css/map/map.css" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.wpi.cs3733.D22.teamC.controller.map.MapController">
+<StackPane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" styleClass="page-container" stylesheets="@../../css/map/map.css" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.wpi.cs3733.D22.teamC.controller.map.MapController">
    <children>
-      <MFXScrollPane fx:id="scrollPane" fitToHeight="true" fitToWidth="true" hbarPolicy="NEVER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" styleClass="page-container" vbarPolicy="NEVER">
+      <MFXScrollPane fx:id="scrollPane" fitToHeight="true" fitToWidth="true" hbarPolicy="NEVER" vbarPolicy="NEVER">
          <content>
-            <StackPane fx:id="stackPane" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="400.0" prefWidth="400.0">
+            <StackPane fx:id="stackPane" prefHeight="400.0" prefWidth="400.0">
                <children>
-                  <ImageView fx:id="mapImage" pickOnBounds="true" preserveRatio="true" styleClass="page-container">
+                  <ImageView fx:id="mapImage" pickOnBounds="true" preserveRatio="true">
                      <image>
                         <Image url="@../../../../../../../../../../maps/01_thefirstfloor.png" />
                      </image></ImageView>
-                  <AnchorPane fx:id="mapPane" onMouseClicked="#onMouseClickedMap" onMousePressed="#onMousePressedMap" onMouseReleased="#onMouseReleasedMap" onScroll="#onMouseScrollMap" prefHeight="200.0" prefWidth="200.0" />
+                  <AnchorPane fx:id="mapPane" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" onMouseClicked="#onMouseClickedMap" onMousePressed="#onMousePressedMap" onMouseReleased="#onMouseReleasedMap" onScroll="#onMouseScrollMap" />
                </children>
             </StackPane>
          </content>
       </MFXScrollPane>
       <VBox pickOnBounds="false" prefHeight="200.0" prefWidth="100.0">
          <children>
-            <HBox fx:id="topOverlay" alignment="CENTER_RIGHT" pickOnBounds="false" prefHeight="100.0" prefWidth="200.0">
-               <padding>
-                  <Insets bottom="15.0" left="15.0" right="15.0" top="15.0" />
-               </padding>
+            <HBox fx:id="topOverlay" alignment="TOP_RIGHT" pickOnBounds="false" prefHeight="100.0" prefWidth="200.0" VBox.vgrow="ALWAYS">
                <children>
                   <Button fx:id="legendButton" mnemonicParsing="false" prefHeight="26.0" prefWidth="99.0" styleClass="button-confirm" text="Legend" />
                </children>
@@ -39,15 +36,8 @@
                </opaqueInsets>
             </HBox>
             <HBox fx:id="centerOverlay" pickOnBounds="false" prefHeight="100.0" prefWidth="200.0" VBox.vgrow="ALWAYS" />
-            <HBox fx:id="bottomOverlay" alignment="BOTTOM_RIGHT" pickOnBounds="false" prefHeight="100.0" prefWidth="200.0">
-               <padding>
-                  <Insets bottom="30.0" right="20.0" />
-               </padding>
-            </HBox>
+            <HBox fx:id="bottomOverlay" alignment="BOTTOM_RIGHT" pickOnBounds="false" prefHeight="100.0" prefWidth="200.0" VBox.vgrow="ALWAYS" />
          </children>
-         <padding>
-            <Insets right="25.0" />
-         </padding>
       </VBox>
    </children>
 </StackPane>

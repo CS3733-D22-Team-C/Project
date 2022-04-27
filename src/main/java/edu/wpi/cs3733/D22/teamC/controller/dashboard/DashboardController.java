@@ -2,7 +2,8 @@ package edu.wpi.cs3733.D22.teamC.controller.dashboard;
 
 import com.jfoenix.controls.JFXTreeTableView;
 import edu.wpi.cs3733.D22.teamC.App;
-import edu.wpi.cs3733.D22.teamC.controller.service_request.InsertServiceRequestCreateController;
+import edu.wpi.cs3733.D22.teamC.controller.profile.DashboardAssignedTableDisplay;
+import edu.wpi.cs3733.D22.teamC.controller.profile.DashboardCreatedTableDisplay;
 import edu.wpi.cs3733.D22.teamC.controller.service_request.SegmentBarController;
 import edu.wpi.cs3733.D22.teamC.controller.service_request.BaseServiceRequestResolveController;
 import edu.wpi.cs3733.D22.teamC.entity.employee.Employee;

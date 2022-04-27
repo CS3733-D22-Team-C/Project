@@ -4,6 +4,8 @@ import javax.persistence.*;
 
 import edu.wpi.cs3733.D22.teamC.entity.patient.Patient;
 import edu.wpi.cs3733.D22.teamC.entity.service_request.ServiceRequest;
+import org.hibernate.annotations.OnDelete;
+import org.hibernate.annotations.OnDeleteAction;
 
 @Entity
 @Table(name = "LAB_SYSTEM_SR")
@@ -15,6 +17,7 @@ public class LabSystemSR extends ServiceRequest {
     
     @ManyToOne
     @JoinColumn(name = "PatientID", referencedColumnName = "ID")
+    @OnDelete(action = OnDeleteAction.CASCADE)
     protected Patient patient;
 
     public enum LabType {

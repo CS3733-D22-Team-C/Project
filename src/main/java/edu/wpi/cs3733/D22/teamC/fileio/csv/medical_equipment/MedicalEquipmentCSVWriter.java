@@ -1,5 +1,6 @@
 package edu.wpi.cs3733.D22.teamC.fileio.csv.medical_equipment;
 
+import edu.wpi.cs3733.D22.teamC.entity.location.Location;
 import edu.wpi.cs3733.D22.teamC.entity.medical_equipment.MedicalEquipment;
 import edu.wpi.cs3733.D22.teamC.fileio.csv.CSVWriter;
 
@@ -33,7 +34,8 @@ public class MedicalEquipmentCSVWriter extends CSVWriter<MedicalEquipment> {
                 output = object.getID();
                 break;
             case "locationID":
-                output = object.getLocationID();
+                Location location = object.getLocation();
+                output = (location != null) ? location.getID() : "";
                 break;
             case "equipType":
                 output = object.getEquipmentType().toString();
