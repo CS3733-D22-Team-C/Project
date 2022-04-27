@@ -9,6 +9,7 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
+<?import org.controlsfx.control.SearchableComboBox?>
 
 <VBox fx:id="root" styleClass="page-container" stylesheets="@../../../css/component/table_insert.css" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.wpi.cs3733.D22.teamC.controller.table.MedicalEquipmentViewController">
    <children>
@@ -30,8 +31,8 @@
                         <Label prefHeight="17.0" prefWidth="272.0" text="Location" />
                         <HBox>
                            <children>
-                              <TextField fx:id="locationID" maxWidth="1.7976931348623157E308" onKeyTyped="#onFieldUpdated" prefHeight="45.0" HBox.hgrow="ALWAYS" />
-                              <JFXButton fx:id="mapViewButton" onAction="#goToMapView" prefHeight="46.0" prefWidth="54.0" style="-fx-background-color: -color-secondary;" stylesheets="@../../../css/colors.css" text="-&gt;" />
+                              <SearchableComboBox fx:id="locationID" prefHeight="46.0" prefWidth="373.0" />
+                              <JFXButton fx:id="mapViewButton" onAction="#goToMapView" prefHeight="46.0" prefWidth="54.0" style="-fx-background-color: -color-secondary;" stylesheets="@../../../css/colors.css" />
                            </children>
                         </HBox>
                      </children>
@@ -99,6 +100,9 @@
                            </HBox.margin>
                         </HBox>
                      </children>
+                     <VBox.margin>
+                        <Insets top="10.0" />
+                     </VBox.margin>
                   </HBox>
                </children>
                <padding>

@@ -2,10 +2,12 @@ package edu.wpi.cs3733.D22.teamC.controller.table;
 
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXTreeTableView;
+import com.jfoenix.svg.SVGGlyph;
 import edu.wpi.cs3733.D22.teamC.entity.location.Location;
 import edu.wpi.cs3733.D22.teamC.entity.location.LocationDAO;
 import edu.wpi.cs3733.D22.teamC.entity.medical_equipment.MedicalEquipment;
 import edu.wpi.cs3733.D22.teamC.entity.medical_equipment.MedicalEquipmentDAO;
+import edu.wpi.cs3733.D22.teamC.fileio.svg.SVGParser;
 import edu.wpi.cs3733.D22.teamC.models.generic.TableDisplay;
 import edu.wpi.cs3733.D22.teamC.models.location.MapSelectorWindow;
 import edu.wpi.cs3733.D22.teamC.models.medical_equipment.MedicalEquipmentTableDisplay;
@@ -15,6 +17,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
+import org.controlsfx.control.SearchableComboBox;
 import org.controlsfx.validation.ValidationSupport;
 import org.controlsfx.validation.Validator;
 
@@ -26,7 +29,7 @@ public class MedicalEquipmentViewController extends InsertTableViewController<Me
     // FXML
     @FXML protected JFXButton confirmButton;
 
-    @FXML private TextField locationID;
+    @FXML private SearchableComboBox locationID;
     @FXML private ComboBox<MedicalEquipment.EquipmentType> typeComboBox;
     @FXML private TextField number;
     @FXML private ComboBox<MedicalEquipment.EquipmentStatus> statusComboBox;//
@@ -38,6 +41,14 @@ public class MedicalEquipmentViewController extends InsertTableViewController<Me
     private ValidationSupport validation;
 
     public void initialize(URL location, ResourceBundle resources) {
+
+        SVGParser svgParser = new SVGParser();
+        String locationIcon = svgParser.getPath("static/icons/location_icon.svg");
+        SVGGlyph locationContent = new SVGGlyph(locationIcon);
+        locationContent.setSize(20);
+        mapViewButton.setGraphic(locationContent);
+
+
         title.setText("Add Equipment");
         locationID.setEditable(false);
 
@@ -76,7 +87,7 @@ public class MedicalEquipmentViewController extends InsertTableViewController<Me
         location = (object == null) ? null : new LocationDAO().getByID(object.getLocation().getID());
 
         title.setText((object == null) ? "Add Equipment" : "Edit Equipment");
-        locationID.setText((object == null) ? "" : location.getShortName());
+        locationID.setValue((object == null) ? "" : location.getShortName());
         typeComboBox.setValue((object == null) ? null : object.getEquipmentType());
         number.setText(String.valueOf((object == null) ? "" : object.getTypeNumber()));
         statusComboBox.setValue((object == null) ? null : object.getStatus());
@@ -87,7 +98,7 @@ public class MedicalEquipmentViewController extends InsertTableViewController<Me
     public boolean checkFieldsFilled() {
 
         validation.setErrorDecorationEnabled(true);
-        if (locationID.getText().equals("")) return false;
+        if (locationID.getValue().toString().equals("")) return false;
         return !(typeComboBox.getValue()==null
                 || number.getText().equals("")
                 || statusComboBox.getValue()==null);
@@ -101,7 +112,7 @@ public class MedicalEquipmentViewController extends InsertTableViewController<Me
             locationName = location.getShortName();
         }
 
-        locationID.setText(locationName);
+        locationID.setValue(locationName);
     }
 
     //#region Abstraction
