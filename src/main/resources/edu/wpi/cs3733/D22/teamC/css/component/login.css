@@ -21,7 +21,7 @@
 
 /* Inlay background image in title */
 .grid-pane {
-    -fx-background-image: url("../../static/images/BrighamandWomensResized.png");
+    -fx-background-image: url("../../static/images/BrighamAndWomens.png");
     -fx-background-repeat: stretch;
     -fx-background-size: contain;
     -fx-background-position: left center;
