@@ -76,7 +76,7 @@ public class MapController implements Initializable {
             Image image = new Image(new ByteArrayInputStream(newFloor.getImage()));
             mapImage.setImage(image);
             mapPane.setPrefWidth(image.getWidth());
-            mapPane.setPrefHeight(200);
+            mapPane.setPrefHeight(image.getWidth());
         }
     //#endregion
 
