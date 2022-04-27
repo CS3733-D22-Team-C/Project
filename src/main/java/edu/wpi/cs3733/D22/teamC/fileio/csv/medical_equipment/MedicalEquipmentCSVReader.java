@@ -1,9 +1,14 @@
 package edu.wpi.cs3733.D22.teamC.fileio.csv.medical_equipment;
 
+import edu.wpi.cs3733.D22.teamC.entity.location.Location;
+import edu.wpi.cs3733.D22.teamC.entity.location.LocationDAO;
 import edu.wpi.cs3733.D22.teamC.entity.medical_equipment.MedicalEquipment;
 import edu.wpi.cs3733.D22.teamC.fileio.csv.CSVReader;
 
 public class MedicalEquipmentCSVReader extends CSVReader<MedicalEquipment> {
+    
+    private final LocationDAO locationDAO = new LocationDAO();
+    
     /**
      * Maps Medical Equipment (header, value) to a value to change for the object
      * @param object The object to be modified.
@@ -18,7 +23,8 @@ public class MedicalEquipmentCSVReader extends CSVReader<MedicalEquipment> {
                 object.setID(value);
                 break;
             case "locationID":
-                object.setLocationID(value);
+                Location location = locationDAO.getByID(value);
+                object.setLocation(location);
                 break;
             case "typeNumber":
                 if(!value.equals("")){

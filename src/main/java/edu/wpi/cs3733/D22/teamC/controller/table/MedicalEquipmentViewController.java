@@ -6,7 +6,6 @@ import edu.wpi.cs3733.D22.teamC.entity.location.Location;
 import edu.wpi.cs3733.D22.teamC.entity.location.LocationDAO;
 import edu.wpi.cs3733.D22.teamC.entity.medical_equipment.MedicalEquipment;
 import edu.wpi.cs3733.D22.teamC.entity.medical_equipment.MedicalEquipmentDAO;
-import edu.wpi.cs3733.D22.teamC.models.builders.NotificationBuilder;
 import edu.wpi.cs3733.D22.teamC.models.generic.TableDisplay;
 import edu.wpi.cs3733.D22.teamC.models.location.MapSelectorWindow;
 import edu.wpi.cs3733.D22.teamC.models.medical_equipment.MedicalEquipmentTableDisplay;
@@ -63,7 +62,7 @@ public class MedicalEquipmentViewController extends InsertTableViewController<Me
     public MedicalEquipment setValues(MedicalEquipment object) {
         //fields in table
         object.setStatus(statusComboBox.getValue());
-        object.setLocationID(location.getID());
+        object.setLocation(location);
         object.setEquipmentType(typeComboBox.getValue());
         object.setTypeNumber(Integer.parseInt(number.getText()));
         return object;
@@ -74,7 +73,7 @@ public class MedicalEquipmentViewController extends InsertTableViewController<Me
      * @param object The (nullable) object to set field values from.
      */
     public void setFields(MedicalEquipment object) {
-        location = (object == null)? null : new LocationDAO().getByID(object.getLocationID());
+        location = (object == null) ? null : new LocationDAO().getByID(object.getLocation().getID());
 
         title.setText((object == null) ? "Add Equipment" : "Edit Equipment");
         locationID.setText((object == null) ? "" : location.getShortName());

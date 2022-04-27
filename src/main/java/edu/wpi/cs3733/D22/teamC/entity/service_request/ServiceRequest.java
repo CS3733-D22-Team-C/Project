@@ -2,8 +2,11 @@ package edu.wpi.cs3733.D22.teamC.entity.service_request;
 
 import edu.wpi.cs3733.D22.teamC.entity.employee.Employee;
 import edu.wpi.cs3733.D22.teamC.entity.generic.IDEntity;
+import edu.wpi.cs3733.D22.teamC.entity.location.Location;
 import org.hibernate.annotations.Generated;
 import org.hibernate.annotations.GenerationTime;
+import org.hibernate.annotations.OnDelete;
+import org.hibernate.annotations.OnDeleteAction;
 
 import javax.persistence.*;
 import java.sql.Timestamp;
@@ -13,6 +16,7 @@ import java.util.UUID;
 @Entity
 @Inheritance(strategy = InheritanceType.JOINED)
 @Table(name = "SERVICE_REQUEST")
+@OnDelete(action = OnDeleteAction.CASCADE)
 public class ServiceRequest implements IDEntity {
     @Id
     @Column(name = "ID")
@@ -23,15 +27,19 @@ public class ServiceRequest implements IDEntity {
     protected int number;
     
     @ManyToOne
-    @JoinColumn(name = "CreatorID", referencedColumnName = "ID")
+    @JoinColumn(name = "CreatorID", referencedColumnName = "ID", foreignKey = @ForeignKey(name = "fk_srCreator",
+            foreignKeyDefinition = "FOREIGN KEY (CreatorID) REFERENCES EMPLOYEE (ID) ON DELETE SET NULL"))
     protected Employee creator;
     
     @ManyToOne
-    @JoinColumn(name = "AssigneeID", referencedColumnName = "ID")
+    @JoinColumn(name = "AssigneeID", referencedColumnName = "ID", foreignKey = @ForeignKey(name = "fk_srAssignee",
+            foreignKeyDefinition = "FOREIGN KEY (AssigneeID) REFERENCES EMPLOYEE (ID) ON DELETE SET NULL"))
     protected Employee assignee;
     
-    @Column(name = "LocationID")
-    protected String locationID;      // TODO: Link to Location
+    @ManyToOne
+    @JoinColumn(name = "LocationID", referencedColumnName = "ID", foreignKey = @ForeignKey(name = "fk_srLocation",
+            foreignKeyDefinition = "FOREIGN KEY (LocationID) REFERENCES LOCATION (ID) ON DELETE SET NULL"))
+    protected Location location;
 
     @Column(name = "CreationTimestamp")
     protected Timestamp creationTimestamp;
@@ -52,7 +60,8 @@ public class ServiceRequest implements IDEntity {
     protected String description;
 
     @ManyToOne
-    @JoinColumn(name = "ModifierID", referencedColumnName = "ID")
+    @JoinColumn(name = "ModifierID", referencedColumnName = "ID", foreignKey = @ForeignKey(name = "fk_srModifier", 
+            foreignKeyDefinition = "FOREIGN KEY (ModifierID) REFERENCES EMPLOYEE (ID) ON DELETE SET NULL"))
     protected Employee modifier;
     
     @Column(name = "ModifiedTimestamp")
@@ -92,7 +101,7 @@ public class ServiceRequest implements IDEntity {
         this.number = serviceRequest.getNumber();
         this.creator = serviceRequest.getCreator();
         this.assignee = serviceRequest.getAssignee();
-        this.locationID = serviceRequest.getLocation();
+        this.location = serviceRequest.getLocation();
         this.creationTimestamp = serviceRequest.getCreationTimestamp();
         this.status = serviceRequest.getStatus();
         this.priority = serviceRequest.getPriority();
@@ -136,12 +145,12 @@ public class ServiceRequest implements IDEntity {
         this.assignee = assignee;
     }
     
-    public String getLocation() {
-        return locationID;
+    public Location getLocation() {
+        return location;
     }
     
-    public void setLocation(String location) {
-        this.locationID = location;
+    public void setLocation(Location location) {
+        this.location = location;
     }
     
     public Timestamp getCreationTimestamp() {
@@ -206,7 +215,7 @@ public class ServiceRequest implements IDEntity {
         return ID.equals(that.ID)
                 && Objects.equals(creator, that.creator) //(creator == null ? that.creator == null : creator.equals(that.creator))
                 && Objects.equals(assignee, that.assignee)
-                && locationID.equals(that.locationID)
+                && location.getID().equals(that.location.getID())
                 && creationTimestamp.equals(that.creationTimestamp)
                 && status == that.status
                 && priority == that.priority

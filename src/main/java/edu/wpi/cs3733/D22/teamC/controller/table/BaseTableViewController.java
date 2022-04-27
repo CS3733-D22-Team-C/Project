@@ -33,7 +33,6 @@ public class BaseTableViewController<T extends IDEntity> implements Initializabl
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         rowInteraction();
-        System.out.println("HERE");
         remove.setDisable(true);
     }
 

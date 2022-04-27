@@ -51,6 +51,19 @@ public class ServiceRequestLandingPage implements Initializable {
     public static final String API_BUTTONS = "view/service_request/landing_page/landing_page_api_buttons.fxml";
     public static final String BUTTONS = "view/service_request/landing_page/landing_page_buttons.fxml";
 
+    //Name labels
+    @FXML private Label brandon;
+    @FXML private Label brian;
+    @FXML private Label grace;
+    @FXML private Label jack;
+    @FXML private Label matthew;
+    @FXML private Label mia;
+    @FXML private Label nelson;
+    @FXML private Label nick;
+    @FXML private Label vagmi;
+    @FXML private Label vishnu;
+    @FXML private ImageView eye;
+    
     // Child Controllers
     ServiceRequestScrollPane childController;
     ServiceRequestAPIScrollPane childAPIController;
@@ -58,14 +71,13 @@ public class ServiceRequestLandingPage implements Initializable {
     // Show labels with names
     @FXML private VBox tableBox;
 
-    @FXML private ImageView eye;
-    @FXML private JFXButton deleteButton;
     @FXML private HBox buttonsBox;
 
     private boolean canSee = false;
 
     @FXML private JFXButton edit;
     @FXML private JFXButton resolve;
+    @FXML private JFXButton deleteButton;
     @FXML private VBox scrollPaneButtons;
 
     // Table
@@ -275,6 +287,7 @@ public class ServiceRequestLandingPage implements Initializable {
             srDao.delete(activeServiceRequest);
             tableDisplay.removeObject(activeServiceRequest);
             table.getSelectionModel().clearSelection();
+            
             deleteButton.setDisable(true);
             edit.setDisable(true);
             resolve.setDisable(true);

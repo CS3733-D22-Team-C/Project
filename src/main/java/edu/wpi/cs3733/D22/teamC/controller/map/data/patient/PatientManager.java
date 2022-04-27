@@ -6,6 +6,7 @@ import edu.wpi.cs3733.D22.teamC.controller.map.data.ManagerMapNodes;
 import edu.wpi.cs3733.D22.teamC.controller.map.data.MapCounter;
 import edu.wpi.cs3733.D22.teamC.controller.map.data.MapNode;
 import edu.wpi.cs3733.D22.teamC.controller.map.data.location.LocationMapNode;
+import edu.wpi.cs3733.D22.teamC.entity.floor.Floor;
 import edu.wpi.cs3733.D22.teamC.entity.location.Location;
 import edu.wpi.cs3733.D22.teamC.entity.medical_equipment.MedicalEquipment;
 import edu.wpi.cs3733.D22.teamC.entity.medical_equipment.MedicalEquipmentDAO;
@@ -16,6 +17,7 @@ import javafx.util.Pair;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.function.BiConsumer;
 import java.util.stream.Collectors;
 
 public class PatientManager extends ManagerMapNodes<Patient> {
@@ -24,9 +26,13 @@ public class PatientManager extends ManagerMapNodes<Patient> {
 
     // Variables
     List<MapCounter> counters = new ArrayList<>();
+    BiConsumer<Floor, Floor> onChangeFloorEvent = (f1, f2) -> this.drawCounters();
 
     public PatientManager(MapViewController mapViewController) {
         super(mapViewController);
+
+        mapViewController.getFloorManager().onChangeCurrentEvents.add(onChangeFloorEvent);
+
         drawCounters();
     }
 

@@ -85,7 +85,7 @@ public class LocationTableViewInsertController extends InsertTableViewController
             object.setShortName(shortNameField.getText());
             object.setNodeType(nodeTypeComboBox.getValue());
             object.setBuilding(buildingField.getText());
-            object.setFloor(floorComboBox.getValue().getID());
+            object.setFloor(floorComboBox.getValue());
             object.setX(Integer.valueOf(xField.getText()));
             object.setY(Integer.valueOf(yField.getText()));
             return object;
@@ -102,7 +102,7 @@ public class LocationTableViewInsertController extends InsertTableViewController
             shortNameField.setText((object == null) ? "" : object.getShortName());
             nodeTypeComboBox.setValue((object == null) ? null : object.getNodeType());
             buildingField.setText((object == null) ? "" : object.getBuilding());
-            floorComboBox.setValue((object == null) ? null : floors.stream().filter(floor -> floor.getID().equals(object.getFloor())).collect(Collectors.toList()).get(0));
+            floorComboBox.setValue((object == null) ? null : floors.stream().filter(floor -> floor.equals(object.getFloor())).collect(Collectors.toList()).get(0));
             xField.setText((object == null) ? "" : Integer.toString(object.getX()));
             yField.setText((object == null) ? "" : Integer.toString(object.getY()));
 

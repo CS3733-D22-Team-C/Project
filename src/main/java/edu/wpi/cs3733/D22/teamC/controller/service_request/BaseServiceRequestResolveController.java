@@ -95,7 +95,7 @@ public class BaseServiceRequestResolveController<T extends ServiceRequest> imple
         this.serviceRequest = serviceRequestDAO.getByID(serviceRequest.getID());
         srUUID = this.serviceRequest.getID();
 
-        if (serviceRequest.getLocation() != null) location = new LocationDAO().getByID(serviceRequest.getLocation());
+        if (serviceRequest.getLocation() != null) location = new LocationDAO().getByID(serviceRequest.getLocation().getID());
 
         insertController.setup(this, this.serviceRequest, isEditMode);
 
@@ -187,7 +187,7 @@ public class BaseServiceRequestResolveController<T extends ServiceRequest> imple
             //Assignee ID
             serviceRequest.setAssignee(assigneeID.getValue());
             //Location
-            serviceRequest.setLocation(locationID.getValue().getID());
+            serviceRequest.setLocation(locationID.getValue());
             //Status
             if(requiredFieldsPresent())
                 serviceRequest.setStatus(ServiceRequest.Status.Processing);

@@ -1,6 +1,7 @@
 package edu.wpi.cs3733.D22.teamC.entity.medical_equipment;
 
 import edu.wpi.cs3733.D22.teamC.entity.generic.IDEntity;
+import edu.wpi.cs3733.D22.teamC.entity.location.Location;
 
 import javax.persistence.*;
 
@@ -13,8 +14,10 @@ public class MedicalEquipment implements IDEntity {
     @Column(name = "ID")
     private String ID;
     
-    @Column(name = "LocationID")
-    private String locationID;
+    @ManyToOne
+    @JoinColumn(name = "LocationID", referencedColumnName = "ID", foreignKey = @ForeignKey(name = "fk_EquipLocation",
+            foreignKeyDefinition = "FOREIGN KEY (LocationID) REFERENCES LOCATION (ID) ON DELETE SET NULL"))
+    private Location location;
     
     @Column(name = "TypeNumber")
     private int typeNumber;
@@ -77,12 +80,12 @@ public class MedicalEquipment implements IDEntity {
         this.equipmentStatus = status;
     }
     
-    public String getLocationID() {
-        return locationID;
+    public Location getLocation() {
+        return location;
     }
     
-    public void setLocationID(String locationID) {
-        this.locationID = locationID;
+    public void setLocation(Location location) {
+        this.location = location;
     }
     
     @Override
@@ -91,7 +94,7 @@ public class MedicalEquipment implements IDEntity {
         if (o == null || getClass() != o.getClass()) return false;
         MedicalEquipment equipment = (MedicalEquipment) o;
         return ID.equals(equipment.ID) 
-                && locationID.equals(equipment.locationID) 
+                && location.getID().equals(equipment.location.getID()) 
                 && equipmentType == equipment.equipmentType 
                 && equipmentStatus == equipment.equipmentStatus 
                 && typeNumber == equipment.typeNumber;

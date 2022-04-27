@@ -2,6 +2,8 @@ package edu.wpi.cs3733.D22.teamC.entity.service_request.translator;
 
 import edu.wpi.cs3733.D22.teamC.entity.patient.Patient;
 import edu.wpi.cs3733.D22.teamC.entity.service_request.ServiceRequest;
+import org.hibernate.annotations.OnDelete;
+import org.hibernate.annotations.OnDeleteAction;
 
 import javax.persistence.*;
 
@@ -16,6 +18,7 @@ public class TranslatorSR extends ServiceRequest {
     
     @ManyToOne
     @JoinColumn(name = "PatientID", referencedColumnName = "ID")
+    @OnDelete(action = OnDeleteAction.CASCADE)
     protected Patient patient;
 
 
