@@ -50,7 +50,7 @@
 .base_view_table_confirm {
     -fx-background-color:  -color-menu-light;
     -fx-border-radius: 50px;
-    -fx-text-fill: black;
+    -fx-text-fill: white;
 }
 
 .base_view_table_back {
