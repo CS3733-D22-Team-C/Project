@@ -223,11 +223,19 @@ public class BaseMapSideViewController implements Initializable {
         if(isEditMode){
             FloorDAO floorDAO = new FloorDAO();
             List<Floor> lof = floorDAO.getAll();
+            Collections.sort(lof, new Comparator<Floor>() {
+                @Override
+                public int compare(Floor o1, Floor o2) {
+                    return Integer.compare(o1.getOrder(), o2.getOrder());
+                }
+            });
+            Collections.reverse(lof);
             int oldIndex = lof.size() - editOriginalOrder; // need to put selected floor here
             lof.remove(selectedFloor);
             lof.add(oldIndex, selectedFloor);
             int j = 0;
             for(Floor floor : lof){
+                System.out.println(floor.getLongName() + " setting location from " + floor.getOrder() + " to " + (lof.size()-j));
                 floor.setOrder(lof.size()-j);
                 floorDAO.update(floor);
                 j++;
@@ -664,7 +672,6 @@ public class BaseMapSideViewController implements Initializable {
 
     @FXML
     void onFloorClicked(MouseEvent event, FloorNode floorNode) throws IOException {
-        //if(addFloorClicked) return;
         equipmentBox.setVisible(true);
         this.selectedFloor = floorNode.getFloor();
         editButton.setDisable(false);
@@ -689,6 +696,7 @@ public class BaseMapSideViewController implements Initializable {
         floorImage.setImage(image);
 
         order = selectedFloor.getOrder();
+        editOriginalOrder = order;
 
         longName.setText(selectedFloor.getLongName());
         shortName.setText(selectedFloor.getShortName());
