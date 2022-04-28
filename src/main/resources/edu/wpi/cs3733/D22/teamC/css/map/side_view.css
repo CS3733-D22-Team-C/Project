@@ -5,8 +5,6 @@
 }
 
 .button-file-select {
-    -fx-max-width: max-content;
-    -fx-max-height: max-content;
     -fx-background-color: -color-secondary;
     -fx-font-size: 12px;
 }

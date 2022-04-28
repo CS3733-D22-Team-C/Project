@@ -1,4 +1,5 @@
 package edu.wpi.cs3733.D22.teamC.models.utils;
+import edu.wpi.cs3733.D22.teamC.App;
 import javafx.collections.ObservableList;
 import javafx.geometry.Bounds;
 import javafx.scene.Node;
@@ -14,7 +15,7 @@ public class DoughnutChart extends PieChart {
         super(pieData);
 
         innerCircle = new Circle();
-        getStylesheets().add("css/map/sideview.css");
+        getStylesheets().add(App.class.getResource("css/map/side_view.css").toExternalForm());
         setStartAngle(0.0);
 
         // just styled in code for demo purposes,
