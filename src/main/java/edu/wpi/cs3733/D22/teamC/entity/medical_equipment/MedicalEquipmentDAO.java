@@ -42,4 +42,27 @@ public class MedicalEquipmentDAO extends DAO<MedicalEquipment> {
         }
         return equipOnFloor;
     }
+
+    /**
+     * Returns a list of MedicalEquipment of a given type.
+     * @param equipmentType  EquipmentType enum.
+     * @return List of MedicalEquipment objects.
+     */
+    public List<MedicalEquipment> getEquipmentByType(MedicalEquipment.EquipmentType equipmentType) {
+        return HibernateManager.filterQuery("select q from " + classType().getName() +
+                " q where q.equipmentType = '" + equipmentType.toString() + "'");
+    }
+
+    /**
+     * Returns a list of MedicalEquipment of a given type and floor
+     * @param floorID The UUID of the floor.
+     * @param equipmentType EquipmentType enum.
+     * @return List of MedicalEquipment objects.
+     */
+    public List<MedicalEquipment> getEquipmentByFloorAndType(String floorID, MedicalEquipment.EquipmentType equipmentType) {
+        List<MedicalEquipment> medEquipType = getEquipmentByType(equipmentType);
+        List<MedicalEquipment> medEquipFloor = getEquipmentByFloor(floorID);
+        medEquipType.retainAll(medEquipFloor);
+        return medEquipType;
+    }
 }
