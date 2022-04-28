@@ -135,7 +135,7 @@ public class App extends Application {
                             drawerContentController.selectedButton(drawerContentController.viewProfileButton);
                             break;
                         case "A" :
-                            setView(ABOUT_PAGE);g
+                            setView(ABOUT_PAGE);
                             drawerContentController.selectedButton(drawerContentController.aboutButton);
                             break;
                         default:
