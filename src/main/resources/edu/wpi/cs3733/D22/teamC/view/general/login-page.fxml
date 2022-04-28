@@ -14,7 +14,6 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-
 <HBox alignment="CENTER_RIGHT" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="706.0" prefWidth="394.0" styleClass="picture-box" stylesheets="@../../css/component/login.css" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.wpi.cs3733.D22.teamC.controller.general.login_page.LoginPageController">
    <children>
       <VBox prefHeight="706.0" prefWidth="498.0">
@@ -44,7 +43,7 @@
                <children>
                   <VBox id="error-box" alignment="CENTER" prefHeight="37.0" prefWidth="394.0" GridPane.hgrow="ALWAYS" GridPane.vgrow="ALWAYS">
                      <children>
-                        <Label fx:id="invalidLogin" alignment="CENTER" prefHeight="52.0" prefWidth="198.0" styleClass="invalid-label" visible="false">
+                        <Label id="invalid-label" fx:id="invalidLogin" alignment="CENTER" prefHeight="52.0" prefWidth="198.0" visible="false">
                            <font>
                               <Font size="10.0" />
                            </font>
