@@ -5,8 +5,6 @@
 }
 
 .button-file-select {
-    -fx-max-width: max-content;
-    -fx-max-height: max-content;
     -fx-background-color: -color-secondary;
     -fx-font-size: 12px;
 }
@@ -53,7 +51,8 @@
 }
 
 .edit-button{
-    -fx-background-color: #4E86CC;
+    -fx-background-color: -color-primary;
+    -fx-text-fill: -color-primary-text;
 }
 
 .jfx-text-area {
