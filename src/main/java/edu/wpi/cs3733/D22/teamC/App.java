@@ -104,10 +104,12 @@ public class App extends Application {
                     {
                         case "D" :
                             setView(DASHBOARD_PATH);
+                            drawerContentController.selectedButton(drawerContentController.dashboardButton);
                             break;
                         case "X" :
                             if (userAccount.getAdmin()) {
                                 setView(DATABASE_PAGE_PATH);
+                                drawerContentController.selectedButton(drawerContentController.databaseButton);
                             }
                             break;
                         case "M" :
@@ -115,6 +117,7 @@ public class App extends Application {
                             break;
                         case "S" :
                             setView(SERVICE_REQUEST_DASHBOARD);
+                            drawerContentController.selectedButton(drawerContentController.serviceRequestsButton);
                             break;
                         case "L" :
                             setView(App.LOGIN_PATH);
@@ -122,6 +125,14 @@ public class App extends Application {
                             break;
                         case "Q" :
                             getStage().close();
+                            break;
+                        case "C" :
+                            setView(CREDIT_PAGE);
+                            drawerContentController.selectedButton(drawerContentController.creditButton);
+                            break;
+                        case "A" :
+                            setView(ABOUT_PAGE);
+                            drawerContentController.selectedButton(drawerContentController.aboutButton);
                             break;
                         default:
                             break;
