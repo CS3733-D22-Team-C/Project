@@ -23,7 +23,7 @@
       <VBox alignment="CENTER_LEFT" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefWidth="227.0" styleClass="fields-padding" HBox.hgrow="ALWAYS">
          <children>
             <Label styleClass="service-field-label" text="Transport Day:" />
-            <MFXDatePicker fx:id="date" maxWidth="1.7976931348623157E308" minHeight="-Infinity" onAction="#statusUpdated" prefHeight="30.0" />
+            <MFXDatePicker fx:id="date" accessibleRole="DATE_PICKER" maxWidth="1.7976931348623157E308" minHeight="-Infinity" onAction="#statusUpdated" prefHeight="30.0" />
          </children>
       </VBox>
       <VBox alignment="CENTER_LEFT" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefWidth="227.0" styleClass="fields-padding" HBox.hgrow="ALWAYS" />
