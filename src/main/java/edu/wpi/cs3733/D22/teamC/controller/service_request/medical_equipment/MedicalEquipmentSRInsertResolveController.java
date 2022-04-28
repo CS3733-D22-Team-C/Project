@@ -92,7 +92,7 @@ public class MedicalEquipmentSRInsertResolveController extends InsertServiceRequ
         //Resetting the values
         equipment.setValue(null);
         equipment.getItems().clear();
-        equipment.getItems().setAll(new MedicalEquipmentDAO().getAll().stream().filter(medicalEquipment -> medicalEquipment.getEquipmentType().equals(lastType)).collect(Collectors.toList()));
+        equipment.getItems().setAll(new MedicalEquipmentDAO().getEquipmentByType(lastType));
     }
 
 }

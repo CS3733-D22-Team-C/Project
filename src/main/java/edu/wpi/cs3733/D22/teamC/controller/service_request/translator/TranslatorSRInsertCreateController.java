@@ -89,7 +89,7 @@ public class TranslatorSRInsertCreateController implements InsertServiceRequestC
 
     @FXML
     void goToPatientTable(ActionEvent event) throws IOException {
-        new PatientSelectorWindow(patient -> this.setPatientComboBox(patient));
+        new PatientSelectorWindow(this::setPatientComboBox);
     }
 
     private void setPatientComboBox(Patient patientComboBox) {
@@ -101,10 +101,7 @@ public class TranslatorSRInsertCreateController implements InsertServiceRequestC
         if(patientSComboBox.getValue() == null){
             return false;
         }
-        if(languageSComboBox.getValue() == null){
-            return false;
-        }
-        return true;
+        return languageSComboBox.getValue() != null;
     }
 
 }

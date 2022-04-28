@@ -49,9 +49,7 @@ public class FacilityMaintenanceSRInsertCreateController implements InsertServic
 
     @Override
     public boolean requiredFieldsPresent() {
-        if(maintType.getValue() == null)
-            return false;
-        return true;
+        return maintType.getValue() != null;
     }
 
     @Override

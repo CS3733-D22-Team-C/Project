@@ -43,9 +43,7 @@ public class LaundrySRInsertResolveController extends InsertServiceRequestResolv
     public boolean requiredFieldsPresent(){
         if(laundryType.getValue() == null && laundryType.getPromptText().equals(""))
             return false;
-        if(quantity.getText().equals(""))
-            return false;
-        return true;
+        return !quantity.getText().equals("");
     }
 
     @Override

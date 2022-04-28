@@ -19,7 +19,7 @@ public class LaundrySRTableDisplay extends ServiceRequestTableDisplay<LaundrySR>
             super(laundrySR);
 
             this.laundryType = new SimpleStringProperty(laundrySR.getLaundryType().toString());
-            this.quantity = new SimpleStringProperty(laundrySR.getQuantity().toString());
+            this.quantity = new SimpleStringProperty(laundrySR.getQuantity());
         }
     }
 

@@ -75,9 +75,7 @@ public class TranslatorSRInsertResolveController extends InsertServiceRequestRes
     public boolean requiredFieldsPresent(){
         if(languageSComboBox.getValue() == null)
             return false;
-        if(patientSComboBox.getValue() == null)
-            return false;
-        return true;
+        return patientSComboBox.getValue() != null;
     }
 
     @Override

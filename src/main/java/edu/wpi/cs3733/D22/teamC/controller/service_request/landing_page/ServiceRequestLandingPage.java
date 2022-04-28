@@ -182,15 +182,17 @@ public class ServiceRequestLandingPage implements Initializable {
         activeServiceRequest = serviceRequest;
 
         // Update Edit/Resolve Buttons
-        if (activeServiceRequest.getStatus() == Blank) {
-            edit.setDisable(false);
-            resolve.setDisable(true);
-        } else if (activeServiceRequest.getStatus() == Processing) {
-            edit.setDisable(false);
-            resolve.setDisable(false);
-        } else if (activeServiceRequest.getStatus() == Done) {
-            edit.setDisable(true);
-            resolve.setDisable(true);
+        if (activeServiceRequest != null) {
+            if (activeServiceRequest.getStatus() == Blank) {
+                edit.setDisable(false);
+                resolve.setDisable(true);
+            } else if (activeServiceRequest.getStatus() == Processing) {
+                edit.setDisable(false);
+                resolve.setDisable(false);
+            } else if (activeServiceRequest.getStatus() == Done) {
+                edit.setDisable(true);
+                resolve.setDisable(true);
+            }
         }
         deleteButton.setDisable(false);
     }
