@@ -51,7 +51,8 @@
 }
 
 .edit-button{
-    -fx-background-color: #4E86CC;
+    -fx-background-color: -color-primary;
+    -fx-text-fill: -color-primary-text;
 }
 
 .jfx-text-area {

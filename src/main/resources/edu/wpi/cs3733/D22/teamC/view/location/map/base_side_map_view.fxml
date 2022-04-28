@@ -157,7 +157,7 @@
                      <children>
                         <HBox alignment="CENTER" VBox.vgrow="ALWAYS">
                            <children>
-                              <MFXButton fx:id="addFloorButton" maxHeight="1.7976931348623157E308" onAction="#onAddFloorClicked" prefHeight="30.0" prefWidth="300.0" text="Add Floor" HBox.hgrow="ALWAYS">
+                              <MFXButton fx:id="addFloorButton" maxHeight="1.7976931348623157E308" onAction="#onAddFloorClicked" prefHeight="30.0" prefWidth="300.0" styleClass="edit-button" text="Add Floor" HBox.hgrow="ALWAYS">
                                  <font>
                                     <Font size="20.0" />
                                  </font>
@@ -175,7 +175,7 @@
                         </HBox>
                         <HBox alignment="CENTER" VBox.vgrow="ALWAYS">
                            <children>
-                              <MFXButton fx:id="deleteButton" disable="true" maxHeight="1.7976931348623157E308" onAction="#onDeleteClicked" prefHeight="30.0" prefWidth="300.0" styleClass="failure-button" text="Delete Floor" HBox.hgrow="ALWAYS">
+                              <MFXButton fx:id="deleteButton" disable="true" maxHeight="1.7976931348623157E308" onAction="#onDeleteClicked" prefHeight="30.0" prefWidth="300.0" styleClass="cancel-button" text="Delete Floor" HBox.hgrow="ALWAYS">
                                  <font>
                                     <Font size="20.0" />
                                  </font>
