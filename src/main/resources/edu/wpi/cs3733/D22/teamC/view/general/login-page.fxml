@@ -4,7 +4,6 @@
 <?import io.github.palexdev.materialfx.controls.MFXComboBox?>
 <?import io.github.palexdev.materialfx.controls.MFXPasswordField?>
 <?import io.github.palexdev.materialfx.controls.MFXTextField?>
-<?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
@@ -15,11 +14,12 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<HBox alignment="CENTER_RIGHT" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" styleClass="grid-pane" stylesheets="@../../css/component/login.css" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.wpi.cs3733.D22.teamC.controller.general.login_page.LoginPageController">
+
+<HBox alignment="CENTER_RIGHT" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="706.0" prefWidth="394.0" styleClass="picture-box" stylesheets="@../../css/component/login.css" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.wpi.cs3733.D22.teamC.controller.general.login_page.LoginPageController">
    <children>
-      <VBox alignment="CENTER" maxHeight="1.7976931348623157E308" prefHeight="866.0" prefWidth="564.0" styleClass="login-interface-background-upper">
+      <VBox prefHeight="706.0" prefWidth="498.0">
          <children>
-            <Label alignment="CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" styleClass="title" stylesheets="@../../css/component/login.css" text="Brigham and Womens Internal Tools" VBox.vgrow="ALWAYS">
+            <Label alignment="CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="182.0" prefWidth="394.0" styleClass="title" text="Brigham and Womens Internal Tools">
                <font>
                   <Font size="18.0" />
                </font>
@@ -31,48 +31,45 @@
                   </ImageView>
                </graphic>
             </Label>
-            <GridPane prefHeight="583.0" prefWidth="522.0" styleClass="grid-pane-fields" VBox.vgrow="ALWAYS">
+            <GridPane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="624.0" prefWidth="375.0" styleClass="grid-pane-fields" VBox.vgrow="ALWAYS">
               <columnConstraints>
-                <ColumnConstraints minWidth="10.0" prefWidth="100.0" />
+                <ColumnConstraints hgrow="ALWAYS" maxWidth="1.7976931348623157E308" />
               </columnConstraints>
               <rowConstraints>
-                  <RowConstraints vgrow="SOMETIMES" />
-                  <RowConstraints maxHeight="203.80001220703124" minHeight="0.0" prefHeight="196.33333740234374" vgrow="ALWAYS" />
-                <RowConstraints maxHeight="321.6667236328125" minHeight="10.0" prefHeight="261.6666625976562" vgrow="ALWAYS" />
-                  <RowConstraints maxHeight="245.93332519531248" minHeight="10.0" prefHeight="185.13327636718748" vgrow="ALWAYS" />
+                <RowConstraints maxHeight="90.59998779296875" minHeight="0.0" prefHeight="49.60000305175781" vgrow="SOMETIMES" />
+                <RowConstraints maxHeight="1.7976931348623157E308" minHeight="140.00000076293946" prefHeight="195.4000244140625" vgrow="ALWAYS" />
+                <RowConstraints maxHeight="1.7976931348623157E308" minHeight="168.00002441406252" prefHeight="188.9999755859375" vgrow="ALWAYS" />
+                  <RowConstraints maxHeight="1.7976931348623157E308" minHeight="10.0" prefHeight="142.4000244140625" vgrow="ALWAYS" />
               </rowConstraints>
                <children>
-                  <HBox id="error-box" alignment="CENTER" GridPane.hgrow="ALWAYS">
+                  <VBox id="error-box" alignment="CENTER" prefHeight="37.0" prefWidth="394.0" GridPane.hgrow="ALWAYS" GridPane.vgrow="ALWAYS">
                      <children>
-                        <Label id="invalid-label" fx:id="invalidLogin" alignment="CENTER" maxWidth="1.7976931348623157E308" prefHeight="40.0" prefWidth="197.0" stylesheets="@../../css/component/login.css" visible="false">
+                        <Label fx:id="invalidLogin" alignment="CENTER" prefHeight="52.0" prefWidth="198.0" styleClass="invalid-label" visible="false">
                            <font>
                               <Font size="10.0" />
                            </font>
                         </Label>
                      </children>
-                  </HBox>
-                  <VBox id="fields" alignment="CENTER_LEFT" prefHeight="163.0" prefWidth="564.0" GridPane.rowIndex="1">
+                  </VBox>
+                  <VBox id="fields" alignment="CENTER" prefHeight="200.0" prefWidth="100.0" GridPane.rowIndex="1">
                      <children>
                         <VBox>
                            <children>
-                              <MFXTextField id="validated-field" fx:id="username" floatMode="BORDER" floatingText="Username" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="30.0" prefWidth="269.0" />
+                              <MFXTextField fx:id="username" floatMode="BORDER" floatingText="Username" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="30.0" prefWidth="269.0" />
                               <Label fx:id="usernameValidationLabel" styleClass="validated-text" text="Label" visible="false" />
                            </children>
                         </VBox>
                         <VBox>
                            <children>
-                              <MFXPasswordField id="validated-field" fx:id="password" alignment="TOP_LEFT" floatMode="BORDER" floatingText="Password" maxWidth="1.7976931348623157E308" prefHeight="26.0" prefWidth="240.0" />
+                              <MFXPasswordField fx:id="password" alignment="TOP_LEFT" floatMode="BORDER" floatingText="Password" maxWidth="1.7976931348623157E308" prefHeight="26.0" prefWidth="240.0" />
                               <Label fx:id="passwordValidationLabel" styleClass="validated-text" text="Label" visible="false" />
                            </children>
                         </VBox>
                      </children>
-                     <GridPane.margin>
-                        <Insets />
-                     </GridPane.margin>
                   </VBox>
-                  <VBox id="buttons" alignment="CENTER" GridPane.rowIndex="2">
+                  <VBox id="buttons" alignment="CENTER" prefHeight="200.0" prefWidth="100.0" GridPane.rowIndex="2">
                      <children>
-                        <MFXButton defaultButton="true" onAction="#loginButtonClicked" prefHeight="50.0" prefWidth="200.0" styleClass="login-button" stylesheets="@../../css/component/login.css" text="Login">
+                        <MFXButton defaultButton="true" onAction="#loginButtonClicked" prefHeight="50.0" prefWidth="200.0" styleClass="login-button" text="Login">
                            <font>
                               <Font name="Roboto Light" size="12.0" />
                            </font>
@@ -84,7 +81,7 @@
                               </ImageView>
                            </graphic>
                         </MFXButton>
-                        <MFXButton onAction="#exitButtonClicked" prefHeight="50.0" prefWidth="200.0" styleClass="cancel-button" stylesheets="@../../css/component/login.css" text="Exit">
+                        <MFXButton onAction="#exitButtonClicked" prefHeight="50.0" prefWidth="200.0" styleClass="cancel-button" text="Exit">
                            <font>
                               <Font name="Roboto Light" size="12.0" />
                            </font>
@@ -98,7 +95,7 @@
                         </MFXButton>
                      </children>
                   </VBox>
-                  <VBox alignment="TOP_CENTER" GridPane.rowIndex="3">
+                  <VBox alignment="CENTER" GridPane.rowIndex="3">
                      <children>
                         <MFXComboBox fx:id="serverComboBox" floatMode="BORDER" floatingText="Server Type" onAction="#onServerComboBoxChanged" prefHeight="34.0" prefWidth="200.0" selectable="true" />
                      </children>
