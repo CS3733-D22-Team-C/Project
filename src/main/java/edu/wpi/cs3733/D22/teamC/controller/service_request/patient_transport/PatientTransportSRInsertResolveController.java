@@ -39,7 +39,7 @@ public class PatientTransportSRInsertResolveController extends InsertServiceRequ
     
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        
+        date.setEditable(false);
         //Patient ComboBox
         //Query DB
         PatientDAO patientDAO = new PatientDAO();
