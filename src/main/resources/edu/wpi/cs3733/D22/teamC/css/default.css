@@ -19,128 +19,53 @@
 
 /* These rules will apply to ALL COMPONENTS */
 /* YOU MUST OVERRIDE THEM BY APPLYING OTHER STYLE CLASSES OR THEY WILL DEFAULT TO THESE */
+
 .root * {
     /* Removes the focus box on all components */
     -fx-focus-color: transparent;
     -fx-faint-focus-color: transparent;
-
-    /* This allows all components to be resized down to 0 pixels */
-    /* If labels or anything is not showing up its due to this, must beware what this entails */
-    /* I wish I read my own comments before wanting to pull my hair out */
-    /* TODO: There has to be a different way other than setting min width/height to 0 */
-    /*-fx-min-height: 10px;*/
-    /*-fx-min-width: 10px;*/
 }
 
-/* CUSTOM */
-
-/* Within SceneBuilder give every thing that is a title the title ID */
-#title {
-    -fx-font-size: 18pt;
-    -fx-font-weight: bold;
-}
-
-#base-pane {
-    -fx-background-color: -color-background;
-}
-
-/* This class will be the base container that holds virtually every page */
-.page-container {
-    -fx-background-color: -color-surface;
-    -fx-max-width: 800px;
-    -fx-max-height: 800px;
-    -fx-background-radius: 20px;
-    -fx-effect: dropshadow(three-pass-box, rgba(0, 0, 0, 0.8), 10, 0, 0, 0);
-    -fx-border-radius: 20px;
-}
-
-/* Used for validation fields */
-.invalid-label {
-    -fx-text-fill: -color-black;
-    -fx-background-color: rgba(255, 174, 174, 0.5);
-    -fx-border-radius: 11px;
-}
-
-/* These cards should be used for aligning the title header with the card itself */
-/* Card is the base container for everything that isn't a page container (essentially sub-containers) */
-/* This should be abstracted but for now it isn't :) */
-.card {
-    -fx-background-radius: 10px;
-    -fx-effect: dropshadow(three-pass-box, rgba(0, 0, 0, 0.8), 10, 0, 0, 0);
-    -fx-background-color: -color-surface;
-}
-
-.card-content-header {
-    -fx-background-color: -color-primary;
-    -fx-text-fill: -color-primary-text;
-    -fx-font-size: 18px;
-    -fx-background-radius: 10px 10px 0px 0px;
-}
-
-.service-field-label {
-    -fx-font-family: -font-field-label;
-    -fx-font-size: 15;
-}
-
-/* DEFAULT OVERRIDES */
-
-/* Going to assume that all buttons are primary unless overwritten */
+/* JavaFX Overrides */
 .button {
     -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.5), 1, 0, 0, 0);
     -fx-cursor: hand;
     -mfx-button-type: RAISED;
-    -fx-background-color: -color-primary-light;
-    -fx-text-fill: -color-primary-text;
+    -mfx-auto-clip: true; /* Allows for all MFX buttons to have their ripple generators generate the ripples to the correct shape */
+    -mfx-background-opacity: 0;
 
-    /* Allows for all MFX buttons to have their ripple generators generate the ripples to the correct shape */
-    -mfx-auto-clip: true;
 }
 
-.button:hover {
-    -fx-background-color: -color-primary;
-}
-
-.mfx-ripple-generator {
-    
-}
-
-/* Uses secondary color as style */
-.button-secondary {
-    -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.5), 1, 0, 0, 0);
-    -fx-cursor: hand;
-    -mfx-button-type: RAISED;
-}
-
-.failure-button {
-    -fx-background-color: -color-red-contrast;
-}
-
-.failure-button:hover {
-    -fx-background-color: -color-red-contrast-hover;
-}
-
-.button-file-select {
-    -fx-max-width: 30px;
-    -fx-max-height: 24px;
-    -fx-background-color: -color-secondary;
-    -fx-font-size: 12px;
-}
-
-.text-field {
-    -fx-background-color: -color-primary-text;
-    -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.8), 2, 0, 0, 0);
+.mfx-toggle-button {
+    -mfx-main: -color-primary;
 }
 
 .mfx-text-field {
-    -fx-border-color: -color-primary;
+    -mfx-main: -color-primary;
 }
 
-.mfx-text-field .text-field {
-    -fx-background-color: transparent;
+    .mfx-text-field .text-field {
+        -fx-highlight-fill: -color-secondary-light;
+    }
+
+/* region Date Picker */
+.mfx-date-picker {
+
 }
 
-.mfx-text-field .floating-text {
-    -fx-text-fill: -color-primary;
+    .mfx-date-picker .icon {
+        -mfx-color: -color-primary-dark;
+    }
+
+    .mfx-date-picker .date-picker-popup .content {
+        -fx-background-color: -color-secondary;
+}
+/* endregion */
+
+
+.text-area:readonly{
+    -fx-border-radius: 44px;
+    -fx-background-radius: 44px;
 }
 
 .text-area:readonly{
@@ -154,7 +79,19 @@
     -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.5), 1, 0, 0, 0);
 }
 
-/* Tab Pane Overrides */
+    .combo-box:disabled {
+        -fx-opacity: 50%;
+    }
+
+.mfx-checkbox {
+    -mfx-main:-color-secondary;
+}
+
+    .mfx-checkbox .text {
+        -fx-cursor: hand;
+    }
+
+/* region Tab Pane Overrides */
 .tab-pane {
     -fx-padding: 20px;
     -fx-alignment: right;
@@ -180,6 +117,7 @@
 .tab-pane .tab {
     -fx-background-color: -color-unselected-tab;
     -fx-font-size: 14px;
+    -fx-cursor: hand;
 }
 
 /* Stylizes selected tab */
@@ -201,8 +139,9 @@
     -fx-background-color: transparent;
     -fx-border-radius: 4px;
 }
+/* endregion */
 
-/* Table Styling */
+/* region Table Styling */
 .tree-table-view {
     -fx-background-color: transparent;
 }
@@ -282,7 +221,81 @@
 .table-view .virtual-flow .scroll-bar:horizontal .thumb {
     -fx-background-color: transparent;
 }
+/* endregion */
 
+/* Custom */
+.title {
+
+}
+
+.page-container {
+    -fx-background-color: -color-surface !important;
+    -fx-max-width: 800px;
+    -fx-max-height: 800px;
+    -fx-background-radius: 20px;
+    -fx-effect: dropshadow(three-pass-box, rgba(0, 0, 0, 0.8), 10, 0, 0, 0);
+    -fx-border-radius: 20px;
+}
+
+.page-container-title {
+    -fx-text-fill: -color-primary-text;
+    -fx-background-color: -color-primary;
+    -fx-alignment: center;
+    -fx-background-radius: 20 20 0 0;
+    -fx-max-height: 55px;
+    -fx-pref-height: 55px;
+}
+
+.primary-action-button {
+    -fx-background-color: -color-primary-light;
+    -fx-text-fill: -color-primary-text;
+}
+
+    .primary-action-button:hover {
+        -fx-background-color: -color-primary;
+    }
+
+.secondary-action-button {
+    -fx-background-color: -color-secondary-light;
+    -fx-text-fill: -color-secondary-text;
+}
+
+    .secondary-action-button:hover {
+        -fx-background-color: -color-secondary;
+    }
+
+.cancel-button {
+    -fx-background-color: -color-red-contrast;
+    -fx-text-fill: -color-red-contrast-text;
+}
+
+    .cancel-button:hover {
+        -fx-background-color: -color-red-contrast-hover;
+    }
+
+.selector-button {
+    -fx-background-color: -color-secondary-light;
+}
+
+    .selector-button:hover {
+        -fx-background-color: -color-secondary;
+    }
+
+.validated-text {
+    -fx-text-fill: -color-red-contrast;
+}
+
+.validated-field {
+    -fx-border-color: -color-red-contrast;
+}
+
+    .validated-field .floating-text {
+        -fx-text-fill: -color-red-contrast;
+    }
+
+    .validated-field .mfx-font-icon {
+        -mfx-color: -color-red-contrast;
+    }
 
 /*
 ⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⣀⣀⣀⣀⣀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀

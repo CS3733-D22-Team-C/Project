@@ -4,7 +4,7 @@
     -fx-text-fill: -color-secondary-text;
 }
 
-#title {
+.title {
     -fx-text-fill: -color-primary-text;
     -fx-background-color: -color-primary-dark;
 }
@@ -21,7 +21,7 @@
 
 /* Inlay background image in title */
 .grid-pane {
-    -fx-background-image: url("../../static/images/BrighamandWomensResized.png");
+    -fx-background-image: url("../../static/images/BrighamAndWomens.png");
     -fx-background-repeat: stretch;
     -fx-background-size: contain;
     -fx-background-position: left center;
@@ -35,4 +35,23 @@
 
 .text-field {
     -fx-effect: none;
+}
+
+#error-box {
+    -fx-padding: 10px;
+}
+
+#fields {
+    -fx-padding: 20 100 20 100;
+    -fx-spacing: 10px;
+}
+
+#buttons {
+    -fx-spacing: 50px;
+}
+
+#invalid-label {
+    -fx-text-fill: -color-black;
+    -fx-background-color: rgba(255, 174, 174, 0.5);
+    -fx-border-radius: 11px;
 }

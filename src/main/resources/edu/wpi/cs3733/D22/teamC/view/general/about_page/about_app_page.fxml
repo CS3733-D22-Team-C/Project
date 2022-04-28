@@ -53,7 +53,7 @@
             </HBox>
             <HBox alignment="CENTER_LEFT" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="90.0" prefWidth="308.0" GridPane.hgrow="ALWAYS" GridPane.rowIndex="5" GridPane.vgrow="ALWAYS">
                <children>
-                  <MFXButton fx:id="backButton" onAction="#onBackButtonClicked" prefHeight="31.0" prefWidth="75.0" stylesheets="@../../../css/component/request_page.css" text="Back" translateX="10.0" translateY="10.0" HBox.hgrow="ALWAYS" />
+                  <MFXButton fx:id="backButton" onAction="#onBackButtonClicked" prefHeight="31.0" prefWidth="75.0" styleClass="primary-action-button" stylesheets="@../../../css/component/request_page.css" text="Back" translateX="10.0" translateY="10.0" HBox.hgrow="ALWAYS" />
                </children>
             </HBox>
             <HBox alignment="TOP_CENTER">

@@ -200,7 +200,7 @@ public class UserDashboardController implements Initializable {
     }
 
     public void setGreetingLabel(Employee employee) {
-        greetingLabel.setText("Hello, " + employee.getFirstName() + " " + employee.getLastName() + "!");
+        greetingLabel.setText(employee.getFirstName() + " " + employee.getLastName());
     }
 
     public void setAssignedTableSegmentedBarInsert(){

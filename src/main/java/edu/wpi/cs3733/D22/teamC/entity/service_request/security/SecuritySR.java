@@ -14,9 +14,13 @@ public class SecuritySR extends ServiceRequest {
     protected SecurityType securityType;
 
     public enum SecurityType {
-        Intruder,
+        INTRUDER,
         LOCKDOWN,
-        TORNADO
+        TORNADO,
+        ATTACK,
+        FIST_FIGHT,
+        BEAT_DOWN,
+        HEROBRINE,
     }
 
     public SecuritySR() {}

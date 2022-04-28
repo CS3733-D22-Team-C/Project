@@ -9,8 +9,8 @@
     <children>
         <VBox maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefWidth="227.0" styleClass="fields-padding" HBox.hgrow="ALWAYS">
             <children>
-                <Label styleClass="service-field-label" text="Security Type" />
-                <JFXComboBox fx:id="securityType" maxWidth="1.7976931348623157E308" onAction="#statusUpdated" prefWidth="190.0" styleClass="dropdown" stylesheets="@../../../css/default.css" VBox.vgrow="ALWAYS" />
+                <Label prefHeight="19.0" prefWidth="115.0" styleClass="service-field-label" text="Security Type:" />
+                <JFXComboBox fx:id="securityType" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onAction="#statusUpdated" prefHeight="32.0" prefWidth="245.0" styleClass="dropdown" stylesheets="@../../../css/default.css" VBox.vgrow="ALWAYS" />
             </children>
         </VBox>
         <VBox alignment="CENTER_LEFT" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefWidth="227.0" styleClass="fields-margin" HBox.hgrow="ALWAYS" />

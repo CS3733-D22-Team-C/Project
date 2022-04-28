@@ -72,6 +72,8 @@ public class MedicalEquipmentManager extends ManagerMapNodes<MedicalEquipment> {
             overlays[equipmentType.ordinal()] = controller;
 
             // Position Overlay
+            view.getNode().setScaleX(1.5);
+            view.getNode().setScaleY(1.5);
             getMapController().getBottomOverlay().getChildren().add(view.getNode());
             controller.setType(equipmentType);
 
