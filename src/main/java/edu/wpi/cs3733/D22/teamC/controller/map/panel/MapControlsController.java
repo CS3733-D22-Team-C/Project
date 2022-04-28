@@ -6,12 +6,14 @@ import edu.wpi.cs3733.D22.teamC.controller.map.data.medical_equipment.MedicalEqu
 import edu.wpi.cs3733.D22.teamC.controller.map.data.patient.PatientManager;
 import edu.wpi.cs3733.D22.teamC.controller.map.data.service_request.ServiceRequestManager;
 import edu.wpi.cs3733.D22.teamC.entity.floor.Floor;
+import edu.wpi.cs3733.D22.teamC.models.builders.DialogBuilder;
 import edu.wpi.cs3733.D22.teamC.models.utils.ComponentWrapper;
 import io.github.palexdev.materialfx.controls.MFXCheckbox;
 import io.github.palexdev.materialfx.controls.MFXToggleButton;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 
@@ -81,10 +83,15 @@ public class MapControlsController implements Initializable {
 
         @FXML
         void onEditModeButtonPressed(ActionEvent event) {
-            mapViewController.switchMode(true);
-            mapViewController.activateMedicalEquipmentManager(false);
-            mapViewController.activateServiceRequestManager(false);
-            mapViewController.activatePatientManager(false);
+            if (App.instance.getUserAccount().getAdmin()) {
+                mapViewController.switchMode(true);
+                mapViewController.activateMedicalEquipmentManager(false);
+                mapViewController.activateServiceRequestManager(false);
+                mapViewController.activatePatientManager(false);
+            } else {
+                Alert alert = DialogBuilder.createWarningAlert("Permission Denied", "Only Admin Accounts can edit the map.");
+                alert.showAndWait();
+            }
         }
 
         @FXML
