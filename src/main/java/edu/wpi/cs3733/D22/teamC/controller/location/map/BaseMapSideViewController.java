@@ -127,6 +127,11 @@ public class BaseMapSideViewController implements Initializable {
         fileSelectButton.setGraphic(folderIcon);
         floorNodeControllerList = new ArrayList<>();
         loadFloors();
+        try {
+            onFloorClicked(null, floorNodeControllerList.get(floorNodeControllerList.size()-1));
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     @FXML
@@ -452,7 +457,7 @@ public class BaseMapSideViewController implements Initializable {
             Circle pumpPickup = new Circle();
             pumpPickup.setFill(Color.AQUA);
             pumpPickup.setStroke(Color.DARKBLUE);
-            pumpPickup.setRadius(25.0);
+            pumpPickup.setRadius(20.0);
 
             Circle xRayPickup = new Circle();
             xRayPickup.setFill(Color.AQUA);
@@ -631,22 +636,22 @@ public class BaseMapSideViewController implements Initializable {
         Circle bedPickup = new Circle();
         bedPickup.setFill(Color.AQUA);
         bedPickup.setStroke(Color.DARKBLUE);
-        bedPickup.setRadius(25.0);
+        bedPickup.setRadius(20.0);
 
         Circle reclinerPickup = new Circle();
         reclinerPickup.setFill(Color.AQUA);
         reclinerPickup.setStroke(Color.DARKBLUE);
-        reclinerPickup.setRadius(25.0);
+        reclinerPickup.setRadius(20.0);
 
         Circle pumpPickup = new Circle();
         pumpPickup.setFill(Color.AQUA);
         pumpPickup.setStroke(Color.DARKBLUE);
-        pumpPickup.setRadius(25.0);
+        pumpPickup.setRadius(20.0);
 
         Circle xRayPickup = new Circle();
         xRayPickup.setFill(Color.AQUA);
         xRayPickup.setStroke(Color.DARKBLUE);
-        xRayPickup.setRadius(25.0);
+        xRayPickup.setRadius(20.0);
 
         Text bedPickupNum = new Text("0"); // todo Set with Query
         Text reclinerPickupNum = new Text("0");
@@ -721,7 +726,7 @@ public class BaseMapSideViewController implements Initializable {
         ObservableList<PieChart.Data> list;
         if(dirty == 0 && available == 0 && unavailable == 0){
             list = FXCollections.observableArrayList(
-                    new PieChart.Data("No Equipment Available", -1));
+                    new PieChart.Data("No Equipment Available", 0));
         }
         else{
             list = FXCollections.observableArrayList(
