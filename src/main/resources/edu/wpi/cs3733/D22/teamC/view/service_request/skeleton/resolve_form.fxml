@@ -9,6 +9,7 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
 <?import org.controlsfx.control.SearchableComboBox?>
 
 <GridPane alignment="CENTER" maxHeight="1.7976931348623157E308" maxWidth="838.0" prefHeight="683.0" prefWidth="606.0" styleClass="page-container" stylesheets="@../../../css/component/request_page.css" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.wpi.cs3733.D22.teamC.controller.service_request.BaseServiceRequestResolveController">
@@ -31,11 +32,14 @@
                   <Label id="t" prefHeight="27.0" prefWidth="190.0" styleClass="service-request-id" text="Service Request ID:  " />
                   <Label fx:id="requestID" prefHeight="17.0" prefWidth="320.0" styleClass="service-request-id" text="00000000" />
                </children>
+               <VBox.margin>
+                  <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+               </VBox.margin>
             </HBox>
-            <GridPane prefHeight="38.0" prefWidth="590.0" VBox.vgrow="ALWAYS">
+            <GridPane alignment="CENTER" prefHeight="38.0" prefWidth="590.0" VBox.vgrow="ALWAYS">
                <columnConstraints>
-                  <ColumnConstraints hgrow="SOMETIMES" maxWidth="1.7976931348623157E308" minWidth="6.99996719360351" prefWidth="166.1999755859375" />
-                  <ColumnConstraints hgrow="SOMETIMES" maxWidth="1.7976931348623157E308" minWidth="10.0" prefWidth="287.8000244140625" />
+                  <ColumnConstraints hgrow="SOMETIMES" maxWidth="1.7976931348623157E308" minWidth="148.79998474121086" prefWidth="184.8" />
+                  <ColumnConstraints hgrow="ALWAYS" maxWidth="1.7976931348623157E308" minWidth="280.79998779296875" prefWidth="390.8" />
                </columnConstraints>
                <rowConstraints>
                   <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="ALWAYS" />
@@ -44,35 +48,74 @@
                <children>
                   <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="6.0" GridPane.columnIndex="1">
                      <children>
-                        <Label styleClass="service-field-label" text="Creation Time:" />
-                        <Label fx:id="creationTime" maxWidth="1.7976931348623157E308" prefHeight="22.0" prefWidth="190.0" styleClass="service-field-label" text="00000000000000000000000" underline="true" HBox.hgrow="ALWAYS" />
+                        <Label styleClass="service-field-label" text="Creation Time:">
+                           <font>
+                              <Font size="14.0" />
+                           </font></Label>
+                        <Label fx:id="creationTime" maxWidth="1.7976931348623157E308" prefHeight="22.0" prefWidth="190.0" styleClass="service-field-label" text="00000000000000000000000" underline="true" HBox.hgrow="ALWAYS">
+                           <font>
+                              <Font size="14.0" />
+                           </font></Label>
                      </children>
+                     <GridPane.margin>
+                        <Insets />
+                     </GridPane.margin>
+                     <padding>
+                        <Insets left="10.0" />
+                     </padding>
                   </HBox>
-                  <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="6.0">
+                  <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="278.0" spacing="6.0">
                      <children>
-                        <Label styleClass="service-field-label" text="Created By:" />
-                        <Label fx:id="createdBy" styleClass="service-field-label" text="00000000" underline="true" />
+                        <Label styleClass="service-field-label" text="Created By:">
+                           <font>
+                              <Font size="14.0" />
+                           </font></Label>
+                        <Label fx:id="createdBy" styleClass="service-field-label" text="00000000" underline="true">
+                           <font>
+                              <Font size="14.0" />
+                           </font></Label>
                      </children>
                      <GridPane.margin>
                         <Insets left="10.0" />
                      </GridPane.margin>
                   </HBox>
-                  <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="6.0" GridPane.rowIndex="1">
+                  <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="200.0" spacing="6.0" GridPane.rowIndex="1">
                      <children>
-                        <Label styleClass="service-field-label" text="Updated By:" />
-                        <Label fx:id="updatedBy" styleClass="service-field-label" text="00000000" underline="true" />
+                        <Label styleClass="service-field-label" text="Updated By:">
+                           <font>
+                              <Font size="14.0" />
+                           </font></Label>
+                        <Label fx:id="updatedBy" styleClass="service-field-label" text="00000000" underline="true">
+                           <font>
+                              <Font size="14.0" />
+                           </font></Label>
                      </children>
                      <GridPane.margin>
                         <Insets left="10.0" />
                      </GridPane.margin>
                   </HBox>
-                  <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="6.0" GridPane.columnIndex="1" GridPane.rowIndex="1">
+                  <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="200.0" spacing="6.0" GridPane.columnIndex="1" GridPane.rowIndex="1">
                      <children>
-                        <Label styleClass="service-field-label" text="Last Updated:" />
-                        <Label fx:id="lastUpdated" maxWidth="1.7976931348623157E308" prefHeight="22.0" prefWidth="191.0" styleClass="service-field-label" text="00000000000000000000000" underline="true" HBox.hgrow="ALWAYS" />
+                        <Label styleClass="service-field-label" text="Last Updated:">
+                           <font>
+                              <Font size="14.0" />
+                           </font></Label>
+                        <Label fx:id="lastUpdated" maxWidth="1.7976931348623157E308" prefHeight="22.0" prefWidth="191.0" styleClass="service-field-label" text="00000000000000000000000" underline="true" HBox.hgrow="ALWAYS">
+                           <font>
+                              <Font size="14.0" />
+                           </font></Label>
                      </children>
+                     <GridPane.margin>
+                        <Insets />
+                     </GridPane.margin>
+                     <padding>
+                        <Insets left="10.0" />
+                     </padding>
                   </HBox>
                </children>
+               <VBox.margin>
+                  <Insets />
+               </VBox.margin>
             </GridPane>
          </children>
          <padding>
@@ -133,27 +176,42 @@
       </VBox>
       <VBox styleClass="fields-padding" GridPane.rowIndex="4">
          <children>
-            <HBox alignment="TOP_CENTER" prefHeight="100.0" prefWidth="200.0" styleClass="fie">
+            <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="5.0" styleClass="fie">
                <children>
-                  <Label styleClass="text-field-with-margin" text="Status:" />
-                  <Label fx:id="firstStatus" styleClass="text-field-with-margin" />
-                  <Label styleClass="text-field-with-margin" text="→" />
-                  <Label fx:id="secondStatus" styleClass="text-field-with-margin" />
+                  <Label styleClass="text-field-with-margin" text="Status:">
+                     <font>
+                        <Font name="System Bold" size="16.0" />
+                     </font></Label>
+                  <Label fx:id="firstStatus" styleClass="text-field-with-margin">
+                     <font>
+                        <Font name="System Bold" size="16.0" />
+                     </font></Label>
+                  <Label styleClass="text-field-with-margin" text="→">
+                     <font>
+                        <Font name="System Bold" size="16.0" />
+                     </font></Label>
+                  <Label fx:id="secondStatus" styleClass="text-field-with-margin">
+                     <font>
+                        <Font name="System Bold" size="16.0" />
+                     </font></Label>
                </children>
             </HBox>
             <HBox prefHeight="100.0" prefWidth="200.0">
                <children>
-                  <HBox prefHeight="75.0" prefWidth="341.0">
+                  <HBox alignment="CENTER_LEFT" prefHeight="75.0" prefWidth="341.0">
                      <children>
                         <JFXButton fx:id="goBackButton" onAction="#clickGoBack" styleClass="secondary-action-button" text="Go Back" />
                      </children>
                   </HBox>
-                  <HBox alignment="TOP_RIGHT" prefHeight="75.0" prefWidth="349.0" HBox.hgrow="ALWAYS">
+                  <HBox alignment="CENTER_RIGHT" prefHeight="75.0" prefWidth="349.0" HBox.hgrow="ALWAYS">
                      <children>
                         <JFXButton fx:id="confirmButton" onAction="#clickConfirm" styleClass="primary-action-button" text="Confirm" />
                      </children>
                   </HBox>
                </children>
+               <padding>
+                  <Insets bottom="25.0" left="25.0" right="25.0" top="25.0" />
+               </padding>
             </HBox>
          </children>
          <padding>

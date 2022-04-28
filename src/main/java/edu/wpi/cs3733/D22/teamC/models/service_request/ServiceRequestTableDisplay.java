@@ -66,7 +66,7 @@ public class ServiceRequestTableDisplay<T extends ServiceRequest> extends TableD
         addColumn(
                 table,
                 "Type",
-                1f * Integer.MAX_VALUE * 16.66,
+                1f * Integer.MAX_VALUE * 20,
                 (ServiceRequestTableEntry entry) -> {return entry.type;}
         );
 
