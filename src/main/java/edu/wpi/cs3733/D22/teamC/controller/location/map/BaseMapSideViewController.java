@@ -322,7 +322,7 @@ public class BaseMapSideViewController implements Initializable {
 
     private boolean requiredFieldsPresent(){
         if(shortName.getText().equals("") || longName.getText().equals("")
-                || imagePath.equals("") || bFile == null) return false;
+                || imagePath.equals("") || bFile == null || description.getLength() > 255) return false;
         return true;
     }
 
