@@ -42,7 +42,6 @@ public class MedicalEquipmentDAO extends DAO<MedicalEquipment> {
         }
         return equipOnFloor;
     }
-
     /**
      * Returns a list of MedicalEquipment of a given type.
      * @param equipmentType  EquipmentType enum.

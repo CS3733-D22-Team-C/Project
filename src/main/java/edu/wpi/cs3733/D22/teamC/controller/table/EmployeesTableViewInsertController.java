@@ -116,7 +116,6 @@ public class EmployeesTableViewInsertController extends InsertTableViewControlle
 
         // Query Database
         EmployeeDAO employeeDAO = new EmployeeDAO();
-        //ISSUE HERE
         List<Employee> employees = employeeDAO.getAll();
 
         // Add Table Entries

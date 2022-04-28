@@ -80,10 +80,7 @@ public class MedicineDeliverySRInsertCreateController implements InsertServiceRe
             return false;
         if(dosage.getText().equals(""))
             return false;
-        if(patientSComboBox.getValue() == null){
-            return false;
-        }
-        return true;
+        return patientSComboBox.getValue() != null;
     }
 
     @FXML

@@ -93,7 +93,7 @@ public class BaseServiceRequestResolveController<T extends ServiceRequest> imple
         this.serviceRequest = serviceRequestDAO.getByID(serviceRequest.getID());
         srUUID = this.serviceRequest.getID();
 
-        if (serviceRequest.getLocation() != null) location = new LocationDAO().getByID(serviceRequest.getLocation().getID());
+        if (serviceRequest.getLocation() != null) location = serviceRequest.getLocation();
 
         insertController.setup(this, this.serviceRequest, isEditMode);
 

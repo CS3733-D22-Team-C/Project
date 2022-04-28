@@ -67,9 +67,7 @@ public class MedicineDeliverySRInsertResolveController extends InsertServiceRequ
             return false;
         if(medicine.getText().equals(""))
             return false;
-        if(patientSComboBox.getValue() == null)
-            return false;
-        return true;
+        return patientSComboBox.getValue() != null;
     }
 
     @Override
@@ -90,8 +88,7 @@ public class MedicineDeliverySRInsertResolveController extends InsertServiceRequ
     public DAO<MedicineDeliverySR> createServiceRequestDAO() {
         return new MedicineDeliverySRDAO();
     }
-
-
+    
     @FXML
     void statusUpdatedKeyEvent(KeyEvent event) {
         statusUpdated();

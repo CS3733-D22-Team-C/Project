@@ -75,10 +75,7 @@ public class LabSystemSRInsertCreateController implements InsertServiceRequestCr
     public boolean requiredFieldsPresent(){
         if(labType.getValue() == null)
             return false;
-        if(patientSComboBox.getValue() == null){
-            return false;
-        }
-        return true;
+        return patientSComboBox.getValue() != null;
     }
 
     public LabSystemSR createNewServiceRequest(){
@@ -87,7 +84,7 @@ public class LabSystemSRInsertCreateController implements InsertServiceRequestCr
 
     @FXML
     void goToPatientTable(ActionEvent event) throws IOException {
-        new PatientSelectorWindow(patient -> this.setPatientComboBox(patient));
+        new PatientSelectorWindow(this::setPatientComboBox);
     }
 
     private void setPatientComboBox(Patient patientComboBox) {
