@@ -44,13 +44,12 @@ public class PatientTransportSRInsertResolveController extends InsertServiceRequ
         
         ComponentWrapper.initializeComboBox(patientSComboBox,Patient::toString);
         patientSComboBox.getItems().setAll(patients);
-
     }
     
     @Override
     public void setup(BaseServiceRequestResolveController<PatientTransportSR> baseServiceRequestResolveController, PatientTransportSR serviceRequest, boolean isEditMode) {
         super.setup(baseServiceRequestResolveController, serviceRequest, isEditMode);
-        date.setEditable(isEditMode);
+        date.setEditable(false);
         patientSComboBox.setEditable(isEditMode);
 
         date.setDisable(!isEditMode);
