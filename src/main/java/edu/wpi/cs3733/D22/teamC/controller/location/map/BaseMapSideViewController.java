@@ -3,6 +3,7 @@ package edu.wpi.cs3733.D22.teamC.controller.location.map;
 import com.jfoenix.controls.JFXTextArea;
 import com.jfoenix.svg.SVGGlyph;
 import edu.wpi.cs3733.D22.teamC.App;
+import edu.wpi.cs3733.D22.teamC.controller.map.MapViewController;
 import edu.wpi.cs3733.D22.teamC.entity.floor.Floor;
 import edu.wpi.cs3733.D22.teamC.entity.floor.FloorDAO;
 import edu.wpi.cs3733.D22.teamC.entity.medical_equipment.MedicalEquipment;
@@ -30,6 +31,8 @@ import javafx.scene.input.*;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
+import javafx.scene.paint.Color;
+import javafx.scene.shape.Circle;
 import javafx.scene.text.Text;
 import javafx.stage.FileChooser;
 import javafx.util.Duration;
@@ -124,6 +127,13 @@ public class BaseMapSideViewController implements Initializable {
         fileSelectButton.setGraphic(folderIcon);
         floorNodeControllerList = new ArrayList<>();
         loadFloors();
+    }
+
+    @FXML
+    void onGoToClicked() {
+        App.View<MapViewController> view = App.instance.loadView(App.MAP_PATH);
+        view.getController().getFloorManager().changeCurrent(selectedFloor);
+        App.instance.setView(view.getNode());
     }
 
     //#region base add/edit/delete floor
@@ -429,6 +439,36 @@ public class BaseMapSideViewController implements Initializable {
             xRayIcon.setSize(50);
             setUpToolTipIcon(xRayIcon, "X-Rays");
 
+            Circle bedPickup = new Circle();
+            bedPickup.setFill(Color.AQUA);
+            bedPickup.setStroke(Color.DARKBLUE);
+            bedPickup.setRadius(25.0);
+
+            Circle reclinerPickup = new Circle();
+            reclinerPickup.setFill(Color.AQUA);
+            reclinerPickup.setStroke(Color.DARKBLUE);
+            reclinerPickup.setRadius(25.0);
+
+            Circle pumpPickup = new Circle();
+            pumpPickup.setFill(Color.AQUA);
+            pumpPickup.setStroke(Color.DARKBLUE);
+            pumpPickup.setRadius(25.0);
+
+            Circle xRayPickup = new Circle();
+            xRayPickup.setFill(Color.AQUA);
+            xRayPickup.setStroke(Color.DARKBLUE);
+            xRayPickup.setRadius(25.0);
+
+            Text bedPickupNum = new Text("N/A"); //
+            Text reclinerPickupNum = new Text("N/A");
+            Text pumpPickupNum = new Text("N/A");
+            Text xRayPickupNum = new Text("N/A");
+
+            setUpToolTipText(bedPickupNum, bedPickup);
+            setUpToolTipText(reclinerPickupNum, reclinerPickup);
+            setUpToolTipText(pumpPickupNum, pumpPickup);
+            setUpToolTipText(xRayPickupNum, xRayPickup);
+
             bedPane.getChildren().clear();
             reclinerPane.getChildren().clear();
             pumpPane.getChildren().clear();
@@ -441,10 +481,30 @@ public class BaseMapSideViewController implements Initializable {
             ObservableList<Node> xRayList = xRayPane.getChildren();
 
             //Adding all the nodes to the pane bottom to top
-            bedList.addAll(bedChart, bedIcon);
-            reclinerList.addAll(reclinerChart, reclinerIcon);
-            pumpList.addAll(pumpChart, pumpIcon);
-            xRayList.addAll(xRayChart, xRayIcon);
+            bedList.addAll(bedChart, bedIcon, bedPickup, bedPickupNum);
+            reclinerList.addAll(reclinerChart, reclinerIcon, reclinerPickup, reclinerPickupNum);
+            pumpList.addAll(pumpChart, pumpIcon, pumpPickup, pumpPickupNum);
+            xRayList.addAll(xRayChart, xRayIcon, xRayPickup, xRayPickupNum);
+
+            bedList.get(2).setTranslateX(60);
+            bedList.get(2).setTranslateY(-60);
+            bedList.get(3).setTranslateX(60);
+            bedList.get(3).setTranslateY(-60);
+
+            reclinerList.get(2).setTranslateX(60);
+            reclinerList.get(2).setTranslateY(-60);
+            reclinerList.get(3).setTranslateX(60);
+            reclinerList.get(3).setTranslateY(-60);
+
+            pumpList.get(2).setTranslateX(60);
+            pumpList.get(2).setTranslateY(-60);
+            pumpList.get(3).setTranslateX(60);
+            pumpList.get(3).setTranslateY(-60);
+
+            xRayList.get(2).setTranslateX(60);
+            xRayList.get(2).setTranslateY(-60);
+            xRayList.get(3).setTranslateX(60);
+            xRayList.get(3).setTranslateY(-60);
             return;
         }
 
@@ -568,11 +628,61 @@ public class BaseMapSideViewController implements Initializable {
         ObservableList<Node> pumpList = pumpPane.getChildren();
         ObservableList<Node> xRayList = xRayPane.getChildren();
 
+        Circle bedPickup = new Circle();
+        bedPickup.setFill(Color.AQUA);
+        bedPickup.setStroke(Color.DARKBLUE);
+        bedPickup.setRadius(25.0);
+
+        Circle reclinerPickup = new Circle();
+        reclinerPickup.setFill(Color.AQUA);
+        reclinerPickup.setStroke(Color.DARKBLUE);
+        reclinerPickup.setRadius(25.0);
+
+        Circle pumpPickup = new Circle();
+        pumpPickup.setFill(Color.AQUA);
+        pumpPickup.setStroke(Color.DARKBLUE);
+        pumpPickup.setRadius(25.0);
+
+        Circle xRayPickup = new Circle();
+        xRayPickup.setFill(Color.AQUA);
+        xRayPickup.setStroke(Color.DARKBLUE);
+        xRayPickup.setRadius(25.0);
+
+        Text bedPickupNum = new Text("0"); // todo Set with Query
+        Text reclinerPickupNum = new Text("0");
+        Text pumpPickupNum = new Text("0");
+        Text xRayPickupNum = new Text("0");
+
+        setUpToolTipText(bedPickupNum, bedPickup);
+        setUpToolTipText(reclinerPickupNum, reclinerPickup);
+        setUpToolTipText(pumpPickupNum, pumpPickup);
+        setUpToolTipText(xRayPickupNum, xRayPickup);
+
         //Adding all the nodes to the pane bottom to top
-        bedList.addAll(bedChart, bedIcon);
-        reclinerList.addAll(reclinerChart, reclinerIcon);
-        pumpList.addAll(pumpChart, pumpIcon);
-        xRayList.addAll(xRayChart, xRayIcon);
+        bedList.addAll(bedChart, bedIcon, bedPickup, bedPickupNum);
+        reclinerList.addAll(reclinerChart, reclinerIcon, reclinerPickup, reclinerPickupNum);
+        pumpList.addAll(pumpChart, pumpIcon, pumpPickup, pumpPickupNum);
+        xRayList.addAll(xRayChart, xRayIcon, xRayPickup, xRayPickupNum);
+
+        bedList.get(2).setTranslateX(60);
+        bedList.get(2).setTranslateY(-60);
+        bedList.get(3).setTranslateX(60);
+        bedList.get(3).setTranslateY(-60);
+
+        reclinerList.get(2).setTranslateX(60);
+        reclinerList.get(2).setTranslateY(-60);
+        reclinerList.get(3).setTranslateX(60);
+        reclinerList.get(3).setTranslateY(-60);
+
+        pumpList.get(2).setTranslateX(60);
+        pumpList.get(2).setTranslateY(-60);
+        pumpList.get(3).setTranslateX(60);
+        pumpList.get(3).setTranslateY(-60);
+
+        xRayList.get(2).setTranslateX(60);
+        xRayList.get(2).setTranslateY(-60);
+        xRayList.get(3).setTranslateX(60);
+        xRayList.get(3).setTranslateY(-60);
     }
 
     private void loadFloors(){
@@ -643,10 +753,29 @@ public class BaseMapSideViewController implements Initializable {
 
     private void setUpToolTipIcon(SVGGlyph icon, String name){
         Tooltip tooltip = new Tooltip();
-        tooltip.setStyle("-fx-font-size: 15;");
+        tooltip.setStyle("-fx-background-color: white;\n" +
+                "    -fx-text-fill: black;\n" +
+                "    -fx-opacity: 80%;\n" +
+                "    -fx-stroke: -color-primary;\n" +
+                "    -fx-stroke-width: 1;\n" +
+                "    -fx-font-size: 15;");
         tooltip.setShowDelay(new Duration(0));
         tooltip.setText(name);
         Tooltip.install(icon, tooltip);
+    }
+
+    private void setUpToolTipText(Text text, Circle circle){
+        Tooltip tooltip = new Tooltip();
+        tooltip.setStyle("-fx-background-color: white;\n" +
+                "    -fx-text-fill: black;\n" +
+                "    -fx-opacity: 80%;\n" +
+                "    -fx-stroke: -color-primary;\n" +
+                "    -fx-stroke-width: 1;\n" +
+                "    -fx-font-size: 15;");
+        tooltip.setShowDelay(new Duration(0));
+        tooltip.setText("Ready For Pickup: " + text.getText());
+        Tooltip.install(text, tooltip);
+        Tooltip.install(circle, tooltip);
     }
 
     // This should only be called in initialize

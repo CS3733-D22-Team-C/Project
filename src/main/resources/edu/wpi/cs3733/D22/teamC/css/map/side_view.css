@@ -98,3 +98,6 @@
     -fx-max-height: 200;
     -fx-max-width: 200;
 }
+.image-view{
+    -fx-cursor: hand;
+}

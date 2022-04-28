@@ -40,7 +40,7 @@
                <children>
                   <MFXScrollPane hbarPolicy="NEVER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" vbarPolicy="NEVER" HBox.hgrow="ALWAYS">
                      <content>
-                        <ImageView fx:id="floorImage" fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
+                        <ImageView fx:id="floorImage" fitHeight="20.0" fitWidth="20.0" onMouseClicked="#onGoToClicked" pickOnBounds="true" preserveRatio="true" styleClass="image-container">
                            <viewport>
                               <Rectangle2D />
                            </viewport>
