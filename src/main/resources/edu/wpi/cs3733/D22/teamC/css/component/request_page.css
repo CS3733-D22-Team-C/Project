@@ -9,9 +9,9 @@
     -fx-spacing: 10px;
 }
 
-.fields-padding > .text-field {
-    -fx-padding: 6 6 6 6;
-}
+/*.fields-padding > .text-field {*/
+/*    -fx-padding: 6 6 6 6;*/
+/*}*/
 
 .service-request-id {
     -fx-font-size: 18px;
