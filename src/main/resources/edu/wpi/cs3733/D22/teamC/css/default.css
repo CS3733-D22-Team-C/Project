@@ -82,7 +82,7 @@
 }
 
     .combo-box:disabled {
-        -fx-opacity: 50%;
+        -fx-opacity: 50;
     }
 
 .mfx-checkbox {
