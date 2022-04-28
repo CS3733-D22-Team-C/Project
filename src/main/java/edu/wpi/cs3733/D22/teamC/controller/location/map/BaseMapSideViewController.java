@@ -6,6 +6,8 @@ import edu.wpi.cs3733.D22.teamC.App;
 import edu.wpi.cs3733.D22.teamC.controller.map.MapViewController;
 import edu.wpi.cs3733.D22.teamC.entity.floor.Floor;
 import edu.wpi.cs3733.D22.teamC.entity.floor.FloorDAO;
+import edu.wpi.cs3733.D22.teamC.entity.location.Location;
+import edu.wpi.cs3733.D22.teamC.entity.location.LocationDAO;
 import edu.wpi.cs3733.D22.teamC.entity.medical_equipment.MedicalEquipment;
 import edu.wpi.cs3733.D22.teamC.entity.medical_equipment.MedicalEquipmentDAO;
 import edu.wpi.cs3733.D22.teamC.fileio.svg.SVGParser;
@@ -122,6 +124,7 @@ public class BaseMapSideViewController implements Initializable {
         isEditMode = false;
         floorNodeControllerList = new ArrayList<>();
         loadFloors();
+        selectedFloor = floorNodeControllerList.get(0).getFloor();
         loadEquipment();
         SVGParser svgParser = new SVGParser();
         String folderContent = svgParser.getPath("static/icons/folder_icon.svg");
@@ -405,21 +408,23 @@ public class BaseMapSideViewController implements Initializable {
 
         List<MedicalEquipment> beds = MEL.getEquipmentByFloorAndType(selectedFloor.getID(), MedicalEquipment.EquipmentType.Bed);
         List<MedicalEquipment> recliners = MEL.getEquipmentByFloorAndType(selectedFloor.getID(), MedicalEquipment.EquipmentType.Recliner);
+        List<MedicalEquipment> pumps = MEL.getEquipmentByFloorAndType(selectedFloor.getID(), MedicalEquipment.EquipmentType.Infusion_Pump);
+        List<MedicalEquipment> xrays = MEL.getEquipmentByFloorAndType(selectedFloor.getID(), MedicalEquipment.EquipmentType.Portable_X_Ray);
 
-        dirtyEquip.numOfRecliners   = dirtyRecliners.size();
         dirtyEquip.numOfBeds        = beds.stream().filter(bed -> bed.getStatus().equals(MedicalEquipment.EquipmentStatus.Dirty)).collect(Collectors.toList()).size();
-        dirtyEquip.numOfPumps       = dirtyPumps.size();
-        dirtyEquip.numOfXRays       = dirtyXRays.size();
+        dirtyEquip.numOfRecliners   = recliners.stream().filter(recliner -> recliner.getStatus().equals(MedicalEquipment.EquipmentStatus.Dirty)).collect(Collectors.toList()).size();
+        dirtyEquip.numOfPumps       = pumps.stream().filter(pump -> pump.getStatus().equals(MedicalEquipment.EquipmentStatus.Dirty)).collect(Collectors.toList()).size();
+        dirtyEquip.numOfXRays       = xrays.stream().filter(xray -> xray.getStatus().equals(MedicalEquipment.EquipmentStatus.Dirty)).collect(Collectors.toList()).size();
 
         inUseEquip.numOfBeds        = beds.stream().filter(bed -> bed.getStatus().equals(MedicalEquipment.EquipmentStatus.Unavailable)).collect(Collectors.toList()).size();
-        inUseEquip.numOfXRays       = inUseXRays.size();
-        inUseEquip.numOfPumps       = inUsePumps.size();
-        inUseEquip.numOfRecliners   = inUseRecliners.size();
+        inUseEquip.numOfRecliners   = recliners.stream().filter(recliner -> recliner.getStatus().equals(MedicalEquipment.EquipmentStatus.Unavailable)).collect(Collectors.toList()).size();
+        inUseEquip.numOfPumps       = pumps.stream().filter(pump -> pump.getStatus().equals(MedicalEquipment.EquipmentStatus.Unavailable)).collect(Collectors.toList()).size();
+        inUseEquip.numOfXRays       = xrays.stream().filter(xray -> xray.getStatus().equals(MedicalEquipment.EquipmentStatus.Unavailable)).collect(Collectors.toList()).size();
 
-        readyEquip.numOfXRays       = cleanXRays.size();
-        readyEquip.numOfPumps       = cleanPumps.size();
-        readyEquip.numOfRecliners   = cleanRecliners.size();
         readyEquip.numOfBeds        = beds.stream().filter(bed -> bed.getStatus().equals(MedicalEquipment.EquipmentStatus.Available)).collect(Collectors.toList()).size();
+        readyEquip.numOfRecliners   = recliners.stream().filter(recliner -> recliner.getStatus().equals(MedicalEquipment.EquipmentStatus.Available)).collect(Collectors.toList()).size();
+        readyEquip.numOfPumps       = pumps.stream().filter(pump -> pump.getStatus().equals(MedicalEquipment.EquipmentStatus.Available)).collect(Collectors.toList()).size();
+        readyEquip.numOfXRays       = xrays.stream().filter(xray -> xray.getStatus().equals(MedicalEquipment.EquipmentStatus.Available)).collect(Collectors.toList()).size();
 
         bedPane.getChildren().clear();
         reclinerPane.getChildren().clear();
@@ -477,29 +482,37 @@ public class BaseMapSideViewController implements Initializable {
         ObservableList<Node> xRayList = xRayPane.getChildren();
 
         Circle bedPickup = new Circle();
-        bedPickup.setFill(Color.AQUA);
+        bedPickup.setFill(Color.web("005A9B"));
         bedPickup.setStroke(Color.DARKBLUE);
         bedPickup.setRadius(20.0);
 
         Circle reclinerPickup = new Circle();
-        reclinerPickup.setFill(Color.AQUA);
+        reclinerPickup.setFill(Color.web("005A9B"));
         reclinerPickup.setStroke(Color.DARKBLUE);
         reclinerPickup.setRadius(20.0);
 
         Circle pumpPickup = new Circle();
-        pumpPickup.setFill(Color.AQUA);
+        pumpPickup.setFill(Color.web("005A9B"));
         pumpPickup.setStroke(Color.DARKBLUE);
         pumpPickup.setRadius(20.0);
 
         Circle xRayPickup = new Circle();
-        xRayPickup.setFill(Color.AQUA);
+        xRayPickup.setFill(Color.web("005A9B"));
         xRayPickup.setStroke(Color.DARKBLUE);
         xRayPickup.setRadius(20.0);
 
-        Text bedPickupNum = new Text("0"); // todo Set with Query
-        Text reclinerPickupNum = new Text("0");
-        Text pumpPickupNum = new Text("0");
-        Text xRayPickupNum = new Text("0");
+        List<Location> pickupLocations= new FloorDAO().getAllLocations(selectedFloor.getID()).stream().filter(location -> location.getNodeType().equals(Location.NodeType.DIRT)).collect(Collectors.toList());
+        List<MedicalEquipment> pickupEquipment = new ArrayList<>();
+        pickupLocations.forEach(pickupLocation -> pickupEquipment.addAll(MEL.getEquipmentByLocation(pickupLocation.getID())));
+
+        Text bedPickupNum = new Text(Integer.toString(pickupEquipment.stream().filter(medicalEquipment -> medicalEquipment.getEquipmentType().equals(MedicalEquipment.EquipmentType.Bed)).collect(Collectors.toList()).size()));
+        bedPickupNum.setFill(Color.WHITE);
+        Text reclinerPickupNum = new Text(Integer.toString(pickupEquipment.stream().filter(medicalEquipment -> medicalEquipment.getEquipmentType().equals(MedicalEquipment.EquipmentType.Recliner)).collect(Collectors.toList()).size()));
+        reclinerPickupNum.setFill(Color.WHITE);
+        Text pumpPickupNum = new Text(Integer.toString(pickupEquipment.stream().filter(medicalEquipment -> medicalEquipment.getEquipmentType().equals(MedicalEquipment.EquipmentType.Infusion_Pump)).collect(Collectors.toList()).size()));
+        pumpPickupNum.setFill(Color.WHITE);
+        Text xRayPickupNum = new Text(Integer.toString(pickupEquipment.stream().filter(medicalEquipment -> medicalEquipment.getEquipmentType().equals(MedicalEquipment.EquipmentType.Portable_X_Ray)).collect(Collectors.toList()).size()));
+        xRayPickupNum.setFill(Color.WHITE);
 
         setUpToolTipText(bedPickupNum, bedPickup);
         setUpToolTipText(reclinerPickupNum, reclinerPickup);
