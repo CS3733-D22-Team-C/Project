@@ -2,12 +2,14 @@ package edu.wpi.cs3733.D22.teamC.controller.service_request.translator;
 
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXTreeTableView;
+import com.jfoenix.svg.SVGGlyph;
 import edu.wpi.cs3733.D22.teamC.controller.service_request.InsertServiceRequestCreateController;
 import edu.wpi.cs3733.D22.teamC.entity.generic.DAO;
 import edu.wpi.cs3733.D22.teamC.entity.patient.Patient;
 import edu.wpi.cs3733.D22.teamC.entity.patient.PatientDAO;
 import edu.wpi.cs3733.D22.teamC.entity.service_request.translator.TranslatorSR;
 import edu.wpi.cs3733.D22.teamC.entity.service_request.translator.TranslatorSRDAO;
+import edu.wpi.cs3733.D22.teamC.fileio.svg.SVGParser;
 import edu.wpi.cs3733.D22.teamC.models.patient.PatientSelectorWindow;
 import edu.wpi.cs3733.D22.teamC.models.service_request.ServiceRequestTableDisplay;
 import edu.wpi.cs3733.D22.teamC.models.service_request.translator.TranslatorSRTableDisplay;
@@ -41,6 +43,12 @@ public class TranslatorSRInsertCreateController implements InsertServiceRequestC
         for (TranslatorSR.Language language : TranslatorSR.Language.values()) {
             languageSComboBox.getItems().add(language.toString());
         }
+
+        SVGParser svgParser = new SVGParser();
+        String patientIcon = svgParser.getPath("static/icons/employee_icon.svg");
+        SVGGlyph employeeContent = new SVGGlyph(patientIcon);
+        employeeContent.setSize(20);
+        patientButton.setGraphic(employeeContent);
         
         //Patient ComboBox
         PatientDAO patientDAO = new PatientDAO();
