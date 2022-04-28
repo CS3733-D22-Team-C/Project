@@ -12,10 +12,7 @@ import javafx.scene.layout.BorderPane;
 import javafx.stage.Stage;
 import lombok.extern.slf4j.Slf4j;
 
-import javax.lang.model.element.ElementVisitor;
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Stack;
 
 @Slf4j
@@ -81,7 +78,10 @@ public class App extends Application {
 
     @Override
     public void init() {
-        SessionManager.switchDatabase(SessionManager.DBMode.EMBEDDED);
+        // Authentication
+        GoogleManager.authenticateClient();
+        
+        SessionManager.switchDatabase(SessionManager.DBMode.CLOUD);
         log.info("Starting Up");
     }
     //Test comment
