@@ -9,6 +9,8 @@ import edu.wpi.cs3733.D22.teamC.entity.location.LocationDAO;
 import edu.wpi.cs3733.D22.teamC.models.generic.TableDisplay;
 import edu.wpi.cs3733.D22.teamC.models.location.LocationTableDisplay;
 import edu.wpi.cs3733.D22.teamC.models.utils.ComponentWrapper;
+import io.github.palexdev.materialfx.controls.MFXComboBox;
+import io.github.palexdev.materialfx.controls.MFXTextField;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -28,13 +30,13 @@ public class LocationTableViewInsertController extends InsertTableViewController
     @FXML protected JFXButton confirmButton;
     @FXML private JFXButton cancel;
 
-    @FXML private TextField longNameField;
-    @FXML private TextField shortNameField;
-    @FXML private ComboBox<Location.NodeType> nodeTypeComboBox;
-    @FXML private TextField buildingField;
+    @FXML private MFXTextField longNameField;
+    @FXML private MFXTextField shortNameField;
+    @FXML private MFXComboBox<Location.NodeType> nodeTypeComboBox;
+    @FXML private MFXTextField buildingField;
     @FXML private ComboBox<Floor> floorComboBox;
-    @FXML private TextField xField;
-    @FXML private TextField yField;
+    @FXML private MFXTextField xField;
+    @FXML private MFXTextField yField;
 
     @FXML Label title;
 

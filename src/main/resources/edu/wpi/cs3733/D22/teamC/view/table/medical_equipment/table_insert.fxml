@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import com.jfoenix.controls.JFXButton?>
-<?import com.jfoenix.controls.JFXComboBox?>
+<?import io.github.palexdev.materialfx.controls.MFXComboBox?>
+<?import io.github.palexdev.materialfx.controls.MFXTextField?>
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.ScrollPane?>
-<?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
@@ -31,7 +31,7 @@
                         <Label prefHeight="17.0" prefWidth="272.0" text="Location" />
                         <HBox>
                            <children>
-                              <SearchableComboBox fx:id="locationID" prefHeight="46.0" prefWidth="373.0" />
+                              <SearchableComboBox fx:id="locationID" prefHeight="46.0" prefWidth="373.0" promptText="Location" />
                               <JFXButton fx:id="mapViewButton" onAction="#goToMapView" prefHeight="46.0" prefWidth="54.0" style="-fx-background-color: -color-secondary;" stylesheets="@../../../css/colors.css" />
                            </children>
                         </HBox>
@@ -42,8 +42,7 @@
                   </VBox>
                   <VBox>
                      <children>
-                        <Label prefHeight="17.0" prefWidth="367.0" text="Type" />
-                        <JFXComboBox fx:id="typeComboBox" maxWidth="1.7976931348623157E308" onAction="#onFieldUpdated" prefHeight="47.0" prefWidth="419.0" styleClass="dropdown" stylesheets="@../../../css/default.css" />
+                        <MFXComboBox fx:id="typeComboBox" floatMode="BORDER" floatingText="Type" maxWidth="1.7976931348623157E308" onAction="#onFieldUpdated" />
                      </children>
                      <VBox.margin>
                         <Insets top="15.0" />
@@ -51,24 +50,18 @@
                   </VBox>
                   <VBox>
                      <children>
-                        <Label prefHeight="17.0" prefWidth="421.0" text="Number" />
-                        <TextField fx:id="number" onKeyTyped="#onFieldUpdated" prefHeight="47.0" prefWidth="410.0" styleClass="base_view_table_text" stylesheets="@../../../css/table_skeleton.css" />
+                        <MFXTextField fx:id="number" floatMode="BORDER" floatingText="Number" maxWidth="1.7976931348623157E308" />
                      </children>
                      <VBox.margin>
                         <Insets top="15.0" />
                      </VBox.margin>
                   </VBox>
-                  <VBox>
+                  <VBox prefHeight="130.0" prefWidth="400.0">
                      <VBox.margin>
                         <Insets bottom="10.0" top="15.0" />
                      </VBox.margin>
                      <children>
-                        <Label prefHeight="17.0" prefWidth="421.0" text="Status">
-                           <padding>
-                              <Insets left="10.0" />
-                           </padding>
-                        </Label>
-                        <JFXComboBox fx:id="statusComboBox" maxWidth="1.7976931348623157E308" onAction="#onFieldUpdated" prefHeight="47.0" prefWidth="419.0" styleClass="dropdown" stylesheets="@../../../css/default.css" />
+                        <MFXComboBox fx:id="statusComboBox" floatMode="BORDER" floatingText="Status" maxWidth="1.7976931348623157E308" onAction="#onFieldUpdated" />
                      </children>
                   </VBox>
                   <HBox alignment="CENTER_RIGHT" prefHeight="61.0" prefWidth="395.0">

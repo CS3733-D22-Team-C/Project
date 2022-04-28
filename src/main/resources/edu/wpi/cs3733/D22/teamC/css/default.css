@@ -30,10 +30,12 @@
 .button {
     -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.5), 1, 0, 0, 0);
     -fx-cursor: hand;
+}
+
+.mfx-button {
     -mfx-button-type: RAISED;
     -mfx-auto-clip: true; /* Allows for all MFX buttons to have their ripple generators generate the ripples to the correct shape */
     -mfx-background-opacity: 0;
-
 }
 
 .mfx-toggle-button {
@@ -80,8 +82,12 @@
 }
 
     .combo-box:disabled {
-        -fx-opacity: 50%;
+        -fx-opacity: 50;
     }
+
+.mfx-combo-box {
+    -mfx-main: -color-primary;
+}
 
 .mfx-checkbox {
     -mfx-main:-color-secondary;

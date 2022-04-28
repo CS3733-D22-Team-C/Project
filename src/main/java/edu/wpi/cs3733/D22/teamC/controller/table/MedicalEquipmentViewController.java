@@ -12,6 +12,8 @@ import edu.wpi.cs3733.D22.teamC.models.builders.NotificationBuilder;
 import edu.wpi.cs3733.D22.teamC.models.generic.TableDisplay;
 import edu.wpi.cs3733.D22.teamC.models.location.MapSelectorWindow;
 import edu.wpi.cs3733.D22.teamC.models.medical_equipment.MedicalEquipmentTableDisplay;
+import io.github.palexdev.materialfx.controls.MFXComboBox;
+import io.github.palexdev.materialfx.controls.MFXTextField;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -31,9 +33,9 @@ public class MedicalEquipmentViewController extends InsertTableViewController<Me
     @FXML protected JFXButton confirmButton;
 
     @FXML private SearchableComboBox<String> locationID;
-    @FXML private ComboBox<MedicalEquipment.EquipmentType> typeComboBox;
-    @FXML private TextField number;
-    @FXML private ComboBox<MedicalEquipment.EquipmentStatus> statusComboBox;//
+    @FXML private MFXComboBox<MedicalEquipment.EquipmentType> typeComboBox;
+    @FXML private MFXTextField number;
+    @FXML private MFXComboBox<MedicalEquipment.EquipmentStatus> statusComboBox;//
     @FXML Label title;
 
     @FXML JFXButton mapViewButton;
@@ -162,7 +164,7 @@ public class MedicalEquipmentViewController extends InsertTableViewController<Me
                     else{
                         if ((!parentController.currentObj.getEquipmentType().equals(typeComboBox.getValue()))
                             || !(parentController.currentObj.getTypeNumber()== Integer.parseInt(number.getText()))){
-                            //this code runs if user changed the tpye or number. We must check that chages are OK
+                            //this code runs if user changed the type or number. We must check that chages are OK
 
                             if (!medicineExists(typeComboBox.getValue(), Integer.parseInt(number.getText()))){
                                 updateObject();

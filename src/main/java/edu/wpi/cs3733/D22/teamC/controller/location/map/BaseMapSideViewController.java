@@ -11,6 +11,7 @@ import edu.wpi.cs3733.D22.teamC.entity.location.LocationDAO;
 import edu.wpi.cs3733.D22.teamC.entity.medical_equipment.MedicalEquipment;
 import edu.wpi.cs3733.D22.teamC.entity.medical_equipment.MedicalEquipmentDAO;
 import edu.wpi.cs3733.D22.teamC.fileio.svg.SVGParser;
+import edu.wpi.cs3733.D22.teamC.models.builders.DialogBuilder;
 import edu.wpi.cs3733.D22.teamC.models.utils.ComponentWrapper;
 import edu.wpi.cs3733.D22.teamC.models.utils.DoughnutChart;
 import io.github.palexdev.materialfx.controls.MFXButton;
@@ -28,6 +29,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.chart.PieChart;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Label;
 import javafx.scene.control.Tooltip;
 import javafx.scene.image.Image;
@@ -193,60 +195,69 @@ public class BaseMapSideViewController implements Initializable {
     //#region base add/edit/delete floor
     @FXML
     void onAddFloorClicked(ActionEvent event) {
-        floorTitle.setText("New Floor");
-        descriptionText.setText("New Floor");
-        floorImage.setImage(null);
-        floorVBox.setDisable(true);
-        this.isEditMode = false;
-        floorEditPanel.setVisible(true);
-        container.setVisible(false);
+        if (App.instance.getUserAccount().getAdmin()) {
+            floorTitle.setText("New Floor");
+            descriptionText.setText("New Floor");
+            floorImage.setImage(null);
+            floorVBox.setDisable(true);
+            this.isEditMode = false;
+            floorEditPanel.setVisible(true);
+            container.setVisible(false);
 
-        FloorDAO floorDAO = new FloorDAO();
-        selectedFloor = new Floor(1, "New Floor", "");
-        selectedFloor.setDescription("");
-        order = 1; // sets floor to bottom by default
-        selectedFloor.setOrder(order);
-        for(Floor floor : floorDAO.getAll()){ // increases all by 1
-            floor.setOrder(floor.getOrder()+1);
-            floorDAO.update(floor);
+            FloorDAO floorDAO = new FloorDAO();
+            selectedFloor = new Floor(1, "New Floor", "");
+            selectedFloor.setDescription("");
+            order = 1; // sets floor to bottom by default
+            selectedFloor.setOrder(order);
+            for(Floor floor : floorDAO.getAll()){ // increases all by 1
+                floor.setOrder(floor.getOrder()+1);
+                floorDAO.update(floor);
+            }
+            floorDAO.insert(selectedFloor);
+            shortName.setText("");
+            longName.setText("");
+            description.setText("");
+            image.setText("");
+            bFile = null;
+            imagePath = "";
+            loadFloors();
+            ComponentWrapper.setTextLengthLimiter(description, 255);
+        } else {
+            Alert alert = DialogBuilder.createWarningAlert("Permission Denied", "Only Admin Accounts can add floors.");
+            alert.showAndWait();
         }
-        floorDAO.insert(selectedFloor);
-        shortName.setText("");
-        longName.setText("");
-        description.setText("");
-        image.setText("");
-        bFile = null;
-        imagePath = "";
-        loadFloors();
-        ComponentWrapper.setTextLengthLimiter(description, 255);
     }
 
     @FXML
     void onDeleteClicked(ActionEvent event) {
-        FloorDAO floorDAO = new FloorDAO();
-        floorDAO.delete(selectedFloor);
+        if (App.instance.getUserAccount().getAdmin()) {
+            FloorDAO floorDAO = new FloorDAO();
+            floorDAO.delete(selectedFloor);
 
-        for(FloorNode node : floorNodeControllerList){
-            if(node.getFloor() == selectedFloor){
-                int deletedOrder = selectedFloor.getOrder();
-                for(Floor floor : floorDAO.getAll()){
-                    if(floor.getOrder() > deletedOrder){
-                        floor.setOrder(floor.getOrder()-1);
-                        floorDAO.update(floor);
+            for(FloorNode node : floorNodeControllerList){
+                if(node.getFloor() == selectedFloor){
+                    int deletedOrder = selectedFloor.getOrder();
+                    for(Floor floor : floorDAO.getAll()){
+                        if(floor.getOrder() > deletedOrder){
+                            floor.setOrder(floor.getOrder()-1);
+                            floorDAO.update(floor);
+                        }
                     }
                 }
             }
+            floorTitle.setText("Select A Floor");
+            floorImage.setImage(null);
+            descriptionText.setText("Select A Floor");
+
+            editButton.setDisable(true);
+            deleteButton.setDisable(true);
+            selectedFloor = null;
+
+            loadFloors();
+        } else {
+            Alert alert = DialogBuilder.createWarningAlert("Permission Denied", "Only Admin Accounts can delete floors.");
+            alert.showAndWait();
         }
-        floorTitle.setText("Select A Floor");
-        floorImage.setImage(null);
-        descriptionText.setText("Select A Floor");
-
-        editButton.setDisable(true);
-        deleteButton.setDisable(true);
-
-        selectedFloor = null;
-
-        loadFloors();
     }
 
     @FXML

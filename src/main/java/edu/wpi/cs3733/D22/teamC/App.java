@@ -43,7 +43,7 @@ public class App extends Application {
     public static final String TITLE_BAR_COMPONENT_PATH = "view/component/title_bar.fxml";
     public static final String DRAWER_PATH = "view/component/drawer.fxml";
     public static final String DRAWER_CONTENT_PATH = "view/component/drawer_content.fxml";
-    public static final String LOGIN_PATH = "view/general/login.fxml";
+    public static final String LOGIN_PATH = "view/general/login-page.fxml";
     public static final String SERVICE_REQUEST_DASHBOARD = "view/service_request/landing_page/service_request_landing_page.fxml";
     public static final String DASHBOARD_PATH = "view/location/map/base_side_map_view.fxml";
     public static final String DATABASE_PAGE_PATH = "view/general/edit_databases_page.fxml";

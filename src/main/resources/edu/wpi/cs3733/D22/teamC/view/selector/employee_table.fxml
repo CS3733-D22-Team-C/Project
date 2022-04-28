@@ -7,19 +7,15 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 
-<VBox alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="600.0" stylesheets="@../../css/default.css" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1">
+<VBox alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="600.0" styleClass="page-container" stylesheets="@../../css/default.css" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1">
    <children>
-      <HBox alignment="CENTER_LEFT" VBox.vgrow="ALWAYS">
-         <children>
-            <Label fx:id="title" styleClass="page-title" stylesheets="@../../css/default.css" text="Select an Employee" />
-         </children>
-         <padding>
-            <Insets bottom="15.0" left="35.0" right="15.0" top="15.0" />
-         </padding>
-      </HBox>
+      <Label fx:id="title" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" styleClass="page-container-title" stylesheets="@../../css/default.css" text="Select an Employee" />
       <VBox VBox.vgrow="ALWAYS">
          <children>
-            <JFXTreeTableView fx:id="table" styleClass="table-view" />
+            <JFXTreeTableView fx:id="table" prefHeight="447.0" prefWidth="530.0" styleClass="table-view">
+               <padding>
+                  <Insets top="20.0" />
+               </padding></JFXTreeTableView>
          </children>
          <padding>
             <Insets left="35.0" right="35.0" />
@@ -27,7 +23,7 @@
       </VBox>
       <HBox alignment="CENTER_RIGHT" VBox.vgrow="ALWAYS">
          <children>
-            <JFXButton onAction="#onSelect" prefHeight="30.0" prefWidth="75.0" styleClass="button-confirm" stylesheets="@../../css/default.css" text="Select">
+            <JFXButton onAction="#onSelect" prefHeight="30.0" prefWidth="75.0" styleClass="primary-action-button" stylesheets="@../../css/default.css" text="Select">
                <HBox.margin>
                   <Insets right="20.0" />
                </HBox.margin></JFXButton>

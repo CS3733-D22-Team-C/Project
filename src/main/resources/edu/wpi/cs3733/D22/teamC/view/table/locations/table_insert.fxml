@@ -1,10 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import com.jfoenix.controls.JFXButton?>
-<?import com.jfoenix.controls.JFXComboBox?>
+<?import io.github.palexdev.materialfx.controls.MFXComboBox?>
+<?import io.github.palexdev.materialfx.controls.MFXTextField?>
 <?import javafx.geometry.Insets?>
+<?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.Label?>
-<?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
@@ -24,66 +25,39 @@
             </VBox>
             <VBox VBox.vgrow="ALWAYS">
                <children>
-                  <Label fx:id="label1" text="Long Name:" />
-                  <TextField fx:id="longNameField" onKeyTyped="#onFieldUpdated" prefWidth="373.0" styleClass="base_view_table_text" stylesheets="@../../../css/table_skeleton.css">
-                     <padding>
-                        <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
-                     </padding>
-                  </TextField>
+                  <MFXTextField fx:id="longNameField" floatMode="BORDER" floatingText="Long Name" maxWidth="1.7976931348623157E308" />
                </children>
             </VBox>
             <VBox VBox.vgrow="ALWAYS">
                <children>
-                  <Label fx:id="label2" text="Short Name:" />
-                  <TextField fx:id="shortNameField" onKeyTyped="#onFieldUpdated" prefWidth="373.0" styleClass="base_view_table_text" stylesheets="@../../../css/table_skeleton.css">
-                     <padding>
-                        <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
-                     </padding>
-                  </TextField>
+                  <MFXTextField fx:id="shortNameField" floatMode="BORDER" floatingText="Short Name" maxWidth="1.7976931348623157E308" />
                </children>
             </VBox>
             <VBox VBox.vgrow="ALWAYS">
                <children>
-                  <Label fx:id="label4" text="Node Type:" />
-                  <JFXComboBox fx:id="nodeTypeComboBox" maxWidth="1.7976931348623157E308" minHeight="-Infinity" onAction="#onFieldUpdated" prefHeight="35.0" prefWidth="420.0" styleClass="dropdown" stylesheets="@../../../css/default.css" />
+                  <MFXComboBox fx:id="nodeTypeComboBox" floatingText="Node Type" maxWidth="1.7976931348623157E308" onAction="#onFieldUpdated" />
                </children>
             </VBox>
             <VBox VBox.vgrow="ALWAYS">
                <children>
-                  <Label fx:id="label5" text="Building:" />
-                  <TextField fx:id="buildingField" onKeyTyped="#onFieldUpdated" prefWidth="419.0" styleClass="base_view_table_text" stylesheets="@../../../css/table_skeleton.css">
-                     <padding>
-                        <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
-                     </padding>
-                  </TextField>
+                  <MFXTextField fx:id="buildingField" floatMode="BORDER" floatingText="Building" maxWidth="1.7976931348623157E308" />
                </children>
             </VBox>
             <VBox VBox.vgrow="ALWAYS">
                <children>
-                  <Label fx:id="label6" text="Floor:" />
-                  <JFXComboBox fx:id="floorComboBox" maxWidth="1.7976931348623157E308" minHeight="-Infinity" onAction="#onFieldUpdated" prefHeight="35.0" prefWidth="420.0" styleClass="dropdown" stylesheets="@../../../css/default.css" />
+                  <ComboBox fx:id="floorComboBox" maxWidth="1.7976931348623157E308" onAction="#onFieldUpdated" prefHeight="38.0" prefWidth="419.0" promptText="Floor" />
                </children>
             </VBox>
             <HBox spacing="20.0" VBox.vgrow="ALWAYS">
                <children>
                   <VBox prefWidth="149.5" HBox.hgrow="ALWAYS">
                      <children>
-                        <Label fx:id="label7" text="X Coordinate:" />
-                        <TextField onKeyTyped="#onFieldUpdated" prefWidth="373.0" styleClass="base_view_table_text" stylesheets="@../../../css/table_skeleton.css" fx:id="xField">
-                           <padding>
-                              <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
-                           </padding>
-                        </TextField>
+                        <MFXTextField floatMode="BORDER" floatingText="X Coordinate" maxWidth="1.7976931348623157E308" fx:id="xField" />
                      </children>
                   </VBox>
                   <VBox prefWidth="149.5" HBox.hgrow="ALWAYS">
                      <children>
-                        <Label fx:id="label8" text="Y Coordinate:" />
-                        <TextField fx:id="yField" onKeyTyped="#onFieldUpdated" prefWidth="17.0" styleClass="base_view_table_text" stylesheets="@../../../css/table_skeleton.css">
-                           <padding>
-                              <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
-                           </padding>
-                        </TextField>
+                        <MFXTextField fx:id="yField" floatMode="BORDER" floatingText="Y Coordinate" maxWidth="1.7976931348623157E308" />
                      </children>
                   </VBox>
                </children>
