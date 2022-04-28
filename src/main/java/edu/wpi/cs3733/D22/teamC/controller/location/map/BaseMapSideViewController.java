@@ -86,6 +86,7 @@ public class BaseMapSideViewController implements Initializable {
     @FXML private HBox imageBox;
     @FXML private VBox floorVBox;
     @FXML private Text descriptionText;
+    @FXML private VBox equipmentBox;
 
 
     // Pie Chart Panes
@@ -122,20 +123,14 @@ public class BaseMapSideViewController implements Initializable {
         bFile = null;
         order = 1;
         isEditMode = false;
+        loadEquipment();
         floorNodeControllerList = new ArrayList<>();
         loadFloors();
-        selectedFloor = floorNodeControllerList.get(0).getFloor();
-        loadEquipment();
         SVGParser svgParser = new SVGParser();
         String folderContent = svgParser.getPath("static/icons/folder_icon.svg");
         SVGGlyph folderIcon = new SVGGlyph(folderContent);
         folderIcon.setSize(20);
         fileSelectButton.setGraphic(folderIcon);
-        try {
-            onFloorClicked(null, floorNodeControllerList.get(floorNodeControllerList.size()-1));
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
     }
 
     @FXML
@@ -404,6 +399,10 @@ public class BaseMapSideViewController implements Initializable {
     //#endregion
 
     private void loadEquipment(){
+        if(selectedFloor == null){
+            equipmentBox.setVisible(false);
+            return;
+        }
         MedicalEquipmentDAO MEL = new MedicalEquipmentDAO();
 
         List<MedicalEquipment> beds = MEL.getEquipmentByFloorAndType(selectedFloor.getID(), MedicalEquipment.EquipmentType.Bed);
@@ -593,6 +592,24 @@ public class BaseMapSideViewController implements Initializable {
         return list;
     }
 
+    private void initializeToolTip(ObservableList<PieChart.Data> datas){
+        datas.forEach(data -> {
+            Tooltip tooltip = new Tooltip();
+            tooltip.setStyle("-fx-background-color: white;\n" +
+                    "    -fx-text-fill: black;\n" +
+                    "    -fx-opacity: 80%;\n" +
+                    "    -fx-stroke: -color-primary;\n" +
+                    "    -fx-stroke-width: 1;\n" +
+                    "    -fx-font-size: 15;");
+            tooltip.setShowDelay(new Duration(0));
+            tooltip.setText(data.getName() + ": " + (int) data.getPieValue());
+            Tooltip.install(data.getNode(), tooltip);
+            data.pieValueProperty().addListener((observable, oldValue, newValue) ->
+                    tooltip.setText(String.valueOf(newValue)));
+        });
+        datas.get(0).getNode().setStyle("-fx-pie-color: #333232;");
+    }
+
     private void setUpToolTip(ObservableList<PieChart.Data> datas){
         datas.forEach(data -> {
             Tooltip tooltip = new Tooltip();
@@ -642,6 +659,7 @@ public class BaseMapSideViewController implements Initializable {
     @FXML
     void onFloorClicked(MouseEvent event, FloorNode floorNode) throws IOException {
         //if(addFloorClicked) return;
+        equipmentBox.setVisible(true);
         this.selectedFloor = floorNode.getFloor();
         editButton.setDisable(false);
         deleteButton.setDisable(false);
