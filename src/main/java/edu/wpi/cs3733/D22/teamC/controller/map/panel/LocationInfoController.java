@@ -16,6 +16,7 @@ import edu.wpi.cs3733.D22.teamC.entity.patient.PatientDAO;
 import edu.wpi.cs3733.D22.teamC.entity.service_request.ServiceRequest;
 import edu.wpi.cs3733.D22.teamC.entity.service_request.ServiceRequestDAO;
 import edu.wpi.cs3733.D22.teamC.models.SRShortcutSelectorWindow;
+import edu.wpi.cs3733.D22.teamC.models.generic.TableDisplay;
 import edu.wpi.cs3733.D22.teamC.models.medical_equipment.MedicalEquipmentTableDisplay;
 import edu.wpi.cs3733.D22.teamC.models.patient.PatientTableDisplay;
 import edu.wpi.cs3733.D22.teamC.models.service_request.ServiceRequestTableDisplay;
@@ -114,21 +115,97 @@ public class LocationInfoController implements Initializable {
         setTabIcon(patientsTab, PATIENT_ICON);
 
         // Initialize Service Request Info
-
-        //Service Request type dropdown
         serviceReqTypeComboBox.getItems().setAll(ServiceRequest.RequestType.values());
 
-        serviceRequestTableDisplay = new ServiceRequestTableDisplay<>(serviceRequestTable);
+        serviceRequestTableDisplay = new ServiceRequestTableDisplay<>(serviceRequestTable) {
+            @Override
+            protected void setColumns(JFXTreeTableView table) {
+                // Insert Columns for Table
+                addColumn(
+                        table,
+                        "Number",
+                        1f * Integer.MAX_VALUE * 120,
+                        (ServiceRequestTableEntry entry) -> {return entry.number;}
+                );
+
+                addColumn(
+                        table,
+                        "Type",
+                        1f * Integer.MAX_VALUE * 120,
+                        (ServiceRequestTableEntry entry) -> {return entry.type;}
+                );
+
+                addColumn(
+                        table,
+                        "Status",
+                        1f * Integer.MAX_VALUE * 100,
+                        (ServiceRequestTableEntry entry) -> {return entry.status;}
+                );
+
+                addColumn(
+                        table,
+                        "Priority",
+                        1f * Integer.MAX_VALUE * 100,
+                        (ServiceRequestTableEntry entry) -> {return entry.priority;}
+                );
+            }
+        };
 
         // Initialize Medical Equipment Info
-
-        //MedicalEquipment type dropdown
         medEquipTypeComboBox.getItems().setAll(MedicalEquipment.EquipmentType.values());
 
-        medicalEquipmentTableDisplay = new MedicalEquipmentTableDisplay(medicalEquipmentTable);
+        medicalEquipmentTableDisplay = new MedicalEquipmentTableDisplay(medicalEquipmentTable) {
+            @Override
+            protected void setColumns(JFXTreeTableView table) {
+                addColumn(
+                        table,
+                        "Type",
+                        1f * Integer.MAX_VALUE * 132,
+                        (MedicalEquipmentTableEntry entry) -> entry.typeProperty
+                );
 
-        //Initialize Patients Info
-        patientTableDisplay = new PatientTableDisplay(patientsTable);
+                addColumn(
+                        table,
+                        "Number",
+                        1f * Integer.MAX_VALUE * 132,
+                        (MedicalEquipmentTableEntry entry) -> entry.typeNumberProperty
+                );
+
+                addColumn(
+                        table,
+                        "Status",
+                        1f * Integer.MAX_VALUE * 132,
+                        (MedicalEquipmentTableEntry entry) -> entry.statusProperty
+                );
+            }
+        };
+
+        // Initialize Patients Info
+        patientTableDisplay = new PatientTableDisplay(patientsTable) {
+            @Override
+            protected void setColumns(JFXTreeTableView table) {
+                addColumn(
+                        table,
+                        "Last Name",
+                        1f * Integer.MAX_VALUE * 120,
+                        (PatientTableDisplay.PatientTableEntry entry) -> {return entry.lastName;}
+                );
+
+                addColumn(
+                        table,
+                        "First Name",
+                        1f * Integer.MAX_VALUE * 120,
+                        (PatientTableDisplay.PatientTableEntry entry) -> {return entry.firstName;}
+                );
+
+                addColumn(
+                        table,
+                        "DOB",
+                        1f * Integer.MAX_VALUE * 120,
+                        (PatientTableDisplay.PatientTableEntry entry) -> {return entry.DOB;}
+                );
+            }
+        };
 
         setRowInteraction();
     }
@@ -299,6 +376,7 @@ public class LocationInfoController implements Initializable {
             mapViewController.getLocationManager().onClickCapture = location -> {
                 activeServiceRequest.setLocation(location);
                 updateServiceRequest();
+                setActiveServiceRequest(null);
 
                 Location currentLocation = mapViewController.getLocationManager().getCurrent();
 

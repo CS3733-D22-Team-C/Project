@@ -10,19 +10,17 @@ import javafx.beans.property.StringProperty;
 public class PatientTableDisplay extends TableDisplay<Patient>{
     public class PatientTableEntry extends TableDisplayEntry {
         // Properties
-        private StringProperty patientID;
-        private StringProperty firstName;
-        private StringProperty lastName;
-        private StringProperty emergencyContact;
-        private StringProperty phone;
-        private StringProperty DOB;
-        private StringProperty location;
+        public StringProperty firstName;
+        public StringProperty lastName;
+        public StringProperty emergencyContact;
+        public StringProperty phone;
+        public StringProperty DOB;
+        public StringProperty location;
 
 
 
         public PatientTableEntry(Patient patient) {
             super(patient);
-            patientID = new SimpleStringProperty((patient.getID()));
             firstName = new SimpleStringProperty(patient.getFirstName());
             lastName = new SimpleStringProperty(patient.getLastName());
             emergencyContact = new SimpleStringProperty(patient.getEmergencyContact());
@@ -36,7 +34,6 @@ public class PatientTableDisplay extends TableDisplay<Patient>{
             firstName.setValue(object.getFirstName());
             lastName.setValue(object.getLastName());
             phone.setValue(object.getPhone());
-            patientID.setValue(object.getID());
             emergencyContact.setValue(object.getEmergencyContact());
             location.setValue((object.getLocation() == null) ? "" : new LocationDAO().getByID(object.getLocation().getID()).getShortName());
             DOB.setValue((object.getDOB() == null) ? null : object.getDOB().toString().substring(0,10));
@@ -68,6 +65,7 @@ public class PatientTableDisplay extends TableDisplay<Patient>{
                 1f * Integer.MAX_VALUE * 20,
                 (PatientTableDisplay.PatientTableEntry entry) -> {return entry.firstName;}
         );
+
         addColumn(
                 table,
                 "Phone",
@@ -80,6 +78,7 @@ public class PatientTableDisplay extends TableDisplay<Patient>{
                 1f * Integer.MAX_VALUE * 20,
                 (PatientTableDisplay.PatientTableEntry entry) -> {return entry.location;}
         );
+
         addColumn(
                 table,
                 "DOB",
