@@ -2,10 +2,12 @@ package edu.wpi.cs3733.D22.teamC.controller.table;
 
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXTreeTableView;
+import com.jfoenix.svg.SVGGlyph;
 import edu.wpi.cs3733.D22.teamC.entity.location.Location;
 import edu.wpi.cs3733.D22.teamC.entity.location.LocationDAO;
 import edu.wpi.cs3733.D22.teamC.entity.patient.Patient;
 import edu.wpi.cs3733.D22.teamC.entity.patient.PatientDAO;
+import edu.wpi.cs3733.D22.teamC.fileio.svg.SVGParser;
 import edu.wpi.cs3733.D22.teamC.models.generic.TableDisplay;
 import edu.wpi.cs3733.D22.teamC.models.location.MapSelectorWindow;
 import edu.wpi.cs3733.D22.teamC.models.patient.PatientTableDisplay;
@@ -39,6 +41,10 @@ public class PatientViewController extends InsertTableViewController<Patient> im
     @FXML private MFXDatePicker date;
     Location a_location;
 
+    @FXML
+    private JFXButton cancel;
+
+
     private ValidationSupport validation;
 
 
@@ -51,6 +57,11 @@ public class PatientViewController extends InsertTableViewController<Patient> im
 
 
     public void initialize(URL location, ResourceBundle resources) {
+        SVGParser svgParser = new SVGParser();
+        String locationIcon = svgParser.getPath("static/icons/location_icon.svg");
+        SVGGlyph locationContent = new SVGGlyph(locationIcon);
+        locationContent.setSize(20);
+        locationButton.setGraphic(locationContent);
         validation = new ValidationSupport();
         validation.registerValidator(firstName, Validator.createEmptyValidator("first name required"));
         validation.registerValidator(lastName, Validator.createEmptyValidator("last name required"));
@@ -171,10 +182,7 @@ public class PatientViewController extends InsertTableViewController<Patient> im
     }
 
     @FXML
-    void onFieldUpdated() {
-        if (!number.getText().matches("\\d*"))
-            number.setText("");
-    }
+    void onFieldUpdated() {}
 
     @FXML
     void goToMapView() {
