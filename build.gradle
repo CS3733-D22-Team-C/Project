@@ -71,8 +71,6 @@ dependencies {
     implementation 'io.github.palexdev:materialfx:11.13.4'
 
     implementation platform('com.google.cloud:libraries-bom:25.2.0')
-    implementation 'com.google.cloud:google-cloud-bigquery'
-    implementation 'com.google.auth:google-auth-library-oauth2-http:1.6.0'
     implementation 'com.google.cloud:google-cloud-storage:2.6.1'
     implementation 'com.google.apis:google-api-services-plus:v1-rev590-1.25.0'
     implementation 'com.google.oauth-client:google-oauth-client-jetty:1.20.0'
@@ -89,7 +87,7 @@ jar {
     manifest {
         attributes 'Main-Class': mainClassName
     }
-
+    zip64=true
     from {
         configurations.runtimeClasspath.collect { it.isDirectory() ? it : zipTree(it) }
     }
