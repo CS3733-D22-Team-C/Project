@@ -29,6 +29,16 @@
     -fx-spacing: 10px;
 }
 
+.page-container {
+    -fx-max-width: 800px;
+    -fx-pref-width: 800px;
+}
+
+.tab-pane {
+    -fx-max-width: 800px;
+    -fx-pref-width: 800px;
+}
+
 .card {
     -fx-padding: 20px;
 }
