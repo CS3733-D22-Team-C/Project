@@ -124,22 +124,23 @@ public class LoginPageController implements Initializable {
     public void setInitialSelection() {
         if(SessionManager.getServerDatabase() == SessionManager.DBMode.EMBEDDED) {
             serverComboBox.setText("Embedded");
-        }
-        else if(SessionManager.getServerDatabase() == SessionManager.DBMode.SERVER) {
+        } else if(SessionManager.getServerDatabase() == SessionManager.DBMode.SERVER) {
             serverComboBox.setText("Server");
+        } else if(SessionManager.getServerDatabase() == SessionManager.DBMode.CLOUD) {
+            serverComboBox.setText("Cloud");
         }
     }
 
     @FXML
     public void onServerComboBoxChanged() {
-        if(serverComboBox.getText().equals("Embedded")) {
+        if(serverComboBox.getValue().equals("Embedded")) {
             SessionManager.switchDatabase(SessionManager.DBMode.EMBEDDED);
         }
-        else if(serverComboBox.getText().equals("Server")) {
+        else if(serverComboBox.getValue().equals("Server")) {
             SessionManager.switchDatabase(SessionManager.DBMode.SERVER);
         }
-        else if(serverComboBox.getText().equals("Cloud")) {
-            //TODO: Add cloud call
+        else if(serverComboBox.getValue().equals("Cloud")) {
+            SessionManager.switchDatabase(SessionManager.DBMode.CLOUD);
         }
     }
 

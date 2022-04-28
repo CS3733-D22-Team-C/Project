@@ -54,9 +54,7 @@ public class SanitationSRInsertCreateController implements InsertServiceRequestC
 
     @Override
     public boolean requiredFieldsPresent(){
-        if(sanitationType.getValue() == null)
-            return false;
-        return true;
+        return sanitationType.getValue() != null;
     }
 
 

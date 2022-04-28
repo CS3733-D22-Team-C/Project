@@ -16,12 +16,10 @@ public class TranslatorSRTableDisplay extends ServiceRequestTableDisplay<Transla
 
         public TranslatorSRTableEntry(TranslatorSR translatorSR) {
             super(translatorSR);
-
-            PatientDAO patientDAO = new PatientDAO();
+            
             this.language = new SimpleStringProperty((translatorSR.getLanguage().toString()));
             this.patient = new SimpleStringProperty((translatorSR.getPatient() != null)
                     ? translatorSR.getPatient().toString() : "N/A");
-
         }
     }
 

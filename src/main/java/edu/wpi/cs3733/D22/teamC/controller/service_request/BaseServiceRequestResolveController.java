@@ -93,7 +93,7 @@ public class BaseServiceRequestResolveController<T extends ServiceRequest> imple
         this.serviceRequest = serviceRequestDAO.getByID(serviceRequest.getID());
         srUUID = this.serviceRequest.getID();
 
-        if (serviceRequest.getLocation() != null) location = new LocationDAO().getByID(serviceRequest.getLocation().getID());
+        if (serviceRequest.getLocation() != null) location = serviceRequest.getLocation();
 
         insertController.setup(this, this.serviceRequest, isEditMode);
 
@@ -142,8 +142,10 @@ public class BaseServiceRequestResolveController<T extends ServiceRequest> imple
             }
 
             // Sets status at bottom
-            firstStatus.setText("  " + serviceRequest.getStatus().toString().toLowerCase() + "  ");
-            secondStatus.setText("  " + serviceRequest.getStatus().toString().toLowerCase() + "  ");
+            String firstStr = serviceRequest.getStatus().toString().toLowerCase();
+            firstStr = firstStr.substring(0, 1).toUpperCase() + firstStr.substring(1);
+            firstStatus.setText(firstStr);
+            secondStatus.setText(firstStr);
 
             // Set fields editable
             priority.setDisable(false);
@@ -224,8 +226,8 @@ public class BaseServiceRequestResolveController<T extends ServiceRequest> imple
                 default:
             }
             // Sets status at bottom
-            firstStatus.setText("  processing  ");
-            secondStatus.setText("  resolve  ");
+            firstStatus.setText("Processing");
+            secondStatus.setText("Resolved");
 
             // Set fields uneditable
             priority.setDisable(true);
@@ -320,10 +322,10 @@ public class BaseServiceRequestResolveController<T extends ServiceRequest> imple
         if(!isEditMode)
             return;
         if(requiredFieldsPresent()){
-            secondStatus.setText("  processing  ");
+            secondStatus.setText("Processing");
         }
         else
-            secondStatus.setText("  blank  ");
+            secondStatus.setText("Blank");
 
         //check this
         //insertController.statusUpdated();

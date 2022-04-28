@@ -46,9 +46,7 @@ public class FacilityMaintenanceSRInsertResolveController extends InsertServiceR
     }
 
     public boolean requiredFieldsPresent() {
-        if(maintType.getValue() == null && maintType.getPromptText().equals(""))
-            return false;
-        return true;
+        return maintType.getValue() != null || !maintType.getPromptText().equals("");
     }
 
     @FXML

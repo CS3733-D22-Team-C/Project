@@ -53,9 +53,7 @@ public class LabSystemSRInsertResolveController extends InsertServiceRequestReso
 
         labType.setDisable(!isEditMode);
         patientSComboBox.setEditable(isEditMode);
-
-        PatientDAO patientDAO = new PatientDAO();
-
+        
         labType.setPromptText(serviceRequest.getLabType().toString());
         patientSComboBox.setValue(serviceRequest.getPatient());
         patientSComboBox.setPromptText(serviceRequest.getPatient().toString());
@@ -64,9 +62,7 @@ public class LabSystemSRInsertResolveController extends InsertServiceRequestReso
     public boolean requiredFieldsPresent(){
         if(labType.getValue() == null)
             return false;
-        if(patientSComboBox.getValue() == null)
-            return false;
-        return true;
+        return patientSComboBox.getValue() != null;
     }
 
     @Override
@@ -96,7 +92,7 @@ public class LabSystemSRInsertResolveController extends InsertServiceRequestReso
 
     @FXML
     void goToPatientTable(ActionEvent event) throws IOException {
-        new PatientSelectorWindow((patient -> this.setPatient(patient)));
+        new PatientSelectorWindow(this::setPatient);
     }
 
     private void setPatient(Patient patient){
