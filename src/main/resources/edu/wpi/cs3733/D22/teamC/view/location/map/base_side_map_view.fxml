@@ -31,7 +31,7 @@
    <children>
       <VBox id="description-box" alignment="CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="114.0" prefWidth="338.0" styleClass="page-container" GridPane.halignment="CENTER" GridPane.hgrow="ALWAYS" GridPane.vgrow="ALWAYS">
          <children>
-            <Label id="floor-label" fx:id="floorTitle" alignment="CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefWidth="240.0" styleClass="floor-label" text="Select the Map">
+            <Label id="floor-label" fx:id="floorTitle" alignment="CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefWidth="240.0" styleClass="floor-label" text="Select A Floor">
                <font>
                   <Font size="20.0" />
                </font>
@@ -71,7 +71,7 @@
             <Insets bottom="20.0" left="20.0" right="10.0" top="20.0" />
          </GridPane.margin>
       </VBox>
-      <VBox fx:id="equipmentBox" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="200.0" prefWidth="100.0" styleClass="page-container" GridPane.hgrow="ALWAYS" GridPane.rowIndex="1" GridPane.vgrow="ALWAYS">
+      <VBox maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="200.0" prefWidth="100.0" styleClass="page-container" GridPane.hgrow="ALWAYS" GridPane.rowIndex="1" GridPane.vgrow="ALWAYS">
          <GridPane.margin>
             <Insets bottom="20.0" left="20.0" right="10.0" top="20.0" />
          </GridPane.margin>
@@ -157,7 +157,7 @@
                      <children>
                         <HBox alignment="CENTER" VBox.vgrow="ALWAYS">
                            <children>
-                              <MFXButton fx:id="addFloorButton" maxHeight="1.7976931348623157E308" onAction="#onAddFloorClicked" prefHeight="30.0" prefWidth="300.0" styleClass="edit-button" text="Add Floor" HBox.hgrow="ALWAYS">
+                              <MFXButton fx:id="addFloorButton" maxHeight="1.7976931348623157E308" onAction="#onAddFloorClicked" prefHeight="30.0" prefWidth="300.0" text="Add Floor" HBox.hgrow="ALWAYS">
                                  <font>
                                     <Font size="20.0" />
                                  </font>
@@ -175,7 +175,7 @@
                         </HBox>
                         <HBox alignment="CENTER" VBox.vgrow="ALWAYS">
                            <children>
-                              <MFXButton fx:id="deleteButton" disable="true" maxHeight="1.7976931348623157E308" onAction="#onDeleteClicked" prefHeight="30.0" prefWidth="300.0" styleClass="cancel-button" text="Delete Floor" HBox.hgrow="ALWAYS">
+                              <MFXButton fx:id="deleteButton" disable="true" maxHeight="1.7976931348623157E308" onAction="#onDeleteClicked" prefHeight="30.0" prefWidth="300.0" styleClass="failure-button" text="Delete Floor" HBox.hgrow="ALWAYS">
                                  <font>
                                     <Font size="20.0" />
                                  </font>
