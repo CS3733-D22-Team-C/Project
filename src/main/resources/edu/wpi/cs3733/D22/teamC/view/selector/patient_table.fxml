@@ -9,17 +9,13 @@
 
 <VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="600.0" stylesheets="@../../css/default.css" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1">
    <children>
-      <HBox alignment="CENTER_LEFT" VBox.vgrow="ALWAYS">
-         <children>
-            <Label id="title" text="Select a Patient" />
-         </children>
-         <padding>
-            <Insets bottom="15.0" left="35.0" right="15.0" top="15.0" />
-         </padding>
-      </HBox>
+      <Label maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" styleClass="page-container-title" text="Select a Patient" />
       <VBox VBox.vgrow="ALWAYS">
          <children>
-            <JFXTreeTableView fx:id="table" styleClass="table-view" />
+            <JFXTreeTableView fx:id="table" prefHeight="447.0" prefWidth="530.0" styleClass="table-view">
+               <padding>
+                  <Insets top="20.0" />
+               </padding></JFXTreeTableView>
          </children>
          <padding>
             <Insets left="35.0" right="35.0" />
@@ -27,7 +23,7 @@
       </VBox>
       <HBox alignment="CENTER_RIGHT" VBox.vgrow="ALWAYS">
          <children>
-            <JFXButton fx:id="selectButton" onAction="#clickSelect" prefHeight="30.0" prefWidth="75.0" text="Select">
+            <JFXButton fx:id="selectButton" onAction="#clickSelect" prefHeight="30.0" prefWidth="75.0" styleClass="primary-action-button" text="Select">
                <HBox.margin>
                   <Insets right="20.0" />
                </HBox.margin></JFXButton>
