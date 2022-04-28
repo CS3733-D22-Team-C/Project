@@ -52,9 +52,7 @@ public class SecuritySRInsertCreateController implements InsertServiceRequestCre
     }
     @Override
     public boolean requiredFieldsPresent(){
-        if(securityType.getValue() == null)
-            return false;
-        return true;
+        return securityType.getValue() != null;
     }
 
 

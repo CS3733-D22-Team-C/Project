@@ -34,9 +34,7 @@ public class SecuritySRInsertResolveController extends InsertServiceRequestResol
     }
 
     public boolean requiredFieldsPresent() {
-        if (securityType.getValue() == null && securityType.getPromptText().equals(""))
-            return false;
-        return true;
+        return securityType.getValue() != null || !securityType.getPromptText().equals("");
     }
 
     @Override

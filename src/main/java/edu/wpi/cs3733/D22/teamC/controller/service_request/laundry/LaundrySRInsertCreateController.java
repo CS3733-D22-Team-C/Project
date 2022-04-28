@@ -63,9 +63,7 @@ public class LaundrySRInsertCreateController implements InsertServiceRequestCrea
     public boolean requiredFieldsPresent(){
         if(laundryType.getValue() == null)
             return false;
-        if(quantity.getText().equals(""))
-            return false;
-        return true;
+        return !quantity.getText().equals("");
     }
 
     public LaundrySR createNewServiceRequest(){

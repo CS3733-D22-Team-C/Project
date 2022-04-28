@@ -88,10 +88,7 @@ public class PatientTransportSRInsertCreateController implements InsertServiceRe
         if(patientComboBox.getValue() == null) {
             return false;
         }
-        if(date.getValue() == null) {
-            return false;
-        }
-        return true;
+        return date.getValue() != null;
     }
 
     @FXML
