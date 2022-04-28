@@ -9,10 +9,6 @@
     -fx-spacing: 10px;
 }
 
-/*.fields-padding > .text-field {*/
-/*    -fx-padding: 6 6 6 6;*/
-/*}*/
-
 .service-request-id {
     -fx-font-size: 18px;
     -fx-font-weight: bold;
@@ -25,4 +21,8 @@
 
 .mfx-date-picker .text-field {
     -fx-effect: none;
+}
+
+.page-container-title {
+    -fx-font-size: 24;
 }

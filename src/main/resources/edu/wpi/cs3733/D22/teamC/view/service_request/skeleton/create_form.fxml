@@ -12,6 +12,7 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
 <?import org.controlsfx.control.SearchableComboBox?>
 
 <GridPane alignment="CENTER" maxWidth="1.7976931348623157E308" prefHeight="800.0" prefWidth="800.0" styleClass="page-container" stylesheets="@../../../css/component/request_page.css" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.wpi.cs3733.D22.teamC.controller.service_request.BaseServiceRequestCreateController">
@@ -20,12 +21,16 @@
     </columnConstraints>
     <rowConstraints>
         <RowConstraints maxHeight="1.7976931348623157E308" vgrow="ALWAYS" />
-        <RowConstraints maxHeight="1.7976931348623157E308" minHeight="190.00001525878906" prefHeight="190.00001525878906" vgrow="ALWAYS" />
+        <RowConstraints maxHeight="1.7976931348623157E308" minHeight="0.0" prefHeight="271.3999969482422" vgrow="ALWAYS" />
         <RowConstraints maxHeight="1.7976931348623157E308" minHeight="146.79998779296875" prefHeight="161.99998474121094" vgrow="ALWAYS" />
         <RowConstraints maxHeight="1.7976931348623157E308" vgrow="ALWAYS" />
     </rowConstraints>
     <children>
-        <Label fx:id="title" alignment="CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="88.0" prefWidth="800.0" styleClass="page-container-title" stylesheets="@../../../css/component/service_request_landing_page.css" text="Generic Service Request " GridPane.hgrow="ALWAYS" GridPane.vgrow="ALWAYS" />
+      <Label fx:id="title" alignment="CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="88.0" prefWidth="800.0" styleClass="page-container-title" stylesheets="@../../../css/component/service_request_landing_page.css" text="Generic Service Request ">
+         <font>
+            <Font size="24.0" />
+         </font>
+      </Label>
       <VBox fx:id="fieldsBox" prefHeight="200.0" prefWidth="100.0" styleClass="fields-padding" GridPane.hgrow="ALWAYS" GridPane.rowIndex="1">
          <children>
             <HBox maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="124.0" prefWidth="490.0" VBox.vgrow="NEVER">
@@ -35,7 +40,7 @@
                         <Label styleClass="service-field-label" text="Assign To:" />
                         <HBox spacing="1.5">
                            <children>
-                              <SearchableComboBox fx:id="employeeComboBox" />
+                              <SearchableComboBox fx:id="employeeComboBox" HBox.hgrow="ALWAYS" />
                               <JFXButton fx:id="employeeTableButton" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" onAction="#goToEmployeeTable" prefHeight="26.0" style="-fx-background-color: -color-secondary;" stylesheets="@../../../css/colors.css" />
                            </children>
                         </HBox>
@@ -74,17 +79,17 @@
                <children>
                   <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="200.0" HBox.hgrow="ALWAYS">
                      <children>
-                        <Button fx:id="goBackButton" mnemonicParsing="false" onAction="#clickGoBack" styleClass="button-secondary" text="Go Back" />
+                        <Button fx:id="goBackButton" mnemonicParsing="false" onAction="#clickGoBack" styleClass="secondary-action-button" text="Go Back" />
                      </children>
                   </HBox>
                   <HBox alignment="CENTER_RIGHT" prefHeight="100.0" prefWidth="200.0" styleClass="fields-padding" HBox.hgrow="ALWAYS">
                      <children>
-                        <Button fx:id="resetButton" mnemonicParsing="false" onAction="#clickReset" styleClass="failure-button" text="Reset">
+                        <Button fx:id="resetButton" mnemonicParsing="false" onAction="#clickReset" styleClass="cancel-button" text="Reset">
                            <HBox.margin>
                               <Insets />
                            </HBox.margin>
                         </Button>
-                        <Button fx:id="submitButton" mnemonicParsing="false" onAction="#clickSubmit" text="Submit" />
+                        <Button fx:id="submitButton" mnemonicParsing="false" onAction="#clickSubmit" styleClass="primary-action-button" text="Submit" />
                      </children>
                      <opaqueInsets>
                         <Insets />

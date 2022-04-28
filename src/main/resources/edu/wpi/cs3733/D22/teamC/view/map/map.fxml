@@ -29,7 +29,7 @@
          <children>
             <HBox fx:id="topOverlay" alignment="TOP_RIGHT" pickOnBounds="false" prefHeight="100.0" prefWidth="200.0" spacing="5.0" VBox.vgrow="ALWAYS">
                <children>
-                  <Button fx:id="legendButton" mnemonicParsing="false" prefHeight="26.0" prefWidth="99.0" styleClass="button-confirm" text="Legend" />
+                  <Button fx:id="legendButton" mnemonicParsing="false" prefHeight="26.0" prefWidth="99.0" styleClass="primary-action-button" text="Legend" />
                </children>
                <opaqueInsets>
                   <Insets />

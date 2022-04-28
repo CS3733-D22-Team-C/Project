@@ -20,12 +20,20 @@
     /*-fx-padding: 0px;*/
 }
 
+.tab {
+    -fx-background-color: -color-secondary;
+}
+
 .tab-pane .tab-content-area {
     -fx-padding: 0px;
 }
 
 .tab:selected .icon {
     -fx-fill: white;
+}
+
+.page-container-title {
+    -fx-background-radius: 0;
 }
 
 .button {
