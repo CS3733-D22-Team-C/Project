@@ -29,6 +29,7 @@ public class MedicalEquipmentTableDisplay extends TableDisplay<MedicalEquipment>
         public void RefreshEntry() {
             idProperty.setValue(object.getID());
             locationNameProperty.setValue(new LocationDAO().getByID(object.getLocation().getID()).getShortName());
+            typeProperty.setValue(object.getEquipmentType().toString());
             typeNumberProperty.setValue(object.getTypeNumber());
             statusProperty.setValue(object.getStatus().toString());
         }

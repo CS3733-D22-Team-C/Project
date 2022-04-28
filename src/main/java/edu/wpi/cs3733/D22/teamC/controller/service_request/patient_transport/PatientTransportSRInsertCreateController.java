@@ -48,6 +48,8 @@ public class PatientTransportSRInsertCreateController implements InsertServiceRe
         ComponentWrapper.initializeComboBox(patientComboBox,Patient::toString);
 
         patientComboBox.getItems().setAll(patientList);
+
+        date.setEditable(false);
     }
 
     @Override

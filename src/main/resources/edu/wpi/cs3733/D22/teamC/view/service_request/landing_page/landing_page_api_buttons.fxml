@@ -28,7 +28,7 @@
                   </StackPane>
                </children>
             </HBox>
-            <HBox id="medicine-delivery" alignment="BOTTOM_LEFT" maxHeight="1.7976931348623157E308" onMouseClicked="#clickTeamB" prefHeight="150.0" prefWidth="0.0" styleClass="service-request-card">
+            <HBox id="patient-transport" alignment="BOTTOM_LEFT" maxHeight="1.7976931348623157E308" onMouseClicked="#clickTeamB" prefHeight="150.0" prefWidth="0.0" styleClass="service-request-card">
                <children>
                   <StackPane HBox.hgrow="ALWAYS">
                      <children>
@@ -46,7 +46,7 @@
                   </StackPane>
                </children>
             </HBox>
-            <HBox id="sanitation" alignment="BOTTOM_LEFT" maxHeight="1.7976931348623157E308" onMouseClicked="#clickTeamZ" prefHeight="150.0" prefWidth="259.0" styleClass="service-request-card">
+            <HBox id="external-transport" alignment="BOTTOM_LEFT" maxHeight="1.7976931348623157E308" onMouseClicked="#clickTeamZ" prefHeight="150.0" prefWidth="259.0" styleClass="service-request-card">
                <children>
                   <StackPane maxWidth="1.7976931348623157E308" HBox.hgrow="ALWAYS">
                      <children>

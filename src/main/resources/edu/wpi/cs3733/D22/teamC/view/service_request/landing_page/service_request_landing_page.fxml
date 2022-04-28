@@ -18,22 +18,26 @@
 
 <HBox alignment="CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" styleClass="page-padding" stylesheets="@../../../css/component/service_request_landing_page.css" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.wpi.cs3733.D22.teamC.controller.service_request.landing_page.ServiceRequestLandingPage">
    <children>
-      <VBox fx:id="tableBox" alignment="CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" HBox.hgrow="ALWAYS">
+      <VBox alignment="CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" HBox.hgrow="ALWAYS">
          <children>
             <Label id="title" text="Pending Service Requests" />
-            <JFXTreeTableView fx:id="table" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" styleClass="table-view" VBox.vgrow="ALWAYS" />
+            <VBox fx:id="tableBox" VBox.vgrow="ALWAYS">
+               <children>
+                  <JFXTreeTableView fx:id="table" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" styleClass="table-view" />
+               </children>
+            </VBox>
             <HBox alignment="CENTER">
                <children>
                   <HBox>
                      <children>
                         <SearchableComboBox fx:id="serviceReqTypeComboBox" onAction="#onSRTypeSelected" />
-                        <MFXButton fx:id="SRTypeClearButton" onAction="#onClearSRTypeButtonClicked" prefHeight="31.0" prefWidth="55.0" text="Clear" />
+                        <MFXButton fx:id="SRTypeClearButton" onAction="#onClearSRTypeButtonClicked" prefHeight="31.0" prefWidth="72.0" text="Clear" />
                      </children>
                      <padding>
                         <Insets right="20.0" />
                      </padding>
                   </HBox>
-                  <HBox alignment="CENTER_RIGHT" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" spacing="10.0" HBox.hgrow="ALWAYS">
+                  <HBox fx:id="buttonsBox" alignment="CENTER_RIGHT" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" spacing="10.0" HBox.hgrow="ALWAYS">
                      <children>
                         <JFXButton fx:id="edit" disable="true" onAction="#onEditButton" prefHeight="31.0" prefWidth="72.0" styleClass="button-success" stylesheets="@../../../css/default.css" text="Edit" />
                         <JFXButton fx:id="resolve" disable="true" onAction="#onResolveButton" prefHeight="31.0" prefWidth="72.0" styleClass="button-confirm" stylesheets="@../../../css/default.css" text="Resolve" />
@@ -49,7 +53,7 @@
          </styleClass></VBox>
       <VBox alignment="CENTER_RIGHT" stylesheets="@../../../css/component/service_request_landing_page.css">
          <children>
-            <VBox alignment="CENTER">
+            <VBox alignment="CENTER" prefHeight="99.0" prefWidth="306.0">
                <children>
                   <StackPane prefHeight="0.0" prefWidth="306.0">
                      <children>
@@ -75,10 +79,10 @@
                         </HBox>
                      </children>
                   </StackPane>
-                  <MFXToggleButton onAction="#onAPIToggleButtonPress" prefHeight="2.0" prefWidth="122.0" text="Toggle API" />
+                  <MFXToggleButton onAction="#onAPIToggleButtonPress" prefHeight="31.0" prefWidth="124.0" text="Toggle API" translateY="10.0" />
                </children>
             </VBox>
-            <VBox fx:id="scrollPaneButtons" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" VBox.vgrow="ALWAYS" />
+            <VBox fx:id="scrollPaneButtons" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefWidth="306.0" VBox.vgrow="ALWAYS" />
          </children>
          <styleClass>
             <String fx:value="page-container" />
