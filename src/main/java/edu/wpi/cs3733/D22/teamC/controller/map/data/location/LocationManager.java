@@ -55,7 +55,7 @@ public class LocationManager extends ManagerMapNodes<Location> {
         @Override
         public void addObject(Location object) {
             super.addObject(object);
-            if (object.getFloor().equals(mapViewController.getFloorManager().getCurrent().getID())) {
+            if (object.getFloor().equals(mapViewController.getFloorManager().getCurrent())) {
                 nodes.add(new LocationMapNode(this, object));
             }
             updatesOccured();

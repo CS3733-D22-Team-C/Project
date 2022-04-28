@@ -10,15 +10,35 @@ import javafx.scene.layout.Region;
 import java.util.function.Consumer;
 
 public class DialogBuilder {
+    public static Alert createWarningAlert(String title, String message) {
+        // Create a dialog
+        Alert dialog = new Alert(Alert.AlertType.WARNING);
+
+        // Set Owner
+        dialog.initOwner(App.instance.getActiveStage());
+
+        // Set the title
+        dialog.setTitle(title);
+
+        // Setting the content of the dialog
+        dialog.setContentText(message);
+
+        // Inner Content
+        ButtonType okButton = new ButtonType("Ok", ButtonBar.ButtonData.OK_DONE);
+
+        dialog.getDialogPane().getStylesheets().add(App.class.getResource("css/default.css").toExternalForm());
+        dialog.getDialogPane().applyCss();
+        dialog.getDialogPane().getButtonTypes().setAll(okButton);
+
+        return dialog;
+    }
+
     public static Alert createBinaryAlert(String title, String message) {
         // Create a dialog
         Alert dialog = new Alert(Alert.AlertType.NONE);
 
-        // CSS Styling
-
-
         // Set Owner
-        dialog.initOwner(App.instance.getStage());
+        dialog.initOwner(App.instance.getActiveStage());
 
         // Set the title
         dialog.setTitle(title);
@@ -30,9 +50,9 @@ public class DialogBuilder {
         ButtonType yesButton = new ButtonType("Yes", ButtonBar.ButtonData.YES);
         ButtonType noButton = new ButtonType("No", ButtonBar.ButtonData.NO);
 
+        dialog.getDialogPane().getStylesheets().add(App.class.getResource("css/default.css").toExternalForm());
+        dialog.getDialogPane().applyCss();
         dialog.getDialogPane().getButtonTypes().setAll(yesButton, noButton);
-
-
 
         return dialog;
     }

@@ -19,34 +19,34 @@ public class DrawerContentController implements Initializable {
 
     //#region FXML
     @FXML
-    private MFXButton aboutButton;
+    public MFXButton aboutButton;
 
     @FXML
-    private MFXButton dashboardButton;
+    public MFXButton dashboardButton;
 
     @FXML
-    private MFXButton exitButton;
+    public MFXButton exitButton;
 
     @FXML
-    private MFXButton logOutButton;
+    public MFXButton logOutButton;
 
     @FXML
-    private MFXButton databaseButton;
+    public MFXButton databaseButton;
 
     @FXML
-    private MFXButton serviceRequestsButton;
+    public MFXButton serviceRequestsButton;
 
     @FXML
-    private MFXButton viewProfileButton;
+    public MFXButton viewProfileButton;
 
     @FXML
-    private VBox miniView;
+    public VBox miniView;
 
     @FXML
-    private SVGPath expandedView;
+    public SVGPath expandedView;
 
     @FXML
-    private MFXButton creditButton;
+    public MFXButton creditButton;
     //#endregion
 
     // list to store all buttons
@@ -103,7 +103,7 @@ public class DrawerContentController implements Initializable {
 
     @FXML
     void serviceRequestButtonPress(ActionEvent event) {
-        App.instance.setView(App.VIEW_SERVICE_REQUESTS_PATH);
+        App.instance.setView(App.SERVICE_REQUEST_DASHBOARD);
         selectedButton(serviceRequestsButton);
     }
 
@@ -138,6 +138,7 @@ public class DrawerContentController implements Initializable {
     @FXML
     public void aboutButtonPress(ActionEvent actionEvent) {
         App.instance.setView(App.ABOUT_PAGE);
+        selectedButton(aboutButton);
     }
 
     public MFXButton getDashboardButton() {

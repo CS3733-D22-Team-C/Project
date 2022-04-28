@@ -7,7 +7,7 @@
     -fx-scale-x: 0.075;
     -fx-scale-y: 0.075;
     -fx-scale-z: 0.075;
-    -fx-fill: -color-primary-text;
+    -fx-fill: -color-primary-dark;
 }
 
 .tab-pane {
@@ -20,12 +20,20 @@
     /*-fx-padding: 0px;*/
 }
 
+.tab {
+    -fx-background-color: -color-secondary;
+}
+
 .tab-pane .tab-content-area {
     -fx-padding: 0px;
 }
 
 .tab:selected .icon {
-    -fx-fill: -color-primary-dark;
+    -fx-fill: white;
+}
+
+.page-container-title {
+    -fx-background-radius: 0;
 }
 
 .button {
@@ -51,9 +59,22 @@
 }
 
 .tab-header-area {
-    -fx-padding: 70 0 0 0;
+    -fx-padding: 0 0 0 0;
 }
 
 .button:selected {
     -fx-background-color: -color-secondary;
+}
+
+/* Tab Area */
+.tab-pane:top *.tab-header-area {
+    -fx-background-insets: 0, 0 0 1 0;
+    -fx-padding: 0.0em;
+    -fx-translate-x: 5px;
+    -fx-translate-y: 1px;
+}
+
+.tab-pane {
+    -fx-tab-min-width: 75;
+    -fx-tab-max-width: 75;
 }
