@@ -1,9 +1,5 @@
 @import "../default.css";
 
-.button {
-    -fx-text-fill: -color-secondary-text;
-}
-
 .title {
     -fx-text-fill: -color-primary-text;
     -fx-background-color: -color-primary-dark;
@@ -20,7 +16,7 @@
 }
 
 /* Inlay background image in title */
-.grid-pane {
+.picture-box {
     -fx-background-image: url("../../static/images/BrighamAndWomens.png");
     -fx-background-repeat: stretch;
     -fx-background-size: contain;
@@ -33,8 +29,8 @@
     -fx-border-color: -color-primary-light;
 }
 
-.text-field {
-    -fx-effect: none;
+.cancel-button {
+    -fx-text-fill: black;
 }
 
 #error-box {
