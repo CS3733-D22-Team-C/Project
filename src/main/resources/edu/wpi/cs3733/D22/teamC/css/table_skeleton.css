@@ -11,6 +11,10 @@
     -fx-background-color: -color-primary-dark;
 }
 
+.text-field:selected {
+
+}
+
 .base_view_table_edit {
     -fx-background-color: -color-primary;
     -fx-text-fill: -color-menu-text;

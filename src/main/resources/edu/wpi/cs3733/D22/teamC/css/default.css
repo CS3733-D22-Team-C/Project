@@ -85,6 +85,10 @@
         -fx-opacity: 50;
     }
 
+.mfx-combo-box {
+    -mfx-main: -color-primary;
+}
+
 .mfx-checkbox {
     -mfx-main:-color-secondary;
 }

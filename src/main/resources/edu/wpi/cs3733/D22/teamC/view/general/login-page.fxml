@@ -4,6 +4,7 @@
 <?import io.github.palexdev.materialfx.controls.MFXComboBox?>
 <?import io.github.palexdev.materialfx.controls.MFXPasswordField?>
 <?import io.github.palexdev.materialfx.controls.MFXTextField?>
+<?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
@@ -36,9 +37,9 @@
               </columnConstraints>
               <rowConstraints>
                 <RowConstraints maxHeight="90.59998779296875" minHeight="0.0" prefHeight="49.60000305175781" vgrow="SOMETIMES" />
-                <RowConstraints maxHeight="1.7976931348623157E308" minHeight="140.00000076293946" prefHeight="195.4000244140625" vgrow="ALWAYS" />
-                <RowConstraints maxHeight="1.7976931348623157E308" minHeight="168.00002441406252" prefHeight="188.9999755859375" vgrow="ALWAYS" />
-                  <RowConstraints maxHeight="1.7976931348623157E308" minHeight="10.0" prefHeight="142.4000244140625" vgrow="ALWAYS" />
+                <RowConstraints maxHeight="1.7976931348623157E308" minHeight="140.00000076293946" prefHeight="148.6000244140625" vgrow="ALWAYS" />
+                <RowConstraints maxHeight="1.7976931348623157E308" minHeight="168.00002441406252" prefHeight="211.79997558593746" vgrow="ALWAYS" />
+                  <RowConstraints maxHeight="1.7976931348623157E308" minHeight="10.0" prefHeight="162.99998779296868" vgrow="ALWAYS" />
               </rowConstraints>
                <children>
                   <VBox id="error-box" alignment="CENTER" prefHeight="37.0" prefWidth="394.0" GridPane.hgrow="ALWAYS" GridPane.vgrow="ALWAYS">
@@ -94,10 +95,16 @@
                         </MFXButton>
                      </children>
                   </VBox>
-                  <VBox alignment="CENTER" GridPane.rowIndex="3">
+                  <VBox alignment="TOP_CENTER" GridPane.rowIndex="3">
                      <children>
                         <MFXComboBox fx:id="serverComboBox" floatMode="BORDER" floatingText="Server Type" onAction="#onServerComboBoxChanged" prefHeight="34.0" prefWidth="200.0" selectable="true" />
                      </children>
+                     <GridPane.margin>
+                        <Insets />
+                     </GridPane.margin>
+                     <padding>
+                        <Insets top="20.0" />
+                     </padding>
                   </VBox>
                </children>
             </GridPane>

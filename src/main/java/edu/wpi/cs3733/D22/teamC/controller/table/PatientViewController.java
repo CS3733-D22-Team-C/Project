@@ -12,6 +12,7 @@ import edu.wpi.cs3733.D22.teamC.models.generic.TableDisplay;
 import edu.wpi.cs3733.D22.teamC.models.location.MapSelectorWindow;
 import edu.wpi.cs3733.D22.teamC.models.patient.PatientTableDisplay;
 import io.github.palexdev.materialfx.controls.MFXDatePicker;
+import io.github.palexdev.materialfx.controls.MFXTextField;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -33,10 +34,10 @@ public class PatientViewController extends InsertTableViewController<Patient> im
     // FXML
     @FXML protected JFXButton confirmButton;
 
-    @FXML private TextField firstName;
-    @FXML private TextField lastName;
-    @FXML private TextField number;
-    @FXML private TextField theLocation;
+    @FXML private MFXTextField firstName;
+    @FXML private MFXTextField lastName;
+    @FXML private MFXTextField number;
+    @FXML private MFXTextField theLocation;
     @FXML private JFXButton locationButton;
     @FXML private MFXDatePicker date;
     Location a_location;

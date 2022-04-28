@@ -14,6 +14,8 @@ import edu.wpi.cs3733.D22.teamC.models.employee.EmployeeTableDisplay;
 import edu.wpi.cs3733.D22.teamC.models.generic.TableDisplay;
 import edu.wpi.cs3733.D22.teamC.models.location.LocationTableDisplay;
 import edu.wpi.cs3733.D22.teamC.models.utils.ComponentWrapper;
+import io.github.palexdev.materialfx.controls.MFXComboBox;
+import io.github.palexdev.materialfx.controls.MFXTextField;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -32,10 +34,10 @@ public class EmployeesTableViewInsertController extends InsertTableViewControlle
     // FXML
     @FXML protected JFXButton confirmButton;
 
-    @FXML private TextField firstName;
-    @FXML private TextField lastName;
-    @FXML private TextField phone;
-    @FXML private ComboBox<Employee.Role> roleComboBox;//
+    @FXML private MFXTextField firstName;
+    @FXML private MFXTextField lastName;
+    @FXML private MFXTextField phone;
+    @FXML private MFXComboBox<Employee.Role> roleComboBox;//
     @FXML private JFXButton cancel;
     @FXML Label title;
 

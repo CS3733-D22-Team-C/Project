@@ -2,10 +2,10 @@
 
 <?import com.jfoenix.controls.JFXButton?>
 <?import io.github.palexdev.materialfx.controls.MFXDatePicker?>
+<?import io.github.palexdev.materialfx.controls.MFXTextField?>
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.ScrollPane?>
-<?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
@@ -27,54 +27,45 @@
                   </VBox>
                   <VBox>
                      <children>
-                        <Label prefHeight="17.0" prefWidth="272.0" text="First Name" />
-                        <TextField fx:id="firstName" onKeyTyped="#onFieldUpdated" prefHeight="47.0" prefWidth="410.0" styleClass="base_view_table_text" stylesheets="@../../../css/table_skeleton.css" />
+                        <MFXTextField fx:id="firstName" floatMode="BORDER" floatingText="First Name" maxWidth="1.7976931348623157E308" prefHeight="48.0" prefWidth="400.0" />
                      </children>
                      <VBox.margin>
                         <Insets top="10.0" />
                      </VBox.margin>
                   </VBox>
-                  <VBox>
+                  <VBox prefHeight="26.0" prefWidth="400.0">
                      <children>
-                        <Label prefHeight="17.0" prefWidth="367.0" text="Last Name" />
-                        <TextField fx:id="lastName" onKeyTyped="#onFieldUpdated" prefHeight="47.0" prefWidth="410.0" styleClass="base_view_table_text" stylesheets="@../../../css/table_skeleton.css" />
+                        <MFXTextField fx:id="lastName" floatMode="BORDER" floatingText="Last Name" maxWidth="1.7976931348623157E308" prefWidth="400.0" />
                      </children>
                      <VBox.margin>
                         <Insets top="10.0" />
                      </VBox.margin>
                   </VBox>
-                  <VBox prefHeight="65.0" prefWidth="399.0">
+                  <VBox prefHeight="44.0" prefWidth="400.0">
                      <children>
-                        <Label text="DOB" />
-                        <MFXDatePicker fx:id="date" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="40.0" prefWidth="505.0" />
+                        <MFXDatePicker fx:id="date" floatMode="BORDER" floatingText="Date of Birth" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="40.0" prefWidth="505.0" />
                      </children>
                      <VBox.margin>
                         <Insets top="10.0" />
                      </VBox.margin>
                   </VBox>
-                  <VBox>
+                  <VBox prefHeight="41.0" prefWidth="400.0">
                      <children>
-                        <Label prefHeight="17.0" prefWidth="421.0" text="Phone" />
-                        <TextField fx:id="number" onKeyTyped="#onFieldUpdated" prefHeight="47.0" prefWidth="399.0" styleClass="base_view_table_text" stylesheets="@../../../css/table_skeleton.css" />
+                        <MFXTextField fx:id="number" floatMode="BORDER" floatingText="Phone" maxWidth="1.7976931348623157E308" prefWidth="400.0" />
                      </children>
                      <VBox.margin>
                         <Insets top="10.0" />
                      </VBox.margin>
                   </VBox>
-                  <VBox>
+                  <VBox prefHeight="90.0" prefWidth="400.0">
                      <VBox.margin>
                         <Insets top="10.0" />
                      </VBox.margin>
                      <children>
-                        <Label prefHeight="17.0" prefWidth="421.0" text="Location">
-                           <padding>
-                              <Insets left="10.0" />
-                           </padding>
-                        </Label>
                         <HBox prefHeight="58.0" prefWidth="399.0">
                            <children>
-                              <TextField fx:id="theLocation" onKeyTyped="#onFieldUpdated" prefHeight="42.0" prefWidth="338.0" styleClass="base_view_table_text" stylesheets="@../../../css/table_skeleton.css" HBox.hgrow="ALWAYS" />
-                              <JFXButton fx:id="locationButton" contentDisplay="GRAPHIC_ONLY" onAction="#goToMapView" prefHeight="42.0" prefWidth="62.0" style="-fx-background-color: -color-secondary;" stylesheets="@../../../css/colors.css" />
+                              <MFXTextField fx:id="theLocation" floatMode="BORDER" floatingText="Location" maxWidth="1.7976931348623157E308" HBox.hgrow="ALWAYS" />
+                              <JFXButton fx:id="locationButton" contentDisplay="GRAPHIC_ONLY" onAction="#goToMapView" prefHeight="37.0" prefWidth="62.0" style="-fx-background-color: -color-secondary;" stylesheets="@../../../css/colors.css" />
                            </children>
                         </HBox>
                      </children>
