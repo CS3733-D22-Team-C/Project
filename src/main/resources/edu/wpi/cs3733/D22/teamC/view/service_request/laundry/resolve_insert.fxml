@@ -1,25 +1,40 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 <?import org.controlsfx.control.SearchableComboBox?>
 
-<HBox maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="46.0" prefWidth="600.0" stylesheets="@../../../css/component/request_page.css" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.wpi.cs3733.D22.teamC.controller.service_request.laundry.LaundrySRInsertResolveController">
+<HBox maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="124.0" prefWidth="490.0" stylesheets="@../../../css/component/request_page.css" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.wpi.cs3733.D22.teamC.controller.service_request.laundry.LaundrySRInsertResolveController">
    <children>
-      <VBox alignment="CENTER_LEFT" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefWidth="227.0" styleClass="fields-padding" HBox.hgrow="ALWAYS">
+      <VBox alignment="CENTER_LEFT" prefHeight="250.0" prefWidth="265.0" styleClass="fields-padding" HBox.hgrow="ALWAYS">
          <children>
             <Label styleClass="service-field-label" text="Laundry Type:" />
-            <SearchableComboBox fx:id="laundryType" />
+            <HBox>
+               <children>
+                  <SearchableComboBox fx:id="laundryType" prefHeight="30.0" prefWidth="260.0" />
+               </children>
+            </HBox>
          </children>
       </VBox>
-      <VBox alignment="CENTER_LEFT" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefWidth="227.0" styleClass="fields-padding" HBox.hgrow="ALWAYS">
+      <VBox alignment="CENTER_LEFT" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="250.0" prefWidth="265.0" styleClass="fields-padding" HBox.hgrow="ALWAYS">
          <children>
-            <Label prefHeight="27.0" prefWidth="190.0" styleClass="service-field-label" text="Quantity:" />
-            <TextField fx:id="quantity" onAction="#statusUpdated" onKeyPressed="#statusUpdatedKeyEvent" />
+            <Label styleClass="service-field-label" text="Quantity:">
+               <padding>
+                  <Insets bottom="5.0" />
+               </padding></Label>
+            <HBox spacing="1.5">
+               <children>
+                  <TextField fx:id="quantity" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onAction="#statusUpdated" onKeyPressed="#statusUpdatedKeyEvent" prefHeight="33.0" prefWidth="245.0" translateY="-1.5">
+                     <padding>
+                        <Insets bottom="6.0" top="6.0" />
+                     </padding></TextField>
+               </children>
+            </HBox>
          </children>
       </VBox>
-      <VBox alignment="CENTER_LEFT" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefWidth="227.0" styleClass="fields-padding" HBox.hgrow="ALWAYS" />
+      <VBox alignment="CENTER_LEFT" prefWidth="240.0" styleClass="fields-padding" HBox.hgrow="ALWAYS" />
    </children>
 </HBox>
