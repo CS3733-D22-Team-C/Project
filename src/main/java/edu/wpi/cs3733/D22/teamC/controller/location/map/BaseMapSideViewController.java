@@ -119,14 +119,14 @@ public class BaseMapSideViewController implements Initializable {
         bFile = null;
         order = 1;
         isEditMode = false;
+        floorNodeControllerList = new ArrayList<>();
+        loadFloors();
         loadEquipment();
         SVGParser svgParser = new SVGParser();
         String folderContent = svgParser.getPath("static/icons/folder_icon.svg");
         SVGGlyph folderIcon = new SVGGlyph(folderContent);
         folderIcon.setSize(20);
         fileSelectButton.setGraphic(folderIcon);
-        floorNodeControllerList = new ArrayList<>();
-        loadFloors();
         try {
             onFloorClicked(null, floorNodeControllerList.get(floorNodeControllerList.size()-1));
         } catch (IOException e) {
@@ -400,127 +400,17 @@ public class BaseMapSideViewController implements Initializable {
     //#endregion
 
     private void loadEquipment(){
-        if(selectedFloor == null){
-            ObservableList<PieChart.Data> bedPieChartData = createData(0,0,0);
-            ObservableList<PieChart.Data> reclinerPieChartData = createData(0,0,0);
-            ObservableList<PieChart.Data> pumpPieChartData = createData(0,0,0);
-            ObservableList<PieChart.Data> xRayPieChartData = createData(0,0,0);
-            DoughnutChart bedChart = new DoughnutChart(bedPieChartData);
-            bedChart.setLabelsVisible(false);
-            bedChart.setLegendVisible(false);
-            DoughnutChart reclinerChart = new DoughnutChart(reclinerPieChartData);
-            reclinerChart.setLabelsVisible(false);
-            reclinerChart.setLegendVisible(false);
-            DoughnutChart pumpChart = new DoughnutChart(pumpPieChartData);
-            pumpChart.setLabelsVisible(false);
-            pumpChart.setLegendVisible(false);
-            DoughnutChart xRayChart = new DoughnutChart(xRayPieChartData);
-            xRayChart.setLabelsVisible(false);
-            xRayChart.setLegendVisible(false);
-
-            initializeToolTip(bedPieChartData);
-            initializeToolTip(reclinerPieChartData);
-            initializeToolTip(pumpPieChartData);
-            initializeToolTip(xRayPieChartData);
-
-            SVGParser svgParser = new SVGParser();
-            String bedContent = svgParser.getPath("static/icons/bed-solid.svg");
-            SVGGlyph bedIcon = new SVGGlyph(bedContent);
-            bedIcon.setSize(50);
-            setUpToolTipIcon(bedIcon, "Beds");
-
-            String reclinerContent = svgParser.getPath("static/icons/couch-solid.svg");
-            SVGGlyph reclinerIcon = new SVGGlyph(reclinerContent);
-            reclinerIcon.setSize(50);
-            setUpToolTipIcon(reclinerIcon, "Recliners");
-
-            String pumpContent = svgParser.getPath("static/icons/pump-medical-solid.svg");
-            SVGGlyph pumpIcon = new SVGGlyph(pumpContent);
-            pumpIcon.setSize(50);
-            setUpToolTipIcon(pumpIcon, "Infusion Pumps");
-
-            String xRayContent = svgParser.getPath("static/icons/x-ray-solid.svg");
-            SVGGlyph xRayIcon = new SVGGlyph(xRayContent);
-            xRayIcon.setSize(50);
-            setUpToolTipIcon(xRayIcon, "X-Rays");
-
-            Circle bedPickup = new Circle();
-            bedPickup.setFill(Color.AQUA);
-            bedPickup.setStroke(Color.DARKBLUE);
-            bedPickup.setRadius(25.0);
-
-            Circle reclinerPickup = new Circle();
-            reclinerPickup.setFill(Color.AQUA);
-            reclinerPickup.setStroke(Color.DARKBLUE);
-            reclinerPickup.setRadius(25.0);
-
-            Circle pumpPickup = new Circle();
-            pumpPickup.setFill(Color.AQUA);
-            pumpPickup.setStroke(Color.DARKBLUE);
-            pumpPickup.setRadius(20.0);
-
-            Circle xRayPickup = new Circle();
-            xRayPickup.setFill(Color.AQUA);
-            xRayPickup.setStroke(Color.DARKBLUE);
-            xRayPickup.setRadius(25.0);
-
-            Text bedPickupNum = new Text("N/A"); //
-            Text reclinerPickupNum = new Text("N/A");
-            Text pumpPickupNum = new Text("N/A");
-            Text xRayPickupNum = new Text("N/A");
-
-            setUpToolTipText(bedPickupNum, bedPickup);
-            setUpToolTipText(reclinerPickupNum, reclinerPickup);
-            setUpToolTipText(pumpPickupNum, pumpPickup);
-            setUpToolTipText(xRayPickupNum, xRayPickup);
-
-            bedPane.getChildren().clear();
-            reclinerPane.getChildren().clear();
-            pumpPane.getChildren().clear();
-            xRayPane.getChildren().clear();
-
-            //Retrieving the observable list of the Stack Pane
-            ObservableList<Node> bedList = bedPane.getChildren();
-            ObservableList<Node> reclinerList = reclinerPane.getChildren();
-            ObservableList<Node> pumpList = pumpPane.getChildren();
-            ObservableList<Node> xRayList = xRayPane.getChildren();
-
-            //Adding all the nodes to the pane bottom to top
-            bedList.addAll(bedChart, bedIcon, bedPickup, bedPickupNum);
-            reclinerList.addAll(reclinerChart, reclinerIcon, reclinerPickup, reclinerPickupNum);
-            pumpList.addAll(pumpChart, pumpIcon, pumpPickup, pumpPickupNum);
-            xRayList.addAll(xRayChart, xRayIcon, xRayPickup, xRayPickupNum);
-
-            bedList.get(2).setTranslateX(60);
-            bedList.get(2).setTranslateY(-60);
-            bedList.get(3).setTranslateX(60);
-            bedList.get(3).setTranslateY(-60);
-
-            reclinerList.get(2).setTranslateX(60);
-            reclinerList.get(2).setTranslateY(-60);
-            reclinerList.get(3).setTranslateX(60);
-            reclinerList.get(3).setTranslateY(-60);
-
-            pumpList.get(2).setTranslateX(60);
-            pumpList.get(2).setTranslateY(-60);
-            pumpList.get(3).setTranslateX(60);
-            pumpList.get(3).setTranslateY(-60);
-
-            xRayList.get(2).setTranslateX(60);
-            xRayList.get(2).setTranslateY(-60);
-            xRayList.get(3).setTranslateX(60);
-            xRayList.get(3).setTranslateY(-60);
-            return;
-        }
-
         MedicalEquipmentDAO MEL = new MedicalEquipmentDAO();
+
+        
+
         List<MedicalEquipment> medicalEquipmentPerFloor = MEL.getEquipmentByFloor(selectedFloor.getID());
 
         List<MedicalEquipment> floorXDirty = new ArrayList<>();
         List<MedicalEquipment> floorXClean = new ArrayList<>();
         List<MedicalEquipment> floorXPod = new ArrayList<>();
         for (MedicalEquipment medicalEquipmentFloorX : medicalEquipmentPerFloor) {
-            medicalEquipmentFloorX.getStatus().equals(MedicalEquipment.EquipmentStatus.Dirty);
+            if(medicalEquipmentFloorX.getStatus().equals(MedicalEquipment.EquipmentStatus.Dirty))
             floorXDirty.add(medicalEquipmentFloorX);
             if (medicalEquipmentFloorX.getStatus().equals(MedicalEquipment.EquipmentStatus.Available))
                 floorXClean.add(medicalEquipmentFloorX);
@@ -781,25 +671,6 @@ public class BaseMapSideViewController implements Initializable {
         tooltip.setText("Ready For Pickup: " + text.getText());
         Tooltip.install(text, tooltip);
         Tooltip.install(circle, tooltip);
-    }
-
-    // This should only be called in initialize
-    private void initializeToolTip(ObservableList<PieChart.Data> datas){
-        datas.forEach(data -> {
-            Tooltip tooltip = new Tooltip();
-            tooltip.setStyle("-fx-background-color: white;\n" +
-                    "    -fx-text-fill: black;\n" +
-                    "    -fx-opacity: 80%;\n" +
-                    "    -fx-stroke: -color-primary;\n" +
-                    "    -fx-stroke-width: 1;\n" +
-                    "    -fx-font-size: 15;");
-            tooltip.setShowDelay(new Duration(0));
-            tooltip.setText(data.getName() + ": " + (int) data.getPieValue());
-            Tooltip.install(data.getNode(), tooltip);
-            data.pieValueProperty().addListener((observable, oldValue, newValue) ->
-                    tooltip.setText(String.valueOf(newValue)));
-        });
-        datas.get(0).getNode().setStyle("-fx-pie-color: #333232;");
     }
 
     @FXML
