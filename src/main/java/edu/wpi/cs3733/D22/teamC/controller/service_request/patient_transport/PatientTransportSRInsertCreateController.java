@@ -2,12 +2,14 @@ package edu.wpi.cs3733.D22.teamC.controller.service_request.patient_transport;
 
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXTreeTableView;
+import com.jfoenix.svg.SVGGlyph;
 import edu.wpi.cs3733.D22.teamC.controller.service_request.InsertServiceRequestCreateController;
 import edu.wpi.cs3733.D22.teamC.entity.generic.DAO;
 import edu.wpi.cs3733.D22.teamC.entity.patient.Patient;
 import edu.wpi.cs3733.D22.teamC.entity.patient.PatientDAO;
 import edu.wpi.cs3733.D22.teamC.entity.service_request.patient_transport.PatientTransportSR;
 import edu.wpi.cs3733.D22.teamC.entity.service_request.patient_transport.PatientTransportSRDAO;
+import edu.wpi.cs3733.D22.teamC.fileio.svg.SVGParser;
 import edu.wpi.cs3733.D22.teamC.models.patient.PatientSelectorWindow;
 import edu.wpi.cs3733.D22.teamC.models.service_request.ServiceRequestTableDisplay;
 import edu.wpi.cs3733.D22.teamC.models.service_request.patient_transport.PatientTransportSRTableDisplay;
@@ -57,17 +59,20 @@ public class PatientTransportSRInsertCreateController implements InsertServiceRe
         date.setStartingYearMonth(YearMonth.now());
         date.setEditable(false);
 
+        LocalDate today = LocalDate.now();
+        date.setCellFactory(picker -> new MFXDateCell(date, today) {
+            @Override
+            public void updateItem(LocalDate d) {
+                super.updateItem(d);
+                setDisable(d.compareTo(today) < 0);
+            }
+        });
 
-//        date.setCellFactory(picker -> new MFXDateCell() {
-//            public void updateItem(LocalDate d, boolean empty) {
-//                super.updateItem(d);
-//                LocalDate today = LocalDate.now();
-//
-//                setDisable(empty || d.compareTo(today) < 0);
-//            }
-//        });
-
-
+        SVGParser svgParser = new SVGParser();
+        String patientIcon = svgParser.getPath("static/icons/employee_icon.svg");
+        SVGGlyph employeeContent = new SVGGlyph(patientIcon);
+        employeeContent.setSize(20);
+        patientTableButton.setGraphic(employeeContent);
     }
 
     @Override

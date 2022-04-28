@@ -1,5 +1,6 @@
 package edu.wpi.cs3733.D22.teamC.controller.service_request.patient_transport;
 
+import com.jfoenix.svg.SVGGlyph;
 import edu.wpi.cs3733.D22.teamC.controller.service_request.BaseServiceRequestResolveController;
 import edu.wpi.cs3733.D22.teamC.controller.service_request.InsertServiceRequestResolveController;
 import edu.wpi.cs3733.D22.teamC.entity.generic.DAO;
@@ -7,10 +8,12 @@ import edu.wpi.cs3733.D22.teamC.entity.patient.Patient;
 import edu.wpi.cs3733.D22.teamC.entity.patient.PatientDAO;
 import edu.wpi.cs3733.D22.teamC.entity.service_request.patient_transport.PatientTransportSR;
 import edu.wpi.cs3733.D22.teamC.entity.service_request.patient_transport.PatientTransportSRDAO;
+import edu.wpi.cs3733.D22.teamC.fileio.svg.SVGParser;
 import edu.wpi.cs3733.D22.teamC.models.patient.PatientSelectorWindow;
 import io.github.palexdev.materialfx.controls.MFXButton;
 import edu.wpi.cs3733.D22.teamC.models.utils.ComponentWrapper;
 import io.github.palexdev.materialfx.controls.MFXDatePicker;
+import io.github.palexdev.materialfx.controls.cell.MFXDateCell;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -44,6 +47,21 @@ public class PatientTransportSRInsertResolveController extends InsertServiceRequ
         
         ComponentWrapper.initializeComboBox(patientSComboBox,Patient::toString);
         patientSComboBox.getItems().setAll(patients);
+
+        LocalDate today = LocalDate.now();
+        date.setCellFactory(picker -> new MFXDateCell(date, today) {
+            @Override
+            public void updateItem(LocalDate d) {
+                super.updateItem(d);
+                setDisable(d.compareTo(today) < 0);
+            }
+        });
+
+        SVGParser svgParser = new SVGParser();
+        String patientIcon = svgParser.getPath("static/icons/employee_icon.svg");
+        SVGGlyph employeeContent = new SVGGlyph(patientIcon);
+        employeeContent.setSize(20);
+        patientTableButton.setGraphic(employeeContent);
     }
     
     @Override
