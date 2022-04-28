@@ -5,6 +5,7 @@ plugins {
     id 'com.diffplug.gradle.spotless' version '3.27.1'
     id "io.freefair.lombok" version "5.0.0-rc6"
     id 'org.openjfx.javafxplugin' version '0.0.10'
+    id 'com.github.johnrengelman.shadow' version '6.1.0'
 }
 mainClassName = 'edu.wpi.cs3733.D22.teamC.Main'
 
@@ -25,7 +26,7 @@ javafx {
 dependencies {
 
     compile fileTree(dir: 'libs', include: ['*.jar'])
-    
+
     implementation(
             // JFoenix
             'com.jfoenix:jfoenix:9.0.10',
@@ -40,6 +41,7 @@ dependencies {
             'org.xerial:sqlite-jdbc:3.30.1',
             'org.apache.derby:derby:10.15.2.0',
             'org.apache.derby:derbyclient:10.15.2.0',
+
             //Derby Requirements
             [group: 'org.apache.derby',name: 'derby', version: '10.15.2.0'],
             [group: 'org.apache.derby',name: 'derbytools', version: '10.15.2.0'],
@@ -48,6 +50,10 @@ dependencies {
             // Logging
             'org.slf4j:slf4j-api:1.7.30',
             'org.slf4j:slf4j-simple:1.7.30',
+
+            // Google Cloud
+            [group: 'com.google.cloud',name: 'google-cloud-spanner-hibernate-dialect', version: '1.5.2'],
+            [group: 'com.google.cloud',name: 'google-cloud-spanner-jdbc', version: '2.5.11'],
     )
 
     compile fileTree(dir: 'API', include: ['*.jar'])
@@ -58,12 +64,17 @@ dependencies {
             'org.junit.jupiter:junit-jupiter:5.6.0',
             'org.testfx:testfx-junit5:4.0.16-alpha',
     )
-    
+
     implementation 'org.hibernate:hibernate-core:5.6.7.Final'
     implementation 'org.hibernate:hibernate-entitymanager:5.6.7.Final'
     implementation 'org.springframework:spring-jdbc:5.3.17'
     implementation 'org.apache.logging.log4j:log4j-core:2.3.2'
     implementation 'io.github.palexdev:materialfx:11.13.4'
+    
+    implementation 'com.google.apis:google-api-services-plus:v1-rev590-1.25.0'
+    implementation 'com.google.oauth-client:google-oauth-client-jetty:1.20.0'
+    compile group: 'com.google.oauth-client', name: 'google-oauth-client-java6', version: '1.21.0'
+
 }
 
 
@@ -75,10 +86,10 @@ jar {
     manifest {
         attributes 'Main-Class': mainClassName
     }
-
     from {
         configurations.runtimeClasspath.collect { it.isDirectory() ? it : zipTree(it) }
     }
+
 }
 
 def codeCoverageExcludes = [

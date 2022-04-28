@@ -91,9 +91,7 @@ public class PatientTransportSRInsertResolveController extends InsertServiceRequ
     public boolean requiredFieldsPresent(){
         if(date.getValue() == null)
             return false;
-        if(patientSComboBox.getValue() == null)
-            return false;
-        return true;
+        return patientSComboBox.getValue() != null;
     }
 
     @Override
@@ -123,7 +121,7 @@ public class PatientTransportSRInsertResolveController extends InsertServiceRequ
 
     @FXML
     void goToPatientTable(ActionEvent event) throws IOException {
-        new PatientSelectorWindow(patient -> this.setPatientComboBox(patient));
+        new PatientSelectorWindow(this::setPatientComboBox);
     }
 
     private void setPatientComboBox(Patient patient) {

@@ -71,6 +71,9 @@ public class App extends Application {
 
     @Override
     public void init() {
+        // Authentication
+        GoogleManager.authenticateClient();
+        
         SessionManager.switchDatabase(SessionManager.DBMode.EMBEDDED);
         log.info("Starting Up");
     }

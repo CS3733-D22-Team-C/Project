@@ -30,7 +30,7 @@ public class MedicalEquipmentViewController extends InsertTableViewController<Me
     // FXML
     @FXML protected JFXButton confirmButton;
 
-    @FXML private SearchableComboBox locationID;
+    @FXML private SearchableComboBox<String> locationID;
     @FXML private ComboBox<MedicalEquipment.EquipmentType> typeComboBox;
     @FXML private TextField number;
     @FXML private ComboBox<MedicalEquipment.EquipmentStatus> statusComboBox;//
@@ -85,7 +85,7 @@ public class MedicalEquipmentViewController extends InsertTableViewController<Me
      * @param object The (nullable) object to set field values from.
      */
     public void setFields(MedicalEquipment object) {
-        location = (object == null) ? null : new LocationDAO().getByID(object.getLocation().getID());
+        location = (object == null) ? new Location() : object.getLocation();
 
         title.setText((object == null) ? "Add Equipment" : "Edit Equipment");
         locationID.setValue((object == null) ? "" : location.getShortName());
@@ -99,7 +99,7 @@ public class MedicalEquipmentViewController extends InsertTableViewController<Me
     public boolean checkFieldsFilled() {
 
         validation.setErrorDecorationEnabled(true);
-        if (locationID.getValue().toString().equals("")) return false;
+        if (locationID.getValue().equals("")) return false;
         return !(typeComboBox.getValue()==null
                 || number.getText().equals("")
                 || statusComboBox.getValue()==null);
@@ -126,7 +126,6 @@ public class MedicalEquipmentViewController extends InsertTableViewController<Me
 
         // Query Database
         MedicalEquipmentDAO medicalEquipmentDAO = new MedicalEquipmentDAO();
-        //ISSUE HERE
         List<MedicalEquipment> medicalEquipments = medicalEquipmentDAO.getAll();
 
         // Add Table Entries

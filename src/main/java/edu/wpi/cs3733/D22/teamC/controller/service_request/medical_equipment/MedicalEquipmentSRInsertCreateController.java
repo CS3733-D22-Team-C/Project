@@ -77,15 +77,13 @@ public class MedicalEquipmentSRInsertCreateController implements InsertServiceRe
             //Resetting the values
             equipment.setValue(null);
             equipment.getItems().clear();
-            equipment.getItems().setAll(new MedicalEquipmentDAO().getAll().stream().filter(medicalEquipment -> medicalEquipment.getEquipmentType().equals(lastType)).collect(Collectors.toList()));
+            equipment.getItems().setAll(new MedicalEquipmentDAO().getEquipmentByType(lastType));
         }
     }
     @Override
     public boolean requiredFieldsPresent(){
         if(equipment.getValue() == null)
             return false;
-        if(equipmentType.getValue() == null)
-            return false;
-        return true;
+        return equipmentType.getValue() != null;
     }
 }

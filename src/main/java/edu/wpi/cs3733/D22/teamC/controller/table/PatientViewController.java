@@ -80,8 +80,6 @@ public class PatientViewController extends InsertTableViewController<Patient> im
      * @return The modified object.
      */
     public Patient setValues(Patient object) {
-
-
         object.setLocation(a_location);
         object.setDOB(Timestamp.valueOf(date.getValue().atStartOfDay()));
         object.setPhone(number.getText());
@@ -99,7 +97,7 @@ public class PatientViewController extends InsertTableViewController<Patient> im
     public void setFields(Patient object) {
 
         if (object != null){
-            a_location = new LocationDAO().getByID(object.getLocation().getID());
+            a_location = object.getLocation();
         }
 
         title.setText((object == null) ? "Add Patient" : "Edit Patient");
@@ -114,9 +112,8 @@ public class PatientViewController extends InsertTableViewController<Patient> im
 
         date.setValue((object == null) ? null : lD);
         theLocation.setText((object == null) ? "" : a_location.getShortName());
-
-
-//        confirmButton.setDisable(true);
+        
+//      confirmButton.setDisable(true);
     }
     //#endregion
 
@@ -153,8 +150,8 @@ public class PatientViewController extends InsertTableViewController<Patient> im
         TableDisplay<Patient> tableDisplay = new PatientTableDisplay(table);
         // Query Database
         PatientDAO patientDAO = new PatientDAO();
-        //ISSUE HERE
         List<Patient> patients = patientDAO.getAll();
+        
         // Add Table Entries
         patients.forEach(tableDisplay::addObject);
         return tableDisplay;

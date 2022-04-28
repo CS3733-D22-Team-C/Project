@@ -38,7 +38,7 @@ public class MedicalEquipmentTableDisplay extends TableDisplay<MedicalEquipment>
 
     @Override
     public void addObject(MedicalEquipment object) {
-        addEntry(new MedicalEquipmentTableEntry(object));
+        if (object != null) addEntry(new MedicalEquipmentTableEntry(object));
     }
 
     @Override
