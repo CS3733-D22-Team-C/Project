@@ -130,6 +130,10 @@ public class App extends Application {
                             setView(CREDIT_PAGE);
                             drawerContentController.selectedButton(drawerContentController.creditButton);
                             break;
+                        case "P" :
+                            setView(USER_PROFILE);
+                            drawerContentController.selectedButton(drawerContentController.viewProfileButton);
+                            break;
                         case "A" :
                             setView(ABOUT_PAGE);
                             drawerContentController.selectedButton(drawerContentController.aboutButton);
