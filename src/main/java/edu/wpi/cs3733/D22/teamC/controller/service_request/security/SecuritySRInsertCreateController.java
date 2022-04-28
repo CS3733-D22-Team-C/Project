@@ -9,6 +9,7 @@ import edu.wpi.cs3733.D22.teamC.entity.service_request.lab_system.LabSystemSR;
 import edu.wpi.cs3733.D22.teamC.entity.service_request.security.SecuritySR;
 import edu.wpi.cs3733.D22.teamC.entity.service_request.security.SecuritySRDAO;
 import edu.wpi.cs3733.D22.teamC.models.service_request.ServiceRequestTableDisplay;
+import edu.wpi.cs3733.D22.teamC.models.service_request.security.SecuritySRTableDisplay;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 
@@ -48,7 +49,7 @@ public class SecuritySRInsertCreateController implements InsertServiceRequestCre
 
     @Override
     public ServiceRequestTableDisplay<SecuritySR> setupTable(JFXTreeTableView<?> table) {
-        return new ServiceRequestTableDisplay(table);
+        return new SecuritySRTableDisplay(table);
     }
     @Override
     public boolean requiredFieldsPresent(){

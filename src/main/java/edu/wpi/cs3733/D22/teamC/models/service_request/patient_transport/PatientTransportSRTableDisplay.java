@@ -7,6 +7,8 @@ import edu.wpi.cs3733.D22.teamC.models.service_request.ServiceRequestTableDispla
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
 
+import java.time.LocalDate;
+
 public class PatientTransportSRTableDisplay extends ServiceRequestTableDisplay<PatientTransportSR> {
 
     public class PatientTransportSRTableEntry extends ServiceRequestTableEntry {
@@ -18,7 +20,7 @@ public class PatientTransportSRTableDisplay extends ServiceRequestTableDisplay<P
 
             this.patient = new SimpleStringProperty((patientTransportSR.getPatient() != null)
                     ? patientTransportSR.getPatient().toString() : "N/A");
-            this.date = new SimpleStringProperty(String.valueOf(patientTransportSR.getTransportTime()));
+            this.date = new SimpleStringProperty(String.valueOf(patientTransportSR.getTransportTime().toLocalDateTime().toLocalDate()));
         }
     }
 

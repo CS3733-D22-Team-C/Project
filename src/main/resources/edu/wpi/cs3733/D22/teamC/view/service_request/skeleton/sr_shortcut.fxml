@@ -25,7 +25,7 @@
     <children>
         <VBox GridPane.hgrow="ALWAYS" GridPane.vgrow="ALWAYS">
             <children>
-                <Label id="title" fx:id="title" alignment="CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="71.0" prefWidth="590.0" styleClass="card-content-header" text="Resolve Service Request " VBox.vgrow="NEVER" />
+                <Label id="title" fx:id="title" alignment="CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="71.0" prefWidth="590.0" styleClass="page-container-title" text="Resolve Service Request " VBox.vgrow="NEVER" />
             </children>
         </VBox>
         <VBox prefHeight="148.0" prefWidth="478.0" styleClass="fields-padding" GridPane.rowIndex="1">
@@ -149,12 +149,12 @@
                     <children>
                         <HBox prefHeight="75.0" prefWidth="341.0">
                             <children>
-                                <JFXButton fx:id="goBackButton" onAction="#clickGoBack" styleClass="button-secondary" text="Go Back" />
+                                <JFXButton fx:id="goBackButton" onAction="#clickGoBack" styleClass="secondary-action-button" text="Go Back" />
                             </children>
                         </HBox>
                         <HBox alignment="TOP_RIGHT" prefHeight="75.0" prefWidth="349.0" HBox.hgrow="ALWAYS">
                             <children>
-                                <JFXButton fx:id="confirmButton" onAction="#clickConfirm" styleClass="button-confirm" text="Confirm" />
+                                <JFXButton fx:id="confirmButton" onAction="#clickConfirm" styleClass="primary-action-button" text="Confirm" />
                             </children>
                         </HBox>
                     </children>

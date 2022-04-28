@@ -1,5 +1,7 @@
 package edu.wpi.cs3733.D22.teamC.controller.service_request.translator;
 
+import com.jfoenix.controls.JFXButton;
+import com.jfoenix.svg.SVGGlyph;
 import edu.wpi.cs3733.D22.teamC.controller.service_request.BaseServiceRequestResolveController;
 import edu.wpi.cs3733.D22.teamC.controller.service_request.InsertServiceRequestResolveController;
 import edu.wpi.cs3733.D22.teamC.entity.generic.DAO;
@@ -7,6 +9,7 @@ import edu.wpi.cs3733.D22.teamC.entity.patient.Patient;
 import edu.wpi.cs3733.D22.teamC.entity.patient.PatientDAO;
 import edu.wpi.cs3733.D22.teamC.entity.service_request.translator.TranslatorSR;
 import edu.wpi.cs3733.D22.teamC.entity.service_request.translator.TranslatorSRDAO;
+import edu.wpi.cs3733.D22.teamC.fileio.svg.SVGParser;
 import edu.wpi.cs3733.D22.teamC.models.patient.PatientSelectorWindow;
 import edu.wpi.cs3733.D22.teamC.models.utils.ComponentWrapper;
 import javafx.fxml.FXML;
@@ -23,6 +26,10 @@ public class TranslatorSRInsertResolveController extends InsertServiceRequestRes
 
     @FXML
     private SearchableComboBox<Patient> patientSComboBox;
+
+    @FXML
+    private JFXButton patientButton;
+
     @FXML
     private SearchableComboBox<String> languageSComboBox;
 
@@ -33,6 +40,13 @@ public class TranslatorSRInsertResolveController extends InsertServiceRequestRes
         for (TranslatorSR.Language language : TranslatorSR.Language.values()) {
             languageSComboBox.getItems().add(language.toString());
         }
+
+        SVGParser svgParser = new SVGParser();
+        String patientIcon = svgParser.getPath("static/icons/employee_icon.svg");
+        SVGGlyph employeeContent = new SVGGlyph(patientIcon);
+        employeeContent.setSize(20);
+        patientButton.setGraphic(employeeContent);
+
         //Patient ComboBox
         //Query DB
         PatientDAO patientDAO = new PatientDAO();
@@ -55,6 +69,7 @@ public class TranslatorSRInsertResolveController extends InsertServiceRequestRes
         languageSComboBox.setValue(serviceRequest.getLanguage().toString());
         patientSComboBox.setValue(serviceRequest.getPatient());
         patientSComboBox.setPromptText(serviceRequest.getPatient().toString());
+        patientButton.setDisable(!isEditMode);
     }
 
     public boolean requiredFieldsPresent(){

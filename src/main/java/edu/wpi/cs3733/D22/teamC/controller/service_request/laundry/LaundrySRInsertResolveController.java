@@ -34,7 +34,7 @@ public class LaundrySRInsertResolveController extends InsertServiceRequestResolv
     public void setup(BaseServiceRequestResolveController<LaundrySR> baseServiceRequestResolveController, LaundrySR serviceRequest, boolean isEditMode) {
         super.setup(baseServiceRequestResolveController, serviceRequest, isEditMode);
         laundryType.setDisable(!isEditMode);
-        quantity.setEditable(isEditMode);
+        quantity.setDisable(!isEditMode);
 
         laundryType.setPromptText(serviceRequest.getLaundryType().toString());
         quantity.setText(serviceRequest.getQuantity());

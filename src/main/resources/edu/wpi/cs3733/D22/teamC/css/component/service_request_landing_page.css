@@ -1,17 +1,16 @@
 @import "../colors.css";
 @import "../default.css";
 
-#title {
-    -fx-font-size: 14px;
-
-}
-
 .label {
     -fx-opacity: 85%;
 }
 
 .page-container {
-    -fx-padding: 10px;
+    /*-fx-padding: 10px;*/
+}
+
+.page-container-title {
+    -fx-pref-height: 30px;
 }
 
 .page-padding {
@@ -36,16 +35,27 @@
 }
 
 .service-request-container {
-    -fx-padding: 10px;
+    -fx-padding: 7px;
     -fx-spacing: 15px;
+    -fx-background-radius: 0 0 20 20;
 }
+/* endregion */
 
 .show-button {
     -fx-padding: 10px;
 }
 
+-scroll-bar {
+    -fx-background-color: transparent;
+}
+
 .scroll-bar .thumb {
     -fx-background-color: linear-gradient(to bottom, -color-primary, -color-primary-light);;
+}
+
+.scroll-bar .track-background:vertical {
+    -fx-background-color: transparent;
+    -fx-fill: transparent;
 }
 
 /* Card Images */

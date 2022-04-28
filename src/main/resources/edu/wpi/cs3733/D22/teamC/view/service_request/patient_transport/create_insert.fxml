@@ -9,21 +9,21 @@
 
 <HBox maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="46.0" prefWidth="600.0" stylesheets="@../../../css/component/request_page.css" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.wpi.cs3733.D22.teamC.controller.service_request.patient_transport.PatientTransportSRInsertCreateController">
    <children>
-      <VBox alignment="CENTER_LEFT" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" styleClass="fields-padding" HBox.hgrow="ALWAYS">
+      <VBox alignment="CENTER_LEFT" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefWidth="232.0" styleClass="fields-padding" HBox.hgrow="ALWAYS">
          <children>
-            <Label prefHeight="18.0" prefWidth="134.0" styleClass="service-field-label" text="Patient" />
-            <HBox maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" VBox.vgrow="ALWAYS">
+            <Label prefHeight="18.0" prefWidth="134.0" styleClass="service-field-label" text="Patient:" />
+            <HBox maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="30.0" prefWidth="189.0" VBox.vgrow="ALWAYS">
                <children>
-                  <SearchableComboBox fx:id="patientComboBox" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" HBox.hgrow="SOMETIMES" />
-                  <JFXButton fx:id="patientTableButton" ellipsisString="" maxHeight="-Infinity" maxWidth="-Infinity" onAction="#goToPatientTable" style="-fx-background-color: -color-secondary;" stylesheets="@../../../css/colors.css" text="-&gt;" HBox.hgrow="SOMETIMES" />
+                  <SearchableComboBox fx:id="patientComboBox" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="30.0" prefWidth="147.0" HBox.hgrow="SOMETIMES" />
+                  <JFXButton fx:id="patientTableButton" contentDisplay="GRAPHIC_ONLY" ellipsisString="" maxHeight="-Infinity" maxWidth="-Infinity" onAction="#goToPatientTable" prefHeight="28.0" prefWidth="35.0" style="-fx-background-color: -color-secondary;" stylesheets="@../../../css/colors.css" text="Button" HBox.hgrow="SOMETIMES" />
                </children>
             </HBox>
          </children>
       </VBox>
-      <VBox alignment="CENTER_LEFT" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefWidth="227.0" styleClass="fields-padding" HBox.hgrow="ALWAYS">
+      <VBox alignment="CENTER_LEFT" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="124.0" prefWidth="227.0" styleClass="fields-padding" HBox.hgrow="ALWAYS">
          <children>
-            <Label styleClass="service-field-label" text="Transport Time:" />
-            <MFXDatePicker fx:id="date" maxWidth="1.7976931348623157E308" minHeight="-Infinity" onAction="#onClickDate" prefHeight="30.0" />
+            <Label styleClass="service-field-label" text="Transport Date:" />
+            <MFXDatePicker fx:id="date" accessibleRole="DATE_PICKER" maxWidth="1.7976931348623157E308" minHeight="-Infinity" onAction="#onClickDate" prefHeight="30.0" />
          </children>
       </VBox>
       <VBox alignment="CENTER_LEFT" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefWidth="227.0" styleClass="fields-padding" HBox.hgrow="ALWAYS" />
