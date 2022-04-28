@@ -11,10 +11,13 @@ import edu.wpi.cs3733.D22.teamC.entity.location.LocationDAO;
 import edu.wpi.cs3733.D22.teamC.entity.medical_equipment.MedicalEquipment;
 import edu.wpi.cs3733.D22.teamC.entity.medical_equipment.MedicalEquipmentDAO;
 import edu.wpi.cs3733.D22.teamC.fileio.svg.SVGParser;
+import edu.wpi.cs3733.D22.teamC.models.utils.ComponentWrapper;
 import edu.wpi.cs3733.D22.teamC.models.utils.DoughnutChart;
 import io.github.palexdev.materialfx.controls.MFXButton;
 import io.github.palexdev.materialfx.controls.MFXTextField;
 import io.github.palexdev.materialfx.utils.SwingFXUtils;
+import io.github.palexdev.materialfx.validation.Constraint;
+import io.github.palexdev.materialfx.validation.Severity;
 import javafx.beans.property.ObjectProperty;
 import javafx.beans.property.SimpleObjectProperty;
 import javafx.collections.FXCollections;
@@ -48,6 +51,8 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.*;
 import java.util.stream.Collectors;
+
+import static io.github.palexdev.materialfx.validation.Validated.INVALID_PSEUDO_CLASS;
 
 public class BaseMapSideViewController implements Initializable {
 
@@ -85,7 +90,8 @@ public class BaseMapSideViewController implements Initializable {
     @FXML private Label floorTitle;
     @FXML private HBox imageBox;
     @FXML private VBox floorVBox;
-    @FXML private Text descriptionText;
+    @FXML private Label descriptionText;
+    @FXML private VBox equipmentBox;
 
 
     // Pie Chart Panes
@@ -130,10 +136,55 @@ public class BaseMapSideViewController implements Initializable {
         SVGGlyph folderIcon = new SVGGlyph(folderContent);
         folderIcon.setSize(20);
         fileSelectButton.setGraphic(folderIcon);
+
+        Constraint longNameFill = Constraint.Builder.build()
+                .setSeverity(Severity.ERROR)
+                .setCondition(longName.textProperty().length().greaterThanOrEqualTo(1))
+                .get();
+
+        longName.getValidator().constraint(longNameFill);
+        longName.getValidator().validProperty().addListener((observable, oldValue, newValue) -> {
+            if (newValue) {
+                longName.pseudoClassStateChanged(INVALID_PSEUDO_CLASS, false);
+                longName.getStyleClass().remove("validated-field");
+            }
+        });
+        longName.delegateFocusedProperty().addListener((observable, oldValue, newValue) -> {
+            if (oldValue && !newValue) {
+                List<Constraint> constraints = longName.validate();
+                if (!constraints.isEmpty()) {
+                    longName.pseudoClassStateChanged(INVALID_PSEUDO_CLASS, true);
+                    longName.getStyleClass().add("validated-field");
+                }
+            }
+        });
+
+        Constraint shortNameFill = Constraint.Builder.build()
+                .setSeverity(Severity.ERROR)
+                .setCondition(shortName.textProperty().length().greaterThanOrEqualTo(1))
+                .get();
+
+        shortName.getValidator().constraint(shortNameFill);
+        shortName.getValidator().validProperty().addListener((observable, oldValue, newValue) -> {
+            if (newValue) {
+                shortName.pseudoClassStateChanged(INVALID_PSEUDO_CLASS, false);
+                shortName.getStyleClass().remove("validated-field");
+            }
+        });
+        shortName.delegateFocusedProperty().addListener((observable, oldValue, newValue) -> {
+            if (oldValue && !newValue) {
+                List<Constraint> constraints = shortName.validate();
+                if (!constraints.isEmpty()) {
+                    shortName.pseudoClassStateChanged(INVALID_PSEUDO_CLASS, true);
+                    shortName.getStyleClass().add("validated-field");
+                }
+            }
+        });
     }
 
     @FXML
     void onGoToClicked() {
+        if(selectedFloor == null) return;
         App.View<MapViewController> view = App.instance.loadView(App.MAP_PATH);
         view.getController().getFloorManager().changeCurrent(selectedFloor);
         App.instance.setView(view.getNode());
@@ -167,6 +218,7 @@ public class BaseMapSideViewController implements Initializable {
         bFile = null;
         imagePath = "";
         loadFloors();
+        ComponentWrapper.setTextLengthLimiter(description, 255);
     }
 
     @FXML
@@ -191,6 +243,8 @@ public class BaseMapSideViewController implements Initializable {
 
         editButton.setDisable(true);
         deleteButton.setDisable(true);
+
+        selectedFloor = null;
 
         loadFloors();
     }
@@ -219,11 +273,19 @@ public class BaseMapSideViewController implements Initializable {
         if(isEditMode){
             FloorDAO floorDAO = new FloorDAO();
             List<Floor> lof = floorDAO.getAll();
+            Collections.sort(lof, new Comparator<Floor>() {
+                @Override
+                public int compare(Floor o1, Floor o2) {
+                    return Integer.compare(o1.getOrder(), o2.getOrder());
+                }
+            });
+            Collections.reverse(lof);
             int oldIndex = lof.size() - editOriginalOrder; // need to put selected floor here
             lof.remove(selectedFloor);
             lof.add(oldIndex, selectedFloor);
             int j = 0;
             for(Floor floor : lof){
+                System.out.println(floor.getLongName() + " setting location from " + floor.getOrder() + " to " + (lof.size()-j));
                 floor.setOrder(lof.size()-j);
                 floorDAO.update(floor);
                 j++;
@@ -272,11 +334,15 @@ public class BaseMapSideViewController implements Initializable {
                 }
             }
         }
+        shortName.getStyleClass().remove("validated-field");
+        longName.getStyleClass().remove("validated-field");
+        image.getStyleClass().remove("validated-field");
     }
 
     @FXML
     void onConfirmClicked(ActionEvent event) throws IOException {
-        if(!requiredFieldsPresent()) return; // todo insert validation here or in function
+        if(!requiredFieldsPresent()) return;
+        image.getStyleClass().remove("validated-field");
 
         selectedFloor.setLongName(longName.getText());
         selectedFloor.setDescription(description.getText());
@@ -309,16 +375,24 @@ public class BaseMapSideViewController implements Initializable {
         editButton.setDisable(false);
         deleteButton.setDisable(false);
         loadFloors();
+        FloorNode temp = null;
         for(FloorNode floorNode : floorNodeControllerList){
             if(Objects.equals(floorNode.getFloor().getID(), selectedFloor.getID())){
                 floorNode.getGroup().getChildren().get(0).setStyle("-fx-background-color: #B3EDF0");
+                temp = floorNode;
             }
         }
+        onFloorClicked(null, temp);
     }
 
     private boolean requiredFieldsPresent(){
         if(shortName.getText().equals("") || longName.getText().equals("")
-                || imagePath.equals("") || bFile == null) return false;
+                || imagePath.equals("") || bFile == null || description.getLength() > 255){
+            if(image.getText().equals("")) image.getStyleClass().add("validated-field");
+            if(shortName.getText().equals("")) shortName.getStyleClass().add("validated-field");
+            if(longName.getText().equals("")) longName.getStyleClass().add("validated-field");
+            return false;
+        }
         return true;
     }
 
@@ -390,6 +464,7 @@ public class BaseMapSideViewController implements Initializable {
 
                 imagePath = file.getName();
                 this.image.setText(imagePath);
+                image.getStyleClass().remove("validated-field");
             } catch (IOException e) {
                 e.printStackTrace();
             }
@@ -399,115 +474,7 @@ public class BaseMapSideViewController implements Initializable {
 
     private void loadEquipment(){
         if(selectedFloor == null){
-            ObservableList<PieChart.Data> bedPieChartData = createData(0,0,0);
-            ObservableList<PieChart.Data> reclinerPieChartData = createData(0,0,0);
-            ObservableList<PieChart.Data> pumpPieChartData = createData(0,0,0);
-            ObservableList<PieChart.Data> xRayPieChartData = createData(0,0,0);
-            DoughnutChart bedChart = new DoughnutChart(bedPieChartData);
-            bedChart.setLabelsVisible(false);
-            bedChart.setLegendVisible(false);
-            DoughnutChart reclinerChart = new DoughnutChart(reclinerPieChartData);
-            reclinerChart.setLabelsVisible(false);
-            reclinerChart.setLegendVisible(false);
-            DoughnutChart pumpChart = new DoughnutChart(pumpPieChartData);
-            pumpChart.setLabelsVisible(false);
-            pumpChart.setLegendVisible(false);
-            DoughnutChart xRayChart = new DoughnutChart(xRayPieChartData);
-            xRayChart.setLabelsVisible(false);
-            xRayChart.setLegendVisible(false);
-
-            initializeToolTip(bedPieChartData);
-            initializeToolTip(reclinerPieChartData);
-            initializeToolTip(pumpPieChartData);
-            initializeToolTip(xRayPieChartData);
-
-            SVGParser svgParser = new SVGParser();
-            String bedContent = svgParser.getPath("static/icons/bed-solid.svg");
-            SVGGlyph bedIcon = new SVGGlyph(bedContent);
-            bedIcon.setSize(50);
-            setUpToolTipIcon(bedIcon, "Beds");
-
-            String reclinerContent = svgParser.getPath("static/icons/couch-solid.svg");
-            SVGGlyph reclinerIcon = new SVGGlyph(reclinerContent);
-            reclinerIcon.setSize(50);
-            setUpToolTipIcon(reclinerIcon, "Recliners");
-
-            String pumpContent = svgParser.getPath("static/icons/pump-medical-solid.svg");
-            SVGGlyph pumpIcon = new SVGGlyph(pumpContent);
-            pumpIcon.setSize(50);
-            setUpToolTipIcon(pumpIcon, "Infusion Pumps");
-
-            String xRayContent = svgParser.getPath("static/icons/x-ray-solid.svg");
-            SVGGlyph xRayIcon = new SVGGlyph(xRayContent);
-            xRayIcon.setSize(50);
-            setUpToolTipIcon(xRayIcon, "X-Rays");
-
-            Circle bedPickup = new Circle();
-            bedPickup.setFill(Color.AQUA);
-            bedPickup.setStroke(Color.DARKBLUE);
-            bedPickup.setRadius(25.0);
-
-            Circle reclinerPickup = new Circle();
-            reclinerPickup.setFill(Color.AQUA);
-            reclinerPickup.setStroke(Color.DARKBLUE);
-            reclinerPickup.setRadius(25.0);
-
-            Circle pumpPickup = new Circle();
-            pumpPickup.setFill(Color.AQUA);
-            pumpPickup.setStroke(Color.DARKBLUE);
-            pumpPickup.setRadius(20.0);
-
-            Circle xRayPickup = new Circle();
-            xRayPickup.setFill(Color.AQUA);
-            xRayPickup.setStroke(Color.DARKBLUE);
-            xRayPickup.setRadius(25.0);
-
-            Text bedPickupNum = new Text("N/A"); //
-            Text reclinerPickupNum = new Text("N/A");
-            Text pumpPickupNum = new Text("N/A");
-            Text xRayPickupNum = new Text("N/A");
-
-            setUpToolTipText(bedPickupNum, bedPickup);
-            setUpToolTipText(reclinerPickupNum, reclinerPickup);
-            setUpToolTipText(pumpPickupNum, pumpPickup);
-            setUpToolTipText(xRayPickupNum, xRayPickup);
-
-            bedPane.getChildren().clear();
-            reclinerPane.getChildren().clear();
-            pumpPane.getChildren().clear();
-            xRayPane.getChildren().clear();
-
-            //Retrieving the observable list of the Stack Pane
-            ObservableList<Node> bedList = bedPane.getChildren();
-            ObservableList<Node> reclinerList = reclinerPane.getChildren();
-            ObservableList<Node> pumpList = pumpPane.getChildren();
-            ObservableList<Node> xRayList = xRayPane.getChildren();
-
-            //Adding all the nodes to the pane bottom to top
-            bedList.addAll(bedChart, bedIcon, bedPickup, bedPickupNum);
-            reclinerList.addAll(reclinerChart, reclinerIcon, reclinerPickup, reclinerPickupNum);
-            pumpList.addAll(pumpChart, pumpIcon, pumpPickup, pumpPickupNum);
-            xRayList.addAll(xRayChart, xRayIcon, xRayPickup, xRayPickupNum);
-
-            bedList.get(2).setTranslateX(60);
-            bedList.get(2).setTranslateY(-60);
-            bedList.get(3).setTranslateX(60);
-            bedList.get(3).setTranslateY(-60);
-
-            reclinerList.get(2).setTranslateX(60);
-            reclinerList.get(2).setTranslateY(-60);
-            reclinerList.get(3).setTranslateX(60);
-            reclinerList.get(3).setTranslateY(-60);
-
-            pumpList.get(2).setTranslateX(60);
-            pumpList.get(2).setTranslateY(-60);
-            pumpList.get(3).setTranslateX(60);
-            pumpList.get(3).setTranslateY(-60);
-
-            xRayList.get(2).setTranslateX(60);
-            xRayList.get(2).setTranslateY(-60);
-            xRayList.get(3).setTranslateX(60);
-            xRayList.get(3).setTranslateY(-60);
+            equipmentBox.setVisible(false);
             return;
         }
         MedicalEquipmentDAO MEL = new MedicalEquipmentDAO();
@@ -517,20 +484,20 @@ public class BaseMapSideViewController implements Initializable {
         List<MedicalEquipment> pumps = MEL.getEquipmentByFloorAndType(selectedFloor.getID(), MedicalEquipment.EquipmentType.Infusion_Pump);
         List<MedicalEquipment> xrays = MEL.getEquipmentByFloorAndType(selectedFloor.getID(), MedicalEquipment.EquipmentType.Portable_X_Ray);
 
-        dirtyEquip.numOfBeds        = beds.stream().filter(bed -> bed.getStatus().equals(MedicalEquipment.EquipmentStatus.Dirty)).collect(Collectors.toList()).size();
-        dirtyEquip.numOfRecliners   = recliners.stream().filter(recliner -> recliner.getStatus().equals(MedicalEquipment.EquipmentStatus.Dirty)).collect(Collectors.toList()).size();
-        dirtyEquip.numOfPumps       = pumps.stream().filter(pump -> pump.getStatus().equals(MedicalEquipment.EquipmentStatus.Dirty)).collect(Collectors.toList()).size();
-        dirtyEquip.numOfXRays       = xrays.stream().filter(xray -> xray.getStatus().equals(MedicalEquipment.EquipmentStatus.Dirty)).collect(Collectors.toList()).size();
+        dirtyEquip.numOfBeds        = (int) beds.stream().filter(bed -> bed.getStatus().equals(MedicalEquipment.EquipmentStatus.Dirty)).count();
+        dirtyEquip.numOfRecliners   = (int) recliners.stream().filter(recliner -> recliner.getStatus().equals(MedicalEquipment.EquipmentStatus.Dirty)).count();
+        dirtyEquip.numOfPumps       = (int) pumps.stream().filter(pump -> pump.getStatus().equals(MedicalEquipment.EquipmentStatus.Dirty)).count();
+        dirtyEquip.numOfXRays       = (int) xrays.stream().filter(xray -> xray.getStatus().equals(MedicalEquipment.EquipmentStatus.Dirty)).count();
 
-        inUseEquip.numOfBeds        = beds.stream().filter(bed -> bed.getStatus().equals(MedicalEquipment.EquipmentStatus.Unavailable)).collect(Collectors.toList()).size();
-        inUseEquip.numOfRecliners   = recliners.stream().filter(recliner -> recliner.getStatus().equals(MedicalEquipment.EquipmentStatus.Unavailable)).collect(Collectors.toList()).size();
-        inUseEquip.numOfPumps       = pumps.stream().filter(pump -> pump.getStatus().equals(MedicalEquipment.EquipmentStatus.Unavailable)).collect(Collectors.toList()).size();
-        inUseEquip.numOfXRays       = xrays.stream().filter(xray -> xray.getStatus().equals(MedicalEquipment.EquipmentStatus.Unavailable)).collect(Collectors.toList()).size();
+        inUseEquip.numOfBeds        = (int) beds.stream().filter(bed -> bed.getStatus().equals(MedicalEquipment.EquipmentStatus.Unavailable)).count();
+        inUseEquip.numOfRecliners   = (int) recliners.stream().filter(recliner -> recliner.getStatus().equals(MedicalEquipment.EquipmentStatus.Unavailable)).count();
+        inUseEquip.numOfPumps       = (int) pumps.stream().filter(pump -> pump.getStatus().equals(MedicalEquipment.EquipmentStatus.Unavailable)).count();
+        inUseEquip.numOfXRays       = (int) xrays.stream().filter(xray -> xray.getStatus().equals(MedicalEquipment.EquipmentStatus.Unavailable)).count();
 
-        readyEquip.numOfBeds        = beds.stream().filter(bed -> bed.getStatus().equals(MedicalEquipment.EquipmentStatus.Available)).collect(Collectors.toList()).size();
-        readyEquip.numOfRecliners   = recliners.stream().filter(recliner -> recliner.getStatus().equals(MedicalEquipment.EquipmentStatus.Available)).collect(Collectors.toList()).size();
-        readyEquip.numOfPumps       = pumps.stream().filter(pump -> pump.getStatus().equals(MedicalEquipment.EquipmentStatus.Available)).collect(Collectors.toList()).size();
-        readyEquip.numOfXRays       = xrays.stream().filter(xray -> xray.getStatus().equals(MedicalEquipment.EquipmentStatus.Available)).collect(Collectors.toList()).size();
+        readyEquip.numOfBeds        = (int) beds.stream().filter(bed -> bed.getStatus().equals(MedicalEquipment.EquipmentStatus.Available)).count();
+        readyEquip.numOfRecliners   = (int) recliners.stream().filter(recliner -> recliner.getStatus().equals(MedicalEquipment.EquipmentStatus.Available)).count();
+        readyEquip.numOfPumps       = (int) pumps.stream().filter(pump -> pump.getStatus().equals(MedicalEquipment.EquipmentStatus.Available)).count();
+        readyEquip.numOfXRays       = (int) xrays.stream().filter(xray -> xray.getStatus().equals(MedicalEquipment.EquipmentStatus.Available)).count();
 
         bedPane.getChildren().clear();
         reclinerPane.getChildren().clear();
@@ -688,7 +655,7 @@ public class BaseMapSideViewController implements Initializable {
         ObservableList<PieChart.Data> list;
         if(dirty == 0 && available == 0 && unavailable == 0){
             list = FXCollections.observableArrayList(
-                    new PieChart.Data("No Equipment Available", 0));
+                    new PieChart.Data("No Equipment", 1));
         }
         else{
             list = FXCollections.observableArrayList(
@@ -722,17 +689,20 @@ public class BaseMapSideViewController implements Initializable {
             Tooltip tooltip = new Tooltip();
             tooltip.setStyle("-fx-font-size: 15;");
             tooltip.setShowDelay(new Duration(0));
-            tooltip.setText(data.getName() + ": " + (int) data.getPieValue());
+
+            if (data.getName().equals("No Equipment")) tooltip.setText(data.getName());
+            else tooltip.setText(data.getName() + ": " + (int) data.getPieValue());
+
             Tooltip.install(data.getNode(), tooltip);
             data.pieValueProperty().addListener((observable, oldValue, newValue) ->
                     tooltip.setText(String.valueOf(newValue)));
         });
-        int colorCounter = 0;
-        for(PieChart.Data data : datas){
-            if(colorCounter == 0) datas.get(0).getNode().setStyle("-fx-pie-color: red;");
-            if(colorCounter == 1) datas.get(1).getNode().setStyle("-fx-pie-color: #069420;");
-            if(colorCounter == 2) datas.get(2).getNode().setStyle("-fx-pie-color: #ebb420;");
-            colorCounter++;
+        if (datas.size() == 1) {
+            datas.get(0).getNode().setStyle("-fx-pie-color: white;");
+        } else {
+            datas.get(0).getNode().setStyle("-fx-pie-color: #F44336;");
+            datas.get(1).getNode().setStyle("-fx-pie-color: #069420;");
+            datas.get(2).getNode().setStyle("-fx-pie-color: #ebb420;");
         }
     }
 
@@ -765,7 +735,7 @@ public class BaseMapSideViewController implements Initializable {
 
     @FXML
     void onFloorClicked(MouseEvent event, FloorNode floorNode) throws IOException {
-        //if(addFloorClicked) return;
+        equipmentBox.setVisible(true);
         this.selectedFloor = floorNode.getFloor();
         editButton.setDisable(false);
         deleteButton.setDisable(false);
@@ -789,6 +759,7 @@ public class BaseMapSideViewController implements Initializable {
         floorImage.setImage(image);
 
         order = selectedFloor.getOrder();
+        editOriginalOrder = order;
 
         longName.setText(selectedFloor.getLongName());
         shortName.setText(selectedFloor.getShortName());

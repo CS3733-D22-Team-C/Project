@@ -29,39 +29,56 @@
       <RowConstraints maxHeight="1.7976931348623157E308" minHeight="10.0" prefHeight="30.0" vgrow="ALWAYS" />
    </rowConstraints>
    <children>
-      <VBox id="description-box" alignment="CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="114.0" prefWidth="338.0" styleClass="page-container" GridPane.halignment="CENTER" GridPane.hgrow="ALWAYS" GridPane.vgrow="ALWAYS">
+      <VBox id="description-box" alignment="TOP_CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="114.0" prefWidth="248.0" styleClass="page-container" GridPane.halignment="CENTER" GridPane.hgrow="ALWAYS" GridPane.valignment="CENTER" GridPane.vgrow="ALWAYS">
          <children>
-            <Label id="floor-label" fx:id="floorTitle" alignment="CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefWidth="240.0" styleClass="floor-label" text="Select the Map">
+            <Label id="floor-label" fx:id="floorTitle" alignment="CENTER" maxWidth="1.7976931348623157E308" prefWidth="240.0" styleClass="floor-label" text="Select A Floor">
                <font>
                   <Font size="20.0" />
                </font>
             </Label>
-            <HBox fx:id="imageBox" alignment="CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" VBox.vgrow="ALWAYS">
+            <HBox alignment="CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="41.0" prefWidth="275.0" VBox.vgrow="ALWAYS">
                <children>
-                  <MFXScrollPane hbarPolicy="NEVER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" vbarPolicy="NEVER" HBox.hgrow="ALWAYS">
-                     <content>
-                        <ImageView fx:id="floorImage" fitHeight="20.0" fitWidth="20.0" onMouseClicked="#onGoToClicked" pickOnBounds="true" preserveRatio="true">
-                           <viewport>
-                              <Rectangle2D />
-                           </viewport>
-                        </ImageView>
-                     </content>
+                  <GridPane alignment="CENTER" prefHeight="0.0" prefWidth="253.0" HBox.hgrow="SOMETIMES">
+                     <columnConstraints>
+                        <ColumnConstraints halignment="CENTER" hgrow="ALWAYS" maxWidth="1.7976931348623157E308" />
+                     </columnConstraints>
+                     <rowConstraints>
+                        <RowConstraints maxHeight="1.7976931348623157E308" valignment="CENTER" vgrow="ALWAYS" />
+                     </rowConstraints>
+                     <children>
+                        <HBox fx:id="imageBox" alignment="CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" GridPane.hgrow="ALWAYS" GridPane.vgrow="ALWAYS">
+                           <children>
+                              <ImageView fx:id="floorImage" fitHeight="20.0" fitWidth="20.0" onMouseClicked="#onGoToClicked" pickOnBounds="true" preserveRatio="true" HBox.hgrow="NEVER">
+                                 <viewport>
+                                    <Rectangle2D />
+                                 </viewport>
+                              </ImageView>
+                           </children>
+                        </HBox>
+                     </children>
                      <HBox.margin>
-                        <Insets bottom="10.0" />
+                        <Insets />
                      </HBox.margin>
-                  </MFXScrollPane>
+                  </GridPane>
                </children>
                <padding>
                   <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
                </padding>
             </HBox>
-            <HBox alignment="TOP_CENTER" prefHeight="30.0" prefWidth="270.0" VBox.vgrow="ALWAYS">
+            <HBox alignment="BOTTOM_CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" VBox.vgrow="SOMETIMES">
                <children>
-                  <Text fx:id="descriptionText" strokeType="OUTSIDE" strokeWidth="0.0" text="Select A Floor" textAlignment="CENTER" wrappingWidth="250.0" HBox.hgrow="ALWAYS" />
+                  <Label fx:id="descriptionText" alignment="CENTER" contentDisplay="CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" textAlignment="CENTER" HBox.hgrow="ALWAYS">
+                     <HBox.margin>
+                        <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                     </HBox.margin>
+                  </Label>
                </children>
                <VBox.margin>
-                  <Insets bottom="10.0" />
+                  <Insets />
                </VBox.margin>
+               <padding>
+                  <Insets bottom="5.0" />
+               </padding>
             </HBox>
          </children>
          <effect>
@@ -71,7 +88,7 @@
             <Insets bottom="20.0" left="20.0" right="10.0" top="20.0" />
          </GridPane.margin>
       </VBox>
-      <VBox maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="200.0" prefWidth="100.0" styleClass="page-container" GridPane.hgrow="ALWAYS" GridPane.rowIndex="1" GridPane.vgrow="ALWAYS">
+      <VBox fx:id="equipmentBox" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="200.0" prefWidth="100.0" styleClass="page-container" GridPane.hgrow="ALWAYS" GridPane.rowIndex="1" GridPane.vgrow="ALWAYS">
          <GridPane.margin>
             <Insets bottom="20.0" left="20.0" right="10.0" top="20.0" />
          </GridPane.margin>
@@ -109,9 +126,9 @@
                               <MFXTextField fx:id="longName" floatMode="BORDER" floatingText="Long Name" maxWidth="1.7976931348623157E308" />
                               <MFXTextField fx:id="shortName" floatMode="BORDER" floatingText="Short Name" layoutX="10.0" layoutY="10.0" maxWidth="1.7976931348623157E308" />
                               <JFXTextArea fx:id="description" labelFloat="true" promptText="Description" wrapText="true" />
-                              <HBox alignment="CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" VBox.vgrow="ALWAYS">
+                              <HBox alignment="CENTER" maxHeight="-Infinity" maxWidth="1.7976931348623157E308" minHeight="-Infinity" prefHeight="38.0" VBox.vgrow="ALWAYS">
                                  <children>
-                                    <MFXTextField fx:id="image" editable="false" floatMode="BORDER" floatingText="Image" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" HBox.hgrow="ALWAYS" />
+                                    <MFXTextField fx:id="image" editable="false" floatMode="BORDER" floatingText="Image" maxHeight="-Infinity" maxWidth="1.7976931348623157E308" minHeight="-Infinity" prefHeight="38.0" HBox.hgrow="ALWAYS" />
                                     <MFXButton fx:id="fileSelectButton" contentDisplay="GRAPHIC_ONLY" graphicTextGap="0.0" maxHeight="1.7976931348623157E308" onAction="#onFileSelectClicked" prefWidth="25.0" styleClass="button-file-select" HBox.hgrow="NEVER" />
                                  </children>
                               </HBox>

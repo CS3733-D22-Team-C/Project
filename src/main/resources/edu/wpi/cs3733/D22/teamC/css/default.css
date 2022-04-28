@@ -68,6 +68,11 @@
     -fx-background-radius: 44px;
 }
 
+.text-area:readonly{
+    -fx-border-radius: 44px;
+    -fx-background-radius: 44px;
+}
+
 .combo-box {
     -fx-background-color: -color-primary-text;
     -fx-cursor: hand;

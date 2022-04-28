@@ -15,11 +15,13 @@
     -fx-text-fill: -color-primary-dark;
     -fx-border-color: -color-secondary-dark;
     -fx-border-radius: 5px;
+    -fx-border-width: 2px;
     -fx-font-size: 16px;
 }
 
 .floor:hover{
-    -fx-background-color:-color-secondary;
+    -fx-background-color:-color-secondary-light !important;
+    -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.5), 1, 0, 0, 0);
 }
 
 .mfx-button .mfx-ripple-generator{
