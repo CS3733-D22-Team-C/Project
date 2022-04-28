@@ -22,7 +22,7 @@
             <Label maxWidth="1.7976931348623157E308" styleClass="page-container-title" text="Pending Service Requests" />
             <VBox fx:id="tableBox" styleClass="page-padding" VBox.vgrow="ALWAYS">
                <children>
-                  <JFXTreeTableView fx:id="table" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" styleClass="table-view" />
+                  <JFXTreeTableView fx:id="table" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" styleClass="table-view" VBox.vgrow="ALWAYS" />
                </children>
             </VBox>
             <HBox alignment="CENTER" styleClass="page-padding">
