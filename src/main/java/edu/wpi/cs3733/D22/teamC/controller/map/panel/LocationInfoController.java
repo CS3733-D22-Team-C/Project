@@ -376,6 +376,7 @@ public class LocationInfoController implements Initializable {
             mapViewController.getLocationManager().onClickCapture = location -> {
                 activeServiceRequest.setLocation(location);
                 updateServiceRequest();
+                setActiveServiceRequest(null);
 
                 Location currentLocation = mapViewController.getLocationManager().getCurrent();
 
