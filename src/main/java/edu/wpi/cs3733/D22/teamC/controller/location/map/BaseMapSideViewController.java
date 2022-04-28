@@ -15,6 +15,8 @@ import edu.wpi.cs3733.D22.teamC.models.utils.DoughnutChart;
 import io.github.palexdev.materialfx.controls.MFXButton;
 import io.github.palexdev.materialfx.controls.MFXTextField;
 import io.github.palexdev.materialfx.utils.SwingFXUtils;
+import io.github.palexdev.materialfx.validation.Constraint;
+import io.github.palexdev.materialfx.validation.Severity;
 import javafx.beans.property.ObjectProperty;
 import javafx.beans.property.SimpleObjectProperty;
 import javafx.collections.FXCollections;
@@ -48,6 +50,8 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.*;
 import java.util.stream.Collectors;
+
+import static io.github.palexdev.materialfx.validation.Validated.INVALID_PSEUDO_CLASS;
 
 public class BaseMapSideViewController implements Initializable {
 
@@ -131,6 +135,50 @@ public class BaseMapSideViewController implements Initializable {
         SVGGlyph folderIcon = new SVGGlyph(folderContent);
         folderIcon.setSize(20);
         fileSelectButton.setGraphic(folderIcon);
+
+        Constraint longNameFill = Constraint.Builder.build()
+                .setSeverity(Severity.ERROR)
+                .setCondition(longName.textProperty().length().greaterThanOrEqualTo(1))
+                .get();
+
+        longName.getValidator().constraint(longNameFill);
+        longName.getValidator().validProperty().addListener((observable, oldValue, newValue) -> {
+            if (newValue) {
+                longName.pseudoClassStateChanged(INVALID_PSEUDO_CLASS, false);
+                longName.getStyleClass().remove("validated-field");
+            }
+        });
+        longName.delegateFocusedProperty().addListener((observable, oldValue, newValue) -> {
+            if (oldValue && !newValue) {
+                List<Constraint> constraints = longName.validate();
+                if (!constraints.isEmpty()) {
+                    longName.pseudoClassStateChanged(INVALID_PSEUDO_CLASS, true);
+                    longName.getStyleClass().add("validated-field");
+                }
+            }
+        });
+
+        Constraint shortNameFill = Constraint.Builder.build()
+                .setSeverity(Severity.ERROR)
+                .setCondition(shortName.textProperty().length().greaterThanOrEqualTo(1))
+                .get();
+
+        shortName.getValidator().constraint(shortNameFill);
+        shortName.getValidator().validProperty().addListener((observable, oldValue, newValue) -> {
+            if (newValue) {
+                shortName.pseudoClassStateChanged(INVALID_PSEUDO_CLASS, false);
+                shortName.getStyleClass().remove("validated-field");
+            }
+        });
+        shortName.delegateFocusedProperty().addListener((observable, oldValue, newValue) -> {
+            if (oldValue && !newValue) {
+                List<Constraint> constraints = shortName.validate();
+                if (!constraints.isEmpty()) {
+                    shortName.pseudoClassStateChanged(INVALID_PSEUDO_CLASS, true);
+                    shortName.getStyleClass().add("validated-field");
+                }
+            }
+        });
     }
 
     @FXML
@@ -284,11 +332,13 @@ public class BaseMapSideViewController implements Initializable {
                 }
             }
         }
+        shortName.getStyleClass().remove("validated-field");
+        longName.getStyleClass().remove("validated-field");
     }
 
     @FXML
     void onConfirmClicked(ActionEvent event) throws IOException {
-        if(!requiredFieldsPresent()) return; // todo insert validation here or in function
+        if(!requiredFieldsPresent()) return;
 
         selectedFloor.setLongName(longName.getText());
         selectedFloor.setDescription(description.getText());
@@ -330,7 +380,10 @@ public class BaseMapSideViewController implements Initializable {
 
     private boolean requiredFieldsPresent(){
         if(shortName.getText().equals("") || longName.getText().equals("")
-                || imagePath.equals("") || bFile == null || description.getLength() > 255) return false;
+                || imagePath.equals("") || bFile == null || description.getLength() > 255){
+            image.getStyleClass().remove("validated-field");
+            return false;
+        }
         return true;
     }
 
@@ -402,6 +455,7 @@ public class BaseMapSideViewController implements Initializable {
 
                 imagePath = file.getName();
                 this.image.setText(imagePath);
+                image.getStyleClass().add("validated-field");
             } catch (IOException e) {
                 e.printStackTrace();
             }
