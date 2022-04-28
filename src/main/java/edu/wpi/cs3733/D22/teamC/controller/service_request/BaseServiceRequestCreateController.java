@@ -26,6 +26,7 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
+import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import org.controlsfx.control.SearchableComboBox;
 import org.controlsfx.glyphfont.Glyph;
@@ -294,6 +295,6 @@ public class BaseServiceRequestCreateController<T extends ServiceRequest> implem
     public void setSegmentedBarInsert(){
         App.View<SegmentBarController> view = App.instance.loadView("view/service_request/segment_bar.fxml");
         insertBarController = view.getController();
-        tableBox.getChildren().add(0, view.getNode());
+        tableBox.getChildren().add(view.getNode());
     }
 }
