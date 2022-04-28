@@ -265,7 +265,7 @@ public class ServiceRequestLandingPage implements Initializable {
     public void setSegmentedBarInsert() {
         App.View<SegmentBarController> view = App.instance.loadView("view/service_request/segment_bar.fxml");
         insertBarController = view.getController();
-        tableBox.getChildren().add(1, view.getNode());
+        tableBox.getChildren().add(0, view.getNode());
     }
 
     @FXML

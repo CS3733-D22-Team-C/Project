@@ -136,3 +136,11 @@
     -fx-background-position: top;
     -fx-background-color: white;
 }
+
+#external-transport {
+    -fx-background-image: url("../../static/images/card-images/external-transport.png");
+    -fx-background-size: contain;
+    -fx-background-repeat: no-repeat;
+    -fx-background-position: top;
+    -fx-background-color: white;
+}

@@ -3,16 +3,10 @@
 
 .button {
     -fx-background-color: -color-primary-light;
-    text-indent: -9999px;
-    -fx-font-size: 22;
-    -fx-font-weight: bold;
-    -fx-effect: dropshadow(three-pass-box  , rgba(0, 0, 0, 0.63), 1 , 0.1 , 0 , 4);
-    -fx-border-color: #00316C;
-    -fx-border-width: 1px;
-    -fx-border-insets: 0 0 -1 0;
-    -fx-pref-width: 270;
-    -fx-pref-height: 110;
+    -fx-effect: dropshadow(two-pass-box, rgba(0, 0, 0, 0.63), 1 , 0.1 , 0 , 4);
     -fx-text-fill: -color-primary-text;
+    -fx-border-radius: 10px;
+    -fx-cursor: hand;
 }
 
 .button:hover {

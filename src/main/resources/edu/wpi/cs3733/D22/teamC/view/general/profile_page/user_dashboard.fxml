@@ -114,8 +114,9 @@
                <tabs>
                   <Tab closable="false" text="Assigned Service Requests">
                      <content>
-                        <VBox fx:id="assignedTableBox">
+                        <VBox>
                            <children>
+                              <VBox fx:id="assignedTableBox" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" prefHeight="45.0" prefWidth="548.0" />
                               <JFXTreeTableView fx:id="assignedTable" prefHeight="448.0" prefWidth="368.0" styleClass="table-view" />
                            </children>
                         </VBox>
@@ -123,9 +124,10 @@
                   </Tab>
                   <Tab closable="false" text="Created Service Requests">
                      <content>
-                        <VBox fx:id="createdTableBox">
+                        <VBox>
                            <children>
-                              <JFXTreeTableView fx:id="createdTable" styleClass="table-view" />
+                              <VBox fx:id="createdTableBox" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" prefHeight="45.0" prefWidth="548.0" />
+                              <JFXTreeTableView fx:id="createdTable" prefHeight="446.0" prefWidth="548.0" styleClass="table-view" />
                            </children>
                         </VBox>
                      </content>
