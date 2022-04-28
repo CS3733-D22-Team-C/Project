@@ -9,7 +9,7 @@
 
 <HBox maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="46.0" prefWidth="600.0" stylesheets="@../../../css/component/request_page.css" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.wpi.cs3733.D22.teamC.controller.service_request.patient_transport.PatientTransportSRInsertResolveController">
    <children>
-      <VBox alignment="CENTER_LEFT" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefWidth="227.0" styleClass="fields-padding" HBox.hgrow="ALWAYS">
+      <VBox alignment="CENTER_LEFT" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefWidth="232.0" styleClass="fields-padding" HBox.hgrow="ALWAYS">
          <children>
             <Label prefHeight="18.0" prefWidth="134.0" styleClass="service-field-label" text="Patient:" />
             <HBox maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308">
