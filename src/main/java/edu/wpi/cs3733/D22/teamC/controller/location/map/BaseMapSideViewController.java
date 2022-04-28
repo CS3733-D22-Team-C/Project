@@ -251,7 +251,6 @@ public class BaseMapSideViewController implements Initializable {
 
             editButton.setDisable(true);
             deleteButton.setDisable(true);
-
             selectedFloor = null;
 
             loadFloors();

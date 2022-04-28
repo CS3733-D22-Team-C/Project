@@ -7,25 +7,25 @@
 <?import javafx.scene.layout.VBox?>
 <?import org.controlsfx.control.SearchableComboBox?>
 
-<HBox maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" stylesheets="@../../../css/component/request_page.css" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.wpi.cs3733.D22.teamC.controller.service_request.lab_system.LabSystemSRInsertResolveController">
+<HBox maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefWidth="600.0" stylesheets="@../../../css/component/request_page.css" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.wpi.cs3733.D22.teamC.controller.service_request.lab_system.LabSystemSRInsertResolveController">
     <children>
-        <VBox alignment="CENTER_LEFT" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefWidth="227.0" styleClass="fields-padding" HBox.hgrow="ALWAYS">
+        <VBox alignment="CENTER_LEFT" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefWidth="100.0" styleClass="fields-padding" HBox.hgrow="ALWAYS">
             <children>
                 <Label styleClass="service-field-label" text="Lab Type:" />
-                <JFXComboBox fx:id="labType" maxWidth="1.7976931348623157E308" onAction="#statusUpdated" prefWidth="190.0" styleClass="dropdown" stylesheets="@../../../css/default.css" VBox.vgrow="ALWAYS" />
+                <JFXComboBox fx:id="labType" maxHeight="-Infinity" maxWidth="1.7976931348623157E308" minHeight="-Infinity" onAction="#statusUpdated" prefHeight="31.2" prefWidth="190.0" styleClass="dropdown" stylesheets="@../../../css/default.css" VBox.vgrow="ALWAYS" />
             </children>
         </VBox>
-      <VBox alignment="CENTER_LEFT" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefWidth="227.0" styleClass="box-margin">
+      <VBox alignment="CENTER_LEFT" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefWidth="100.0" styleClass="fields-padding" HBox.hgrow="ALWAYS">
          <children>
             <Label styleClass="service-field-label" stylesheets="@../../../css/default.css" text="Patient:" />
-            <HBox maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="26.0" prefWidth="198.0">
+            <HBox spacing="1.5">
                <children>
-                  <SearchableComboBox fx:id="patientSComboBox" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" onAction="#statusUpdated" />
-                  <JFXButton fx:id="patientButton" onAction="#goToPatientTable" prefHeight="26.0" prefWidth="37.0" style="-fx-background-color: -color-secondary;" stylesheets="@../../../css/colors.css" text="-&gt;" />
+                  <SearchableComboBox fx:id="patientSComboBox" focusTraversable="false" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" onAction="#statusUpdated" HBox.hgrow="ALWAYS" />
+                  <JFXButton fx:id="patientButton" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" onAction="#goToPatientTable" prefHeight="26.0" style="-fx-background-color: -color-secondary;" stylesheets="@../../../css/colors.css" text=" " />
                </children>
             </HBox>
          </children>
       </VBox>
-        <VBox alignment="CENTER_LEFT" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefWidth="227.0" styleClass="fields-padding" HBox.hgrow="ALWAYS" />
+        <VBox alignment="CENTER_LEFT" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefWidth="90.0" styleClass="fields-padding" HBox.hgrow="ALWAYS" />
     </children>
 </HBox>
