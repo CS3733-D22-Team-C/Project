@@ -16,9 +16,6 @@ public class PatientTransportSRTableDisplay extends ServiceRequestTableDisplay<P
         public PatientTransportSRTableEntry(PatientTransportSR patientTransportSR) {
             super(patientTransportSR);
 
-            PatientDAO patientDAO = new PatientDAO();
-
-
             this.patient = new SimpleStringProperty((patientTransportSR.getPatient() != null)
                     ? patientTransportSR.getPatient().toString() : "N/A");
             this.date = new SimpleStringProperty(String.valueOf(patientTransportSR.getTransportTime()));
