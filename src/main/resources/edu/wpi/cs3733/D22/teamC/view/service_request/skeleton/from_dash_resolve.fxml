@@ -16,18 +16,14 @@
         <ColumnConstraints hgrow="ALWAYS" maxWidth="1.7976931348623157E308" minWidth="10.0" prefWidth="272.79998779296875" />
     </columnConstraints>
     <rowConstraints>
-        <RowConstraints maxHeight="144.8000030517578" minHeight="5.599998474121094" prefHeight="72.0" vgrow="NEVER" />
-        <RowConstraints maxHeight="185.60000228881836" minHeight="0.0" prefHeight="155.0" vgrow="ALWAYS" />
+        <RowConstraints maxHeight="144.8000030517578" prefHeight="51.0" vgrow="NEVER" />
+        <RowConstraints maxHeight="185.60000228881836" minHeight="0.0" prefHeight="172.80000991821288" vgrow="ALWAYS" />
         <RowConstraints maxHeight="377.6" minHeight="10.0" prefHeight="131.0" vgrow="ALWAYS" />
         <RowConstraints maxHeight="260.0000183105468" minHeight="10.0" prefHeight="190.4000183105469" vgrow="ALWAYS" />
         <RowConstraints maxHeight="226.40000000000003" minHeight="0.0" prefHeight="133.59999389648442" vgrow="ALWAYS" />
     </rowConstraints>
     <children>
-        <VBox GridPane.hgrow="ALWAYS" GridPane.vgrow="ALWAYS">
-            <children>
-                <Label id="title" fx:id="title" alignment="CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="71.0" prefWidth="590.0" styleClass="card-content-header" text="Resolve Service Request " VBox.vgrow="NEVER" />
-            </children>
-        </VBox>
+          <Label fx:id="title" alignment="CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" styleClass="page-container-title" text="Resolve Service Request " />
         <VBox prefHeight="148.0" prefWidth="478.0" styleClass="fields-padding" GridPane.rowIndex="1">
             <children>
                 <HBox prefHeight="6.0" prefWidth="520.0">
@@ -149,12 +145,12 @@
                     <children>
                         <HBox prefHeight="75.0" prefWidth="341.0">
                             <children>
-                                <JFXButton fx:id="goBackButton" onAction="#clickGoBack" styleClass="button-secondary" text="Go Back" />
+                                <JFXButton fx:id="goBackButton" onAction="#clickGoBack" styleClass="secondary-action-button" text="Go Back" />
                             </children>
                         </HBox>
                         <HBox alignment="TOP_RIGHT" prefHeight="75.0" prefWidth="349.0" HBox.hgrow="ALWAYS">
                             <children>
-                                <JFXButton fx:id="confirmButton" onAction="#clickConfirm" styleClass="button-confirm" text="Confirm" />
+                                <JFXButton fx:id="confirmButton" onAction="#clickConfirm" styleClass="primary-action-button" text="Confirm" />
                             </children>
                         </HBox>
                     </children>

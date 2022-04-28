@@ -232,6 +232,8 @@
     -fx-background-color: -color-primary;
     -fx-alignment: center;
     -fx-background-radius: 20 20 0 0;
+    -fx-max-height: 55px;
+    -fx-pref-height: 55px;
 }
 
 .primary-action-button {
