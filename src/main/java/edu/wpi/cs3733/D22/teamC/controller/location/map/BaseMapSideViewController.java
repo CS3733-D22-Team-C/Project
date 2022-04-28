@@ -45,6 +45,7 @@ import java.io.File;
 import java.io.IOException;
 import java.net.URL;
 import java.util.*;
+import java.util.stream.Collectors;
 
 public class BaseMapSideViewController implements Initializable {
 
@@ -402,62 +403,15 @@ public class BaseMapSideViewController implements Initializable {
     private void loadEquipment(){
         MedicalEquipmentDAO MEL = new MedicalEquipmentDAO();
 
-        
+        List<MedicalEquipment> beds = MEL.getEquipmentByFloorAndType(selectedFloor.getID(), MedicalEquipment.EquipmentType.Bed);
+        List<MedicalEquipment> recliners = MEL.getEquipmentByFloorAndType(selectedFloor.getID(), MedicalEquipment.EquipmentType.Recliner);
 
-        List<MedicalEquipment> medicalEquipmentPerFloor = MEL.getEquipmentByFloor(selectedFloor.getID());
-
-        List<MedicalEquipment> floorXDirty = new ArrayList<>();
-        List<MedicalEquipment> floorXClean = new ArrayList<>();
-        List<MedicalEquipment> floorXPod = new ArrayList<>();
-        for (MedicalEquipment medicalEquipmentFloorX : medicalEquipmentPerFloor) {
-            if(medicalEquipmentFloorX.getStatus().equals(MedicalEquipment.EquipmentStatus.Dirty))
-            floorXDirty.add(medicalEquipmentFloorX);
-            if (medicalEquipmentFloorX.getStatus().equals(MedicalEquipment.EquipmentStatus.Available))
-                floorXClean.add(medicalEquipmentFloorX);
-            if (medicalEquipmentFloorX.getStatus().equals(MedicalEquipment.EquipmentStatus.Unavailable))
-                floorXPod.add(medicalEquipmentFloorX);
-        }
-
-        // So i need to add the count of all equipments
-        List<MedicalEquipment> dirtyRecliners   = new ArrayList<>();
-        List<MedicalEquipment> dirtyBeds        = new ArrayList<>();
-        List<MedicalEquipment> dirtyPumps       = new ArrayList<>();
-        List<MedicalEquipment> dirtyXRays       = new ArrayList<>();
-
-        List<MedicalEquipment> cleanXRays       = new ArrayList<>();
-        List<MedicalEquipment> cleanPumps       = new ArrayList<>();
-        List<MedicalEquipment> cleanRecliners   = new ArrayList<>();
-        List<MedicalEquipment> cleanBeds        = new ArrayList<>();
-
-        List<MedicalEquipment> inUseBeds        = new ArrayList<>();
-        List<MedicalEquipment> inUseXRays       = new ArrayList<>();
-        List<MedicalEquipment> inUsePumps       = new ArrayList<>();
-        List<MedicalEquipment> inUseRecliners   = new ArrayList<>();
-
-        for(MedicalEquipment medicalEquipment : floorXDirty){
-            if(medicalEquipment.getEquipmentType().equals(MedicalEquipment.EquipmentType.Recliner)) dirtyRecliners.add(medicalEquipment);
-            if(medicalEquipment.getEquipmentType().equals(MedicalEquipment.EquipmentType.Portable_X_Ray)) dirtyXRays.add(medicalEquipment);
-            if(medicalEquipment.getEquipmentType().equals(MedicalEquipment.EquipmentType.Bed)) dirtyBeds.add(medicalEquipment);
-            if(medicalEquipment.getEquipmentType().equals(MedicalEquipment.EquipmentType.Infusion_Pump)) dirtyPumps.add(medicalEquipment);
-        }
-        for(MedicalEquipment medicalEquipment : floorXClean){
-            if(medicalEquipment.getEquipmentType().equals(MedicalEquipment.EquipmentType.Recliner)) cleanRecliners.add(medicalEquipment);
-            if(medicalEquipment.getEquipmentType().equals(MedicalEquipment.EquipmentType.Portable_X_Ray)) cleanXRays.add(medicalEquipment);
-            if(medicalEquipment.getEquipmentType().equals(MedicalEquipment.EquipmentType.Bed)) cleanBeds.add(medicalEquipment);
-            if(medicalEquipment.getEquipmentType().equals(MedicalEquipment.EquipmentType.Infusion_Pump)) cleanPumps.add(medicalEquipment);
-        }
-        for(MedicalEquipment medicalEquipment : floorXPod){
-            if(medicalEquipment.getEquipmentType().equals(MedicalEquipment.EquipmentType.Recliner)) inUseRecliners.add(medicalEquipment);
-            if(medicalEquipment.getEquipmentType().equals(MedicalEquipment.EquipmentType.Portable_X_Ray)) inUseXRays.add(medicalEquipment);
-            if(medicalEquipment.getEquipmentType().equals(MedicalEquipment.EquipmentType.Bed)) inUseBeds.add(medicalEquipment);
-            if(medicalEquipment.getEquipmentType().equals(MedicalEquipment.EquipmentType.Infusion_Pump)) inUsePumps.add(medicalEquipment);
-        }
         dirtyEquip.numOfRecliners   = dirtyRecliners.size();
-        dirtyEquip.numOfBeds        = dirtyBeds.size();
+        dirtyEquip.numOfBeds        = beds.stream().filter(bed -> bed.getStatus().equals(MedicalEquipment.EquipmentStatus.Dirty)).collect(Collectors.toList()).size();
         dirtyEquip.numOfPumps       = dirtyPumps.size();
         dirtyEquip.numOfXRays       = dirtyXRays.size();
 
-        inUseEquip.numOfBeds        = inUseBeds.size();
+        inUseEquip.numOfBeds        = beds.stream().filter(bed -> bed.getStatus().equals(MedicalEquipment.EquipmentStatus.Unavailable)).collect(Collectors.toList()).size();
         inUseEquip.numOfXRays       = inUseXRays.size();
         inUseEquip.numOfPumps       = inUsePumps.size();
         inUseEquip.numOfRecliners   = inUseRecliners.size();
@@ -465,8 +419,7 @@ public class BaseMapSideViewController implements Initializable {
         readyEquip.numOfXRays       = cleanXRays.size();
         readyEquip.numOfPumps       = cleanPumps.size();
         readyEquip.numOfRecliners   = cleanRecliners.size();
-        readyEquip.numOfBeds        = cleanBeds.size();
-
+        readyEquip.numOfBeds        = beds.stream().filter(bed -> bed.getStatus().equals(MedicalEquipment.EquipmentStatus.Available)).collect(Collectors.toList()).size();
 
         bedPane.getChildren().clear();
         reclinerPane.getChildren().clear();
