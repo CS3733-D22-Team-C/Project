@@ -9,7 +9,6 @@ import javafx.beans.property.*;
 public class MedicalEquipmentTableDisplay extends TableDisplay<MedicalEquipment> {
     public class MedicalEquipmentTableEntry extends TableDisplayEntry {
         // Properties
-        public StringProperty idProperty;
         public StringProperty locationNameProperty;
         public StringProperty typeProperty;
         public IntegerProperty typeNumberProperty;
@@ -18,7 +17,6 @@ public class MedicalEquipmentTableDisplay extends TableDisplay<MedicalEquipment>
         public MedicalEquipmentTableEntry(MedicalEquipment medicalEquipment) {
             super(medicalEquipment);
 
-            this.idProperty             = new SimpleStringProperty(medicalEquipment.getID());
             this.locationNameProperty   = new SimpleStringProperty((medicalEquipment.getLocation() == null) ? "" : new LocationDAO().getByID(medicalEquipment.getLocation().getID()).getShortName());
             this.typeProperty           = new SimpleStringProperty(medicalEquipment.getEquipmentType().toString());
             this.typeNumberProperty     = new SimpleIntegerProperty(medicalEquipment.getTypeNumber());
@@ -27,8 +25,8 @@ public class MedicalEquipmentTableDisplay extends TableDisplay<MedicalEquipment>
 
         @Override
         public void RefreshEntry() {
-            idProperty.setValue(object.getID());
             locationNameProperty.setValue(new LocationDAO().getByID(object.getLocation().getID()).getShortName());
+            typeProperty.setValue(object.getEquipmentType().toString());
             typeNumberProperty.setValue(object.getTypeNumber());
             statusProperty.setValue(object.getStatus().toString());
         }
@@ -45,39 +43,31 @@ public class MedicalEquipmentTableDisplay extends TableDisplay<MedicalEquipment>
 
     @Override
     protected void setColumns(JFXTreeTableView table) {
-        // Insert Columns for Table
-//        addColumn(
-//                table,
-//                "ID",
-//                1f * Integer.MAX_VALUE * 16.66,
-//                (MedicalEquipmentTableEntry entry) -> entry.idProperty
-//        );
-
-        addColumn(
-                table,
-                "Location",
-                1f * Integer.MAX_VALUE * 16.66,
-                (MedicalEquipmentTableEntry entry) -> entry.locationNameProperty
-        );
-
         addColumn(
                 table,
                 "Type",
-                1f * Integer.MAX_VALUE * 16.66,
+                1f * Integer.MAX_VALUE * 25,
                 (MedicalEquipmentTableEntry entry) -> entry.typeProperty
         );
 
         addColumn(
                 table,
                 "Number",
-                1f * Integer.MAX_VALUE * 16.66,
+                1f * Integer.MAX_VALUE * 25,
                 (MedicalEquipmentTableEntry entry) -> entry.typeNumberProperty
         );
 
         addColumn(
                 table,
+                "Location",
+                1f * Integer.MAX_VALUE * 25,
+                (MedicalEquipmentTableEntry entry) -> entry.locationNameProperty
+        );
+
+        addColumn(
+                table,
                 "Status",
-                1f * Integer.MAX_VALUE * 16.66,
+                1f * Integer.MAX_VALUE * 25,
                 (MedicalEquipmentTableEntry entry) -> entry.statusProperty
         );
     }

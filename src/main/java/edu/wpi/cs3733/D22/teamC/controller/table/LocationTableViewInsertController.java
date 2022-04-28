@@ -26,6 +26,7 @@ import java.util.stream.Collectors;
 public class LocationTableViewInsertController extends InsertTableViewController<Location> implements Initializable {
     // FXML
     @FXML protected JFXButton confirmButton;
+    @FXML private JFXButton cancel;
 
     @FXML private TextField longNameField;
     @FXML private TextField shortNameField;

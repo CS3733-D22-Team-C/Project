@@ -50,11 +50,18 @@ public class App extends Application {
     public static final String MY_TASKS_PATH = "view/general/my_tasks.fxml";
     public static final String VIEW_LOCATIONS_PATH = "view/location/view_locations.fxml";
     public static final String VIEW_SERVICE_REQUESTS_PATH = "view/service_request/landing_page/service_request_landing_page.fxml";
-    public static final String SERVICE_REQUEST_LANDING_PAGE = "view/service_request/service_request_landing_page.fxml";
+    public static final String SERVICE_REQUEST_LANDING_PAGE = "view/service_request/landing_page/service_request_landing_page.fxml";
     public static final String DASHBOARD_PATH = "view/location/map/base_side_map_view.fxml";
     public static final String DATABASE_PAGE_PATH = "view/general/edit_databases_page.fxml";
     public static final String MAP_PATH = "view/map/floor_map.fxml";
+
+    public static final String ABOUT_PAGE = "view/general/about_page/about_app_page.fxml";
+
+
+    //public static final String IMAGE_PATH = "static/images/BrighamAndWomensHospital.png";
+
     public static final String USER_PROFILE = "view/general/profile_page/user_dashboard.fxml";
+
     public static final String MAP_SIDEBAR = "view/map/floor_map.fxml";
     public static final String SHORTCUT_EDIT = "view/service_request/skeleton/sr_shortcut.fxml";
     public static final String CREDIT_PAGE = "view/general/credit.fxml";
@@ -106,21 +113,22 @@ public class App extends Application {
                     {
                         case "D" :
                             setView(DASHBOARD_PATH);
+                            drawerContentController.selectedButton(drawerContentController.dashboardButton);
                             break;
                         case "X" :
                             if (userAccount.getAdmin())
                             {
                                 setView(DATABASE_PAGE_PATH);
+                                drawerContentController.selectedButton(drawerContentController.databaseButton);
                             }
-                            break;
-                        case "M" :
-                            setView(MY_TASKS_PATH);
                             break;
                         case "S" :
                             setView(VIEW_SERVICE_REQUESTS_PATH);
+                            drawerContentController.selectedButton(drawerContentController.serviceRequestsButton);
                             break;
                         case "P" :
                             setView(USER_PROFILE);
+                            drawerContentController.selectedButton(drawerContentController.viewProfileButton);
                             break;
                         case "L" :
                             setView(App.LOGIN_PATH);
@@ -128,6 +136,14 @@ public class App extends Application {
                             break;
                         case "Q" :
                             getStage().close();
+                            break;
+                        case "C" :
+                            setView(CREDIT_PAGE);
+                            drawerContentController.selectedButton(drawerContentController.creditButton);
+                            break;
+                        case "A" :
+                            setView(ABOUT_PAGE);
+                            drawerContentController.selectedButton(drawerContentController.aboutButton);
                             break;
                         default:
                             break;

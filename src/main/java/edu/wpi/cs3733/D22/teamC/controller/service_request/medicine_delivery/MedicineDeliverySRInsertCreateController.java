@@ -2,12 +2,14 @@ package edu.wpi.cs3733.D22.teamC.controller.service_request.medicine_delivery;
 
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXTreeTableView;
+import com.jfoenix.svg.SVGGlyph;
 import edu.wpi.cs3733.D22.teamC.controller.service_request.InsertServiceRequestCreateController;
 import edu.wpi.cs3733.D22.teamC.entity.generic.DAO;
 import edu.wpi.cs3733.D22.teamC.entity.patient.Patient;
 import edu.wpi.cs3733.D22.teamC.entity.patient.PatientDAO;
 import edu.wpi.cs3733.D22.teamC.entity.service_request.medicine_delivery.MedicineDeliverySR;
 import edu.wpi.cs3733.D22.teamC.entity.service_request.medicine_delivery.MedicineDeliverySRDAO;
+import edu.wpi.cs3733.D22.teamC.fileio.svg.SVGParser;
 import edu.wpi.cs3733.D22.teamC.models.patient.PatientSelectorWindow;
 import edu.wpi.cs3733.D22.teamC.models.service_request.ServiceRequestTableDisplay;
 import edu.wpi.cs3733.D22.teamC.models.service_request.medicine_delivery.MedicineDeliverySRTableDisplay;
@@ -29,7 +31,13 @@ public class MedicineDeliverySRInsertCreateController implements InsertServiceRe
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        //Patient ComboBox
+        SVGParser svgParser = new SVGParser();
+        String patientIcon = svgParser.getPath("static/icons/employee_icon.svg");
+        SVGGlyph patientContent = new SVGGlyph(patientIcon);
+        patientContent.setSize(20);
+        patientButton.setGraphic(patientContent);
+        patientButton.setText("");
+
         //Query DB
         PatientDAO patientDAO = new PatientDAO();
         List<Patient> patients = patientDAO.getAll();

@@ -12,6 +12,7 @@
 <?import javafx.scene.control.Tab?>
 <?import javafx.scene.control.TabPane?>
 <?import javafx.scene.control.TextField?>
+<?import javafx.scene.control.Tooltip?>
 <?import javafx.scene.layout.ColumnConstraints?>
 <?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.HBox?>
@@ -22,7 +23,7 @@
 <?import javafx.scene.text.Font?>
 <?import org.controlsfx.control.SearchableComboBox?>
 
-<TabPane fx:id="tabPane" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" side="LEFT" stylesheets="@../../../css/map/info_pane.css" tabClosingPolicy="UNAVAILABLE" tabMaxHeight="50.0" tabMaxWidth="115.0" tabMinHeight="50.0" tabMinWidth="115.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.wpi.cs3733.D22.teamC.controller.map.panel.LocationInfoController">
+<TabPane fx:id="tabPane" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" stylesheets="@../../../css/map/info_pane.css" tabClosingPolicy="UNAVAILABLE" tabMaxHeight="50.0" tabMaxWidth="115.0" tabMinHeight="50.0" tabMinWidth="115.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.wpi.cs3733.D22.teamC.controller.map.panel.LocationInfoController">
    <tabs>
       <Tab fx:id="locationTab" text="Location">
          <content>
@@ -37,6 +38,9 @@
                            <font>
                               <Font size="20.0" />
                            </font>
+                           <VBox.margin>
+                              <Insets bottom="5.0" />
+                           </VBox.margin>
                         </Label>
                         <HBox prefHeight="0.0" prefWidth="200.0" VBox.vgrow="SOMETIMES" />
                         <HBox minHeight="200.0" prefHeight="350.0" prefWidth="200.0" VBox.vgrow="NEVER">
@@ -113,10 +117,13 @@
                                  </children>
                               </GridPane>
                            </children>
+                           <VBox.margin>
+                              <Insets />
+                           </VBox.margin>
                         </HBox>
-                        <HBox alignment="CENTER" prefHeight="134.0" prefWidth="290.0" style="-fx-spacing: 10;">
+                        <HBox alignment="CENTER" prefHeight="125.0" style="-fx-spacing: 10;">
                            <children>
-                              <Button fx:id="deselectButton" mnemonicParsing="false" onAction="#onDeselectButtonPressed" styleClass="button-confirm" text="Deselect">
+                              <Button fx:id="deselectButton" mnemonicParsing="false" onAction="#onDeselectButtonPressed" styleClass="button-confirm" text="Deselect" HBox.hgrow="ALWAYS">
                                  <cursor>
                                     <Cursor fx:constant="HAND" />
                                  </cursor>
@@ -124,7 +131,7 @@
                                     <Insets />
                                  </opaqueInsets>
                               </Button>
-                              <Button fx:id="revertButton" disable="true" mnemonicParsing="false" onAction="#onRevertButtonPressed" styleClass="button-confirm" text="Revert">
+                              <Button fx:id="revertButton" disable="true" mnemonicParsing="false" onAction="#onRevertButtonPressed" styleClass="button-confirm" text="Revert" HBox.hgrow="ALWAYS">
                                  <cursor>
                                     <Cursor fx:constant="HAND" />
                                  </cursor>
@@ -132,7 +139,7 @@
                                     <Insets />
                                  </opaqueInsets>
                               </Button>
-                              <Button fx:id="deleteButton" mnemonicParsing="false" onAction="#onDeleteButtonPressed" styleClass="failure-button" text="Delete" textAlignment="CENTER">
+                              <Button fx:id="deleteButton" mnemonicParsing="false" onAction="#onDeleteButtonPressed" styleClass="failure-button" text="Delete" textAlignment="CENTER" HBox.hgrow="ALWAYS">
                                  <cursor>
                                     <Cursor fx:constant="HAND" />
                                  </cursor>
@@ -144,6 +151,9 @@
                            <opaqueInsets>
                               <Insets />
                            </opaqueInsets>
+                           <VBox.margin>
+                              <Insets bottom="5.0" left="10.0" right="10.0" />
+                           </VBox.margin>
                         </HBox>
                      </children>
                   </VBox>
@@ -153,7 +163,7 @@
       </Tab>
       <Tab fx:id="medicalEquipmentTab" text="Medical Equipment">
          <content>
-            <StackPane prefWidth="200.0">
+            <StackPane>
                <children>
                   <VBox alignment="CENTER" minHeight="-Infinity" minWidth="-Infinity" prefHeight="200.0" prefWidth="200.0">
                      <children>
@@ -164,6 +174,9 @@
                            <font>
                               <Font size="20.0" />
                            </font>
+                           <VBox.margin>
+                              <Insets bottom="5.0" />
+                           </VBox.margin>
                         </Label>
                         <VBox alignment="CENTER_LEFT" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefWidth="227.0" styleClass="fields-padding">
                            <children>
@@ -196,33 +209,32 @@
                               <JFXTreeTableView fx:id="medicalEquipmentTable" prefHeight="334.0" prefWidth="250.0" styleClass="table-view" />
                            </children>
                         </VBox>
-                        <HBox maxWidth="1.7976931348623157E308" spacing="15.0">
+                        <HBox alignment="CENTER" spacing="20.0">
                            <children>
-                              <VBox alignment="BOTTOM_CENTER" maxWidth="1.7976931348623157E308" prefHeight="58.0" prefWidth="141.0" HBox.hgrow="ALWAYS">
+                              <VBox alignment="BOTTOM_RIGHT" maxWidth="1.7976931348623157E308" prefHeight="58.0" prefWidth="141.0" HBox.hgrow="ALWAYS">
                                  <children>
                                     <JFXToggleNode fx:id="updateLocation" contentDisplay="CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" onAction="#onUpdateLocationButtonPressed" styleClass="button" text="Update Location">
                                        <selectedColor>
                                           <Color red="0.1836622804403305" green="0.2418220043182373" blue="0.8815789222717285" opacity="0.20000000298023224" />
                                        </selectedColor>
-                                       <font>
-                                          <Font size="16.0" />
-                                       </font>
+                                       <tooltip>
+                                          <Tooltip text="Choose a location on the map for moving the selected medical equipment." />
+                                       </tooltip>
                                     </JFXToggleNode>
                                  </children>
                               </VBox>
-                              <VBox alignment="BOTTOM_CENTER" maxWidth="1.7976931348623157E308" HBox.hgrow="ALWAYS">
+                              <VBox alignment="BOTTOM_LEFT" maxWidth="1.7976931348623157E308" HBox.hgrow="ALWAYS">
                                  <children>
                                     <ComboBox fx:id="statusComboBox" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" onAction="#onMedicalEquipmentStatusComboBoxChanged" />
                                     <JFXButton fx:id="updateStatus" alignment="CENTER" contentDisplay="CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" onAction="#onUpdateStatusButtonPressed" text="Update Status">
-                                       <font>
-                                          <Font size="16.0" />
-                                       </font>
-                                    </JFXButton>
+                                       <tooltip>
+                                          <Tooltip text="Update the selected medical equipment status." />
+                                       </tooltip></JFXButton>
                                  </children>
                               </VBox>
                            </children>
                            <padding>
-                              <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                              <Insets bottom="10.0" left="19.0" right="10.0" top="10.0" />
                            </padding>
                         </HBox>
                      </children>
@@ -233,7 +245,7 @@
       </Tab>
       <Tab fx:id="serviceRequestTab" text="Service Requests">
          <content>
-            <StackPane prefWidth="200.0">
+            <StackPane>
                <children>
                   <VBox alignment="CENTER" minHeight="-Infinity" minWidth="-Infinity" prefHeight="200.0" prefWidth="200.0">
                      <children>
@@ -244,6 +256,9 @@
                            <font>
                               <Font size="20.0" />
                            </font>
+                           <VBox.margin>
+                              <Insets bottom="5.0" />
+                           </VBox.margin>
                         </Label>
                         <VBox alignment="CENTER_LEFT" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefWidth="227.0" styleClass="fields-padding">
                            <children>
@@ -275,27 +290,26 @@
                               <JFXTreeTableView fx:id="serviceRequestTable" styleClass="table-view" />
                            </children>
                         </VBox>
-                        <HBox maxWidth="1.7976931348623157E308" spacing="15.0">
+                        <HBox alignment="CENTER" spacing="20.0">
                            <children>
-                              <VBox alignment="BOTTOM_CENTER" maxWidth="1.7976931348623157E308" HBox.hgrow="ALWAYS">
+                              <VBox alignment="BOTTOM_RIGHT" HBox.hgrow="ALWAYS">
                                  <children>
                                     <JFXToggleNode fx:id="updateLocationSR" contentDisplay="CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" onAction="#onUpdateSRLocationButtonPressed" styleClass="button" text="Update Location">
                                        <selectedColor>
                                           <Color red="0.1836622804403305" green="0.2418220043182373" blue="0.8815789222717285" opacity="0.20000000298023224" />
                                        </selectedColor>
-                                       <font>
-                                          <Font size="16.0" />
-                                       </font>
+                                       <tooltip>
+                                          <Tooltip text="Choose a location on the map for moving the selected service request." />
+                                       </tooltip>
                                     </JFXToggleNode>
                                  </children>
                               </VBox>
-                              <VBox alignment="BOTTOM_CENTER" maxWidth="1.7976931348623157E308" HBox.hgrow="ALWAYS">
+                              <VBox alignment="BOTTOM_LEFT" HBox.hgrow="ALWAYS">
                                  <children>
                                     <JFXButton fx:id="resolveSR" alignment="CENTER" contentDisplay="CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" onAction="#onResolveSRButtonPressed" text="Resolve">
-                                       <font>
-                                          <Font size="16.0" />
-                                       </font>
-                                    </JFXButton>
+                                       <tooltip>
+                                          <Tooltip text="Resolve the selected service request." />
+                                       </tooltip></JFXButton>
                                  </children>
                               </VBox>
                            </children>
@@ -322,6 +336,9 @@
                            <font>
                               <Font size="20.0" />
                            </font>
+                           <VBox.margin>
+                              <Insets />
+                           </VBox.margin>
                         </Label>
                         <JFXTreeTableView fx:id="patientsTable" styleClass="table-view" VBox.vgrow="ALWAYS">
                            <VBox.margin>
