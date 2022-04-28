@@ -112,9 +112,6 @@ public class App extends Application {
                                 drawerContentController.selectedButton(drawerContentController.databaseButton);
                             }
                             break;
-                        case "M" :
-                            setView(USER_PROFILE);
-                            break;
                         case "S" :
                             setView(SERVICE_REQUEST_DASHBOARD);
                             drawerContentController.selectedButton(drawerContentController.serviceRequestsButton);
@@ -135,7 +132,7 @@ public class App extends Application {
                             drawerContentController.selectedButton(drawerContentController.viewProfileButton);
                             break;
                         case "A" :
-                            setView(ABOUT_PAGE);g
+                            setView(ABOUT_PAGE);
                             drawerContentController.selectedButton(drawerContentController.aboutButton);
                             break;
                         default:
