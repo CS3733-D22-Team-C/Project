@@ -13,9 +13,11 @@ import edu.wpi.cs3733.D22.teamC.models.service_request.ServiceRequestTableDispla
 import edu.wpi.cs3733.D22.teamC.models.service_request.patient_transport.PatientTransportSRTableDisplay;
 import edu.wpi.cs3733.D22.teamC.models.utils.ComponentWrapper;
 import io.github.palexdev.materialfx.controls.MFXDatePicker;
+import io.github.palexdev.materialfx.controls.cell.MFXDateCell;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import net.bytebuddy.asm.Advice;
 import org.controlsfx.control.SearchableComboBox;
 
 import java.io.IOException;
@@ -53,6 +55,18 @@ public class PatientTransportSRInsertCreateController implements InsertServiceRe
         patientComboBox.getItems().setAll(patientList);
 
         date.setStartingYearMonth(YearMonth.now());
+        date.setEditable(false);
+
+
+//        date.setCellFactory(picker -> new MFXDateCell() {
+//            public void updateItem(LocalDate d, boolean empty) {
+//                super.updateItem(d);
+//                LocalDate today = LocalDate.now();
+//
+//                setDisable(empty || d.compareTo(today) < 0);
+//            }
+//        });
+
 
     }
 

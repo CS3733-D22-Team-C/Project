@@ -23,7 +23,9 @@ import java.sql.Timestamp;
 import java.time.Instant;
 import java.time.LocalDate;
 import java.time.ZoneId;
+import java.time.format.TextStyle;
 import java.util.List;
+import java.util.Locale;
 import java.util.ResourceBundle;
 
 public class PatientTransportSRInsertResolveController extends InsertServiceRequestResolveController<PatientTransportSR> implements Initializable {
@@ -42,6 +44,7 @@ public class PatientTransportSRInsertResolveController extends InsertServiceRequ
         
         ComponentWrapper.initializeComboBox(patientSComboBox,Patient::toString);
         patientSComboBox.getItems().setAll(patients);
+
     }
     
     @Override
@@ -54,7 +57,16 @@ public class PatientTransportSRInsertResolveController extends InsertServiceRequ
         patientSComboBox.setDisable(!isEditMode);
 
 
-        date.setText((serviceRequest == null) ? "" : serviceRequest.getTransportTime().toLocalDateTime().toLocalDate().toString());
+
+        String dateMonth = serviceRequest.getTransportTime().toLocalDateTime().getMonth().getDisplayName(TextStyle.SHORT, Locale.ENGLISH);
+        int dateDay = serviceRequest.getTransportTime().toLocalDateTime().getDayOfMonth();
+        int dateYear = serviceRequest.getTransportTime().toLocalDateTime().getYear();
+
+        String dateString =  dateMonth + " " + dateDay + ", " + dateYear;
+
+
+
+        date.setText((serviceRequest == null) ? "" : dateString);
         patientSComboBox.setValue(serviceRequest.getPatient());
         patientSComboBox.setPromptText(serviceRequest.getPatient().toString());
     }
