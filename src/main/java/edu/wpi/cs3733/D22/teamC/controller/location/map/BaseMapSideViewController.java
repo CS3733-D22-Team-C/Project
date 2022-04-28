@@ -11,6 +11,7 @@ import edu.wpi.cs3733.D22.teamC.entity.location.LocationDAO;
 import edu.wpi.cs3733.D22.teamC.entity.medical_equipment.MedicalEquipment;
 import edu.wpi.cs3733.D22.teamC.entity.medical_equipment.MedicalEquipmentDAO;
 import edu.wpi.cs3733.D22.teamC.fileio.svg.SVGParser;
+import edu.wpi.cs3733.D22.teamC.models.utils.ComponentWrapper;
 import edu.wpi.cs3733.D22.teamC.models.utils.DoughnutChart;
 import io.github.palexdev.materialfx.controls.MFXButton;
 import io.github.palexdev.materialfx.controls.MFXTextField;
@@ -89,7 +90,7 @@ public class BaseMapSideViewController implements Initializable {
     @FXML private Label floorTitle;
     @FXML private HBox imageBox;
     @FXML private VBox floorVBox;
-    @FXML private Text descriptionText;
+    @FXML private Label descriptionText;
     @FXML private VBox equipmentBox;
 
 
@@ -217,6 +218,7 @@ public class BaseMapSideViewController implements Initializable {
         bFile = null;
         imagePath = "";
         loadFloors();
+        ComponentWrapper.setTextLengthLimiter(description, 255);
     }
 
     @FXML
@@ -334,11 +336,13 @@ public class BaseMapSideViewController implements Initializable {
         }
         shortName.getStyleClass().remove("validated-field");
         longName.getStyleClass().remove("validated-field");
+        image.getStyleClass().remove("validated-field");
     }
 
     @FXML
     void onConfirmClicked(ActionEvent event) throws IOException {
         if(!requiredFieldsPresent()) return;
+        image.getStyleClass().remove("validated-field");
 
         selectedFloor.setLongName(longName.getText());
         selectedFloor.setDescription(description.getText());
@@ -371,17 +375,22 @@ public class BaseMapSideViewController implements Initializable {
         editButton.setDisable(false);
         deleteButton.setDisable(false);
         loadFloors();
+        FloorNode temp = null;
         for(FloorNode floorNode : floorNodeControllerList){
             if(Objects.equals(floorNode.getFloor().getID(), selectedFloor.getID())){
                 floorNode.getGroup().getChildren().get(0).setStyle("-fx-background-color: #B3EDF0");
+                temp = floorNode;
             }
         }
+        onFloorClicked(null, temp);
     }
 
     private boolean requiredFieldsPresent(){
         if(shortName.getText().equals("") || longName.getText().equals("")
                 || imagePath.equals("") || bFile == null || description.getLength() > 255){
-            image.getStyleClass().remove("validated-field");
+            if(image.getText().equals("")) image.getStyleClass().add("validated-field");
+            if(shortName.getText().equals("")) shortName.getStyleClass().add("validated-field");
+            if(longName.getText().equals("")) longName.getStyleClass().add("validated-field");
             return false;
         }
         return true;
@@ -455,7 +464,7 @@ public class BaseMapSideViewController implements Initializable {
 
                 imagePath = file.getName();
                 this.image.setText(imagePath);
-                image.getStyleClass().add("validated-field");
+                image.getStyleClass().remove("validated-field");
             } catch (IOException e) {
                 e.printStackTrace();
             }
