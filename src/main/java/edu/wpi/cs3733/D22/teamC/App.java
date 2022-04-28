@@ -81,7 +81,7 @@ public class App extends Application {
         // Authentication
         GoogleManager.authenticateClient();
         
-        SessionManager.switchDatabase(SessionManager.DBMode.CLOUD);
+        SessionManager.switchDatabase(SessionManager.DBMode.EMBEDDED);
         log.info("Starting Up");
     }
     //Test comment

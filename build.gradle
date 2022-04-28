@@ -5,6 +5,7 @@ plugins {
     id 'com.diffplug.gradle.spotless' version '3.27.1'
     id "io.freefair.lombok" version "5.0.0-rc6"
     id 'org.openjfx.javafxplugin' version '0.0.10'
+    id 'com.github.johnrengelman.shadow' version '6.1.0'
 }
 mainClassName = 'edu.wpi.cs3733.D22.teamC.Main'
 
@@ -69,9 +70,7 @@ dependencies {
     implementation 'org.springframework:spring-jdbc:5.3.17'
     implementation 'org.apache.logging.log4j:log4j-core:2.3.2'
     implementation 'io.github.palexdev:materialfx:11.13.4'
-
-    implementation platform('com.google.cloud:libraries-bom:25.2.0')
-    implementation 'com.google.cloud:google-cloud-storage:2.6.1'
+    
     implementation 'com.google.apis:google-api-services-plus:v1-rev590-1.25.0'
     implementation 'com.google.oauth-client:google-oauth-client-jetty:1.20.0'
     compile group: 'com.google.oauth-client', name: 'google-oauth-client-java6', version: '1.21.0'
@@ -87,10 +86,10 @@ jar {
     manifest {
         attributes 'Main-Class': mainClassName
     }
-    zip64=true
     from {
         configurations.runtimeClasspath.collect { it.isDirectory() ? it : zipTree(it) }
     }
+
 }
 
 def codeCoverageExcludes = [
