@@ -108,7 +108,7 @@
                   <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
                </VBox.margin>
                <children>
-                  <JFXButton fx:id="goBackButton" onAction="#onGoBackButtonPressed" stylesheets="@../../css/default.css" text="Go Back">
+                  <JFXButton fx:id="goBackButton" onAction="#onGoBackButtonPressed" styleClass="primary-action-button" stylesheets="@../../css/default.css" text="Go Back">
                      <font>
                         <Font size="16.0" />
                      </font>
