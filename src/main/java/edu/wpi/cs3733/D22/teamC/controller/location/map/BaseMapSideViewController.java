@@ -581,7 +581,7 @@ public class BaseMapSideViewController implements Initializable {
         ObservableList<PieChart.Data> list;
         if(dirty == 0 && available == 0 && unavailable == 0){
             list = FXCollections.observableArrayList(
-                    new PieChart.Data("No Equipment Available", 0));
+                    new PieChart.Data("No Equipment", 1));
         }
         else{
             list = FXCollections.observableArrayList(
@@ -615,17 +615,20 @@ public class BaseMapSideViewController implements Initializable {
             Tooltip tooltip = new Tooltip();
             tooltip.setStyle("-fx-font-size: 15;");
             tooltip.setShowDelay(new Duration(0));
-            tooltip.setText(data.getName() + ": " + (int) data.getPieValue());
+
+            if (data.getName().equals("No Equipment")) tooltip.setText(data.getName());
+            else tooltip.setText(data.getName() + ": " + (int) data.getPieValue());
+
             Tooltip.install(data.getNode(), tooltip);
             data.pieValueProperty().addListener((observable, oldValue, newValue) ->
                     tooltip.setText(String.valueOf(newValue)));
         });
-        int colorCounter = 0;
-        for(PieChart.Data data : datas){
-            if(colorCounter == 0) datas.get(0).getNode().setStyle("-fx-pie-color: red;");
-            if(colorCounter == 1) datas.get(1).getNode().setStyle("-fx-pie-color: #069420;");
-            if(colorCounter == 2) datas.get(2).getNode().setStyle("-fx-pie-color: #ebb420;");
-            colorCounter++;
+        if (datas.size() == 1) {
+            datas.get(0).getNode().setStyle("-fx-pie-color: white;");
+        } else {
+            datas.get(0).getNode().setStyle("-fx-pie-color: #F44336;");
+            datas.get(1).getNode().setStyle("-fx-pie-color: #069420;");
+            datas.get(2).getNode().setStyle("-fx-pie-color: #ebb420;");
         }
     }
 
