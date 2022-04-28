@@ -135,6 +135,7 @@ public class BaseMapSideViewController implements Initializable {
 
     @FXML
     void onGoToClicked() {
+        if(selectedFloor == null) return;
         App.View<MapViewController> view = App.instance.loadView(App.MAP_PATH);
         view.getController().getFloorManager().changeCurrent(selectedFloor);
         App.instance.setView(view.getNode());
@@ -192,6 +193,8 @@ public class BaseMapSideViewController implements Initializable {
 
         editButton.setDisable(true);
         deleteButton.setDisable(true);
+
+        selectedFloor = null;
 
         loadFloors();
     }
@@ -410,20 +413,20 @@ public class BaseMapSideViewController implements Initializable {
         List<MedicalEquipment> pumps = MEL.getEquipmentByFloorAndType(selectedFloor.getID(), MedicalEquipment.EquipmentType.Infusion_Pump);
         List<MedicalEquipment> xrays = MEL.getEquipmentByFloorAndType(selectedFloor.getID(), MedicalEquipment.EquipmentType.Portable_X_Ray);
 
-        dirtyEquip.numOfBeds        = beds.stream().filter(bed -> bed.getStatus().equals(MedicalEquipment.EquipmentStatus.Dirty)).collect(Collectors.toList()).size();
-        dirtyEquip.numOfRecliners   = recliners.stream().filter(recliner -> recliner.getStatus().equals(MedicalEquipment.EquipmentStatus.Dirty)).collect(Collectors.toList()).size();
-        dirtyEquip.numOfPumps       = pumps.stream().filter(pump -> pump.getStatus().equals(MedicalEquipment.EquipmentStatus.Dirty)).collect(Collectors.toList()).size();
-        dirtyEquip.numOfXRays       = xrays.stream().filter(xray -> xray.getStatus().equals(MedicalEquipment.EquipmentStatus.Dirty)).collect(Collectors.toList()).size();
+        dirtyEquip.numOfBeds        = (int) beds.stream().filter(bed -> bed.getStatus().equals(MedicalEquipment.EquipmentStatus.Dirty)).count();
+        dirtyEquip.numOfRecliners   = (int) recliners.stream().filter(recliner -> recliner.getStatus().equals(MedicalEquipment.EquipmentStatus.Dirty)).count();
+        dirtyEquip.numOfPumps       = (int) pumps.stream().filter(pump -> pump.getStatus().equals(MedicalEquipment.EquipmentStatus.Dirty)).count();
+        dirtyEquip.numOfXRays       = (int) xrays.stream().filter(xray -> xray.getStatus().equals(MedicalEquipment.EquipmentStatus.Dirty)).count();
 
-        inUseEquip.numOfBeds        = beds.stream().filter(bed -> bed.getStatus().equals(MedicalEquipment.EquipmentStatus.Unavailable)).collect(Collectors.toList()).size();
-        inUseEquip.numOfRecliners   = recliners.stream().filter(recliner -> recliner.getStatus().equals(MedicalEquipment.EquipmentStatus.Unavailable)).collect(Collectors.toList()).size();
-        inUseEquip.numOfPumps       = pumps.stream().filter(pump -> pump.getStatus().equals(MedicalEquipment.EquipmentStatus.Unavailable)).collect(Collectors.toList()).size();
-        inUseEquip.numOfXRays       = xrays.stream().filter(xray -> xray.getStatus().equals(MedicalEquipment.EquipmentStatus.Unavailable)).collect(Collectors.toList()).size();
+        inUseEquip.numOfBeds        = (int) beds.stream().filter(bed -> bed.getStatus().equals(MedicalEquipment.EquipmentStatus.Unavailable)).count();
+        inUseEquip.numOfRecliners   = (int) recliners.stream().filter(recliner -> recliner.getStatus().equals(MedicalEquipment.EquipmentStatus.Unavailable)).count();
+        inUseEquip.numOfPumps       = (int) pumps.stream().filter(pump -> pump.getStatus().equals(MedicalEquipment.EquipmentStatus.Unavailable)).count();
+        inUseEquip.numOfXRays       = (int) xrays.stream().filter(xray -> xray.getStatus().equals(MedicalEquipment.EquipmentStatus.Unavailable)).count();
 
-        readyEquip.numOfBeds        = beds.stream().filter(bed -> bed.getStatus().equals(MedicalEquipment.EquipmentStatus.Available)).collect(Collectors.toList()).size();
-        readyEquip.numOfRecliners   = recliners.stream().filter(recliner -> recliner.getStatus().equals(MedicalEquipment.EquipmentStatus.Available)).collect(Collectors.toList()).size();
-        readyEquip.numOfPumps       = pumps.stream().filter(pump -> pump.getStatus().equals(MedicalEquipment.EquipmentStatus.Available)).collect(Collectors.toList()).size();
-        readyEquip.numOfXRays       = xrays.stream().filter(xray -> xray.getStatus().equals(MedicalEquipment.EquipmentStatus.Available)).collect(Collectors.toList()).size();
+        readyEquip.numOfBeds        = (int) beds.stream().filter(bed -> bed.getStatus().equals(MedicalEquipment.EquipmentStatus.Available)).count();
+        readyEquip.numOfRecliners   = (int) recliners.stream().filter(recliner -> recliner.getStatus().equals(MedicalEquipment.EquipmentStatus.Available)).count();
+        readyEquip.numOfPumps       = (int) pumps.stream().filter(pump -> pump.getStatus().equals(MedicalEquipment.EquipmentStatus.Available)).count();
+        readyEquip.numOfXRays       = (int) xrays.stream().filter(xray -> xray.getStatus().equals(MedicalEquipment.EquipmentStatus.Available)).count();
 
         bedPane.getChildren().clear();
         reclinerPane.getChildren().clear();
